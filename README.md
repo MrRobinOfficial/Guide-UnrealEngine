@@ -69,12 +69,39 @@ if (Health <= 0)
 }
 ```
 
-### Floating points (floats)
+### Floating points (floats and doubles)
 
 ```cpp
 float SpeedInMetersPerSecond = 5.5f; // C++ always uses 'f' or 'F' literal for defining a float variable.
 
 float SpeedInKph = SpeedInMetersPerSecond * 3.6f;
+```
+
+```cpp
+double SpeedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a double variable.
+
+double SpeedInKph = SpeedInMetersPerSecond * 3.6;
+```
+
+### Modifiers
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turpis a nisl vestibulum, ac malesuada enim pellentesque. In bibendum suscipit sem, in pulvinar tellus vestibulum vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In at suscipit diam. Sed nec enim luctus, condimentum eros quis, porta felis. Vestibulum dignissim turpis in justo pulvinar dapibus. Phasellus sodales, sem vitae blandit dictum, magna risus viverra sapien, ut malesuada purus arcu ut tellus.
+
+```cpp
+// Can store postive and negative numbers
+signed int32 a = -10;
+
+// Can only store postive numbers
+unsigned int32 b = 20;
+
+// Can store 32 bits ()
+int32 c = 50;
+
+// Can only store 16 bits ()
+short int32 d = 15;
+
+// Can store up to 64 bits ()
+long int32 e = 10;
 ```
 
 ### Strings
@@ -103,6 +130,19 @@ FText NewGameText = FText::FromString(TEXT("New Game"));
 // Also, FNames are case-insensitive, and are stored as a combination of an index into a table of unique strings and an instance number.
 FName Username = FName(TEXT("mRrObIN"));
 ```
+
+### Vectors and Quaternions
+
+```cpp
+FVector Location = FVector::ZeroVector; // X, Y and Z
+FRotator Rotation = FRotator::Identify; // X, Y, Z and W
+```
+
+### Classes and structs
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turpis a nisl vestibulum, ac malesuada enim pellentesque. In bibendum suscipit sem, in pulvinar tellus vestibulum vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In at suscipit diam. Sed nec enim luctus, condimentum eros quis, porta felis. Vestibulum dignissim turpis in justo pulvinar dapibus. Phasellus sodales, sem vitae blandit dictum, magna risus viverra sapien, ut malesuada purus arcu ut tellus.
+
+Integer nunc metus, faucibus a luctus a, porta at turpis. Praesent sem felis, cursus vitae nulla nec, tincidunt interdum sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper auctor ex, quis mollis sapien aliquam sit amet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed suscipit dapibus aliquet. Nulla id vestibulum enim. Aenean dui nisi, mollis vitae porttitor at, gravida ac nisl. In sit amet velit lacus. Vivamus feugiat purus faucibus tincidunt pulvinar. Suspendisse fringilla eleifend risus vitae vestibulum. Etiam condimentum maximus ipsum.
 
 ### Collections
 
