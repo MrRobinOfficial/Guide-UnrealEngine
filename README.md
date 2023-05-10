@@ -18,17 +18,6 @@ Integer nunc metus, faucibus a luctus a, porta at turpis. Praesent sem felis, cu
 
 ## Architecture
 
-<figure>
-  <img src="https://ue-cdn.artstation.com/imgproxy/FsW3HX1vUAYYoC0la5qJ1AMeo-J5lsYRmV-rj5xpn2A/filename:0f7063e3-e57d-4fc1-936e-1f5f337fb999.png/resizing_type:fit/width:1920/height:1080/aHR0cHM6Ly9kMWl2N2RiNDR5aGd4bi5jbG91ZGZyb250Lm5ldC9pbWFnZXMvMGMyNTZlMDktOTJkYi00YmMyLTkyZGQtYjFlNDlmNTJmY2U4LzBmNzA2M2UzLWU1N2QtNGZjMS05MzZlLTFmNWYzMzdmYjk5OS5wbmc" alt="Basic Class Structure"> 
-  <figcaption>Basic Class Structure, <a href="https://dev.epicgames.com/community/learning/tutorials/7xWm/unreal-engine-basic-class-structure" target="_blank">click here</a> to read more about it.</figcaption>
-</figure>
-
-<br>
-<br>
-
-You can also watch "*The Unreal Engine Game Framework: From int main() to BeginPlay*" by Alex Forsythe, which talks about Unreal Engine's architecture.
-<a href="https://www.youtube.com/watch?v=IaU2Hue-ApI" target="_blank">Link here</a>
-
 ```mermaid
 graph TD;
     UObjectBase-->UObjectBaseUtility;
@@ -106,19 +95,19 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 * ```AActor ```
   * A base class for the every object placed in the world. It's an ```UObject``` that usually contains other ```UObject```s specialized to be part of an actor - this what we call components.
   * This class contains a basic functionality to operate on the "object placed in the word".
-  * Actor itself doesn't have a transform (i.e. position in the world), it depends on the transform of the root component.
+  * ```AActor``` itself doesn't have a transform (i.e. position in the world), it depends on the transform of the root component.
  
 * ```APawn```
   * Represents a pawn in the game world. A pawn is an entity that can be controlled by the player or by AI, and can move and interact with the game world.
-  * APawn provides basic movement and input handling functionality, as well as collision detection and physics simulation.
+  * ```APawn``` provides basic movement and input handling functionality, as well as collision detection and physics simulation.
 
 * ```AHUD```
   * Represents the heads-up display (HUD) in the game. The HUD displays important information to the player, such as health and ammunition levels, as well as providing visual feedback for game events such as damage or power-up pickups.
-  * AHUD can be customized to display different types of information and to use different visual styles.
+  * ```AHUD``` can be customized to display different types of information and to use different visual styles.
 
 * ```ACharacter```
   * Represents a playable character in the game world. ```ACharacter``` is a subclass of ```APawn``` and provides additional functionality specific to player-controlled characters, such as animation and movement controls, camera handling, and input management.
-  * ACharacter can be used as a base class for player characters, enemies, and other types of characters in the game.
+  * ```ACharacter``` can be used as a base class for player characters, enemies, and other types of characters in the game.
 
 * ```AController```
   * Represents a controller in the game, which can be used to control a pawn or character.
@@ -127,11 +116,11 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 * ```UActorComponent```
   * A base class for every object placed inside AActor.
   * Used for components contains only the logic, i.e. ```UMovementComponent``` or ```SceneComponent```.
-  * Actor Component doesn't appear in the world.
+  * ```UActorComponent``` doesn't appear in the world.
 
 * ```UMovementComponent```
   * Provides movement functionality to an actor in the game world. ```UMovementComponent``` can be used to implement a variety of movement types, such as flying, walking, swimming, or sliding.
-  * UMovementComponent handles physics simulation and collision detection for the actor, and can be customized to provide different movement behaviors.
+  * ```UMovementComponent``` handles physics simulation and collision detection for the actor, and can be customized to provide different movement behaviors.
 
 * ```USceneComponent```
   * A base class for every component which actually appears in the world, it has a transform evaluated every frame.
@@ -154,14 +143,14 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 * ```AGameMode```
   * Defines the rules and mechanics of a particular game mode, such as deathmatch or capture the flag.
   * Can be used to control game behavior, spawn actors, manage player input and game state, and perform other game-specific tasks.
-  * Each level in a game can have its own AGameMode, allowing for different game modes to be used in different levels.
+  * Each level in a game can have its own ```AGameMode```, allowing for different game modes to be used in different levels.
 
 * ```AGameState```
-  * Represents the state of the game during play. AGameState can be used to store and manage data that is specific to a particular game, such as player scores, game timers, and other game state information.
-  * AGameState can also be used to synchronize game state across multiple clients in a networked game, ensuring that all players have an accurate view of the game world.
+  * Represents the state of the game during play. ```AGameState``` can be used to store and manage data that is specific to a particular game, such as player scores, game timers, and other game state information.
+  * ```AGameState``` can also be used to synchronize game state across multiple clients in a networked game, ensuring that all players have an accurate view of the game world.
 
 * ```USoundBase```
-  * Represents a sound or audio asset in the engine. ASoundBase can be used to play sound effects, music, and other audio in the game world. ASoundBase provides a number of features for controlling the playback of audio, including volume, pitch, and spatialization effects such as 3D sound and reverb.
+  * Represents a sound or audio asset in the engine. ASoundBase can be used to play sound effects, music, and other audio in the game world. ```ASoundBase``` provides a number of features for controlling the playback of audio, including volume, pitch, and spatialization effects such as 3D sound and reverb.
 
 * ```ULevel```
   * Represents a level in the game world that contains actors, geometry, lighting, and other assets.
@@ -173,12 +162,28 @@ Some of the notorious classes, that inherit from ```UObject``` include:
   * Represents an image or texture that can be used in the engine for various purposes such as materials or user interface elements.
 
 * ```UUserWidget```
-  * Represents a user interface (UI) widget in the game. UUserWidget provides a flexible framework for creating UI elements such as buttons, text fields, and images, and can be customized to implement complex UI behaviors such as animations, transitions, and data binding.
-  * UUserWidget can be used to create menus, health bars, inventory screens, and other UI elements in the game.
+  * Represents a user interface (UI) widget in the game. ```UUserWidget``` provides a flexible framework for creating UI elements such as buttons, text fields, and images, and can be customized to implement complex UI behaviors such as animations, transitions, and data binding.
+  * ```UUserWidget``` can be used to create menus, health bars, inventory screens, and other UI elements in the game.
 
 * ```UPrimaryDataAsset```
-  * Represents a primary data asset in the engine. A primary data asset is a piece of game content that is created in the Unreal Editor, such as a mesh, texture, sound, or level. UPrimaryDataAsset provides a base class for creating custom data assets that can be loaded and used by the game at runtime.
-  * UPrimaryDataAsset can be used to manage and organize game content, and can be customized to provide additional functionality such as data validation and metadata management.
+  * Represents a primary data asset in the engine. A primary data asset is a piece of game content that is created in the Unreal Editor, such as a mesh, texture, sound, or level. ```UPrimaryDataAsset``` provides a base class for creating custom data assets that can be loaded and used by the game at runtime.
+  * ```UPrimaryDataAsset``` can be used to manage and organize game content, and can be customized to provide additional functionality such as data validation and metadata management.
+
+This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can avoid these classes:
+
+* Temp
+* Temp
+
+<figure>
+  <img src="https://ue-cdn.artstation.com/imgproxy/FsW3HX1vUAYYoC0la5qJ1AMeo-J5lsYRmV-rj5xpn2A/filename:0f7063e3-e57d-4fc1-936e-1f5f337fb999.png/resizing_type:fit/width:1920/height:1080/aHR0cHM6Ly9kMWl2N2RiNDR5aGd4bi5jbG91ZGZyb250Lm5ldC9pbWFnZXMvMGMyNTZlMDktOTJkYi00YmMyLTkyZGQtYjFlNDlmNTJmY2U4LzBmNzA2M2UzLWU1N2QtNGZjMS05MzZlLTFmNWYzMzdmYjk5OS5wbmc" alt="Basic Class Structure"> 
+  <figcaption>Basic Class Structure, <a href="https://dev.epicgames.com/community/learning/tutorials/7xWm/unreal-engine-basic-class-structure" target="_blank">click here</a> to read more about it.</figcaption>
+</figure>
+
+<br>
+<br>
+
+You can also watch "*The Unreal Engine Game Framework: From int main() to BeginPlay*" by Alex Forsythe, which talks about Unreal Engine's architecture.
+<a href="https://www.youtube.com/watch?v=IaU2Hue-ApI" target="_blank">Link here</a>
 
 ## Naming Convention 
 
