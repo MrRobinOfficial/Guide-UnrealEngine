@@ -85,7 +85,7 @@ graph TD;
     UShapeComponent-->USphereComponent;
 ```
 
-UObject is a base class for objects in the engine that require some common functionality such as garbage collection, serialization, reflection, and more. UObject also provides some additional functionality such as networking support, dynamic class creation, and object-oriented programming features like inheritance and polymorphism.
+```UObject``` is a base class for objects in the engine that require some common functionality such as garbage collection, serialization, reflection, and more. ```UObject``` also provides some additional functionality such as networking support, dynamic class creation, and object-oriented programming features like inheritance and polymorphism.
 
 Some of the notorious classes, that inherit from ```UObject``` include:
 
