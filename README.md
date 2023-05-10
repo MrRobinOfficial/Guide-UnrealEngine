@@ -87,17 +87,6 @@ graph TD;
 
 UObject is a base class for objects in the engine that require some common functionality such as garbage collection, serialization, reflection, and more. UObject also provides some additional functionality such as networking support, dynamic class creation, and object-oriented programming features like inheritance and polymorphism.
 
-<figure>
-  <img src="https://ue-cdn.artstation.com/imgproxy/FsW3HX1vUAYYoC0la5qJ1AMeo-J5lsYRmV-rj5xpn2A/filename:0f7063e3-e57d-4fc1-936e-1f5f337fb999.png/resizing_type:fit/width:1920/height:1080/aHR0cHM6Ly9kMWl2N2RiNDR5aGd4bi5jbG91ZGZyb250Lm5ldC9pbWFnZXMvMGMyNTZlMDktOTJkYi00YmMyLTkyZGQtYjFlNDlmNTJmY2U4LzBmNzA2M2UzLWU1N2QtNGZjMS05MzZlLTFmNWYzMzdmYjk5OS5wbmc" alt="Basic Class Structure"> 
-  <figcaption>Basic Class Structure, <a href="https://dev.epicgames.com/community/learning/tutorials/7xWm/unreal-engine-basic-class-structure" target="_blank">click here</a> to read more about it.</figcaption>
-</figure>
-
-<br>
-<br>
-
-You can also watch "*The Unreal Engine Game Framework: From int main() to BeginPlay*" by Alex Forsythe, which talks about Unreal Engine's architecture.
-<a href="https://www.youtube.com/watch?v=IaU2Hue-ApI" target="_blank">Link here</a>
-
 Some of the notorious classes, that inherit from ```UObject``` include:
 
 * ```UObject```
@@ -160,6 +149,14 @@ Some of the notorious classes, that inherit from ```UObject``` include:
   * Represents the state of the game during play. ```AGameState``` can be used to store and manage data that is specific to a particular game, such as player scores, game timers, and other game state information.
   * ```AGameState``` can also be used to synchronize game state across multiple clients in a networked game, ensuring that all players have an accurate view of the game world.
 
+* ```UUserWidget```
+  * Represents a user interface (UI) widget in the game. ```UUserWidget``` provides a flexible framework for creating UI elements such as buttons, text fields, and images, and can be customized to implement complex UI behaviors such as animations, transitions, and data binding.
+  * ```UUserWidget``` can be used to create menus, health bars, inventory screens, and other UI elements in the game.
+
+* ```UPrimaryDataAsset```
+  * Represents a primary data asset in the engine. A primary data asset is a piece of game content that is created in the Unreal Editor, such as a mesh, texture, sound, or level. ```UPrimaryDataAsset``` provides a base class for creating custom data assets that can be loaded and used by the game at runtime.
+  * ```UPrimaryDataAsset``` can be used to manage and organize game content, and can be customized to provide additional functionality such as data validation and metadata management.
+
 * ```USoundBase```
   * Represents a sound or audio asset in the engine. ASoundBase can be used to play sound effects, music, and other audio in the game world. ```ASoundBase``` provides a number of features for controlling the playback of audio, including volume, pitch, and spatialization effects such as 3D sound and reverb.
 
@@ -172,18 +169,21 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 * ```UTexture```
   * Represents an image or texture that can be used in the engine for various purposes such as materials or user interface elements.
 
-* ```UUserWidget```
-  * Represents a user interface (UI) widget in the game. ```UUserWidget``` provides a flexible framework for creating UI elements such as buttons, text fields, and images, and can be customized to implement complex UI behaviors such as animations, transitions, and data binding.
-  * ```UUserWidget``` can be used to create menus, health bars, inventory screens, and other UI elements in the game.
-
-* ```UPrimaryDataAsset```
-  * Represents a primary data asset in the engine. A primary data asset is a piece of game content that is created in the Unreal Editor, such as a mesh, texture, sound, or level. ```UPrimaryDataAsset``` provides a base class for creating custom data assets that can be loaded and used by the game at runtime.
-  * ```UPrimaryDataAsset``` can be used to manage and organize game content, and can be customized to provide additional functionality such as data validation and metadata management.
-
 This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can avoid these classes:
 
 * ```Temp```
 * ```Temp```
+
+<figure>
+  <img src="https://ue-cdn.artstation.com/imgproxy/FsW3HX1vUAYYoC0la5qJ1AMeo-J5lsYRmV-rj5xpn2A/filename:0f7063e3-e57d-4fc1-936e-1f5f337fb999.png/resizing_type:fit/width:1920/height:1080/aHR0cHM6Ly9kMWl2N2RiNDR5aGd4bi5jbG91ZGZyb250Lm5ldC9pbWFnZXMvMGMyNTZlMDktOTJkYi00YmMyLTkyZGQtYjFlNDlmNTJmY2U4LzBmNzA2M2UzLWU1N2QtNGZjMS05MzZlLTFmNWYzMzdmYjk5OS5wbmc" alt="Basic Class Structure"> 
+  <figcaption>Basic Class Structure, <a href="https://dev.epicgames.com/community/learning/tutorials/7xWm/unreal-engine-basic-class-structure" target="_blank">click here</a> to read more about it.</figcaption>
+</figure>
+
+<br>
+<br>
+
+You can also watch "*The Unreal Engine Game Framework: From int main() to BeginPlay*" by Alex Forsythe, which talks about Unreal Engine's architecture.
+<a href="https://www.youtube.com/watch?v=IaU2Hue-ApI" target="_blank">Link here</a>
 
 ## Naming Convention 
 
