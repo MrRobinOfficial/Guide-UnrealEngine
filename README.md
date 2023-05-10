@@ -187,7 +187,7 @@ You can also watch "*The Unreal Engine Game Framework: From int main() to BeginP
 
 ## Naming Convention 
 
-Here is a github repo about Unreal Engine's style guide by Michael Allar, <a href="https://github.com/Allar/ue5-style-guide" target="_blank">link here/<a>.
+Here is a github repo about Unreal Engine's style guide by Michael Allar, <a href="https://github.com/Allar/ue5-style-guide" target="_blank">link here</a>.
 
 Unreal Engine uses a variety of prefixes to indicate the type and purpose of a class or variable. Some common prefixes include:
   
