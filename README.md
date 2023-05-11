@@ -92,7 +92,7 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 * ```UObject```
   * A base class for the every object in the game. Engines takes care of managing its lifetime and cleans up it from memory after it's no longer used (garbage collection).
 
-* ```AActor ```
+* ```AActor```
   * A base class for the every object placed in the world. It's an ```UObject``` that usually contains other ```UObject```s specialized to be part of an actor - this what we call components.
   * This class contains a basic functionality to operate on the "object placed in the word".
   * ```AActor``` itself doesn't have a transform (i.e. position in the world), it depends on the transform of the root component.
