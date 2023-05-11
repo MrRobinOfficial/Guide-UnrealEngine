@@ -117,6 +117,10 @@ Some of the notorious classes, that inherit from ```UObject``` include:
   * A base class for the every object placed in the world. It's an ```UObject``` that usually contains other ```UObject```s specialized to be part of an actor - this what we call components.
   * This class contains a basic functionality to operate on the "object placed in the word".
   * ```AActor``` itself doesn't have a transform (i.e. position in the world), it depends on the transform of the root component.
+  * *Functions*:
+    * ```BeginPlay()``` - Start function
+    * ```Tick(float DeltaSeconds)``` - Tick function
+    * ```EndPlay(const EEndPlayReason::Type EndPlayReason)``` - End function
  
 * ```APawn```
   * Represents a pawn in the game world. A pawn is an entity that can be controlled by the player or by AI, and can move and interact with the game world.
@@ -138,7 +142,11 @@ Some of the notorious classes, that inherit from ```UObject``` include:
   * A base class for every object placed inside AActor.
   * Used for components contains only the logic, i.e. ```UMovementComponent``` or ```SceneComponent```.
   * ```UActorComponent``` doesn't appear in the world.
-
+  * *Functions*:
+    * ```BeginPlay()``` - Start function
+    * ```TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)``` - Tick function
+    * ```EndPlay(const EEndPlayReason::Type EndPlayReason)``` - End function
+ 
 * ```UMovementComponent```
   * Provides movement functionality to an actor in the game world. ```UMovementComponent``` can be used to implement a variety of movement types, such as flying, walking, swimming, or sliding.
   * ```UMovementComponent``` handles physics simulation and collision detection for the actor, and can be customized to provide different movement behaviors.
@@ -205,6 +213,14 @@ This architecture is based on a multiplayer game setup. However, if you are maki
 
 You can also watch "*The Unreal Engine Game Framework: From int main() to BeginPlay*" by Alex Forsythe, which talks about Unreal Engine's architecture.
 <a href="https://www.youtube.com/watch?v=IaU2Hue-ApI" target="_blank">Link here</a>
+
+### Constructors and Destructors
+
+With ```AActor``` and ```UActorComponent``` you can control how the classes should be instantiated.
+
+**NOTE**: Only use constructors initializing variables. The constructor will also be called in the editor. Meaning, it should not use for runtime execution. Instead, use```BeginPlay()``` function.
+
+**NOTE**: Don't use destructors for deleting memory with Unreal ```UObject```.
 
 ## Naming Convention 
 
