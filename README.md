@@ -636,7 +636,7 @@ void KillActor()
 }
 ```
 
-After Unreal Engine (5.0) version, is now recommend to use ```TObjectPtr``` instead of ```*``` to mark raw pointers. ```TObjectPtr``` contains some optimization for the editor.
+After Unreal Engine (5.0) version, is now recommending to use ```TObjectPtr``` instead of ```*``` to mark raw pointers. ```TObjectPtr``` contains some optimization for the editor.
 
 Here is the updated code:
 
