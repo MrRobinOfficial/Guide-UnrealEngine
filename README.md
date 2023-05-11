@@ -211,7 +211,31 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 
 ## Data Types
 
-We start off with simply variables types, such as boolean, int, float, string and pointers.
+All types:
+
+* ```bool```
+* ```char```
+* ```int8```
+* ```int``` or ```int32```
+* ```int16```
+* ```int64```
+* ```uint8```
+* ```uint16```
+* ```uint32```
+* ```uint64```
+* ```float```
+* ```double```
+* ```FString```
+* ```FText```
+* ```FName```
+* ```TArray```
+* ```TSet```
+* ```TMap```
+* ```FVector```
+* ```FRotator```
+* ```FTransform```
+
+We start off with simple variables types, such as ```bool```, ```int```, ```float```, ```string``` and pointers.
 
 ### Booleans
 
@@ -344,7 +368,7 @@ typedef signed int	 		int32;
 typedef signed long long	int64;
 ```
 
-**NOTE**: Unreal Engine only supports int32 for Blueprint. The other types are not supported.
+**NOTE**: Unreal Engine only supports int32 and int64 for Blueprint editor. The other types are not supported, but can be still be used by Unreal header system (UPROPERTY and UFUNCTION).
 
 ### Strings
 
