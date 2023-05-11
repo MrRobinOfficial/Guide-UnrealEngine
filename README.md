@@ -266,26 +266,85 @@ double SpeedInKph = SpeedInMetersPerSecond * 3.6;
 
 ### Modifiers
 
-In C++, a modifier is a keyword that is used to modify the behavior of a variable or function. The two most common modifiers in C++ are "long" and "short", which are used to modify the size of integer types. Here is an example:
+In C++, a modifier is a keyword that is used to modify the behavior of a variable. The two most common modifiers in C++ are "long" and "short", which are used to modify the size of integer types. However, Unreal Engine has it own types, here is an example:
 
 ```cpp
+// Can only store 8 bits (also known as a byte)
 // Can store postive and negative numbers
-signed int32 a = -10;
+// Range                          -128                          to    127
+int8 a = 15;
 
+// Can only store 16 bits (2x bytes)
+// Can store postive and negative numbers
+// Range                          -32,768                       to    32,767
+int16 b = 15;
+
+// Can only store 32 bits (4x bytes)
+// Can store postive and negative numbers
+// Range                          -2,147,483,648                to    2,147,483,647
+int32 c = -10;
+
+// Can only store 64 bits (8x bytes)
+// Can store postive and negative numbers
+// Range                          -9,223,372,036,854,775,808    to    9,223,372,036,854,775,807
+int64 d = 10;
+
+// Can only store 8 bits (Also know as a byte)
 // Can only store postive numbers
-unsigned int32 b = 20;
+// Range                          0                             to    255
+uint8 e = 15;
 
-// Can store 32 bits ()
-int32 c = 50;
+// Can only store 16 bits (2x bytes)
+// Can only store postive numbers
+// Range                          0                             to    65,535
+uint16 f = 15;
 
-// Can only store 16 bits ()
-short int32 d = 15;
+// Can only store 32 bits (4x bytes)
+// Can only store postive numbers
+// Range                          0                             to    4,294,967,295
+uint32 g = 15;
 
-// Can store up to 64 bits ()
-long int32 e = 10;
+// Can only store 64 bits (8x bytes)
+// Can only store postive numbers
+// Range                          0                             to    18,446,744,073,709,551,615
+uint64 h = 10;
 ```
-  
-However, in Unreal Engine, short/long modifiers can't be exposed to blueprint.
+
+However, these are typedefs, which is just an alias for an actual type. You can read more about <a href="https://en.cppreference.com/w/cpp/language/typedef" target="_blank">typedef</a> in C++
+
+Here is what these are typedefs are converted to:
+
+```cpp
+//~ Unsigned base types
+
+// 8-bit unsigned integer
+typedef unsigned char 		uint8;
+
+// 16-bit unsigned integer
+typedef unsigned short int	uint16;
+
+// 32-bit unsigned integer
+typedef unsigned int		uint32;
+
+// 64-bit unsigned integer
+typedef unsigned long long	uint64;
+
+//~ Signed base types.
+
+// 8-bit signed integer
+typedef	signed char			int8;
+
+// 16-bit signed integer
+typedef signed short int	int16;
+
+// 32-bit signed integer
+typedef signed int	 		int32;
+
+// 64-bit signed integer
+typedef signed long long	int64;
+```
+
+**NOTE**: Unreal Engine only supports int32 for Blueprint. The other types are not supported.
 
 ### Strings
 
