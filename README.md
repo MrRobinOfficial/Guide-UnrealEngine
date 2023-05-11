@@ -356,7 +356,7 @@ In C++, a modifier is used to alter the meaning of the base type so that it more
 
 The default behavior for all integer types is ```signed```.
 
-In Unreal Engine, instead of typing ```signed long long``` for an 64-bit integer, you can now type only ```int64 x```. These alias are called **typedefs**, which you can read more about <a href="https://en.cppreference.com/w/cpp/language/typedef" target="_blank">here</a>!
+In Unreal Engine, instead of typing ```signed long long``` for an 64-bit integer, you can now type only ```int64```. These alias are called **typedefs**, which you can read more about <a href="https://en.cppreference.com/w/cpp/language/typedef" target="_blank">here</a>!
 
 Here are Unreal Engine's typedefs:
 
