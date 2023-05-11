@@ -243,7 +243,7 @@ You can also watch "*The Unreal Engine Game Framework: From int main() to BeginP
 
 With ```AActor``` and ```UActorComponent``` you can control how the classes should be instantiated.
 
-**NOTE**: Only use constructors initializing variables. The constructor will also be called in the editor. Meaning, it should not use for runtime execution. Instead, use```BeginPlay()``` function.
+**NOTE**: Only use constructors for initializing variables. The constructor will also be called in the editor. Meaning, it should not use for runtime execution. Instead, use```BeginPlay()``` function.
 
 **NOTE**: Don't use destructors for deleting memory with Unreal ```UObject```.
 
