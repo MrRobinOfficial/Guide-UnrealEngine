@@ -685,9 +685,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turp
 What are inlined functions?
 > When a function is inlined, the compiler replaces the function call with the actual code of the function, as if the code had been written directly in place of the call. This can improve performance by eliminating the overhead of a function call, but it can also increase the size of the executable.
 
-## Asserts
+## Assertions
 
-Asserts are a programming technique used to detect and report errors or unexpected behavior in code. In Unreal Engine, assert macros are provided to make it easier to add assertions to code and to customize the behavior of the engine when an assertion fails.
+Assertions are a programming technique used to detect and report errors or unexpected behavior in code. In Unreal Engine, assert macros are provided to make it easier to add assertions to code and to customize the behavior of the engine when an assertion fails.
   
 * ```check()```
   * Used to test a condition at runtime and to report an error if the condition fails. If the condition is false, the ```check()``` macro will print an error message to the console and either halt the game or break into the debugger, depending on the configuration of the engine.
