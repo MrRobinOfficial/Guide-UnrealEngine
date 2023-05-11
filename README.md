@@ -213,27 +213,27 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 
 All types:
 
-* ```bool```
-* ```char```
-* ```int8```
-* ```int``` or ```int32```
-* ```int16```
-* ```int64```
-* ```uint8```
-* ```uint16```
-* ```uint32```
-* ```uint64```
-* ```float```
-* ```double```
-* ```FString```
-* ```FText```
-* ```FName```
-* ```TArray```
-* ```TSet```
-* ```TMap```
-* ```FVector```
-* ```FRotator```
-* ```FTransform```
+* ```bool``` - Represents a logical value, either true or false
+* ```char``` - Represents a single character in the ASCII character set
+* ```int8``` - Represents a signed 8-bit integer
+* ```int``` or ```int32``` - Represents a signed 32-bit integer
+* ```int16``` - Represents a signed 16-bit integer
+* ```int64``` - Represents a signed 64-bit integer
+* ```uint8``` - Represents an unsigned 8-bit integer
+* ```uint16``` - Represents an unsigned 16-bit integer
+* ```uint32``` - Represents an unsigned 32-bit integer
+* ```uint64```- Represents an unsigned 64-bit integer
+* ```float``` - Represents a floating-point number, which is a real number with a fractional component
+* ```double``` - Represents a double-precision floating-point number, which has twice the precision of a float
+* ```FString``` - Represents a string of characters
+* ```FText``` - Represents a localized string of characters
+* ```FName``` - Represents a unique name (case-insensitive, and are stored as a combination of an index into a table of unique strings and an instance number.)
+* ```TArray``` - Dynamic array data structure that can hold any type of data
+* ```TSet``` - Dynamic set data structure that can hold any type of data
+* ```TMap``` - Dynamic map data structure that can hold key-value pairs of any type of data (similar to Dictionary)
+* ```FVector``` - Represents a 3D vector, which consists of three float values (X, Y, and Z). It is often used to represent positions, directions, and velocities in 3D space.
+* ```FRotator``` - Represents a rotation in 3D space, which consists of three float values (Pitch, Yaw, and Roll) that correspond to rotations around the X, Y, and Z axes, respectively
+* ```FTransform``` - Represents a transformation in 3D space, which consists of a location, rotation, and scale
 
 We start off with simple variables types, such as ```bool```, ```int```, ```float```, ```string``` and pointers.
 
@@ -288,9 +288,47 @@ double SpeedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a 
 double SpeedInKph = SpeedInMetersPerSecond * 3.6;
 ```
 
-### Modifiers
+### Modifiers/Typedefs
 
-In C++, a modifier is a keyword that is used to modify the behavior of a variable. The two most common modifiers in C++ are "long" and "short", which are used to modify the size of integer types. However, Unreal Engine has it own types, here is an example:
+In C++, a modifier is used to alter the meaning of the base type so that it more precisely fits the needs of various situations. The most common modifiers in C++ are ```signed```, ```unsigned```, ```long``` and ```short```, which are used to modify the size of integer types.
+
+The default behavior for all integer types is ```signed```.
+
+In Unreal Engine, instead of typing ```signed long long``` for an 64-bit integer, you can now type only ```int64 x```. These alias are called **typedefs**, which you can read more about <a href="https://en.cppreference.com/w/cpp/language/typedef" target="_blank">here</a>!
+
+Here are Unreal Engine's typedefs:
+
+```cpp
+//~ Unsigned base types
+
+// 8-bit unsigned integer
+typedef unsigned char 		uint8;
+
+// 16-bit unsigned integer
+typedef unsigned short int	uint16;
+
+// 32-bit unsigned integer
+typedef unsigned int		uint32;
+
+// 64-bit unsigned integer
+typedef unsigned long long	uint64;
+
+//~ Signed base types.
+
+// 8-bit signed integer
+typedef	signed char			int8;
+
+// 16-bit signed integer
+typedef signed short int	int16;
+
+// 32-bit signed integer
+typedef signed int	 		int32;
+
+// 64-bit signed integer
+typedef signed long long	int64;
+```
+
+And here is how you can use these typedefs for specifying a size for an integer:
 
 ```cpp
 // Can only store 8 bits (also known as a byte)
@@ -332,40 +370,6 @@ uint32 g = 15;
 // Can only store postive numbers
 // Range                          0                             to    18,446,744,073,709,551,615
 uint64 h = 10;
-```
-
-However, these are typedefs, which is just an alias for an actual type. You can read more about <a href="https://en.cppreference.com/w/cpp/language/typedef" target="_blank">typedef</a> in C++
-
-Here is what these are typedefs are converted to:
-
-```cpp
-//~ Unsigned base types
-
-// 8-bit unsigned integer
-typedef unsigned char 		uint8;
-
-// 16-bit unsigned integer
-typedef unsigned short int	uint16;
-
-// 32-bit unsigned integer
-typedef unsigned int		uint32;
-
-// 64-bit unsigned integer
-typedef unsigned long long	uint64;
-
-//~ Signed base types.
-
-// 8-bit signed integer
-typedef	signed char			int8;
-
-// 16-bit signed integer
-typedef signed short int	int16;
-
-// 32-bit signed integer
-typedef signed int	 		int32;
-
-// 64-bit signed integer
-typedef signed long long	int64;
 ```
 
 **NOTE**: Unreal Engine only supports int32 and int64 for Blueprint editor. The other types are not supported, but can be still be used by Unreal header system (UPROPERTY and UFUNCTION).
@@ -484,6 +488,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turp
 * ```UPARAM()``` - Is used to specify additional metadata for function parameters in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the category or tooltip for the parameter in the editor.
 * ```UENUM()``` - Is used to define an enumeration that can be used in Unreal Engine classes. This allows developers to define a set of named constants that can be used in a type-safe way.
 * ```UMETA()``` - Is used to specify additional metadata for enumeration values in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the display name or tooltip for the value in the editor.
+* ```INLINE()``` - Is a suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it.
+* ```FORCEINLINE()``` - Is a stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined.
+
+What are inlined functions?
+> When a function is inlined, the compiler replaces the function call with the actual code of the function, as if the code had been written directly in place of the call. This can improve performance by eliminating the overhead of a function call, but it can also increase the size of the executable.
 
 ### Delegates
 
@@ -543,7 +552,41 @@ There is also alternatives macros that displays text.
   
 You can read more about <a href="https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/" target="_blank">here</a>!
   
-## Create a module
+## Keywords
+
+* ```public``` - Specifies that class members are accessible from any part of the program.
+* ```protected``` - Specifies that class members are accessible only within the class and its subclasses.
+* ```private``` - Specifies that class members are accessible only within the class.
+* ```const``` - Indicates that a variable's value cannot be changed after initialization.
+* ```auto``` - Allows the compiler to deduce the type of a variable based on its initializer.
+* ```static``` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
+* ```virtual``` - Specifies that a function should be polymorphic, meaning that it can be overridden by a derived class.
+* ```override``` - Indicates that a function in a derived class is intended to override a function in the base class.
+* ```break``` - Causes the program to exit a loop or switch statement.
+* ```continue``` - Causes the program to skip to the next iteration of a loop.
+* ```class``` and ```struct``` - Are used to define user-defined types that encapsulate data and functions.
+* ```inline``` - Specifies that a function should be inlined (i.e., its code should be inserted directly into the calling code rather than calling the function).
+* ```force_inline``` - Instructs the compiler to inline a function, regardless of whether it would normally do so.
+* ```new``` - Allocates memory for an object and calls its constructor.
+* ```delete``` - Deallocates memory that was allocated with new.
+* ```dynamic_cast``` - Performs a runtime check to determine whether an object can be cast to a different type.
+* ```static_cast``` - Performs a static cast, which allows an expression to be converted to a different data type at compile time.
+* ```explicit``` - Specifies that a constructor or conversion operator cannot be used for implicit type conversions.
+* ```namespace``` - Defines a scope for identifiers to avoid naming conflicts.
+* ```operator``` - Declares a function as an overloaded operator.
+* ```template``` - Allows generic programming by defining a type or function with parameters that are specified at compile time.
+* ```mutable``` - Specifies that a data member can be modified even if the containing object is declared as const.
+* ```friend``` - Allows non-member functions or classes to access private or protected members of a class.
+* ```try``` and ```catch``` - Implements exception handling by trying a block of code that may throw an exception and catching the exception if it is thrown.
+
+Difference between a class and struct then?
+> In native C++, the main difference between a struct and a class is that struct members are public by default, whereas class members are private by default. However, this difference is largely syntactic, and struct and class can be used interchangeably to define custom types.
+
+> However, Unreal Engine structs are used to represent data types that are typically used for data storage and manipulation, whereas classes are used to represent objects that have behavior and state.
+
+In Unreal Engine, it's recommended to use the built-in memory management functions like ```NewObject()``` and ```MakeShared()``` to allocate memory for objects, rather than using ```new``` and ```delete```. Using ```new``` and ```delete``` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
+  
+## Creating a module
 
 You can read more about Unreal Engine's modules [here](https://docs.unrealengine.com/5.1/en-US/unreal-engine-modules/)!
 
@@ -573,11 +616,17 @@ It's possible to encounter circular dependencies when multiple modules access th
 
 **The best solution will depend on your specific situation and the complexity of your code.**
 
-## Create a plugin
+## Creating a plugin
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turpis a nisl vestibulum, ac malesuada enim pellentesque. In bibendum suscipit sem, in pulvinar tellus vestibulum vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In at suscipit diam. Sed nec enim luctus, condimentum eros quis, porta felis. Vestibulum dignissim turpis in justo pulvinar dapibus. Phasellus sodales, sem vitae blandit dictum, magna risus viverra sapien, ut malesuada purus arcu ut tellus.
+Plugins are a powerful feature of the Unreal Engine that allows developers to easily extend and customize the engine's functionality to fit their specific needs. A plugin is essentially a module that can be added to a Unreal Engine project to provide additional features, tools, and content. Unlike modules, plugins are designed to be self-contained and can be shared across multiple projects.
 
-Integer nunc metus, faucibus a luctus a, porta at turpis. Praesent sem felis, cursus vitae nulla nec, tincidunt interdum sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper auctor ex, quis mollis sapien aliquam sit amet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed suscipit dapibus aliquet. Nulla id vestibulum enim. Aenean dui nisi, mollis vitae porttitor at, gravida ac nisl. In sit amet velit lacus. Vivamus feugiat purus faucibus tincidunt pulvinar. Suspendisse fringilla eleifend risus vitae vestibulum. Etiam condimentum maximus ipsum.
+When you create a plugin, you can define your own modules, content, and assets that can be loaded and used in your project. Plugins can include any number of modules, each with their own classes, assets, and functionality. This allows you to keep your code organized and separated, making it easier to manage and maintain.
+
+**One of the biggest advantages of using plugins is that they can be shared with other developers, making it easy to create and distribute custom functionality to the Unreal Engine community. You can even sell your plugins on the Unreal Marketplace and earn revenue from your work.**
+
+Plugins can also be used to add support for third-party libraries and tools, such as physics engines or audio systems. This makes it easy to integrate these tools into your game and take advantage of their features without having to write custom code from scratch.
+
+*You can read more about plugins, <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/" target="_blank">over here</a>!*
 
 ## Helpful links
 
