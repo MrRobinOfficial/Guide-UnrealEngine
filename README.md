@@ -619,10 +619,17 @@ You have:
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turpis a nisl vestibulum, ac malesuada enim pellentesque. In bibendum suscipit sem, in pulvinar tellus vestibulum vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In at suscipit diam. Sed nec enim luctus, condimentum eros quis, porta felis. Vestibulum dignissim turpis in justo pulvinar dapibus. Phasellus sodales, sem vitae blandit dictum, magna risus viverra sapien, ut malesuada purus arcu ut tellus.
 
-### Macros
+## Functions
+
+* ```IsValid()``` - Is used to check if a pointer or object reference is valid. This is important to avoid accessing or modifying null pointers, which can cause crashes or other unexpected behavior.
+* ```IsValidChecked()``` - Checks if an object is valid, which means that it is not a nullptr and is not pending kill. It is intended for use in low-level code and is faster than ```IsValid()```.
+* ```IsValidLowLevel()``` - Similar to ```IsValidChecked()```, but it also performs a runtime check in debug builds to ensure that the object is valid. If the check fails, it will trigger an assertion.
+* ```Cast()``` - Is used to attempt to cast an object from one type to another. If the object is not of the specified type, it will return a nullptr. If the object is of the specified type or a subclass of it, the function will return a pointer to the object cast to the specified type.
+* ```CastChecked()``` - Is similar to ```Cast()```, but it also performs a runtime check in debug builds to ensure that the object is of the specified type. If the check fails, it will trigger an assertion. This function is useful when you are certain that an object should be of a particular type and want to catch errors early in development.
+
+## Macros
 
 * ```TEXT()``` - Is used to convert a string literal to a wide-character string literal.
-* ```IsValid()``` - Is used to check if a pointer or object reference is valid. This is important to avoid accessing or modifying null pointers, which can cause crashes or other unexpected behavior.
 * ```UPROPERTY()``` - Defines the type and behavior of the property, as well as its metadata and display names.
 * ```UFUNCTION()``` - Defines the parameters and return type of the function, as well as its behavior and metadata.
 * ```UCLASS()``` - Defines the properties and behavior of the class, including its inheritance hierarchy, default properties, and editor metadata.
@@ -631,13 +638,42 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turp
 * ```UPARAM()``` - Is used to specify additional metadata for function parameters in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the category or tooltip for the parameter in the editor.
 * ```UENUM()``` - Is used to define an enumeration that can be used in Unreal Engine classes. This allows developers to define a set of named constants that can be used in a type-safe way.
 * ```UMETA()``` - Is used to specify additional metadata for enumeration values in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the display name or tooltip for the value in the editor.
-* ```INLINE()``` - Is a suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it.
-* ```FORCEINLINE()``` - Is a stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined.
+* ```INLINE()``` - Is a suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it. (Replacement for ```inline``` keyword)
+* ```FORCEINLINE()``` - Is a stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for ```force_inline``` keyword)
 
 What are inlined functions?
 > When a function is inlined, the compiler replaces the function call with the actual code of the function, as if the code had been written directly in place of the call. This can improve performance by eliminating the overhead of a function call, but it can also increase the size of the executable.
+  
+By using delegates, developers can create modular and flexible event systems that can be easily extended and customized. Delegates can be used to trigger events in response to user input, game state changes, or other types of events, and can be used to implement a wide variety of gameplay features and mechanics.
+  
+**TIP**: Try to use delegates where ticking is not necessary. This help save on performance.
 
-### Delegates
+## Asserts
+
+Asserts are a programming technique used to detect and report errors or unexpected behavior in code. In Unreal Engine, assert macros are provided to make it easier to add assertions to code and to customize the behavior of the engine when an assertion fails.
+  
+* ```check()```
+  * Used to test a condition at runtime and to report an error if the condition fails. If the condition is false, the ```check()``` macro will print an error message to the console and either halt the game or break into the debugger, depending on the configuration of the engine.
+  * The ```check()``` macro is typically used to detect programming errors or unexpected runtime conditions.
+
+* ```ensure()```
+  * Is similar to the ```check()``` macro, but is used to test conditions that are not necessarily fatal to the program. If the condition is false, the ```ensure()``` macro will print a warning message to the console and either halt the game or break into the debugger, depending on the configuration of the engine.
+  * The ```ensure()``` macro is typically used to detect non-fatal errors or unexpected conditions that can be recovered from.
+
+* ```verify()```
+  * Is similar to the ```check()``` macro, but is only enabled in debug builds of the engine. If the condition is false, the ```verify()``` macro will break into the debugger but will not halt the game.
+  * The ```verify()``` macro is typically used to detect errors during development or testing, but does not impact the performance of the final release build.
+
+There is also alternatives macros that displays text.
+  
+* ```checkf()```
+* ```verifyf()```
+* ```ensureMsgf()```
+* ```ensureAlwaysMsgf()```
+  
+You can read more about <a href="https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/" target="_blank">here</a>!
+
+## Delegates
 
 Delegates are a powerful feature of the Unreal Engine that allows developers to create and manage events in a flexible and modular way. A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
 
@@ -665,36 +701,7 @@ Trigger the delegate: Finally, you can trigger the delegate by calling the broad
 ```cpp
 MyEvent.Broadcast();
 ```
-  
-By using delegates, developers can create modular and flexible event systems that can be easily extended and customized. Delegates can be used to trigger events in response to user input, game state changes, or other types of events, and can be used to implement a wide variety of gameplay features and mechanics.
-  
-**TIP**: Try to use delegates where ticking is not necessary. This help save on performance.
 
-### Asserts
-
-Asserts are a programming technique used to detect and report errors or unexpected behavior in code. In Unreal Engine, assert macros are provided to make it easier to add assertions to code and to customize the behavior of the engine when an assertion fails.
-  
-* ```check()```
-  * Used to test a condition at runtime and to report an error if the condition fails. If the condition is false, the ```check()``` macro will print an error message to the console and either halt the game or break into the debugger, depending on the configuration of the engine.
-  * The ```check()``` macro is typically used to detect programming errors or unexpected runtime conditions.
-
-* ```ensure()```
-  * Is similar to the ```check()``` macro, but is used to test conditions that are not necessarily fatal to the program. If the condition is false, the ```ensure()``` macro will print a warning message to the console and either halt the game or break into the debugger, depending on the configuration of the engine.
-  * The ```ensure()``` macro is typically used to detect non-fatal errors or unexpected conditions that can be recovered from.
-
-* ```verify()```
-  * Is similar to the ```check()``` macro, but is only enabled in debug builds of the engine. If the condition is false, the ```verify()``` macro will break into the debugger but will not halt the game.
-  * The ```verify()``` macro is typically used to detect errors during development or testing, but does not impact the performance of the final release build.
-
-There is also alternatives macros that displays text.
-  
-* ```checkf()```
-* ```verifyf()```
-* ```ensureMsgf()```
-* ```ensureAlwaysMsgf()```
-  
-You can read more about <a href="https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/" target="_blank">here</a>!
-  
 ## Keywords
 
 * ```public``` - Specifies that class members are accessible from any part of the program.
@@ -728,7 +735,7 @@ Difference between a class and struct then?
 > However, Unreal Engine structs are used to represent data types that are typically used for data storage and manipulation, whereas classes are used to represent objects that have behavior and state.
 
 In Unreal Engine, it's recommended to use the built-in memory management functions like ```NewObject()``` and ```MakeShared()``` to allocate memory for objects, rather than using ```new``` and ```delete```. Using ```new``` and ```delete``` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
-  
+
 ## Creating a module
 
 You can read more about Unreal Engine's modules [here](https://docs.unrealengine.com/5.1/en-US/unreal-engine-modules/)!
