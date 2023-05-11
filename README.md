@@ -227,6 +227,8 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 
 You can watch this video, which explain in small details about main classes in Unreal Engine. <a href="https://www.youtube.com/watch?v=QcXHEsR0xHI" target="_blank">Link here</a>!
 
+You can also watch a video discussion about Multiplayer Framework of Unreal Engine from *Kekdot*. <a href="https://www.youtube.com/watch?v=Hsr6mbNKBLU" target="_blank">Link here</a>!
+
 **NOTE**: This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can ignore some of the main classes.
 
 <figure>
