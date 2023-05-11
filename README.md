@@ -684,10 +684,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turp
 
 What are inlined functions?
 > When a function is inlined, the compiler replaces the function call with the actual code of the function, as if the code had been written directly in place of the call. This can improve performance by eliminating the overhead of a function call, but it can also increase the size of the executable.
-  
-By using delegates, developers can create modular and flexible event systems that can be easily extended and customized. Delegates can be used to trigger events in response to user input, game state changes, or other types of events, and can be used to implement a wide variety of gameplay features and mechanics.
-  
-**TIP**: Try to use delegates where ticking is not necessary. This help save on performance.
 
 ## Asserts
 
@@ -742,6 +738,10 @@ Trigger the delegate: Finally, you can trigger the delegate by calling the broad
 ```cpp
 MyEvent.Broadcast();
 ```
+
+By using delegates, developers can create modular and flexible event systems that can be easily extended and customized. Delegates can be used to trigger events in response to user input, game state changes, or other types of events, and can be used to implement a wide variety of gameplay features and mechanics.
+  
+**TIP**: Try to use delegates where ticking is not necessary. This help save on performance.
 
 ## Keywords
 
