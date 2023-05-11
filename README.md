@@ -43,14 +43,25 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 graph TD;
     UObjectBase-->UObjectBaseUtility;
     UObjectBaseUtility-->UObject;
-    UObject-->ULevel;
-    UObject-->UGameInstance;
-    UGameInstance-->UPlatformGameInstance;
     UObject-->USubsystem;
     USubsystem-->UDynamicSubsystem;
     USubsystem-->UGameInstanceSubsystem;
     USubsystem-->ULocalPlayerSubsystem;
     USubsystem-->UWorldSubsystem;
+    UObject-->UBlueprintFunctionLibrary;
+    UObject-->UEngine;
+    UEngine-->UEditorEngine;
+    UEngine-->UGameEngine;
+    UObject-->UPlayer;
+    UPlayer-->ULocalPlayer;
+    UPlayer-->UNetConnection;
+    UObject-->UScriptViewportClient;
+    UScriptViewportClient-->UGameViewportClient;
+    UObject-->UGameInstance;
+    UGameInstance-->UPlatformGameInstance;
+    UObject-->UWorld;
+    UObject-->UPackage;
+    UObject-->ULevel;
     UObject-->UInterface;
     UObject-->USoundBase;
     USoundBase-->USoundCue;
@@ -77,6 +88,7 @@ graph TD;
     AGameModeBase-->AGameMode;
     AInfo-->AGameStateBase;
     AGameStateBase-->AGameState;
+    AInfo-->AGameNetworkManager;
     AInfo-->AWorldSettings;
     AInfo-->APlayerState;
     AActor-->ALevelScriptActor;
@@ -135,7 +147,7 @@ Some of the notorious classes, that inherit from ```UObject``` include:
   * ```ACharacter``` can be used as a base class for player characters, enemies, and other types of characters in the game.
 
 * ```AController```
-  * Represents a controller in the game, which can be used to control a pawn or character.
+  * Represents a controller in the game, which can be used to control a ```APawn``` or ```ACharacter```.
   * ```AController``` provides input handling and navigation functionality, allowing players or AI to move and interact with the game world. ```AController``` can be used to implement different types of control schemes, such as first-person or third-person controls, and can be customized to support different input devices and control configurations.
 
 * ```UActorComponent```
@@ -165,6 +177,24 @@ Some of the notorious classes, that inherit from ```UObject``` include:
   * Examples of subsystems in Unreal Engine include the rendering subsystem, the physics subsystem, and the input subsystem.
   * Subsystems are responsible for initializing, updating, and shutting down their associated services, and can be used to customize or extend engine functionality as needed.
 
+* ```UBlueprintFunctionLibrary```
+  * Lorem Ipsum
+
+* ```UEngine```, ```UEditorEngine``` and ```UGameEngine```
+  * Lorem Ipsum
+
+* ```UGameViewportClient```
+  * Lorem Ipsum
+
+* ```ULocalPlayer```
+  * Lorem Ipsum
+
+* ```UWorld```
+  * Lorem Ipsum
+
+* ```ULevel```
+  * Represents a level in the game world that contains actors, geometry, lighting, and other assets.
+
 * ```UGameInstance```
   * Represents the game instance, which is created when the game starts up and persists for the duration of the game.
   * The game instance can be used to manage persistent data and game state across levels, as well as to perform global game operations such as handling networking, input, and other system-level tasks.
@@ -189,19 +219,15 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 * ```USoundBase```
   * Represents a sound or audio asset in the engine. ASoundBase can be used to play sound effects, music, and other audio in the game world. ```ASoundBase``` provides a number of features for controlling the playback of audio, including volume, pitch, and spatialization effects such as 3D sound and reverb.
 
-* ```ULevel```
-  * Represents a level in the game world that contains actors, geometry, lighting, and other assets.
-
 * ```UMaterial```
   * Represents a material which defines the visual appearance of objects in the game world.
 
 * ```UTexture```
   * Represents an image or texture that can be used in the engine for various purposes such as materials or user interface elements.
 
-This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can avoid these classes:
+You can watch this video, which explain in small details about main classes in Unreal Engine. <a href="https://www.youtube.com/watch?v=QcXHEsR0xHI" target="_blank">Link here</a>!
 
-* ```Temp```
-* ```Temp```
+**NOTE**: This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can ignore some of the main classes.
 
 <figure>
   <img src="https://ue-cdn.artstation.com/imgproxy/FsW3HX1vUAYYoC0la5qJ1AMeo-J5lsYRmV-rj5xpn2A/filename:0f7063e3-e57d-4fc1-936e-1f5f337fb999.png/resizing_type:fit/width:1920/height:1080/aHR0cHM6Ly9kMWl2N2RiNDR5aGd4bi5jbG91ZGZyb250Lm5ldC9pbWFnZXMvMGMyNTZlMDktOTJkYi00YmMyLTkyZGQtYjFlNDlmNTJmY2U4LzBmNzA2M2UzLWU1N2QtNGZjMS05MzZlLTFmNWYzMzdmYjk5OS5wbmc" alt="Basic Class Structure"> 
