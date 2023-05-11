@@ -422,22 +422,144 @@ FText NewGameText = FText::FromString(TEXT("New Game"));
 FName Username = FName(TEXT("mRrObIN"));
 ```
 
-### Vectors and Quaternions
+### Vectors, Quaternions and Transforms
 
-* ```FVector``` - 
-* ```FRotator``` -
+* ```FVector``` - A struct representing a 3D vector, consisting of three float values for the X, Y, and Z components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+* ```FRotator``` - A struct representing a rotation in 3D space, consisting of three float values for the pitch, yaw, and roll angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
+* ```FTransform``` - A struct representing a 3D transformation, consisting of a FVector for translation, a FRotator for rotation, and a FVector for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
   
 ```cpp
 FVector Location = FVector::ZeroVector; // X, Y and Z
-FRotator Rotation = FRotator::Identify; // X, Y, Z and W
+FRotator Rotation = FRotator::Identify; // X, Y and Z
+FTransform Transform = FTransform::Identify;
+```
+
+Here is a short example:
+
+```cpp
+// Declare and initialize a FVector
+FVector MyVector(1.0f, 2.0f, 3.0f);
+
+// Declare and initialize a FRotator
+FRotator MyRotator(0.0f, 90.0f, 0.0f);
+
+// Combine the FVector and FRotator to create a FTransform
+FTransform MyTransform(MyRotator, MyVector);
+
+// Access the position and rotation components of the FTransform
+FVector MyTransformPosition = MyTransform.GetLocation();
+FRotator MyTransformRotation = MyTransform.Rotator();
+
+// Output the values to the log
+UE_LOG(LogTemp, Display, TEXT("MyVector: %s"), *MyVector.ToString());
+UE_LOG(LogTemp, Display, TEXT("MyRotator: %s"), *MyRotator.ToString());
+UE_LOG(LogTemp, Display, TEXT("MyTransform: %s"), *MyTransform.ToHumanReadableString());
+UE_LOG(LogTemp, Display, TEXT("MyTransformPosition: %s"), *MyTransformPosition.ToString());
+UE_LOG(LogTemp, Display, TEXT("MyTransformRotation: %s"), *MyTransformRotation.ToString());
 ```
 
 ### Collections
 
-* ```TArray```
-* ```TSet```
-* ```TMap```
-* ```TMultiMap```
+* ```TArray``` - A dynamic array that can store a variable number of elements of the same type. It provides many useful functions, such as adding, removing, sorting, and searching for elements, as well as iterating over them.
+* ```TSet``` - A set of unique elements of a single type, implemented as a hash table. It provides many of the same functions as ```TArray```, but with faster lookup times for large collections of elements.
+* ```TMap``` - A map of key-value pairs, implemented as a hash table. It allows fast lookup of a value given a key, and supports adding, removing, and iterating over key-value pairs.
+* ```TMultiMap``` - Similar to ```TMap```, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
+
+**NOTE**: TMultiMap is not supported by blueprint editor!
+
+Here is a example for using these:
+
+#### TArray
+
+```cpp
+// Declare a TArray of integers
+TArray<int32> MyIntArray;
+
+// Add an element to the array
+MyIntArray.Add(5);
+
+// Add multiple elements to the array
+MyIntArray.Append({10, 15, 20});
+
+// Loop through the array and print each element
+for (int32 Element : MyIntArray)
+{
+    UE_LOG(LogTemp, Warning, TEXT("Element: %d"), Element);
+}
+```
+
+#### TSet
+
+```cpp
+// Declare a TSet of strings
+TSet<FString> MyStringSet;
+
+// Add an element to the set
+MyStringSet.Add(TEXT("Hello"));
+
+// Add multiple elements to the set
+MyStringSet.Append({TEXT("World"), TEXT("Unreal"), TEXT("Engine")});
+
+// Check if an element exists in the set
+if (MyStringSet.Contains(TEXT("Unreal")))
+{
+    UE_LOG(LogTemp, Warning, TEXT("Unreal is in the set"));
+}
+
+// Remove an element from the set
+MyStringSet.Remove(TEXT("Engine"));
+```
+
+#### TMap
+
+```cpp
+// Declare a TMap of integers to strings
+TMap<int32, FString> MyIntStringMap;
+
+// Add elements to the map
+MyIntStringMap.Add(1, TEXT("One"));
+MyIntStringMap.Add(2, TEXT("Two"));
+MyIntStringMap.Add(3, TEXT("Three"));
+
+// Access an element in the map
+FString Value;
+if (MyIntStringMap.TryGetValue(2, Value))
+{
+    UE_LOG(LogTemp, Warning, TEXT("Value for key 2: %s"), *Value);
+}
+
+// Modify an element in the map
+MyIntStringMap[2] = TEXT("NewTwo");
+
+// Remove an element from the map
+MyIntStringMap.Remove(3);
+```
+
+#### TMultiMap
+
+```cpp
+// Declare a TMultiMap of integers to strings
+TMultiMap<int32, FString> MyIntStringMultiMap;
+
+// Add elements to the map
+MyIntStringMultiMap.Add(1, TEXT("One"));
+MyIntStringMultiMap.Add(2, TEXT("Two"));
+MyIntStringMultiMap.Add(2, TEXT("AnotherTwo"));
+MyIntStringMultiMap.Add(3, TEXT("Three"));
+
+// Get all values for a key in the map
+TArray<FString> Values;
+MyIntStringMultiMap.MultiFind(2, Values);
+
+// Loop through the values and print each one
+for (const FString& Value : Values)
+{
+    UE_LOG(LogTemp, Warning, TEXT("Value: %s"), *Value);
+}
+
+// Remove all values for a key in the map
+MyIntStringMultiMap.MultiRemove(2);
+```
 
 ### Pointers
 
