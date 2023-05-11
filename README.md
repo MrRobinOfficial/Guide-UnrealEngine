@@ -740,7 +740,9 @@ MyEvent.Broadcast();
 ```
 
 By using delegates, developers can create modular and flexible event systems that can be easily extended and customized. Delegates can be used to trigger events in response to user input, game state changes, or other types of events, and can be used to implement a wide variety of gameplay features and mechanics.
-  
+
+**TIP**: Here is an online tool (by BenUI) for helping you to create a delegate macro. <a href="https://benui.ca/unreal/delegates-advanced/#delegate-signature-tool" target="_blank">Click here</a>.
+
 **TIP**: Try to use delegates where ticking is not necessary. This help save on performance.
 
 ## Keywords
