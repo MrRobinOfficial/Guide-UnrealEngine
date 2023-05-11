@@ -124,7 +124,7 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 
 * ```AActor```
   * A base class for the every object placed in the world. It's an ```UObject``` that usually contains other ```UObject```s specialized to be part of an actor - this what we call components.
-  * This class contains a basic functionality to operate on the "object placed in the word".
+  * This class contains a basic functionality to operate on the "object placed in the world".
   * ```AActor``` itself doesn't have a transform (i.e. position in the world), it depends on the transform of the root component.
   * *Functions*:
     * ```BeginPlay()``` - Start function
