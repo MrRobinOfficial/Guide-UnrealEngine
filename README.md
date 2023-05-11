@@ -622,7 +622,7 @@ To do this in Unreal Engine's C++, you would use the function called ```IsValid(
 UPROPERTY()
 AActor* ActorPtr = nullptr;
 
-// Use UPROPERTY() macro, in order to the Unreal compiler, this pointer must be release into GC (garbage collector).
+// Use UPROPERTY() macro, in order to tell the compiler, this pointer must be release into GC (garbage collector).
 // If not, then this will cause a memory leak. Meaning, the pointer is still alive, even tough we are not using this memory block.
 
 void KillActor()
