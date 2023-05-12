@@ -127,9 +127,11 @@ Some of the notorious classes, that inherit from ```UObject``` include:
   * This class contains a basic functionality to operate on the "object placed in the world".
   * ```AActor``` itself doesn't have a transform (i.e. position in the world), it depends on the transform of the root component.
   * *Functions*:
-    * ```BeginPlay()``` - Start function
-    * ```Tick(float DeltaSeconds)``` - Tick function
-    * ```EndPlay(const EEndPlayReason::Type EndPlayReason)``` - End function
+    * ```BeginPlay()``` - Called when the level starts ticking, only during actual gameplay.
+    * ```Tick(float DeltaSeconds)``` - Update function, called every frame on Actor.
+    * ```EndPlay(const EEndPlayReason::Type EndPlayReason)``` - Whenever actor is being removed from a level
+    * ```SetLifeSpan(float InLifespan)``` - Set the lifespan of actor.
+    * ```Destroy(bool bNetForce, bool bShouldModifyLevel)``` - Destroy actor.
  
 * ```APawn```
   * Represents a pawn in the game world. A pawn is an entity that can be controlled by the player or by AI, and can move and interact with the game world.
@@ -152,9 +154,9 @@ Some of the notorious classes, that inherit from ```UObject``` include:
   * Used for components contains only the logic, i.e. ```UMovementComponent``` or ```SceneComponent```.
   * ```UActorComponent``` doesn't appear in the world.
   * *Functions*:
-    * ```BeginPlay()``` - Start function
-    * ```TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)``` - Tick function
-    * ```EndPlay(const EEndPlayReason::Type EndPlayReason)``` - End function
+    * ```BeginPlay()``` - Begins Play for component.
+    * ```TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)``` - Function called every frame on ActorComponent.
+    * ```EndPlay(const EEndPlayReason::Type EndPlayReason)``` - Ends gameplay for component.
  
 * ```UMovementComponent```
   * Provides movement functionality to an actor in the game world. ```UMovementComponent``` can be used to implement a variety of movement types, such as flying, walking, swimming, or sliding.
@@ -188,6 +190,8 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 
 * ```UWorld```
   * Lorem Ipsum
+  * Functions:
+    * ```SpawnActor()``` and ```SpawnActorDeferred()``` (deferred allow you to set actor properties before it's spawned into the world.)
 
 * ```ULevel```
   * Represents a level in the game world that contains actors, geometry, lighting, and other assets.
@@ -660,13 +664,27 @@ You have:
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turpis a nisl vestibulum, ac malesuada enim pellentesque. In bibendum suscipit sem, in pulvinar tellus vestibulum vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In at suscipit diam. Sed nec enim luctus, condimentum eros quis, porta felis. Vestibulum dignissim turpis in justo pulvinar dapibus. Phasellus sodales, sem vitae blandit dictum, magna risus viverra sapien, ut malesuada purus arcu ut tellus.
 
-## Functions
+## Global Functions
 
 * ```IsValid()``` - Is used to check if a pointer or object reference is valid. This is important to avoid accessing or modifying null pointers, which can cause crashes or other unexpected behavior.
 * ```IsValidChecked()``` - Checks if an object is valid, which means that it is not a nullptr and is not pending kill. It is intended for use in low-level code and is faster than ```IsValid()```.
 * ```IsValidLowLevel()``` - Similar to ```IsValidChecked()```, but it also performs a runtime check in debug builds to ensure that the object is valid. If the check fails, it will trigger an assertion.
 * ```Cast()``` - Is used to attempt to cast an object from one type to another. If the object is not of the specified type, it will return a nullptr. If the object is of the specified type or a subclass of it, the function will return a pointer to the object cast to the specified type.
 * ```CastChecked()``` - Is similar to ```Cast()```, but it also performs a runtime check in debug builds to ensure that the object is of the specified type. If the check fails, it will trigger an assertion. This function is useful when you are certain that an object should be of a particular type and want to catch errors early in development.
+
+## Libraries
+
+* ```UGameplayStatics``` (kismet library) - Static class with useful ```gameplay``` utility functions that can be called from both Blueprint and C++
+* ```UKismetMathLibrary``` (kismet library) - Static class with useful ```math``` utility functions that can be called from both Blueprint and C++
+* ```UKismetStringLibrary``` (kismet library) - Static class with useful ```string``` utility functions that can be called from both Blueprint and C++
+* ```UKismetTextLibrary``` (kismet library) - Static class with useful ```text``` utility functions that can be called from both Blueprint and C++
+* ```UKismetSystemLibrary``` (kismet library) - Static class with useful ```system``` utility functions that can be called from both Blueprint and C++
+* ```UKismetMaterialLibrary``` (kismet library) - Static class with useful ```material``` utility functions that can be called from both Blueprint and C++
+* ```UKismetInputLibrary``` (kismet library) - Static class with useful ```input``` utility functions that can be called from both Blueprint and C++
+* ```UKismetGuidLibrary``` (kismet library) - Static class with useful ```guid``` utility functions that can be called from both Blueprint and C++
+* ```UKismetArrayLibrary``` (kismet library) - Static class with useful ```array``` utility functions that can be called from both Blueprint and C++
+* ```FMath``` - Math helper functions (Check ```GenericPlatformMath.h``` for additional math functions).
+* ```DrawDebugHelpers.h``` - Header file containg debug draw functions. Read more about <a href="https://unrealcpp.com/draw-debug-helpers/" target="_blank">here</a>!
 
 ## Macros
 
