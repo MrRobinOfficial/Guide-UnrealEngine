@@ -260,25 +260,24 @@ With ```AActor``` and ```UActorComponent``` you can control how the classes shou
 
 Here is a github repo about Unreal Engine's style guide by Michael Allar, <a href="https://github.com/Allar/ue5-style-guide" target="_blank">link here</a>.
 
-Unreal Engine uses a variety of prefixes to indicate the type and purpose of a class or variable. Some common prefixes include:
+Unreal Engine has a convention for naming boolean variables, which is to use a prefix of b followed by a descriptive name in camel case. For example, a boolean variable that controls whether a character is running might be named `bIsRunning`.  
+
+### Prefixes
   
 * U - Indicates that a class is a **UObject** subclass.
-  
 * A - Indicates that a class is an **AActor** subclass.
-  
 * F - Indicates that a class is a struct.
-
 * I - Indicates that a class is an interface.
-  
 * T - Indicates that a class is a template.
 
-Unreal Engine also uses a variety of suffixes to indicate the type and purpose of a variable. Some common suffixes include:
-  
+### Synonyms
+
+* PC - PlayerController
+* LP - LocalPlayer
+* Char = Character (not to be confused about `char` data type)
+* Comp - Component
 * Ptr - Indicates that a variable is a **pointer** to an object.
-  
 * Ref - Indicates that a variable is a **reference** to an object.
-  
-Unreal Engine has a convention for naming boolean variables, which is to use a prefix of b followed by a descriptive name in camel case. For example, a boolean variable that controls whether a character is running might be named bIsRunning.  
 
 ## Data Types
 
@@ -809,6 +808,14 @@ By using delegates, developers can create modular and flexible event systems tha
 | `FTimerDynamicDelegate` (Dynamic Singlecast) | No                 | Yes               |
 
 ## Keywords
+
+| Keyword	    | Access ability | Description                                                                                          |
+| ----------- | -------------- | ---------------------------------------------------------------------------------------------------- |
+| `public`    | All	           | Members and functions are accessible from anywhere, including outside the class.                     |
+| `protected` |	Subclasses     | Members and functions are accessible from within the class and any subclasses, but not from outside. |
+| `private`   |	Class	         | Members and functions are only accessible from within the class itself.                              |
+| `mutable`   |	Class	         | Specifies that a member variable can be modified even if the owning object is const.                 |
+| `friend`    | Class          | Allows a non-member function or class to access the private and protected members of a class.        |
 
 * ```public``` - Specifies that class members are accessible from any part of the program.
 * ```protected``` - Specifies that class members are accessible only within the class and its subclasses.
