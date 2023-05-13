@@ -266,9 +266,11 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
   
 * U - Indicates that a class is a **UObject** subclass.
 * A - Indicates that a class is an **AActor** subclass.
-* F - Indicates that a class is a struct.
+* F - Indicates that a class is a struct (`FHitResult`, `FVector`, `FRotator`).
+* E - Indicates that a class is a enum (`EEnvQueryStatus`, `EConstraintType`).
 * I - Indicates that a class is an interface.
-* T - Indicates that a class is a template.
+* T - Indicates that a class is a template (`TSubclassOf<T>`, `TArray<T>`, `TMap<T>`).
+* G - Indicates that a class is a global class (`GEngine`).
 
 ### Synonyms
 
@@ -501,6 +503,7 @@ void AddOnScreenDebugMessage
 
 * ```FVector``` - A struct representing a 3D vector, consisting of three float values for the X, Y, and Z components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
 * ```FRotator``` - A struct representing a rotation in 3D space, consisting of three float values for the pitch, yaw, and roll angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
+* `FQuat` (Quaternion) - Lorem Ipsum
 * ```FTransform``` - A struct representing a 3D transformation, consisting of a FVector for translation, a FRotator for rotation, and a FVector for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
   
 ```cpp
@@ -718,6 +721,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turp
 
 ## Macros
 
+* `GENERATED_BODY()` - Is used by Unreal to add boilerplate code required by the engine.
 * ```TEXT()``` - Is used to convert a string literal to a wide-character string literal.
 * ```UPROPERTY()``` - Defines the type and behavior of the property, as well as its metadata and display names.
 * ```UFUNCTION()``` - Defines the parameters and return type of the function, as well as its behavior and metadata.
@@ -728,7 +732,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turp
 * ```UENUM()``` - Is used to define an enumeration that can be used in Unreal Engine classes. This allows developers to define a set of named constants that can be used in a type-safe way.
 * ```UMETA()``` - Is used to specify additional metadata for enumeration values in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the display name or tooltip for the value in the editor.
 * ```INLINE``` - Is a suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it. (Replacement for ```inline``` keyword)
-* ```FORCEINLINE``` - Is a stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for ```force_inline``` keyword)
+* ```FORCEINLINE``` - Is a stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for ```force_inline``` keyword)'
+* `UE_LOG` - Unreal logging system
 
 What are inlined functions?
 > When a function is inlined, the compiler replaces the function call with the actual code of the function, as if the code had been written directly in place of the call. This can improve performance by eliminating the overhead of a function call, but it can also increase the size of the executable.
@@ -934,6 +939,10 @@ UTextBlock* PlayerDisplayNameText;
 
 ## Tips and best practices
 
+Here is a video explaining some of the best practices with Unreal Engine and C++. <a href="https://www.youtube.com/watch?v=g7WVBZZTRDk" target="_blank">Link here</a>!
+
+Also, here is a Google Docs (if video is not enough), <a href="https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8/" target="_blank">link here</a>!
+
 ### For actors
 
 ```cpp
@@ -958,6 +967,11 @@ PrimaryComponentTick.TickInterval = 0.2f;
 ```
 
 * Enable/disable tick to only tick when required.
+
+```cpp
+SetActorTickEnabled()
+SetComponentTickEnabled()
+```
 
 ### Preprocessor
 
