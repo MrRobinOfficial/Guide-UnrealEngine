@@ -175,6 +175,11 @@ Some of the notorious classes, that inherit from ```UObject``` include:
   * Provide services or functionality that can be used by other parts of the engine or by games built with the engine.
   * Examples of subsystems in Unreal Engine include the rendering subsystem, the physics subsystem, and the input subsystem.
   * Subsystems are responsible for initializing, updating, and shutting down their associated services, and can be used to customize or extend engine functionality as needed.
+  * 4 types of subsystems
+    * Engine (Engine lifetime)
+    * Editor (Editor lifetime)
+    * GameInstance (Game instance lifetime)
+    * LocalPlayer (share lifetime of local players)
 
 * ```UBlueprintFunctionLibrary```
   * Lorem Ipsum
@@ -444,6 +449,8 @@ uint64 h = 10;
 
 Strings differs in Unreal Engine and C++.
 
+You can read more about string handling <a href="https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/" target="_blank">here</a>!
+
 This is how you would define it in standard C++:
 
 ```cpp
@@ -467,7 +474,31 @@ FText NewGameText = FText::FromString(TEXT("New Game"));
 FName Username = FName(TEXT("mRrObIN"));
 ```
 
-### Vectors, Quaternions and Transforms
+Also, here is an example how to add a ```FString``` to the On-screen debug message system.
+
+```cpp
+GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("This is an on screen message!"));
+GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Some variable values: x: %f, y: %f"), x, y));
+```
+
+And here is the function parameters:
+
+```cpp
+void AddOnScreenDebugMessage
+(
+    uint64 Key, // A unique key to prevent the same message from being added multiple times.
+    float TimeToDisplay, // How long to display the message, in seconds.
+    FColor DisplayColor, // The color to display the text in.
+    const FString & DebugMessage, // The message to display.
+    bool bNewerOnTop,
+    const FVector2D & TextScale
+)
+
+// Add a FString to the On-screen debug message system. bNewerOnTop only works with Key == INDEX_NONE
+// This function will add a debug message to the onscreen message list. It will be displayed for FrameCount frames.
+```
+
+### Vectors, Rotations and Transforms
 
 * ```FVector``` - A struct representing a 3D vector, consisting of three float values for the X, Y, and Z components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
 * ```FRotator``` - A struct representing a rotation in 3D space, consisting of three float values for the pitch, yaw, and roll angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
@@ -766,6 +797,16 @@ By using delegates, developers can create modular and flexible event systems tha
 
 **TIP**: Try to use delegates where ticking is not necessary. This help save on performance.
 
+| Type                                         | Binds C++ Function | Binds `UFUNCTION` |
+| -------------------------------------------- | ------------------ | ----------------- |
+| Singlecast                                   | Yes                | Yes               |
+| Multicast                                    | Yes                | No                |
+| Event                                        | Yes                | ?                 |
+| Dynamic Singlecast                           | No                 | Yes               |
+| Dynamic Multicast                            | No                 | Yes               |
+| `FTimerDelegate` (Singlecast)                | Yes                | Yes               |
+| `FTimerDynamicDelegate` (Dynamic Singlecast) | No                 | Yes               |
+
 ## Keywords
 
 * ```public``` - Specifies that class members are accessible from any part of the program.
@@ -873,6 +914,67 @@ Also, the reflection system allows the engine to dynamically create and manipula
 The generated header file is typically included in the source file that defines the corresponding class or struct, and it is also included in any other source files that use that class or struct. This ensures that the metadata is available to the engine at compile-time and runtime.
 
 You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/" target="_blank">here</a>!
+
+## Working with UI and C++
+
+UI Tweening Libary for UE4/UMG by *BenUI*, <a href="https://github.com/benui-dev/UE-BUITween" target="_blank">link here</a>!
+
+```cpp
+UPROPERTY(meta=(BindWidget)) // To bind via UMG editor
+UTextBlock* PlayerDisplayNameText;
+```
+
+## Tips and best practices
+
+### For actors
+
+```cpp
+PrimaryActorTick.bCanEverTick = false;
+PrimaryActorTick.bStartWithTickEnabled = false;
+```
+
+### For components
+
+```cpp
+PrimaryComponentTick.bCanEverTick =  false;
+PrimaryComponentTick.bStartWithTickEnabled = false;
+```
+
+### If you have to use tick
+
+* Set the tick interval to the maximum value you can get away with. Unfortunately this is often per frame for smoothly moving things
+
+```cpp
+PrimaryActorTick.TickInterval = 0.2f;
+PrimaryComponentTick.TickInterval = 0.2f;
+```
+
+* Enable/disable tick to only tick when required.
+
+### Preprocessor
+
+You can read more about it <a href="https://en.cppreference.com/w/cpp/preprocessor" target="_blank">here</a>.
+Or you can watch a video about it <a href="https://www.youtube.com/watch?v=voGGB5TGsV4" target="_blank">here</a>.
+
+Only use component for editor version. Meaning, the component and code will be stripped out, if editor version is not used.
+
+```cpp
+#if WITH_EDITORONLY_DATA
+    UPROPERTY(VisibleAnywhere)
+    UArrowComponent* ArrowComponent;
+#endif
+
+#if WITH_EDITOR
+void SetupArrow()
+{
+  ArrowComponent->SetArrowColor(FLinearColor::Yellow);
+}
+#endif
+```
+
+### ```FTickFunction```
+
+Lorem Ipsum
 
 ## Helpful links
 
