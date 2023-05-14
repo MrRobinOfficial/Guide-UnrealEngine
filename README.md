@@ -832,42 +832,14 @@ By using delegates, developers can create modular and flexible event systems tha
 | `FTimerDelegate` (Singlecast)                | Yes                | Yes               |
 | `FTimerDynamicDelegate` (Dynamic Singlecast) | No                 | Yes               |
 
-## Keywords
+## Creating UI
 
-| Keyword	    | Access ability | Description                                                                                          |
-| ----------- | -------------- | ---------------------------------------------------------------------------------------------------- |
-| `public`    | All	           | Members and functions are accessible from anywhere, including outside the class.                     |
-| `protected` |	Subclasses     | Members and functions are accessible from within the class and any subclasses, but not from outside. |
-| `private`   |	Class	         | Members and functions are only accessible from within the class itself.                              |
-| `mutable`   |	Class	         | Specifies that a member variable can be modified even if the owning object is const.                 |
-| `friend`    | Class          | Allows a non-member function or class to access the private and protected members of a class.        |
+UI Tweening Libary for UE4/UMG by *BenUI*, <a href="https://github.com/benui-dev/UE-BUITween" target="_blank">link here</a>!
 
-* ```const``` - Indicates that a variable's value cannot be changed after initialization.
-* ```auto``` - Allows the compiler to deduce the type of a variable based on its initializer.
-* ```static``` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
-* ```virtual``` - Specifies that a function should be polymorphic, meaning that it can be overridden by a derived class.
-* ```override``` - Indicates that a function in a derived class is intended to override a function in the base class.
-* ```break``` - Causes the program to exit a loop or switch statement.
-* ```continue``` - Causes the program to skip to the next iteration of a loop.
-* ```class``` and ```struct``` - Are used to define user-defined types that encapsulate data and functions.
-* ```inline``` - Specifies that a function should be inlined (i.e., its code should be inserted directly into the calling code rather than calling the function).
-* ```force_inline``` - Instructs the compiler to inline a function, regardless of whether it would normally do so.
-* ```new``` - Allocates memory for an object and calls its constructor.
-* ```delete``` - Deallocates memory that was allocated with new.
-* ```dynamic_cast``` - Performs a runtime check to determine whether an object can be cast to a different type.
-* ```static_cast``` - Performs a static cast, which allows an expression to be converted to a different data type at compile time.
-* ```explicit``` - Specifies that a constructor or conversion operator cannot be used for implicit type conversions.
-* ```namespace``` - Defines a scope for identifiers to avoid naming conflicts.
-* ```operator``` - Declares a function as an overloaded operator.
-* ```template``` - Allows generic programming by defining a type or function with parameters that are specified at compile time.
-* ```try``` and ```catch``` - Implements exception handling by trying a block of code that may throw an exception and catching the exception if it is thrown.
-
-Difference between a class and struct then?
-> In native C++, the main difference between a struct and a class is that struct members are public by default, whereas class members are private by default. However, this difference is largely syntactic, and struct and class can be used interchangeably to define custom types.
-
-> However, Unreal Engine structs are used to represent data types that are typically used for data storage and manipulation, whereas classes are used to represent objects that have behavior and state.
-
-In Unreal Engine, it's recommended to use the built-in memory management functions like ```NewObject()``` and ```MakeShared()``` to allocate memory for objects, rather than using ```new``` and ```delete```. Using ```new``` and ```delete``` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
+```cpp
+UPROPERTY(meta=(BindWidget)) // To bind via UMG editor
+UTextBlock* PlayerDisplayNameText;
+```
 
 ## Creating a module
 
@@ -923,29 +895,6 @@ Plugins can also be used to add support for third-party libraries and tools, suc
 
 *You can read more about plugins, <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/" target="_blank">over here</a>!*
 
-## Reflection System
-
-Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT) during compilation. With the help of `GENERATED_BODY()` macro and "[FileName].generated.h" header.
-
-The generated header file is typically included in the source file that defines the corresponding class or struct, and it is also included in any other source files that use that class or struct. This ensures that the metadata is available to the engine at compile-time and runtime.
-
-The reflection system is also used in many other areas of the engine, such as serialization and networking. When objects are saved to disk or sent over the network, their properties are serialized into a binary format. The reflection system is used to determine which properties to serialize, and how to convert them to and from their binary representation.
-
-The Unreal Header Tool (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the Unreal Build System (UBS), which is responsible for compiling the engine and all its modules.
-
-One of the key benefits of the header system is that it allows for very efficient compilation times. Because each C++ file has its own header file, changes to one file do not require recompilation of other files that depend on it. Instead, only the files that include the modified header file need to be recompiled.
-
-You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/" target="_blank">here</a>!
-
-## Creating UI
-
-UI Tweening Libary for UE4/UMG by *BenUI*, <a href="https://github.com/benui-dev/UE-BUITween" target="_blank">link here</a>!
-
-```cpp
-UPROPERTY(meta=(BindWidget)) // To bind via UMG editor
-UTextBlock* PlayerDisplayNameText;
-```
-
 ## Pre-processor
 
 You can read more about it <a href="https://en.cppreference.com/w/cpp/preprocessor" target="_blank">here</a>.
@@ -972,6 +921,57 @@ void SetupArrow()
 }
 #endif
 ```
+
+## Keywords
+
+| Keyword	    | Access ability | Description                                                                                          |
+| ----------- | -------------- | ---------------------------------------------------------------------------------------------------- |
+| `public`    | All	           | Members and functions are accessible from anywhere, including outside the class.                     |
+| `protected` |	Subclasses     | Members and functions are accessible from within the class and any subclasses, but not from outside. |
+| `private`   |	Class	         | Members and functions are only accessible from within the class itself.                              |
+| `mutable`   |	Class	         | Specifies that a member variable can be modified even if the owning object is const.                 |
+| `friend`    | Class          | Allows a non-member function or class to access the private and protected members of a class.        |
+
+* ```const``` - Indicates that a variable's value cannot be changed after initialization.
+* ```auto``` - Allows the compiler to deduce the type of a variable based on its initializer.
+* ```static``` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
+* ```virtual``` - Specifies that a function should be polymorphic, meaning that it can be overridden by a derived class.
+* ```override``` - Indicates that a function in a derived class is intended to override a function in the base class.
+* ```break``` - Causes the program to exit a loop or switch statement.
+* ```continue``` - Causes the program to skip to the next iteration of a loop.
+* ```class``` and ```struct``` - Are used to define user-defined types that encapsulate data and functions.
+* ```inline``` - Specifies that a function should be inlined (i.e., its code should be inserted directly into the calling code rather than calling the function).
+* ```force_inline``` - Instructs the compiler to inline a function, regardless of whether it would normally do so.
+* ```new``` - Allocates memory for an object and calls its constructor.
+* ```delete``` - Deallocates memory that was allocated with new.
+* ```dynamic_cast``` - Performs a runtime check to determine whether an object can be cast to a different type.
+* ```static_cast``` - Performs a static cast, which allows an expression to be converted to a different data type at compile time.
+* ```explicit``` - Specifies that a constructor or conversion operator cannot be used for implicit type conversions.
+* ```namespace``` - Defines a scope for identifiers to avoid naming conflicts.
+* ```operator``` - Declares a function as an overloaded operator.
+* ```template``` - Allows generic programming by defining a type or function with parameters that are specified at compile time.
+* ```try``` and ```catch``` - Implements exception handling by trying a block of code that may throw an exception and catching the exception if it is thrown.
+
+Difference between a class and struct then?
+> In native C++, the main difference between a struct and a class is that struct members are public by default, whereas class members are private by default. However, this difference is largely syntactic, and struct and class can be used interchangeably to define custom types.
+
+> However, Unreal Engine structs are used to represent data types that are typically used for data storage and manipulation, whereas classes are used to represent objects that have behavior and state.
+
+In Unreal Engine, it's recommended to use the built-in memory management functions like ```NewObject()``` and ```MakeShared()``` to allocate memory for objects, rather than using ```new``` and ```delete```. Using ```new``` and ```delete``` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
+
+## Reflection System
+
+Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT) during compilation. With the help of `GENERATED_BODY()` macro and "[FileName].generated.h" header.
+
+The generated header file is typically included in the source file that defines the corresponding class or struct, and it is also included in any other source files that use that class or struct. This ensures that the metadata is available to the engine at compile-time and runtime.
+
+The reflection system is also used in many other areas of the engine, such as serialization and networking. When objects are saved to disk or sent over the network, their properties are serialized into a binary format. The reflection system is used to determine which properties to serialize, and how to convert them to and from their binary representation.
+
+The Unreal Header Tool (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the Unreal Build System (UBS), which is responsible for compiling the engine and all its modules.
+
+One of the key benefits of the header system is that it allows for very efficient compilation times. Because each C++ file has its own header file, changes to one file do not require recompilation of other files that depend on it. Instead, only the files that include the modified header file need to be recompiled.
+
+You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/" target="_blank">here</a>!
 
 ## Tips and best practices
 
