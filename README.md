@@ -237,14 +237,6 @@ You can also watch a video discussion about Multiplayer Framework of Unreal Engi
 
 **NOTE**: This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can ignore some of the main classes.
 
-<figure>
-  <img src="https://ue-cdn.artstation.com/imgproxy/FsW3HX1vUAYYoC0la5qJ1AMeo-J5lsYRmV-rj5xpn2A/filename:0f7063e3-e57d-4fc1-936e-1f5f337fb999.png/resizing_type:fit/width:1920/height:1080/aHR0cHM6Ly9kMWl2N2RiNDR5aGd4bi5jbG91ZGZyb250Lm5ldC9pbWFnZXMvMGMyNTZlMDktOTJkYi00YmMyLTkyZGQtYjFlNDlmNTJmY2U4LzBmNzA2M2UzLWU1N2QtNGZjMS05MzZlLTFmNWYzMzdmYjk5OS5wbmc" alt="Basic Class Structure"> 
-  <figcaption>Basic Class Structure, <a href="https://dev.epicgames.com/community/learning/tutorials/7xWm/unreal-engine-basic-class-structure" target="_blank">click here</a> to read more about it.</figcaption>
-</figure>
-
-<br>
-<br>
-
 You can also watch "*The Unreal Engine Game Framework: From int main() to BeginPlay*" by Alex Forsythe, which talks about Unreal Engine's architecture.
 <a href="https://www.youtube.com/watch?v=IaU2Hue-ApI" target="_blank">Link here</a>
 
@@ -263,21 +255,23 @@ Here is a github repo about Unreal Engine's style guide by Michael Allar, <a hre
 Unreal Engine has a convention for naming boolean variables, which is to use a prefix of b followed by a descriptive name in camel case. For example, a boolean variable that controls whether a character is running might be named `bIsRunning`.  
 
 ### Prefixes
-  
-* U - Indicates that a class is a **UObject** subclass.
-* A - Indicates that a class is an **AActor** subclass.
-* F - Indicates that a class is a struct (`FHitResult`, `FVector`, `FRotator`).
-* E - Indicates that a class is a enum (`EEnvQueryStatus`, `EConstraintType`).
-* I - Indicates that a class is an interface.
-* T - Indicates that a class is a template (`TSubclassOf<T>`, `TArray<T>`, `TMap<T>`).
-* G - Indicates that a class is a global class (`GEngine`).
+
+| Prefix | Class        | Subclasses                                                                |
+| ------ | ------------ | ------------------------------------------------------------------------- |
+| U      | `UObject`    | `UActorComponent`, `UPrimaryDataAsset`, `UEngine`, `UGameplayStatics`     |
+| A      | `AActor`     | `APawn`, `ACharaacter`, `AController`, `AHUD`, `AGameMode`                |
+| F      | Struct       | `FHitResult`, `FVector`, `FRotator`, `FTableRowBase`                      |
+| E      | Enum         | `EEnvQueryStatus`, `EConstraintType`, `EEndPlayReason`                    |
+| I      | Inteface     | `IInputDevice`, `IHapticDevice`, `ITargetPlatform`                        |
+| T      | Template     | `TSubclassOf<T>`, `TArray<T>`, `TSet<T>`, `TMap<T>`, `TMultiMap<T>`       |
+| G      | Global Class | `GEngine`, `GConfig`, `GWorld`, `GEngineLoop`, `GIsEditor`                |
 
 ### Synonyms
 
-* PC - PlayerController
-* LP - LocalPlayer
-* Char = Character (not to be confused about `char` data type)
-* Comp - Component
+* PC - Indicates that a variable is a **PlayerController**
+* LP - Indicates that a variable is a **LocalPlayer**
+* Char = Indicates that a variable is a **Character** (not to be confused about `char` data type)
+* Comp - Indicates that a variable is a **component**
 * Ptr - Indicates that a variable is a **pointer** to an object.
 * Ref - Indicates that a variable is a **reference** to an object.
 
@@ -307,7 +301,17 @@ All types:
 * ```FRotator``` - Represents a rotation in 3D space, which consists of three float values (Pitch, Yaw, and Roll) that correspond to rotations around the X, Y, and Z axes, respectively
 * ```FTransform``` - Represents a transformation in 3D space, which consists of a location, rotation, and scale
 
-We start off with simple variables types, such as ```bool```, ```int```, ```float```, ```string``` and pointers.
+We start off with simple variables types, such as `char`, ```bool```, ```int```, ```float```, ```string``` and pointers.
+
+### Char
+
+```cpp
+// Declaring and initializing a char variable
+char myChar = 'a';
+
+// Printing the value of the char to the console
+UE_LOG(LogTemp, Display, TEXT("The value of myChar is: %c"), myChar);
+```
 
 ### Booleans
 
@@ -366,9 +370,9 @@ In C++, a modifier is used to alter the meaning of the base type so that it more
 
 The default behavior for all integer types is ```signed```.
 
-In Unreal Engine, instead of typing ```signed long long``` for an 64-bit integer, you can now type only ```int64```. These alias are called **typedefs**, which you can read more about <a href="https://en.cppreference.com/w/cpp/language/typedef" target="_blank">here</a>!
+In Unreal Engine, instead of writing ```signed long long``` for an 64-bit integer, you can now write ```int64``` instead. These alias are called **typedefs**, which you can read more about <a href="https://en.cppreference.com/w/cpp/language/typedef" target="_blank">here</a>!
 
-Here are Unreal Engine's typedefs:
+Here is a list of *Unreal Engine's* typedefs:
 
 ```cpp
 //~ Unsigned base types
@@ -403,7 +407,7 @@ typedef signed long long	int64;
 And here is how you can use these typedefs for specifying a size for an integer:
 
 ```cpp
-// Can only store 8 bits (also known as a byte)
+// Can only store 8 bits (also known as a signed byte)
 // Can store postive and negative numbers
 // Range                          -128                          to    127
 int8 a = 15;
@@ -423,7 +427,7 @@ int32 c = -10;
 // Range                          -9,223,372,036,854,775,808    to    9,223,372,036,854,775,807
 int64 d = 10;
 
-// Can only store 8 bits (Also know as a byte)
+// Can only store 8 bits (also know as a byte)
 // Can only store postive numbers
 // Range                          0                             to    255
 uint8 e = 15;
@@ -444,15 +448,15 @@ uint32 g = 15;
 uint64 h = 10;
 ```
 
-**NOTE**: Unreal Engine only supports int32 and int64 for Blueprint editor. The other types are not supported, but can be still be used by Unreal header system (UPROPERTY and UFUNCTION).
+**NOTE**: Unreal Engine only supports int32 and int64 for Blueprint editor. The other types are not supported, but can be still be used by Unreal reflection system (UPROPERTY and UFUNCTION).
 
 ### Strings
 
-Strings differs in Unreal Engine and C++.
+Strings differs in Unreal Engine and native C++.
 
 You can read more about string handling <a href="https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/" target="_blank">here</a>!
 
-This is how you would define it in standard C++:
+This is how you would define it in native C++:
 
 ```cpp
 std::string Message("Hello, World!"); // This is string in C++ standard library
@@ -475,7 +479,7 @@ FText NewGameText = FText::FromString(TEXT("New Game"));
 FName Username = FName(TEXT("mRrObIN"));
 ```
 
-Also, here is an example how to add a ```FString``` to the On-screen debug message system.
+Also, here is an example how to add on-screen debug message.
 
 ```cpp
 GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("This is an on screen message!"));
@@ -499,11 +503,11 @@ void AddOnScreenDebugMessage
 // This function will add a debug message to the onscreen message list. It will be displayed for FrameCount frames.
 ```
 
-### Vectors, Rotations and Transforms
+### Vector, Rotator, Quat and Transform
 
 * ```FVector``` - A struct representing a 3D vector, consisting of three float values for the X, Y, and Z components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
 * ```FRotator``` - A struct representing a rotation in 3D space, consisting of three float values for the pitch, yaw, and roll angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
-* `FQuat` (Quaternion) - Lorem Ipsum
+* `FQuat` (Quaternion) - A struct representing a quaternion, which is a mathematical concept used to represent 3D rotations. It is commonly used in conjunction with FVector to represent orientations and rotations in 3D space.
 * ```FTransform``` - A struct representing a 3D transformation, consisting of a FVector for translation, a FRotator for rotation, and a FVector for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
   
 ```cpp
@@ -520,6 +524,12 @@ FVector MyVector(1.0f, 2.0f, 3.0f);
 
 // Declare and initialize a FRotator
 FRotator MyRotator(0.0f, 90.0f, 0.0f);
+
+// Create a new FQuat representing a rotation of 90 degrees around the X axis
+FQuat MyQuat = FQuat(FRotator(90.0f, 0.0f, 0.0f));
+
+// Apply the rotation to a vector
+MyVector = MyQuat.RotateVector(MyVector);
 
 // Combine the FVector and FRotator to create a FTransform
 FTransform MyTransform(MyRotator, MyVector);
@@ -636,7 +646,7 @@ for (const FString& Value : Values)
 }
 
 // Remove all values for a key in the map
-MyIntStringMultiMap.MultiRemove(2);
+MyIntStringMultiMap.Remove(2);
 ```
 
 ### Pointers
@@ -771,26 +781,34 @@ You can read more about <a href="https://docs.unrealengine.com/5.1/en-US/asserts
 
 Delegates are a powerful feature of the Unreal Engine that allows developers to create and manage events in a flexible and modular way. A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
 
-Define a delegate type: The first step in using delegates is to define a delegate type. This is done using the ```DECLARE_DYNAMIC_MULTICAST_DELEGATE()``` macro, which takes the name of the delegate as an argument.  
+### Define a delegate type
+
+The first step in using delegates is to define a delegate type. This is done using the ```DECLARE_DYNAMIC_MULTICAST_DELEGATE()``` macro, which takes the name of the delegate as an argument.  
 
 ```cpp
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FMyDelegate);
 ```
-  
-Declare a delegate variable: Once you have defined a delegate type, you can declare a delegate variable of that type. This is done using the UPROPERTY() macro to ensure that the delegate variable is properly managed by the Unreal Engine.
+
+### Declare a delegate variable
+
+Once you have defined a delegate type, you can declare a delegate variable of that type. This is done using the UPROPERTY() macro to ensure that the delegate variable is properly managed by the Unreal Engine.
   
 ```cpp
 UPROPERTY(BlueprintAssignable)
 FMyDelegate MyEvent;
 ```
-  
-Bind functions to the delegate: With the delegate variable declared, you can now bind one or more functions to it using the BindDynamic() method. This method takes a reference to the object that owns the function, the name of the function, and an optional user data parameter.
+
+### Bind functions to the delegate
+
+With the delegate variable declared, you can now bind one or more functions to it using the BindDynamic() method. This method takes a reference to the object that owns the function, the name of the function, and an optional user data parameter.
 
 ```cpp
 MyEvent.BindDynamic(this, &AMyActor::MyFunction);
 ```
 
-Trigger the delegate: Finally, you can trigger the delegate by calling the broadcast() method. This will cause all bound functions to be called with the specified parameters.  
+### Trigger the delegate
+
+Finally, you can trigger the delegate by calling the broadcast() method. This will cause all bound functions to be called with the specified parameters.  
 
 ```cpp
 MyEvent.Broadcast();
@@ -928,7 +946,7 @@ The generated header file is typically included in the source file that defines 
 
 You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/" target="_blank">here</a>!
 
-## Working with UI and C++
+## Creating UI
 
 UI Tweening Libary for UE4/UMG by *BenUI*, <a href="https://github.com/benui-dev/UE-BUITween" target="_blank">link here</a>!
 
@@ -937,43 +955,7 @@ UPROPERTY(meta=(BindWidget)) // To bind via UMG editor
 UTextBlock* PlayerDisplayNameText;
 ```
 
-## Tips and best practices
-
-Here is a video explaining some of the best practices with Unreal Engine and C++. <a href="https://www.youtube.com/watch?v=g7WVBZZTRDk" target="_blank">Link here</a>!
-
-Also, here is a Google Docs (if video is not enough), <a href="https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8/" target="_blank">link here</a>!
-
-### For actors
-
-```cpp
-PrimaryActorTick.bCanEverTick = false;
-PrimaryActorTick.bStartWithTickEnabled = false;
-```
-
-### For components
-
-```cpp
-PrimaryComponentTick.bCanEverTick =  false;
-PrimaryComponentTick.bStartWithTickEnabled = false;
-```
-
-### If you have to use tick
-
-* Set the tick interval to the maximum value you can get away with. Unfortunately this is often per frame for smoothly moving things
-
-```cpp
-PrimaryActorTick.TickInterval = 0.2f;
-PrimaryComponentTick.TickInterval = 0.2f;
-```
-
-* Enable/disable tick to only tick when required.
-
-```cpp
-SetActorTickEnabled()
-SetComponentTickEnabled()
-```
-
-### Preprocessor
+## Pre-processor
 
 You can read more about it <a href="https://en.cppreference.com/w/cpp/preprocessor" target="_blank">here</a>.
 Or you can watch a video about it <a href="https://www.youtube.com/watch?v=voGGB5TGsV4" target="_blank">here</a>.
@@ -994,9 +976,66 @@ void SetupArrow()
 #endif
 ```
 
+## Tips and best practices
+
+Here is a video explaining some of the best practices with Unreal Engine and C++. <a href="https://www.youtube.com/watch?v=g7WVBZZTRDk" target="_blank">Link here</a>!
+
+Also, here is a Google Docs (if video is not enough), <a href="https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8/" target="_blank">link here</a>!
+
+### Ticking
+
+#### For actors
+
+```cpp
+PrimaryActorTick.bCanEverTick = false;
+PrimaryActorTick.bStartWithTickEnabled = false;
+```
+
+#### For components
+
+```cpp
+PrimaryComponentTick.bCanEverTick =  false;
+PrimaryComponentTick.bStartWithTickEnabled = false;
+```
+
+#### If you have to use tick
+
+* Set the tick interval to the maximum value you can get away with. Unfortunately this is often per frame for smoothly moving things
+
+```cpp
+PrimaryActorTick.TickInterval = 0.2f;
+PrimaryComponentTick.TickInterval = 0.2f;
+```
+
+* Enable/disable tick to only tick when required.
+
+```cpp
+SetActorTickEnabled()
+SetComponentTickEnabled()
+```
+
 ### ```FTickFunction```
 
 Lorem Ipsum
+
+### Direct references
+
+```cpp
+int a = 5;
+int b = a; // Gets a copy
+
+b = b * 2; // B = 10 and A = 5
+
+int& c = 10;
+int& d = c;
+
+d = 20; // C = 20 and D = C, which is 20
+
+const int& e = 10; // Direct reference (use const for stopping ability to modify the variable)
+const int& f = e;
+
+f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
+```
 
 ## Helpful links
 
