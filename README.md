@@ -841,7 +841,7 @@ By using delegates, developers can create modular and flexible event systems tha
 | `private`   |	Class	         | Members and functions are only accessible from within the class itself.                              |
 | `mutable`   |	Class	         | Specifies that a member variable can be modified even if the owning object is const.                 |
 | `friend`    | Class          | Allows a non-member function or class to access the private and protected members of a class.        |
-.
+
 * ```const``` - Indicates that a variable's value cannot be changed after initialization.
 * ```auto``` - Allows the compiler to deduce the type of a variable based on its initializer.
 * ```static``` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
