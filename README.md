@@ -182,21 +182,23 @@ Some of the notorious classes, that inherit from ```UObject``` include:
     * LocalPlayer (share lifetime of local players)
 
 * ```UBlueprintFunctionLibrary```
-  * Lorem Ipsum
+  * Allows you to create custom static functions that can be used in Blueprint graphs. These functions can be called from any Blueprint and can perform complex calculations or operations that are not easily achievable with standard Blueprint nodes.
 
 * ```UEngine```, ```UEditorEngine``` and ```UGameEngine```
-  * Lorem Ipsum
+  * Manages the main loop of the engine, handles rendering, input, audio, networking, and more.
+  * `UEditorEngine` is used to manage the editor, which includes all of the tools and systems needed to create and edit levels, assets, and other game content.
+  * `UGameEngine` is used to manage the game itself, which includes gameplay mechanics, AI, physics, rendering, and so on.
 
 * ```UGameViewportClient```
-  * Lorem Ipsum
+  * Manages the viewport and input handling for the game. It is responsible for rendering the game's output to the screen, handling user input, and managing the game's display settings.
 
 * ```ULocalPlayer```
-  * Lorem Ipsum
+  * Manages the player's input, screen rendering, and other local gameplay-related tasks. ULocalPlayer is often used in conjunction with other classes, such as APlayerController, to manage local player interactions with the game.
 
 * ```UWorld```
-  * Lorem Ipsum
-  * Functions:
-    * ```SpawnActor()``` and ```SpawnActorDeferred()``` (deferred allow you to set actor properties before it's spawned into the world.)
+* Represents a single instance of a level or map. It contains all the actors, components, and other objects that are present in the level, as well as information about the level's environment and physics settings.
+* Functions:
+  * ```SpawnActor()``` and ```SpawnActorDeferred()``` (deferred allow you to set actor properties before it's spawned into the world.)
 
 * ```ULevel```
   * Represents a level in the game world that contains actors, geometry, lighting, and other assets.
@@ -279,7 +281,7 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 
 All types:
 
-* ```bool``` - Represents a logical value, either true or false
+* ```bool``` - Represents a logical value, either `true` or `false`
 * ```char``` - Represents a single character in the ASCII character set
 * ```int8``` - Represents a signed 8-bit integer
 * ```int``` or ```int32``` - Represents a signed 32-bit integer
@@ -839,10 +841,7 @@ By using delegates, developers can create modular and flexible event systems tha
 | `private`   |	Class	         | Members and functions are only accessible from within the class itself.                              |
 | `mutable`   |	Class	         | Specifies that a member variable can be modified even if the owning object is const.                 |
 | `friend`    | Class          | Allows a non-member function or class to access the private and protected members of a class.        |
-
-* ```public``` - Specifies that class members are accessible from any part of the program.
-* ```protected``` - Specifies that class members are accessible only within the class and its subclasses.
-* ```private``` - Specifies that class members are accessible only within the class.
+.
 * ```const``` - Indicates that a variable's value cannot be changed after initialization.
 * ```auto``` - Allows the compiler to deduce the type of a variable based on its initializer.
 * ```static``` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
@@ -861,8 +860,6 @@ By using delegates, developers can create modular and flexible event systems tha
 * ```namespace``` - Defines a scope for identifiers to avoid naming conflicts.
 * ```operator``` - Declares a function as an overloaded operator.
 * ```template``` - Allows generic programming by defining a type or function with parameters that are specified at compile time.
-* ```mutable``` - Specifies that a data member can be modified even if the containing object is declared as const.
-* ```friend``` - Allows non-member functions or classes to access private or protected members of a class.
 * ```try``` and ```catch``` - Implements exception handling by trying a block of code that may throw an exception and catching the exception if it is thrown.
 
 Difference between a class and struct then?
@@ -928,21 +925,15 @@ Plugins can also be used to add support for third-party libraries and tools, suc
 
 ## Reflection System
 
-Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT) during compilation.
+Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT) during compilation. With the help of `GENERATED_BODY()` macro and "[FileName].generated.h" header.
 
-The reflection system is used extensively throughout Unreal Engine, particularly in the Blueprint system. For example, when creating a new Blueprint, the user is presented with a list of available classes to use as a base class. This list is generated dynamically at runtime by the reflection system, based on the metadata generated by UHT.
+The generated header file is typically included in the source file that defines the corresponding class or struct, and it is also included in any other source files that use that class or struct. This ensures that the metadata is available to the engine at compile-time and runtime.
 
 The reflection system is also used in many other areas of the engine, such as serialization and networking. When objects are saved to disk or sent over the network, their properties are serialized into a binary format. The reflection system is used to determine which properties to serialize, and how to convert them to and from their binary representation.
 
-The reflection system is implemented using C++ templates and macros, and is designed to be as lightweight and efficient as possible. Because the reflection system relies on metadata generated by UHT, it is only available for classes that have been declared using the UCLASS macro.
-
-The Unreal Engine header system is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header system is designed to work with the Unreal Build System (UBS), which is responsible for compiling the engine and all its modules.
+The Unreal Header Tool (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the Unreal Build System (UBS), which is responsible for compiling the engine and all its modules.
 
 One of the key benefits of the header system is that it allows for very efficient compilation times. Because each C++ file has its own header file, changes to one file do not require recompilation of other files that depend on it. Instead, only the files that include the modified header file need to be recompiled.
-
-Also, the reflection system allows the engine to dynamically create and manipulate objects at runtime, and it relies heavily on metadata to achieve this. The [FileName].generated.h file contains this metadata, which is used by the engine to dynamically create and manipulate objects based on the C++ code.
-
-The generated header file is typically included in the source file that defines the corresponding class or struct, and it is also included in any other source files that use that class or struct. This ensures that the metadata is available to the engine at compile-time and runtime.
 
 You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/" target="_blank">here</a>!
 
@@ -959,6 +950,12 @@ UTextBlock* PlayerDisplayNameText;
 
 You can read more about it <a href="https://en.cppreference.com/w/cpp/preprocessor" target="_blank">here</a>.
 Or you can watch a video about it <a href="https://www.youtube.com/watch?v=voGGB5TGsV4" target="_blank">here</a>.
+
+### Pragma once
+
+`#pragma` once is a preprocessor directive used in C++ header files to ensure that the header is included only once during the compilation of a source file, regardless of how many times it is referenced. It is an alternative to traditional header guards, which involve using #ifndef and #define statements to prevent multiple inclusions. `#pragma` once is a simpler and more efficient way to achieve the same effect, and is supported by most modern compilers.
+
+### Editor code
 
 Only use component for editor version. Meaning, the component and code will be stripped out, if editor version is not used.
 
