@@ -1034,6 +1034,45 @@ const int& f = e;
 f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
 ```
 
+### Math Expression Node
+
+The Math Expression node acts like a collapsed graph. It is a single node that you can Double-click to open the sub-graph that makes up its functionality. Initially, the name/expression is blank. Whenever you rename the node, then the new expression is parsed and a new sub-graph is generated.
+
+![image](https://github.com/MrRobinOfficial/Guide-UnrealEngine/assets/61658252/8d0a2205-8c25-469b-8254-b3a3d00bb01d)
+
+Read more <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">here</a>!
+
+### Call In Editor and `CallInEditor`
+
+Expose a function to call inside the Blueprint editor. With C++, you can mark UFUNCTION specifier `CallInEditor`.
+
+Here is an example:
+
+```cpp
+UFUNCTION(CallInEditor, BlueprintCallable)
+void DebugMessage()
+{
+  // Display message
+}
+```
+
+## Console Commands
+
+* `stat fps` - Display FPS.
+* `stat unit` - Display frame time.
+* `slomo` - To speed up or slow down the game time.
+* `dumpticks` - Display a list of current objects, which ticks in the level.
+* `obj list` - Display a list of current loaded objects.
+* `obj list class=BP_PlayerCharacter_C` - Same as `obj list` but with a filter.
+* `obj gc` - Collect all objects with GC (Garbage Collector).
+* `au.Debug.AudioSoloSoundWave` - Text.
+
+## Shortcuts
+
+* `Ctrl + Shift + Comma` - GPU Visualizer
+* `Ctrl + P` - Asset Picker
+* 
+
 ## Helpful links
 
 | Type | Author | Title | Length | Link |
