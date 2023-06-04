@@ -1060,8 +1060,9 @@ void DebugMessage()
 
 * `stat fps` - Display FPS.
 * `stat unit` - Display frame time.
+* `stat game` - Display a general idea on how long the various gameplay ticks are taking.
+* `dumpticks` - Display a list of current actors, which currently ticks in the level.
 * `slomo` - To speed up or slow down the game time.
-* `dumpticks` - Display a list of current objects, which ticks in the level.
 * `obj list` - Display a list of current loaded objects.
 * `obj list class=BP_PlayerCharacter_C` - Same as `obj list` but with a filter.
 * `obj gc` - Collect all objects with GC (Garbage Collector).
