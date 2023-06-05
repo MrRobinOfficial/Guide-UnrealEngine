@@ -37,7 +37,37 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 * More prone to errors - C++ requires manual memory management and has less strict type checking than some other languages. This can make it more prone to errors like memory leaks, null pointer dereferences, and type mismatches.
 * Harder to prototype - Because C++ requires more code to accomplish even simple tasks, it can be harder to quickly prototype ideas in C++ than in other programming languages.
 
-## Architecture
+## Quick Summary of Programming World
+
+### Members
+
+Members are variables or functions that are part of a class or object. They define the properties and behaviors of the class. There are two main types of members:
+
+#### Variables
+
+Members that store data. They can be of different types such as numbers, strings, booleans, or custom types. Variables hold values that can be accessed and manipulated within the class or object.
+
+#### Functions (or methods)
+
+Members that perform actions or provide functionality. They define blocks of code that can be executed by the class or object. Functions can take input parameters and may return a value.
+
+### Functions
+
+Functions are blocks of code that perform a specific task or set of tasks. They encapsulate a series of instructions and can be called and executed from various parts of a program. Functions can accept input parameters (arguments) and can also return a value as a result.
+
+Functions can be defined outside of classes as standalone functions or can be defined within classes as member functions. Standalone functions are typically used for common tasks that are not specific to any particular class or object.
+
+### Classes
+
+Classes are the building blocks of object-oriented programming (OOP). They are a blueprint for creating objects, which are instances of a class. A class defines the structure and behavior of objects by specifying the members it contains.
+
+A class can have variables (members) to store data and functions (methods) to perform actions. The variables defined within a class are often referred to as attributes, while the functions are referred to as methods.
+
+Objects created from a class can access and modify the class's members. They provide a way to create multiple instances that share the same structure and behavior defined by the class. Objects can be thought of as individual entities that represent real-world objects or abstract concepts.
+
+Classes allow for code reusability, encapsulation (hiding internal details), and the ability to model complex systems by organizing related data and behavior together.
+
+## Unreal's Architecture
 
 ```mermaid
 graph TD;
