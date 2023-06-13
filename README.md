@@ -726,18 +726,186 @@ TObjectPtr<AActor> ActorPtr = nullptr;
 
 #### Smart pointers
 
-Smart pointer is used for handling scenario, which a raw pointer does not entirely fit. For most cases, you probably want to go with smart pointers instead.
+In Unreal Engine, a raw pointer is a basic C++ pointer that holds the memory address of an object or resource. It provides direct access and control over memory but requires manual memory management, including allocation and deallocation. Raw pointers do not provide built-in memory safety features.
 
-You can read more about at, [Unreal Smart Pointer Library](https://docs.unrealengine.com/5.1/en-US/smart-pointers-in-unreal-engine/)
+In contrast, smart pointers in Unreal Engine are specialized classes, such as `TSharedPtr` and `TWeakPtr`, that handle memory management automatically. Smart pointers offer benefits like automatic deallocation, reference counting, and improved memory safety. They help prevent memory leaks and simplify memory management tasks within the game engine.
 
-You have:
+By using smart pointers in Unreal Engine, developers can reduce the risk of memory-related issues, such as accessing invalid memory or leaking resources. Smart pointers handle the lifetime of objects, making it easier to manage dynamically loaded or created objects during gameplay. They provide a more robust and efficient approach to memory management compared to raw pointers in the context of Unreal Engine.
 
-* Weak pointer (```TWeakObjectPtr```)
-* Soft pointer (```TSoftObjectPtr```)
-* Soft class pointer (```TSoftClassPtr```)
-* Shared pointer (```TSharedPtr```)
+##### TWeakObjectPtr
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turpis a nisl vestibulum, ac malesuada enim pellentesque. In bibendum suscipit sem, in pulvinar tellus vestibulum vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In at suscipit diam. Sed nec enim luctus, condimentum eros quis, porta felis. Vestibulum dignissim turpis in justo pulvinar dapibus. Phasellus sodales, sem vitae blandit dictum, magna risus viverra sapien, ut malesuada purus arcu ut tellus.
+This smart pointer is used to hold a weak reference to an `UObject` subclass. It allows you to safely reference an object without affecting its lifespan. It is commonly used to prevent strong references that could potentially create circular dependencies.
+
+Example usage:
+
+```cpp
+TWeakObjectPtr<UObject> WeakPtr;
+
+if (SomeObject.IsValid())
+{
+    WeakPtr = SomeObject;  // Assign weak reference to an object
+}
+
+if (WeakPtr.IsValid())
+{
+    // Access the object if it still exists
+    WeakPtr->DoSomething();
+}
+
+```
+
+##### TWeakInterfacePtr
+
+This smart pointer is used to hold a weak reference to an interface implemented by an `UObject`. It allows you to safely reference the interface without affecting its lifespan.
+
+Example usage:
+
+```cpp
+TWeakInterfacePtr<IMyInterface> WeakPtr;
+
+if (SomeObject->Implements<IMyInterface>())
+{
+    WeakPtr = SomeObject;  // Assign weak reference to the interface
+}
+
+if (WeakPtr.IsValid())
+{
+    // Access the interface if the object still implements it
+    WeakPtr->InterfaceFunction();
+}
+
+```
+
+##### TSoftObjectPtr
+
+This smart pointer is used to hold a soft reference to an `UObject` subclass. It is used for referencing assets that can be loaded and unloaded during runtime. Soft references do not prevent the asset from being garbage collected.
+
+Example usage:
+
+```cpp
+TSoftObjectPtr<UTexture2D> SoftPtr; // Assign soft reference to a texture asset
+
+if (SoftPtr.IsValid())
+{
+    UTexture2D* Texture = SoftPtr.LoadSynchronous();
+    
+    if (Texture)
+    {
+        // Use the loaded texture
+    }
+}
+```
+
+##### TSoftClassPtr
+
+This smart pointer is used to hold a soft reference to a `UClass` subclass. It is used for referencing blueprint classes or other classes that can be loaded and unloaded during runtime.
+
+Example usage:
+
+```cpp
+TSoftClassPtr<AMyBlueprintClass> SoftPtr; // Assign soft reference to a blueprint class
+
+if (SoftPtr.IsValid())
+{
+    UClass* Class = SoftPtr.LoadSynchronous();
+    if (Class)
+    {
+        // Use the loaded class
+    }
+}
+
+```
+
+##### TSharedPtr
+
+This smart pointer is a general-purpose shared pointer that can hold a reference to any class or struct. It uses reference counting to automatically manage the memory. It is used when multiple references need to share ownership of an object.
+
+Example usage:
+
+```cpp
+TSharedPtr<MyClass> SharedPtr = MakeShared<MyClass>();  // Create a shared pointer to an instance of MyClass
+
+if (SharedPtr.IsValid())
+{
+    SharedPtr->DoSomething();  // Access the object via the shared pointer
+}
+
+TSharedPtr<MyClass> OtherSharedPtr = SharedPtr;  // Share ownership with another shared pointer
+```
+
+##### TWeakPtr
+
+This smart pointer is another smart pointer provided by the engine. It is used to hold a weak reference to an object derived from `TSharedFromThis`.
+
+`TWeakPtr` is used specifically for weak references to objects derived from `TSharedFromThis`, while `TWeakObjectPtr` is a more general-purpose weak pointer for any `UObject` subclass. `TWeakPtr` requires the object to inherit from `TSharedFromThis` to enable weak referencing, whereas `TWeakObjectPtr` can be used without such a requirement.
+
+Example usage:
+
+```cpp
+TSharedPtr<MyClass> SharedPtr = MakeShared<MyClass>(); // Create a shared pointer
+TWeakPtr<MyClass> WeakPtr(SharedPtr); // Create a weak pointer from the shared pointer
+
+if (TSharedPtr<MyClass> StrongPtr = WeakPtr.Pin()) // Convert weak pointer to shared pointer
+{
+    // Access the object through the shared pointer
+    StrongPtr->DoSomething();
+}
+```
+
+##### UniquePtr
+
+`UniquePtr` is a smart pointer class that provides automatic memory management for dynamically allocated objects. It is part of the Unreal Smart Pointer Library and serves as a unique ownership container.
+
+The purpose of `UniquePtr` is to ensure that only a single `UniquePtr` instance owns a particular object at any given time. This ownership means that when the `UniquePtr` is destroyed or reassigned, it automatically deletes the associated object, freeing up the memory.
+
+Example usage:
+
+```cpp
+#include "Containers/UniquePtr.h"
+
+// Custom class for demonstration
+class MyCustomObject
+{
+public:
+    MyCustomObject()
+    {
+        // Constructor
+    }
+
+    ~MyCustomObject()
+    {
+        // Destructor
+    }
+
+    void DoSomething()
+    {
+        // Perform some action
+    }
+};
+
+void MyFunction()
+{
+    // Creating a UniquePtr to manage a dynamically allocated MyCustomObject
+    TUniquePtr<MyCustomObject> MyObjectPtr = MakeUnique<MyCustomObject>();
+
+    // Accessing member functions of the managed object
+    MyObjectPtr->DoSomething();
+
+    // No need to manually delete the object, it will be automatically cleaned up
+}
+```
+
+## Soft vs hard references
+
+### Renting a Car (Soft Reference)
+
+Imagine you want to rent a car from a rental agency. When you rent a car, you have temporary access to it, and you can use it for a specific period of time. However, you don't have ownership rights over the car. You can drive the car, but you cannot sell it to someone else or trade it with the rental agency. In this analogy, the rental agreement represents a soft reference. It allows you to use the car, but you don't have full control or ownership over it.
+In programming terms, a soft reference is similar. It allows you to access an object or data temporarily, but you don't have full control over its lifetime. The object can be garbage collected (released from memory) if there is not enough memory available or if it's no longer needed, even if you still hold a soft reference to it. Soft references are useful for caching or holding onto expendable objects that can be recreated if necessary.
+
+###  Owning a Car (Hard Reference)
+
+Now, let's consider the scenario of owning a car. When you own a car, you have full control over it. You can drive it, sell it to a dealership, trade it with someone else, or dispose of it as you wish. You have a direct and strong relationship with the car as its owner. In this analogy, owning a car represents a hard reference. It provides you with complete control over the car and its fate.
+In programming terms, a hard reference is similar. When you have a hard reference to an object, you have a direct and strong relationship with it. The object will not be garbage collected as long as the hard reference is in scope or being used. Hard references ensure that the referenced object remains available for use and that you have full control over its lifetime.
 
 ## Global Functions
 
@@ -765,6 +933,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum turp
 
 * `GENERATED_BODY()` - Is used by Unreal to add boilerplate code required by the engine.
 * ```TEXT()``` - Is used to convert a string literal to a wide-character string literal.
+* `INVTEXT()` - Lorem Ipsum
+* `LOCTEXT()` - Lorem Ipsum
+* `IN` - Lorem Ipsum
+* `OUT` - Lorem Ipsum
+* `LINE_TERMINATOR` - Lorem Ipsum
+* `CONSTEXPR` - Lorem Ipsum
+* `ABSTRACT` - Lorem Ipsum
 * ```UPROPERTY()``` - Defines the type and behavior of the property, as well as its metadata and display names.
 * ```UFUNCTION()``` - Defines the parameters and return type of the function, as well as its behavior and metadata.
 * ```UCLASS()``` - Defines the properties and behavior of the class, including its inheritance hierarchy, default properties, and editor metadata.
