@@ -67,6 +67,141 @@ Objects created from a class can access and modify the class's members. They pro
 
 Classes allow for code reusability, encapsulation (hiding internal details), and the ability to model complex systems by organizing related data and behavior together.
 
+### Polymorphism
+
+Polymorphism is a fundamental concept in object-oriented programming (OOP) that allows objects of different classes to be treated as objects of a common base class. It enables you to write code that can work with objects of multiple types in a uniform manner.
+
+At its core, polymorphism allows you to define a common interface or base class and then create derived classes that implement that interface in their own specific ways. This means that objects of different derived classes can be accessed and manipulated through a common interface, without needing to know the specific derived class.
+
+Polymorphism is often illustrated through inheritance, where you have a base class and multiple derived classes that inherit from it. The derived classes can override or extend the behavior of the base class's methods, while still adhering to the common interface.
+
+The power of polymorphism lies in the ability to use a base class pointer or reference to refer to objects of derived classes. This allows you to write code that operates on the base class, without needing to know the specific derived class. During runtime, the appropriate version of the overridden method in the derived class will be invoked, based on the actual type of the object being referred to.
+
+Here's a simplified example in C++ to illustrate polymorphism:
+
+```cpp
+class Animal
+{
+public:
+    virtual void makeSound()
+    {
+        // Common implementation for all animals
+        std::cout << "The animal makes a sound." << std::endl;
+    }
+};
+
+class Dog : public Animal
+{
+public:
+    void makeSound() override
+    {
+        std::cout << "The dog barks." << std::endl;
+    }
+};
+
+class Cat : public Animal
+{
+public:
+    void makeSound() override
+    {
+        std::cout << "The cat meows." << std::endl;
+    }
+};
+
+int main()
+{
+    Animal* animal1 = new Dog();
+    Animal* animal2 = new Cat();
+
+    animal1->makeSound();  // Output: "The dog barks."
+    animal2->makeSound();  // Output: "The cat meows."
+
+    delete animal1;
+    delete animal2;
+
+    return 0;
+}
+```
+
+In the example, we have an Animal base class and two derived classes, Dog and Cat. Each derived class overrides the makeSound() method with its own implementation.
+
+In the `main()` function, we create pointers of the base class type (`Animal*`) and assign them to objects of derived classes (`Dog` and `Cat`). When calling the `makeSound()` method through these base class pointers, the appropriate derived class's implementation is invoked, demonstrating polymorphism.
+
+Polymorphism allows you to write more flexible and reusable code by treating objects based on their common behavior, rather than their specific type. It promotes code extensibility and enhances the ability to work with a variety of objects in a unified way.
+
+#### Virtual functions
+
+In object-oriented programming (OOP), a virtual function is a function declared in a base class that can be overridden in derived classes. It allows you to provide a common interface in the base class while allowing different implementations in the derived classes.
+
+When a function is declared as `virtual` in the base class, it indicates that the function can be overridden by derived classes. This means that the derived class can provide its own implementation of the function, tailored to its specific needs.
+
+Here's an example in C++ to illustrate the concept of virtual functions:
+
+```cpp
+class Shape
+{
+public:
+    virtual void draw()
+    {
+        // Common implementation for all shapes
+        std::cout << "Drawing a shape." << std::endl;
+    }
+};
+
+class Circle : public Shape
+{
+public:
+    void draw() override
+    {
+        std::cout << "Drawing a circle." << std::endl;
+    }
+};
+
+class Rectangle : public Shape
+{
+public:
+    void draw() override
+    {
+        std::cout << "Drawing a rectangle." << std::endl;
+    }
+};
+
+int main()
+{
+    Shape* shape1 = new Circle();
+    Shape* shape2 = new Rectangle();
+
+    shape1->draw();  // Output: "Drawing a circle."
+    shape2->draw();  // Output: "Drawing a rectangle."
+
+    delete shape1;
+    delete shape2;
+
+    return 0;
+}
+```
+
+In this example, we have a `Shape` base class and two derived classes, `Circle` and `Rectangle`. The `Shape` class has a virtual function called `draw()`. Both derived classes override this function and provide their own implementations.
+
+In the `main()` function, we create pointers of the base class type (`Shape*`) and assign them to objects of the derived classes (`Circle` and `Rectangle`). When calling the `draw()` function through these base class pointers, the appropriate derived class's implementation is invoked, thanks to the virtual function mechanism.
+
+The key aspect of the virtual function is that the appropriate implementation to be executed is determined at runtime, based on the actual type of the object being referred to. This is called dynamic dispatch or late binding.
+
+Virtual functions are useful when you want to define a common interface in a base class but allow derived classes to provide their own implementations based on their specific behaviors. It enables polymorphism, allowing objects of different derived classes to be treated uniformly through a base class pointer or reference.
+
+Using virtual functions, you can write code that works with objects based on their common interface, without needing to know their specific types. This promotes code extensibility and flexibility, as new derived classes can be added without modifying the existing code that uses the base class interface.
+
+| Keyword used | Matching virtual function in base class | Result                   |
+|--------------|-----------------------------------------|--------------------------|
+| Neither      | No                                      | New non-virtual function |
+| Neither      | Yes                                     | Override                 |
+| `virtual`      | No                                      | New virtual function     |
+| `virtual`      | Yes                                     | Override                 |
+| `override`     | No                                      | Compile error            |
+| `override`     | Yes                                     | Override                 |
+| Both         | No                                      | Compile error            |
+| Both         | Yes                                     | Override                 |
+
 ## Unreal's Architecture
 
 ```mermaid
