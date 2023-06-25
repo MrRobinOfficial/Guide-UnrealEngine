@@ -417,7 +417,7 @@ With ```AActor``` and ```UActorComponent``` you can control how the classes shou
 
 ## Naming Convention 
 
-Here is a github repo about Unreal Engine's style guide by Michael Allar, <a href="https://github.com/Allar/ue5-style-guide" target="_blank">link here</a>.
+Here is a github repo about <a href="https://github.com/Allar/ue5-style-guide" target="_blank">Unreal Engine's style guide by Michael Allar</a>.
 
 Unreal Engine has a convention for naming boolean variables, which is to use a prefix of b followed by a descriptive name in camel case. For example, a boolean variable that controls whether a character is running might be named `bIsRunning`.  
 
