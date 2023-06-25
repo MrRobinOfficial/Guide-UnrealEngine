@@ -724,14 +724,14 @@ void AddOnScreenDebugMessage
 
 ### Vector, Rotator, Quat and Transform
 
-* ```FVector``` - A struct representing a 3D vector, consisting of three float values for the X, Y, and Z components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
-* ```FRotator``` - A struct representing a rotation in 3D space, consisting of three float values for the pitch, yaw, and roll angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
-* `FQuat` (Quaternion) - A struct representing a quaternion, which is a mathematical concept used to represent 3D rotations. It is commonly used in conjunction with FVector to represent orientations and rotations in 3D space.
-* ```FTransform``` - A struct representing a 3D transformation, consisting of a FVector for translation, a FRotator for rotation, and a FVector for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
+* ```FVector``` - A struct representing a 3D vector, consisting of three float values for the `X`, `Y`, and `Z` components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+* ```FRotator``` - A struct representing a rotation in 3D space, consisting of three float values for the `Pitch`, `Yaw`, and `Roll` angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
+* `FQuat` (Quaternion) - A struct representing a quaternion, which is a mathematical concept used to represent 3D rotations. It is commonly used in conjunction with `FVector` to represent orientations and rotations in 3D space.
+* ```FTransform``` - A struct representing a 3D transformation, consisting of a `FVector` for translation, a `FRotator` for rotation, and a `FVector` for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
   
 ```cpp
 FVector Location = FVector::ZeroVector; // X, Y and Z
-FRotator Rotation = FRotator::Identify; // X, Y and Z
+FRotator Rotation = FRotator::Identify; // Pitch, Yaw and Roll
 FTransform Transform = FTransform::Identify;
 ```
 
