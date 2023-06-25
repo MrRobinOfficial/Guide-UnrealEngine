@@ -1160,7 +1160,7 @@ Or you can watch a video about it <a href="https://www.youtube.com/watch?v=voGGB
 
 ### Pragma once
 
-`#pragma` once is a preprocessor directive used in C++ header files to ensure that the header is included only once during the compilation of a source file, regardless of how many times it is referenced. It is an alternative to traditional header guards, which involve using #ifndef and #define statements to prevent multiple inclusions. `#pragma` once is a simpler and more efficient way to achieve the same effect, and is supported by most modern compilers.
+`#pragma once` is a preprocessor directive used in C++ header files to ensure that the header is included only once during the compilation of a source file, regardless of how many times it is referenced. It is an alternative to traditional header guards, which involve using #ifndef and #define statements to prevent multiple inclusions. `#pragma` once is a simpler and more efficient way to achieve the same effect, and is supported by most modern compilers.
 
 ### Editor code
 
