@@ -413,7 +413,7 @@ With ```AActor``` and ```UActorComponent``` you can control how the classes shou
 
 **NOTE**: Only use constructors for initializing variables. The constructor will also be called in the editor. Meaning, it should not use for runtime execution. Instead, use ```BeginPlay()``` function.
 
-**NOTE**: Don't use destructors for deleting memory with Unreal ```UObject```.
+**NOTE**: Don't use destructors for deleting memory with Unreal ```UObject```. This is handle by Unreal Engine's garbage collector.
 
 ## Naming Convention 
 
