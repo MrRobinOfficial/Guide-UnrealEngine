@@ -984,7 +984,8 @@ In programming terms, a hard reference is similar. When you have a hard referenc
 ## Macros
 
 * `GENERATED_BODY()` - Is used by Unreal to add boilerplate code required by the engine.
-* ```TEXT()``` - Is used to convert a string literal to a wide-character string literal.
+* `TEXT()` - Is used to convert a string literal to a wide-character string literal.
+* `TEXTVIEW()` - Calculates the length of a string from a string literal at compile time.
 * `INVTEXT()` - Lorem Ipsum
 * `LOCTEXT()` - Lorem Ipsum
 * `IN` - Lorem Ipsum
