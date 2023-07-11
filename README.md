@@ -1,8 +1,6 @@
-# Getting started in Unreal Engine and C++
+![Banner](Banner.png)
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/61658252/236800368-1eb85849-0d4f-4e6e-90bf-3ada5219afc3.png" width="256" height="256">
-</p>
+#
 
 **Are you interested in creating games with Unreal Engine using C++?**
 
