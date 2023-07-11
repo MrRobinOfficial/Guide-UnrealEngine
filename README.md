@@ -8,7 +8,7 @@
 
 ```Read Time ≈ 30 mins```
 
-## Getting started with C++
+## ⌛ Getting started with C++
 
 Highly recommend taking a short class of native C++. Here is a video link to ~1h long video, [click here](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
 
@@ -200,7 +200,7 @@ Using virtual functions, you can write code that works with objects based on the
 | Both         | No                                      | Compile error            |
 | Both         | Yes                                     | Override                 |
 
-## Unreal's Architecture
+## 🪧 Unreal's Architecture
 
 ```mermaid
 graph TD;
@@ -413,7 +413,7 @@ With ```AActor``` and ```UActorComponent``` you can control how the classes shou
 
 **NOTE**: Don't use destructors for deleting memory with Unreal ```UObject```. This is handle by Unreal Engine's garbage collector.
 
-## Naming Convention 
+## ✍️ Naming Convention 
 
 Here is a github repo about <a href="https://github.com/Allar/ue5-style-guide" target="_blank">Unreal Engine's style guide by Michael Allar</a>.
 
@@ -440,7 +440,7 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 * Ptr - Indicates that a variable is a **pointer** to an object.
 * Ref - Indicates that a variable is a **reference** to an object.
 
-## Data Types
+## 🧱 Data Types
 
 All types:
 
@@ -1080,7 +1080,7 @@ void MyFunction()
 }
 ```
 
-## Soft vs hard references
+## 💾 Soft vs hard references
 
 ### Renting a Car (Soft Reference)
 
@@ -1092,7 +1092,7 @@ In programming terms, a soft reference is similar. It allows you to access an ob
 Now, let's consider the scenario of owning a car. When you own a car, you have full control over it. You can drive it, sell it to a dealership, trade it with someone else, or dispose of it as you wish. You have a direct and strong relationship with the car as its owner. In this analogy, owning a car represents a hard reference. It provides you with complete control over the car and its fate.
 In programming terms, a hard reference is similar. When you have a hard reference to an object, you have a direct and strong relationship with it. The object will not be garbage collected as long as the hard reference is in scope or being used. Hard references ensure that the referenced object remains available for use and that you have full control over its lifetime.
 
-## Global Functions
+## 🌍 Global Functions
 
 * ```IsValid()``` - Is used to check if a pointer or object reference is valid. This is important to avoid accessing or modifying null pointers, which can cause crashes or other unexpected behavior.
 * ```IsValidChecked()``` - Checks if an object is valid, which means that it is not a nullptr and is not pending kill. It is intended for use in low-level code and is faster than ```IsValid()```.
@@ -1100,7 +1100,7 @@ In programming terms, a hard reference is similar. When you have a hard referenc
 * ```Cast()``` - Is used to attempt to cast an object from one type to another. If the object is not of the specified type, it will return a nullptr. If the object is of the specified type or a subclass of it, the function will return a pointer to the object cast to the specified type.
 * ```CastChecked()``` - Is similar to ```Cast()```, but it also performs a runtime check in debug builds to ensure that the object is of the specified type. If the check fails, it will trigger an assertion. This function is useful when you are certain that an object should be of a particular type and want to catch errors early in development.
 
-## Libraries
+## 🏛️ Libraries
 
 * ```UGameplayStatics``` (kismet library) - Static class with useful ```gameplay``` utility functions that can be called from both Blueprint and C++
 * ```UKismetMathLibrary``` (kismet library) - Static class with useful ```math``` utility functions that can be called from both Blueprint and C++
@@ -1114,7 +1114,7 @@ In programming terms, a hard reference is similar. When you have a hard referenc
 * ```FMath``` - Math helper functions (Check ```GenericPlatformMath.h``` for additional math functions).
 * ```DrawDebugHelpers.h``` - Header file containg debug draw functions. Read more about <a href="https://unrealcpp.com/draw-debug-helpers/" target="_blank">here</a>!
 
-## Macros
+## 📃 Macros
 
 * `GENERATED_BODY()` - Is used by Unreal to add boilerplate code required by the engine.
 * `TEXT()` - Is used to convert a string literal to a wide-character string literal.
@@ -1170,7 +1170,7 @@ There is also alternatives macros that displays text.
   
 You can read more about <a href="https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/" target="_blank">here</a>!
 
-## Delegates
+## 🔔 Delegates
 
 Delegates are a powerful feature of the Unreal Engine that allows developers to create and manage events in a flexible and modular way. A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
 
@@ -1223,7 +1223,7 @@ By using delegates, developers can create modular and flexible event systems tha
 | `FTimerDelegate` (Singlecast)                | Yes                | Yes               |
 | `FTimerDynamicDelegate` (Dynamic Singlecast) | No                 | Yes               |
 
-## Creating UI
+## 🪪 Creating UI
 
 UI Tweening Libary for UE4/UMG by *BenUI*, <a href="https://github.com/benui-dev/UE-BUITween" target="_blank">link here</a>!
 
@@ -1232,7 +1232,7 @@ UPROPERTY(meta=(BindWidget)) // To bind via UMG editor
 UTextBlock* PlayerDisplayNameText;
 ```
 
-## Creating a module
+## 📚 Creating a module
 
 You can read more about Unreal Engine's modules [here](https://docs.unrealengine.com/5.1/en-US/unreal-engine-modules/)!
 
@@ -1262,7 +1262,7 @@ There should also be a [ModuleName].Build.csfile for each module in its root fol
 
 ![image](https://user-images.githubusercontent.com/61658252/236797649-1acb5aac-ab05-4676-86a4-959e443de404.png)
 
-## Circular Dependency
+## ♻️ Circular Dependency
 
 It's possible to encounter circular dependencies when multiple modules access the same module. This occurs when module A depends on module B, and module B also depends on module A. To resolve circular dependencies, you can take several approaches.
 
@@ -1274,7 +1274,7 @@ It's possible to encounter circular dependencies when multiple modules access th
 
 **The best solution will depend on your specific situation and the complexity of your code.**
 
-## Creating a plugin
+## 💡 Creating a plugin
 
 Plugins are a powerful feature of the Unreal Engine that allows developers to easily extend and customize the engine's functionality to fit their specific needs. A plugin is essentially a module that can be added to a Unreal Engine project to provide additional features, tools, and content. Unlike modules, plugins are designed to be self-contained and can be shared across multiple projects.
 
@@ -1286,7 +1286,7 @@ Plugins can also be used to add support for third-party libraries and tools, suc
 
 *You can read more about plugins, <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/" target="_blank">over here</a>!*
 
-## Pre-processor
+## 📝 Pre-processor
 
 You can read more about it <a href="https://en.cppreference.com/w/cpp/preprocessor" target="_blank">here</a>.
 Or you can watch a video about it <a href="https://www.youtube.com/watch?v=voGGB5TGsV4" target="_blank">here</a>.
@@ -1313,7 +1313,7 @@ void SetupArrow()
 #endif
 ```
 
-## Keywords
+## 🔖 Keywords
 
 | Keyword	    | Access ability | Description                                                                                          |
 | ----------- | -------------- | ---------------------------------------------------------------------------------------------------- |
@@ -1350,7 +1350,7 @@ Difference between a class and struct then?
 
 In Unreal Engine, it's recommended to use the built-in memory management functions like ```NewObject()``` and ```MakeShared()``` to allocate memory for objects, rather than using ```new``` and ```delete```. Using ```new``` and ```delete``` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
 
-## Reflection System
+## 🛸 Reflection System
 
 Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT) during compilation. With the help of `GENERATED_BODY()` macro and "[FileName].generated.h" header.
 
@@ -1364,7 +1364,7 @@ One of the key benefits of the header system is that it allows for very efficien
 
 You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/" target="_blank">here</a>!
 
-## Tips and best practices
+## 🪄 Tips and best practices
 
 Here is a video explaining some of the best practices with Unreal Engine and C++. <a href="https://www.youtube.com/watch?v=g7WVBZZTRDk" target="_blank">Link here</a>!
 
@@ -1447,7 +1447,7 @@ void DebugMessage()
 }
 ```
 
-## Console Commands
+## 👁️‍🗨️ Console Commands
 
 * `stat fps` - Display FPS.
 * `stat unit` - Display frame time.
@@ -1459,13 +1459,13 @@ void DebugMessage()
 * `obj gc` - Collect all objects with GC (Garbage Collector).
 * `au.Debug.AudioSoloSoundWave` - Text.
 
-## Shortcuts
+## 📌 Shortcuts
 
 * `Ctrl + Shift + Comma` - GPU Visualizer
 * `Ctrl + P` - Asset Picker
 * 
 
-## Helpful links
+## 🔗 Helpful links
 
 | Type | Author | Title | Length | Description | Link |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
