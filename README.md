@@ -35,7 +35,7 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 * More prone to errors - C++ requires manual memory management and has less strict type checking than some other languages. This can make it more prone to errors like memory leaks, null pointer dereferences, and type mismatches.
 * Harder to prototype - Because C++ requires more code to accomplish even simple tasks, it can be harder to quickly prototype ideas in C++ than in other programming languages.
 
-## Quick Summary of Programming World
+## 🗺️ Quick Summary of Programming World
 
 ### Members
 
@@ -1145,7 +1145,7 @@ Difference between a macro and function then?
 > While both macros and `FORCEINLINE` functions can be used to improve performance and reduce code repetition,
 > `FORCEINLINE` functions are generally preferred over macros in Unreal Engine, as they offer type safety, scoping and visibility rules, and better debugging support.
 
-## Assertions
+## ☑️ Assertions
 
 Assertions are a programming technique used to detect and report errors or unexpected behavior in code. In Unreal Engine, assert macros are provided to make it easier to add assertions to code and to customize the behavior of the engine when an assertion fails.
   
