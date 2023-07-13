@@ -1,4 +1,4 @@
-![Banner](Banner.png)
+![Banner](static/img/Banner.png)
 
 <div align="center">
   
@@ -13,7 +13,15 @@
 
 *In this repo, we'll guide you through the basics of getting started with Unreal Engine and C++. We'll cover the fundamentals of C++ programming, such as data types and pointers, and show you how to use these concepts in the context of game development with Unreal Engine. We'll also introduce you to the Unreal Engine module system, which is an important aspect of organizing your game code into smaller, more manageable pieces.*
 
-```Read Time ≈ 30 mins```
+```Reading Time ≈ 45 mins```
+
+## Table of contents
+
+* 1\. [⌛ Getting started with C++](#delete_lines)
+    * 1.1\. [Benefits of using C++ with Unreal Engine](#delete_lines)
+    * 1.2\. [Drawbacks of using C++ with Unreal Engine](#delete_lines)
+        * 1.2\. item
+* 2\. item 
 
 ## ⌛ Getting started with C++
 
@@ -27,7 +35,7 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 
 *In summary, using C++ with Unreal Engine provides a powerful and flexible development environment that allows for greater control and customization of games and interactive experiences. While it can be more challenging than using visual scripting, the benefits in terms of performance and functionality make it a valuable tool for experienced developers.*
 
-### Benefits of using C++ with Unreal Engine:
+### Benefits of using C++ with Unreal Engine
 
 * High performance - C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
 * Access to low-level functionality - C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
@@ -35,7 +43,7 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 * More control over memory management - C++ requires you to manage memory manually, which can be a challenge but also gives you more control over how your code uses memory. This can be important in situations where memory usage is a concern, such as on mobile devices or consoles.
 * Flexibility - With C++, you have the flexibility to write code in a variety of styles, including object-oriented, procedural, and functional programming. This allows you to choose the approach that best suits your needs.
 
-### Drawbacks of using C++ with Unreal Engine:
+### Drawbacks of using C++ with Unreal Engine
 
 * Steep learning curve - C++ is a complex language with many features, and it can be difficult to learn for beginners. Unreal Engine's architecture can also be challenging to understand, especially if you're new to game development.
 * Time-consuming - Writing C++ code can be more time-consuming than using other programming languages. C++ requires more attention to detail, and it can take longer to write and debug code.
@@ -46,17 +54,15 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 
 ### Members
 
-Members are variables or functions that are part of a class or object. They define the properties and behaviors of the class. There are two main types of members:
+Members are variables or functions that are part of a class or object. They define the properties and behaviors of the class.
+
+There are two main types of members: `variables` and `functions`.
 
 #### Variables
 
 Members that store data. They can be of different types such as numbers, strings, booleans, or custom types. Variables hold values that can be accessed and manipulated within the class or object.
 
-#### Functions (or methods)
-
-Members that perform actions or provide functionality. They define blocks of code that can be executed by the class or object. Functions can take input parameters and may return a value.
-
-### Functions
+#### Functions
 
 Functions are blocks of code that perform a specific task or set of tasks. They encapsulate a series of instructions and can be called and executed from various parts of a program. Functions can accept input parameters (arguments) and can also return a value as a result.
 
@@ -118,8 +124,8 @@ int main()
     Animal* animal1 = new Dog();
     Animal* animal2 = new Cat();
 
-    animal1->makeSound();  // Output: "The dog barks."
-    animal2->makeSound();  // Output: "The cat meows."
+    animal1->makeSound(); // Output: "The dog barks."
+    animal2->makeSound(); // Output: "The cat meows."
 
     delete animal1;
     delete animal2;
@@ -176,8 +182,8 @@ int main()
     Shape* shape1 = new Circle();
     Shape* shape2 = new Rectangle();
 
-    shape1->draw();  // Output: "Drawing a circle."
-    shape2->draw();  // Output: "Drawing a rectangle."
+    shape1->draw(); // Output: "Drawing a circle."
+    shape2->draw(); // Output: "Drawing a rectangle."
 
     delete shape1;
     delete shape2;
@@ -1470,7 +1476,74 @@ void DebugMessage()
 
 * `Ctrl + Shift + Comma` - GPU Visualizer
 * `Ctrl + P` - Asset Picker
-* 
+
+## ⚠️ Common Problems/Issues
+
+![Common Errors](static/img/Cpp_Errors.png)
+
+### Compiler Error C2628
+
+Description
+> A semicolon may be missing.
+
+The following sample generates C2628:
+```cpp
+// C2628.cpp
+class CMyClass {} // C2628 error
+
+int main()
+{
+
+}
+```
+
+Possible resolution:
+
+```cpp 
+// C2628b.cpp
+class CMyClass {};
+
+int main()
+{
+
+}
+```
+
+[Link](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-2/compiler-error-c2628?view=msvc-170) to error message.
+
+### Compiler Error C2065
+
+Description
+> The compiler doesn't recognize the identifier and, therefore, considers it undeclared. The compiler needs to be aware of the existence of identifiers before they can be used. By declaring an identifier, you provide the compiler with the necessary information about its name and type, allowing it to properly allocate memory or resolve references.
+
+The following sample generates C2065:
+
+```cpp
+// C2065.cpp
+#include <iostream>
+
+int main()
+{
+    std::cout << x; // C2065 error
+    return 0;
+}
+```
+
+Possible resolution:
+
+```cpp
+// C2065.cpp
+#include <iostream>
+
+int main()
+{
+    int x = 5; // Declare and initialize the variable x
+    std::cout << x;
+    return 0;
+}
+```
+
+[Link](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/compiler-error-c2065?view=msvc-170) to error message.
 
 ## 🔗 Helpful links
 
