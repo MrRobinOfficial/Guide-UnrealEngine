@@ -20,8 +20,14 @@
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
     * 1.1\. [Benefits of using C++ with Unreal Engine](#delete_lines)
     * 1.2\. [Drawbacks of using C++ with Unreal Engine](#delete_lines)
-        * 1.2\. item
-* 2\. item 
+* 2\. [🗺️ Quick Summary of Programming World](#%EF%B8%8F-quick-summary-of-programming-world)
+  * 2.1\. [Members](#members)
+    * 2.1.1\. [Variables](#variables)
+    * 2.1.2\. [Functions](#functions)
+  * 2.2\. [Classes](#classes)
+  * 2.3\. [Polymorphism](#polymorphism)
+    * 2.3.1\. [Virtual functions](#virtual-functions)
+    * 2.3.2\. [🪧 Unreal's Architecture](#-unreals-architecture)
 
 ## ⌛ Getting started with C++
 
