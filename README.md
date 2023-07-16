@@ -17,7 +17,7 @@
 
 ## Table of contents
 
-* 1\. [⌛ Getting started with C++](#delete_lines)
+* 1\. [⌛ Getting started with C++](#-getting-started-with-c)
     * 1.1\. [Benefits of using C++ with Unreal Engine](#delete_lines)
     * 1.2\. [Drawbacks of using C++ with Unreal Engine](#delete_lines)
         * 1.2\. item
