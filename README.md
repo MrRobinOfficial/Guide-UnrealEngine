@@ -17,6 +17,7 @@
 
 ## Table of contents
 
+* 0\. [👑 Cheatsheet](#-getting-started-with-c)
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
     * 1.1\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
     * 1.2\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
@@ -83,7 +84,11 @@
   * 19.2\. [Compiler Error C2065](#compiler-error-c2065)
   * 20\. [🔗 Helpful links](#-helpful-links)
   * 21\. [🆘 Support](#-support)
-    
+
+## 👑 Cheatsheet
+
+
+
 ## ⌛ Getting started with C++
 
 Highly recommend taking a short class of native C++. Here is a video link to ~1h long video, [click here](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
@@ -1627,8 +1632,66 @@ void DebugMessage()
 
 ## 📌 Shortcuts
 
-* `Ctrl + Shift + Comma` - GPU Visualizer
+To change any of the shortcuts, you can access the keyboard shortcut settings via `Editor Preferences`, then under `General` select `Keyboard Shortcuts`.
+
+### Basic
+* `Ctrl + C` - Copy
+* `Ctrl + X` - Cut
+* `Ctrl + V` - Paste
+
+* `Del` - Delete
+* `Ctrl + Y` - Undo
+* `Ctrl + Z` - Redo
+* `Ctrl + A` - Select All
+
+* `Esc` - Clear Selection
+* `Up/Down/Left/Right Arrow Keys` - Move Selection
+
+* `Ctrl + Spacebar` - Open Content Browser
+* `Ctrl + B` - Find in Content Browser
+* `Ctrl + Tab` - Browse Tabs
+* `Ctrl + O` - Open Level
 * `Ctrl + P` - Asset Picker
+
+* `Alt + P` or `Alt + S` - Play/Simulate
+* `P` - Show Nav Mesh
+* `Mouse Wheel Up/Down` - Zoom
+
+### Outliner
+* `Ctrl + G` or `Shift + G` - Group/Ungroup
+* `Right-Click` on Group - Pin/Unpin
+
+### Blueprint editor
+* `Ctrl + S` - Save Blueprint
+* `Ctrl + F` - Find within Blueprint
+* `Ctrl + Shift + F` - Find in all Blueprints
+
+### Level editing
+* `Ctrl + S` - Save All
+
+* `End` - Snap to Floor
+* `Alt + End` - Snap Pivot to Floor
+* `Shift + End` - Snap Bounds to Floor
+* `Ctrl + End` - Snap Origin to Grid
+
+* `Alt + Transform` - Duplicate and Transform
+
+### Camera/transformation
+* `Alt + G` - Perspective View
+* `Alt + H` - Front View
+* `Alt + J` - Top View
+* `Alt + K` - Side View
+
+* `F` - Focus
+* `G` - View
+
+* `R` - Scale
+* `W` - Translate
+* `E` - Rotate
+* `Spacebar` - Toggle Move/Rotate/Scale
+
+### Tools
+* `Ctrl + Shift + Comma` - GPU Visualizer
 
 ## ⚠️ Common Problems/Issues
 
