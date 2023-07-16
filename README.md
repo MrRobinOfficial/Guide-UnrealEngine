@@ -56,6 +56,24 @@
       * 2.9.8.8\. [TWeakPtr](#tweakptr)
       * 2.9.8.9\. [UniquePtr](#uniqueptr)
   * 3\. [💾 Soft vs hard references](#-soft-vs-hard-references)
+  * 4\. [🌍 Global Functions](#-global-functions)
+  * 5\. [🏛️ Libraries](#%EF%B8%8F-libraries)
+  * 6\. [📃 Macros](#-macros)
+  * 7\. [☑️ Assertions](#%EF%B8%8F-assertions)
+  * 8\. [🔔 Delegates](#-delegates)
+  * 9\. [🪪 Unreal Motion Graphics (UMG)](#-delegates)
+  * 10\. [📚 Creating a module](#-creating-a-module)
+  * 11\. [♻️ Circular Dependency](#%EF%B8%8F-circular-dependency)
+  * 12\. [💡 Creating a plugin](#-creating-a-plugin)
+  * 13\. [📝 Pre-processor](#-pre-processor)
+  * 14\. [🔖 Keywords](#-keywords)
+  * 15\. [🛸 Reflection System](#-reflection-system)
+  * 16\. [🪄 Tips and best practices](#-tips-and-best-practices)
+  * 17\. [👁️‍🗨️ Console Commands](#%EF%B8%8F%EF%B8%8F-console-commandss)
+  * 18\. [📌 Shortcuts](#-shortcuts)
+  * 19\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
+  * 20\. [🔗 Helpful links](#-helpful-links)
+  * 21\. [🆘 Support](#-support)
     
 ## ⌛ Getting started with C++
 
@@ -1270,7 +1288,7 @@ By using delegates, developers can create modular and flexible event systems tha
 | `FTimerDelegate` (Singlecast)                | Yes                | Yes               |
 | `FTimerDynamicDelegate` (Dynamic Singlecast) | No                 | Yes               |
 
-## 🪪 Creating UI
+## 🪪 Unreal Motion Graphics (UMG)
 
 UI Tweening Libary for UE4/UMG by *BenUI*, <a href="https://github.com/benui-dev/UE-BUITween" target="_blank">link here</a>!
 
