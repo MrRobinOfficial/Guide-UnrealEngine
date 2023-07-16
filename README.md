@@ -960,9 +960,7 @@ int A = 69;
 int& B = A; // A reference
 ```
 
-Everything in C++ is value type by default. Even classes, which differ from C#. 
-
-[C++ Compiler](https://godbolt.org/)
+Everything in C++ is value type by default. Even classes, which differ from C#.
 
 Code example:
 
@@ -1720,6 +1718,9 @@ int main()
 | Video | UNF Games | Unreal Engine 5 Beginner Modeling Tutorial - Learn to Model Inside Unreal! | 02:12:34 | | https://www.youtube.com/watch?v=9InU0xbX7l0 |
 | Article | Jonas Reich | OpenUnrealConventions | | | https://jonasreich.github.io/OpenUnrealConventions/C++/ |
 | Online Tool | Sébastien Rancoud | blueprintUE | | Uunofficial tool with the intent of helping Unreal Engine developers | https://blueprintue.com/ |
+| Online Tool | Matt Godbolt | Compiler Explorer | | Run compilers interactively from your web browser and interact with the assembly | https://godbolt.org/ |
+
+[C++ Compiler]()
 
 ## 🆘 Support
 If you have any questions or issue, just write either to my [YouTube channel](https://www.youtube.com/@mrrobinofficial), [Email](mailto:mrrobin123mail@gmail.com) or [Twitter DM](https://twitter.com/MrRobinOfficial).
