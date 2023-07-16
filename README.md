@@ -17,7 +17,7 @@
 
 ## Table of contents
 
-* 0\. [👑 Cheatsheet](#-getting-started-with-c)
+* 0\. [👑 Cheatsheet](#-cheatsheet)
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
     * 1.1\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
     * 1.2\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
