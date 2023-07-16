@@ -3,8 +3,8 @@
 <div align="center">
   
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mrrobinofficial/guide-unitysteamnetcodegameobjects/blob/HEAD/LICENSE.txt)
+![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-orange)
 ![guide-status](https://img.shields.io/badge/guide_status-wip-yellow)
-![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-green)
 
 </div>
 
