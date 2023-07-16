@@ -26,13 +26,14 @@
     * 2.1.1\. [Variables](#variables)
     * 2.1.2\. [Functions](#functions)
   * 2.2\. [Classes](#classes)
-  * 2.3\. [Polymorphism](#polymorphism)
-    * 2.3.1\. [Virtual functions](#virtual-functions)
-  * 2.4\. [🪧 Unreal's Architecture](#-unreals-architecture)
-  * 2.5\. [Constructors and Destructors](#constructors-and-destructors)
-  * 2.6\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
-  * 2.6.1\. [Prefixes](#prefixes)
-  * 2.6.2\. [Synonyms](#synonyms)
+  * 2.3\. [Accessibility](#accessibility)
+  * 2.4\. [Polymorphism](#polymorphism)
+    * 2.4.1\. [Virtual functions](#virtual-functions)
+  * 2.5\. [🪧 Unreal's Architecture](#-unreals-architecture)
+  * 2.6\. [Constructors and Destructors](#constructors-and-destructors)
+  * 2.7\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
+  * 2.7.1\. [Prefixes](#prefixes)
+  * 2.7.2\. [Synonyms](#synonyms)
   * 2.8\. [🧱 Data Types](#-data-types)
     * 2.8.1\. [Char](#char)
     * 2.8.2\. [Booleans](#booleans)
@@ -70,24 +71,33 @@
   * 13\. [📝 Pre-processor](#-pre-processor)
     * 13.1\. [Pragma once](#pragma-once)
     * 13.2\. [Editor code](#editor-code)
-  * 14\. [🔖 Keywords](#-keywords)
-  * 15\. [🛸 Reflection System](#direct-references)
-  * 16\. [🪄 Tips and best practices](#-tips-and-best-practices)
-  * 16.1\. [Ticking](#ticking)
-  * 16.2\. [Direct references](#ticking)
-  * 16.3\. [Math Expression Node](#math-expression-node)
-  * 16.4\. [Call In Editor and `CallInEditor`](#call-in-editor-and-callineditor)
+  * 14\. [Deep Dive](#deep-dive)
+    * 15\. [🔖 Keywords](#-keywords)
+    * 16.1\. [🛸 Reflection System](#direct-references)
+    * 16.2\. [🪄 Tips and best practices](#-tips-and-best-practices)
+      * 16.2.1\. [Ticking](#ticking)
+      * 16.2.2\. [Direct references](#ticking)
+      * 16.2.3\. [Math Expression Node](#math-expression-node)
+      * 16.2.4\. [Call In Editor and `CallInEditor`](#call-in-editor-and-callineditor)
   * 17\. [👁️‍🗨️ Console Commands](#%EF%B8%8F%EF%B8%8F-console-commandss)
   * 18\. [📌 Shortcuts](#-shortcuts)
   * 19\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
-  * 19.1\. [Compiler Error C2628](#compiler-error-c2628)
-  * 19.2\. [Compiler Error C2065](#compiler-error-c2065)
+    * 19.1\. [Compiler Error C2628](#compiler-error-c2628)
+    * 19.2\. [Compiler Error C2065](#compiler-error-c2065)
   * 20\. [🔗 Helpful links](#-helpful-links)
   * 21\. [🆘 Support](#-support)
 
 ## 👑 Cheatsheet
 
+![jbtronics - CheatSheet Poster](static/img/CheatSheet_Poster-1.png)[jbtronics - CheatSheet Poster](https://github.com/jbtronics/UE4-CheatSheet/blob/master/CheatSheet_Poster.pdf)
 
+![Winslow - Unreal Engine 5 Blueprint CheatSheet Dark Theme](static/img/unreal-engine-5-blueprint-cheat-sheet-dark-theme-1.png)[Winslow - Unreal Engine 5 Blueprint CheatSheet Dark Theme](https://uecasts.com/resources/unreal-engine-5-blueprint-cheat-sheet-dark-theme?utm_source=epicgames&utm_campaign=cheat_sheet_ue5&utm_content=blueprint_dark)
+
+![Winslow - Unreal Engine 5 C++ CheatSheet Dark Theme](static/img/unreal-engine-5-c-plus-plus-cheat-sheet-dark-theme-1.png)[Winslow - Unreal Engine 5 C++ CheatSheet Dark Theme](https://uecasts.com/resources/unreal-engine-5-c-plus-plus-cheat-sheet-dark-theme?utm_source=epicgames&utm_campaign=cheat_sheet_ue5&utm_content=c_plus_plus_dark)
+
+![Winslow - Unreal Engine 5 Editor CheatSheet Dark Theme](static/img/unreal-engine-5-editor-cheat-sheet-dark-theme-1.png)[Winslow - Unreal Engine 5 Editor CheatSheet Dark Theme](https://uecasts.com/resources/unreal-engine-5-editor-hotkeys-cheat-sheet-dark-theme?utm_source=epicgames&utm_campaign=cheat_sheet_ue5&utm_content=hotkeys_dark)
+
+![VictoriaLyons - ProfilingCheatSheet](static/img/ProfilingCheatSheet-1.png)[VictoriaLyons - ProfilingCheatSheet](https://www.reddit.com/r/unrealengine/comments/gqi2xu/quick_performance_cheat_sheet/)
 
 ## ⌛ Getting started with C++
 
@@ -143,6 +153,16 @@ A class can have variables (members) to store data and functions (methods) to pe
 Objects created from a class can access and modify the class's members. They provide a way to create multiple instances that share the same structure and behavior defined by the class. Objects can be thought of as individual entities that represent real-world objects or abstract concepts.
 
 Classes allow for code reusability, encapsulation (hiding internal details), and the ability to model complex systems by organizing related data and behavior together.
+
+### Accessibility
+
+| Keyword	    | Access ability | Description                                                                                          |
+| ----------- | -------------- | ---------------------------------------------------------------------------------------------------- |
+| `public`    | All	           | Members and functions are accessible from anywhere, including outside the class.                     |
+| `protected` |	Subclasses     | Members and functions are accessible from within the class and any subclasses, but not from outside. |
+| `private`   |	Class	         | Members and functions are only accessible from within the class itself.                              |
+| `mutable`   |	Class	         | Specifies that a member variable can be modified even if the owning object is const.                 |
+| `friend`    | Class          | Allows a non-member function or class to access the private and protected members of a class.        |
 
 ### Polymorphism
 
@@ -492,7 +512,9 @@ With ```AActor``` and ```UActorComponent``` you can control how the classes shou
 
 **NOTE**: Don't use destructors for deleting memory with Unreal ```UObject```. This is handle by Unreal Engine's garbage collector.
 
-## ✍️ Naming Convention 
+## ✍️ Naming Convention
+
+![Naming Conventions](static/img/Naming_conventions.png)
 
 Here is a github repo about <a href="https://github.com/Allar/ue5-style-guide" target="_blank">Unreal Engine's style guide by Michael Allar</a>.
 
@@ -520,6 +542,8 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 * Ref - Indicates that a variable is a **reference** to an object.
 
 ## 🧱 Data Types
+
+![Data types](static/img/Data_types.png)
 
 All types:
 
@@ -844,6 +868,8 @@ UE_LOG(LogTemp, Display, TEXT("MyTransformRotation: %s"), *MyTransformRotation.T
 
 ### Collections
 
+![Collections](static/img/Collections.png)
+
 * ```TArray``` - A dynamic array that can store a variable number of elements of the same type. It provides many useful functions, such as adding, removing, sorting, and searching for elements, as well as iterating over them.
 * ```TSet``` - A set of unique elements of a single type, implemented as a hash table. It provides many of the same functions as ```TArray```, but with faster lookup times for large collections of elements.
 * ```TMap``` - A map of key-value pairs, implemented as a hash table. It allows fast lookup of a value given a key, and supports adding, removing, and iterating over key-value pairs.
@@ -1038,6 +1064,8 @@ if (DamageHealth(PlayerHealth)) // Passing the `PlayerHealth` as a direct refere
 ```
 
 ### Pointers
+
+![Pointers](static/img/Pointers.png)
 
 And lastly, we have pointers. This section, will go over about raw pointers and smart pointers. If you have no clue about pointers, highly recommend watching Cherno video about [pointers](https://www.youtube.com/watch?v=DTxHyVn0ODg).
 
@@ -1253,6 +1281,8 @@ void MyFunction()
 
 ## 💾 Soft vs hard references
 
+![Soft vs hard references](static/img/Soft_Hard_Refs.png)
+
 ### Renting a Car (Soft Reference)
 
 Imagine you want to rent a car from a rental agency. When you rent a car, you have temporary access to it, and you can use it for a specific period of time. However, you don't have ownership rights over the car. You can drive the car, but you cannot sell it to someone else or trade it with the rental agency. In this analogy, the rental agreement represents a soft reference. It allows you to use the car, but you don't have full control or ownership over it.
@@ -1318,6 +1348,8 @@ Difference between a macro and function then?
 
 ## ☑️ Assertions
 
+![Assertions](static/img/Assertions.png)
+
 Assertions are a programming technique used to detect and report errors or unexpected behavior in code. In Unreal Engine, assert macros are provided to make it easier to add assertions to code and to customize the behavior of the engine when an assertion fails.
   
 * ```check()```
@@ -1342,6 +1374,8 @@ There is also alternatives macros that displays text.
 You can read more about <a href="https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/" target="_blank">here</a>!
 
 ## 🔔 Delegates
+
+![Delegates](static/img/Delegates.png)
 
 Delegates are a powerful feature of the Unreal Engine that allows developers to create and manage events in a flexible and modular way. A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
 
@@ -1484,15 +1518,9 @@ void SetupArrow()
 #endif
 ```
 
-## 🔖 Keywords
+## Deep dive
 
-| Keyword	    | Access ability | Description                                                                                          |
-| ----------- | -------------- | ---------------------------------------------------------------------------------------------------- |
-| `public`    | All	           | Members and functions are accessible from anywhere, including outside the class.                     |
-| `protected` |	Subclasses     | Members and functions are accessible from within the class and any subclasses, but not from outside. |
-| `private`   |	Class	         | Members and functions are only accessible from within the class itself.                              |
-| `mutable`   |	Class	         | Specifies that a member variable can be modified even if the owning object is const.                 |
-| `friend`    | Class          | Allows a non-member function or class to access the private and protected members of a class.        |
+### 🔖 Keywords
 
 * ```const``` - Indicates that a variable's value cannot be changed after initialization.
 * ```auto``` - Allows the compiler to deduce the type of a variable based on its initializer.
@@ -1521,7 +1549,7 @@ Difference between a class and struct then?
 
 In Unreal Engine, it's recommended to use the built-in memory management functions like ```NewObject()``` and ```MakeShared()``` to allocate memory for objects, rather than using ```new``` and ```delete```. Using ```new``` and ```delete``` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
 
-## 🛸 Reflection System
+### 🛸 Reflection System
 
 Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT) during compilation. With the help of `GENERATED_BODY()` macro and "[FileName].generated.h" header.
 
@@ -1535,29 +1563,29 @@ One of the key benefits of the header system is that it allows for very efficien
 
 You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/" target="_blank">here</a>!
 
-## 🪄 Tips and best practices
+### 🪄 Tips and best practices
 
 Here is a video explaining some of the best practices with Unreal Engine and C++. <a href="https://www.youtube.com/watch?v=g7WVBZZTRDk" target="_blank">Link here</a>!
 
 Also, here is a Google Docs (if video is not enough), <a href="https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8/" target="_blank">link here</a>!
 
-### Ticking
+#### Ticking
 
-#### For actors
+##### For actors
 
 ```cpp
 PrimaryActorTick.bCanEverTick = false;
 PrimaryActorTick.bStartWithTickEnabled = false;
 ```
 
-#### For components
+##### For components
 
 ```cpp
 PrimaryComponentTick.bCanEverTick =  false;
 PrimaryComponentTick.bStartWithTickEnabled = false;
 ```
 
-#### If you have to use tick
+##### If you have to use tick
 
 * Set the tick interval to the maximum value you can get away with. Unfortunately this is often per frame for smoothly moving things
 
@@ -1573,11 +1601,75 @@ SetActorTickEnabled()
 SetComponentTickEnabled()
 ```
 
-### ```FTickFunction```
+#### ```FTickFunction```
 
-Lorem Ipsum
+*Abstract base class for all tick functions.*
 
-### Direct references
+> **Note**
+> Tick any object you want, UObject or not!
+
+> **Warning**
+> `USTRUCT` don't support expose functions with UHT.
+
+Sample code to get started:
+
+##### MyTickableThing.h
+
+```cpp
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Tickable.h"
+
+class FMyTickableThing : public FTickableGameObject
+{
+public:
+	// FTickableGameObject Begin
+	virtual void Tick( float DeltaTime ) override;
+	virtual ETickableTickType GetTickableTickType() const override
+	{
+		return ETickableTickType::Always;
+	}
+	virtual TStatId GetStatId() const override
+	{
+		RETURN_QUICK_DECLARE_CYCLE_STAT( FMyTickableThing, STATGROUP_Tickables );
+	}
+	virtual bool IsTickableWhenPaused() const
+	{
+		return true;
+	}
+	virtual bool IsTickableInEditor() const
+	{
+		return false;
+	}
+	// FTickableGameObject End
+
+
+private:
+	// The last frame number we were ticked.
+	// We don't want to tick multiple times per frame 
+	uint32 LastFrameNumberWeTicked = INDEX_NONE;
+};
+```
+
+##### MyTickableThing.cpp
+
+```cpp
+#include "MyTickableThing.h"
+
+void FMyTickableThing::Tick( float DeltaTime )
+{
+	if ( LastFrameNumberWeTicked == GFrameCounter )
+		return;
+
+	// Do our tick
+	// ...
+
+	LastFrameNumberWeTicked = GFrameCounter;
+}
+```
+
+#### Direct references
 
 ```cpp
 int a = 5;
@@ -1596,7 +1688,7 @@ const int& f = e;
 f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
 ```
 
-### Math Expression Node
+#### Math Expression Node
 
 The Math Expression node acts like a collapsed graph. It is a single node that you can Double-click to open the sub-graph that makes up its functionality. Initially, the name/expression is blank. Whenever you rename the node, then the new expression is parsed and a new sub-graph is generated.
 
@@ -1604,7 +1696,7 @@ The Math Expression node acts like a collapsed graph. It is a single node that y
 
 Read more <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">here</a>!
 
-### Call In Editor and `CallInEditor`
+#### Call In Editor and `CallInEditor`
 
 Expose a function to call inside the Blueprint editor. With C++, you can mark UFUNCTION specifier `CallInEditor`.
 
@@ -1782,6 +1874,8 @@ int main()
 | Article | Jonas Reich | OpenUnrealConventions | | | https://jonasreich.github.io/OpenUnrealConventions/C++/ |
 | Online Tool | Sébastien Rancoud | blueprintUE | | Uunofficial tool with the intent of helping Unreal Engine developers | https://blueprintue.com/ |
 | Online Tool | Matt Godbolt | Compiler Explorer | | Run compilers interactively from your web browser and interact with the assembly | https://godbolt.org/ |
+| Online Tool | | Unreal Engine 4 Console Variables and Commands | | List of all UE commands | https://digilander.libero.it/ZioYuri78/ |
+| Articlel | Oskar Świerad | UNREAL ART OPTIMIZATION | | Help you achieve smooth graphics performance in Unreal Engine-based projects | https://unrealartoptimization.github.io/book/ |
 
 ## 🆘 Support
 If you have any questions or issue, just write either to my [YouTube channel](https://www.youtube.com/@mrrobinofficial), [Email](mailto:mrrobin123mail@gmail.com) or [Twitter DM](https://twitter.com/MrRobinOfficial).
