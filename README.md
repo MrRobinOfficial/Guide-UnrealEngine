@@ -17,6 +17,8 @@
 
 ## Table of contents
 
+<table><tr><td>
+
 * 0\. [👑 Cheatsheet](#-cheatsheet)
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
     * 1.1\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
@@ -86,6 +88,8 @@
     * 19.2\. [Compiler Error C2065](#compiler-error-c2065)
   * 20\. [🔗 Helpful links](#-helpful-links)
   * 21\. [🆘 Support](#-support)
+
+</td></tr></table>
 
 ## 👑 Cheatsheet
 
@@ -1727,63 +1731,63 @@ void DebugMessage()
 To change any of the shortcuts, you can access the keyboard shortcut settings via `Editor Preferences`, then under `General` select `Keyboard Shortcuts`.
 
 ### Basic
-* `Ctrl + C` - Copy
-* `Ctrl + X` - Cut
-* `Ctrl + V` - Paste
+* <kbd>Ctrl + C</kbd> - Copy
+* <kbd>Ctrl + X</kbd> - Cut
+* <kbd>Ctrl + V</kbd> - Paste
 
-* `Del` - Delete
-* `Ctrl + Y` - Undo
-* `Ctrl + Z` - Redo
-* `Ctrl + A` - Select All
+* <kbd>Del</kbd> - Delete
+* <kbd>Ctrl + Y</kbd> - Undo
+* <kbd>Ctrl + Z</kbd> - Redo
+* <kbd>Ctrl + A</kbd> - Select All
 
-* `Esc` - Clear Selection
-* `Up/Down/Left/Right Arrow Keys` - Move Selection
+* <kbd>Esc</kbd> - Clear Selection
+* <kbd>Up/Down/Left/Right Arrow Keys</kbd> - Move Selection
 
-* `Ctrl + Spacebar` - Open Content Browser
-* `Ctrl + B` - Find in Content Browser
-* `Ctrl + Tab` - Browse Tabs
-* `Ctrl + O` - Open Level
-* `Ctrl + P` - Asset Picker
+* <kbd>Ctrl + Spacebar</kbd> - Open Content Browser
+* <kbd>Ctrl + B</kbd> - Find in Content Browser
+* <kbd>Ctrl + Tab</kbd> - Browse Tabs
+* <kbd>Ctrl + O</kbd> - Open Level
+* <kbd>Ctrl + P</kbd> - Asset Picker
 
-* `Alt + P` or `Alt + S` - Play/Simulate
-* `P` - Show Nav Mesh
-* `Mouse Wheel Up/Down` - Zoom
+* <kbd>Alt + P</kbd> or <kbd>Alt + S</kbd> - Play/Simulate
+* <kbd>P</kbd> - Show Nav Mesh
+* <kbd>Mouse Wheel Up/Down</kbd> - Zoom
 
 ### Outliner
-* `Ctrl + G` or `Shift + G` - Group/Ungroup
-* `Right-Click` on Group - Pin/Unpin
+* <kbd>Ctrl + G</kbd> or `Shift + G` - Group/Ungroup
+* <kbd>Right-Click</kbd> on Group - Pin/Unpin
 
 ### Blueprint editor
-* `Ctrl + S` - Save Blueprint
-* `Ctrl + F` - Find within Blueprint
-* `Ctrl + Shift + F` - Find in all Blueprints
+* <kbd>Ctrl + S</kbd> - Save Blueprint
+* <kbd>Ctrl + F</kbd> - Find within Blueprint
+* <kbd>Ctrl + Shift + F</kbd> - Find in all Blueprints
 
 ### Level editing
-* `Ctrl + S` - Save All
+* <kbd>Ctrl + S</kbd> - Save All
 
-* `End` - Snap to Floor
-* `Alt + End` - Snap Pivot to Floor
-* `Shift + End` - Snap Bounds to Floor
-* `Ctrl + End` - Snap Origin to Grid
+* <kbd>End</kbd> - Snap to Floor
+* <kbd>Alt + End</kbd> - Snap Pivot to Floor
+* <kbd>Shift + End</kbd> - Snap Bounds to Floor
+* <kbd>Ctrl + End</kbd> - Snap Origin to Grid
 
-* `Alt + Transform` - Duplicate and Transform
+* <kbd>Alt + Transform</kbd> - Duplicate and Transform
 
 ### Camera/transformation
-* `Alt + G` - Perspective View
-* `Alt + H` - Front View
-* `Alt + J` - Top View
-* `Alt + K` - Side View
+* <kbd>Alt + G</kbd> - Perspective View
+* <kbd>Alt + H</kbd> - Front View
+* <kbd>Alt + J</kbd> - Top View
+* <kbd>Alt + K</kbd> - Side View
 
-* `F` - Focus
-* `G` - View
+* <kbd>F</kbd> - Focus
+* <kbd>G</kbd> - View
 
-* `R` - Scale
-* `W` - Translate
-* `E` - Rotate
-* `Spacebar` - Toggle Move/Rotate/Scale
+* <kbd>R</kbd> - Scale
+* <kbd>W</kbd> - Translate
+* <kbd>E</kbd> - Rotate
+* <kbd>Spacebar</kbd> - Toggle Move/Rotate/Scale
 
 ### Tools
-* `Ctrl + Shift + Comma` - GPU Visualizer
+* <kbd>Ctrl + Shift + Comma</kbd> - GPU Visualizer
 
 ## ⚠️ Common Problems/Issues
 
