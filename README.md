@@ -18,8 +18,8 @@
 ## Table of contents
 
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
-    * 1.1\. [Benefits of using C++ with Unreal Engine](#delete_lines)
-    * 1.2\. [Drawbacks of using C++ with Unreal Engine](#delete_lines)
+    * 1.1\. [Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
+    * 1.2\. [Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
 * 2\. [🗺️ Quick Summary of Programming World](#%EF%B8%8F-quick-summary-of-programming-world)
   * 2.1\. [Members](#members)
     * 2.1.1\. [Variables](#variables)
@@ -41,7 +41,7 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 
 *In summary, using C++ with Unreal Engine provides a powerful and flexible development environment that allows for greater control and customization of games and interactive experiences. While it can be more challenging than using visual scripting, the benefits in terms of performance and functionality make it a valuable tool for experienced developers.*
 
-### Benefits of using C++ with Unreal Engine
+### 🟢 Benefits of using C++ with Unreal Engine
 
 * High performance - C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
 * Access to low-level functionality - C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
@@ -49,7 +49,7 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 * More control over memory management - C++ requires you to manage memory manually, which can be a challenge but also gives you more control over how your code uses memory. This can be important in situations where memory usage is a concern, such as on mobile devices or consoles.
 * Flexibility - With C++, you have the flexibility to write code in a variety of styles, including object-oriented, procedural, and functional programming. This allows you to choose the approach that best suits your needs.
 
-### Drawbacks of using C++ with Unreal Engine
+### 🔴 Drawbacks of using C++ with Unreal Engine
 
 * Steep learning curve - C++ is a complex language with many features, and it can be difficult to learn for beginners. Unreal Engine's architecture can also be challenging to understand, especially if you're new to game development.
 * Time-consuming - Writing C++ code can be more time-consuming than using other programming languages. C++ requires more attention to detail, and it can take longer to write and debug code.
