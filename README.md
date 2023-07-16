@@ -939,6 +939,100 @@ for (const FString& Value : Values)
 MyIntStringMultiMap.Remove(2);
 ```
 
+### Value type vs Reference type
+
+Let's talk about what value type and reference types.
+
+In various programming languages like Python, Java, and C#, you may have encountered both value types and reference types.
+
+A value type creates a copy when initialized from another variable. For instance, let's consider variable A, and when we initialize variable B with the value of A, a separate copy of the value is created in B. Essentially, B is an independent entity that holds its own value.
+
+```cpp
+int A = 69;
+int B = A; // A copy
+```
+
+On the other hand, a reference type directly references the memory location of the variable. In this case, when variable B is initialized by variable A, B becomes a reference to the same memory location as A. Consequently, any changes made to B will also affect A since B essentially points to the same underlying value as A.
+
+```cpp
+int A = 69;
+int& B = A; // A reference
+```
+
+Everything in C++ is value type by default. Even classes, which differ from C#. 
+
+[C++ Compiler](https://godbolt.org/)
+
+Code example:
+
+```cpp
+#include <iostream>
+#include <string>
+
+struct Coords // Test struct and class
+{
+public:
+    Coords(int x, int y)
+        : X(x)
+        , Y(y) {}
+
+public:
+    int X;
+    int Y;
+
+public:
+    std::string toString() const
+    {
+        return "(" + std::to_string(X) +  ", " + std::to_string(Y) + ")"; 
+    }
+};
+
+int main()
+{
+    Coords A(1, 2);
+    Coords& B = A; // Test value type and reference type
+    Coords* C = &B;
+    Coords* D = new Coords(5, 10);
+    Coords* E = &(*C); // Or &*C;
+
+    B.X = 69;
+    C->Y = 1337;
+    D->Y = D->Y * 2;
+
+    E = &*D;
+    E->X = 10;
+
+    std::cout << A.toString() << std::endl;
+    std::cout << B.toString() << std::endl;
+    std::cout << C->toString() << std::endl;
+    std::cout << D->toString() << std::endl;
+    std::cout << E->toString() << std::endl;
+
+    delete D; // Remember: Delete raw pointers
+
+    return 0;
+}
+```
+
+With references, you can only assign them once, and they cannot be changed throughout the code. For example, you can have a direct reference to an argument passed into a function. This argument can then be modified within the function, similar to how an "out" parameter works in C#.
+
+Here's an example:
+
+```cpp
+bool DamageHealth(int& Health)
+{
+   Health -= 100; // Modifying the value through the reference
+   return Health <= 0;
+}
+
+int PlayerHealth = 100;
+
+if (DamageHealth(PlayerHealth)) // Passing the `PlayerHealth` as a direct reference
+{
+   // Player just died!
+}
+```
+
 ### Pointers
 
 And lastly, we have pointers. This section, will go over about raw pointers and smart pointers. If you have no clue about pointers, highly recommend watching Cherno video about [pointers](https://www.youtube.com/watch?v=DTxHyVn0ODg).
