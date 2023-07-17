@@ -304,6 +304,90 @@ There are two main types of members: `variables` and `functions`.
 
 Members that store data. They can be of different types such as numbers, strings, booleans, or custom types. Variables hold values that can be accessed and manipulated within the class or object.
 
+##### Data types
+
+<table><tr><td>
+
+* ```bool``` - Represents a logical value, either `true` or `false`
+* ```char``` - Represents a single character in the ASCII character set
+* ```int``` - Represents a integer (whole number)
+* ```float``` - Represents a floating-point number, which is a real number with a fractional component
+* ```double``` - Represents a double-precision floating-point number, which has twice the precision of a float
+
+</td></tr></table>
+
+###### Char
+
+```cpp
+// Declaring and initializing a char variable
+char myChar = 'a';
+```
+
+###### Booleans
+
+```cpp
+bool isDead = true; 
+
+if (isDead)
+{
+  // Do some logic
+}
+```
+
+###### Integers
+
+```cpp
+int health = 10;
+
+if (health <= 0)
+{
+  isDead = true;
+  return;
+}
+```
+
+###### Floating points (floats and doubles)
+
+```cpp
+float speedInMetersPerSecond = 5.5f; // C++ always uses 'f' or 'F' literal for defining a float variable.
+
+float speedInKph = speedInMetersPerSecond * 3.6f;
+```
+
+```cpp
+double speedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a double variable.
+
+double speedInKph = speedInMetersPerSecond * 3.6;
+```
+
+###### Modifiers
+
+In C++, a modifier is used to alter the meaning of the base type so that it more precisely fits the needs of various situations. The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, which are used to modify the size of integer types.
+
+The default behavior for all integer types is `signed`.
+
+```cpp
+//~ Unsigned base types
+
+unsigned char; // 8-bit unsigned integer
+unsigned short int; // 16-bit unsigned integer
+unsigned int; // 32-bit unsigned integer
+unsigned long long; // 64-bit unsigned integer
+
+//~ Signed base types.
+
+signed char; // 8-bit signed integer
+signed short int; // 16-bit signed integer
+signed int; // 32-bit signed integer
+signed long long; // 64-bit signed integer
+```
+
+###### Typedefs
+
+```cpp
+// Lorem Ipsum
+```
+
 ##### Assignments
 
 There are abbreviations for frequently done kinds of assignments. Here are a few:
