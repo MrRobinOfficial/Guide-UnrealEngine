@@ -184,7 +184,7 @@ Additionally, C++ code can be integrated with third-party libraries, providing e
 * More prone to errors - C++ requires manual memory management and has less strict type checking than some other languages. This can make it more prone to errors like memory leaks, null pointer dereferences, and type mismatches.
 * Harder to prototype - Because C++ requires more code to accomplish even simple tasks, it can be harder to quickly prototype ideas in C++ than in other programming languages.
 
-## 🗺️ Summary of Programming World
+## 🗺️ Summary of C++ and Programming World
 
 <details open>
   <summary>Click to expand</summary>
@@ -373,7 +373,7 @@ There are two main types of members: `variables` and `functions`.
 
 #### Variables
 
-Members that store data. They can be of different types such as numbers, strings, booleans, or custom types. Variables hold values that can be accessed and manipulated within the class or object.
+Members that store data. They can be of different types such as numbers, strings, booleans, or custom data types. Variables hold values that can be accessed and manipulated within the class or object.
 
 ##### Assignments
 
@@ -569,13 +569,15 @@ for (char c : message)
 // Output: H e l l o
 ```
 
+### Generic Programming
+
 ### Operators and Overloads
 
 In C++, operators are symbols or keywords used to perform various operations on data, such as arithmetic operations, logical operations, assignment, comparison, and more. They enable concise and expressive manipulation of variables and values.
 
 Operator Overloading is a feature in C++ that allows you to redefine the behavior of an operator for user-defined types. It enables you to provide a specific implementation for an operator based on the operands' types, allowing custom operations to be performed.
 
-Here's an example of overloading the greater-than-or-equal-to (>=) operator in C++:
+Here's an example of overloading the greater-than-or-equal-to `>=` operator in C++:
 
 ```cpp
 class MyClass
@@ -612,7 +614,7 @@ In this example, the `>=` operator is overloaded for the user-defined class `MyC
 
 By overloading operators, you can define custom behavior for how objects of a class interact with the corresponding operator. This provides flexibility and allows you to use familiar syntax and semantics for user-defined types, making the code more intuitive and expressive.
 
-Operator overloading is not limited to comparison operators; you can also overload arithmetic operators (+, -, *, /), assignment operators (=), logical operators (&&, ||), and more. Overloading operators helps create more natural and concise code, improves code readability, and enhances the usability of user-defined types.
+Operator overloading is not limited to comparison operators; you can also overload arithmetic operators `+`, `-`, `*` and `/` assignment operators `=`, logical operators `&&`, `||`, and more. Overloading operators helps create more natural and concise code, improves code readability, and enhances the usability of user-defined types.
 
 ### Polymorphism
 
