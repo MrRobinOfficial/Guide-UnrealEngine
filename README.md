@@ -294,17 +294,7 @@ It can span multiple lines
 */
 ```
 
-### Members
-
-Members are variables or functions that are part of a class or object. They define the properties and behaviors of the class.
-
-There are two main types of members: `variables` and `functions`.
-
-#### Variables
-
-Members that store data. They can be of different types such as numbers, strings, booleans, or custom types. Variables hold values that can be accessed and manipulated within the class or object.
-
-##### Data types
+### Data types
 
 <table><tr><td>
 
@@ -316,14 +306,14 @@ Members that store data. They can be of different types such as numbers, strings
 
 </td></tr></table>
 
-###### Char
+#### Char
 
 ```cpp
 // Declaring and initializing a char variable
 char myChar = 'a';
 ```
 
-###### Booleans
+#### Booleans
 
 ```cpp
 bool isDead = true; 
@@ -334,7 +324,7 @@ if (isDead)
 }
 ```
 
-###### Integers
+#### Integers
 
 ```cpp
 int health = 10;
@@ -346,7 +336,7 @@ if (health <= 0)
 }
 ```
 
-###### Floating points (floats and doubles)
+#### Floating points (floats and doubles)
 
 ```cpp
 float speedInMetersPerSecond = 5.5f; // C++ always uses 'f' or 'F' literal for defining a float variable.
@@ -360,7 +350,7 @@ double speedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a 
 double speedInKph = speedInMetersPerSecond * 3.6;
 ```
 
-###### Modifiers
+#### Modifiers
 
 In C++, a modifier is used to alter the meaning of the base type so that it more precisely fits the needs of various situations. The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, which are used to modify the size of integer types.
 
@@ -382,11 +372,21 @@ signed int; // 32-bit signed integer
 signed long long; // 64-bit signed integer
 ```
 
-###### Typedefs
+### Typedefs
 
 ```cpp
 // Lorem Ipsum
 ```
+
+### Members
+
+Members are variables or functions that are part of a class or object. They define the properties and behaviors of the class.
+
+There are two main types of members: `variables` and `functions`.
+
+#### Variables
+
+Members that store data. They can be of different types such as numbers, strings, booleans, or custom types. Variables hold values that can be accessed and manipulated within the class or object.
 
 ##### Assignments
 
