@@ -157,6 +157,12 @@ Highly recommend taking a short class of native C++. Here is a video link to ~1h
 
 Using C++ with Unreal Engine allows developers to take advantage of the engine's full feature set, including advanced graphics rendering, physics simulations, networking, and AI.
 
+C++ is a statically typed, compiled, general-purpose, case-sensitive, free-form programming language that supports procedural, object-oriented, and generic programming.
+
+C++ is regarded as a middle-level language, as it comprises a combination of both high-level and low-level language features.
+
+C++ was developed by Bjarne Stroustrup starting in 1979 at Bell Labs in Murray Hill, New Jersey, as an enhancement to the C language and originally named C with Classes but later it was renamed C++ in 1983.
+
 C++ also offers a level of control and customization that is not available through visual scripting alone. Developing with C++ in Unreal Engine also allows for better debugging and profiling, as well as the ability to optimize performance through techniques such as multithreading and memory management.
 
 Additionally, C++ code can be integrated with third-party libraries, providing even greater flexibility and functionality.
@@ -182,12 +188,6 @@ Additionally, C++ code can be integrated with third-party libraries, providing e
 
 <details open>
   <summary>Click to expand</summary>
-
-C++ is a statically typed, compiled, general-purpose, case-sensitive, free-form programming language that supports procedural, object-oriented, and generic programming.
-
-C++ is regarded as a middle-level language, as it comprises a combination of both high-level and low-level language features.
-
-C++ was developed by Bjarne Stroustrup starting in 1979 at Bell Labs in Murray Hill, New Jersey, as an enhancement to the C language and originally named C with Classes but later it was renamed C++ in 1983.
 
 ### Object-Oriented Programming
 
