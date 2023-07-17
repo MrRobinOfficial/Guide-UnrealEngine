@@ -20,7 +20,7 @@
 
 <table><tr><td>
 
-* 0\. [👑 Cheatsheet](#-cheatsheet)
+* 0\. [👑 Cheatsheets](#-cheatsheets)
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
     * 1.1\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
     * 1.2\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
@@ -92,7 +92,7 @@
 
 </td></tr></table>
 
-## 👑 Cheatsheet
+## 👑 Cheatsheets
 
 ![jbtronics - CheatSheet Poster](static/img/CheatSheet_Poster-1.png)[jbtronics - CheatSheet Poster](https://github.com/jbtronics/UE4-CheatSheet/blob/master/CheatSheet_Poster.pdf)
 
