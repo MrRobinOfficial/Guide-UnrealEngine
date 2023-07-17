@@ -72,7 +72,7 @@
 * 5\. [Constructors and Destructors](#constructors-and-destructors)
 * 6\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
 	* 6.1\. [Prefixes](#prefixes)
-	* 6.2\. [Synonyms](#synonyms)
+	* 6.2\. [Abbreviations, Acronyms and Synonyms](#abbreviations-acronyms-and-synonyms)
 * 7\. [🧱 Data Types](#-data-types)
 	* 7.1\. [Char](#char)
     * 7.2\. [Booleans](#booleans)
