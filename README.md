@@ -58,15 +58,13 @@
    	* 2.11.2\. [Do-While Loop](#do-while-loop)
     * 2.11.3\. [For Loop](#for-loop)
     * 2.11.4\. [Foreach Loop](#foreach-loop)
-  * 2.12\. [Polymorphism](#polymorphism)
+  * 2.12\. [Polymorphism (In Depth)](#polymorphism)
 	* 2.12.1\. [Operator Overloading](#generic-programming)
    	* 2.12.2\. [Function Overloading](#function-overloading)
     * 2.12.3\. [Virtual functions](#virtual-functions)
   * 2.13\. [Generic Programming](#operator-overloading)
   * 2.14\. [Operators and Overloads](#operators-and-overloads)
   * 2.15\. [Lambda](#lambda)
-  * 2.16\. [Polymorphism](#polymorphism)
-    * 2.16.1\. [Virtual functions](#virtual-functions)
   * 2.17\. [Stack vs Heap](#stack-vs-heap)
   * 2.18\. [Design Patterns And Principles](#design-patterns-and-principles)
   	* 2.18.1\. [Open-Closed Principle](#open-closed-principle)
@@ -578,7 +576,7 @@ for (char c : message)
 // Output: H e l l o
 ```
 
-### Polymorphism
+### Polymorphism (In Depth)
 
 The power of polymorphism lies in the ability to use a base class pointer or reference to refer to objects of derived classes. This allows you to write code that operates on the base class, without needing to know the specific derived class. During runtime, the appropriate version of the overridden method in the derived class will be invoked, based on the actual type of the object being referred to.
 
