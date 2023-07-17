@@ -24,7 +24,7 @@
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
     * 1.1\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
     * 1.2\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
-* 2\. [🗺️ Quick Summary of Programming World](#%EF%B8%8F-quick-summary-of-programming-world)
+* 2\. [🗺️ Summary of Programming World](#%EF%B8%8F-quick-summary-of-programming-world)
   * 2.0\. [Object-Oriented Programming](#object-oriented-programming)
   	* 2.0.1\. [Encapsulation](#encapsulation)
    	* 2.0.2\. [Data Hiding](#data-hiding)
@@ -172,7 +172,7 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 * More prone to errors - C++ requires manual memory management and has less strict type checking than some other languages. This can make it more prone to errors like memory leaks, null pointer dereferences, and type mismatches.
 * Harder to prototype - Because C++ requires more code to accomplish even simple tasks, it can be harder to quickly prototype ideas in C++ than in other programming languages.
 
-## 🗺️ Quick Summary of Programming World
+## 🗺️ Summary of Programming World
 
 <details open>
   <summary>Click to expand</summary>
