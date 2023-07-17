@@ -680,6 +680,31 @@ Using virtual functions, you can write code that works with objects based on the
 
 ### Lambda
 
+In C++, a lambda expression, often referred to as a lambda function or lambda, is an anonymous function that you can define inline. It provides a convenient way to create small, inline functions without the need for explicitly declaring a separate function.
+
+Here is a video by [The Cherno about Lambdas in C++](https://www.youtube.com/watch?v=mWgmBBz0y8c).
+
+The basic syntax of a lambda expression in C++ is as follows:
+
+```cpp
+[capture_list](parameters) -> return_type
+{
+    // Function body
+    // Statements
+    // Return statement
+};
+```
+
+Here's how a lambda expression works:
+
+* 1\. Capture List: The capture list, denoted by [ ], specifies variables from the enclosing scope that the lambda function can access. It can capture variables by value ([=]) or by reference ([&]). You can also specify individual variables to capture explicitly.
+
+* 2\. Parameters: The parameters represent the input arguments to the lambda function, similar to regular function parameters.
+
+* 3\. Return Type: The return type, denoted by ->, specifies the type of the value returned by the lambda function. If the return type is omitted, it is deduced by the compiler.
+
+* 4\. Function Body: The function body contains the statements and logic of the lambda function. It can include any valid C++ code, such as variable declarations, control flow statements, and computations.
+
 ### Stack vs Heap
 
 In programming languages, stack and heap are two different areas of memory used for [memory allocation](https://en.wikipedia.org/wiki/Memory_management). They serve distinct purposes and have different characteristics.
