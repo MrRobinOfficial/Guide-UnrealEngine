@@ -94,6 +94,9 @@
 
 ## 👑 Cheatsheets
 
+<details>
+  <summary>Click to expand</summary>
+
 ![jbtronics - CheatSheet Poster](static/img/CheatSheet_Poster-1.png)[jbtronics - CheatSheet Poster](https://github.com/jbtronics/UE4-CheatSheet/blob/master/CheatSheet_Poster.pdf)
 
 ![Winslow - Unreal Engine 5 Blueprint CheatSheet Dark Theme](static/img/unreal-engine-5-blueprint-cheat-sheet-dark-theme-1.png)[Winslow - Unreal Engine 5 Blueprint CheatSheet Dark Theme](https://uecasts.com/resources/unreal-engine-5-blueprint-cheat-sheet-dark-theme?utm_source=epicgames&utm_campaign=cheat_sheet_ue5&utm_content=blueprint_dark)
@@ -103,6 +106,8 @@
 ![Winslow - Unreal Engine 5 Editor CheatSheet Dark Theme](static/img/unreal-engine-5-editor-cheat-sheet-dark-theme-1.png)[Winslow - Unreal Engine 5 Editor CheatSheet Dark Theme](https://uecasts.com/resources/unreal-engine-5-editor-hotkeys-cheat-sheet-dark-theme?utm_source=epicgames&utm_campaign=cheat_sheet_ue5&utm_content=hotkeys_dark)
 
 ![VictoriaLyons - ProfilingCheatSheet](static/img/ProfilingCheatSheet-1.png)[VictoriaLyons - ProfilingCheatSheet](https://www.reddit.com/r/unrealengine/comments/gqi2xu/quick_performance_cheat_sheet/)
+
+</details>
 
 ## ⌛ Getting started with C++
 
@@ -133,6 +138,26 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 
 ## 🗺️ Quick Summary of Programming World
 
+<details>
+  <summary>Click to expand</summary>
+
+C++ is a statically typed, compiled, general-purpose, case-sensitive, free-form programming language that supports procedural, object-oriented, and generic programming.
+
+C++ is regarded as a middle-level language, as it comprises a combination of both high-level and low-level language features.
+
+C++ was developed by Bjarne Stroustrup starting in 1979 at Bell Labs in Murray Hill, New Jersey, as an enhancement to the C language and originally named C with Classes but later it was renamed C++ in 1983.
+
+* Object-Oriented Programming
+
+* Encapsulation
+* Data hiding
+* Inheritance
+
+### Syntax and structure
+
+* Strong typing
+* Comment
+
 ### Members
 
 Members are variables or functions that are part of a class or object. They define the properties and behaviors of the class.
@@ -142,6 +167,18 @@ There are two main types of members: `variables` and `functions`.
 #### Variables
 
 Members that store data. They can be of different types such as numbers, strings, booleans, or custom types. Variables hold values that can be accessed and manipulated within the class or object.
+
+##### Abbreviations for Assignments
+
+There are abbreviations for frequently done kinds of assignments. Here are a few.
+
+Abbreviation	 	Meaning
+n += k		n = n + k
+n -= k		n = n - k
+++n		n = n + 1 (where the value of expression ++n is the value of n after the assignment)
+n++		n = n + 1 (but the value of expression n++ is the value of n before the assignment)
+--n		n = n - 1 (where the value of expression --n is the value of n after the assignment)
+n--		n = n - 1 (but the value of expression n-- is the value of n before the assignment)
 
 #### Functions
 
@@ -168,6 +205,49 @@ Classes allow for code reusability, encapsulation (hiding internal details), and
 | `private`   |	Class	         | Members and functions are only accessible from within the class itself.                              |
 | `mutable`   |	Class	         | Specifies that a member variable can be modified even if the owning object is const.                 |
 | `friend`    | Class          | Allows a non-member function or class to access the private and protected members of a class.        |
+
+### If-statements
+
+### Comparisons and Boolean Operators
+
+Here are some operations for creating conditions.
+==	equality test
+!=	inequality test
+>	test for greater
+<	test for less
+>=	test for greater or equal
+<=	test for less or equal
+&&	'and'. Expression A && B is evaluated by first evaluating A. A has value 0, then A && B also has value 0, and B is not evaluated. Otherwise, B is evaluated; if B has value 0, then A && B has the same value 0, and otherwise has value 1.
+||	'or'. Expression A || B is evaluated by first evaluating A. If A has a nonzero value, then A || B has value 1, and B is not evaluated. Otherwise, A || B has value 1 if B is nonzero and value 0 if B is zero.
+!	'not'. Expression !A is 0 if A is nonzero, and is 1 if A is 0.
+
+#### Conditional Expressions
+
+You can make a test in an expression in C/C++. Expression
+        condition ? val1 : val2
+is val1 if condition is nonzero, and is val2 if condition is 0. For example, expression
+        x > y ? x : y
+evaluates to the larger of x and y.
+
+### Switches
+
+### Loops
+
+#### While Loops
+
+Lorem Ipsum
+
+#### Do Loops
+
+Lorem Ipsum
+
+#### For Loops
+
+Lorem Ipsum
+
+### Overloads
+
+* Operator
 
 ### Polymorphism
 
@@ -304,6 +384,12 @@ Using virtual functions, you can write code that works with objects based on the
 | Both         | No                                      | Compile error            |
 | Both         | Yes                                     | Override                 |
 
+### Stack vs Heap
+
+Lorem Ipsum
+
+</details>
+
 ## 🪧 Unreal's Architecture
 
 ```mermaid
@@ -388,6 +474,9 @@ graph TD;
 ```UObject``` is a base class for objects in the engine that require some common functionality such as garbage collection, serialization, reflection, and more. ```UObject``` also provides some additional functionality such as networking support, dynamic class creation, and object-oriented programming features like inheritance and polymorphism.
 
 Some of the notorious classes, that inherit from ```UObject``` include:
+
+<details>
+  <summary>Click to expand</summary>
 
 * ```AActor```
   * A base class for the every object placed in the world. It's an ```UObject``` that usually contains other ```UObject```s specialized to be part of an actor - this what we call components.
@@ -499,6 +588,8 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 
 * ```UTexture```
   * Represents an image or texture that can be used in the engine for various purposes such as materials or user interface elements.
+ 
+</details>
 
 You can watch this video, which explain in small details about main classes in Unreal Engine. <a href="https://www.youtube.com/watch?v=QcXHEsR0xHI" target="_blank">Link here</a>!
 
@@ -551,6 +642,9 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 ## 🧱 Data Types
 
 ![Data types](static/img/Data_types.png)
+
+<details open>
+  <summary>Click to expand</summary>
 
 All types:
 
@@ -1288,6 +1382,8 @@ void MyFunction()
     // No need to manually delete the object, it will be automatically cleaned up
 }
 ```
+
+</details>
 
 ## 💾 Soft vs hard references
 
