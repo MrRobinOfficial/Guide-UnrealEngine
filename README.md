@@ -832,8 +832,6 @@ C++ provides features like dynamic memory allocation with `new` and `delete` ope
 * Heap memory is slower than stack memory due to dynamic allocation and deallocation operations.
 * The size of heap memory is typically much larger than the stack, but its allocation and deallocation require manual management.
 
-</details>
-
 ### Design Patterns And Principles
 
 Design patterns are reusable solutions to common programming problems that have been proven effective over time. They provide guidelines and templates for structuring code, promoting best practices, and improving software design. Here are a few notable design patterns:
@@ -865,6 +863,8 @@ The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a
 #### MVC (Model-View-Controller)
 
 [MVC is an architectural design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) commonly used in user interface development. It separates an application into three interconnected components: the Model (data and business logic), the View (presentation and user interface), and the Controller (handles user input and updates the model). MVC promotes code organization, maintainability, and modularity.
+
+</details>
 
 ## 🚧 Blueprint vs C++
 
