@@ -205,11 +205,17 @@ Data hiding is a principle closely related to encapsulation. It involves conceal
 
 #### Inheritance
 
+![Inheritance](static/img/Inheritance.png)
+
 Inheritance is a mechanism in OOP that allows new classes (derived classes or subclasses) to inherit properties and behaviors from existing classes (base classes or superclasses). Inheritance promotes code reuse, as derived classes can inherit and extend the functionality of their base classes. The derived classes can add new attributes and behaviors or override existing ones to customize the behavior of inherited members. Inheritance facilitates code organization, modularity, and the creation of hierarchical relationships between classes.
 
 #### Polymorphism
 
-Polymorphism is the ability of objects of different classes to respond to the same message or method invocation in different ways. It allows objects to take on multiple forms or behaviors based on their specific class or context. Polymorphism enables code to be written in a more generic and flexible manner, promoting code reuse, extensibility, and modularity.
+![Polymorphism](static/img/Polymorphism.png)
+
+Polymorphism is a fundamental concept in object-oriented programming (OOP) that allows objects of different classes to be treated as objects of a common base class. It enables you to write code that can work with objects of multiple types in a uniform manner.
+
+Polymorphism is often illustrated through inheritance, where you have a base class and multiple derived classes that inherit from it. The derived classes can override or extend the behavior of the base class's methods, while still adhering to the common interface.
 
 </details>
 
@@ -568,82 +574,7 @@ for (char c : message)
 // Output: H e l l o
 ```
 
-### Generic Programming
-
-Generic Programming is a programming paradigm that focuses on writing reusable code by abstracting away specific types and working with generic types that can be instantiated with various concrete types. It allows programmers to create functions, classes, and algorithms that can operate on different data types without requiring code duplication.
-
-In C++, the `template` keyword[^1] is used to implement generic programming through templates. Templates allow you to define functions or classes that can be instantiated with different types. They provide a powerful mechanism for code reuse and flexibility.
-
-Here is an example:
-
-```cpp
-template <typename T>
-T add(T a, T b)
-{
-    return a + b;
-}
-
-int main()
-{
-    int result1 = add(5, 10);        // Instantiated as add<int>(5, 10)
-    double result2 = add(3.5, 2.7);  // Instantiated as add<double>(3.5, 2.7)
-    // ...
-    return 0;
-}
-```
-
-### Operators and Overloads
-
-In C++, operators are symbols or keywords used to perform various operations on data, such as arithmetic operations, logical operations, assignment, comparison, and more. They enable concise and expressive manipulation of variables and values.
-
-Operator Overloading is a feature in C++ that allows you to redefine the behavior of an operator for user-defined types. It enables you to provide a specific implementation for an operator based on the operands' types, allowing custom operations to be performed.
-
-Here's an example of overloading the greater-than-or-equal-to `>=` operator in C++:
-
-```cpp
-class MyClass
-{
-public:
-    int value;
-
-    MyClass(int val) : value(val) {}
-
-    bool operator>=(const MyClass& other) const
-	{
-        return value >= other.value;
-    }
-};
-
-int main()
-{
-    MyClass obj1(5);
-    MyClass obj2(3);
-
-    if (obj1 >= obj2)
-	{
-        std::cout << "obj1 is greater than or equal to obj2" << std::endl;
-    } else
-	{
-        std::cout << "obj1 is not greater than or equal to obj2" << std::endl;
-    }
-
-    return 0;
-}
-```
-
-In this example, the `>=` operator is overloaded for the user-defined class `MyClass`. The `operator>=` function is defined as a member function of `MyClass`. It compares the value member of the current object (`this`) with the `value` member of the `other` object.
-
-By overloading operators, you can define custom behavior for how objects of a class interact with the corresponding operator. This provides flexibility and allows you to use familiar syntax and semantics for user-defined types, making the code more intuitive and expressive.
-
-Operator overloading is not limited to comparison operators; you can also overload arithmetic operators `+`, `-`, `*` and `/` assignment operators `=`, logical operators `&&`, `||`, and more. Overloading operators helps create more natural and concise code, improves code readability, and enhances the usability of user-defined types.
-
 ### Polymorphism
-
-Polymorphism is a fundamental concept in object-oriented programming (OOP) that allows objects of different classes to be treated as objects of a common base class. It enables you to write code that can work with objects of multiple types in a uniform manner.
-
-At its core, polymorphism allows you to define a common interface or base class and then create derived classes that implement that interface in their own specific ways. This means that objects of different derived classes can be accessed and manipulated through a common interface, without needing to know the specific derived class.
-
-Polymorphism is often illustrated through inheritance, where you have a base class and multiple derived classes that inherit from it. The derived classes can override or extend the behavior of the base class's methods, while still adhering to the common interface.
 
 The power of polymorphism lies in the ability to use a base class pointer or reference to refer to objects of derived classes. This allows you to write code that operates on the base class, without needing to know the specific derived class. During runtime, the appropriate version of the overridden method in the derived class will be invoked, based on the actual type of the object being referred to.
 
@@ -699,7 +630,57 @@ In the `main()` function, we create pointers of the base class type (`Animal*`) 
 
 Polymorphism allows you to write more flexible and reusable code by treating objects based on their common behavior, rather than their specific type. It promotes code extensibility and enhances the ability to work with a variety of objects in a unified way.
 
-#### Virtual functions
+##### Operator Overloading
+
+In C++, operators are symbols or keywords used to perform various operations on data, such as arithmetic operations, logical operations, assignment, comparison, and more. They enable concise and expressive manipulation of variables and values.
+
+Operator Overloading is a feature in C++ that allows you to redefine the behavior of an operator for user-defined types. It enables you to provide a specific implementation for an operator based on the operands' types, allowing custom operations to be performed.
+
+Here's an example of overloading the greater-than-or-equal-to `>=` operator in C++:
+
+```cpp
+class MyClass
+{
+public:
+    int value;
+
+    MyClass(int val) : value(val) {}
+
+    bool operator>=(const MyClass& other) const
+	{
+        return value >= other.value;
+    }
+};
+
+int main()
+{
+    MyClass obj1(5);
+    MyClass obj2(3);
+
+    if (obj1 >= obj2)
+    {
+        std::cout << "obj1 is greater than or equal to obj2" << std::endl;
+    }
+    else
+    {
+        std::cout << "obj1 is not greater than or equal to obj2" << std::endl;
+    }
+
+    return 0;
+}
+```
+
+In this example, the `>=` operator is overloaded for the user-defined class `MyClass`. The `operator>=` function is defined as a member function of `MyClass`. It compares the value member of the current object (`this`) with the `value` member of the `other` object.
+
+By overloading operators, you can define custom behavior for how objects of a class interact with the corresponding operator. This provides flexibility and allows you to use familiar syntax and semantics for user-defined types, making the code more intuitive and expressive.
+
+Operator overloading is not limited to comparison operators; you can also overload arithmetic operators `+`, `-`, `*` and `/` assignment operators `=`, logical operators `&&`, `||`, and more. Overloading operators helps create more natural and concise code, improves code readability, and enhances the usability of user-defined types.
+
+##### Function Overloading
+
+Lorem Ipsum
+
+##### Virtual functions
 
 In object-oriented programming (OOP), a virtual function is a function declared in a base class that can be overridden in derived classes. It allows you to provide a common interface in the base class while allowing different implementations in the derived classes.
 
@@ -771,6 +752,30 @@ Using virtual functions, you can write code that works with objects based on the
 | `override`     | Yes                                     | Override                 |
 | Both         | No                                      | Compile error            |
 | Both         | Yes                                     | Override                 |
+
+### Generic Programming
+
+Generic Programming is a programming paradigm that focuses on writing reusable code by abstracting away specific types and working with generic types that can be instantiated with various concrete types. It allows programmers to create functions, classes, and algorithms that can operate on different data types without requiring code duplication.
+
+In C++, the `template` keyword[^1] is used to implement generic programming through templates. Templates allow you to define functions or classes that can be instantiated with different types. They provide a powerful mechanism for code reuse and flexibility.
+
+Here is an example:
+
+```cpp
+template <typename T>
+T add(T a, T b)
+{
+    return a + b;
+}
+
+int main()
+{
+    int result1 = add(5, 10);        // Instantiated as add<int>(5, 10)
+    double result2 = add(3.5, 2.7);  // Instantiated as add<double>(3.5, 2.7)
+    // ...
+    return 0;
+}
+```
 
 ### Lambda
 
