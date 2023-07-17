@@ -357,7 +357,7 @@ double speedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a 
 double speedInKph = speedInMetersPerSecond * 3.6;
 ```
 
-#### Modifiers
+### Modifiers
 
 In C++, a modifier is used to alter the meaning of the base type so that it more precisely fits the needs of various situations. The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, which are used to modify the size of integer types.
 
