@@ -504,7 +504,7 @@ You can watch this video, which explain in small details about main classes in U
 
 You can also watch a video discussion about Multiplayer Framework of Unreal Engine from *Kekdot*. <a href="https://www.youtube.com/watch?v=Hsr6mbNKBLU" target="_blank">Link here</a>!
 
-> **NOTE**
+> **Note**
 > This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can ignore some of the main classes.
 
 You can also watch "*The Unreal Engine Game Framework: From int main() to BeginPlay*" by Alex Forsythe, which talks about Unreal Engine's architecture.
@@ -514,10 +514,10 @@ You can also watch "*The Unreal Engine Game Framework: From int main() to BeginP
 
 With ```AActor``` and ```UActorComponent``` you can control how the classes should be instantiated.
 
-> **NOTE**
+> **Note**
 > Only use constructors for initializing variables. The constructor will also be called in the editor. Meaning, it should not use for runtime execution. Instead, use ```BeginPlay()``` function.
 
-> **NOTE**
+> **Note**
 > Don't use destructors for deleting memory with Unreal ```UObject```. This is handle by Unreal Engine's garbage collector.
 
 ## ✍️ Naming Convention
@@ -612,7 +612,7 @@ if (Health <= 0)
 }
 ```
 
-> **NOTE**
+> **Note**
 > It is generally recommended to use ```int32``` instead of ```int``` for representing 32-bit signed integers. This is because the exact size of ```int``` is not defined by the C++ standard and can vary across different platforms and compilers. By using ```int32```, you can ensure that the size of the integer is consistent regardless of the platform.
 
 So, here is the updated code:
@@ -777,7 +777,7 @@ typedef FPlatformTypes::TYPE_OF_NULL	TYPE_OF_NULL;
 typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 ```
 
-> **NOTE**
+> **Note**
 > Unreal Engine only supports int32 and int64 for Blueprint editor. The other types are not supported, but can be still be used by Unreal reflection system (UPROPERTY and UFUNCTION).
 
 ### Strings
@@ -885,7 +885,7 @@ UE_LOG(LogTemp, Display, TEXT("MyTransformRotation: %s"), *MyTransformRotation.T
 * ```TMap``` - A map of key-value pairs, implemented as a hash table. It allows fast lookup of a value given a key, and supports adding, removing, and iterating over key-value pairs.
 * ```TMultiMap``` - Similar to ```TMap```, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
 
-> **NOTE**
+> **Note**
 > TMultiMap is not supported by blueprint editor!
 
 Here is a example for using these:
@@ -1466,7 +1466,7 @@ Here is a list of Unreal Engine's modules:
 * UMG
 * UMGEditor
 
-> **NOTE**
+> **Note**
 > Unreal Engine modules are not related to C++ 20 modules.
 
 Working with modules can also help you stay focused on the specific functionality you're implementing, as you only need to work with the code relevant to that module.
