@@ -229,7 +229,7 @@ In C++, the language is considered strongly typed, as it requires explicit type 
 Weak Typing (Python code):
 
 ```python3
-a = 5; // Correct! Because Python is a weak typing language.
+a = 5 # Correct! Because Python is a weak typing language.
 ```
 
 Strong Typing (C++ code):
