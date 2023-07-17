@@ -14,7 +14,7 @@
 
 *In this repo, we'll guide you through the basics of getting started with Unreal Engine and C++. We'll cover the fundamentals of C++ programming, such as data types and pointers, and show you how to use these concepts in the context of game development with Unreal Engine. We'll also introduce you to the Unreal Engine module system, which is an important aspect of organizing your game code into smaller, more manageable pieces.*
 
-```Reading Time ≈ 45 mins```
+```Reading Time ≈ 60 mins```
 
 ## Table of contents
 
