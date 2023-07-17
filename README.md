@@ -153,7 +153,7 @@
 
 ## ⌛ Getting started with C++
 
-Highly recommend taking a short class of native C++. Here is a video link to ~1h long video, [click here](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
+Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
 
 Using C++ with Unreal Engine allows developers to take advantage of the engine's full feature set, including advanced graphics rendering, physics simulations, networking, and AI. C++ also offers a level of control and customization that is not available through visual scripting alone.
 
