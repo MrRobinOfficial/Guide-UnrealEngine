@@ -4,6 +4,7 @@
   
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mrrobinofficial/guide-unitysteamnetcodegameobjects/blob/HEAD/LICENSE.txt)
 ![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-orange)
+![reading-time](https://img.shields.io/badge/reading_time-60_mins-blue)
 ![guide-status](https://img.shields.io/badge/guide_status-wip-yellow)
 
 </div>
@@ -13,8 +14,6 @@
 **Are you interested in creating games with Unreal Engine using C++?**
 
 *In this repo, we'll guide you through the basics of getting started with Unreal Engine and C++. We'll cover the fundamentals of C++ programming, such as data types and pointers, and show you how to use these concepts in the context of game development with Unreal Engine. We'll also introduce you to the Unreal Engine module system, which is an important aspect of organizing your game code into smaller, more manageable pieces.*
-
-```Reading Time ≈ 60 mins```
 
 ## Table of contents
 
