@@ -316,7 +316,7 @@ It provides a way to control the flow of execution in your program.
 ```cpp
 if (condition)
 {
-    // Code to be executed if the condition is true
+	// Code to be executed if the condition is true
 }
 else if (secondCondition)
 {
@@ -332,27 +332,59 @@ else
 
 Here are some operations for creating conditions:
 
-* `==`		Equality check
-* `!=`		Inequality check
-* `>`		Check for greater
-* `<`		Check for less
-* `>=`		Check for greater or equal
-* `<=`		Check for less or equal
-* `&&`		And operator. Expression A && B is evaluated by first evaluating A. A has value 0, then A && B also has value 0, and B is not evaluated. Otherwise, B is evaluated; if B has value 0, then A && B has the same value 0, and otherwise has value 1.
-
-* `||`		Or operator. Expression A || B is evaluated by first evaluating A. If A has a nonzero value, then A || B has value 1, and B is not evaluated. Otherwise, A || B has value 1 if B is nonzero and value 0 if B is zero.
-
-* `!`		Not operator. Expression !A is 0 if A is nonzero, and is 1 if A is 0.
+* `==` 	- Equality check
+* `!=` 	- Inequality check
+* `>` 	- Check for greater
+* `<` 	- Check for less
+* `>=`	- Check for greater or equal
+* `<=`	- Check for less or equal
+* `&&` 	- Expression A && B is evaluated by first evaluating A. A has value 0, then A && B also has value 0, and B is not evaluated. Otherwise, B is evaluated; if B has value 0, then A && B has the same value 0, and otherwise has value 1. Also called `AND` operator.
+* `||`	- Expression A || B is evaluated by first evaluating A. If A has a nonzero value, then A || B has value 1, and B is not evaluated. Otherwise, A || B has value 1 if B is nonzero and value 0 if B is zero. Also called `OR` operator.
+* `!` 	- Expression !A is 0 if A is nonzero, and is 1 if A is 0. Also called `NOT` operator.
 
 #### Conditional Expressions
 
-You can make a test in an expression in C/C++. Expression
-        condition ? val1 : val2
-is val1 if condition is nonzero, and is val2 if condition is 0. For example, expression
-        x > y ? x : y
-evaluates to the larger of x and y.
+Conditional expressions in C++ are statements that evaluate a condition and return a value based on the result of the condition. They provide a concise way to express simple conditions and perform different actions or assignments based on the outcome.
+
+The basic syntax of a conditional expression in C++ is as follows:
+
+```cpp
+(condition) ? value_if_true : value_if_false;
+```
+
+* 1\. The condition within the parentheses is evaluated.
+
+* 2\. If the condition is true, the value or expression before the colon (<kbd>:</kbd>) is returned as the result of the conditional expression.
+
+* 3\. If the condition is false, the value or expression after the colon is returned as the result.
 
 ### Switches
+
+In C++, a switch statement is a control flow construct used to select one of many possible execution paths based on the value of a given expression. It provides an alternative to using multiple if-else statements when checking a variable against different values.
+
+The basic syntax of a switch statement in C++ is as follows:
+
+```cpp
+switch (expression)
+{
+    case value1:
+        // Code to be executed if expression matches value1
+        break;
+    case value2:
+        // Code to be executed if expression matches value2
+        break;
+    // Add more case statements as needed
+    default:
+        // Code to be executed if none of the cases match
+        break;
+}
+```
+
+* 1\. The expression is evaluated, and its value is compared against the cases specified in the switch statement.
+
+* 2\. If a case matches the value of the expression, the code block associated with that case is executed. The execution then continues until a break statement is encountered, which exits the switch statement.
+
+* 3\. If none of the cases match the expression's value, the code block associated with the default case (optional) is executed. The default case serves as a fallback option when no matching cases are found.
 
 ### Loops
 
@@ -431,9 +463,50 @@ for (char c : message)
 // Output: H e l l o
 ```
 
-### Overloads
+### Operators and Overloads
 
-* Operator
+In C++, operators are symbols or keywords used to perform various operations on data, such as arithmetic operations, logical operations, assignment, comparison, and more. They enable concise and expressive manipulation of variables and values.
+
+Operator Overloading is a feature in C++ that allows you to redefine the behavior of an operator for user-defined types. It enables you to provide a specific implementation for an operator based on the operands' types, allowing custom operations to be performed.
+
+Here's an example of overloading the greater-than-or-equal-to (>=) operator in C++:
+
+```cpp
+class MyClass
+{
+public:
+    int value;
+
+    MyClass(int val) : value(val) {}
+
+    bool operator>=(const MyClass& other) const
+	{
+        return value >= other.value;
+    }
+};
+
+int main()
+{
+    MyClass obj1(5);
+    MyClass obj2(3);
+
+    if (obj1 >= obj2)
+	{
+        std::cout << "obj1 is greater than or equal to obj2" << std::endl;
+    } else
+	{
+        std::cout << "obj1 is not greater than or equal to obj2" << std::endl;
+    }
+
+    return 0;
+}
+```
+
+In this example, the `>=` operator is overloaded for the user-defined class `MyClass`. The `operator>=` function is defined as a member function of `MyClass`. It compares the value member of the current object (`this`) with the `value` member of the `other` object.
+
+By overloading operators, you can define custom behavior for how objects of a class interact with the corresponding operator. This provides flexibility and allows you to use familiar syntax and semantics for user-defined types, making the code more intuitive and expressive.
+
+Operator overloading is not limited to comparison operators; you can also overload arithmetic operators (+, -, *, /), assignment operators (=), logical operators (&&, ||), and more. Overloading operators helps create more natural and concise code, improves code readability, and enhances the usability of user-defined types.
 
 ### Polymorphism
 
@@ -572,7 +645,30 @@ Using virtual functions, you can write code that works with objects based on the
 
 ### Stack vs Heap
 
-Lorem Ipsum
+In programming languages, stack and heap are two different areas of memory used for [memory allocation](https://en.wikipedia.org/wiki/Memory_management). They serve distinct purposes and have different characteristics.
+
+In C++, you have the flexibility to choose between stack and heap memory allocation based on your program's requirements. Stack memory is typically used for most local variables and function calls, providing automatic memory management and efficient access. On the other hand, heap memory is used when dynamic memory allocation is needed, allowing you to control the lifetime of objects and manage more extensive data structures.
+
+C++ provides features like dynamic memory allocation with `new` and `delete` operators, allowing you to allocate memory on the heap explicitly. However, it is important to manage heap memory carefully to avoid memory leaks and unnecessary memory consumption.
+
+#### Stack Memory Allocation
+
+* Stack memory is a region of memory used for automatic memory allocation.
+* It is managed by the compiler and follows a "last-in, first-out" (LIFO) data structure.
+* Stack memory is typically used for storing local variables, function call frames, and other short-lived data.
+* Memory allocation and deallocation in the stack are handled implicitly by the compiler.
+* Stack memory is fast and efficient but limited in size.
+* Variables allocated on the stack have automatic storage duration and are deallocated automatically when they go out of scope.
+
+#### Heap Memory Allocation
+
+* Heap memory is a region of memory used for dynamic memory allocation.
+* It allows for manual control over memory allocation and deallocation.
+* Memory on the heap can be allocated and deallocated at runtime using functions like `new` and `delete` in C++.
+* Heap memory is typically used for storing objects with longer lifetimes or for data structures that need dynamic resizing.
+* Memory allocated on the heap needs to be explicitly deallocated to avoid memory leaks.
+* Heap memory is slower than stack memory due to dynamic allocation and deallocation operations.
+* The size of heap memory is typically much larger than the stack, but its allocation and deallocation require manual management.
 
 </details>
 
