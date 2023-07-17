@@ -32,7 +32,7 @@
   * 2.3\. [Accessibility](#accessibility)
   * 2.4\. [Polymorphism](#polymorphism)
     * 2.4.1\. [Virtual functions](#virtual-functions)
-* 3\. [🚧 Blueprint vs C++](#-unreals-architecture)
+* 3\. [🚧 Blueprint vs C++](#-blueprint-vs-c)
 * 4\. [🪧 Unreal's Architecture](#-unreals-architecture)
 * 5\. [Constructors and Destructors](#constructors-and-destructors)
 * 6\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
