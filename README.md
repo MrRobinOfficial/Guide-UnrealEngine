@@ -844,6 +844,8 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 <details>
   <summary>Click to expand</summary>
 
+<table><tr><td>
+
 * ```AActor```
   * A base class for the every object placed in the world. It's an ```UObject``` that usually contains other ```UObject```s specialized to be part of an actor - this what we call components.
   * This class contains a basic functionality to operate on the "object placed in the world".
@@ -954,6 +956,8 @@ Some of the notorious classes, that inherit from ```UObject``` include:
 
 * ```UTexture```
   * Represents an image or texture that can be used in the engine for various purposes such as materials or user interface elements.
+
+</td></tr></table>
  
 </details>
 
@@ -996,7 +1000,7 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 | T      | Template     | `TSubclassOf<T>`, `TArray<T>`, `TSet<T>`, `TMap<T>`, `TMultiMap<T>`       |
 | G      | Global Class | `GEngine`, `GConfig`, `GWorld`, `GEngineLoop`, `GIsEditor`                |
 
-### Synonyms
+### Abbreviations, Acronyms and Synonyms
 
 * PC - Indicates that a variable is a **PlayerController**
 * LP - Indicates that a variable is a **LocalPlayer**
@@ -1013,6 +1017,8 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
   <summary>Click to expand</summary>
 
 All types:
+
+<table><tr><td>
 
 * ```bool``` - Represents a logical value, either `true` or `false`
 * ```char``` - Represents a single character in the ASCII character set
@@ -1035,6 +1041,8 @@ All types:
 * ```FVector``` - Represents a 3D vector, which consists of three float values (X, Y, and Z). It is often used to represent positions, directions, and velocities in 3D space.
 * ```FRotator``` - Represents a rotation in 3D space, which consists of three float values (Pitch, Yaw, and Roll) that correspond to rotations around the X, Y, and Z axes, respectively
 * ```FTransform``` - Represents a transformation in 3D space, which consists of a location, rotation, and scale
+
+</td></tr></table>
 
 We start off with simple variables types, such as `char`, ```bool```, ```int```, ```float```, ```string``` and pointers.
 
@@ -1339,10 +1347,14 @@ UE_LOG(LogTemp, Display, TEXT("MyTransformRotation: %s"), *MyTransformRotation.T
 
 ![Collections](static/img/Collections.png)
 
+<table><tr><td>
+
 * ```TArray``` - A dynamic array that can store a variable number of elements of the same type. It provides many useful functions, such as adding, removing, sorting, and searching for elements, as well as iterating over them.
 * ```TSet``` - A set of unique elements of a single type, implemented as a hash table. It provides many of the same functions as ```TArray```, but with faster lookup times for large collections of elements.
 * ```TMap``` - A map of key-value pairs, implemented as a hash table. It allows fast lookup of a value given a key, and supports adding, removing, and iterating over key-value pairs.
 * ```TMultiMap``` - Similar to ```TMap```, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
+
+</td></tr></table>
 
 > **Note**
 > TMultiMap is not supported by blueprint editor!
@@ -1767,13 +1779,19 @@ In programming terms, a hard reference is similar. When you have a hard referenc
 
 ## 🌍 Global Functions
 
+<table><tr><td>
+
 * ```IsValid()``` - Is used to check if a pointer or object reference is valid. This is important to avoid accessing or modifying null pointers, which can cause crashes or other unexpected behavior.
 * ```IsValidChecked()``` - Checks if an object is valid, which means that it is not a nullptr and is not pending kill. It is intended for use in low-level code and is faster than ```IsValid()```.
 * ```IsValidLowLevel()``` - Similar to ```IsValidChecked()```, but it also performs a runtime check in debug builds to ensure that the object is valid. If the check fails, it will trigger an assertion.
 * ```Cast()``` - Is used to attempt to cast an object from one type to another. If the object is not of the specified type, it will return a nullptr. If the object is of the specified type or a subclass of it, the function will return a pointer to the object cast to the specified type.
 * ```CastChecked()``` - Is similar to ```Cast()```, but it also performs a runtime check in debug builds to ensure that the object is of the specified type. If the check fails, it will trigger an assertion. This function is useful when you are certain that an object should be of a particular type and want to catch errors early in development.
 
+</td></tr></table>
+
 ## 🏛️ Libraries
+
+<table><tr><td>
 
 * ```UGameplayStatics``` (kismet library) - Static class with useful ```gameplay``` utility functions that can be called from both Blueprint and C++
 * ```UKismetMathLibrary``` (kismet library) - Static class with useful ```math``` utility functions that can be called from both Blueprint and C++
@@ -1787,7 +1805,11 @@ In programming terms, a hard reference is similar. When you have a hard referenc
 * ```FMath``` - Math helper functions (Check ```GenericPlatformMath.h``` for additional math functions).
 * ```DrawDebugHelpers.h``` - Header file containg debug draw functions. Read more about <a href="https://unrealcpp.com/draw-debug-helpers/" target="_blank">here</a>!
 
+</td></tr></table>
+
 ## 📃 Macros
+
+<table><tr><td>
 
 * `GENERATED_BODY()` - Is used by Unreal to add boilerplate code required by the engine.
 * `TEXT()` - Is used to convert a string literal to a wide-character string literal.
@@ -1810,6 +1832,8 @@ In programming terms, a hard reference is similar. When you have a hard referenc
 * ```INLINE``` - Is a suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it. (Replacement for ```inline``` keyword)
 * ```FORCEINLINE``` - Is a stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for ```force_inline``` keyword)'
 * `UE_LOG` - Unreal logging system
+
+</td></tr></table>
 
 What are inlined functions?
 > When a function is inlined, the compiler replaces the function call with the actual code of the function, as if the code had been written directly in place of the call. This can improve performance by eliminating the overhead of a function call, but it can also increase the size of the executable.
@@ -1837,11 +1861,15 @@ Assertions are a programming technique used to detect and report errors or unexp
   * The ```verify()``` macro is typically used to detect errors during development or testing, but does not impact the performance of the final release build.
 
 There is also alternatives macros that displays text.
+
+<table><tr><td>
   
 * ```checkf()```
 * ```verifyf()```
 * ```ensureMsgf()```
 * ```ensureAlwaysMsgf()```
+
+</td></tr></table>
   
 You can read more about <a href="https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/" target="_blank">here</a>!
 
@@ -1917,6 +1945,8 @@ In Unreal Engine, a module is a way to organize game code into smaller pieces, s
 
 Here is a list of Unreal Engine's modules:
 
+<table><tr><td>
+
 * Core
 * CoreUObject
 * InputCore
@@ -1926,6 +1956,8 @@ Here is a list of Unreal Engine's modules:
 * Slate
 * UMG
 * UMGEditor
+
+</td></tr></table>
 
 > **Note**
 > Unreal Engine modules are not related to C++ 20 modules.
@@ -2185,6 +2217,8 @@ void DebugMessage()
 
 ## 👁️‍🗨️ Console Commands
 
+<table><tr><td>
+
 * `stat fps` - Display FPS.
 * `stat unit` - Display frame time.
 * `stat game` - Display a general idea on how long the various gameplay ticks are taking.
@@ -2195,9 +2229,13 @@ void DebugMessage()
 * `obj gc` - Collect all objects with GC (Garbage Collector).
 * `au.Debug.AudioSoloSoundWave` - Text.
 
+</td></tr></table>
+
 ## 📌 Shortcuts
 
 To change any of the shortcuts, you can access the keyboard shortcut settings via `Editor Preferences`, then under `General` select `Keyboard Shortcuts`.
+
+<table><tr><td>
 
 ### Basic
 * <kbd>Ctrl + C</kbd> - Copy
@@ -2257,6 +2295,8 @@ To change any of the shortcuts, you can access the keyboard shortcut settings vi
 
 ### Tools
 * <kbd>Ctrl + Shift + Comma</kbd> - GPU Visualizer
+
+</td></tr></table>
 
 ## ⚠️ Common Problems/Issues
 
