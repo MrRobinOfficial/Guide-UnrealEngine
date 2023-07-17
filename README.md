@@ -25,23 +25,15 @@
     * 1.1\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
     * 1.2\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
 * 2\. [🗺️ Summary of Programming World](#%EF%B8%8F-summary-of-programming-world)
-  * 2.0\. [Object-Oriented Programming](#object-oriented-programming)
-  	* 2.0.1\. [Encapsulation](#encapsulation)
-   	* 2.0.2\. [Data Hiding](#data-hiding)
-   	* 2.0.3\. [Inheritance](#inheritance)
-    * 2.0.4\. [Polymorphism](#polymorphism)
-  * 2.1\. [Design Patterns And Principles](#design-patterns-and-principles)
-  	* 2.1.1\. [Open-Closed Principle](#open-closed-principle)
-   	* 2.1.2\. [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
-    * 2.1.3\. [Singleton](#singleton)
-    * 2.1.4\. [Observer](#observer)
-    * 2.1.5\. [Factory](#factory)
-    * 2.1.6\. [Strategy](#strategy)
-    * 2.1.7\. [MVC (Model-View-Controller)](#mvc-model-view-controller)
+  * 2.1\. [Object-Oriented Programming](#object-oriented-programming)
+  	* 2.1.1\. [Encapsulation](#encapsulation)
+   	* 2.1.2\. [Data Hiding](#data-hiding)
+   	* 2.1.3\. [Inheritance](#inheritance)
+	* 2.1.4\. [Polymorphism](#polymorphism)
   * 2.2\. [Syntax and structure](#syntax-and-structure)
   	* 2.2.1\. [Structure](#structure)
     * 2.2.2\. [Weak vs Strong typing](#weak-vs-strong-typing)
-    	* 2.2.2.1\. [Weak Typing](#weak-typing)
+		* 2.2.2.1\. [Weak Typing](#weak-typing)
     	* 2.2.2.2\. [Strong Typing](#strong-typing)
      * 2.2.3\. [Semicolons in C++](#semicolons-in-c)
      * 2.2.4\. [Curly Braces in C++](#curly-braces-in-c)
@@ -74,6 +66,14 @@
   * 2.14\. [Polymorphism](#polymorphism)
     * 2.14.1\. [Virtual functions](#virtual-functions)
   * 2.15\. [Stack vs Heap](#stack-vs-heap)
+  * 2.16\. [Design Patterns And Principles](#design-patterns-and-principles)
+  	* 2.16.1\. [Open-Closed Principle](#open-closed-principle)
+   	* 2.16.2\. [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
+    * 2.16.3\. [Singleton](#singleton)
+    * 2.16.4\. [Observer](#observer)
+    * 2.16.5\. [Factory](#factory)
+    * 2.16.6\. [Strategy](#strategy)
+    * 2.16.7\. [MVC (Model-View-Controller)](#mvc-model-view-controller)
 * 3\. [🚧 Blueprint vs C++](#-blueprint-vs-c)
 * 4\. [🪧 Unreal's Architecture](#-unreals-architecture)
 * 5\. [Constructors and Destructors](#constructors-and-destructors)
@@ -209,38 +209,6 @@ Inheritance is a mechanism in OOP that allows new classes (derived classes or su
 #### Polymorphism
 
 Polymorphism is the ability of objects of different classes to respond to the same message or method invocation in different ways. It allows objects to take on multiple forms or behaviors based on their specific class or context. Polymorphism enables code to be written in a more generic and flexible manner, promoting code reuse, extensibility, and modularity.
-
-### Design Patterns And Principles
-
-Design patterns are reusable solutions to common programming problems that have been proven effective over time. They provide guidelines and templates for structuring code, promoting best practices, and improving software design. Here are a few notable design patterns:
-
-#### Open-Closed Principle
-
-The [Open-Closed Principle (OCP)](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle) is a fundamental principle in object-oriented programming that states that software entities (classes, modules, functions, etc.) should be open for extension but closed for modification. It encourages the design of code that can be easily extended with new functionality without needing to modify the existing codebase.
-
-#### KISS (Keep It Simple, Stupid)
-
-The [KISS principle](https://en.wikipedia.org/wiki/KISS_principle) emphasizes simplicity and avoiding unnecessary complexity in software design. It encourages keeping code, algorithms, and systems as simple as possible to enhance readability, maintainability, and reduce the likelihood of errors.
-
-#### Singleton
-
-The [Singleton pattern](https://en.wikipedia.org/wiki/Singleton_pattern) ensures that only one instance of a class is created and provides a global point of access to that instance. It is useful in scenarios where you need to control access to a shared resource or want to limit the instantiation of a class to a single object.
-
-#### Observer
-
-The [Observer](https://en.wikipedia.org/wiki/Observer_pattern) pattern establishes a one-to-many dependency between objects. It allows multiple observer objects (listeners) to be notified and updated automatically when the observed object (subject) undergoes a change in state. This pattern is widely used in event-driven systems or scenarios requiring loose coupling between objects.
-
-#### Factory
-
-The [Factory pattern](https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)) provides an interface for creating objects without exposing the creation logic to the client. It centralizes object creation, allowing clients to use the factory interface to create objects based on specific criteria or conditions. This pattern promotes flexibility, decoupling, and abstraction in object creation.
-
-#### Strategy
-
-The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a family of algorithms and encapsulates each algorithm as a separate class. It allows clients to dynamically choose and switch between different algorithms at runtime. This pattern enables code reuse, promotes separation of concerns, and facilitates the "Open-Closed Principle" by allowing new algorithms to be added without modifying existing code.
-
-#### MVC (Model-View-Controller)
-
-[MVC is an architectural design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) commonly used in user interface development. It separates an application into three interconnected components: the Model (data and business logic), the View (presentation and user interface), and the Controller (handles user input and updates the model). MVC promotes code organization, maintainability, and modularity.
 
 ### Syntax and structure
 
@@ -824,6 +792,38 @@ C++ provides features like dynamic memory allocation with `new` and `delete` ope
 * The size of heap memory is typically much larger than the stack, but its allocation and deallocation require manual management.
 
 </details>
+
+### Design Patterns And Principles
+
+Design patterns are reusable solutions to common programming problems that have been proven effective over time. They provide guidelines and templates for structuring code, promoting best practices, and improving software design. Here are a few notable design patterns:
+
+#### Open-Closed Principle
+
+The [Open-Closed Principle (OCP)](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle) is a fundamental principle in object-oriented programming that states that software entities (classes, modules, functions, etc.) should be open for extension but closed for modification. It encourages the design of code that can be easily extended with new functionality without needing to modify the existing codebase.
+
+#### KISS (Keep It Simple, Stupid)
+
+The [KISS principle](https://en.wikipedia.org/wiki/KISS_principle) emphasizes simplicity and avoiding unnecessary complexity in software design. It encourages keeping code, algorithms, and systems as simple as possible to enhance readability, maintainability, and reduce the likelihood of errors.
+
+#### Singleton
+
+The [Singleton pattern](https://en.wikipedia.org/wiki/Singleton_pattern) ensures that only one instance of a class is created and provides a global point of access to that instance. It is useful in scenarios where you need to control access to a shared resource or want to limit the instantiation of a class to a single object.
+
+#### Observer
+
+The [Observer](https://en.wikipedia.org/wiki/Observer_pattern) pattern establishes a one-to-many dependency between objects. It allows multiple observer objects (listeners) to be notified and updated automatically when the observed object (subject) undergoes a change in state. This pattern is widely used in event-driven systems or scenarios requiring loose coupling between objects.
+
+#### Factory
+
+The [Factory pattern](https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)) provides an interface for creating objects without exposing the creation logic to the client. It centralizes object creation, allowing clients to use the factory interface to create objects based on specific criteria or conditions. This pattern promotes flexibility, decoupling, and abstraction in object creation.
+
+#### Strategy
+
+The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a family of algorithms and encapsulates each algorithm as a separate class. It allows clients to dynamically choose and switch between different algorithms at runtime. This pattern enables code reuse, promotes separation of concerns, and facilitates the "Open-Closed Principle" by allowing new algorithms to be added without modifying existing code.
+
+#### MVC (Model-View-Controller)
+
+[MVC is an architectural design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) commonly used in user interface development. It separates an application into three interconnected components: the Model (data and business logic), the View (presentation and user interface), and the Controller (handles user input and updates the model). MVC promotes code organization, maintainability, and modularity.
 
 ## 🚧 Blueprint vs C++
 
