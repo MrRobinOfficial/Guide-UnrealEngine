@@ -148,16 +148,116 @@ C++ is regarded as a middle-level language, as it comprises a combination of bot
 
 C++ was developed by Bjarne Stroustrup starting in 1979 at Bell Labs in Murray Hill, New Jersey, as an enhancement to the C language and originally named C with Classes but later it was renamed C++ in 1983.
 
-* Object-Oriented Programming
+### Object-Oriented Programming
 
-* Encapsulation
-* Data hiding
-* Inheritance
+Object-Oriented Programming (**OOP**) is a programming paradigm that organizes code around objects, which are instances of classes. It focuses on the concept of objects, their properties (attributes), and behaviors (methods), allowing for modular, reusable, and structured code design.
+
+#### Encapsulation
+
+Encapsulation is the practice of bundling data and the methods that operate on that data within a single unit, which is typically a class. It promotes data hiding and information hiding, ensuring that the internal state and implementation details of an object are not directly accessible from outside the object. Encapsulation helps achieve data integrity, security, and abstraction by controlling access through well-defined interfaces.
+
+#### Data Hiding
+
+Data hiding is a principle closely related to encapsulation. It involves concealing the internal implementation details of an object and exposing only the necessary information through well-defined interfaces. By hiding implementation details, the object's data is protected and can only be accessed or modified through controlled methods. This enhances data security, code maintainability, and reduces the risk of unintended modifications or access to critical data.
+
+#### Inheritance
+
+Inheritance is a mechanism in OOP that allows new classes (derived classes or subclasses) to inherit properties and behaviors from existing classes (base classes or superclasses). Inheritance promotes code reuse, as derived classes can inherit and extend the functionality of their base classes. The derived classes can add new attributes and behaviors or override existing ones to customize the behavior of inherited members. Inheritance facilitates code organization, modularity, and the creation of hierarchical relationships between classes.
+
+#### Polymorphism
+
+Polymorphism is the ability of objects of different classes to respond to the same message or method invocation in different ways. It allows objects to take on multiple forms or behaviors based on their specific class or context. Polymorphism enables code to be written in a more generic and flexible manner, promoting code reuse, extensibility, and modularity.
+
+### Design Patterns And Principles
+
+Design patterns are reusable solutions to common programming problems that have been proven effective over time. They provide guidelines and templates for structuring code, promoting best practices, and improving software design. Here are a few notable design patterns:
+
+#### Open-Closed Principle
+
+The [Open-Closed Principle (OCP)](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle) is a fundamental principle in object-oriented programming that states that software entities (classes, modules, functions, etc.) should be open for extension but closed for modification. It encourages the design of code that can be easily extended with new functionality without needing to modify the existing codebase.
+
+#### KISS (Keep It Simple, Stupid)
+
+The [KISS principle](https://en.wikipedia.org/wiki/KISS_principle) emphasizes simplicity and avoiding unnecessary complexity in software design. It encourages keeping code, algorithms, and systems as simple as possible to enhance readability, maintainability, and reduce the likelihood of errors.
+
+#### Singleton
+
+The [Singleton pattern](https://en.wikipedia.org/wiki/Singleton_pattern) ensures that only one instance of a class is created and provides a global point of access to that instance. It is useful in scenarios where you need to control access to a shared resource or want to limit the instantiation of a class to a single object.
+
+#### Observer
+
+The [Observer](https://en.wikipedia.org/wiki/Observer_pattern) pattern establishes a one-to-many dependency between objects. It allows multiple observer objects (listeners) to be notified and updated automatically when the observed object (subject) undergoes a change in state. This pattern is widely used in event-driven systems or scenarios requiring loose coupling between objects.
+
+#### Factory
+
+The [Factory pattern](https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)) provides an interface for creating objects without exposing the creation logic to the client. It centralizes object creation, allowing clients to use the factory interface to create objects based on specific criteria or conditions. This pattern promotes flexibility, decoupling, and abstraction in object creation.
+
+#### Strategy
+
+The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a family of algorithms and encapsulates each algorithm as a separate class. It allows clients to dynamically choose and switch between different algorithms at runtime. This pattern enables code reuse, promotes separation of concerns, and facilitates the "Open-Closed Principle" by allowing new algorithms to be added without modifying existing code.
+
+#### MVC (Model-View-Controller)
+
+[MVC is an architectural design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) commonly used in user interface development. It separates an application into three interconnected components: the Model (data and business logic), the View (presentation and user interface), and the Controller (handles user input and updates the model). MVC promotes code organization, maintainability, and modularity.
 
 ### Syntax and structure
 
-* Strong typing
-* Comment
+Syntax refers to the set of rules that define the structure, format, and grammar of a programming language. It dictates how statements and expressions should be written to form valid code. In the case of C++, its syntax is structured and employs specific elements to ensure proper code organization and execution.
+
+#### Structure
+
+C++ follows a structured syntax that includes elements such as keywords, identifiers, operators, punctuation, and control structures. The syntax is designed to provide precise instructions to the compiler on how to interpret and execute the code.
+
+#### Weak vs Strong typing
+
+Weak and strong typing refer to different approaches in how programming languages handle data types and type safety.
+
+In C++, the language is considered strongly typed, as it requires explicit type conversions and does not perform implicit type coercion without the programmer's explicit instruction. C++ enforces strong typing to ensure type safety and minimize potential errors.
+
+Regarding comments in C++, they are used to provide explanations, documentation, or non-executable text within the code. Comments are ignored by the compiler and serve as helpful annotations for programmers reading and maintaining the code.
+
+##### Weak Typing
+
+In weakly typed languages, the type of a variable or value can be automatically coerced or converted to another type implicitly. Weak typing allows for more flexible and implicit type conversions but may increase the risk of unexpected behavior and errors due to the lack of strict type checking.
+
+##### Strong Typing
+
+Strongly typed languages enforce strict type checking, requiring explicit type conversions and preventing automatic coercion between different types. Strong typing promotes type safety by ensuring that variables and values are used in a manner consistent with their defined types. It helps catch type-related errors during compilation and improves code reliability.
+
+#### Semicolons in C++
+
+In C++, a semicolon (<kbd>;</kbd>) is used to mark the end of a statement. It serves as a delimiter, indicating to the compiler that one statement has finished and another begins. The presence of semicolons allows the compiler to separate statements and interpret code correctly.
+
+The requirement for semicolons in C++ is a design choice that provides explicit statement termination. This approach allows for more fine-grained control over program execution and eliminates ambiguity. In contrast, languages like Python use indentation to define blocks of code, eliminating the need for explicit statement termination with semicolons.
+
+#### Curly Braces in C++
+
+C++ uses curly braces (<kbd>{}</kbd>) as block delimiters to enclose multiple statements or define the body of control structures, functions, and classes. The use of curly braces provides a clear and explicit way to define the boundaries of code blocks.
+
+Curly braces help define the scope of variables and maintain code readability. They ensure that statements within the braces are treated as a single unit, making it easier to understand the flow and logic of the program. While other programming languages also use curly braces for similar purposes, their exact usage and conventions may vary.
+
+#### Comments in C++
+
+Both single-line and multi-line comments are helpful for adding explanatory notes, documenting code, or temporarily disabling sections of code during debugging or development. They enhance code readability, facilitate collaboration, and provide valuable information to developers maintaining the codebase.
+
+##### Single-line comments
+
+Single-line comments start with two forward slashes (//) and continue until the end of the line. They are typically used for brief comments or explanations on a single line.
+
+```cpp
+// This is a single-line comment in C++
+```
+
+##### Multi-line comments
+
+Multi-line comments, also known as block comments, start with a forward slash followed by an asterisk (/) and end with an asterisk followed by a forward slash (/). Multi-line comments can span multiple lines and are used for more extensive comments or documentation.
+
+```cpp
+/*
+This is a multi-line comment
+It can span multiple lines
+*/
+```
 
 ### Members
 
@@ -169,17 +269,18 @@ There are two main types of members: `variables` and `functions`.
 
 Members that store data. They can be of different types such as numbers, strings, booleans, or custom types. Variables hold values that can be accessed and manipulated within the class or object.
 
-##### Abbreviations for Assignments
+##### Assignments
 
-There are abbreviations for frequently done kinds of assignments. Here are a few.
+There are abbreviations for frequently done kinds of assignments. Here are a few:
 
-Abbreviation	 	Meaning
-n += k		n = n + k
-n -= k		n = n - k
-++n		n = n + 1 (where the value of expression ++n is the value of n after the assignment)
-n++		n = n + 1 (but the value of expression n++ is the value of n before the assignment)
---n		n = n - 1 (where the value of expression --n is the value of n after the assignment)
-n--		n = n - 1 (but the value of expression n-- is the value of n before the assignment)
+| Abbreviation  | Meaning | Note |
+| ------------- | ------------- | ------------- |
+| `n += k`  | `n = n + k`  | |
+| `n -= k`  | `n = n - k`  | |
+| `++n`  | `n = n + 1`  | Where the value of expression `++n` is the value of `n` after the assignment |
+| `n++`  | `n = n + 1`  | But the value of expression `n++` is the value of `n` before the assignment |
+| `--n`  | `n = n - 1`  | Where the value of expression `--n` is the value of `n` after the assignment |
+| `n--`  | `n = n - 1`  | But the value of expression `n--` is the value of `n` before the assignment |
 
 #### Functions
 
@@ -209,18 +310,39 @@ Classes allow for code reusability, encapsulation (hiding internal details), and
 
 ### If-statements
 
+If-statement is a fundamental control structure that allows you to conditionally execute a block of code based on a specified condition.
+It provides a way to control the flow of execution in your program.
+
+```cpp
+if (condition)
+{
+    // Code to be executed if the condition is true
+}
+else if (secondCondition)
+{
+	// Code to be executed if the secondCondition is true, but condition was false
+}
+else
+{
+	// Code to be executed if the condition and secondCondition is both false
+}
+```
+
 ### Comparisons and Boolean Operators
 
-Here are some operations for creating conditions.
-==	equality test
-!=	inequality test
->	test for greater
-<	test for less
->=	test for greater or equal
-<=	test for less or equal
-&&	'and'. Expression A && B is evaluated by first evaluating A. A has value 0, then A && B also has value 0, and B is not evaluated. Otherwise, B is evaluated; if B has value 0, then A && B has the same value 0, and otherwise has value 1.
-||	'or'. Expression A || B is evaluated by first evaluating A. If A has a nonzero value, then A || B has value 1, and B is not evaluated. Otherwise, A || B has value 1 if B is nonzero and value 0 if B is zero.
-!	'not'. Expression !A is 0 if A is nonzero, and is 1 if A is 0.
+Here are some operations for creating conditions:
+
+* `==`		Equality check
+* `!=`		Inequality check
+* `>`		Check for greater
+* `<`		Check for less
+* `>=`		Check for greater or equal
+* `<=`		Check for less or equal
+* `&&`		And operator. Expression A && B is evaluated by first evaluating A. A has value 0, then A && B also has value 0, and B is not evaluated. Otherwise, B is evaluated; if B has value 0, then A && B has the same value 0, and otherwise has value 1.
+
+* `||`		Or operator. Expression A || B is evaluated by first evaluating A. If A has a nonzero value, then A || B has value 1, and B is not evaluated. Otherwise, A || B has value 1 if B is nonzero and value 0 if B is zero.
+
+* `!`		Not operator. Expression !A is 0 if A is nonzero, and is 1 if A is 0.
 
 #### Conditional Expressions
 
@@ -234,17 +356,80 @@ evaluates to the larger of x and y.
 
 ### Loops
 
-#### While Loops
+Loops are essential constructs in programming languages that allow repetitive execution of a block of code based on a specified condition. They provide a way to automate tasks, process collections of data, and iterate over a sequence of elements.
 
-Lorem Ipsum
+#### While Loop
 
-#### Do Loops
+While loop are used when the number of iterations is uncertain but depends on a condition. The loop continues as long as the specified condition remains true. It evaluates the condition before each iteration, and if it becomes false, the loop terminates.
 
-Lorem Ipsum
+Here is an example:
 
-#### For Loops
+```cpp
+// Example: Find the first power of 2 greater than 100
 
-Lorem Ipsum
+int num = 1;
+
+while (num <= 100)
+{
+    num *= 2;
+}
+
+std::cout << "First power of 2 greater than 100: " << num << std::endl;
+
+// Output: First power of 2 greater than 100: 128
+```
+
+#### Do-While Loop
+
+A do-while loop is a control flow structure in programming that executes a block of code at least once, and then repeats the execution as long as a specified condition remains true. It is similar to the while loop, but with the condition checked at the end of each iteration.
+
+```cpp
+// Example: Print numbers from 1 to 5 using a do-while loop
+
+int i = 1;
+
+do
+{
+    std::cout << i << " ";
+    i++;
+} while (i <= 5);
+
+// Output: 1 2 3 4 5
+```
+
+#### For Loop
+
+For loop are used when you know the number of iterations in advance. They consist of an initialization, a condition for continuation, and an iteration statement. The loop iterates over a range of values or a collection, incrementing or decrementing a counter variable with each iteration.
+
+Here is an example:
+
+```cpp
+// Example: Print numbers from 1 to 5
+
+for (int i = 1; i <= 5; i++)
+{
+    std::cout << i << " ";
+}
+
+// Output: 1 2 3 4 5
+```
+
+#### Foreach Loop
+
+Foreach loop are designed to iterate over collections or sequences of elements. They automatically handle the iteration logic, allowing you to process each element without managing an explicit index or counter. The loop iterates over each element in the collection until all elements have been processed.
+
+```cpp
+// Example: Print each character of a string
+
+std::string message = "Hello";
+
+for (char c : message)
+{
+    std::cout << c << " ";
+}
+
+// Output: H e l l o
+```
 
 ### Overloads
 
@@ -392,6 +577,26 @@ Lorem Ipsum
 </details>
 
 ## 🚧 Blueprint vs C++
+
+Watch this video by Alex Forsythe, in which he talks about when to use C++ and when to use Blueprint in Unreal development.
+
+[![Watch the video](https://img.youtube.com/vi/VMZftEVDuCE/maxresdefault.jpg)](https://youtu.be/VMZftEVDuCE)
+
+### Summary
+
+|             | Pros of Blueprint                          | Cons of Blueprint                              | Pros of C++                                   | Cons of C++                                       |
+|-------------|--------------------------------------------|------------------------------------------------|-----------------------------------------------|--------------------------------------------------|
+| Ease of Use | Visual scripting with a node-based interface | Limited control over low-level optimizations   | Greater control over memory management         | Steeper learning curve                           |
+| Rapid       | Quick iteration and prototyping             | Performance may be slower compared to C++      | Efficient execution and runtime performance    | More verbose syntax and code complexity          |
+| Development | No compilation required                     | Limited support for complex algorithms         | Extensive standard library and third-party libraries for various functionalities     | Error-prone manual Potential for crashes and undefined behavior memory management             |
+| Flexibility | Easy to modify and maintain                 | Limited access to low-level engine features     | Full access to Unreal Engine internals         | Requires understanding of engine architecture   |
+| Collaboration| Visual representation of logic             | More challenging for team collaboration        | Easier integration with external libraries     | Collaboration may require code comprehension    |
+
+> **Tip**
+> Choose C++ when you anticipate the need for interaction with other C++ code or require extensive control over low-level optimizations and memory management. C++ is well-suited for classes that require direct access to engine internals and efficient execution.
+
+> **Tip**
+> Use Blueprint as an inherited class when you want to benefit from the visual scripting capabilities and quick prototyping offered by Blueprint, while still having the option to incorporate C++ code in the future. This allows for a flexible approach where you can leverage the power of Blueprint while having the ability to extend functionality with C++ when needed.
 
 ## 🪧 Unreal's Architecture
 
