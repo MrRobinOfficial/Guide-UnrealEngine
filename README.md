@@ -191,6 +191,9 @@ Additionally, C++ code can be integrated with third-party libraries, providing e
 
 ### Object-Oriented Programming
 
+<details>
+  <summary>Click to expand</summary>
+
 Object-Oriented Programming (**OOP**) is a programming paradigm that organizes code around objects, which are instances of classes. It focuses on the concept of objects, their properties (attributes), and behaviors (methods), allowing for modular, reusable, and structured code design.
 
 #### Encapsulation
@@ -209,11 +212,11 @@ Inheritance is a mechanism in OOP that allows new classes (derived classes or su
 
 Polymorphism is the ability of objects of different classes to respond to the same message or method invocation in different ways. It allows objects to take on multiple forms or behaviors based on their specific class or context. Polymorphism enables code to be written in a more generic and flexible manner, promoting code reuse, extensibility, and modularity.
 
-### Syntax and structure
+</details>
 
-Syntax refers to the set of rules that define the structure, format, and grammar of a programming language. It dictates how statements and expressions should be written to form valid code. In the case of C++, its syntax is structured and employs specific elements to ensure proper code organization and execution.
+### Syntax and Structure
 
-#### Structure
+Syntax refers to the set of rules that define the structure, format, and grammar of a programming language. It dictates how statements and expressions should be written to form valid code.
 
 C++ follows a structured syntax that includes elements such as keywords, identifiers, operators, punctuation, and control structures. The syntax is designed to provide precise instructions to the compiler on how to interpret and execute the code.
 
@@ -223,15 +226,19 @@ Weak and strong typing refer to different approaches in how programming language
 
 In C++, the language is considered strongly typed, as it requires explicit type conversions and does not perform implicit type coercion without the programmer's explicit instruction. C++ enforces strong typing to ensure type safety and minimize potential errors.
 
-Regarding comments in C++, they are used to provide explanations, documentation, or non-executable text within the code. Comments are ignored by the compiler and serve as helpful annotations for programmers reading and maintaining the code.
+Weak Typing (Python code):
 
-##### Weak Typing
+```python3
+a = 5; // Correct! Because Python is a weak typing language.
+```
 
-In weakly typed languages, the type of a variable or value can be automatically coerced or converted to another type implicitly. Weak typing allows for more flexible and implicit type conversions but may increase the risk of unexpected behavior and errors due to the lack of strict type checking.
+Strong Typing (C++ code):
 
-##### Strong Typing
+```cpp
+a = 5; // Error!
 
-Strongly typed languages enforce strict type checking, requiring explicit type conversions and preventing automatic coercion between different types. Strong typing promotes type safety by ensuring that variables and values are used in a manner consistent with their defined types. It helps catch type-related errors during compilation and improves code reliability.
+int a = 5; // Correct!
+```
 
 #### Semicolons in C++
 
