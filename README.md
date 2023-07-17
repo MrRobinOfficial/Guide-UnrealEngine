@@ -571,6 +571,28 @@ for (char c : message)
 
 ### Generic Programming
 
+Generic Programming is a programming paradigm that focuses on writing reusable code by abstracting away specific types and working with generic types that can be instantiated with various concrete types. It allows programmers to create functions, classes, and algorithms that can operate on different data types without requiring code duplication.
+
+In C++, the `template` keyword[^1] is used to implement generic programming through templates. Templates allow you to define functions or classes that can be instantiated with different types. They provide a powerful mechanism for code reuse and flexibility.
+
+Here is an example:
+
+```cpp
+template <typename T>
+T add(T a, T b)
+{
+    return a + b;
+}
+
+int main()
+{
+    int result1 = add(5, 10);        // Instantiated as add<int>(5, 10)
+    double result2 = add(3.5, 2.7);  // Instantiated as add<double>(3.5, 2.7)
+    // ...
+    return 0;
+}
+```
+
 ### Operators and Overloads
 
 In C++, operators are symbols or keywords used to perform various operations on data, such as arithmetic operations, logical operations, assignment, comparison, and more. They enable concise and expressive manipulation of variables and values.
@@ -2468,3 +2490,7 @@ int main()
 
 ## 🆘 Support
 If you have any questions or issue, just write either to my [YouTube channel](https://www.youtube.com/@mrrobinofficial), [Email](mailto:mrrobin123mail@gmail.com) or [Twitter DM](https://twitter.com/MrRobinOfficial).
+
+## Footnotes
+
+[^1]: Keyword, also known as a [Reserved word](https://en.wikipedia.org/wiki/Reserved_word).
