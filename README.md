@@ -94,7 +94,7 @@
 
 ## 👑 Cheatsheets
 
-<details>
+<details open>
   <summary>Click to expand</summary>
 
 ![jbtronics - CheatSheet Poster](static/img/CheatSheet_Poster-1.png)[jbtronics - CheatSheet Poster](https://github.com/jbtronics/UE4-CheatSheet/blob/master/CheatSheet_Poster.pdf)
@@ -138,7 +138,7 @@ Developing with C++ in Unreal Engine also allows for better debugging and profil
 
 ## 🗺️ Quick Summary of Programming World
 
-<details>
+<details open>
   <summary>Click to expand</summary>
 
 C++ is a statically typed, compiled, general-purpose, case-sensitive, free-form programming language that supports procedural, object-oriented, and generic programming.
