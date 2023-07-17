@@ -244,13 +244,15 @@ int a = 5; // Correct!
 
 In C++, a semicolon (<kbd>;</kbd>) is used to mark the end of a statement. It serves as a delimiter, indicating to the compiler that one statement has finished and another begins. The presence of semicolons allows the compiler to separate statements and interpret code correctly.
 
-The requirement for semicolons in C++ is a design choice that provides explicit statement termination. This approach allows for more fine-grained control over program execution and eliminates ambiguity. In contrast, languages like Python use indentation to define blocks of code, eliminating the need for explicit statement termination with semicolons.
+The requirement for semicolons in C++ is a design choice that provides explicit statement termination. This approach allows for more fine-grained control over program execution and eliminates ambiguity.
+
+In contrast, languages like Python use indentation to define blocks of code, eliminating the need for explicit statement termination with semicolons.
 
 #### Curly Braces in C++
 
 C++ uses curly braces (<kbd>{}</kbd>) as block delimiters to enclose multiple statements or define the body of control structures, functions, and classes. The use of curly braces provides a clear and explicit way to define the boundaries of code blocks.
 
-Curly braces help define the scope of variables and maintain code readability. They ensure that statements within the braces are treated as a single unit, making it easier to understand the flow and logic of the program. While other programming languages also use curly braces for similar purposes, their exact usage and conventions may vary.
+Curly braces help define the scope of variables and maintain code readability. They ensure that statements within the braces are treated as a single unit, making it easier to understand the flow and logic of the program.
 
 #### Comments in C++
 
@@ -258,7 +260,9 @@ Both single-line and multi-line comments are helpful for adding explanatory note
 
 ##### Single-line comments
 
-Single-line comments start with two forward slashes (//) and continue until the end of the line. They are typically used for brief comments or explanations on a single line.
+Single-line comments start with two forward slashes `//` and continue until the end of the line.
+
+They are typically used for brief comments or explanations on a single line.
 
 ```cpp
 // This is a single-line comment in C++
@@ -266,7 +270,9 @@ Single-line comments start with two forward slashes (//) and continue until the 
 
 ##### Multi-line comments
 
-Multi-line comments, also known as block comments, start with a forward slash followed by an asterisk (/) and end with an asterisk followed by a forward slash (/). Multi-line comments can span multiple lines and are used for more extensive comments or documentation.
+Multi-line comments, also known as block comments, start with a forward slash followed by an asterisk (`*`) `/` and end with an asterisk followed by a forward slash `/`.
+
+Multi-line comments can span multiple lines and are used for more extensive comments or documentation.
 
 ```cpp
 /*
