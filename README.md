@@ -24,7 +24,7 @@
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
     * 1.1\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
     * 1.2\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
-* 2\. [🗺️ Summary of Programming World](#%EF%B8%8F-quick-summary-of-programming-world)
+* 2\. [🗺️ Summary of Programming World](#%EF%B8%8F-summary-of-programming-world)
   * 2.0\. [Object-Oriented Programming](#object-oriented-programming)
   	* 2.0.1\. [Encapsulation](#encapsulation)
    	* 2.0.2\. [Data Hiding](#data-hiding)
