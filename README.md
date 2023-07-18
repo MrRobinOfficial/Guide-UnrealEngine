@@ -313,7 +313,7 @@ It can span multiple lines
 
 <table><tr><td>
 
-## Data Types
+## Native Types
 
 * ```bool``` - Represents a logical value, either `true` or `false`
 * ```char``` - Represents a single character in the ASCII character set
@@ -1396,7 +1396,7 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 
 <table><tr><td>
 
-## Data Types
+## All Types
 
 * ```bool``` - Represents a logical value, either `true` or `false`
 * ```char``` - Represents a single character in the ASCII character set
