@@ -4,7 +4,7 @@
   
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mrrobinofficial/guide-unitysteamnetcodegameobjects/blob/HEAD/LICENSE.txt)
 ![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-orange)
-![reading-time](https://img.shields.io/badge/reading_time-60_mins-blue)
+![reading-time](https://img.shields.io/badge/reading_time-110.5_mins-blue)
 ![guide-status](https://img.shields.io/badge/guide_status-wip-yellow)
 
 </div>
@@ -2743,6 +2743,12 @@ int main()
 
 ## 🆘 Support
 If you have any questions or issue, just write either to my [YouTube channel](https://www.youtube.com/@mrrobinofficial), [Email](mailto:mrrobin123mail@gmail.com) or [Twitter DM](https://twitter.com/MrRobinOfficial).
+
+<table><tr><td>
+
+<sub><sup><sup>IT'S 14 PAGES LONG!</sup></sup></sub>
+
+</td></tr></table>
 
 ## 📍 Footnotes
 
