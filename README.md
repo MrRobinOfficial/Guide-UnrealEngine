@@ -316,7 +316,7 @@ It can span multiple lines
 ## Native Types
 
 * ```bool``` - Represents a logical value, either `true` or `false`
-* ```char``` - Represents a single character in the ASCII character set
+* ```char``` - Represents a single character in the ASCII[^3] character set
 * ```int``` - Represents a integer (whole number)
 * ```float``` - Represents a floating-point number, which is a real number with a fractional component
 * ```double``` - Represents a double-precision floating-point number, which has twice the precision of a float
@@ -1372,7 +1372,6 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 
 ## Misc
 
-* `ASCII` or American Standard Code for Information Interchange – A character encoding standard for representing English (Latin) characters and symbols.
 * `API` or Application Programming Interface – An interface for connecting multiple isolated components.
 * `SDK` or Software Development Kit – A collection of software often needed for development in a specific platform.
 * `TDD` or Test-driven development - TDD is a software development process that is based on the repetition of a short development cycle: requirements are turned into specific test cases, and then the code is fixed so that the tests pass.
@@ -1399,7 +1398,7 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 ## All Types
 
 * ```bool``` - Represents a logical value, either `true` or `false`
-* ```char``` - Represents a single character in the ASCII character set
+* ```char``` - Represents a single character in the ASCII[^3] character set
 * ```int8``` - Represents a signed 8-bit integer
 * ```int``` or ```int32``` - Represents a signed 32-bit integer
 * ```int16``` - Represents a signed 16-bit integer
@@ -2749,3 +2748,4 @@ If you have any questions or issue, just write either to my [YouTube channel](ht
 
 [^1]: Keyword, also known as a [Reserved word](https://en.wikipedia.org/wiki/Reserved_word).
 [^2]: The [Unreal Header Tool](https://docs.unrealengine.com/5.2/en-US/unreal-header-tool-for-unreal-engine/) (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the [Unreal Build Tool](https://docs.unrealengine.com/5.2/en-US/unreal-build-tool-in-unreal-engine/) (UBT), which is responsible for compiling the engine and all its modules.
+[^3]: `ASCII` or American Standard Code for Information Interchange. A character encoding standard for representing English (Latin) characters and symbols.
