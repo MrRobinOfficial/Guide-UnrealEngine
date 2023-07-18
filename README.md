@@ -2153,13 +2153,12 @@ In programming terms, a hard reference is similar. When you have a hard referenc
 * `GENERATED_BODY()` - Is used by Unreal to add boilerplate code required by the engine.
 * `TEXT()` - Is used to convert a string literal to a wide-character string literal.
 * `TEXTVIEW()` - Calculates the length of a string from a string literal at compile time.
-* `INVTEXT()` - Lorem Ipsum
-* `LOCTEXT()` - Lorem Ipsum
-* `IN` - Lorem Ipsum
-* `OUT` - Lorem Ipsum
-* `LINE_TERMINATOR` - Lorem Ipsum
-* `CONSTEXPR` - Lorem Ipsum
-* `ABSTRACT` - Lorem Ipsum
+* `INVTEXT()` - Mark text strings for localization. It stands for "Invariant Text" and is used to specify text that should remain unchanged during the localization process.
+* `LOCTEXT()` - Creating localized text. It stands for "Localized Text" and allows you to define text literals that can be localized for different languages.
+* `IN` and `OUT` - Function parameter decorators. They provide a hint about the intention and direction of data flow. IN indicates that the parameter is an input parameter, meaning it provides data to the function. OUT indicates that the parameter is an output parameter, meaning the function will modify or provide data through that parameter.
+* `LINE_TERMINATOR` - Represent the line terminator character sequence in Unreal Engine. It provides a platform-independent way of specifying line breaks in text files or strings.
+* `CONSTEXPR` - Declare a constant expression. It is used in conjunction with the `constexpr` keyword[^1] to specify that a function or variable can be evaluated at compile-time and treated as a constant expression.
+* `ABSTRACT` - Declare an abstract class. It indicates that a class cannot be instantiated directly and must be subclassed. An abstract class serves as a base class for other classes and provides a blueprint for their common functionality.
 * ```UPROPERTY()``` - Defines the type and behavior of the property, as well as its metadata and display names.
 * ```UFUNCTION()``` - Defines the parameters and return type of the function, as well as its behavior and metadata.
 * ```UCLASS()``` - Defines the properties and behavior of the class, including its inheritance hierarchy, default properties, and editor metadata.
