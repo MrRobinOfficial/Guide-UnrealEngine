@@ -131,6 +131,7 @@
     * 22.2\. [Compiler Error C2065](#compiler-error-c2065)
   * 23\. [🔗 Helpful links](#-helpful-links)
   * 24\. [🆘 Support](#-support)
+  * 25\. [📍 Footnotes](#-footnotes)
 
 </td></tr></table>
 
