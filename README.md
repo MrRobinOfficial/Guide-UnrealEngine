@@ -679,7 +679,49 @@ Operator overloading is not limited to comparison operators; you can also overlo
 
 ##### Function Overloading
 
-Lorem Ipsum
+Function overloading is a feature in C++ that allows you to define multiple functions with the same name but different parameters.
+
+It enables you to create functions that perform similar operations but on **different data types** or with **different parameter sets**.
+
+```cpp
+void TakeDamage(int DamageAmount)
+{
+	// Logic...
+}
+
+void TakeDamage(float DamageAmount)
+{
+	// Logic...
+}
+
+void TakeDamage(double DamageAmount)
+{
+	// Logic...
+}
+```
+
+When you call an overloaded function, the compiler determines the appropriate function to invoke based on the arguments passed.
+
+```cpp
+TakeDamage(10); // Calling function with integer parameter
+TakeDamage(11.1f); // Calling function with float parameter
+TakeDamage(12.25052651); // Calling function with double parameter
+```
+
+With function overloading, it provides several benefits, including:
+
+<table><tr><td>
+
+* Code Reusability: Overloading allows you to reuse a function name and provide multiple implementations for different scenarios, reducing code duplication.
+
+* Readability and Intuitive API: By using the same function name for similar operations, code becomes more readable and intuitive to understand.
+
+* Compile-Time Dispatch: The appropriate overloaded function is determined at compile-time based on the arguments, resulting in efficient and optimized code execution.
+
+</td></tr></table>
+
+> **Note**
+> Unreal Engine doesn't support function overloading with UHT. Meaning, you can't expose to Blueprint.
 
 ##### Virtual functions
 
