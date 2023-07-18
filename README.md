@@ -224,7 +224,7 @@ Polymorphism is often illustrated through inheritance, where you have a base cla
 
 Syntax refers to the set of rules that define the structure, format, and grammar of a programming language. It dictates how statements and expressions should be written to form valid code.
 
-C++ follows a structured syntax that includes elements such as keywords, identifiers, operators, punctuation, and control structures. The syntax is designed to provide precise instructions to the compiler on how to interpret and execute the code.
+C++ follows a structured syntax that includes elements such as keywords[^1], identifiers, operators, punctuation, and control structures. The syntax is designed to provide precise instructions to the compiler on how to interpret and execute the code.
 
 #### Weak vs Strong typing
 
@@ -633,7 +633,7 @@ Polymorphism allows you to write more flexible and reusable code by treating obj
 
 ##### Operator Overloading
 
-In C++, operators are symbols or keywords used to perform various operations on data, such as arithmetic operations, logical operations, assignment, comparison, and more. They enable concise and expressive manipulation of variables and values.
+In C++, operators are symbols or keywords[^1] used to perform various operations on data, such as arithmetic operations, logical operations, assignment, comparison, and more. They enable concise and expressive manipulation of variables and values.
 
 Operator Overloading is a feature in C++ that allows you to redefine the behavior of an operator for user-defined types. It enables you to provide a specific implementation for an operator based on the operands' types, allowing custom operations to be performed.
 
@@ -721,7 +721,7 @@ With function overloading, it provides several benefits, including:
 </td></tr></table>
 
 > **Note**
-> Unreal Engine doesn't support function overloading with UHT. Meaning, you can't expose to Blueprint.
+> Unreal Engine doesn't support function overloading with UHT[^2]. Meaning, you can't expose to Blueprint.
 
 ##### Virtual functions
 
@@ -1983,8 +1983,8 @@ In programming terms, a hard reference is similar. When you have a hard referenc
 * ```UPARAM()``` - Is used to specify additional metadata for function parameters in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the category or tooltip for the parameter in the editor.
 * ```UENUM()``` - Is used to define an enumeration that can be used in Unreal Engine classes. This allows developers to define a set of named constants that can be used in a type-safe way.
 * ```UMETA()``` - Is used to specify additional metadata for enumeration values in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the display name or tooltip for the value in the editor.
-* ```INLINE``` - Is a suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it. (Replacement for ```inline``` keyword)
-* ```FORCEINLINE``` - Is a stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for ```force_inline``` keyword)'
+* ```INLINE``` - Is a suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it. (Replacement for ```inline``` keyword[^1])
+* ```FORCEINLINE``` - Is a stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for ```force_inline``` keyword[^1])'
 * `UE_LOG` - Unreal logging system
 
 What are inlined functions?
@@ -2208,13 +2208,11 @@ In Unreal Engine, it's recommended to use the built-in memory management functio
 
 ### 🛸 Reflection System
 
-Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT) during compilation. With the help of `GENERATED_BODY()` macro and "[FileName].generated.h" header.
+Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT[^2]) during compilation. With the help of `GENERATED_BODY()` macro and "[FileName].generated.h" header.
 
 The generated header file is typically included in the source file that defines the corresponding class or struct, and it is also included in any other source files that use that class or struct. This ensures that the metadata is available to the engine at compile-time and runtime.
 
 The reflection system is also used in many other areas of the engine, such as serialization and networking. When objects are saved to disk or sent over the network, their properties are serialized into a binary format. The reflection system is used to determine which properties to serialize, and how to convert them to and from their binary representation.
-
-The Unreal Header Tool (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the Unreal Build System (UBS), which is responsible for compiling the engine and all its modules.
 
 One of the key benefits of the header system is that it allows for very efficient compilation times. Because each C++ file has its own header file, changes to one file do not require recompilation of other files that depend on it. Instead, only the files that include the modified header file need to be recompiled.
 
@@ -2266,7 +2264,7 @@ SetComponentTickEnabled()
 > Tick any object you want, UObject or not!
 
 > **Warning**
-> `USTRUCT` don't support expose functions with UHT.
+> `USTRUCT` don't support expose functions with UHT[^2].
 
 Sample code to get started:
 
@@ -2538,6 +2536,7 @@ int main()
 ## 🆘 Support
 If you have any questions or issue, just write either to my [YouTube channel](https://www.youtube.com/@mrrobinofficial), [Email](mailto:mrrobin123mail@gmail.com) or [Twitter DM](https://twitter.com/MrRobinOfficial).
 
-## Footnotes
+## 📍 Footnotes
 
 [^1]: Keyword, also known as a [Reserved word](https://en.wikipedia.org/wiki/Reserved_word).
+[^2]: The [Unreal Header Tool](https://docs.unrealengine.com/5.2/en-US/unreal-header-tool-for-unreal-engine/) (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the [Unreal Build Tool](https://docs.unrealengine.com/5.2/en-US/unreal-build-tool-in-unreal-engine/) (UBT), which is responsible for compiling the engine and all its modules.
