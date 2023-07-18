@@ -11,6 +11,27 @@
 
 #
 
+<table><tr><td>
+
+## TODO LIST
+
+* Rewrite [Soft vs hard references](#-soft-vs-hard-references) seciton.
+* Rewrite [Unreal Motion Graphics (UMG)](#-unreal-motion-graphics-umg) section.
+* Rewrite [Circular Dependency](#%EF%B8%8F-circular-dependency) section.
+* Add emojis to most sections.
+* Add image/banner cover to help visualize.
+* Use more tables for better understanding.
+* Add more video links.
+* Change from **Note** to **Warning**.
+* Add more footnotes.
+* Add more content to [Tips and best practices](#-tips-and-best-practices) section.
+* Add about `TStaticArray`
+* 
+
+</td></tr></table>
+
+#
+
 **Are you interested in creating games with Unreal Engine using C++?**
 
 *In this repo, we'll guide you through the basics of getting started with Unreal Engine and C++. We'll cover the fundamentals of C++ programming, such as data types and pointers, and show you how to use these concepts in the context of game development with Unreal Engine. We'll also introduce you to the Unreal Engine module system, which is an important aspect of organizing your game code into smaller, more manageable pieces.*
@@ -291,6 +312,8 @@ It can span multiple lines
 ### Data types
 
 <table><tr><td>
+
+## Data Types
 
 * ```bool``` - Represents a logical value, either `true` or `false`
 * ```char``` - Represents a single character in the ASCII character set
@@ -1372,6 +1395,8 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
   <summary>Click to expand</summary>
 
 <table><tr><td>
+
+## Data Types
 
 * ```bool``` - Represents a logical value, either `true` or `false`
 * ```char``` - Represents a single character in the ASCII character set
