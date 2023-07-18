@@ -368,9 +368,30 @@ signed long long; // 64-bit signed integer
 
 ### Typedefs
 
+In C++, the `typedef` keyword[^1] is used to create an alias or alternative name for existing data types. It provides a way to define a new name that can be used as a shorthand for the original type, improving code readability and maintainability.
+
+Here's an example:
+
 ```cpp
-// Lorem Ipsum
+typedef int myInt; // Declare our alias for custom type
+
+myInt x = 5;  // Equivalent to: int x = 5;
 ```
+
+Typedefs can be particularly useful in the following scenarios:
+
+<table><tr><td>
+
+* Enhancing Code Readability: By creating typedefs with meaningful names, you can make the code more self-explanatory and easier to understand, especially when dealing with complex or lengthy type names.
+
+* Abstraction and Portability: Typedefs provide a level of abstraction that allows you to switch the underlying type without affecting the rest of the code. If you need to change the type used, you only need to update the typedef rather than modifying every occurrence of the original type.
+
+* Simplifying Complex Declarations: Typedefs can simplify complex declarations involving function pointers, function signatures, or template specializations by providing more concise and descriptive names.
+
+</td></tr></table>
+
+> **Note**
+> Unreal Engine doesn't support typedefs with UHT[^2]. Meaning, you can't expose to Blueprint.
 
 ### Members
 
@@ -429,15 +450,15 @@ It provides a way to control the flow of execution in your program.
 ```cpp
 if (condition)
 {
-	// Code to be executed if the condition is true
+    // Code to be executed if the condition is true
 }
 else if (secondCondition)
 {
-	// Code to be executed if the secondCondition is true, but condition was false
+    // Code to be executed if the secondCondition is true, but condition was false
 }
 else
 {
-	// Code to be executed if the condition and secondCondition is both false
+    // Code to be executed if the condition and secondCondition is both false
 }
 ```
 
