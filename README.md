@@ -24,6 +24,7 @@
 * Use more tables for better understanding.
 * Add more video links.
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
+* Add video link and image to visualize stack vs heap.
 * 
 
 </td></tr></table>
