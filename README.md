@@ -1871,7 +1871,9 @@ int& B = A; // A reference
 
 Everything in C++ is value type by default. Even classes, which differ from C#.
 
-Code example:
+You can watch this video about [references in C++ from Low Level Learning](https://www.youtube.com/watch?v=wro8Bb6JnwU).
+
+Here is an example:
 
 ```cpp
 #include <iostream>
