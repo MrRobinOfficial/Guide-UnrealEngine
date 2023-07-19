@@ -1398,31 +1398,34 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 
 ## All Types
 
-* ```bool``` - Represents a logical value, either `true` or `false`
-* ```char``` - Represents a single character in the ASCII[^3] character set
-* ```int8``` - Represents a signed 8-bit integer
-* ```int``` or ```int32``` - Represents a signed 32-bit integer
-* ```int16``` - Represents a signed 16-bit integer
-* ```int64``` - Represents a signed 64-bit integer
-* ```uint8``` - Represents an unsigned 8-bit integer
-* ```uint16``` - Represents an unsigned 16-bit integer
-* ```uint32``` - Represents an unsigned 32-bit integer
-* ```uint64```- Represents an unsigned 64-bit integer
-* ```float``` - Represents a floating-point number, which is a real number with a fractional component
-* ```double``` - Represents a double-precision floating-point number, which has twice the precision of a float
-* ```FString``` - Represents a string of characters
-* ```FText``` - Represents a localized string of characters
-* ```FName``` - Represents a unique name (case-insensitive, and are stored as a combination of an index into a table of unique strings and an instance number.)
-* ```TArray``` - Dynamic array data structure that can hold any type of data
-* ```TSet``` - Dynamic set data structure that can hold any type of data
-* ```TMap``` - Dynamic map data structure that can hold key-value pairs of any type of data (similar to Dictionary)
-* ```FVector``` - Represents a 3D vector, which consists of three float values (X, Y, and Z). It is often used to represent positions, directions, and velocities in 3D space.
-* ```FRotator``` - Represents a rotation in 3D space, which consists of three float values (Pitch, Yaw, and Roll) that correspond to rotations around the X, Y, and Z axes, respectively
-* ```FTransform``` - Represents a transformation in 3D space, which consists of a location, rotation, and scale
+* `bool` - Represents a logical value, either `true` or `false`
+* `char` - Represents a single character in the ASCII[^3] character set
+* `int8` - Represents a signed 8-bit integer
+* `int` or ```int32``` - Represents a signed 32-bit integer
+* `int16` - Represents a signed 16-bit integer
+* `int64` - Represents a signed 64-bit integer
+* `uint8` - Represents an unsigned 8-bit integer
+* `uint16` - Represents an unsigned 16-bit integer
+* `uint32` - Represents an unsigned 32-bit integer
+* `uint64`- Represents an unsigned 64-bit integer
+* `float` - Represents a floating-point number, which is a real number with a fractional component
+* `double` - Represents a double-precision floating-point number, which has twice the precision of a float
+* `FName` - Represents a unique name (case-insensitive, and are stored as a combination of an index into a table of unique strings and an instance number.)
+* `FText` - Represents a localized string of characters
+* `FString` - Represents a string of characters
+* `FVector` - Represents a 3D vector, which consists of three float values (X, Y, and Z). It is often used to represent positions, directions, and velocities in 3D space.
+* `FRotator` - Represents a rotation in 3D space, which consists of three float values (Pitch, Yaw, and Roll) that correspond to rotations around the X, Y, and Z axes, respectively
+* `FQuat` - Lorem Ipsum
+* `FTransform` - Represents a transformation in 3D space, which consists of a location, rotation, and scale
+* `TArray` - Dynamic array data structure that can hold any type of data
+* `TSet` - Dynamic set data structure that can hold any type of data
+* `TMap` - Dynamic map data structure that can hold key-value pairs of any type of data (similar to Dictionary)
+* `TMultiMap` - Lorem Ipsum
+* `TStaticArray` - Lorem Ipsum
 
 </td></tr></table>
 
-We start off with simple variables types, such as `char`, ```bool```, ```int```, ```float```, ```string``` and pointers.
+We start off with simple variables types, such as `char`, `bool`, `int`, `float`, `string` and pointers.
 
 ### Char
 
