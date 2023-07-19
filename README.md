@@ -16,16 +16,18 @@
 
 ## TODO LIST
 
-* Rewrite [Soft vs hard references](#-soft-vs-hard-references) seciton.
-* Rewrite [Unreal Motion Graphics (UMG)](#-unreal-motion-graphics-umg) section.
-* Rewrite [Circular Dependency](#%EF%B8%8F-circular-dependency) section.
 * Add emojis to most sections.
 * Add image/banner cover to help visualize.
 * Use more tables for better understanding.
 * Add more video links.
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
 * Add video link and image to visualize stack vs heap.
-* 
+* Add code exmaples in [Assertions](#%EF%B8%8F-assertions) section.
+* Rewrite [📃 Macros](#-macros4) section.
+* Rewrite [🌍 Global Functions](#-global-functions) section.
+* Rewrite [Pointers](#pointers) section. Add about UHT.
+* Add about "Invert 'if' statement to reduce nesting".
+* Rewrite [Modifiers/Typedefs](#modifierstypedefs) section?
 
 </td></tr></table>
 
@@ -130,7 +132,7 @@
   * 12\. [☑️ Assertions](#%EF%B8%8F-assertions)
   * 13\. [🔔 Delegates](#-delegates)
   * 14\. [🪪 Unreal Motion Graphics (UMG)](#-unreal-motion-graphics-umg)
-  * 15\. [📚 Creating a module](#-creating-a-module)
+  * 15\. [📚 Creating modules](#-creating-modules)
       * 15.1\. [♻️ Circular Dependency](#%EF%B8%8F-circular-dependency)
   * 16\. [💡 Creating a plugin](#-creating-a-plugin)
   * 17\. [📝 preprocessor](#-preprocessor)
@@ -176,19 +178,15 @@
 
 Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
 
-Using C++ with Unreal Engine allows developers to take advantage of the engine's full feature set, including advanced graphics rendering, physics simulations, networking, and AI.
+C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](https://en.wikipedia.org/wiki/C_(programming_language)), originally named C with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
 
-C++ is a statically typed, compiled, general-purpose, case-sensitive, free-form programming language that supports procedural, object-oriented, and generic programming.
+Using C++ with Unreal Engine unlocks the engine's full feature set, allowing developers to harness advanced graphics rendering, physics simulations, networking, and AI capabilities. C++ provides a level of control, customization, and performance optimization that complements visual scripting.
 
-C++ is regarded as a **middle-level language**, as it comprises a combination of both **high-level** and **low-level** language features.
+Developing with C++ in Unreal Engine enables better debugging, profiling, and performance optimization through techniques such as multithreading and memory management. It also facilitates integration with third-party libraries, expanding the range of functionality and flexibility available to developers.
 
-C++ was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) starting in 1979 at Bell Labs in Murray Hill, New Jersey, as an enhancement to the C language and originally named C with Classes but later it was renamed C++ in 1983.
+To use C++ effectively in Unreal Engine, it is crucial to have a strong foundation in programming principles and understand Unreal Engine's architecture and conventions. Leveraging resources like the Unreal Engine documentation, community forums, and collaboration with other developers helps to gain knowledge and best practices.
 
-C++ also offers a level of control and customization that is not available through visual scripting alone. Developing with C++ in Unreal Engine also allows for better debugging and profiling, as well as the ability to optimize performance through techniques such as multithreading and memory management.
-
-Additionally, C++ code can be integrated with third-party libraries, providing even greater flexibility and functionality.
-
-**To use C++ effectively with Unreal Engine**, it's important to have a strong foundation in programming principles and an understanding of Unreal Engine's architecture and conventions. It's also important to take advantage of the resources available, such as the Unreal Engine documentation and community forums, as well as to collaborate with other developers to share knowledge and best practices.
+*By combining the power of C++ and Unreal Engine, developers can create immersive experiences and unlock the full potential of the engine's capabilities.*
 
 ### 🟢 Benefits of using C++ with Unreal Engine
 
@@ -2131,15 +2129,8 @@ Example usage:
 class MyCustomObject
 {
 public:
-    MyCustomObject()
-    {
-        // Constructor
-    }
-
-    ~MyCustomObject()
-    {
-        // Destructor
-    }
+    MyCustomObject() {} // Constructor
+    ~MyCustomObject() {} // Destructor
 
     void DoSomething()
     {
@@ -2165,15 +2156,35 @@ void MyFunction()
 
 ![Soft vs hard references](static/img/Soft_Hard_Refs.png)
 
-### Renting a Car (Soft Reference)
+### Soft References
 
-Imagine you want to rent a car from a rental agency. When you rent a car, you have temporary access to it, and you can use it for a specific period of time. However, you don't have ownership rights over the car. You can drive the car, but you cannot sell it to someone else or trade it with the rental agency. In this analogy, the rental agreement represents a soft reference. It allows you to use the car, but you don't have full control or ownership over it.
-In programming terms, a soft reference is similar. It allows you to access an object or data temporarily, but you don't have full control over its lifetime. The object can be garbage collected (released from memory) if there is not enough memory available or if it's no longer needed, even if you still hold a soft reference to it. Soft references are useful for caching or holding onto expendable objects that can be recreated if necessary.
+A soft reference is a weak reference to an asset that does not create a strong dependency. It allows assets to be loaded or unloaded dynamically at runtime based on usage or other conditions. Soft references are used when you want to indicate a loose dependency on an asset without forcing its loading.
 
-###  Owning a Car (Hard Reference)
+An analogy for a soft reference could be a bookmark in a book. It points to a specific page but doesn't physically hold the content. You can easily remove or change the bookmark without affecting the book's content.
 
-Now, let's consider the scenario of owning a car. When you own a car, you have full control over it. You can drive it, sell it to a dealership, trade it with someone else, or dispose of it as you wish. You have a direct and strong relationship with the car as its owner. In this analogy, owning a car represents a hard reference. It provides you with complete control over the car and its fate.
-In programming terms, a hard reference is similar. When you have a hard reference to an object, you have a direct and strong relationship with it. The object will not be garbage collected as long as the hard reference is in scope or being used. Hard references ensure that the referenced object remains available for use and that you have full control over its lifetime.
+### Hard References
+
+A hard reference is a strong reference to an asset that creates a firm dependency. It ensures that the referenced asset is loaded and remains loaded as long as the referencing asset is in use. Hard references are used when you require a guaranteed presence of an asset during runtime.
+
+An analogy for a hard reference could be a puzzle piece that needs to fit into a specific spot. The puzzle piece is integral to the puzzle, and removing or changing it would break the intended structure.
+
+---
+
+When an asset with hard references is loaded, it triggers a chain of dependencies, causing all assets that have hard references to be loaded as well. This ensures that all required assets are available for proper functionality. This loading behavior is known as "chain loading]" or "load-on-demand."
+
+For example, if a level blueprint references a specific sound cue with a hard reference, when the level is loaded, the sound cue and any other assets directly or indirectly referenced by it will also be loaded to maintain the integrity of the referenced sound cue's functionality.
+
+In contrast, if a soft reference is used, the referenced asset may or may not be loaded initially, and it can be loaded or unloaded dynamically based on the specific requirements of the game or application.
+
+Using the appropriate combination of soft and hard references allows for efficient management of asset dependencies, optimizing memory usage, and providing flexibility in loading and unloading assets during runtime.
+
+There is a tool (inside the engine) called [Reference Viewer](https://docs.unrealengine.com/5.2/en-US/finding-asset-references-in-unreal-engine/), which allows looking at the reference chain. Both hard and soft references. This helps to figure it out which is loading which.
+
+There is also another tool (inside the engine) called [Size Map](https://dev.epicgames.com/community/learning/tutorials/r4y7/unreal-engine-size-map), which allows looking at the total and independent size of different assets, which has been loaded by the asset.
+
+You can read more about soft and hard references in article called [Hard References & Reasons to Avoid Them by raharuu](https://raharuu.github.io/unreal/hard-references-reasons-avoid/).
+
+You can also read more about Unreal Engine docs about [Referencing Assets](https://docs.unrealengine.com/5.2/en-US/referencing-assets-in-unreal-engine/).
 
 ## 🌍 Global Functions
 
@@ -2316,7 +2327,7 @@ There is also alternatives macros[^4] that displays text.
 
 </td></tr></table>
   
-You can read more about <a href="https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/" target="_blank">here</a>!
+You can read more about [Assertions from the docs](https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/). 
 
 ## 🔔 Delegates
 
@@ -2375,18 +2386,71 @@ By using delegates, developers can create modular and flexible event systems tha
 
 ## 🪪 Unreal Motion Graphics (UMG)
 
-UI Tweening Libary for UE4/UMG by *BenUI*, <a href="https://github.com/benui-dev/UE-BUITween" target="_blank">link here</a>!
+UMG (Unreal Motion Graphics) is a visual interface authoring tool in Unreal Engine that enables the creation of user interfaces (UI) and interactive elements for games and applications. It provides a user-friendly, node-based system for designing UI elements and connecting them to C++ code for functionality and interactivity.
+
+You can read more about from the [docs](https://docs.unrealengine.com/5.2/en-US/umg-ui-designer-for-unreal-engine/).
+
+There is also a video about [UMG Widgets with C++ by Lively Geek](https://www.youtube.com/watch?v=T7v3UnL6PNU).
+
+### UMG Blueprints with C++
+
+To control Blueprint-created widgets from C++ in Unreal Engine, you can use the `BindWidget` meta property. This powerful feature allows you to establish a connection between widgets created in the Unreal Motion Graphics (UMG) editor and corresponding C++ variables.
+
+By applying the `BindWidget` meta property to a C++ variable, you can establish the link between the widget and the variable, giving you direct access to the widget's properties and functionalities within your C++ code.
+
+Here's an example that demonstrates how to use `BindWidget`:
 
 ```cpp
-UPROPERTY(meta=(BindWidget)) // To bind via UMG editor
+UPROPERTY(meta=(BindWidget)) // Binding via UMG editor
 UTextBlock* PlayerDisplayNameText;
 ```
 
-## 📚 Creating a module
+In this example, the `PlayerDisplayNameText` variable is declared as a `UTextBlock*` type, representing a text widget. The `meta=(BindWidget)` property indicates that this variable is bound to a widget created in the UMG editor.
+
+With this binding in place, you can now access and control all the properties and functions of the `PlayerDisplayNameText` widget directly from your C++ code. This allows you to manipulate the widget's appearance, handle user interactions, and update its content dynamically based on game logic or user input.
+
+Here's an example showcasing the usage of the widget:
+
+```cpp
+#include "MyPlayerCharacter.h"
+
+void AMyPlayerCharacter::UpdatePlayerDisplayName(const FString& NewDisplayName)
+{
+    if (PlayerDisplayNameText == nullptr)
+        return;
+
+    PlayerDisplayNameText->SetText(FText::FromString(NewDisplayName));
+}
+```
+
+In this example, assume we have a custom player character class called `AMyPlayerCharacter`. The `UpdatePlayerDisplayName()` function receives a `NewDisplayName` as a parameter, which represents the updated display name for the player.
+
+Inside the function, we check if the `PlayerDisplayNameText` widget is valid. If it is, we use the `SetText()` function to update the text displayed by the widget. In this case, we convert the `NewDisplayName` string to an FText object using `FText::FromString` before assigning it to the `PlayerDisplayNameText` widget.
+
+You can read more about binding widgets with C++ from the [article by BenUI](https://benui.ca/unreal/ui-bindwidget/).
+
+### UI Tweening Libary
+
+[BenUI](https://benui.ca/) has also created a free helpful plugin, which helps you animate UMG in C++. Plugin can be install from github[^5]. [Link to repository](https://github.com/benui-dev/UE-BUITween).
+
+Here's an example from UI Tweening Libary:
+
+```cpp
+UBUITween::Create( SomeWidget, 0.2f )
+	.FromTranslation( FVector2D( -100, 0 ) )
+	.FromOpacity( 0.2f )
+	.ToTranslation( FVector2D( 20, 10 ) )
+	.ToOpacity( 1.0f )
+	.Begin();
+```
+
+## 📚 Creating modules
 
 You can read more about Unreal Engine's modules [here](https://docs.unrealengine.com/5.1/en-US/unreal-engine-modules/)!
 
-In Unreal Engine, a module is a way to organize game code into smaller pieces, similar to Unity's Assembly Definitions. By separating code into modules, you can reduce compile times and keep your code more organized. For example, you could create a module called 'Vehicle' to contain all the code related to the vehicle system. This would allow you to isolate the vehicle code from other parts of the game, such as the inventory system, and make it easier to maintain and update.
+In Unreal Engine, a module is a way to organize game code into smaller pieces, similar to Unity's Assembly Definitions. By separating code into modules, you can reduce compile times and keep your code more organized.
+
+For example, you could create a module called `Vehicle` to contain all the code related to the vehicle system. This would allow you to isolate the vehicle code from other parts of the game, such as the inventory system, and make it easier to maintain and update.
 
 Here is a list of Unreal Engine's modules:
 
@@ -2425,11 +2489,32 @@ To resolve circular dependencies, you can take several approaches:
 
 <table><tr><td>
 
-* One option is to use the ```CircularlyReferencedDependentModules``` statement in the [ModuleName].Build.cs file. You can read more about [here](https://forums.unrealengine.com/t/workaround-for-circular-dependencies/264945)!
+* One option is to use the `CircularlyReferencedDependentModules` statement in the [ModuleName].Build.cs file. You can read more about [here](https://forums.unrealengine.com/t/workaround-for-circular-dependencies/264945)!
+
+Here's an example:
+
+```cpp
+using UnrealBuildTool;
+
+public class ModuleB : ModuleRules
+{
+	public ModuleB(ReadOnlyTargetRules Target) : base(Target)
+	{		
+		PrivateDependencyModuleNames.AddRange(
+			new string[]
+			{
+				"ModuleA"
+			}
+		);		
+
+		CircularlyReferencedDependentModules.Add("ModuleA");  // Avoid circular dependencies errors!
+	}
+}
+```
 
 * Another option is to create another module to further separate the code into smaller pieces.
 
-* Finally, you can also refactor your code to avoid circular dependencies altogether.
+* Finally, you can also refactor your modules to avoid circular dependencies altogether.
 
 </td></tr></table>
 
@@ -2911,3 +2996,4 @@ If you have any questions or issue, just write either to my [YouTube channel](ht
 [^2]: The [Unreal Header Tool](https://docs.unrealengine.com/5.2/en-US/unreal-header-tool-for-unreal-engine/) (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the [Unreal Build Tool](https://docs.unrealengine.com/5.2/en-US/unreal-build-tool-in-unreal-engine/) (UBT), which is responsible for compiling the engine and all its modules.
 [^3]: `ASCII` or American Standard Code for Information Interchange. A character encoding standard for representing English (Latin) characters and symbols.
 [^4]: Macros in C++ are preprocessor directives that enable the definition of reusable code snippets through text replacement before compilation. Here is a [video about it](https://www.youtube.com/watch?v=j3mYki1SrKE).
+[^5]: GitHub is a web-based platform and version control repository that allows individuals and teams to collaborate on software development projects by providing a centralized location for code storage, version tracking, issue tracking, and collaboration features such as pull requests and code reviews. [Link to there site](https://github.com/).
