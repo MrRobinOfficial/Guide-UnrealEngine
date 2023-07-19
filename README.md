@@ -23,8 +23,6 @@
 * Add image/banner cover to help visualize.
 * Use more tables for better understanding.
 * Add more video links.
-* Change from **Note** to **Warning**.
-* Add more footnotes.
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
 * Add about `TStaticArray`
 * 
@@ -133,27 +131,27 @@
   * 13\. [🔔 Delegates](#-delegates)
   * 14\. [🪪 Unreal Motion Graphics (UMG)](#-unreal-motion-graphics-umg)
   * 15\. [📚 Creating a module](#-creating-a-module)
-  * 16\. [♻️ Circular Dependency](#%EF%B8%8F-circular-dependency)
-  * 17\. [💡 Creating a plugin](#-creating-a-plugin)
-  * 18\. [📝 Pre-processor](#-pre-processor)
-    * 18.1\. [Pragma once](#pragma-once)
-    * 18.2\. [Editor code](#editor-code)
-  * 19\. [Deep Dive](#deep-dive)
-    * 19.1\. [🔖 Keywords](#-keywords)
-    * 19.2\. [🛸 Reflection System](#direct-references)
-    * 19.3\. [🪄 Tips and best practices](#-tips-and-best-practices)
-      * 19.3.1\. [Ticking](#ticking)
-      * 19.3.2\. [Direct references](#ticking)
-      * 19.3.3\. [Math Expression Node](#math-expression-node)
-      * 19.3.4\. [Call In Editor and `CallInEditor`](#call-in-editor-and-callineditor)
-  * 20\. [👁️‍🗨️ Console Commands](#%EF%B8%8F%EF%B8%8F-console-commandss)
-  * 21\. [📌 Shortcuts](#-shortcuts)
-  * 22\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
-    * 22.1\. [Compiler Error C2628](#compiler-error-c2628)
+      * 15.1\. [♻️ Circular Dependency](#%EF%B8%8F-circular-dependency)
+  * 16\. [💡 Creating a plugin](#-creating-a-plugin)
+  * 17\. [📝 Pre-processor](#-pre-processor)
+    * 17.1\. [Pragma once](#pragma-once)
+    * 17.2\. [Editor code](#editor-code)
+  * 18\. [Deep Dive](#deep-dive)
+    * 18.1\. [🔖 Keywords](#-keywords)
+    * 18.2\. [🛸 Reflection System](#direct-references)
+    * 18.3\. [🪄 Tips and best practices](#-tips-and-best-practices)
+      * 18.3.1\. [Ticking](#ticking)
+      * 18.3.2\. [Direct references](#ticking)
+      * 18.3.3\. [Math Expression Node](#math-expression-node)
+      * 18.3.4\. [Call In Editor and `CallInEditor`](#call-in-editor-and-callineditor)
+  * 19\. [👁️‍🗨️ Console Commands](#%EF%B8%8F%EF%B8%8F-console-commandss)
+  * 20\. [📌 Shortcuts](#-shortcuts)
+  * 21\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
+    * 21.1\. [Compiler Error C2628](#compiler-error-c2628)
     * 22.2\. [Compiler Error C2065](#compiler-error-c2065)
-  * 23\. [🔗 Helpful links](#-helpful-links)
-  * 24\. [🆘 Support](#-support)
-  * 25\. [📍 Footnotes](#-footnotes)
+  * 22\. [🔗 Helpful links](#-helpful-links)
+  * 23\. [🆘 Support](#-support)
+  * 24\. [📍 Footnotes](#-footnotes)
 
 </td></tr></table>
 
@@ -414,7 +412,7 @@ Typedefs can be particularly useful in the following scenarios:
 
 </td></tr></table>
 
-> **Note**
+> **Warning**
 > Unreal Engine doesn't support typedefs with UHT[^2]. Meaning, you can't expose to Blueprint.
 
 ### Members
@@ -766,7 +764,7 @@ With function overloading, it provides several benefits, including:
 
 </td></tr></table>
 
-> **Note**
+> **Warning**
 > Unreal Engine doesn't support function overloading with UHT[^2]. Meaning, you can't expose to Blueprint.
 
 ##### Virtual functions
@@ -847,6 +845,8 @@ Using virtual functions, you can write code that works with objects based on the
 Generic Programming is a programming paradigm that focuses on writing reusable code by abstracting away specific types and working with generic types that can be instantiated with various concrete types. It allows programmers to create functions, classes, and algorithms that can operate on different data types without requiring code duplication.
 
 In C++, the `template` keyword[^1] is used to implement generic programming through templates. Templates allow you to define functions or classes that can be instantiated with different types. They provide a powerful mechanism for code reuse and flexibility.
+
+Here is a video about [templates in C++ by Cazz](https://www.youtube.com/watch?v=p3OQDb4nWfg)
 
 Here is an example:
 
@@ -1195,7 +1195,8 @@ With ```AActor``` and ```UActorComponent``` you can control how the classes shou
 
 > **Note**
 > Only use constructors for initializing variables. The constructor will also be called in the editor. Meaning, it should not use for runtime execution. Instead, use ```BeginPlay()``` function.
-> 
+
+> **Warning**
 > Don't use destructors for deleting memory with Unreal ```UObject```. This is handle by Unreal Engine's garbage collector.
 
 ## ✍️ Naming Convention
@@ -1622,7 +1623,7 @@ typedef FPlatformTypes::TYPE_OF_NULL	TYPE_OF_NULL;
 typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 ```
 
-> **Note**
+> **Warning**
 > Unreal Engine only supports int32 and int64 for Blueprint editor. The other types are not supported, but can be still be used by Unreal reflection system (UPROPERTY and UFUNCTION).
 
 ### Strings
@@ -1730,7 +1731,7 @@ UE_LOG(LogTemp, Display, TEXT("MyTransformRotation: %s"), *MyTransformRotation.T
 * ```TMap``` - A map of key-value pairs, implemented as a hash table. It allows fast lookup of a value given a key, and supports adding, removing, and iterating over key-value pairs.
 * ```TMultiMap``` - Similar to ```TMap```, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
 
-> **Note**
+> **Warning**
 > TMultiMap is not supported by blueprint editor!
 
 Here is a example for using these:
@@ -2173,7 +2174,7 @@ In programming terms, a hard reference is similar. When you have a hard referenc
 * ```FMath``` - Math helper functions (Check ```GenericPlatformMath.h``` for additional math functions).
 * ```DrawDebugHelpers.h``` - Header file containg debug draw functions. Read more about <a href="https://unrealcpp.com/draw-debug-helpers/" target="_blank">here</a>!
 
-## 📃 Macros
+## 📃 Macros[^4]
 
 * `GENERATED_BODY()` - Is used by Unreal to add boilerplate code required by the engine.
 * `TEXT()` - Is used to convert a string literal to a wide-character string literal.
@@ -2200,8 +2201,8 @@ What are inlined functions?
 > When a function is inlined, the compiler replaces the function call with the actual code of the function, as if the code had been written directly in place of the call. This can improve performance by eliminating the overhead of a function call, but it can also increase the size of the executable.
 
 Difference between a macro and function then?
-> While both macros and `FORCEINLINE` functions can be used to improve performance and reduce code repetition,
-> `FORCEINLINE` functions are generally preferred over macros in Unreal Engine, as they offer type safety, scoping and visibility rules, and better debugging support.
+> While both macros[^4] and `FORCEINLINE` functions can be used to improve performance and reduce code repetition,
+> `FORCEINLINE` functions are generally preferred over macros[^4] in Unreal Engine, as they offer type safety, scoping and visibility rules, and better debugging support.
 
 ## ☑️ Assertions
 
@@ -2221,7 +2222,7 @@ Assertions are a programming technique used to detect and report errors or unexp
   * Is similar to the ```check()``` macro, but is only enabled in debug builds of the engine. If the condition is false, the ```verify()``` macro will break into the debugger but will not halt the game.
   * The ```verify()``` macro is typically used to detect errors during development or testing, but does not impact the performance of the final release build.
 
-There is also alternatives macros that displays text.
+There is also alternatives macros[^4] that displays text.
 
 <table><tr><td>
   
@@ -2333,7 +2334,7 @@ There should also be a [ModuleName].Build.csfile for each module in its root fol
 
 ![image](https://user-images.githubusercontent.com/61658252/236797649-1acb5aac-ab05-4676-86a4-959e443de404.png)
 
-## ♻️ Circular Dependency
+### ♻️ Circular Dependency
 
 It's possible to encounter circular dependencies when multiple modules access the same module. This occurs when module A depends on module B, and module B also depends on module A. To resolve circular dependencies, you can take several approaches.
 
@@ -2388,7 +2389,12 @@ void SetupArrow()
 
 ### 🔖 Keywords
 
-* ```const``` - Indicates that a variable's value cannot be changed after initialization.
+Here is a video about [constants keywords in C++ by Cazz](https://www.youtube.com/watch?v=KBny6MZJR64)
+
+* `const` - Specifies that an object or variable is read-only and cannot be modified.
+* `constexpr` - Specifies that a function or variable can be evaluated at compile-time. `constexpr` can be used for inlining variables, without using macros[^4]. **Note**, the compiler does not guarantee compile-time evaluation (only it **CAN** be evaluated at compile-time).
+* `consteval` - Specifies that a function must be evaluated at compile-time. **Note**, the compiler has to evaluated at compile-time.
+* `constinit` - Specifies that an object with static or thread storage duration should be initialized only with constant expressions.
 * ```auto``` - Allows the compiler to deduce the type of a variable based on its initializer.
 * ```static``` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
 * ```virtual``` - Specifies that a function should be polymorphic, meaning that it can be overridden by a derived class.
@@ -2402,6 +2408,7 @@ void SetupArrow()
 * ```delete``` - Deallocates memory that was allocated with new.
 * ```dynamic_cast``` - Performs a runtime check to determine whether an object can be cast to a different type.
 * ```static_cast``` - Performs a static cast, which allows an expression to be converted to a different data type at compile time.
+* `const_cast` - - Performs a const cast.
 * ```explicit``` - Specifies that a constructor or conversion operator cannot be used for implicit type conversions.
 * ```namespace``` - Defines a scope for identifiers to avoid naming conflicts.
 * ```operator``` - Declares a function as an overloaded operator.
@@ -2756,3 +2763,4 @@ If you have any questions or issue, just write either to my [YouTube channel](ht
 [^1]: Keyword, also known as a [Reserved word](https://en.wikipedia.org/wiki/Reserved_word).
 [^2]: The [Unreal Header Tool](https://docs.unrealengine.com/5.2/en-US/unreal-header-tool-for-unreal-engine/) (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the [Unreal Build Tool](https://docs.unrealengine.com/5.2/en-US/unreal-build-tool-in-unreal-engine/) (UBT), which is responsible for compiling the engine and all its modules.
 [^3]: `ASCII` or American Standard Code for Information Interchange. A character encoding standard for representing English (Latin) characters and symbols.
+[^4]: Macros in C++ are preprocessor directives that enable the definition of reusable code snippets through text replacement before compilation. Here is a [video about it](https://www.youtube.com/watch?v=j3mYki1SrKE).
