@@ -24,7 +24,6 @@
 * Use more tables for better understanding.
 * Add more video links.
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
-* Add about `TStaticArray`
 * 
 
 </td></tr></table>
@@ -126,14 +125,14 @@
   * 8\. [💾 Soft vs hard references](#-soft-vs-hard-references)
   * 9\. [🌍 Global Functions](#-global-functions)
   * 10\. [🏛️ Libraries](#%EF%B8%8F-libraries)
-  * 11\. [📃 Macros](#-macros)
+  * 11\. [📃 Macros](#-macros4)
   * 12\. [☑️ Assertions](#%EF%B8%8F-assertions)
   * 13\. [🔔 Delegates](#-delegates)
   * 14\. [🪪 Unreal Motion Graphics (UMG)](#-unreal-motion-graphics-umg)
   * 15\. [📚 Creating a module](#-creating-a-module)
       * 15.1\. [♻️ Circular Dependency](#%EF%B8%8F-circular-dependency)
   * 16\. [💡 Creating a plugin](#-creating-a-plugin)
-  * 17\. [📝 Pre-processor](#-pre-processor)
+  * 17\. [📝 preprocessor](#-preprocessor)
     * 17.1\. [Pragma once](#pragma-once)
     * 17.2\. [Editor code](#editor-code)
   * 18\. [Deep Dive](#deep-dive)
@@ -1726,17 +1725,9 @@ UE_LOG(LogTemp, Display, TEXT("MyTransformRotation: %s"), *MyTransformRotation.T
 
 ![Collections](static/img/Collections.png)
 
-* ```TArray``` - A dynamic array that can store a variable number of elements of the same type. It provides many useful functions, such as adding, removing, sorting, and searching for elements, as well as iterating over them.
-* ```TSet``` - A set of unique elements of a single type, implemented as a hash table. It provides many of the same functions as ```TArray```, but with faster lookup times for large collections of elements.
-* ```TMap``` - A map of key-value pairs, implemented as a hash table. It allows fast lookup of a value given a key, and supports adding, removing, and iterating over key-value pairs.
-* ```TMultiMap``` - Similar to ```TMap```, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
-
-> **Warning**
-> TMultiMap is not supported by blueprint editor!
-
-Here is a example for using these:
-
 #### TArray
+
+A dynamic array that can store a variable number of elements of the same type. It provides many useful functions, such as adding, removing, sorting, and searching for elements, as well as iterating over them.
 
 ```cpp
 // Declare a TArray of integers
@@ -1756,6 +1747,10 @@ for (int32 Element : MyIntArray)
 ```
 
 #### TSet
+
+A set of unique elements of a single type, implemented as a hash table. It provides many of the same functions as ```TArray```, but with faster lookup times for large collections of elements.
+
+Here is an example:
 
 ```cpp
 // Declare a TSet of strings
@@ -1778,6 +1773,10 @@ MyStringSet.Remove(TEXT("Engine"));
 ```
 
 #### TMap
+
+A map of key-value pairs, implemented as a hash table. It allows fast lookup of a value given a key, and supports adding, removing, and iterating over key-value pairs.
+
+Here is an example:
 
 ```cpp
 // Declare a TMap of integers to strings
@@ -1804,6 +1803,8 @@ MyIntStringMap.Remove(3);
 
 #### TMultiMap
 
+Similar to ```TMap```, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
+
 ```cpp
 // Declare a TMultiMap of integers to strings
 TMultiMap<int32, FString> MyIntStringMultiMap;
@@ -1827,6 +1828,22 @@ for (const FString& Value : Values)
 // Remove all values for a key in the map
 MyIntStringMultiMap.Remove(2);
 ```
+
+Here is an example:
+
+> **Warning**
+> Unreal Engine doesn't support `TMultiMap` with UHT[^3]. Meaning, you can't expose to Blueprint.
+
+#### TStaticArray
+
+Here is an example:
+
+```cpp
+// ...
+```
+
+> **Warning**
+> Unreal Engine doesn't support `TStaticArray` with UHT[^3]. Meaning, you can't expose to Blueprint.
 
 ### Value type vs Reference type
 
@@ -2162,74 +2179,134 @@ In programming terms, a hard reference is similar. When you have a hard referenc
 
 ## 🏛️ Libraries
 
-* ```UGameplayStatics``` (kismet library) - Static class with useful ```gameplay``` utility functions that can be called from both Blueprint and C++
-* ```UKismetMathLibrary``` (kismet library) - Static class with useful ```math``` utility functions that can be called from both Blueprint and C++
-* ```UKismetStringLibrary``` (kismet library) - Static class with useful ```string``` utility functions that can be called from both Blueprint and C++
-* ```UKismetTextLibrary``` (kismet library) - Static class with useful ```text``` utility functions that can be called from both Blueprint and C++
-* ```UKismetSystemLibrary``` (kismet library) - Static class with useful ```system``` utility functions that can be called from both Blueprint and C++
-* ```UKismetMaterialLibrary``` (kismet library) - Static class with useful ```material``` utility functions that can be called from both Blueprint and C++
-* ```UKismetInputLibrary``` (kismet library) - Static class with useful ```input``` utility functions that can be called from both Blueprint and C++
-* ```UKismetGuidLibrary``` (kismet library) - Static class with useful ```guid``` utility functions that can be called from both Blueprint and C++
-* ```UKismetArrayLibrary``` (kismet library) - Static class with useful ```array``` utility functions that can be called from both Blueprint and C++
-* ```FMath``` - Math helper functions (Check ```GenericPlatformMath.h``` for additional math functions).
-* ```DrawDebugHelpers.h``` - Header file containg debug draw functions. Read more about <a href="https://unrealcpp.com/draw-debug-helpers/" target="_blank">here</a>!
+Blueprint Function Libraries are a collection of static functions that provide utility functionality not tied to a particular gameplay object. These libraries can be grouped into logical function sets, e.g. AI Blueprint Library, or contain utility functions that provide access to many different functional areas, e.g. System Blueprint Library.
+
+Creating a Blueprint Function Library is very similar to exposing functions to Blueprints using the `UFUNCTION()` macro[^4]. Instead of deriving from an Actor or directly from `UObject` all Blueprint Libraries inherit from `UBlueprintFunctionLibrary`. They should also contain only static methods. The code below is a snippet from the Analytics Blueprint Library, showing how to setup your library class.
+
+```cpp
+    UCLASS()
+    class UAnalyticsBlueprintLibrary :
+        public UBlueprintFunctionLibrary
+    {
+        GENERATED_UCLASS_BODY()
+        /** Starts an analytics session without any custom attributes specified */
+        UFUNCTION(BlueprintCallable, Category="Analytics")
+        static bool StartSession();
+```
+
+As you can see in the example above, a Blueprint Function Library is indirectly a `UObject` derived and therefore requires the standard `UCLASS()` and `GENERATED_UCLASS_BODY()` macros[^4]. It decorates the functions that are to be callable from Blueprints with the `UFUNCTION()` macro[^4]. Functions in a Blueprint Function Library can be designated as BlueprintCallable or BlueprintPure depending on whether the calls have side effects or not.
+
+Below is the implementation of the `StartSession()` function:
+
+```cpp
+    bool UAnalyticsBlueprintLibrary::StartSession()
+    {
+        TSharedPtr<IAnalyticsProvider> Provider = FAnalytics::Get().GetDefaultConfiguredProvider();
+        if (Provider.IsValid())
+        {
+            return Provider->StartSession();
+        }
+        else
+        {
+            UE_LOG(LogAnalyticsBPLib, Warning, TEXT("StartSession: Failed to get the default analytics provider. Double check your [Analytics] configuration in your INI"));
+        }
+        return false;
+    }
+```
+
+You can read more about [Blueprint Function Libraries here](https://docs.unrealengine.com/5.2/en-US/blueprint-function-libraries-in-unreal-engine/)!
+
+### Kismet Library
+
+* `UGameplayStatics` - `gameplay` utility functions that can be called from both Blueprint and C++
+* `UKismetMathLibrary` - `math` utility functions that can be called from both Blueprint and C++
+* `UKismetStringLibrary` - `string` utility functions that can be called from both Blueprint and C++
+* `UKismetTextLibrary` - `text` utility functions that can be called from both Blueprint and C++
+* `UKismetSystemLibrary` - `system` utility functions that can be called from both Blueprint and C++
+* `UKismetMaterialLibrary` - `material` utility functions that can be called from both Blueprint and C++
+* `UKismetInputLibrary` - `input` utility functions that can be called from both Blueprint and C++
+* `UKismetGuidLibrary` - `guid` utility functions that can be called from both Blueprint and C++
+* `UKismetArrayLibrary` - `array` utility functions that can be called from both Blueprint and C++
+* `FMath` - Math helper functions (Check ```GenericPlatformMath.h``` for additional math functions).
+* `DrawDebugHelpers.h` - Header file containg debug draw functions. Read more about <a href="https://unrealcpp.com/draw-debug-helpers/" target="_blank">here</a>!
 
 ## 📃 Macros[^4]
 
-* `GENERATED_BODY()` - Is used by Unreal to add boilerplate code required by the engine.
-* `TEXT()` - Is used to convert a string literal to a wide-character string literal.
+* `GENERATED_BODY()` - Boilerplate code required by the engine.
+* `TEXT()` - Convert a string literal to a wide-character string literal.
 * `TEXTVIEW()` - Calculates the length of a string from a string literal at compile time.
 * `INVTEXT()` - Mark text strings for localization. It stands for "Invariant Text" and is used to specify text that should remain unchanged during the localization process.
 * `LOCTEXT()` - Creating localized text. It stands for "Localized Text" and allows you to define text literals that can be localized for different languages.
-* `IN` and `OUT` - Function parameter decorators. They provide a hint about the intention and direction of data flow. IN indicates that the parameter is an input parameter, meaning it provides data to the function. OUT indicates that the parameter is an output parameter, meaning the function will modify or provide data through that parameter.
+* `IN` and `OUT` - Function parameter decorators. They provide a hint about the intention and direction of data flow. `IN` indicates that the parameter is an input parameter, meaning it provides data to the function. `OUT` indicates that the parameter is an output parameter, meaning the function will modify or provide data through that parameter.
 * `LINE_TERMINATOR` - Represent the line terminator character sequence in Unreal Engine. It provides a platform-independent way of specifying line breaks in text files or strings.
 * `CONSTEXPR` - Declare a constant expression. It is used in conjunction with the `constexpr` keyword[^1] to specify that a function or variable can be evaluated at compile-time and treated as a constant expression.
 * `ABSTRACT` - Declare an abstract class. It indicates that a class cannot be instantiated directly and must be subclassed. An abstract class serves as a base class for other classes and provides a blueprint for their common functionality.
-* ```UPROPERTY()``` - Defines the type and behavior of the property, as well as its metadata and display names.
-* ```UFUNCTION()``` - Defines the parameters and return type of the function, as well as its behavior and metadata.
-* ```UCLASS()``` - Defines the properties and behavior of the class, including its inheritance hierarchy, default properties, and editor metadata.
-* ```USTRUCT()``` - Defines the properties and behavior of the struct, including its fields, default values, and editor metadata.
-* ```UINTERFACE()``` - Defines the values of the enumeration, as well as its metadata and display names.
-* ```UPARAM()``` - Is used to specify additional metadata for function parameters in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the category or tooltip for the parameter in the editor.
-* ```UENUM()``` - Is used to define an enumeration that can be used in Unreal Engine classes. This allows developers to define a set of named constants that can be used in a type-safe way.
-* ```UMETA()``` - Is used to specify additional metadata for enumeration values in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the display name or tooltip for the value in the editor.
-* ```INLINE``` - Is a suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it. (Replacement for ```inline``` keyword[^1])
-* ```FORCEINLINE``` - Is a stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for ```force_inline``` keyword[^1])'
-* `UE_LOG` - Unreal logging system
+* `UPROPERTY()`` - Defines the type and behavior of the property, as well as its metadata and display names.
+* `UFUNCTION()` - Defines the parameters and return type of the function, as well as its behavior and metadata.
+* `UCLASS()` - Defines the properties and behavior of the class, including its inheritance hierarchy, default properties, and editor metadata.
+* `USTRUCT()` - Defines the properties and behavior of the struct, including its fields, default values, and editor metadata.
+* `UINTERFACE()` - Defines the values of the enumeration, as well as its metadata and display names.
+* `UPARAM()` - Specify additional metadata for function parameters in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the category or tooltip for the parameter in the editor.
+* `UENUM()` - Define an enumeration that can be used in Unreal Engine classes. This allows developers to define a set of named constants that can be used in a type-safe way.
+* `UMETA()` - Specify additional metadata for enumeration values in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the display name or tooltip for the value in the editor.
+* `INLINE` - Suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it. (Replacement for `inline` keyword[^1])
+* `FORCEINLINE` - A stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for `force_inline` keyword[^1])'
+* `UE_LOG` - Outputs the log message into the log file. The first input parameter it takes is the name of the logging category.
 
 What are inlined functions?
-> When a function is inlined, the compiler replaces the function call with the actual code of the function, as if the code had been written directly in place of the call. This can improve performance by eliminating the overhead of a function call, but it can also increase the size of the executable.
+> When a function is inlined, the compiler replaces the function call with the actual code of the function, as if the code had been written directly in place of the call.
+>
+> This can improve performance by eliminating the overhead of a function call, but it can also increase the size of the executable.
 
 Difference between a macro and function then?
-> While both macros[^4] and `FORCEINLINE` functions can be used to improve performance and reduce code repetition,
-> `FORCEINLINE` functions are generally preferred over macros[^4] in Unreal Engine, as they offer type safety, scoping and visibility rules, and better debugging support.
+> While both macros[^4] and `FORCEINLINE` functions can be used to improve performance and reduce code repetition, `FORCEINLINE` functions are generally preferred over macros[^4] in Unreal Engine, as they offer type safety, scoping and visibility rules, and better debugging support.
 
 ## ☑️ Assertions
 
 ![Assertions](static/img/Assertions.png)
 
 Assertions are a programming technique used to detect and report errors or unexpected behavior in code. In Unreal Engine, assert macros are provided to make it easier to add assertions to code and to customize the behavior of the engine when an assertion fails.
-  
-* ```check()```
-  * Used to test a condition at runtime and to report an error if the condition fails. If the condition is false, the ```check()``` macro will print an error message to the console and either halt the game or break into the debugger, depending on the configuration of the engine.
-  * The ```check()``` macro is typically used to detect programming errors or unexpected runtime conditions.
 
-* ```ensure()```
-  * Is similar to the ```check()``` macro, but is used to test conditions that are not necessarily fatal to the program. If the condition is false, the ```ensure()``` macro will print a warning message to the console and either halt the game or break into the debugger, depending on the configuration of the engine.
-  * The ```ensure()``` macro is typically used to detect non-fatal errors or unexpected conditions that can be recovered from.
+### Check
 
-* ```verify()```
-  * Is similar to the ```check()``` macro, but is only enabled in debug builds of the engine. If the condition is false, the ```verify()``` macro will break into the debugger but will not halt the game.
-  * The ```verify()``` macro is typically used to detect errors during development or testing, but does not impact the performance of the final release build.
+Used to test a condition at runtime and to report an error if the condition fails. If the condition is false, the `check(Expression)` macro will print an error message to the console and either halt the game or break into the debugger, depending on the configuration of the engine.
+
+The `check(Expression)` macro is typically used to detect programming errors or unexpected runtime conditions.
+
+```cpp
+// Logic...
+```
+
+### Ensure
+
+Similar to the `check(Expression)` macro, but is used to test conditions that are not necessarily fatal to the program. If the condition is false, the `ensure(Expression)` macro will print a warning message to the console and either halt the game or break into the debugger, depending on the configuration of the engine.
+
+The `ensure(Expression)` macro is typically used to detect non-fatal errors or unexpected conditions that can be recovered from.
+
+```cpp
+// Logic...
+```
+
+### Verify
+
+Similar to the `check(Expression)` macro, but is only enabled in debug builds of the engine. If the condition is false, the `verify()` macro will break into the debugger but will not halt the game.
+
+The `verify(Expression)` macro is typically used to detect errors during development or testing, but does not impact the performance of the final release build.
+
+```cpp
+// Logic...
+```
+
+### Alternatives Assertions
 
 There is also alternatives macros[^4] that displays text.
 
 <table><tr><td>
   
-* ```checkf()```
-* ```verifyf()```
-* ```ensureMsgf()```
-* ```ensureAlwaysMsgf()```
+* `checkf(Expression, FormattedText, ...)` or `checkfSlow(Expression, FormattedText, ...)` - Halts execution if `Expression` is false and outputs `FormattedText` to the log
+* `verifyf(Expression, FormattedText, ...)` or `verifySlow(Expression, FormattedText, ...)` - Halts execution if `Expression` is false and outputs `FormattedText` to the log.
+* `ensureMsgf(Expression, FormattedText, ...)` - Notifies the crash reporter and outputs `FormattedText` to the log on the first time `Expression` is false.
+* `ensureAlwaysMsgf(Expression, FormattedText, ...)` - Notifies the crash reporter and outputs `FormattedText` to the log if `Expression` is false.
 
 </td></tr></table>
   
@@ -2336,7 +2413,11 @@ There should also be a [ModuleName].Build.csfile for each module in its root fol
 
 ### ♻️ Circular Dependency
 
-It's possible to encounter circular dependencies when multiple modules access the same module. This occurs when module A depends on module B, and module B also depends on module A. To resolve circular dependencies, you can take several approaches.
+It's possible to encounter circular dependencies when multiple modules access the same module. This occurs when module A depends on module B, and module B also depends on module A.
+
+To resolve circular dependencies, you can take several approaches:
+
+<table><tr><td>
 
 * One option is to use the ```CircularlyReferencedDependentModules``` statement in the [ModuleName].Build.cs file. You can read more about [here](https://forums.unrealengine.com/t/workaround-for-circular-dependencies/264945)!
 
@@ -2344,7 +2425,9 @@ It's possible to encounter circular dependencies when multiple modules access th
 
 * Finally, you can also refactor your code to avoid circular dependencies altogether.
 
-**The best solution will depend on your specific situation and the complexity of your code.**
+</td></tr></table>
+
+*The best solution will depend on your specific situation and the complexity of your code.*
 
 ## 💡 Creating a plugin
 
@@ -2358,18 +2441,53 @@ Plugins can also be used to add support for third-party libraries and tools, suc
 
 *You can read more about plugins, <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/" target="_blank">over here</a>!*
 
-## 📝 Pre-processor
+## 📝 Preprocessor
 
-You can read more about it <a href="https://en.cppreference.com/w/cpp/preprocessor" target="_blank">here</a>.
-Or you can watch a video about it <a href="https://www.youtube.com/watch?v=voGGB5TGsV4" target="_blank">here</a>.
+In programming languages, including C++, the preprocessor is a component of the compiler that performs text manipulation before the actual compilation process. It operates on the source code and handles directives starting with a hash symbol <kbd>#</kbd>.
+
+In C++, the preprocessor handles tasks such as macro expansion, file inclusion, and conditional compilation. It modifies the source code based on these directives before the code is compiled into machine-readable instructions.
+
+The preprocessor can be used to define macros, which are text replacements performed by the preprocessor before the compilation stage. Macros[^4] allow for code reuse, conditional compilation, and other preprocessing operations. Directives like `#include` are used to include header files, and conditional directives like `#ifdef`, `#ifndef`, `#if`, and `#endif` are used for conditional compilation based on certain conditions.
+
+You can read more about [Preprocessor from cppreference.com](https://en.cppreference.com/w/cpp/preprocessor).
+
+You can also watch a video called [Preprocessor Directives" by NeuralNine](https://www.youtube.com/watch?v=voGGB5TGsV4).
 
 ### Pragma once
 
-`#pragma once` is a preprocessor directive used in C++ header files to ensure that the header is included only once during the compilation of a source file, regardless of how many times it is referenced. It is an alternative to traditional header guards, which involve using #ifndef and #define statements to prevent multiple inclusions. `#pragma once` is a simpler and more efficient way to achieve the same effect, and is supported by most modern compilers.
+`#pragma once` is a preprocessor directive used in C++ header files to ensure that the header is included only once during the compilation of a source file, regardless of how many times it is referenced.
 
-### Editor code
+It is an alternative to traditional header guards, which involve using #ifndef and #define statements to prevent multiple inclusions.
+`#pragma once` is a simpler and more efficient way to achieve the same effect, and is supported by most modern compilers.
 
-Only use component for editor version. Meaning, the component and code will be stripped out, if editor version is not used.
+Here is an example:
+
+```cpp
+#pragma once
+
+#include "Vehicle.generated.h"
+
+UINTERFACE(BlueprintType)
+class COMMONVEHICLE_API UVehicle : public UInterface
+{
+	GENERATED_UINTERFACE_BODY()
+};
+
+class COMMONVEHICLE_API IVehicle
+{
+	GENERATED_IINTERFACE_BODY()
+
+    // ...
+};
+```
+
+### Strip out editor functionality
+
+Using preprocessor directives to strip out editor functionality in Unreal Engine with C++ is a good habit, because it allows for efficient compilation and reduces the size of the final executable by excluding code that is specific to the editor but not needed in the final game build.
+
+For an example, in this scenaro.
+
+Here is an example:
 
 ```cpp
 #if WITH_EDITORONLY_DATA
@@ -2383,6 +2501,29 @@ void SetupArrow()
   ArrowComponent->SetArrowColor(FLinearColor::Yellow);
 }
 #endif
+```
+
+In this scenario, `ArrowComponent` is not needed for the final build. Only inside the editor version. Therefore, with the use of preprocessor, we can mark it for stripping. Once Unreal Engine is building/packing the game, the piece of code will be removed.
+
+You can also use `#elif` as `else if` or `#else` as `else`, in order to branch off the stripping processes.
+
+Here is an updated example of this:
+
+```cpp
+#if WITH_EDITORONLY_DATA
+    UPROPERTY(VisibleAnywhere)
+    UArrowComponent* ArrowComponent;
+#endif
+
+void SetupArrow()
+{
+#if WITH_EDITOR
+  ArrowComponent->SetArrowColor(FLinearColor::Yellow);
+#else
+    GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Some debug message!"));
+#endif
+}
+
 ```
 
 ## Deep dive
