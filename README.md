@@ -1292,7 +1292,7 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 * `rand` = Random
 * `rng` = Range
 * `ref` = Reference
-* `´rm` or `rmv` = Remove
+* `rm` or `rmv` = Remove
 * `req` = Request
 * `res` = Result or Response (depending on the context)
 * `ret` = Return
