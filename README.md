@@ -125,6 +125,7 @@
       * 7.9.7\. [TSharedPtr](#tsharedptr)
       * 7.9.8\. [TWeakPtr](#tweakptr)
       * 7.9.9\. [UniquePtr](#uniqueptr)
+  * 8\. [💎 Unreal Header Tool](#)
   * 8\. [💾 Soft vs hard references](#-soft-vs-hard-references)
   * 9\. [🌍 Global Functions](#-global-functions)
   * 10\. [🏛️ Libraries](#%EF%B8%8F-libraries)
@@ -1496,7 +1497,7 @@ The default behavior for all integer types is ```signed```.
 
 In Unreal Engine, instead of writing ```signed long long``` for an 64-bit integer, you can now write ```int64``` instead. These alias are called **typedefs**, which you can read more about <a href="https://en.cppreference.com/w/cpp/language/typedef" target="_blank">here</a>!
 
-Here is a list of *Unreal Engine's* typedefs:
+Here is s full list of *Unreal Engine's* typedefs:
 
 ```cpp
 //~ Unsigned base types
@@ -1625,7 +1626,7 @@ typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 ```
 
 > **Warning**
-> Unreal Engine only supports int32 and int64 for Blueprint editor. The other types are not supported, but can be still be used by Unreal reflection system (UPROPERTY and UFUNCTION).
+> `uint16`, `uint32`, `uint64`, `int8`, `int16` and `double` are not supported with UHT[^3]. Meaning, can't expose to Blueprint.
 
 ### Strings
 
@@ -2151,6 +2152,235 @@ void MyFunction()
 ```
 
 </details>
+
+## 💎 Unreal Header Tool
+
+### UPROPERTY
+
+<table><tr><td>
+
+#### Layout
+
+`UPROPERTY([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])`
+
+#### Specifiers
+
+* `EditAnywhere` - Allows the property to be edited in the editor and during runtime for all instances of the class.
+* `EditDefaultsOnly` - Permits editing the property only for the class's default object in the editor.
+* `EditInstanceOnly` - Enables editing the property only for instances of the class during runtime.
+* `VisibleAnywhere` - Displays the property value in the editor for all instances of the class.
+* `VisibleDefaultsOnly` - Shows the property value in the editor for the class's default object.
+* `VisibleInstanceOnly` - Displays the property value in the editor only for instances of the class.
+* `BlueprintReadOnly` - Exposes the property to Blueprint scripts, but only for reading, not writing.
+* `BlueprintReadWrite` - Exposes the property to Blueprint scripts for both reading and writing.
+* `Category` - Organizes properties into named categories in the editor for better organization and readability.
+
+```cpp
+UPROPERTY(EditAnywhere, Category="Hello|Cruel|World")
+int32 EditAnywhereNumber;
+```
+
+#### Meta tags
+
+* `DisplayName` = `"Custom Display Name"`
+* `Tooltip` = `"This is a tooltip"`
+* `ClampMin` = `1 // Float and integers numbers`
+* `ClampMax` = `69 // Float and integers numbers`
+* `AllowPrivateAccess` = `true` or `false`
+* `Units` = `"Kilograms"` or `"kg"`
+
+```cpp
+UPROPERTY(EditAnywhere, meta=(Units="Celsius"))
+float CookingTemperature;
+
+UPROPERTY(EditAnywhere, meta=(Units="Kilograms"))
+float TigerWeight;
+
+UPROPERTY(EditAnywhere, meta=(Units="GB"))
+float DiskSpace;
+
+UPROPERTY(EditAnywhere, meta=(Units="Percent"))
+float Happiness;
+
+UPROPERTY(EditAnywhere, meta=(Units="times"))
+float Deliciousness;
+```
+
+</td></tr></table>
+
+You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/uproperty/).
+
+### UFUNCTION
+
+<table><tr><td>
+
+#### Layout
+
+`UFUNCTION([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])`
+
+#### Specifiers
+
+* `BlueprintCallable` - Exposes the function to Blueprint scripts, allowing it to be called from within Blueprint graphs.
+* `BlueprintPure` - Indicates that the function is a pure computation and does not modify any state, making it safe to use in Blueprint graphs without side effects.
+* `BlueprintImplementableEvent` - Serves as a placeholder function in C++ that can be overridden and implemented in Blueprint.
+* `BlueprintNativeEvent` - Similar to `BlueprintImplementableEvent`, but it also provides a C++ implementation that can be optionally overridden in Blueprint.
+* `Category` - Organizes properties into named categories in the editor for better organization and readability.
+
+```cpp
+UFUNCTION(BlueprintPure)
+int32 BlueprintPureFunction();
+
+UFUNCTION(BlueprintCallable)
+int32 BlueprintCallableFunction();
+
+UFUNCTION(BlueprintCallable)
+int32 BlueprintCallableConstFunction() const;
+
+UFUNCTION(BlueprintPure=false)
+int32 BlueprintPureFalseFunction() const;
+```
+
+#### Meta tags:
+
+* `DisplayName` = `"Explode current vehicle"`
+* `Tooltip` = `"Long Tooltip"`
+* `ShortToolTip` = `"Short Tooltip"`
+* `AllowPrivateAccess`  = `true` or `false`
+* `HideSelfPin` - Hides the "self" pin, which indicates the object on which the function is being called. The "self" pin is automatically hidden on `BlueprintPure` functions that are compatible with the calling Blueprint's Class. Functions that use the `HideSelfPin` Meta Tag frequently also use the `DefaultToSelf` Specifier.
+* `BlueprintInternalUseOnly` - This function is an internal implementation detail, used to implement another function or node. It is never directly exposed in a Blueprint graph.
+* `BlueprintProtected` - This function can only be called on the owning Object in a Blueprint. It cannot be called on another instance.
+* `DeprecatedFunction` - Any Blueprint references to this function will cause compilation warnings telling the user that the function is deprecated. You can add to the deprecation warning message (for example, to provide instructions on replacing the deprecated function) using the `DeprecationMessage` metadata specifier.
+
+```cpp
+UFUNCTION(BlueprintCallable, Category = "Doggy Daycare", meta=(ReturnDisplayName = "Success"))
+bool TryPetDog(const FName Name);
+```
+
+</td></tr></table>
+
+You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/ufunction/).
+
+### UCLASS
+
+<table><tr><td>
+
+#### Specifiers
+
+*
+
+```cpp
+// ...
+```
+
+#### Meta tags
+
+*
+
+```cpp
+// ...
+```
+
+</td></tr></table>
+
+You can read more about [UCLASS by BenUi](https://benui.ca/unreal/uclass/).
+
+### USTRUCT
+
+<table><tr><td>
+
+#### Specifiers:
+
+*
+
+```cpp
+// ...
+```
+
+#### Meta tags:
+
+* 
+
+```cpp
+// ...
+```
+
+</td></tr></table>
+
+You can read more about [USTRUCT by BenUi](https://benui.ca/unreal/ustruct/).
+
+### UENUM
+
+<table><tr><td>
+
+#### Specifiers:
+
+*
+
+```cpp
+// ...
+```
+
+#### Meta tags:
+
+* 
+
+```cpp
+// ...
+```
+
+</td></tr></table>
+
+You can read more about [UENUM by BenUi](https://benui.ca/unreal/uenum/).
+
+### UPARAM
+
+<table><tr><td>
+
+#### Specifiers:
+
+*
+
+```cpp
+// ...
+```
+
+#### Meta tags:
+
+* 
+
+```cpp
+// ...
+```
+
+</td></tr></table>
+
+You can read more about [UPARAM by BenUi](https://benui.ca/unreal/uparam/).
+
+### UMETA
+
+<table><tr><td>
+
+#### Specifiers:
+
+*
+
+```cpp
+// ...
+```
+
+#### Meta tags:
+
+* 
+
+```cpp
+// ...
+```
+
+</td></tr></table>
+
+You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
+
+---
 
 ## 💾 Soft vs hard references
 
