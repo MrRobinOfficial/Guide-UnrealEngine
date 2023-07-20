@@ -125,7 +125,7 @@
       * 7.9.7\. [TSharedPtr](#tsharedptr)
       * 7.9.8\. [TWeakPtr](#tweakptr)
       * 7.9.9\. [UniquePtr](#uniqueptr)
-  * 8\. [💎 Unreal Header Tool](#)
+  * 8\. [💎 Unreal Header Tool](#-unreal-header-tool)
   * 8\. [💾 Soft vs hard references](#-soft-vs-hard-references)
   * 9\. [🌍 Global Functions](#-global-functions)
   * 10\. [🏛️ Libraries](#%EF%B8%8F-libraries)
@@ -2155,6 +2155,8 @@ void MyFunction()
 
 ## 💎 Unreal Header Tool
 
+Lorem Ipsum
+
 ### UPROPERTY
 
 <table><tr><td>
@@ -2182,12 +2184,24 @@ int32 EditAnywhereNumber;
 
 #### Meta tags
 
-* `DisplayName` = `"Custom Display Name"`
-* `Tooltip` = `"This is a tooltip"`
-* `ClampMin` = `1 // Float and integers numbers`
-* `ClampMax` = `69 // Float and integers numbers`
-* `AllowPrivateAccess` = `true` or `false`
-* `Units` = `"Kilograms"` or `"kg"`
+* ```cpp
+  DisplayName = "Custom Display Name"
+  ```
+* ```cpp
+  Tooltip = "This is a tooltip"
+  ```
+* ```cpp
+  ClampMin = 1 // Float and integers numbers
+  ```
+* ```cpp
+  ClampMax = 69 // Float and integers numbers
+  ```
+* ```cpp
+  AllowPrivateAccess = true // Or false
+  ```
+* ```cpp
+  Units = "Kilograms" // Or "kg"
+  ```
 
 ```cpp
 UPROPERTY(EditAnywhere, meta=(Units="Celsius"))
