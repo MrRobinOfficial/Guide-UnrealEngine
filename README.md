@@ -2260,10 +2260,18 @@ int32 BlueprintPureFalseFunction() const;
 
 #### Meta tags:
 
-* `DisplayName` = `"Explode current vehicle"`
-* `Tooltip` = `"Long Tooltip"`
-* `ShortToolTip` = `"Short Tooltip"`
-* `AllowPrivateAccess`  = `true` or `false`
+* ```cpp
+  DisplayName = "Explode current vehicle";
+  ```
+* ```cpp
+  Tooltip = "Long Tooltip";
+  ```
+* ```cpp
+  ShortToolTip = "Short Tooltip";
+  ```
+* ```cpp
+  AllowPrivateAccess = true; // Or false
+  ```
 * `HideSelfPin` - Hides the "self" pin, which indicates the object on which the function is being called. The "self" pin is automatically hidden on `BlueprintPure` functions that are compatible with the calling Blueprint's Class. Functions that use the `HideSelfPin` Meta Tag frequently also use the `DefaultToSelf` Specifier.
 * `BlueprintInternalUseOnly` - This function is an internal implementation detail, used to implement another function or node. It is never directly exposed in a Blueprint graph.
 * `BlueprintProtected` - This function can only be called on the owning Object in a Blueprint. It cannot be called on another instance.
