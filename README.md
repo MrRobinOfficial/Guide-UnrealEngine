@@ -2177,6 +2177,8 @@ Lorem Ipsum
 * `BlueprintReadWrite` - Exposes the property to Blueprint scripts for both reading and writing.
 * `Category` - Organizes properties into named categories in the editor for better organization and readability.
 
+Example:
+
 ```cpp
 UPROPERTY(EditAnywhere, Category="Hello|Cruel|World")
 int32 EditAnywhereNumber;
@@ -2185,23 +2187,25 @@ int32 EditAnywhereNumber;
 #### Meta tags
 
 * ```cpp
-  DisplayName = "Custom Display Name"
+  DisplayName = "Custom Display Name";
   ```
 * ```cpp
-  Tooltip = "This is a tooltip"
+  Tooltip = "This is a tooltip";
   ```
 * ```cpp
-  ClampMin = 1 // Float and integers numbers
+  ClampMin = 1; // Float and integers numbers
   ```
 * ```cpp
-  ClampMax = 69 // Float and integers numbers
+  ClampMax = 69; // Float and integers numbers
   ```
 * ```cpp
-  AllowPrivateAccess = true // Or false
+  AllowPrivateAccess = true; // Or false
   ```
 * ```cpp
-  Units = "Kilograms" // Or "kg"
+  Units = "Kilograms"; // Or "kg"
   ```
+
+Example:
 
 ```cpp
 UPROPERTY(EditAnywhere, meta=(Units="Celsius"))
