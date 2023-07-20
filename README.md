@@ -26,7 +26,6 @@
 * Rewrite [📃 Macros](#-macros4) section.
 * Rewrite [🌍 Global Functions](#-global-functions) section.
 * Rewrite [Pointers](#pointers) section. Add about UHT.
-* Add about "Invert 'if' statement to reduce nesting".
 * Rewrite [Modifiers/Typedefs](#modifierstypedefs) section?
 
 </td></tr></table>
@@ -617,6 +616,14 @@ for (char c : message)
 
 // Output: H e l l o
 ```
+
+### Immutable vs Mutable
+
+#### Mutable
+
+#### Immutable
+
+Lorem Ipsum
 
 ### Polymorphism (In Depth)
 
@@ -1410,9 +1417,9 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 * `uint64`- Represents an unsigned 64-bit integer
 * `float` - Represents a floating-point number, which is a real number with a fractional component
 * `double` - Represents a double-precision floating-point number, which has twice the precision of a float
-* `FName` - Represents a unique name (case-insensitive, and are stored as a combination of an index into a table of unique strings and an instance number.)
-* `FText` - Represents a localized string of characters
-* `FString` - Represents a string of characters
+* `FName` - Represents a unique [immutable](#immutable) name (case-insensitive, and are stored as a combination of an index into a table of unique strings and an instance number).
+* `FText` - Represents a localized [immutable](#immutable) string of characters. Primarily used for UMG and other kind of user interface.
+* `FString` - Represents a [mutable](#mutable) string of characters. Most expensive than `FName` and `FText`, but allow you to split, append, create substrings and manipulate the string.
 * `FVector` - Represents a 3D vector, which consists of three float values (X, Y, and Z). It is often used to represent positions, directions, and velocities in 3D space.
 * `FRotator` - Represents a rotation in 3D space, which consists of three float values (Pitch, Yaw, and Roll) that correspond to rotations around the X, Y, and Z axes, respectively
 * `FQuat` - Lorem Ipsum
@@ -1632,7 +1639,24 @@ typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 
 Strings differs in Unreal Engine and native C++.
 
-You can read more about string handling <a href="https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/" target="_blank">here</a>!
+You can read more about [string handling from the docs](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/).
+
+#### FName
+
+#### FText
+
+You also have other data types for storing string/text. Here is other examples:
+
+```cpp
+// Helpful in the editor to localize the text into another language.
+FText NewGameText = FText::FromString(TEXT("New Game"));
+
+// Helpful for storing short name string.
+// Also, FNames are case-insensitive, and are stored as a combination of an index into a table of unique strings and an instance number.
+FName Username = FName(TEXT("mRrObIN"));
+```
+
+#### FString
 
 This is how you would define it in native C++:
 
@@ -1646,16 +1670,7 @@ And this is how you define it in Unreal Engine's C++:
 FString Message = TEXT("Hello, World!"); // Unreal always uses a macro called 'TEXT' to ensure the string is in Unicode characters.
 ```
 
-You also have other data types for storing string/text. Here is other examples:
-
-```cpp
-// Helpful in the editor to localize the text into another language.
-FText NewGameText = FText::FromString(TEXT("New Game"));
-
-// Helpful for storing short name string.
-// Also, FNames are case-insensitive, and are stored as a combination of an index into a table of unique strings and an instance number.
-FName Username = FName(TEXT("mRrObIN"));
-```
+#### FString Examples
 
 Also, here is an example how to add on-screen debug message.
 
@@ -2506,7 +2521,7 @@ You can read more about [Blueprint Function Libraries here](https://docs.unreale
 ## 📃 Macros[^4]
 
 * `GENERATED_BODY()` - Boilerplate code required by the engine.
-* `TEXT()` - Convert a string literal to a wide-character string literal.
+* `TEXT()` - Convert a string literal to a platform independent string literal. Without this macro, you are using ANSI encoding (which can cause issue on other machines).
 * `TEXTVIEW()` - Calculates the length of a string from a string literal at compile time.
 * `INVTEXT()` - Mark text strings for localization. It stands for "Invariant Text" and is used to specify text that should remain unchanged during the localization process.
 * `LOCTEXT()` - Creating localized text. It stands for "Localized Text" and allows you to define text literals that can be localized for different languages.
@@ -2668,13 +2683,22 @@ With this binding in place, you can now access and control all the properties an
 Here's an example showcasing the usage of the widget:
 
 ```cpp
-#include "MyPlayerCharacter.h"
+#include "MainMenu.h"
 
-void AMyPlayerCharacter::UpdatePlayerDisplayName(const FString& NewDisplayName)
+void UMainMenu::NativeConstruct()
 {
     if (PlayerDisplayNameText == nullptr)
         return;
 
+    PlayerDisplayNameText->OnClicked.AddDyanmic(this, &UMainMenu::UpdatePlayerDisplayName);
+}
+
+void UMainMenu::UpdatePlayerDisplayName()
+{
+    if (PlayerDisplayNameText == nullptr)
+        return;
+
+    const FString& NewDisplayName = TEXT("John Doe");
     PlayerDisplayNameText->SetText(FText::FromString(NewDisplayName));
 }
 ```
@@ -2923,6 +2947,86 @@ One of the key benefits of the header system is that it allows for very efficien
 You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/" target="_blank">here</a>!
 
 ### 🪄 Tips and best practices
+
+#### Refactoring
+
+##### Renaming
+
+```cpp
+// ...
+```
+
+##### Extract Method﻿
+
+```cpp
+// ...
+```
+
+##### Introduce/Inline typedef﻿
+
+```cpp
+// ...
+```
+
+##### Introduce Variable﻿
+
+```cpp
+// ...
+```
+
+##### Inline Function﻿
+
+```cpp
+UFUNCTION(BlueprintPure, Category = "")
+FORCEINLINE bool GetVehicleDead() const { return false; } 
+```
+
+##### Invert 'if' statement to reduce nesting
+
+Consider the following code snippet:
+
+```cpp
+void MyCharacter::DoSomething()
+{
+    if (bIsReadyToMove)
+    {
+        if (!bIsMoving)
+        {
+            MoveCharacter();
+        }
+        else
+        {
+            // Handle already moving
+        }
+    }
+    else
+    {
+        // Handle not ready to move
+    }
+}
+```
+
+As you can see, the `if` blocks encompass the whole body of the method. This presents an opportunity to make code more readable by getting rid of the nested scope and adding `return` keyword[^1] as follows:
+
+```cpp
+void MyCharacter::DoSomething()
+{
+    if (!bIsReadyToMove)
+    {
+        // Handle not ready to move
+        return;
+    }
+
+    if (!bIsMoving)
+    {
+        MoveCharacter();
+    }
+    else
+    {
+        // Handle already moving
+    }
+}
+```
 
 Here is a video explaining some of the best practices with Unreal Engine and C++. <a href="https://www.youtube.com/watch?v=g7WVBZZTRDk" target="_blank">Link here</a>!
 
