@@ -22,7 +22,6 @@
 * Add more video links.
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
 * Add video link and image to visualize stack vs heap.
-* Add code exmaples in [Assertions](#%EF%B8%8F-assertions) section.
 * Rewrite [📃 Macros](#-macros4) section.
 * Rewrite [🌍 Global Functions](#-global-functions) section.
 * Rewrite [Pointers](#pointers) section. Add about UHT.
@@ -1954,23 +1953,29 @@ if (DamageHealth(PlayerHealth)) // Passing the `PlayerHealth` as a direct refere
 
 And lastly, we have pointers. This section, will go over about raw pointers and smart pointers. If you have no clue about pointers, highly recommend watching Cherno video about [pointers](https://www.youtube.com/watch?v=DTxHyVn0ODg).
 
+Pointers and references are similar in that they both refer to variables, but there's one key difference. Pointers are **indirect references**, meaning they can change throughout the code, pointing to different variables. On the other hand, regular references are direct and can only refer to the specific variable they were initialized with.
+
 In a short summary, a pointer is like writing down the address of a building on a piece of paper. The address on the paper tells you where the building is located, just as the memory address stored in the pointer variable tells you where a variable is located in memory. Similarly, you can also pass the address on the paper to someone else, allowing them to find the building too, just as you can pass a pointer variable to a function or another part of your code, allowing it to access the variable in memory.
+
+Pointers are valuable tools in programming as they allow us to store memory addresses, enabling dynamic memory allocation and manipulation of data structures. By using pointers, we can create more flexible and efficient code that can adapt to changing data requirements during program execution.
+
+Additionally, pointers are essential in scenarios like data structures, linked lists, and passing data to functions by reference, providing a level of control and precision that enhances the capabilities of the program. However, it's important to handle pointers with care, as incorrect usage can lead to **memory leaks** or **segmentation faults**.
 
 #### Raw pointers
 
-A raw pointer can be sometime dangerous, because there is no validation when accessing this pointer. And when the pointer is pointing to nothing (meaning, the pointer is a 'nullptr'). The program will throw a null pointer exception, also known as a segmentation fault (segfault).
+A raw pointer can be sometime dangerous, because there is no validation when accessing this pointer. And when the pointer is pointing to nothing (meaning, the pointer is a `nullptr`). The program will throw a null pointer exception, also known as a segmentation fault (segfault).
 
 A segmentation fault occurs when a program tries to access a memory location that it does not have permission to access, which can happen when the program tries to dereference a null pointer. When this happens, the operating system will usually terminate the program and generate an error message.
 
 To avoid this, you must check before if the pointer is valid, before using it.
 
-To do this in Unreal Engine's C++, you would use the function called ```IsValid()``` for raw pointers. Here is an example:
+To do this in Unreal Engine's C++, you would use the function called `IsValid()` for raw pointers. Here is an example:
 
 ```cpp
 UPROPERTY()
 AActor* ActorPtr = nullptr;
 
-// Use UPROPERTY() macro, in order to tell the compiler, this pointer must be release into GC (garbage collector).
+// Use UPROPERTY() macro, in order to tell the UHT (Unreal Header Tool), this pointer must be release into GC (garbage collector).
 // If not, then this will cause a memory leak. Meaning, the pointer is still alive, even tough we are not using this memory block.
 
 void KillActor()
@@ -1984,7 +1989,13 @@ void KillActor()
 }
 ```
 
-After Unreal Engine (5.0) version, is now recommending to use ```TObjectPtr``` instead of ```*``` to mark raw pointers. ```TObjectPtr``` contains some optimization for the editor.
+> **Note**
+`ActorPtr` is marked with `UPROPERTY()`in order to tell UHT[^3], that this pointer exists. When the pointer is unused, the garbage collector then marks it and deletes its memory. Also note, that this process can take a couple frames and is not instantaneously. Therefore, always use `IsValid()` function, which also checks if the pointer is not marked for the garbage collector. Avoid using manual checking, like this: `PlayerCharacter != nullptr` (since it will not work with GC system).
+
+> **Warning**
+> If something else is referencing `ActorPtr`, the pointer will not be destroyed via garbage collection (unless if it's a weak pointer).
+
+After Unreal Engine (5.0) version, is now recommending to use `TObjectPtr` instead of `*` to mark raw pointers. `TObjectPtr` contains some optimization for the editor.
 
 Here is the updated code:
 
@@ -1994,8 +2005,6 @@ TObjectPtr<AActor> ActorPtr = nullptr;
 ```
 
 #### Smart pointers
-
-In Unreal Engine, a raw pointer is a basic C++ pointer that holds the memory address of an object or resource. It provides direct access and control over memory but requires manual memory management, including allocation and deallocation. Raw pointers do not provide built-in memory safety features.
 
 In contrast, smart pointers in Unreal Engine are specialized classes, such as `TSharedPtr` and `TWeakPtr`, that handle memory management automatically. Smart pointers offer benefits like automatic deallocation, reference counting, and improved memory safety. They help prevent memory leaks and simplify memory management tasks within the game engine.
 
