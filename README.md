@@ -27,6 +27,7 @@
 * Rewrite [🌍 Global Functions](#-global-functions) section.
 * Rewrite [Pointers](#pointers) section. Add about UHT.
 * Rewrite [Modifiers/Typedefs](#modifierstypedefs) section?
+* Rewrite [Constructors and Destructors](#constructors-and-destructors) section.
 
 </td></tr></table>
 
@@ -96,10 +97,9 @@
     * 2.16.7\. [MVC (Model-View-Controller)](#mvc-model-view-controller)
 * 3\. [🚧 Blueprint vs C++](#-blueprint-vs-c)
 * 4\. [🪧 Unreal's Architecture](#-unreals-architecture)
-* 5\. [Constructors and Destructors](#constructors-and-destructors)
-* 6\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
-	* 6.1\. [Prefixes](#prefixes)
-	* 6.2\. [Abbreviations, Acronyms and Synonyms](#abbreviations-acronyms-and-synonyms)
+* 5\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
+	* 5.1\. [Prefixes](#prefixes)
+	* 5.2\. [Abbreviations, Acronyms and Synonyms](#abbreviations-acronyms-and-synonyms)
 * 7\. [🧱 Data Types](#-data-types)
 	* 7.1\. [Char](#char)
     * 7.2\. [Booleans](#booleans)
@@ -125,35 +125,36 @@
       * 7.9.8\. [TWeakPtr](#tweakptr)
       * 7.9.9\. [UniquePtr](#uniqueptr)
   * 8\. [💎 Unreal Header Tool](#-unreal-header-tool)
-  * 8\. [💾 Soft vs hard references](#-soft-vs-hard-references)
-  * 9\. [🌍 Global Functions](#-global-functions)
-  * 10\. [🏛️ Libraries](#%EF%B8%8F-libraries)
-  * 11\. [📃 Macros](#-macros4)
-  * 12\. [☑️ Assertions](#%EF%B8%8F-assertions)
-  * 13\. [🔔 Delegates](#-delegates)
-  * 14\. [🪪 Unreal Motion Graphics (UMG)](#-unreal-motion-graphics-umg)
-  * 15\. [📚 Creating modules](#-creating-modules)
-      * 15.1\. [♻️ Circular Dependency](#%EF%B8%8F-circular-dependency)
-  * 16\. [💡 Creating a plugin](#-creating-a-plugin)
-  * 17\. [📝 preprocessor](#-preprocessor)
-    * 17.1\. [Pragma once](#pragma-once)
-    * 17.2\. [Editor code](#editor-code)
-  * 18\. [Deep Dive](#deep-dive)
-    * 18.1\. [🔖 Keywords](#-keywords)
-    * 18.2\. [🛸 Reflection System](#direct-references)
-    * 18.3\. [🪄 Tips and best practices](#-tips-and-best-practices)
-      * 18.3.1\. [Ticking](#ticking)
-      * 18.3.2\. [Direct references](#ticking)
-      * 18.3.3\. [Math Expression Node](#math-expression-node)
-      * 18.3.4\. [Call In Editor and `CallInEditor`](#call-in-editor-and-callineditor)
-  * 19\. [👁️‍🗨️ Console Commands](#%EF%B8%8F%EF%B8%8F-console-commandss)
-  * 20\. [📌 Shortcuts](#-shortcuts)
-  * 21\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
-    * 21.1\. [Compiler Error C2628](#compiler-error-c2628)
-    * 22.2\. [Compiler Error C2065](#compiler-error-c2065)
-  * 22\. [🔗 Helpful links](#-helpful-links)
-  * 23\. [🆘 Support](#-support)
-  * 24\. [📍 Footnotes](#-footnotes)
+  * 9\. [Constructors and Destructors](#constructors-and-destructors)
+  * 10\. [💾 Soft vs hard references](#-soft-vs-hard-references)
+  * 11\. [🌍 Global Functions](#-global-functions)
+  * 12\. [🏛️ Libraries](#%EF%B8%8F-libraries)
+  * 13\. [📃 Macros](#-macros4)
+  * 14\. [☑️ Assertions](#%EF%B8%8F-assertions)
+  * 15\. [🔔 Delegates](#-delegates)
+  * 16\. [🪪 Unreal Motion Graphics (UMG)](#-unreal-motion-graphics-umg)
+  * 17\. [📚 Creating modules](#-creating-modules)
+      * 17.1\. [♻️ Circular Dependency](#%EF%B8%8F-circular-dependency)
+  * 18\. [💡 Creating a plugin](#-creating-a-plugin)
+  * 19\. [📝 preprocessor](#-preprocessor)
+    * 19.1\. [Pragma once](#pragma-once)
+    * 19.2\. [Editor code](#editor-code)
+  * 20\. [Deep Dive](#deep-dive)
+    * 20.1\. [🔖 Keywords](#-keywords)
+    * 20.2\. [🛸 Reflection System](#direct-references)
+    * 20.3\. [🪄 Tips and best practices](#-tips-and-best-practices)
+      * 20.3.1\. [Ticking](#ticking)
+      * 20.3.2\. [Direct references](#ticking)
+      * 20.3.3\. [Math Expression Node](#math-expression-node)
+      * 20.3.4\. [Call In Editor and `CallInEditor`](#call-in-editor-and-callineditor)
+  * 21\. [👁️‍🗨️ Console Commands](#%EF%B8%8F%EF%B8%8F-console-commandss)
+  * 22\. [📌 Shortcuts](#-shortcuts)
+  * 23\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
+    * 23.1\. [Compiler Error C2628](#compiler-error-c2628)
+    * 23.2\. [Compiler Error C2065](#compiler-error-c2065)
+  * 24\. [🔗 Helpful links](#-helpful-links)
+  * 25\. [🆘 Support](#-support)
+  * 26\. [📍 Footnotes](#-footnotes)
 
 </td></tr></table>
 
@@ -1194,16 +1195,6 @@ You can also watch a video discussion about Multiplayer Framework of Unreal Engi
 
 You can also watch "*The Unreal Engine Game Framework: From int main() to BeginPlay*" by Alex Forsythe, which talks about Unreal Engine's architecture.
 <a href="https://www.youtube.com/watch?v=IaU2Hue-ApI" target="_blank">Link here</a>
-
-### Constructors and Destructors
-
-With ```AActor``` and ```UActorComponent``` you can control how the classes should be instantiated.
-
-> **Note**
-> Only use constructors for initializing variables. The constructor will also be called in the editor. Meaning, it should not use for runtime execution. Instead, use ```BeginPlay()``` function.
-
-> **Warning**
-> Don't use destructors for deleting memory with Unreal ```UObject```. This is handle by Unreal Engine's garbage collector.
 
 ## ✍️ Naming Convention
 
@@ -2423,6 +2414,16 @@ You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
 
 ---
 
+### Constructors and Destructors
+
+With ```AActor``` and ```UActorComponent``` you can control how the classes should be instantiated.
+
+> **Note**
+> Only use constructors for initializing variables. The constructor will also be called in the editor. Meaning, it should not use for runtime execution. Instead, use ```BeginPlay()``` function.
+
+> **Warning**
+> Don't use destructors for deleting memory with Unreal ```UObject```. This is handle by Unreal Engine's garbage collector.
+
 ## 💾 Soft vs hard references
 
 ![Soft vs hard references](static/img/Soft_Hard_Refs.png)
@@ -2562,7 +2563,25 @@ Used to test a condition at runtime and to report an error if the condition fail
 The `check(Expression)` macro is typically used to detect programming errors or unexpected runtime conditions.
 
 ```cpp
-// Logic...
+void MyFunction()
+{
+    APlayerCharacter* PC = Cast<APlayerController>(GetController());
+    check(PC); // Critical check, program will terminate if PC is a `nullptr`
+}
+```
+
+### Verify
+
+Similar to the `check(Expression)` macro, but is only enabled in debug builds of the engine. If the condition is false, the `verify(Expression)` macro will break into the debugger but will not halt the game.
+
+The `verify(Expression)` macro is typically used to detect errors during development or testing, but does not impact the performance of the final release build.
+
+```cpp
+void MyFunction()
+{
+    APlayerCharacter* PC = Cast<APlayerController>(GetController());
+    verify(PC); // Assertion in all builds, including shipping builds
+}
 ```
 
 ### Ensure
@@ -2572,17 +2591,11 @@ Similar to the `check(Expression)` macro, but is used to test conditions that ar
 The `ensure(Expression)` macro is typically used to detect non-fatal errors or unexpected conditions that can be recovered from.
 
 ```cpp
-// Logic...
-```
-
-### Verify
-
-Similar to the `check(Expression)` macro, but is only enabled in debug builds of the engine. If the condition is false, the `verify()` macro will break into the debugger but will not halt the game.
-
-The `verify(Expression)` macro is typically used to detect errors during development or testing, but does not impact the performance of the final release build.
-
-```cpp
-// Logic...
+void MyFunction()
+{
+    APlayerCharacter* PC = Cast<APlayerController>(GetController());
+    ensure(PC); // Non-critical check, assertion only during development and editor builds
+}
 ```
 
 ### Alternatives Assertions
@@ -2596,9 +2609,25 @@ There is also alternatives macros[^4] that displays text.
 * `ensureMsgf(Expression, FormattedText, ...)` - Notifies the crash reporter and outputs `FormattedText` to the log on the first time `Expression` is false.
 * `ensureAlwaysMsgf(Expression, FormattedText, ...)` - Notifies the crash reporter and outputs `FormattedText` to the log if `Expression` is false.
 
+```cpp
+void MyFunction()
+{
+    APlayerCharacter* PC = Cast<APlayerController>(GetController());
+    checkf(PC, TEXT("Player character cannot be null!"));
+
+    ULocalPlayer LP = PC->GetLocalPlayer();
+    verifyf(LP, TEXT("Local player cannot be null!"));
+
+    bool bIsDead = false;
+    ensureMsgf(bIsDead, TEXT("Player shouldn't be dead!"));
+}
+```
+
 </td></tr></table>
   
-You can read more about [Assertions from the docs](https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/). 
+You can read more about [Assertions from the docs](https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/).
+
+You can also watch a video about it from [Sneaky Kitty Game Dev](https://www.youtube.com/watch?v=zGeJgI2xiT4).
 
 ## 🔔 Delegates
 
