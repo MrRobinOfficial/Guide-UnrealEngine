@@ -3043,17 +3043,15 @@ using UnrealBuildTool;
 
 public class ModuleB : ModuleRules
 {
-	public ModuleB(ReadOnlyTargetRules Target) : base(Target)
-	{		
-		PrivateDependencyModuleNames.AddRange(
-			new string[]
-			{
-				"ModuleA"
-			}
-		);		
-
-		CircularlyReferencedDependentModules.Add("ModuleA");  // Avoid circular dependencies errors!
-	}
+    public ModuleB(ReadOnlyTargetRules Target) : base(Target)
+    {		
+        PrivateDependencyModuleNames.AddRange(new string[]
+        {
+            "ModuleA"
+        });		
+    
+        CircularlyReferencedDependentModules.Add("ModuleA");  // Avoid circular dependencies errors!
+    }
 }
 ```
 
