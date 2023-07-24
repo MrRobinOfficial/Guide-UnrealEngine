@@ -19,10 +19,7 @@
 * Add emojis to most sections.
 * Add image/banner cover to help visualize.
 * Use more tables for better understanding.
-* Add more video links.
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
-* Rewrite [Pointers](#pointers) section. Add about UHT.
-* Rewrite [Modifiers/Typedefs](#modifierstypedefs) section?
 
 </td></tr></table>
 
@@ -327,59 +324,22 @@ char myChar = 'a';
 
 ```cpp
 bool isDead = true; 
-
-if (isDead)
-{
-  // Do some logic
-}
 ```
 
 #### Integers
 
 ```cpp
 int health = 10;
-
-if (health <= 0)
-{
-  isDead = true;
-  return;
-}
 ```
 
 #### Floating points (floats and doubles)
 
 ```cpp
 float speedInMetersPerSecond = 5.5f; // C++ always uses 'f' or 'F' literal for defining a float variable.
-
-float speedInKph = speedInMetersPerSecond * 3.6f;
 ```
 
 ```cpp
 double speedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a double variable.
-
-double speedInKph = speedInMetersPerSecond * 3.6;
-```
-
-### Modifiers
-
-In C++, a modifier is used to alter the meaning of the base type so that it more precisely fits the needs of various situations. The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, which are used to modify the size of integer types.
-
-The default behavior for all integer types is `signed`.
-
-```cpp
-//~ Unsigned base types
-
-unsigned char; // 8-bit unsigned integer
-unsigned short int; // 16-bit unsigned integer
-unsigned int; // 32-bit unsigned integer
-unsigned long long; // 64-bit unsigned integer
-
-//~ Signed base types.
-
-signed char; // 8-bit signed integer
-signed short int; // 16-bit signed integer
-signed int; // 32-bit signed integer
-signed long long; // 64-bit signed integer
 ```
 
 ### Typedefs
@@ -394,7 +354,28 @@ typedef int myInt; // Declare our alias for custom type
 myInt x = 5;  // Equivalent to: int x = 5;
 ```
 
-Typedefs can be particularly useful in the following scenarios:
+The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, which are used to modify the size of integer types. You can read more about [typedef keyword in C++ docs](https://en.cppreference.com/w/cpp/language/typedef).
+
+> **Note**
+> The default behavior for all integer types is `signed`.
+
+Here is s list of custom typedefs:
+
+```cpp
+//~ Unsigned base types. Can only store postive numbers
+typedef unsigned char 		uint8; // 8-bit unsigned integer       (0                            to    255)
+typedef unsigned short int	uint16; // 16-bit unsigned integer     (0                            to    65,535)
+typedef unsigned int		uint32; // 32-bit unsigned integer     (0                            to    4,294,967,295)
+typedef unsigned long long	uint64; // 64-bit unsigned integer     (0                            to    18,446,744,073,709,551,615)
+
+//~ Signed base types. Can store postive and negative numbers
+typedef	signed char			int8; // 8-bit signed integer          (-128                         to    127)
+typedef signed short int	int16; // 16-bit signed integer        (-32,768                      to    32,767)
+typedef signed int	 		int32; // 32-bit signed integer        (-2,147,483,648               to    2,147,483,647)
+typedef signed long long	int64; // 64-bit signed integer        (-9,223,372,036,854,775,808   to    9,223,372,036,854,775,807)
+```
+
+And here is how you can use these typedefs for specifying a size for an integer:
 
 <table><tr><td>
 
@@ -544,11 +525,9 @@ Loops are essential constructs in programming languages that allow repetitive ex
 
 While loop are used when the number of iterations is uncertain but depends on a condition. The loop continues as long as the specified condition remains true. It evaluates the condition before each iteration, and if it becomes false, the loop terminates.
 
-Here is an example:
+Here's an example of finding the first power of 2 greater than 100:
 
 ```cpp
-// Example: Find the first power of 2 greater than 100
-
 int num = 1;
 
 while (num <= 100)
@@ -565,9 +544,9 @@ std::cout << "First power of 2 greater than 100: " << num << std::endl;
 
 A do-while loop is a control flow structure in programming that executes a block of code at least once, and then repeats the execution as long as a specified condition remains true. It is similar to the while loop, but with the condition checked at the end of each iteration.
 
-```cpp
-// Example: Print numbers from 1 to 5 using a do-while loop
+Here's an example of printing numbers from 1 to 5 using a do-while loop:
 
+```cpp
 int i = 1;
 
 do
@@ -583,11 +562,9 @@ do
 
 For loop are used when you know the number of iterations in advance. They consist of an initialization, a condition for continuation, and an iteration statement. The loop iterates over a range of values or a collection, incrementing or decrementing a counter variable with each iteration.
 
-Here is an example:
+Here's an example of printing numbers from 1 to 5:
 
 ```cpp
-// Example: Print numbers from 1 to 5
-
 for (int i = 1; i <= 5; i++)
 {
     std::cout << i << " ";
@@ -600,9 +577,9 @@ for (int i = 1; i <= 5; i++)
 
 Foreach loop are designed to iterate over collections or sequences of elements. They automatically handle the iteration logic, allowing you to process each element without managing an explicit index or counter. The loop iterates over each element in the collection until all elements have been processed.
 
-```cpp
-// Example: Print each character of a string
+Here's an example of printing each character of a string:
 
+```cpp
 std::string message = "Hello";
 
 for (char c : message)
@@ -624,56 +601,6 @@ Lorem Ipsum
 ### Polymorphism (In Depth)
 
 The power of polymorphism lies in the ability to use a base class pointer or reference to refer to objects of derived classes. This allows you to write code that operates on the base class, without needing to know the specific derived class. During runtime, the appropriate version of the overridden method in the derived class will be invoked, based on the actual type of the object being referred to.
-
-Here's a simplified example in C++ to illustrate polymorphism:
-
-```cpp
-class Animal
-{
-public:
-    virtual void makeSound()
-    {
-        // Common implementation for all animals
-        std::cout << "The animal makes a sound." << std::endl;
-    }
-};
-
-class Dog : public Animal
-{
-public:
-    void makeSound() override
-    {
-        std::cout << "The dog barks." << std::endl;
-    }
-};
-
-class Cat : public Animal
-{
-public:
-    void makeSound() override
-    {
-        std::cout << "The cat meows." << std::endl;
-    }
-};
-
-int main()
-{
-    Animal* animal1 = new Dog();
-    Animal* animal2 = new Cat();
-
-    animal1->makeSound(); // Output: "The dog barks."
-    animal2->makeSound(); // Output: "The cat meows."
-
-    delete animal1;
-    delete animal2;
-
-    return 0;
-}
-```
-
-In the example, we have an Animal base class and two derived classes, Dog and Cat. Each derived class overrides the makeSound() method with its own implementation.
-
-In the `main()` function, we create pointers of the base class type (`Animal*`) and assign them to objects of derived classes (`Dog` and `Cat`). When calling the `makeSound()` method through these base class pointers, the appropriate derived class's implementation is invoked, demonstrating polymorphism.
 
 Polymorphism allows you to write more flexible and reusable code by treating objects based on their common behavior, rather than their specific type. It promotes code extensibility and enhances the ability to work with a variety of objects in a unified way.
 
@@ -698,26 +625,7 @@ public:
         return value >= other.value;
     }
 };
-
-int main()
-{
-    MyClass obj1(5);
-    MyClass obj2(3);
-
-    if (obj1 >= obj2)
-    {
-        std::cout << "obj1 is greater than or equal to obj2" << std::endl;
-    }
-    else
-    {
-        std::cout << "obj1 is not greater than or equal to obj2" << std::endl;
-    }
-
-    return 0;
-}
 ```
-
-In this example, the `>=` operator is overloaded for the user-defined class `MyClass`. The `operator>=` function is defined as a member function of `MyClass`. It compares the value member of the current object (`this`) with the `value` member of the `other` object.
 
 By overloading operators, you can define custom behavior for how objects of a class interact with the corresponding operator. This provides flexibility and allows you to use familiar syntax and semantics for user-defined types, making the code more intuitive and expressive.
 
@@ -781,49 +689,30 @@ Here's an example in C++ to illustrate the concept of virtual functions:
 class Shape
 {
 public:
-    virtual void draw()
+    virtual void Draw()
     {
         // Common implementation for all shapes
-        std::cout << "Drawing a shape." << std::endl;
     }
 };
 
 class Circle : public Shape
 {
 public:
-    void draw() override
+    void Draw() override
     {
-        std::cout << "Drawing a circle." << std::endl;
+        // Override implementation
     }
 };
 
 class Rectangle : public Shape
 {
 public:
-    void draw() override
+    void Draw() override
     {
-        std::cout << "Drawing a rectangle." << std::endl;
+        // Override implementation
     }
 };
-
-int main()
-{
-    Shape* shape1 = new Circle();
-    Shape* shape2 = new Rectangle();
-
-    shape1->draw(); // Output: "Drawing a circle."
-    shape2->draw(); // Output: "Drawing a rectangle."
-
-    delete shape1;
-    delete shape2;
-
-    return 0;
-}
 ```
-
-In this example, we have a `Shape` base class and two derived classes, `Circle` and `Rectangle`. The `Shape` class has a virtual function called `draw()`. Both derived classes override this function and provide their own implementations.
-
-In the `main()` function, we create pointers of the base class type (`Shape*`) and assign them to objects of the derived classes (`Circle` and `Rectangle`). When calling the `draw()` function through these base class pointers, the appropriate derived class's implementation is invoked, thanks to the virtual function mechanism.
 
 The key aspect of the virtual function is that the appropriate implementation to be executed is determined at runtime, based on the actual type of the object being referred to. This is called dynamic dispatch or late binding.
 
@@ -895,11 +784,17 @@ Here's how a lambda expression works:
 
 * 4\. Function Body: The function body contains the statements and logic of the lambda function. It can include any valid C++ code, such as variable declarations, control flow statements, and computations.
 
+### Bitwise Operators
+
+[![Watch the video by Alex Hyett](https://img.youtube.com/vi/igIjGxF2J-w/maxresdefault.jpg)](https://youtu.be/igIjGxF2J-w)
+
+[![Watch the video by Alex Hyett](https://img.youtube.com/vi/g8ACeN9QMdY/maxresdefault.jpg)](https://youtu.be/g8ACeN9QMdY)
+
 ### Stack vs Heap
 
-[![Watch the video by Alex Hyett](https://img.youtube.com/vi/5OJRqkYbK-4/maxresdefault.jpg)](https://youtu.be/5OJRqkYbK-4)
-
 In programming languages, stack and heap are two different areas of memory used for [memory allocation](https://en.wikipedia.org/wiki/Memory_management). They serve distinct purposes and have different characteristics.
+
+[![Watch the video by Alex Hyett](https://img.youtube.com/vi/5OJRqkYbK-4/maxresdefault.jpg)](https://youtu.be/5OJRqkYbK-4)
 
 In C++, you have the flexibility to choose between stack and heap memory allocation based on your program's requirements. Stack memory is typically used for most local variables and function calls, providing automatic memory management and efficient access. On the other hand, heap memory is used when dynamic memory allocation is needed, allowing you to control the lifetime of objects and manage more extensive data structures.
 
@@ -978,6 +873,336 @@ The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a
 [MVC is an architectural design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) commonly used in user interface development. It separates an application into three interconnected components: the Model (data and business logic), the View (presentation and user interface), and the Controller (handles user input and updates the model). MVC promotes code organization, maintainability, and modularity.
 
 [![Watch the video by Web Dev Simplified](https://img.youtube.com/vi/DUg2SWWK18I/maxresdefault.jpg)](https://youtu.be/DUg2SWWK18I)
+
+### Structures
+
+[![Watch the video by Alex Hyett](https://img.youtube.com/vi/SCkbQSPH--A/maxresdefault.jpg)](https://youtu.be/SCkbQSPH--A)
+
+#### Array
+
+An array is a collection of elements stored in contiguous memory locations. It allows accessing elements using an index, making it efficient for random access. However, its size is fixed during initialization.
+
+Here's an example:
+
+```cpp
+#include <array>
+
+// Defining an array
+std::array<int, 5> myArray = {1, 2, 3, 4, 5};
+```
+
+#### List
+
+A list is a linear data structure that supports fast insertion and deletion at any position. It does not provide random access but is efficient for frequent insertions and removals.
+
+Here's an example:
+
+```cpp
+#include <list>
+
+// Defining an list
+std::list<int> myList = {1, 2, 3, 4, 5};
+
+myList.push_back(6);
+myList.push_front(0);
+```
+
+#### Queue
+
+A queue is a linear data structure that follows the First-In-First-Out (FIFO) principle. Elements are added to the back (enqueue) and removed from the front (dequeue).
+
+Here's an example:
+
+```cpp
+#include <queue>
+
+// Defining an list
+std::queue<int> myQueue;
+
+myQueue.push(1);
+myQueue.push(2);
+myQueue.push(3);
+```
+
+#### Hash Set (Lookup table)
+
+A hash set is a collection of unique elements, and it uses hashing to achieve fast insertion, deletion, and lookup operations.
+
+Here's an example:
+
+```cpp
+#include <unordered_set>
+
+// Defining an list
+std::unordered_set<int> myHashSet = {1, 2, 3, 4, 5};
+
+myHashSet.insert(6);
+```
+
+#### Dictionary (Map)
+
+A dictionary, also known as a map, is a collection of key-value pairs, where each key is unique. It provides fast access to values based on their keys.
+
+Here's an example:
+
+```cpp
+#include <map>
+
+// Defining an list
+std::map<std::string, int> myDictionary;
+
+myDictionary["apple"] = 5;
+myDictionary["banana"] = 3;
+myDictionary["orange"] = 8;
+```
+
+#### Linked List
+
+A linked list is a linear data structure where elements (nodes) are connected via pointers. It supports efficient insertion and deletion but requires more memory compared to arrays.
+
+> **Note**
+> Linked list structure doesn't exist in C++ standard library.
+
+Here's an example:
+
+```cpp
+struct Node
+{
+    int data;
+    Node* next;
+};
+
+int main()
+{
+    Node* head = nullptr;
+    Node* second = nullptr;
+    Node* third = nullptr;
+    
+    head = new Node();
+    second = new Node();
+    third = new Node();
+    
+    head->data = 1;
+    head->next = second;
+    
+    second->data = 2;
+    second->next = third;
+    
+    third->data = 3;
+    third->next = nullptr;
+    
+    Node* current = head;
+
+    while (current != nullptr)
+    {
+        std::cout << current->data << " ";
+        current = current->next;
+    }
+
+    std::cout << std::endl;
+    
+    delete head;
+    delete second;
+    delete third;
+    
+    return 0;
+}
+```
+
+### Time Complexity
+
+Time complexity is a measure of how the runtime of an algorithm grows with the size of the input data. It helps us understand how efficient an algorithm is and how it will scale when dealing with larger datasets.
+
+[![Watch the video by Alex Hyett](https://img.youtube.com/vi/aIG48ldbpRI/maxresdefault.jpg)](https://youtu.be/aIG48ldbpRI)
+
+Here is a graph of Time Complexity:
+
+![Big O Cheat Sheet – Time Complexity Chart](https://miro.medium.com/v2/resize:fit:1400/1*5ZLci3SuR0zM_QlZOADv8Q.jpeg)
+
+#### Constant - O(1)
+
+An algorithm has constant time complexity if its runtime does not depend on the size of the input data. It performs the same number of operations regardless of the input size.
+
+Here's an example:
+
+```cpp
+#include <iostream>
+
+void constantTimeExample(int num)
+{
+    std::cout << "This is a constant time example: " << num << std::endl;
+}
+
+int main()
+{
+    int num = 42;
+
+    constantTimeExample(num);
+
+    return 0;
+}
+```
+
+#### Logarithmic - O(log n)
+
+An algorithm has logarithmic time complexity if its runtime grows logarithmically with the size of the input. It divides the input data into smaller portions and discards a significant portion at each step.
+
+Here's an example:
+
+```cpp
+#include <iostream>
+
+int binarySearch(int arr[], int size, int target)
+{
+    int left = 0;
+    int right = size - 1;
+
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target)
+            return mid;
+        else if (arr[mid] < target)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+
+    return -1;
+}
+
+int main()
+{
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int target = 7;
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    int result = binarySearch(arr, size, target);
+    std::cout << "Element found at index: " << result << std::endl;
+
+    return 0;
+}
+```
+
+#### Linear - O(n)
+
+An algorithm has linear time complexity if its runtime grows linearly with the size of the input data. It performs an operation for each element in the input.
+
+Here's an example:
+
+```cpp
+#include <iostream>
+
+void linearTimeExample(int arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << arr[i] << " ";
+    }
+
+    std::cout << std::endl;
+}
+
+int main()
+{
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    linearTimeExample(arr, size);
+
+    return 0;
+}
+```
+
+#### Quadratic - O(n^2)
+
+An algorithm has quadratic time complexity if its runtime grows with the square of the input size. It often involves nested loops, leading to multiple iterations over the input data.
+
+Here's an example:
+
+```cpp
+#include <iostream>
+
+void quadraticTimeExample(int arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            std::cout << arr[i] * arr[j] << " ";
+        }
+    }
+
+    std::cout << std::endl;
+}
+
+int main()
+{
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    quadraticTimeExample(arr, size);
+
+    return 0;
+}
+```
+
+#### Exponential - O(2^n)
+
+An algorithm has exponential time complexity if its runtime grows exponentially with the size of the input data. It performs repeated operations that double with each increase in input size.
+
+Here's an example:
+
+```cpp
+#include <iostream>
+
+int fibonacci(int n)
+{
+    if (n <= 1)
+        return n;
+
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main()
+{
+    int n = 5;
+
+    std::cout << "Fibonacci of " << n << " is: " << fibonacci(n) << std::endl;
+
+    return 0;
+}
+
+```
+
+#### Factorial - O(n!)
+
+An algorithm has factorial time complexity if its runtime grows with the factorial of the input size. It is one of the slowest-growing time complexities and should be avoided for larger datasets.
+
+Here's an example:
+
+```cpp
+#include <iostream>
+
+int factorial(int n)
+{
+    if (n == 0)
+        return 1;
+
+    return n * factorial(n - 1);
+}
+
+int main()
+{
+    int n = 5;
+
+    std::cout << "Factorial of " << n << " is: " << factorial(n) << std::endl;
+
+    return 0;
+}
+
+```
 
 </details>
 
@@ -1437,153 +1662,52 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 
 </td></tr></table>
 
-We start off with simple variables types, such as `char`, `bool`, `int`, `float`, `string` and pointers.
+We start off with simple variables types, such as `char`, `bool`, `int` and `float`:
 
 ### Char
 
 ```cpp
-// Declaring and initializing a char variable
 char myChar = 'a';
-
-// Printing the value of the char to the console
-UE_LOG(LogTemp, Display, TEXT("The value of myChar is: %c"), myChar);
 ```
 
 ### Booleans
 
 ```cpp
 bool bIsDead = true; // Unreal has prefixed of a 'b' (always lowercase) 
-
-if (bIsDead)
-{
-  // Do some logic
-}
 ```
 
 ### Integers
 
 ```cpp
 int Health = 10; // Unreal always uses PascalCase naming convention.
-
-if (Health <= 0)
-{
-  bIsDead = true;
-  return;
-}
 ```
 
 > **Note**
-> It is generally recommended to use ```int32``` instead of ```int``` for representing 32-bit signed integers. This is because the exact size of ```int``` is not defined by the C++ standard and can vary across different platforms and compilers. By using ```int32```, you can ensure that the size of the integer is consistent regardless of the platform.
+> It is generally recommended to use `int32` instead of `int` for representing 32-bit signed integers. This is because the exact size of `int` is not defined by the C++ standard and can vary across different platforms and compilers. By using `int32`, you can ensure that the size of the integer is consistent regardless of the platform.
 
 So, here is the updated code:
 
 ```cpp
 int32 Health = 10; // Unreal always uses PascalCase naming convention.
-
-if (Health <= 0)
-{
-  bIsDead = true;
-  return;
-}
 ```
 
 ### Floating points (floats and doubles)
 
 ```cpp
 float SpeedInMetersPerSecond = 5.5f; // C++ always uses 'f' or 'F' literal for defining a float variable.
-
-float SpeedInKph = SpeedInMetersPerSecond * 3.6f;
 ```
 
 ```cpp
 double SpeedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a double variable.
-
-double SpeedInKph = SpeedInMetersPerSecond * 3.6;
 ```
 
-### Modifiers/Typedefs
+### Unreal Engine Typedefs
 
-In C++, a modifier is used to alter the meaning of the base type so that it more precisely fits the needs of various situations. The most common modifiers in C++ are ```signed```, ```unsigned```, ```long``` and ```short```, which are used to modify the size of integer types.
+In Unreal Engine, instead of writing `signed long long` for an 64-bit integer, you can now write `int64` instead. These alias are called **typedefs**, which you can read more about [typedef keyword in C++ docs](https://en.cppreference.com/w/cpp/language/typedef).
 
-The default behavior for all integer types is ```signed```.
+You can read more about C++ typedefs in [this section](#typedefs).
 
-In Unreal Engine, instead of writing ```signed long long``` for an 64-bit integer, you can now write ```int64``` instead. These alias are called **typedefs**, which you can read more about <a href="https://en.cppreference.com/w/cpp/language/typedef" target="_blank">here</a>!
-
-Here is s full list of *Unreal Engine's* typedefs:
-
-```cpp
-//~ Unsigned base types
-
-// 8-bit unsigned integer
-typedef unsigned char 		uint8;
-
-// 16-bit unsigned integer
-typedef unsigned short int	uint16;
-
-// 32-bit unsigned integer
-typedef unsigned int		uint32;
-
-// 64-bit unsigned integer
-typedef unsigned long long	uint64;
-
-//~ Signed base types.
-
-// 8-bit signed integer
-typedef	signed char			int8;
-
-// 16-bit signed integer
-typedef signed short int	int16;
-
-// 32-bit signed integer
-typedef signed int	 		int32;
-
-// 64-bit signed integer
-typedef signed long long	int64;
-```
-
-And here is how you can use these typedefs for specifying a size for an integer:
-
-```cpp
-// Can only store 8 bits (also known as a signed byte)
-// Can store postive and negative numbers
-// Range                          -128                          to    127
-int8 a = 15;
-
-// Can only store 16 bits (2x bytes)
-// Can store postive and negative numbers
-// Range                          -32,768                       to    32,767
-int16 b = 15;
-
-// Can only store 32 bits (4x bytes)
-// Can store postive and negative numbers
-// Range                          -2,147,483,648                to    2,147,483,647
-int32 c = -10;
-
-// Can only store 64 bits (8x bytes)
-// Can store postive and negative numbers
-// Range                          -9,223,372,036,854,775,808    to    9,223,372,036,854,775,807
-int64 d = 10;
-
-// Can only store 8 bits (also know as a byte)
-// Can only store postive numbers
-// Range                          0                             to    255
-uint8 e = 15;
-
-// Can only store 16 bits (2x bytes)
-// Can only store postive numbers
-// Range                          0                             to    65,535
-uint16 f = 15;
-
-// Can only store 32 bits (4x bytes)
-// Can only store postive numbers
-// Range                          0                             to    4,294,967,295
-uint32 g = 15;
-
-// Can only store 64 bits (8x bytes)
-// Can only store postive numbers
-// Range                          0                             to    18,446,744,073,709,551,615
-uint64 h = 10;
-```
+Here is s full list of Unreal Engine's typedefs:
 
 ```cpp
 //~ Unsigned base types.
@@ -2629,6 +2753,8 @@ Here's an example of PI macro:
 #define PI 3.14
 #define PI_MULTIPLY(x) 3.14 * x
 ```
+
+Here is a list of common macros in Unreal Engine:
 
 * `GENERATED_BODY()` - Boilerplate code required by the engine.
 * `TEXT()` - Convert a string literal to a platform independent string literal. Without this macro, you are using ANSI encoding (which can cause issue on other machines).
