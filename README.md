@@ -2996,6 +2996,9 @@ In Unreal Engine, a module is a way to organize game code into smaller pieces, s
 
 For example, you could create a module called `Vehicle` to contain all the code related to the vehicle system. This would allow you to isolate the vehicle code from other parts of the game, such as the inventory system, and make it easier to maintain and update.
 
+> **Note**
+> Unreal Engine modules are not related to C++ 20 modules.
+
 Here is a list of Unreal Engine's modules:
 
 <table><tr><td>
@@ -3011,9 +3014,6 @@ Here is a list of Unreal Engine's modules:
 * UMGEditor
 
 </td></tr></table>
-
-> **Note**
-> Unreal Engine modules are not related to C++ 20 modules.
 
 Working with modules can also help you stay focused on the specific functionality you're implementing, as you only need to work with the code relevant to that module.
 
