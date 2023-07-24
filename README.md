@@ -21,9 +21,6 @@
 * Use more tables for better understanding.
 * Add more video links.
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
-* Add video link and image to visualize stack vs heap.
-* Rewrite [📃 Macros](#-macros4) section.
-* Rewrite [🌍 Global Functions](#-global-functions) section.
 * Rewrite [Pointers](#pointers) section. Add about UHT.
 * Rewrite [Modifiers/Typedefs](#modifierstypedefs) section?
 
@@ -927,39 +924,60 @@ C++ provides features like dynamic memory allocation with `new` and `delete` ope
 * Heap memory is slower than stack memory due to dynamic allocation and deallocation operations.
 * The size of heap memory is typically much larger than the stack, but its allocation and deallocation require manual management.
 
+---
+
+> **Warning**
+> Don't use `new` and `delete` operators `UObject` classes, as this would interfere with Unreal's garbage collection system. 
+
 ### Design Patterns And Principles
+
+Design patterns are reusable solutions to common programming problems that have been proven effective over time. They provide guidelines and templates for structuring code, promoting best practices, and improving software design.
+
+[![Watch the video by Fireship](https://img.youtube.com/vi/tv-_1er1mWI/maxresdefault.jpg)](https://youtu.be/tv-_1er1mWI)
+
+Here are a few notable design patterns:
+
+#### SOLID
 
 `SOLID` or Single responsibility principle, Open-closed principle, Liskov substitution principle, Interface segregation principle, and Dependency inversion principle. SOLID is a mnemonic acronym for five design principles designed to make software designs more flexible, understandable, and maintainable.
 
-Design patterns are reusable solutions to common programming problems that have been proven effective over time. They provide guidelines and templates for structuring code, promoting best practices, and improving software design. Here are a few notable design patterns:
-
-#### Open-Closed Principle
-
-The [Open-Closed Principle (OCP)](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle) is a fundamental principle in object-oriented programming that states that software entities (classes, modules, functions, etc.) should be open for extension but closed for modification. It encourages the design of code that can be easily extended with new functionality without needing to modify the existing codebase.
+[![Watch the video by Alex Hyett](https://img.youtube.com/vi/kF7rQmSRlq0/maxresdefault.jpg)](https://youtu.be/kF7rQmSRlq0)
 
 #### KISS (Keep It Simple, Stupid)
 
 The [KISS principle](https://en.wikipedia.org/wiki/KISS_principle) emphasizes simplicity and avoiding unnecessary complexity in software design. It encourages keeping code, algorithms, and systems as simple as possible to enhance readability, maintainability, and reduce the likelihood of errors.
 
+[![Watch the video by Smok Code](https://img.youtube.com/vi/bEG94zyZlX0/maxresdefault.jpg)](https://youtu.be/bEG94zyZlX0)
+
 #### Singleton
 
 The [Singleton pattern](https://en.wikipedia.org/wiki/Singleton_pattern) ensures that only one instance of a class is created and provides a global point of access to that instance. It is useful in scenarios where you need to control access to a shared resource or want to limit the instantiation of a class to a single object.
+
+[![Watch the video by Web Dev Simplified](https://img.youtube.com/vi/sJ-c3BA-Ypo/maxresdefault.jpg)](https://youtu.be/sJ-c3BA-Ypo)
 
 #### Observer
 
 The [Observer](https://en.wikipedia.org/wiki/Observer_pattern) pattern establishes a one-to-many dependency between objects. It allows multiple observer objects (listeners) to be notified and updated automatically when the observed object (subject) undergoes a change in state. This pattern is widely used in event-driven systems or scenarios requiring loose coupling between objects.
 
+[![Watch the video by Derek Banas](https://img.youtube.com/vi/wiQdrH2YpT4/maxresdefault.jpg)](https://youtu.be/wiQdrH2YpT4)
+
 #### Factory
 
 The [Factory pattern](https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)) provides an interface for creating objects without exposing the creation logic to the client. It centralizes object creation, allowing clients to use the factory interface to create objects based on specific criteria or conditions. This pattern promotes flexibility, decoupling, and abstraction in object creation.
+
+[![Watch the video by CppNuts](https://img.youtube.com/vi/XyNWEWUSa5E/maxresdefault.jpg)](https://youtu.be/XyNWEWUSa5E)
 
 #### Strategy
 
 The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a family of algorithms and encapsulates each algorithm as a separate class. It allows clients to dynamically choose and switch between different algorithms at runtime. This pattern enables code reuse, promotes separation of concerns, and facilitates the "Open-Closed Principle" by allowing new algorithms to be added without modifying existing code.
 
+[![Watch the video by Derek Banas](https://img.youtube.com/vi/-NCgRD9-C6o/maxresdefault.jpg)](https://youtu.be/-NCgRD9-C6o)
+
 #### MVC (Model-View-Controller)
 
 [MVC is an architectural design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) commonly used in user interface development. It separates an application into three interconnected components: the Model (data and business logic), the View (presentation and user interface), and the Controller (handles user input and updates the model). MVC promotes code organization, maintainability, and modularity.
+
+[![Watch the video by Web Dev Simplified](https://img.youtube.com/vi/DUg2SWWK18I/maxresdefault.jpg)](https://youtu.be/DUg2SWWK18I)
 
 </details>
 
@@ -2528,27 +2546,31 @@ You can also read more about Unreal Engine docs about [Referencing Assets](https
 
 ## 🌍 Global Functions
 
-* ```IsValid()``` - Is used to check if a pointer or object reference is valid. This is important to avoid accessing or modifying null pointers, which can cause crashes or other unexpected behavior.
-* ```IsValidChecked()``` - Checks if an object is valid, which means that it is not a nullptr and is not pending kill. It is intended for use in low-level code and is faster than ```IsValid()```.
-* ```IsValidLowLevel()``` - Similar to ```IsValidChecked()```, but it also performs a runtime check in debug builds to ensure that the object is valid. If the check fails, it will trigger an assertion.
-* ```Cast()``` - Is used to attempt to cast an object from one type to another. If the object is not of the specified type, it will return a nullptr. If the object is of the specified type or a subclass of it, the function will return a pointer to the object cast to the specified type.
-* ```CastChecked()``` - Is similar to ```Cast()```, but it also performs a runtime check in debug builds to ensure that the object is of the specified type. If the check fails, it will trigger an assertion. This function is useful when you are certain that an object should be of a particular type and want to catch errors early in development.
+Global functions are functions that are defined outside of any class and are not tied to any specific object instance. They are accessible from any part of the codebase and can be used to perform tasks or calculations that do not require access to specific object properties or methods. 
+
+Global functions in Unreal Engine are commonly used for utility functions, helper functions, or functions that operate on data independently of any particular object instance.
+
+* `IsValid()` - Is used to check if a pointer or object reference is valid. This is important to avoid accessing or modifying null pointers, which can cause crashes or other unexpected behavior.
+* `IsValidChecked()` - Checks if an object is valid, which means that it is not a nullptr and is not pending kill. It is intended for use in low-level code and is faster than `IsValid()`.
+* `IsValidLowLevel()` - Similar to `IsValidChecked()`, but it also performs a runtime check in debug builds to ensure that the object is valid. If the check fails, it will trigger an assertion.
+* `Cast()` - Is used to attempt to cast an object from one type to another. If the object is not of the specified type, it will return a nullptr. If the object is of the specified type or a subclass of it, the function will return a pointer to the object cast to the specified type.
+* `CastChecked()` - Is similar to `Cast()`, but it also performs a runtime check in debug builds to ensure that the object is of the specified type. If the check fails, it will trigger an assertion. This function is useful when you are certain that an object should be of a particular type and want to catch errors early in development.
 
 ## 🏛️ Libraries
 
-Blueprint Function Libraries are a collection of static functions that provide utility functionality not tied to a particular gameplay object. These libraries can be grouped into logical function sets, e.g. AI Blueprint Library, or contain utility functions that provide access to many different functional areas, e.g. System Blueprint Library.
-
-Creating a Blueprint Function Library is very similar to exposing functions to Blueprints using the `UFUNCTION()` macro[^4]. Instead of deriving from an Actor or directly from `UObject` all Blueprint Libraries inherit from `UBlueprintFunctionLibrary`. They should also contain only static methods. The code below is a snippet from the Analytics Blueprint Library, showing how to setup your library class.
+Blueprint Function Libraries (`UBlueprintFunctionLibrary`) are a collection of static functions that provide utility functionality not tied to a particular gameplay object. These libraries can be grouped into logical function sets, e.g. AI Blueprint Library, or contain utility functions that provide access to many different functional areas, e.g. System Blueprint Library.
 
 ```cpp
-    UCLASS()
-    class UAnalyticsBlueprintLibrary :
-        public UBlueprintFunctionLibrary
-    {
-        GENERATED_UCLASS_BODY()
-        /** Starts an analytics session without any custom attributes specified */
-        UFUNCTION(BlueprintCallable, Category="Analytics")
-        static bool StartSession();
+UCLASS()
+class UAnalyticsBlueprintLibrary : public UBlueprintFunctionLibrary
+{
+    GENERATED_UCLASS_BODY()
+
+public:
+    /** Starts an analytics session without any custom attributes specified */
+    UFUNCTION(BlueprintCallable, Category = "Analytics")
+    static bool StartSession();
+}
 ```
 
 As you can see in the example above, a Blueprint Function Library is indirectly a `UObject` derived and therefore requires the standard `UCLASS()` and `GENERATED_UCLASS_BODY()` macros[^4]. It decorates the functions that are to be callable from Blueprints with the `UFUNCTION()` macro[^4]. Functions in a Blueprint Function Library can be designated as BlueprintCallable or BlueprintPure depending on whether the calls have side effects or not.
@@ -2556,19 +2578,23 @@ As you can see in the example above, a Blueprint Function Library is indirectly 
 Below is the implementation of the `StartSession()` function:
 
 ```cpp
-    bool UAnalyticsBlueprintLibrary::StartSession()
+bool UAnalyticsBlueprintLibrary::StartSession()
+{
+    TSharedPtr<IAnalyticsProvider> Provider = FAnalytics::Get().GetDefaultConfiguredProvider();
+
+    if (Provider.IsValid())
+        return Provider->StartSession();
+    else
     {
-        TSharedPtr<IAnalyticsProvider> Provider = FAnalytics::Get().GetDefaultConfiguredProvider();
-        if (Provider.IsValid())
-        {
-            return Provider->StartSession();
-        }
-        else
-        {
-            UE_LOG(LogAnalyticsBPLib, Warning, TEXT("StartSession: Failed to get the default analytics provider. Double check your [Analytics] configuration in your INI"));
-        }
-        return false;
+        UE_LOG(
+            LogAnalyticsBPLib,
+            Warning,
+            TEXT("StartSession: Failed to get the default analytics provider. Double check your [Analytics] configuration in your INI")
+        );
     }
+
+    return false;
+}
 ```
 
 You can read more about [Blueprint Function Libraries here](https://docs.unrealengine.com/5.2/en-US/blueprint-function-libraries-in-unreal-engine/)!
@@ -2589,6 +2615,21 @@ You can read more about [Blueprint Function Libraries here](https://docs.unreale
 
 ## 📃 Macros[^4]
 
+Macros are preprocessor directives that perform text replacements before the compilation process. They are denoted by the <kbd>#</kbd> symbol and are used to define reusable code snippets, conditionally include or exclude code, and perform other preprocessing operations.
+
+Creating a macro in C++ with Unreal Engine is straightforward. You can use the #define preprocessor directive to define a macro. Here's the basic syntax:
+
+```cpp
+#define MACRO_NAME(value) // Macro definition
+```
+
+Here's an example of PI macro:
+
+```cpp
+#define PI 3.14
+#define PI_MULTIPLY(x) 3.14 * x
+```
+
 * `GENERATED_BODY()` - Boilerplate code required by the engine.
 * `TEXT()` - Convert a string literal to a platform independent string literal. Without this macro, you are using ANSI encoding (which can cause issue on other machines).
 * `TEXTVIEW()` - Calculates the length of a string from a string literal at compile time.
@@ -2598,7 +2639,7 @@ You can read more about [Blueprint Function Libraries here](https://docs.unreale
 * `LINE_TERMINATOR` - Represent the line terminator character sequence in Unreal Engine. It provides a platform-independent way of specifying line breaks in text files or strings.
 * `CONSTEXPR` - Declare a constant expression. It is used in conjunction with the `constexpr` keyword[^1] to specify that a function or variable can be evaluated at compile-time and treated as a constant expression.
 * `ABSTRACT` - Declare an abstract class. It indicates that a class cannot be instantiated directly and must be subclassed. An abstract class serves as a base class for other classes and provides a blueprint for their common functionality.
-* `UPROPERTY()`` - Defines the type and behavior of the property, as well as its metadata and display names.
+* `UPROPERTY()` - Defines the type and behavior of the property, as well as its metadata and display names.
 * `UFUNCTION()` - Defines the parameters and return type of the function, as well as its behavior and metadata.
 * `UCLASS()` - Defines the properties and behavior of the class, including its inheritance hierarchy, default properties, and editor metadata.
 * `USTRUCT()` - Defines the properties and behavior of the struct, including its fields, default values, and editor metadata.
