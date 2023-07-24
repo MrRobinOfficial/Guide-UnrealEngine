@@ -20,6 +20,7 @@
 * Add image/banner cover to help visualize.
 * Use more tables for better understanding.
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
+* Rewrite all "Lorem Ipsum" stuff.
 
 </td></tr></table>
 
