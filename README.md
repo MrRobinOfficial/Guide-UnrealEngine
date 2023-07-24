@@ -26,7 +26,6 @@
 * Rewrite [🌍 Global Functions](#-global-functions) section.
 * Rewrite [Pointers](#pointers) section. Add about UHT.
 * Rewrite [Modifiers/Typedefs](#modifierstypedefs) section?
-* Rewrite [Constructors and Destructors](#constructors-and-destructors) section.
 
 </td></tr></table>
 
@@ -901,6 +900,8 @@ Here's how a lambda expression works:
 
 ### Stack vs Heap
 
+[![Watch the video by Alex Hyett](https://img.youtube.com/vi/5OJRqkYbK-4/maxresdefault.jpg)](https://youtu.be/5OJRqkYbK-4)
+
 In programming languages, stack and heap are two different areas of memory used for [memory allocation](https://en.wikipedia.org/wiki/Memory_management). They serve distinct purposes and have different characteristics.
 
 In C++, you have the flexibility to choose between stack and heap memory allocation based on your program's requirements. Stack memory is typically used for most local variables and function calls, providing automatic memory management and efficient access. On the other hand, heap memory is used when dynamic memory allocation is needed, allowing you to control the lifetime of objects and manage more extensive data structures.
@@ -964,11 +965,7 @@ The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a
 
 ## 🚧 Blueprint vs C++
 
-Watch this video by Alex Forsythe, in which he talks about when to use C++ and when to use Blueprint in Unreal development.
-
-[![Watch the video](https://img.youtube.com/vi/VMZftEVDuCE/maxresdefault.jpg)](https://youtu.be/VMZftEVDuCE)
-
-### Summary
+[![Watch the video by Alex Forsythe](https://img.youtube.com/vi/VMZftEVDuCE/maxresdefault.jpg)](https://youtu.be/VMZftEVDuCE)
 
 |             | Pros of Blueprint                          | Cons of Blueprint                              | Pros of C++                                   | Cons of C++                                       |
 |-------------|--------------------------------------------|------------------------------------------------|-----------------------------------------------|--------------------------------------------------|
@@ -2425,13 +2422,75 @@ You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
 
 ### Constructors and Destructors
 
-With ```AActor``` and ```UActorComponent``` you can control how the classes should be instantiated.
+#### Constructors
 
-> **Note**
-> Only use constructors for initializing variables. The constructor will also be called in the editor. Meaning, it should not use for runtime execution. Instead, use ```BeginPlay()``` function.
+Constructors are special member functions in C++ that are automatically called when an object is created. They are used to initialize the object's data members and set up its initial state. Constructors have the same name as the class and can be overloaded to take different sets of parameters, allowing for object initialization in various ways.
 
-> **Warning**
-> Don't use destructors for deleting memory with Unreal ```UObject```. This is handle by Unreal Engine's garbage collector.
+Here's an example:
+
+```cpp
+class RegularClass
+{
+    RegularClass()
+    {
+        std::cout << "Regular Constructor called." << std::endl;
+    }
+};
+```
+
+#### Destructors
+
+Destructors are another type of special member function in C++ that is automatically called when an object is destroyed or goes out of scope. They are used to perform cleanup tasks, release resources, and deallocate memory allocated during the object's lifetime. Like constructors, destructors have the same name as the class, preceded by a tilde (<kbd>~</kbd>).
+
+Here's an example:
+
+```cpp
+class RegularClass
+{
+    ~RegularClass()
+    {
+        std::cout << "Regular Destructor called." << std::endl;
+    }
+};
+```
+
+#### Usage in Unreal Engine
+
+In Unreal Engine, you can define constructors and destructors in C++ classes just like in standard C++. Constructors are useful for initializing properties and setting up components when an object is created, while destructors can be used for cleanup tasks like releasing resources or stopping background processes when an object is destroyed.
+
+However, Unreal Engine has its own garbage collection system that automatically manages memory and deallocation of objects. This means that using destructors for memory deallocation or resource cleanup may interfere with the garbage collection process and lead to unexpected behavior or crashes.
+
+Due to the automatic garbage collection in Unreal Engine, it is generally advised not to use destructors explicitly for memory cleanup. Instead, Unreal Engine provides other mechanisms, such as `BeginDestroy` and `EndPlay`, to handle object cleanup and resource release when an object is destroyed or removed from the game world.
+
+Here's an example:
+
+```cpp
+#include "MyActor.h"
+
+AMyActor::AMyActor()
+{
+    // This is the default constructor for an Actor class in Unreal Engine.
+    // You can initialize properties and set up components here.
+
+    RootComponent = CreateDefaultSubobject<USceneComponent>("SceneComponent");
+}
+
+void AMyActor::BeginPlay()
+{
+    Super::BeginPlay();
+
+    // This function is automatically called when the actor is spawned or added to the world.
+    // You can perform any necessary setup or initialization here.
+}
+
+void AMyActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    // This function is automatically called when the actor is removed from the world or destroyed.
+    // You can perform cleanup and resource release here.
+    
+    Super::EndPlay(EndPlayReason);
+}
+```
 
 ## 💾 Soft vs hard references
 
