@@ -232,13 +232,13 @@ Polymorphism is often illustrated through inheritance, where you have a base cla
 
 </details>
 
-### Syntax and Structure
+### ⌨️ Syntax and Structure
 
 Syntax refers to the set of rules that define the structure, format, and grammar of a programming language. It dictates how statements and expressions should be written to form valid code.
 
 C++ follows a structured syntax that includes elements such as keywords[^1], identifiers, operators, punctuation, and control structures. The syntax is designed to provide precise instructions to the compiler on how to interpret and execute the code.
 
-#### Weak vs Strong typing
+#### ✨ Weak vs Strong typing
 
 Weak and strong typing refer to different approaches in how programming languages handle data types and type safety.
 
@@ -299,24 +299,23 @@ It can span multiple lines
 */
 ```
 
-### Data types
+### 🔢 Data types
 
 <table><tr><td>
 
 ## Native Types
 
-* ```bool``` - Represents a logical value, either `true` or `false`
-* ```char``` - Represents a single character in the ASCII[^3] character set
-* ```int``` - Represents a integer (whole number)
-* ```float``` - Represents a floating-point number, which is a real number with a fractional component
-* ```double``` - Represents a double-precision floating-point number, which has twice the precision of a float
+* `bool`` - Represents a logical value, either `true` or `false`
+* `char` - Represents a single character in the ASCII[^3] character set
+* `int` - Represents a integer (whole number)
+* `float` - Represents a floating-point number, which is a real number with a fractional component
+* `double` - Represents a double-precision floating-point number, which has twice the precision of a float
 
 </td></tr></table>
 
 #### Char
 
 ```cpp
-// Declaring and initializing a char variable
 char myChar = 'a';
 ```
 
@@ -342,7 +341,7 @@ float speedInMetersPerSecond = 5.5f; // C++ always uses 'f' or 'F' literal for d
 double speedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a double variable.
 ```
 
-### Typedefs
+### 🙋‍♂️ Typedefs
 
 In C++, the `typedef` keyword[^1] is used to create an alias or alternative name for existing data types. It provides a way to define a new name that can be used as a shorthand for the original type, improving code readability and maintainability.
 
@@ -429,7 +428,7 @@ Objects created from a class can access and modify the class's members. They pro
 
 Classes allow for code reusability, encapsulation (hiding internal details), and the ability to model complex systems by organizing related data and behavior together.
 
-### Accessibility
+### 💔 Accessibility
 
 | Keyword	    | Access ability | Description                                                                                          |
 | ----------- | -------------- | ---------------------------------------------------------------------------------------------------- |
@@ -439,7 +438,7 @@ Classes allow for code reusability, encapsulation (hiding internal details), and
 | `mutable`   |	Class	         | Specifies that a member variable can be modified even if the owning object is const.                 |
 | `friend`    | Class          | Allows a non-member function or class to access the private and protected members of a class.        |
 
-### If-statements
+### 🤔 If-statements
 
 If-statement is a fundamental control structure that allows you to conditionally execute a block of code based on a specified condition.
 It provides a way to control the flow of execution in your program.
@@ -459,7 +458,7 @@ else
 }
 ```
 
-### Comparisons and Boolean Operators
+### 🔣 Comparisons and Boolean Operators
 
 Here are some operations for creating conditions:
 
@@ -473,7 +472,7 @@ Here are some operations for creating conditions:
 * `||`	- Expression A || B is evaluated by first evaluating A. If A has a nonzero value, then A || B has value 1, and B is not evaluated. Otherwise, A || B has value 1 if B is nonzero and value 0 if B is zero. Also called `OR` operator.
 * `!` 	- Expression !A is 0 if A is nonzero, and is 1 if A is 0. Also called `NOT` operator.
 
-#### Conditional Expressions
+#### ❓ Conditional Expressions (Ternary operator)
 
 Conditional expressions in C++ are statements that evaluate a condition and return a value based on the result of the condition. They provide a concise way to express simple conditions and perform different actions or assignments based on the outcome.
 
@@ -489,7 +488,7 @@ The basic syntax of a conditional expression in C++ is as follows:
 
 * 3\. If the condition is false, the value or expression after the colon is returned as the result.
 
-### Switches
+### 🔀 Switches
 
 In C++, a switch statement is a control flow construct used to select one of many possible execution paths based on the value of a given expression. It provides an alternative to using multiple if-else statements when checking a variable against different values.
 
@@ -517,11 +516,11 @@ switch (expression)
 
 * 3\. If none of the cases match the expression's value, the code block associated with the default case (optional) is executed. The default case serves as a fallback option when no matching cases are found.
 
-### Loops
+### 🔄️ Loops
 
 Loops are essential constructs in programming languages that allow repetitive execution of a block of code based on a specified condition. They provide a way to automate tasks, process collections of data, and iterate over a sequence of elements.
 
-#### While Loop
+#### ♾️ While Loop
 
 While loop are used when the number of iterations is uncertain but depends on a condition. The loop continues as long as the specified condition remains true. It evaluates the condition before each iteration, and if it becomes false, the loop terminates.
 
@@ -540,7 +539,7 @@ std::cout << "First power of 2 greater than 100: " << num << std::endl;
 // Output: First power of 2 greater than 100: 128
 ```
 
-#### Do-While Loop
+#### 🔃 Do-While Loop
 
 A do-while loop is a control flow structure in programming that executes a block of code at least once, and then repeats the execution as long as a specified condition remains true. It is similar to the while loop, but with the condition checked at the end of each iteration.
 
@@ -558,7 +557,7 @@ do
 // Output: 1 2 3 4 5
 ```
 
-#### For Loop
+#### 🔂 For Loop
 
 For loop are used when you know the number of iterations in advance. They consist of an initialization, a condition for continuation, and an iteration statement. The loop iterates over a range of values or a collection, incrementing or decrementing a counter variable with each iteration.
 
@@ -573,7 +572,7 @@ for (int i = 1; i <= 5; i++)
 // Output: 1 2 3 4 5
 ```
 
-#### Foreach Loop
+#### 🗂️ Foreach Loop
 
 Foreach loop are designed to iterate over collections or sequences of elements. They automatically handle the iteration logic, allowing you to process each element without managing an explicit index or counter. The loop iterates over each element in the collection until all elements have been processed.
 
@@ -756,6 +755,8 @@ int main()
     return 0;
 }
 ```
+
+### 😵 Recursion
 
 ### Lambda
 
@@ -2086,7 +2087,7 @@ if (DamageHealth(PlayerHealth)) // Passing the `PlayerHealth` as a direct refere
 }
 ```
 
-### Pointers
+### 👈 Pointers
 
 ![Pointers](static/img/Pointers.png)
 
@@ -2562,7 +2563,7 @@ You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
 
 ---
 
-### Constructors and Destructors
+### 👷 Constructors and Destructors
 
 #### Constructors
 
@@ -3122,7 +3123,7 @@ Using preprocessor directives to strip out editor functionality in Unreal Engine
 
 For an example, in this scenaro.
 
-Here is an example:
+Here's an example:
 
 ```cpp
 #if WITH_EDITORONLY_DATA
@@ -3161,7 +3162,7 @@ void SetupArrow()
 
 ```
 
-## Deep dive
+## 🧠 Deep dive
 
 ### 🔖 Keywords
 
@@ -3437,7 +3438,7 @@ void DebugMessage()
 }
 ```
 
-## 👁️‍🗨️ Console Commands
+## 📛 Console Commands
 
 * `stat fps` - Display FPS.
 * `stat unit` - Display frame time.
@@ -3516,7 +3517,7 @@ To change any of the shortcuts, you can access the keyboard shortcut settings vi
 
 ![Common Errors](static/img/Cpp_Errors.png)
 
-### Compiler Error C2628
+### ⛔ Compiler Error C2628
 
 Description
 > A semicolon may be missing.
@@ -3546,7 +3547,7 @@ int main()
 
 [Link](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-2/compiler-error-c2628?view=msvc-170) to error message.
 
-### Compiler Error C2065
+### ⛔ Compiler Error C2065
 
 Description
 > The compiler doesn't recognize the identifier and, therefore, considers it undeclared. The compiler needs to be aware of the existence of identifiers before they can be used. By declaring an identifier, you provide the compiler with the necessary information about its name and type, allowing it to properly allocate memory or resolve references.
