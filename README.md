@@ -198,7 +198,7 @@ To use C++ effectively in Unreal Engine, it is crucial to have a strong foundati
 
 ## 🗺️ Summary of C++ and Programming World
 
-<details open>
+<details>
   <summary>Click to expand</summary>
 
 ### Object-Oriented Programming
