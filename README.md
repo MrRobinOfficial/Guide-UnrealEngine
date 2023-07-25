@@ -1220,11 +1220,9 @@ int main()
 | Flexibility | Easy to modify and maintain                 | Limited access to low-level engine features     | Full access to Unreal Engine internals         | Requires understanding of engine architecture   |
 | Collaboration| Visual representation of logic             | More challenging for team collaboration        | Easier integration with external libraries     | Collaboration may require code comprehension    |
 
-> **Tip**
-> Choose C++ when you anticipate the need for interaction with other C++ code or require extensive control over low-level optimizations and memory management. C++ is well-suited for classes that require direct access to engine internals and efficient execution.
+**Choose C++** when you anticipate the need for interaction with other C++ code or require extensive control over low-level optimizations and memory management. C++ is well-suited for classes that require direct access to engine internals and efficient execution.
 
-> **Tip**
-> Use Blueprint as an inherited class when you want to benefit from the visual scripting capabilities and quick prototyping offered by Blueprint, while still having the option to incorporate C++ code in the future. This allows for a flexible approach where you can leverage the power of Blueprint while having the ability to extend functionality with C++ when needed.
+**Use Blueprint** as an inherited class when you want to benefit from the visual scripting capabilities and quick prototyping offered by Blueprint, while still having the option to incorporate C++ code in the future. This allows for a flexible approach where you can leverage the power of Blueprint while having the ability to extend functionality with C++ when needed.
 
 ## 🪧 Unreal's Architecture
 
@@ -1640,7 +1638,7 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 * `bool` - Represents a logical value, either `true` or `false`
 * `char` - Represents a single character in the ASCII[^3] character set
 * `int8` - Represents a signed 8-bit integer
-* `int` or ```int32``` - Represents a signed 32-bit integer
+* `int` or `int32` - Represents a signed 32-bit integer
 * `int16` - Represents a signed 16-bit integer
 * `int64` - Represents a signed 64-bit integer
 * `uint8` - Represents an unsigned 8-bit integer
@@ -1654,13 +1652,13 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 * `FString` - Represents a [mutable](#mutable) string of characters. Most expensive than `FName` and `FText`, but allow you to split, append, create substrings and manipulate the string.
 * `FVector` - Represents a 3D vector, which consists of three float values (X, Y, and Z). It is often used to represent positions, directions, and velocities in 3D space.
 * `FRotator` - Represents a rotation in 3D space, which consists of three float values (Pitch, Yaw, and Roll) that correspond to rotations around the X, Y, and Z axes, respectively
-* `FQuat` - Lorem Ipsum
+* `FQuat` - Represents a quaternion that describes rotations in 3D space using four components (x, y, z, w).
 * `FTransform` - Represents a transformation in 3D space, which consists of a location, rotation, and scale
 * `TArray` - Dynamic array data structure that can hold any type of data
 * `TSet` - Dynamic set data structure that can hold any type of data
 * `TMap` - Dynamic map data structure that can hold key-value pairs of any type of data (similar to Dictionary)
-* `TMultiMap` - Lorem Ipsum
-* `TStaticArray` - Lorem Ipsum
+* `TMultiMap` - Dynamic map data structure that allows storing multiple values for the same key, facilitating efficient storage and retrieval of data based on keys.
+* `TStaticArray` - Static array data structure that provides compile-time array size validation and is suitable for cases where the size of the array is known at compile time and doesn't change during runtime.
 
 </td></tr></table>
 
