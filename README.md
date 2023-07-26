@@ -2904,7 +2904,7 @@ class RegularClass
 {
     RegularClass()
     {
-        std::cout << "Regular Constructor called." << std::endl;
+        // Constructor called
     }
 };
 ```
@@ -2920,7 +2920,7 @@ class RegularClass
 {
     ~RegularClass()
     {
-        std::cout << "Regular Destructor called." << std::endl;
+        // Destructor called
     }
 };
 ```
