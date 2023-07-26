@@ -19,6 +19,7 @@
 * Add image/banner cover to help visualize.
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
 * Fix Lorem Ipsum text.
+* Rewrite [💎 Unreal Header Tool](#-unreal-header-tool) section.
 
 </td></tr></table>
 
