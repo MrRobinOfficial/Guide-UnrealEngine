@@ -3967,7 +3967,7 @@ If you have any questions or issue, just write either to my [YouTube channel](ht
 
 <table><tr><td>
 
-<sub><sup><sup>IT'S 14 PAGES LONG!</sup></sup></sub>
+<sub><sup><sup>IS 14 PAGES LONG!</sup></sup></sub>
 
 </td></tr></table>
 
