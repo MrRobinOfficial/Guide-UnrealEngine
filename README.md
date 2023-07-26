@@ -17,9 +17,8 @@
 ## TODO LIST
 
 * Add image/banner cover to help visualize.
-* Use more tables for better understanding.
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
-* Rewrite all "Lorem Ipsum" stuff.
+* Fix Lorem Ipsum text.
 
 </td></tr></table>
 
@@ -373,19 +372,16 @@ The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, w
 
 Here is s list of custom typedefs:
 
-```cpp
-//~ Unsigned base types. Can only store postive numbers
-typedef unsigned char 		uint8; // 8-bit unsigned integer       (0                            to    255)
-typedef unsigned short int	uint16; // 16-bit unsigned integer     (0                            to    65,535)
-typedef unsigned int		uint32; // 32-bit unsigned integer     (0                            to    4,294,967,295)
-typedef unsigned long long	uint64; // 64-bit unsigned integer     (0                            to    18,446,744,073,709,551,615)
-
-//~ Signed base types. Can store postive and negative numbers
-typedef	signed char			int8; // 8-bit signed integer          (-128                         to    127)
-typedef signed short int	int16; // 16-bit signed integer        (-32,768                      to    32,767)
-typedef signed int	 		int32; // 32-bit signed integer        (-2,147,483,648               to    2,147,483,647)
-typedef signed long long	int64; // 64-bit signed integer        (-9,223,372,036,854,775,808   to    9,223,372,036,854,775,807)
-```
+| Declare    | Size (bits) | MinValue                    | MaxValue                     |
+|---------|-------------|-----------------------------|------------------------------|
+| `unsigned char`   | 8           | 0                           | 255                          |
+| `unsigned short int`  | 16          | 0                           | 65,535                       |
+| `unsigned int`  | 32          | 0                           | 4,294,967,295                |
+| `unsigned long long`  | 64          | 0                           | 18,446,744,073,709,551,615   |
+| `signed char`    | 8           | -128                        | 127                          |
+| `signed short int`   | 16          | -32,768                     | 32,767                       |
+| `signed int`   | 32          | -2,147,483,648              | 2,147,483,647                |
+| `signed long long`   | 64          | -9,223,372,036,854,775,808  | 9,223,372,036,854,775,807    |
 
 And here is how you can use these typedefs for specifying a size for an integer:
 
@@ -602,11 +598,103 @@ for (char c : message)
 // Output: H e l l o
 ```
 
+---
+
+In summary:
+
+| Loop Type    | Purpose                                        |
+|--------------|------------------------------------------------|
+| while loop   | Executes the block of code while the condition is true. |
+| do-while loop| Executes the block of code first, then checks the condition. It guarantees that the loop will execute at least once. |
+| for loop     | Executes the block of code based on the initialization, condition, and update expressions. |
+| foreach loop | Iterates over the elements of a container (e.g., arrays, vectors) and executes the block of code for each item. |
+
 ### 🦋 Immutable vs Mutable
+
+The terms `immutable` and `mutable` refer to the state of an object or variable and whether it can be changed after its creation. Understanding the difference between `immutable` and `mutable` objects is essential in programming as it affects how data is manipulated and shared within the code.
 
 #### Mutable
 
+In C++, the `mutable` keyword is used to modify the behavior of a class member when the class itself is declared as `const`. When a class member is marked as mutable, it can be modified even when the object is considered constant.
+
+When you declare a class member as `const`, it means that the member cannot be modified once the object is created. However, there are scenarios where you may want to allow certain members to be modified even in a `const` object. This is where the `mutable` keyword comes into play. By using `mutable` keyword, you can change a `const` class member and alter the value.
+
+Usage of `mutable` for variables:
+
+```cpp
+class MyClass
+{
+public:
+    MyClass(int value) : constantValue(value) {}
+
+    void IncrementValue() const
+    {
+        mutableValue++; // Modifying the mutable member inside a const member function
+    }
+
+    // This function is const and cannot modify constantValue
+    int GetConstantValue() const { return constantValue; } 
+
+    // This function is const, but mutableValue can still be modified.
+    int GetMutableValue() const { return mutableValue; }
+
+private:
+    const int constantValue; // Regular constant member
+    mutable int mutableValue; // Mutable member
+};
+```
+
+When to use `mutable` keyword:
+
+The mutable keyword is used in situations where a class member maintains a state that should be allowed to change even in a const object. Common use cases for mutable include caching and lazily initializing data. By making certain members mutable, you can improve performance in specific scenarios without sacrificing the const-correctness of your class.
+
+> **Warning**
+> While `mutable` can be useful, it should be used judiciously. Modifying mutable members inside `const` functions can lead to unexpected behavior and make the code harder to reason about. Ensure that the state being modified using `mutable` doesn't affect the logical constness of the class or lead to thread-safety issues.
+
 #### Immutable
+
+When a member variable is declared as `const`, it means that its value cannot be changed after it is initialized. This makes the member immutable, and any attempt to modify its value will result in a compilation error.
+
+The `const` keyword is used in C++ to declare a constant variable, which means its value cannot be changed once it is assigned. When applied to member functions, it indicates that the function will not modify the state of the object it is called on (i.e., it won't modify member variables unless they are explicitly marked as `mutable`). This allows the compiler to enforce immutability and provides additional safety guarantees in the code.
+
+Usage of `const` for variables:
+
+```cpp
+const int immutableValue = 10; // Immutable variable
+// immutableValue = 20; // Error: Cannot modify an immutable variable
+```
+
+---
+
+| Property                   | Immutable                   | Mutable                      |
+|----------------------------|-----------------------------|------------------------------|
+| State                      | Cannot be changed           | Can be changed               |
+| Modification               | Creates a new object        | Modifies the original object |
+| Data Sharing               | Thread-safe (no synchronization needed) | Requires synchronization for thread-safety |
+| Memory Overhead            | Additional memory allocation for each update | Direct modification, no additional memory overhead |
+| Performance Characteristics | Generally more memory-efficient but slower for frequent updates | May be less memory-efficient but faster for frequent updates |
+
+### Try Catch
+
+Lorem Ipsum
+
+### Casting
+
+Lorem Ipsum
+
+### Inlining
+
+Lorem Ipsum
+
+### Namespace
+
+Lorem Ipsum
+
+### Static members
+
+Lorem Ipsum
+
+### `auto` keyword
 
 Lorem Ipsum
 
@@ -771,6 +859,35 @@ int main()
 
 ### 😵 Recursion
 
+Recursion is a programming technique where a function calls itself to solve a problem. In simpler terms, it's a process of solving a larger problem by breaking it down into smaller, more manageable subproblems.
+
+Here's an example:
+
+```cpp
+int factorial(int n)
+{
+    if (n == 0 || n == 1)
+        return 1;
+    else
+        return n * factorial(n - 1); // Calling the function again (recursion)
+}
+```
+
+<table><tr><td>
+
+## Benefits of Recursion
+
+* Simplicity: Recursive solutions can often be more straightforward and easier to understand for certain problems, especially those that have a recursive nature.
+
+* Elegant Code: Recursive code can lead to more elegant and concise solutions for problems that have repetitive or nested structures.
+
+* Divide and Conquer: Recursive algorithms often break a complex problem into smaller, more manageable subproblems, making it easier to solve.
+
+</td></tr></table>
+
+> **Warning**
+> While recursion can be powerful, it's essential to use it judiciously. Recursive solutions may consume more memory and time compared to iterative solutions for certain problems. Additionally, recursive functions can lead to stack overflow errors if not implemented correctly or when dealing with very large inputs.
+
 ### 🫀 Lambda
 
 In C++, a lambda expression, often referred to as a lambda function or lambda, is an anonymous function that you can define inline. It provides a convenient way to create small, inline functions without the need for explicitly declaring a separate function.
@@ -798,11 +915,57 @@ Here's how a lambda expression works:
 
 * 4\. Function Body: The function body contains the statements and logic of the lambda function. It can include any valid C++ code, such as variable declarations, control flow statements, and computations.
 
+Here's an example of how to use lambda in action:
+
+```cpp
+// Lambda function that takes two integers as parameters and returns their sum.
+auto sum = [](int a, int b) { return a + b; };
+
+int num1 = 5;
+int num2 = 10;
+
+// Using the lambda to calculate the sum of num1 and num2.
+int result = sum(num1, num2);
+```
+
 ### 🦾 Bitwise Operators
+
+Bitwise Operators in C++ are used to perform bitwise operations on individual bits of integer data types. These operators directly manipulate the binary representation of integers at the bit level.
+
+Bitwise operations can bring performance benefits in certain situations because they operate at a low level, dealing directly with binary representations. This can make certain operations faster and more memory-efficient compared to other higher-level approaches.
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/igIjGxF2J-w/maxresdefault.jpg)](https://youtu.be/igIjGxF2J-w)
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/g8ACeN9QMdY/maxresdefault.jpg)](https://youtu.be/g8ACeN9QMdY)
+
+**Bitwise Operators** in C++ are used to perform bitwise operations on individual bits of integer data types. These operators directly manipulate the binary representation of integers at the bit level.
+
+Bitwise operations can bring performance benefits in certain situations because they operate at a low level, dealing directly with binary representations. This can make certain operations faster and more memory-efficient compared to other higher-level approaches.
+
+Here's a table listing all the bitwise operators in C++ and their functionality:
+
+| Operator  | Description                                                                                     | Example                   |
+|-----------|-------------------------------------------------------------------------------------------------|---------------------------|
+| &         | Bitwise AND: Sets each bit to 1 if both corresponding bits are 1.                             | `int result = a & b;`     |
+| \|        | Bitwise OR: Sets each bit to 1 if either of the corresponding bits is 1.                       | `int result = a \| b;`    |
+| ^         | Bitwise XOR (Exclusive OR): Sets each bit to 1 if only one of the corresponding bits is 1.     | `int result = a ^ b;`     |
+| ~         | Bitwise NOT (Complement): Inverts all the bits, changing 0 to 1 and 1 to 0.                     | `int result = ~a;`        |
+| <<        | Left Shift: Shifts the bits to the left by the specified number of positions.                  | `int result = a << 3;`    |
+| >>        | Right Shift: Shifts the bits to the right by the specified number of positions.                | `int result = a >> 2;`    |
+
+Here's an example:
+
+```cpp
+int a = 5;    // Binary representation: 0000 0101
+int b = 3;    // Binary representation: 0000 0011
+
+int bitwiseAnd = a & b;     // Binary representation: 0000 0001 (1 in decimal)
+int bitwiseOr = a | b;      // Binary representation: 0000 0111 (7 in decimal)
+int bitwiseXor = a ^ b;     // Binary representation: 0000 0110 (6 in decimal)
+int bitwiseNotA = ~a;       // Binary representation: 1111 1010 (-6 in decimal)
+int leftShift = a << 2;     // Binary representation: 0001 0100 (20 in decimal)
+int rightShift = a >> 1;    // Binary representation: 0000 0010 (2 in decimal)
+```
 
 ### 💥 Stack vs Heap
 
@@ -836,7 +999,17 @@ C++ provides features like dynamic memory allocation with `new` and `delete` ope
 ---
 
 > **Warning**
-> Don't use `new` and `delete` operators `UObject` classes, as this would interfere with Unreal's garbage collection system. 
+> Don't use `new` and `delete` operators `UObject` classes, as this would interfere with Unreal's garbage collection system.
+
+| Aspect           | Stack                                    | Heap                                        |
+|------------------|------------------------------------------|---------------------------------------------|
+| Memory Location  | Located in the system's RAM, typically in a contiguous block. | Located in a different part of memory, often called the "free store." |
+| Memory Management| Automatically managed by the compiler or runtime system using Last-In-First-Out (LIFO) order. | Requires manual management, using dynamic memory allocation and deallocation (e.g., `new` and `delete` in C++). |
+| Memory Size      | Fixed size, limited by the stack's size. | Dynamic size, limited by the available memory of the system. |
+| Allocation Speed | Faster, as memory allocation and deallocation is done by adjusting the stack pointer. | Slower, as memory allocation requires searching for a suitable free block in the heap. |
+| Deallocation     | Automatically deallocated when the function or scope it belongs to exits. | Must be explicitly deallocated to avoid memory leaks. |
+| Use Cases        | Best suited for managing local variables and function call frames. | Used for data structures that need to exist beyond the scope of a function or when the memory size is not known at compile time. |
+| Risk of Overflow | May cause a stack overflow if too much memory is used, leading to program termination. | Generally less prone to overflow as it can grow dynamically, but can still cause out-of-memory errors if not managed properly. |
 
 ### Design Patterns And Principles
 
@@ -887,6 +1060,18 @@ The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a
 [MVC is an architectural design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) commonly used in user interface development. It separates an application into three interconnected components: the Model (data and business logic), the View (presentation and user interface), and the Controller (handles user input and updates the model). MVC promotes code organization, maintainability, and modularity.
 
 [![Watch the video by Web Dev Simplified](https://img.youtube.com/vi/DUg2SWWK18I/maxresdefault.jpg)](https://youtu.be/DUg2SWWK18I)
+
+---
+
+| Pattern/Principle | Description                                                                           | Use Case                                                 |
+|-------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------|
+| SOLID Principles  | A set of five principles: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion. | Designing maintainable, scalable, and flexible code.    |
+| KISS Principle    | "Keep It Simple, Stupid" - Encourages simplicity and avoiding unnecessary complexity in code. | Writing code that is easy to understand and maintain.   |
+| Singleton Pattern | Ensures a class has only one instance and provides a global point of access to that instance. | Managing shared resources or configurations.             |
+| Observer Pattern  | Defines a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically. | Implementing event handling and decoupling components.   |
+| Factory Pattern   | A creational pattern that provides an interface for creating objects, but allows subclasses to alter the type of objects that will be created. | Creating objects without specifying the exact class.     |
+| Strategy Pattern  | Allows selecting an algorithm or behavior during runtime by encapsulating each behavior in separate classes and making them interchangeable. | Implementing different algorithms for the same task.     |
+| MVC Pattern       | Model-View-Controller: Separates an application into three components - the model (data and business logic), the view (user interface), and the controller (manages user input and updates the model and view). | Structuring applications for better maintainability and scalability. |
 
 ### 💯 Structures
 
@@ -1022,6 +1207,16 @@ int main()
     return 0;
 }
 ```
+
+---
+
+| Data Structure   | Description                                                                                              | Use Case                                                             |
+|------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| Array            | A fixed-size collection of elements of the same data type stored in contiguous memory locations.        | Used when the size is known at compile time and constant-time access is required.  |
+| List             | A dynamic collection of elements, usually implemented as a doubly-linked list or dynamic array.         | Suitable when the size is unknown or frequently changes, offering efficient insertion and deletion. |
+| Hash Set         | A collection of unique elements, stored in a hash table based on their hash codes.                      | Ideal for maintaining a set of distinct items and performing fast membership checks.   |
+| Dictionary       | Also known as a hash map, it stores key-value pairs and allows fast lookup of values based on keys.     | Used when quick access to data based on keys is required, e.g., in associative arrays. |
+| Linked List      | A linear data structure where elements are stored in nodes, each containing a value and a reference to the next node. | Suitable when frequent insertion and deletion at any position are required.  |
 
 ### ⏰ Time Complexity
 
@@ -1218,6 +1413,17 @@ int main()
 
 ```
 
+---
+
+| Time Complexity  | Description                                                       | Example                 | Characteristics                                           |
+|------------------|-------------------------------------------------------------------|-------------------------|----------------------------------------------------------|
+| Constant (O(1)) | The time taken is constant, irrespective of the input size.     | Accessing an element in an array with an index. | Fast and efficient, doesn't depend on input size.      |
+| Logarithmic (O(log n)) | The time grows logarithmically with the input size.       | Binary search algorithm. | Efficient for large datasets, grows slowly with input.  |
+| Linear (O(n))   | The time grows linearly with the input size.                    | Linear search in an unsorted array. | Time increases linearly with input size.              |
+| Quadratic (O(n^2)) | The time grows quadratically with the input size.         | Nested loops.            | Becomes inefficient for large input, grows rapidly.    |
+| Exponential (O(2^n)) | The time grows exponentially with the input size.         | Recursive Fibonacci.     | Very slow, becomes impractical for even small inputs.  |
+| Factorial (O(n!))   | The time grows factorially with the input size.          | Recursive permutation algorithm. | Extremely slow, highly impractical for most cases.   |
+
 </details>
 
 ## 🚧 Blueprint vs C++
@@ -1317,63 +1523,63 @@ graph TD;
     UShapeComponent-->USphereComponent;
 ```
 
-```UObject``` is a base class for objects in the engine that require some common functionality such as garbage collection, serialization, reflection, and more. ```UObject``` also provides some additional functionality such as networking support, dynamic class creation, and object-oriented programming features like inheritance and polymorphism.
+`UObject` is a base class for objects in the engine that require some common functionality such as garbage collection, serialization, reflection, and more. `UObject` also provides some additional functionality such as networking support, dynamic class creation, and object-oriented programming features like inheritance and polymorphism.
 
-Some of the notorious classes, that inherit from ```UObject``` include:
+Some of the notorious classes, that inherit from `UObject` include:
 
 <details>
   <summary>Click to expand</summary>
 
-* ```AActor```
-  * A base class for the every object placed in the world. It's an ```UObject``` that usually contains other ```UObject```s specialized to be part of an actor - this what we call components.
+* `AActor`
+  * A base class for the every object placed in the world. It's an `UObject` that usually contains other `UObject`s specialized to be part of an actor - this what we call components.
   * This class contains a basic functionality to operate on the "object placed in the world".
-  * ```AActor``` itself doesn't have a transform (i.e. position in the world), it depends on the transform of the root component.
+  * `AActor` itself doesn't have a transform (i.e. position in the world), it depends on the transform of the root component.
   * *Functions*:
-    * ```BeginPlay()``` - Called when the level starts ticking, only during actual gameplay.
-    * ```Tick(float DeltaSeconds)``` - Update function, called every frame on Actor.
-    * ```EndPlay(const EEndPlayReason::Type EndPlayReason)``` - Whenever actor is being removed from a level
-    * ```SetLifeSpan(float InLifespan)``` - Set the lifespan of actor.
-    * ```Destroy(bool bNetForce, bool bShouldModifyLevel)``` - Destroy actor.
+    * `BeginPlay()` - Called when the level starts ticking, only during actual gameplay.
+    * `Tick(float DeltaSeconds)` - Update function, called every frame on Actor.
+    * `EndPlay(const EEndPlayReason::Type EndPlayReason)` - Whenever actor is being removed from a level
+    * `SetLifeSpan(float InLifespan)` - Set the lifespan of actor.
+    * `Destroy(bool bNetForce, bool bShouldModifyLevel)` - Destroy actor.
  
-* ```APawn```
+* `APawn`
   * Represents a pawn in the game world. A pawn is an entity that can be controlled by the player or by AI, and can move and interact with the game world.
-  * ```APawn``` provides basic movement and input handling functionality, as well as collision detection and physics simulation.
+  * `APawn` provides basic movement and input handling functionality, as well as collision detection and physics simulation.
 
-* ```AHUD```
+* `AHUD`
   * Represents the heads-up display (HUD) in the game. The HUD displays important information to the player, such as health and ammunition levels, as well as providing visual feedback for game events such as damage or power-up pickups.
-  * ```AHUD``` can be customized to display different types of information and to use different visual styles.
+  * `AHUD` can be customized to display different types of information and to use different visual styles.
 
-* ```ACharacter```
-  * Represents a playable character in the game world. ```ACharacter``` is a subclass of ```APawn``` and provides additional functionality specific to player-controlled characters, such as animation and movement controls, camera handling, and input management.
-  * ```ACharacter``` can be used as a base class for player characters, enemies, and other types of characters in the game.
+* `ACharacter`
+  * Represents a playable character in the game world. `ACharacter` is a subclass of `APawn` and provides additional functionality specific to player-controlled characters, such as animation and movement controls, camera handling, and input management.
+  * `ACharacter` can be used as a base class for player characters, enemies, and other types of characters in the game.
 
-* ```AController```
+* `AController`
   * Represents a controller in the game, which can be used to control a ```APawn``` or ```ACharacter```.
   * ```AController``` provides input handling and navigation functionality, allowing players or AI to move and interact with the game world. ```AController``` can be used to implement different types of control schemes, such as first-person or third-person controls, and can be customized to support different input devices and control configurations.
 
-* ```UActorComponent```
+* `UActorComponent`
   * A base class for every object placed inside AActor.
-  * Used for components contains only the logic, i.e. ```UMovementComponent``` or ```SceneComponent```.
-  * ```UActorComponent``` doesn't appear in the world.
+  * Used for components contains only the logic, i.e. `UMovementComponent` or `USceneComponent`.
+  * `UActorComponent` doesn't appear in the world.
   * *Functions*:
-    * ```BeginPlay()``` - Begins Play for component.
-    * ```TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)``` - Function called every frame on ActorComponent.
-    * ```EndPlay(const EEndPlayReason::Type EndPlayReason)``` - Ends gameplay for component.
+    * `BeginPlay()` - Begins Play for component.
+    * `TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)` - Function called every frame on ActorComponent.
+    * `EndPlay(const EEndPlayReason::Type EndPlayReason)` - Ends gameplay for component.
  
-* ```UMovementComponent```
-  * Provides movement functionality to an actor in the game world. ```UMovementComponent``` can be used to implement a variety of movement types, such as flying, walking, swimming, or sliding.
-  * ```UMovementComponent``` handles physics simulation and collision detection for the actor, and can be customized to provide different movement behaviors.
+* `UMovementComponent`
+  * Provides movement functionality to an actor in the game world. `UMovementComponent` can be used to implement a variety of movement types, such as flying, walking, swimming, or sliding.
+  * `UMovementComponent` handles physics simulation and collision detection for the actor, and can be customized to provide different movement behaviors.
 
-* ```USceneComponent```
+* `USceneComponent`
   * A base class for every component which actually appears in the world, it has a transform evaluated every frame.
   * It's used by components that need to know its place in the world to run the logic, i.e. ```UAudioComponnent```, ```UCameraComponent```.
   * Component of this class isn't rendered or doesn't collide with anything.
 
-* ```UPrimitiveComponent```
+* `UPrimitiveComponent`
   * And this finally the base class for all components representing any sort of geometry.
   * These components are rendered and tested for collision.
 
-* ```USubsystem```
+* `USubsystem`
   * Provide services or functionality that can be used by other parts of the engine or by games built with the engine.
   * Examples of subsystems in Unreal Engine include the rendering subsystem, the physics subsystem, and the input subsystem.
   * Subsystems are responsible for initializing, updating, and shutting down their associated services, and can be used to customize or extend engine functionality as needed.
@@ -1383,56 +1589,56 @@ Some of the notorious classes, that inherit from ```UObject``` include:
     * GameInstance (Game instance lifetime)
     * LocalPlayer (share lifetime of local players)
 
-* ```UBlueprintFunctionLibrary```
+* `UBlueprintFunctionLibrary`
   * Allows you to create custom static functions that can be used in Blueprint graphs. These functions can be called from any Blueprint and can perform complex calculations or operations that are not easily achievable with standard Blueprint nodes.
 
-* ```UEngine```, ```UEditorEngine``` and ```UGameEngine```
+* `UEngine`, `UEditorEngine` and `UGameEngine`
   * Manages the main loop of the engine, handles rendering, input, audio, networking, and more.
   * `UEditorEngine` is used to manage the editor, which includes all of the tools and systems needed to create and edit levels, assets, and other game content.
   * `UGameEngine` is used to manage the game itself, which includes gameplay mechanics, AI, physics, rendering, and so on.
 
-* ```UGameViewportClient```
+* `UGameViewportClient`
   * Manages the viewport and input handling for the game. It is responsible for rendering the game's output to the screen, handling user input, and managing the game's display settings.
 
-* ```ULocalPlayer```
+* `ULocalPlayer`
   * Manages the player's input, screen rendering, and other local gameplay-related tasks. ULocalPlayer is often used in conjunction with other classes, such as APlayerController, to manage local player interactions with the game.
 
-* ```UWorld```
+* `UWorld`
 * Represents a single instance of a level or map. It contains all the actors, components, and other objects that are present in the level, as well as information about the level's environment and physics settings.
 * Functions:
-  * ```SpawnActor()``` and ```SpawnActorDeferred()``` (deferred allow you to set actor properties before it's spawned into the world.)
+  * `SpawnActor()` and `SpawnActorDeferred()` (deferred allow you to set actor properties before it's spawned into the world.)
 
-* ```ULevel```
+* `ULevel`
   * Represents a level in the game world that contains actors, geometry, lighting, and other assets.
 
-* ```UGameInstance```
+* `UGameInstance`
   * Represents the game instance, which is created when the game starts up and persists for the duration of the game.
   * The game instance can be used to manage persistent data and game state across levels, as well as to perform global game operations such as handling networking, input, and other system-level tasks.
 
-* ```AGameMode```
+* `AGameMode`
   * Defines the rules and mechanics of a particular game mode, such as deathmatch or capture the flag.
   * Can be used to control game behavior, spawn actors, manage player input and game state, and perform other game-specific tasks.
   * Each level in a game can have its own ```AGameMode```, allowing for different game modes to be used in different levels.
 
-* ```AGameState```
+* `AGameState`
   * Represents the state of the game during play. ```AGameState``` can be used to store and manage data that is specific to a particular game, such as player scores, game timers, and other game state information.
-  * ```AGameState``` can also be used to synchronize game state across multiple clients in a networked game, ensuring that all players have an accurate view of the game world.
+  * `AGameState` can also be used to synchronize game state across multiple clients in a networked game, ensuring that all players have an accurate view of the game world.
 
-* ```UUserWidget```
+* `UUserWidget`
   * Represents a user interface (UI) widget in the game. ```UUserWidget``` provides a flexible framework for creating UI elements such as buttons, text fields, and images, and can be customized to implement complex UI behaviors such as animations, transitions, and data binding.
-  * ```UUserWidget``` can be used to create menus, health bars, inventory screens, and other UI elements in the game.
+  * `UUserWidget` can be used to create menus, health bars, inventory screens, and other UI elements in the game.
 
-* ```UPrimaryDataAsset```
+* `UPrimaryDataAsset`
   * Represents a primary data asset in the engine. A primary data asset is a piece of game content that is created in the Unreal Editor, such as a mesh, texture, sound, or level. ```UPrimaryDataAsset``` provides a base class for creating custom data assets that can be loaded and used by the game at runtime.
-  * ```UPrimaryDataAsset``` can be used to manage and organize game content, and can be customized to provide additional functionality such as data validation and metadata management.
+  * `UPrimaryDataAsset` can be used to manage and organize game content, and can be customized to provide additional functionality such as data validation and metadata management.
 
-* ```USoundBase```
-  * Represents a sound or audio asset in the engine. ASoundBase can be used to play sound effects, music, and other audio in the game world. ```ASoundBase``` provides a number of features for controlling the playback of audio, including volume, pitch, and spatialization effects such as 3D sound and reverb.
+* `USoundBase`
+  * Represents a sound or audio asset in the engine. ASoundBase can be used to play sound effects, music, and other audio in the game world. `ASoundBase` provides a number of features for controlling the playback of audio, including volume, pitch, and spatialization effects such as 3D sound and reverb.
 
-* ```UMaterial```
+* `UMaterial`
   * Represents a material which defines the visual appearance of objects in the game world.
 
-* ```UTexture```
+* `UTexture`
   * Represents an image or texture that can be used in the engine for various purposes such as materials or user interface elements.
  
 </details>
@@ -1837,10 +2043,18 @@ void AddOnScreenDebugMessage
 // This function will add a debug message to the onscreen message list. It will be displayed for FrameCount frames.
 ```
 
+---
+
+| Data Type | Description | Use Case |
+|-----------|-------------|----------|
+| `FName` | A fast and lightweight name identifier for objects in Unreal Engine. | Best used for identifying assets and objects within the engine to save memory and improve performance. |
+| `FText` | A localized string that supports text localization and provides text display features. | Ideal for displaying text to users in the game, supporting multiple languages and localization. |
+| `FString` | A dynamic string that can be modified and used for general-purpose string manipulation. | Suitable for general text handling and string operations within the game code. |
+
 ### Vector, Rotator, Quat and Transform
 
-* ```FVector``` - A struct representing a 3D vector, consisting of three float values for the `X`, `Y`, and `Z` components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
-* ```FRotator``` - A struct representing a rotation in 3D space, consisting of three float values for the `Pitch`, `Yaw`, and `Roll` angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
+* `FVector` - A struct representing a 3D vector, consisting of three float values for the `X`, `Y`, and `Z` components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+* `FRotator` - A struct representing a rotation in 3D space, consisting of three float values for the `Pitch`, `Yaw`, and `Roll` angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
 * `FQuat` (Quaternion) - A struct representing a quaternion, which is a mathematical concept used to represent 3D rotations. It is commonly used in conjunction with `FVector` to represent orientations and rotations in 3D space.
 * ```FTransform``` - A struct representing a 3D transformation, consisting of a `FVector` for translation, a `FRotator` for rotation, and a `FVector` for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
   
@@ -2004,6 +2218,16 @@ Here is an example:
 > **Warning**
 > Unreal Engine doesn't support `TStaticArray` with UHT[^3]. Meaning, you can't expose to Blueprint.
 
+---
+
+| Data Container | Description                                                                                                                                                                                                                                                     | Use Case                                                                                                                                                                                   |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TArray         | A dynamic array that can grow or shrink in size at runtime, supporting random access and iteration.                                                                                                                                                            | Suitable for storing and managing a collection of elements where the size may change frequently and quick access to elements is required.                                                  |
+| TSet           | A set data structure that stores unique elements in no particular order, efficiently supporting element insertion, deletion, and membership checks.                                                                                                              | Ideal for maintaining a collection of distinct elements and performing fast membership checks without duplicates.                                                                          |
+| TMap           | An associative container that stores key-value pairs, allowing efficient lookup and retrieval based on keys.                                                                                                                                                  | Used for creating dictionaries or associative arrays, where data is organized based on unique keys for quick and efficient access.                                                          |
+| TMultiMap      | Similar to TMap, but allows multiple values to be associated with the same key, making it possible to have duplicate keys in the container.                                                                                                                    | Useful when you need to associate multiple values with a single key, allowing efficient access and retrieval of related data.                                                            |
+| TStaticArray   | A fixed-size array with compile-time constant size, providing fast access to elements and suitable for a known number of elements at compile time.                                                                                                           | Used when you know the exact number of elements needed at compile time and want to avoid dynamic memory allocation.                                                                       |
+
 ### Value type vs Reference type
 
 Let's talk about what value type and reference types.
@@ -2155,7 +2379,7 @@ UPROPERTY()
 TObjectPtr<AActor> ActorPtr = nullptr;
 ```
 
-#### Smart pointers
+#### Smart UObject pointers
 
 In contrast, smart pointers in Unreal Engine are specialized classes, such as `TSharedPtr` and `TWeakPtr`, that handle memory management automatically. Smart pointers offer benefits like automatic deallocation, reference counting, and improved memory safety. They help prevent memory leaks and simplify memory management tasks within the game engine.
 
@@ -2657,6 +2881,16 @@ You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
 
 ---
 
+| Macro          | Description                                                                                                                                                                                  | Use Case                                                                                                        |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| UPROPERTY     | Specifies properties of a class member, such as replication, serialization, editability, and blueprint visibility.                                                                      | Used to define properties of variables within a class to control how they are handled by Unreal Engine systems.   |
+| UFUNCTION     | Identifies a C++ function that can be accessed and called from Blueprint visual scripting or other systems in Unreal Engine.                                                            | Used to expose C++ functions to Blueprint for easy use in visual scripting and integration with Unreal Engine.     |
+| UCLASS        | Defines a C++ class that is exposed to Unreal Engine's reflection system, allowing it to be used in Blueprint and other engine features.                                                 | Used to define classes that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.    |
+| USTRUCT       | Specifies a C++ struct that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                                                  | Used to define structs that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.     |
+| UENUM         | Defines a C++ enumeration that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                                               | Used to define enumerations that can be used in Blueprint and integrated into Unreal Engine systems like the Editor. |
+| UPARAM        | Specifies how a function parameter should be treated when used in Blueprint or other Unreal Engine systems.                                                                             | Used to define parameter properties, such as Blueprint read/write access, in C++ functions exposed to Blueprint.    |
+| UMETA         | Provides additional metadata for UPROPERTY, UFUNCTION, UCLASS, USTRUCT, and UENUM, allowing customization of their behavior in Unreal Engine's reflection system.                     | Used to attach additional information or customizations to C++ entities exposed to Unreal Engine reflection.       |
+
 ### 👷 Constructors and Destructors
 
 #### Constructors
@@ -2755,9 +2989,9 @@ In contrast, if a soft reference is used, the referenced asset may or may not be
 
 Using the appropriate combination of soft and hard references allows for efficient management of asset dependencies, optimizing memory usage, and providing flexibility in loading and unloading assets during runtime.
 
-There is a tool (inside the engine) called [Reference Viewer](https://docs.unrealengine.com/5.2/en-US/finding-asset-references-in-unreal-engine/), which allows looking at the reference chain. Both hard and soft references. This helps to figure it out which is loading which.
+[Reference Viewer](https://docs.unrealengine.com/5.2/en-US/finding-asset-references-in-unreal-engine/) is a tool inside the editor, which allows you to look at the reference chain with a particular asset. Both hard and soft references. This tool helps you to figure it out which is loading which and what chain dependencies it has.
 
-There is also another tool (inside the engine) called [Size Map](https://dev.epicgames.com/community/learning/tutorials/r4y7/unreal-engine-size-map), which allows looking at the total and independent size of different assets, which has been loaded by the asset.
+[Size Map](https://dev.epicgames.com/community/learning/tutorials/r4y7/unreal-engine-size-map) is another tool inside the editor, which allows you to look at the total and independent size of different assets, which has been loaded by the main asset. For example, you can see how big the character [memory footprint](https://en.wikipedia.org/wiki/Memory_footprint) is (with all the textures and skeletal mesh).
 
 You can read more about soft and hard references in article called [Hard References & Reasons to Avoid Them by raharuu](https://raharuu.github.io/unreal/hard-references-reasons-avoid/).
 
@@ -2958,6 +3192,22 @@ void MyFunction()
 You can read more about [Assertions from the docs](https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/).
 
 You can also watch a video about it from [Sneaky Kitty Game Dev](https://www.youtube.com/watch?v=zGeJgI2xiT4).
+
+---
+
+| Assertion   | Description                                                                                                                                                                                          | Use Cases                                                                                                                                                     |
+|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `check`      | A macro used for runtime checks in Unreal Engine, which is enabled only in Debug builds.                                                                                                              | - Validating preconditions or assumptions in the code.<br>- Ensuring that critical conditions are met during development and debugging.                         |
+|             | If the condition specified in the `check` macro evaluates to false, it triggers an assertion failure, halting the program's execution in Debug mode, allowing developers to identify and fix the issue.  | - Detecting potential bugs or logic errors during development.<br>- Identifying unexpected conditions that should not occur during testing or debugging.       |
+|             | The `check` macro is compiled out in non-Debug builds, so it has no impact on the performance of the release version of the game.                                                                    |                                                                                                                                                              |
+|             |                                                                                                                                                                                                      |                                                                                                                                                              |
+| `verify`    | A macro similar to `check`, used for runtime checks in Unreal Engine, but it is enabled in both Debug and Release builds.                                                                             | - Similar use cases as `check`, but with the intention of detecting issues in both Debug and Release builds.<br>- Useful for crucial runtime checks in production. |
+|             | If the condition specified in the `verify` macro evaluates to false, it triggers an assertion failure in both Debug and Release builds, halting the program's execution.                           |                                                                                                                                                              |
+|             | This can help identify and fix critical issues even in the final release version of the game or application.                                                                                        |                                                                                                                                                              |
+|             |                                                                                                                                                                                                      |                                                                                                                                                              |
+| `ensure`    | A macro specifically designed for Unreal Engine, used for runtime checks with a focus on improving the robustness of code in shipping games.                                                         | - Verifying and enforcing assumptions, preconditions, and invariants in the code to avoid crashes and unexpected behavior in production environments.           |
+|             | The `ensure` macro remains active in both Debug and Release builds, and its behavior can be configured in the Unreal Editor project settings.                                                      | - In a shipping build, `ensure` can be set to log a message or perform a fail-safe action instead of halting the program's execution.                          |
+|             | If the condition specified in the `ensure` macro evaluates to false, it may trigger an assertion or perform an alternative action based on project settings.                                        |                                                                                                                                                              |
 
 ## 🔔 Delegates
 
@@ -3264,32 +3514,32 @@ Here is a video about [constants keywords in C++ by Cazz](https://www.youtube.co
 * `constexpr` - Specifies that a function or variable can be evaluated at compile-time. `constexpr` can be used for inlining variables, without using macros[^4]. **Note**, the compiler does not guarantee compile-time evaluation (only it **CAN** be evaluated at compile-time).
 * `consteval` - Specifies that a function must be evaluated at compile-time. **Note**, the compiler has to evaluated at compile-time.
 * `constinit` - Specifies that an object with static or thread storage duration should be initialized only with constant expressions.
-* ```auto``` - Allows the compiler to deduce the type of a variable based on its initializer.
-* ```static``` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
-* ```virtual``` - Specifies that a function should be polymorphic, meaning that it can be overridden by a derived class.
-* ```override``` - Indicates that a function in a derived class is intended to override a function in the base class.
-* ```break``` - Causes the program to exit a loop or switch statement.
-* ```continue``` - Causes the program to skip to the next iteration of a loop.
-* ```class``` and ```struct``` - Are used to define user-defined types that encapsulate data and functions.
-* ```inline``` - Specifies that a function should be inlined (i.e., its code should be inserted directly into the calling code rather than calling the function).
-* ```force_inline``` - Instructs the compiler to inline a function, regardless of whether it would normally do so.
-* ```new``` - Allocates memory for an object and calls its constructor.
-* ```delete``` - Deallocates memory that was allocated with new.
-* ```dynamic_cast``` - Performs a runtime check to determine whether an object can be cast to a different type.
-* ```static_cast``` - Performs a static cast, which allows an expression to be converted to a different data type at compile time.
+* `auto` - Allows the compiler to deduce the type of a variable based on its initializer.
+* `static` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
+* `virtual` - Specifies that a function should be polymorphic, meaning that it can be overridden by a derived class.
+* `override` - Indicates that a function in a derived class is intended to override a function in the base class.
+* `break` - Causes the program to exit a loop or switch statement.
+* `continue` - Causes the program to skip to the next iteration of a loop.
+* `class` and `struct` - Are used to define user-defined types that encapsulate data and functions.
+* `inline` - Specifies that a function should be inlined (i.e., its code should be inserted directly into the calling code rather than calling the function).
+* `force_inline` - Instructs the compiler to inline a function, regardless of whether it would normally do so.
+* `new` - Allocates memory for an object and calls its constructor.
+* `delete` - Deallocates memory that was allocated with new.
+* `dynamic_cast` - Performs a runtime check to determine whether an object can be cast to a different type.
+* `static_cast` - Performs a static cast, which allows an expression to be converted to a different data type at compile time.
 * `const_cast` - - Performs a const cast.
-* ```explicit``` - Specifies that a constructor or conversion operator cannot be used for implicit type conversions.
-* ```namespace``` - Defines a scope for identifiers to avoid naming conflicts.
-* ```operator``` - Declares a function as an overloaded operator.
-* ```template``` - Allows generic programming by defining a type or function with parameters that are specified at compile time.
-* ```try``` and ```catch``` - Implements exception handling by trying a block of code that may throw an exception and catching the exception if it is thrown.
+* `explicit` - Specifies that a constructor or conversion operator cannot be used for implicit type conversions.
+* `namespace` - Defines a scope for identifiers to avoid naming conflicts.
+* `operator` - Declares a function as an overloaded operator.
+* `template` - Allows generic programming by defining a type or function with parameters that are specified at compile time.
+* `try` and `catch` - Implements exception handling by trying a block of code that may throw an exception and catching the exception if it is thrown.
 
 Difference between a class and struct then?
 > In native C++, the main difference between a struct and a class is that struct members are public by default, whereas class members are private by default. However, this difference is largely syntactic, and struct and class can be used interchangeably to define custom types.
 
 > However, Unreal Engine structs are used to represent data types that are typically used for data storage and manipulation, whereas classes are used to represent objects that have behavior and state.
 
-In Unreal Engine, it's recommended to use the built-in memory management functions like ```NewObject()``` and ```MakeShared()``` to allocate memory for objects, rather than using ```new``` and ```delete```. Using ```new``` and ```delete``` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
+In Unreal Engine, it's recommended to use the built-in memory management functions like `NewObject()` and `MakeShared()` to allocate memory for objects, rather than using `new` and `delete`. Using `new` and `delete` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
 
 ### 🛸 Reflection System
 
@@ -3301,13 +3551,15 @@ The reflection system is also used in many other areas of the engine, such as se
 
 One of the key benefits of the header system is that it allows for very efficient compilation times. Because each C++ file has its own header file, changes to one file do not require recompilation of other files that depend on it. Instead, only the files that include the modified header file need to be recompiled.
 
-You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/" target="_blank">here</a>!
+You can read more about [reflection system from their docs](https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/).
 
 ### 🪄 Tips and best practices
 
-#### Refactoring
+#### 📦 Refactoring
 
 ##### Renaming
+
+Lorem Ipsum
 
 ```cpp
 // ...
@@ -3315,11 +3567,15 @@ You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflect
 
 ##### Extract Method﻿
 
+Lorem Ipsum
+
 ```cpp
 // ...
 ```
 
-##### Introduce/Inline typedef﻿
+##### Introduce/Inline typedef﻿s
+
+Lorem Ipsum
 
 ```cpp
 // ...
@@ -3327,11 +3583,15 @@ You can read more about <a href="https://docs.unrealengine.com/5.0/en-US/reflect
 
 ##### Introduce Variable﻿
 
+Lorem Ipsum
+
 ```cpp
 // ...
 ```
 
 ##### Inline Function﻿
+
+Lorem Ipsum
 
 ```cpp
 UFUNCTION(BlueprintPure, Category = "")
@@ -3385,9 +3645,11 @@ void MyCharacter::DoSomething()
 }
 ```
 
-Here is a video explaining some of the best practices with Unreal Engine and C++. <a href="https://www.youtube.com/watch?v=g7WVBZZTRDk" target="_blank">Link here</a>!
+Here is a video explaining some of the best practices with Unreal Engine and C++.
 
-Also, here is a Google Docs (if video is not enough), <a href="https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8/" target="_blank">link here</a>!
+There is a video about some of these best practices called [Best Practices (2019-2021) from Stephen Maloney](https://www.youtube.com/watch?v=g7WVBZZTRDk)
+
+In the video, there is also a [Google documentation](https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8) (if video wasn't enough) for more details about some of his tips and tricks.
 
 #### ⏱ Ticking
 
@@ -3541,6 +3803,8 @@ void DebugMessage()
 * `obj list class=BP_PlayerCharacter_C` - Same as `obj list` but with a filter.
 * `obj gc` - Collect all objects with GC (Garbage Collector).
 * `au.Debug.AudioSoloSoundWave` - Text.
+
+Here is also a [website](https://pongrit.github.io/) by Pongrit, which showcase all of Unreal Engine's console commands.
 
 ## 📌 Shortcuts
 
