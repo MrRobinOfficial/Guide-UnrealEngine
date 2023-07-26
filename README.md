@@ -118,7 +118,7 @@
       * 7.9.8\. [TWeakPtr](#tweakptr)
       * 7.9.9\. [UniquePtr](#uniqueptr)
 * 8\. [💎 Unreal Header Tool](#-unreal-header-tool)
-* 9\. [Constructors and Destructors](#constructors-and-destructors)
+* 9\. [👷 Constructors and Destructors](#-constructors-and-destructors)
 * 10\. [💾 Soft vs hard references](#-soft-vs-hard-references)
 * 11\. [🌍 Global Functions](#-global-functions)
 * 12\. [🏛️ Libraries](#%EF%B8%8F-libraries)
