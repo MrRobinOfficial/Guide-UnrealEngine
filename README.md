@@ -36,8 +36,9 @@
 
 * 0\. [👑 Cheatsheets](#-cheatsheets)
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
-    * 1.1\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
-    * 1.2\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
+    * 1.1\. [🌈 Integrated Development Environment](#-benefits-of-using-c-with-unreal-engine) 
+    * 1.2\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
+    * 1.3\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
 * 2\. [🗺️ Summary of C++ and Programming World](#%EF%B8%8F-summary-of-c-and-programming-world)
   * 2.1\. [Object-Oriented Programming](#object-oriented-programming)
   	* 2.1.1\. [Encapsulation](#encapsulation)
@@ -181,6 +182,18 @@ Developing with C++ in Unreal Engine enables better debugging, profiling, and pe
 To use C++ effectively in Unreal Engine, it is crucial to have a strong foundation in programming principles and understand Unreal Engine's architecture and conventions. Leveraging resources like the Unreal Engine documentation, community forums, and collaboration with other developers helps to gain knowledge and best practices.
 
 *By combining the power of C++ and Unreal Engine, developers can create immersive experiences and unlock the full potential of the engine's capabilities.*
+
+### 🌈 Integrated Development Environment
+
+An Integrated Development Environment (IDE) is a software application that provides comprehensive tools for writing, debugging, and managing code. IDEs offer a streamlined and feature-rich environment for software development, making it easier for developers to work on their projects efficiently.
+
+Popular IDEs used in Unreal Engine and C++ development include:
+
+* [Visual Studio](https://visualstudio.microsoft.com/): The Visual Studio IDE with the Visual Studio Unreal Engine Extension (VAX) is a widely used choice for Unreal Engine development. It offers a powerful set of C++ tools and seamless integration with Unreal Engine, providing a robust development environment. `Free`.
+
+* [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
+
+* [CLion](https://www.jetbrains.com/clion/): CLion is another popular IDE developed by JetBrains, designed specifically for C++ development, and it offers solid integration with Unreal Engine projects. `Cost`.
 
 ### 🟢 Benefits of using C++ with Unreal Engine
 
@@ -590,7 +603,7 @@ for (char c : message)
 // Output: H e l l o
 ```
 
-### Immutable vs Mutable
+### 🦋 Immutable vs Mutable
 
 #### Mutable
 
@@ -731,7 +744,7 @@ Using virtual functions, you can write code that works with objects based on the
 | Both         | No                                      | Compile error            |
 | Both         | Yes                                     | Override                 |
 
-### Generic Programming
+### 🧙‍♂️ Generic Programming
 
 Generic Programming is a programming paradigm that focuses on writing reusable code by abstracting away specific types and working with generic types that can be instantiated with various concrete types. It allows programmers to create functions, classes, and algorithms that can operate on different data types without requiring code duplication.
 
@@ -759,7 +772,7 @@ int main()
 
 ### 😵 Recursion
 
-### Lambda
+### 🫀 Lambda
 
 In C++, a lambda expression, often referred to as a lambda function or lambda, is an anonymous function that you can define inline. It provides a convenient way to create small, inline functions without the need for explicitly declaring a separate function.
 
@@ -786,13 +799,13 @@ Here's how a lambda expression works:
 
 * 4\. Function Body: The function body contains the statements and logic of the lambda function. It can include any valid C++ code, such as variable declarations, control flow statements, and computations.
 
-### Bitwise Operators
+### 🦾 Bitwise Operators
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/igIjGxF2J-w/maxresdefault.jpg)](https://youtu.be/igIjGxF2J-w)
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/g8ACeN9QMdY/maxresdefault.jpg)](https://youtu.be/g8ACeN9QMdY)
 
-### Stack vs Heap
+### 💥 Stack vs Heap
 
 In programming languages, stack and heap are two different areas of memory used for [memory allocation](https://en.wikipedia.org/wiki/Memory_management). They serve distinct purposes and have different characteristics.
 
@@ -876,7 +889,7 @@ The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a
 
 [![Watch the video by Web Dev Simplified](https://img.youtube.com/vi/DUg2SWWK18I/maxresdefault.jpg)](https://youtu.be/DUg2SWWK18I)
 
-### Structures
+### 💯 Structures
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/SCkbQSPH--A/maxresdefault.jpg)](https://youtu.be/SCkbQSPH--A)
 
@@ -1011,7 +1024,7 @@ int main()
 }
 ```
 
-### Time Complexity
+### ⏰ Time Complexity
 
 Time complexity is a measure of how the runtime of an algorithm grows with the size of the input data. It helps us understand how efficient an algorithm is and how it will scale when dealing with larger datasets.
 
@@ -1455,7 +1468,7 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 | T      | Template     | `TSubclassOf<T>`, `TArray<T>`, `TSet<T>`, `TMap<T>`, `TMultiMap<T>`       |
 | G      | Global Class | `GEngine`, `GConfig`, `GWorld`, `GEngineLoop`, `GIsEditor`                |
 
-### Abbreviations, Acronyms and Synonyms
+### 🎨 Abbreviations, Acronyms and Synonyms
 
 <table><tr><td>
 
@@ -1701,7 +1714,7 @@ float SpeedInMetersPerSecond = 5.5f; // C++ always uses 'f' or 'F' literal for d
 double SpeedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a double variable.
 ```
 
-### Unreal Engine Typedefs
+### 🦺 Unreal Engine Typedefs
 
 In Unreal Engine, instead of writing `signed long long` for an 64-bit integer, you can now write `int64` instead. These alias are called **typedefs**, which you can read more about [typedef keyword in C++ docs](https://en.cppreference.com/w/cpp/language/typedef).
 
@@ -1764,7 +1777,7 @@ typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 > **Warning**
 > `uint16`, `uint32`, `uint64`, `int8`, `int16` and `double` are not supported with UHT[^3]. Meaning, can't expose to Blueprint.
 
-### Strings
+### 📖 Strings
 
 Strings differs in Unreal Engine and native C++.
 
@@ -1838,7 +1851,7 @@ FRotator Rotation = FRotator::Identify; // Pitch, Yaw and Roll
 FTransform Transform = FTransform::Identify;
 ```
 
-Here is a short example:
+Here's an example:
 
 ```cpp
 // Declare and initialize a FVector
@@ -1923,7 +1936,7 @@ MyStringSet.Remove(TEXT("Engine"));
 
 A map of key-value pairs, implemented as a hash table. It allows fast lookup of a value given a key, and supports adding, removing, and iterating over key-value pairs.
 
-Here is an example:
+Here's an example:
 
 ```cpp
 // Declare a TMap of integers to strings
@@ -1976,7 +1989,7 @@ for (const FString& Value : Values)
 MyIntStringMultiMap.Remove(2);
 ```
 
-Here is an example:
+Here's an example:
 
 > **Warning**
 > Unreal Engine doesn't support `TMultiMap` with UHT[^3]. Meaning, you can't expose to Blueprint.
@@ -2016,7 +2029,7 @@ Everything in C++ is value type by default. Even classes, which differ from C#.
 
 You can watch this video about [references in C++ from Low Level Learning](https://www.youtube.com/watch?v=wro8Bb6JnwU).
 
-Here is an example:
+Here's an example:
 
 ```cpp
 #include <iostream>
@@ -2233,6 +2246,8 @@ if (SoftPtr.IsValid())
 
 ```
 
+#### Smart pointers library
+
 ##### TSharedPtr
 
 This smart pointer is a general-purpose shared pointer that can hold a reference to any class or struct. It uses reference counting to automatically manage the memory. It is used when multiple references need to share ownership of an object.
@@ -2311,15 +2326,23 @@ void MyFunction()
 
 Unreal Header Tool (UHT) is a code generator and reflection system in Unreal Engine. It processes special macros and meta tags in C++ header files and generates additional code to support Unreal Engine's reflection system, which enables various engine features like Blueprint integration, serialization, networking, and more.
 
+Layout:
+
+```cpp
+UPROPERTY([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
+UFUNCTION([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
+UCLASS([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
+USTRUCT([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
+UENUM([specifier1=setting1, specifier2, ...])
+UPARAM([specifier1=setting1, specifier2, ...])
+UMETA([specifier1=setting1, specifier2, ...])
+```
+
 ### UPROPERTY
 
 `UPROPERTY` is a macro used to declare a property within a class that needs to be exposed to the Unreal Engine's reflection system. It allows the property to be accessed and modified by the engine and Blueprint scripts.
 
 <table><tr><td>
-
-#### Layout
-
-`UPROPERTY([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])`
 
 #### Specifiers
 
@@ -2332,13 +2355,6 @@ Unreal Header Tool (UHT) is a code generator and reflection system in Unreal Eng
 * `BlueprintReadOnly` - Exposes the property to Blueprint scripts, but only for reading, not writing.
 * `BlueprintReadWrite` - Exposes the property to Blueprint scripts for both reading and writing.
 * `Category` - Organizes properties into named categories in the editor for better organization and readability.
-
-Example:
-
-```cpp
-UPROPERTY(EditAnywhere, Category="Hello|Cruel|World")
-int32 EditAnywhereNumber;
-```
 
 #### Meta tags
 
@@ -2361,7 +2377,12 @@ int32 EditAnywhereNumber;
   Units = "Kilograms"; // Or "kg"
   ```
 
-Example:
+#### Examples
+
+```cpp
+UPROPERTY(EditAnywhere, Category="Hello|Cruel|World")
+int32 EditAnywhereNumber;
+```
 
 ```cpp
 UPROPERTY(EditAnywhere, meta=(Units="Celsius"))
@@ -2389,10 +2410,6 @@ You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/uproperty/)
 `UFUNCTION` is a macro used to declare a function within a class that needs to be exposed to the Unreal Engine's reflection system. It allows the function to be used in Blueprint scripts and network replication.
 
 <table><tr><td>
-
-#### Layout
-
-`UFUNCTION([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])`
 
 #### Common Specifiers
 
@@ -3373,7 +3390,7 @@ Here is a video explaining some of the best practices with Unreal Engine and C++
 
 Also, here is a Google Docs (if video is not enough), <a href="https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8/" target="_blank">link here</a>!
 
-#### Ticking
+#### ⏱ Ticking
 
 ##### For actors
 
@@ -3473,7 +3490,7 @@ void FMyTickableThing::Tick( float DeltaTime )
 }
 ```
 
-#### Direct references
+#### 🔌 Direct references
 
 ```cpp
 int a = 5;
@@ -3492,7 +3509,7 @@ const int& f = e;
 f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
 ```
 
-#### Math Expression Node
+#### ➗ Math Expression Node
 
 The Math Expression node acts like a collapsed graph. It is a single node that you can Double-click to open the sub-graph that makes up its functionality. Initially, the name/expression is blank. Whenever you rename the node, then the new expression is parsed and a new sub-graph is generated.
 
