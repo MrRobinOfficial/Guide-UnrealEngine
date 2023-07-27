@@ -319,7 +319,7 @@ It can span multiple lines
 
 ## Native Types
 
-* `bool`` - Represents a logical value, either `true` or `false`
+* `bool` - Represents a logical value, either `true` or `false`
 * `char` - Represents a single character in the ASCII[^3] character set
 * `int` - Represents a integer (whole number)
 * `float` - Represents a floating-point number, which is a real number with a fractional component
