@@ -196,18 +196,18 @@ Popular IDEs used in Unreal Engine and C++ development include:
 
 ### 🟢 Benefits of using C++ with Unreal Engine
 
-* High performance - C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
-* Access to low-level functionality - C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
-* Integration with existing codebases - If you have existing C++ code that you want to integrate with your Unreal Engine project, using C++ allows you to do so more easily.
-* More control over memory management - C++ requires you to manage memory manually, which can be a challenge but also gives you more control over how your code uses memory. This can be important in situations where memory usage is a concern, such as on mobile devices or consoles.
-* Flexibility - With C++, you have the flexibility to write code in a variety of styles, including object-oriented, procedural, and functional programming. This allows you to choose the approach that best suits your needs.
+* High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
+* Access to low-level functionality: C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
+* Integration with existing codebases: If you have existing C++ code that you want to integrate with your Unreal Engine project, using C++ allows you to do so more easily.
+* More control over memory management: C++ requires you to manage memory manually, which can be a challenge but also gives you more control over how your code uses memory. This can be important in situations where memory usage is a concern, such as on mobile devices or consoles.
+* Flexibility: With C++, you have the flexibility to write code in a variety of styles, including object-oriented, procedural, and functional programming. This allows you to choose the approach that best suits your needs.
 
 ### 🔴 Drawbacks of using C++ with Unreal Engine
 
-* Steep learning curve - C++ is a complex language with many features, and it can be difficult to learn for beginners. Unreal Engine's architecture can also be challenging to understand, especially if you're new to game development.
-* Time-consuming - Writing C++ code can be more time-consuming than using other programming languages. C++ requires more attention to detail, and it can take longer to write and debug code.
-* More prone to errors - C++ requires manual memory management and has less strict type checking than some other languages. This can make it more prone to errors like memory leaks, null pointer dereferences, and type mismatches.
-* Harder to prototype - Because C++ requires more code to accomplish even simple tasks, it can be harder to quickly prototype ideas in C++ than in other programming languages.
+* Steep learning curve: C++ is a complex language with many features, and it can be difficult to learn for beginners. Unreal Engine's architecture can also be challenging to understand, especially if you're new to game development.
+* Time-consuming: Writing C++ code can be more time-consuming than using other programming languages. C++ requires more attention to detail, and it can take longer to write and debug code.
+* More prone to errors: C++ requires manual memory management and has less strict type checking than some other languages. This can make it more prone to errors like memory leaks, null pointer dereferences, and type mismatches.
+* Harder to prototype: Because C++ requires more code to accomplish even simple tasks, it can be harder to quickly prototype ideas in C++ than in other programming languages.
 
 ## 🗺️ Summary of C++ and Programming World
 
@@ -279,11 +279,39 @@ The requirement for semicolons in C++ is a design choice that provides explicit 
 
 In contrast, languages like Python use indentation to define blocks of code, eliminating the need for explicit statement termination with semicolons.
 
+```cpp
+int a = 5; // Correct
+int b = 5 // Error! Semicolon missing.
+```
+
 #### Curly Braces in C++
 
 C++ uses curly braces (<kbd>{}</kbd>) as block delimiters to enclose multiple statements or define the body of control structures, functions, and classes. The use of curly braces provides a clear and explicit way to define the boundaries of code blocks.
 
 Curly braces help define the scope of variables and maintain code readability. They ensure that statements within the braces are treated as a single unit, making it easier to understand the flow and logic of the program.
+
+```cpp
+class Car
+{
+
+};
+```
+
+```cpp
+namespace MyNamespace
+{
+
+}
+```
+
+```cpp
+void MyFunction()
+{
+    {
+        // Scope inside a function
+    }
+}
+```
 
 #### Comments in C++
 
@@ -312,7 +340,7 @@ It can span multiple lines
 */
 ```
 
-##### Headers vs source files
+#### Headers vs source files
 
 In C++, header files and source files are two types of files used to organize and manage code in a C++ program.
 
