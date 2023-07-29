@@ -20,6 +20,7 @@
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
 * Fix Lorem Ipsum text.
 * Rewrite [💎 Unreal Header Tool](#-unreal-header-tool) section.
+* Rewrite [Pointers](#pointers) section.
 * All [Emojis List](https://www.freecodecamp.org/news/all-emojis-emoji-list-for-copy-and-paste/)
 
 </td></tr></table>
