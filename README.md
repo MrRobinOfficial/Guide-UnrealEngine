@@ -17,10 +17,7 @@
 ## TODO LIST
 
 * Add image/banner cover to help visualize.
-* Add more content to [Tips and best practices](#-tips-and-best-practices) section.
-* Fix Lorem Ipsum text.
-* Rewrite [💎 Unreal Header Tool](#-unreal-header-tool) section.
-* Rewrite [👈 Pointers](#-pointers) section.
+* Fix TOC.
 * All [Emojis List](https://www.freecodecamp.org/news/all-emojis-emoji-list-for-copy-and-paste/)
 
 </td></tr></table>
@@ -313,6 +310,36 @@ This is a multi-line comment
 It can span multiple lines
 */
 ```
+
+##### Headers vs source files
+
+In C++, header files and source files are two types of files used to organize and manage code in a C++ program.
+
+<table><tr><td>
+
+## Header Files (.h)
+
+* Header files contain declarations of classes, functions, variables, and other elements that are used in the program.
+* They provide interfaces to the functionality implemented in the corresponding source files.
+* Header files are included in source files using `#include` directives to make the declarations visible to the compiler during the compilation process.
+
+## Source Files (.cpp)
+
+* Source files contain the actual implementations of the functions and classes declared in the header files.
+* They define how the functions and classes behave and provide the logic for the program's functionality.
+* Source files are compiled to object files and then linked together to create the final executable.
+
+## Reason for Separate Header and Source Files
+The separation of header and source files is a design choice that promotes modularity and improves build efficiency in C++. By keeping declarations in header files and implementations in source files, the compiler can easily check for correctness and compile only the necessary code, reducing build times and preventing redundant compilation.
+
+## History of Single File Extensions
+In the early days of computing, languages like Fortran and COBOL used single file extensions because of the limitations of the operating systems and compilers at the time. Each file had to adhere to a specific format defined by the language and its compiler, and the extension represented that format.
+
+</td></tr></table>
+
+Other languages, like C#, Java, and Python, continued to use single file extensions because they adopted a more integrated approach to handling both declarations and implementations within a single file.
+
+In modern programming, the choice of using single file extensions or separate header and source files depends on the language's design philosophy and the needs of the development community. Both approaches have their strengths and weaknesses, and different languages adopt the one that best aligns with their goals and use cases.
 
 ### 🔢 Data types
 
@@ -679,27 +706,181 @@ const int immutableValue = 10; // Immutable variable
 
 ### Try Catch
 
-Lorem Ipsum
+In programming, `try-catch` is a mechanism used for error handling and exception handling. It allows you to write code that can handle potential errors or exceptions that may occur during the program's execution, preventing crashes or data corruption.
+
+In C++, the try and catch blocks are used for implementing this mechanism. Here's how it works:
+
+1\. `try`: You place the code that might throw an exception inside a `try` block. If an exception occurs within this block, the program will immediately jump to the nearest matching `catch` block.
+
+2\. `catch`: The `catch` block is used to catch and handle the exceptions thrown in the `try` block. It specifies the type of exception it can catch. If an exception of that type is thrown, the code within the `catch` block will be executed.
+
+Here's a simple example in C++:
+
+```cpp
+try
+{
+    int numA = 5;
+    int numB = 0;
+    int result = numA / numB;
+}
+catch (const char* errorMessage)
+{
+    // Caught "Floating point exception"
+}
+```
+
+Using `try-catch` blocks allows you to handle exceptional situations gracefully, providing error messages to users or logging errors for debugging, instead of crashing or corrupting the program's data. It helps in making your programs more robust and user-friendly.
 
 ### Casting
 
-Lorem Ipsum
+Casting, in the context of programming languages, refers to the conversion of one data type into another. It allows you to change the interpretation or representation of a variable or object, which can be useful in various situations.
+
+#### Static casting
+
+This is the most basic and straightforward form of casting. It is performed using the (type) syntax and works for converting between related types, like integer to float or vice versa. However, it may not be safe in some situations, so you need to be cautious when using it.
+
+```cpp
+int num1 = 10;
+double num2 = static_cast<double>(num1); // Static cast from int to double
+```
+
+#### Const casting
+
+This is used to add or remove the const qualifier from a variable. It allows you to modify the constness of a variable.
+
+```cpp
+const int x = 5;
+const_cast<int&>(x) = 10; // Const cast to remove const and modify the value of x
+```
+
+#### Dynamic casting
+
+This is primarily used for casting pointers or references to objects in a class hierarchy. It is particularly useful when working with polymorphic classes. Dynamic casting checks the validity of the cast at runtime and returns a null pointer if the cast is not valid.
+
+```cpp
+class BaseClass { /* ... */ };
+class DerivedClass : public BaseClass { /* ... */ };
+
+BaseClass* basePtr = new DerivedClass;
+DerivedClass* derivedPtr = dynamic_cast<DerivedClass*>(basePtr); // Dynamic cast from BaseClass to DerivedClass
+```
 
 ### Inlining
 
-Lorem Ipsum
+Inlining is a compiler optimization technique used to improve the performance of code by inserting the body of a function directly at the call site, eliminating the overhead of function calls. It reduces the execution time by avoiding the function call stack setup and cleanup.
+
+In C++, you can use the inline keyword to suggest to the compiler that a function should be inlined. For example:
+
+```cpp
+inline int Add(int a, int b) { return a + b; }
+```
+
+The `inline` keyword is a hint to the compiler, and the actual decision of whether to inline a function is made by the compiler. It might choose not to inline a function if it is too large or too complex.
+
+The `__forceinline` keyword is used to force the compiler to inline a function, regardless of its size or complexity. It overrides the compiler's normal inlining heuristics and ensures that the function is always inlined wherever it is called.
+
+Here's an example of how `__forceinline` can be used:
+
+```cpp
+__forceinline int Multiply(int a, int b) { return a * b; }
+```
+
+---
+
+When choosing between using a macro or a function for inlining, it is generally recommended to use functions with the `inline` keyword. Functions are more type-safe and have better debugging support compared to macros. Macros are simple textual replacements and can lead to unexpected behavior or issues if not used carefully.
+
+Using inline functions offers a good balance between performance and maintainability. They provide the benefits of inlining without sacrificing the advantages of type-checking and debugging support that functions offer. However, keep in mind that the inline keyword is just a hint to the compiler, and it may or may not `inline` the function depending on the specific context and compiler optimizations.
 
 ### Namespace
 
-Lorem Ipsum
+In programming languages, a namespace is a feature that allows you to organize code elements (such as variables, functions, classes) into distinct named scopes to avoid name collisions and improve code organization.
+
+In C++, you can use namespaces to group related code together and avoid naming conflicts. Here's how you can define and use a namespace in C++:
+
+```cpp
+// Defining a namespace
+namespace MyNamespace
+{
+    int add(int a, int b) { return a + b; }
+}
+
+int result = MyNamespace::add(3, 5);
+```
+
+Namespaces are particularly helpful when you are working with multiple libraries or modules, each with its own set of classes and functions. By placing them in separate namespaces, you can avoid naming conflicts when using elements from different libraries.
+
+For example, consider two libraries that both define a class called Vector. Without namespaces, including both libraries in the same project could lead to naming conflicts. However, by placing each Vector class in its own namespace, such as `Library1::Vector` and `Library2::Vector`, you can use them without conflicts.
+
+```cpp
+#include <Library1/Vector.h>
+#include <Library2/Vector.h>
+
+Library1::Vector vec1;
+Library2::Vector vec2;
+// Use vec1 and vec2 without conflicts
+```
+
+> **Warning**
+> Unreal Engine doesn't support namespaces with UHT[^3].
 
 ### Static members
 
-Lorem Ipsum
+In programming languages, static members are class members (variables or functions) that belong to the class itself rather than individual objects of the class. They are shared among all instances (objects) of the class and are independent of any specific object's state.
+
+In C++, you can use the static keyword to define static members in a class. Here's how you can use static members in C++ code:
+
+```cpp
+class MyClass
+{
+public:
+    static int staticVariable; // Declaration of a static variable
+    static void staticFunction(); // Declaration of a static function
+};
+
+// Definition of the static variable
+int MyClass::staticVariable = 0;
+
+// Definition of the static function
+void MyClass::staticFunction()
+{
+    // Function implementation
+}
+```
+
+Static variables and functions are accessed using the class name followed by the scope resolution operator `::`. Since static members are shared across all instances of the class, they do not require an object to be accessed.
+
+Here's how you can use static members in your code:
+
+```cpp
+MyClass::staticVariable = 10; // Accessing static variable
+MyClass::staticFunction(); // Calling static function
+```
+
+Static members are commonly used for class-level data and utility functions that do not rely on object-specific state. They are particularly useful when you want to maintain a single instance of a variable shared among all objects of the class, or when you need a common function that does not depend on the specific object's data.
 
 ### `auto` keyword
 
-Lorem Ipsum
+In C++, the `auto` keyword is used for type inference, allowing the compiler to deduce the data type of a variable automatically based on its initialization value (similar to `var` keyword in C#). It was introduced in [C++11](https://en.wikipedia.org/wiki/C%2B%2B11) as part of the modern C++ features.
+
+Here's how you can use the `auto` keyword:
+
+```cpp
+auto variable = 42; // Compiler will deduce the type of 'variable' as int
+auto name = "John"; // Compiler will deduce the type of 'name' as const char*
+auto pi = 3.14; // Compiler will deduce the type of 'pi' as double
+```
+
+The `auto` keyword is especially useful when dealing with complex data types or when the type is long and cumbersome to write explicitly. It can also simplify code maintenance since you don't need to update the type declaration if the initialization value changes.
+
+Using the `auto` keyword for return function values can be a double-edged sword. While it can make the code more concise and reduce the need to explicitly specify return types, it can also make the code less readable and harder to understand, especially when the function's logic is complex.
+
+| Pros of Using 'auto' for Return Values         | Cons of Using 'auto' for Return Values                                              |
+|-----------------------------------------------|-----------------------------------------------------------------------------------|
+| Concise code with reduced type annotations    | Lack of clarity: Return type might not be immediately apparent from the code     |
+| Easier to write and understand simple cases   | Debugging and error handling might be more challenging                            |
+| Can simplify code in certain situations       | Reduced code readability in complex scenarios                                    |
+| Reduces the need to explicitly specify types  | Potential impact on code maintainability as the codebase grows larger and complex |
+| Improves code readability in some cases       | Team coding standards and practices may not always favor using 'auto'             |
 
 ### Polymorphism (In Depth)
 
@@ -2329,7 +2510,7 @@ if (DamageHealth(PlayerHealth)) // Passing the `PlayerHealth` as a direct refere
 
 ![Pointers](static/img/Pointers.png)
 
-And lastly, we have pointers. This section, will go over about raw pointers and smart pointers. If you have no clue about pointers, highly recommend watching Cherno video about [pointers](https://www.youtube.com/watch?v=DTxHyVn0ODg).
+And lastly, we have pointers. This section, will go over about raw pointers and smart pointers. If you have no clue about pointers, highly recommend watching [Cherno about pointers](https://www.youtube.com/watch?v=DTxHyVn0ODg).
 
 Pointers and references are similar in that they both refer to variables, but there's one key difference. Pointers are **indirect references**, meaning they can change throughout the code, pointing to different variables. On the other hand, regular references are direct and can only refer to the specific variable they were initialized with.
 
@@ -2339,15 +2520,16 @@ Pointers are valuable tools in programming as they allow us to store memory addr
 
 Additionally, pointers are essential in scenarios like data structures, linked lists, and passing data to functions by reference, providing a level of control and precision that enhances the capabilities of the program. However, it's important to handle pointers with care, as incorrect usage can lead to **memory leaks** or **segmentation faults**.
 
-#### Raw pointers
+#### 🦴 Raw pointers
 
 A raw pointer can be sometime dangerous, because there is no validation when accessing this pointer. And when the pointer is pointing to nothing (meaning, the pointer is a `nullptr`). The program will throw a null pointer exception, also known as a segmentation fault (segfault).
 
 A segmentation fault occurs when a program tries to access a memory location that it does not have permission to access, which can happen when the program tries to dereference a null pointer. When this happens, the operating system will usually terminate the program and generate an error message.
 
 To avoid this, you must check before if the pointer is valid, before using it.
+> Use the function called `IsValid()` for raw pointers.
 
-To do this in Unreal Engine's C++, you would use the function called `IsValid()` for raw pointers. Here is an example:
+Here's an example:
 
 ```cpp
 UPROPERTY()
@@ -2382,7 +2564,25 @@ UPROPERTY()
 TObjectPtr<AActor> ActorPtr = nullptr;
 ```
 
-#### Smart UObject pointers
+#### 🤖 Smart pointers library
+
+##### TSharedPtr
+
+This smart pointer is a general-purpose shared pointer that can hold a reference to any class or struct. It uses reference counting to automatically manage the memory. It is used when multiple references need to share ownership of an object.
+
+##### TWeakPtr
+
+This smart pointer is another smart pointer provided by the engine. It is used to hold a weak reference to an object derived from `TSharedFromThis`.
+
+`TWeakPtr` is used specifically for weak references to objects derived from `TSharedFromThis`, while `TWeakObjectPtr` is a more general-purpose weak pointer for any `UObject` subclass. `TWeakPtr` requires the object to inherit from `TSharedFromThis` to enable weak referencing, whereas `TWeakObjectPtr` can be used without such a requirement.
+
+##### UniquePtr
+
+`UniquePtr` is a smart pointer class that provides automatic memory management for dynamically allocated objects. It is part of the Unreal Smart Pointer Library and serves as a unique ownership container.
+
+The purpose of `UniquePtr` is to ensure that only a single `UniquePtr` instance owns a particular object at any given time. This ownership means that when the `UniquePtr` is destroyed or reassigned, it automatically deletes the associated object, freeing up the memory.
+
+#### 🤖 Smart `UObject` pointers
 
 In contrast, smart pointers in Unreal Engine are specialized classes, such as `TSharedPtr` and `TWeakPtr`, that handle memory management automatically. Smart pointers offer benefits like automatic deallocation, reference counting, and improved memory safety. They help prevent memory leaks and simplify memory management tasks within the game engine.
 
@@ -2407,7 +2607,6 @@ if (WeakPtr.IsValid())
     // Access the object if it still exists
     WeakPtr->DoSomething();
 }
-
 ```
 
 ##### TWeakInterfacePtr
@@ -2429,7 +2628,6 @@ if (WeakPtr.IsValid())
     // Access the interface if the object still implements it
     WeakPtr->InterfaceFunction();
 }
-
 ```
 
 ##### TSoftObjectPtr
@@ -2464,93 +2662,102 @@ TSoftClassPtr<AMyBlueprintClass> SoftPtr; // Assign soft reference to a blueprin
 if (SoftPtr.IsValid())
 {
     UClass* Class = SoftPtr.LoadSynchronous();
+
     if (Class)
     {
         // Use the loaded class
     }
 }
-
-```
-
-#### Smart pointers library
-
-##### TSharedPtr
-
-This smart pointer is a general-purpose shared pointer that can hold a reference to any class or struct. It uses reference counting to automatically manage the memory. It is used when multiple references need to share ownership of an object.
-
-Example usage:
-
-```cpp
-TSharedPtr<MyClass> SharedPtr = MakeShared<MyClass>();  // Create a shared pointer to an instance of MyClass
-
-if (SharedPtr.IsValid())
-{
-    SharedPtr->DoSomething();  // Access the object via the shared pointer
-}
-
-TSharedPtr<MyClass> OtherSharedPtr = SharedPtr;  // Share ownership with another shared pointer
-```
-
-##### TWeakPtr
-
-This smart pointer is another smart pointer provided by the engine. It is used to hold a weak reference to an object derived from `TSharedFromThis`.
-
-`TWeakPtr` is used specifically for weak references to objects derived from `TSharedFromThis`, while `TWeakObjectPtr` is a more general-purpose weak pointer for any `UObject` subclass. `TWeakPtr` requires the object to inherit from `TSharedFromThis` to enable weak referencing, whereas `TWeakObjectPtr` can be used without such a requirement.
-
-Example usage:
-
-```cpp
-TSharedPtr<MyClass> SharedPtr = MakeShared<MyClass>(); // Create a shared pointer
-TWeakPtr<MyClass> WeakPtr(SharedPtr); // Create a weak pointer from the shared pointer
-
-if (TSharedPtr<MyClass> StrongPtr = WeakPtr.Pin()) // Convert weak pointer to shared pointer
-{
-    // Access the object through the shared pointer
-    StrongPtr->DoSomething();
-}
-```
-
-##### UniquePtr
-
-`UniquePtr` is a smart pointer class that provides automatic memory management for dynamically allocated objects. It is part of the Unreal Smart Pointer Library and serves as a unique ownership container.
-
-The purpose of `UniquePtr` is to ensure that only a single `UniquePtr` instance owns a particular object at any given time. This ownership means that when the `UniquePtr` is destroyed or reassigned, it automatically deletes the associated object, freeing up the memory.
-
-Example usage:
-
-```cpp
-#include "Containers/UniquePtr.h"
-
-// Custom class for demonstration
-class MyCustomObject
-{
-public:
-    MyCustomObject() {} // Constructor
-    ~MyCustomObject() {} // Destructor
-
-    void DoSomething()
-    {
-        // Perform some action
-    }
-};
-
-void MyFunction()
-{
-    // Creating a UniquePtr to manage a dynamically allocated MyCustomObject
-    TUniquePtr<MyCustomObject> MyObjectPtr = MakeUnique<MyCustomObject>();
-
-    // Accessing member functions of the managed object
-    MyObjectPtr->DoSomething();
-
-    // No need to manually delete the object, it will be automatically cleaned up
-}
 ```
 
 </details>
 
+## 🗑️ Garbage Collection
+
+Garbage Collection is an automatic memory management feature used in modern languages like C#, Python, and Javascript, which automatically removes objects from memory when they are no longer in use.
+
+In a garbage-collected environment, you can create objects, use them, and then set the variable pointing to them as null when done, and the garbage collector takes care of freeing up the memory. Unlike lower-level languages like C and C++, which require manual memory management, Unreal Engine has its own Garbage Collection system to simplify memory management for developers.
+
+You can read more about [Stack vs Heap](#) section. Which tells more about how the memory is management in programming languages.
+
+### How does it work
+
+When you create a UObject-derived object in Unreal Engine, it becomes part of the garbage collection system, which automatically identifies and removes unused objects every 30-60 seconds or as needed based on system memory. The garbage collection system maintains a "Root Set" of objects that should always be kept alive, and it uses reflection to trace object references and ensure objects are reachable. Objects outside the Root Set and not reachable are marked for garbage collection, and their memory is freed.
+
+By properly using UE's decorators, you can avoid issues with dangling pointers and crashes caused by accessing garbage-collected objects.
+
+#### Rules
+
+Every member of a class should be declared as a `UPROPERTY`
+> If an member is left “naked,” unreal will not know about it. So, an object you are pointing at could get deleted out from under you! It is safe to leave value types such as an `int` or a `bool` “naked” although they could not be saved, replicated, or appear in the editor.
+
+Member pointers should only point at `UObject` or UObject-derived objects
+> The garbage collector is only smart enough to recognize relationships to an object, so the object could get deleted out from under your pointer.
+
+Any non-UObject pointer must be pointing to something “global” in the engine, or something within its own `UObject`
+> The garbage collector could delete the object that owns what you are pointing at.
+
+> **Warning**
+> For the garbage collector to do its work of determining what is safe to delete (for a container), it must traverse every field of every object. While Unreal provides several types of containers (`TArray`, `TMap`, …) the garbage collector only considers pointers in `TArray`.
+
+#### Examples
+
+```cpp
+UPROPERTY()
+TArray<UWidget*> LotsOfWidgets;
+
+TMap<int, TWeakObjectPtr<UWidget>> LotsOfWeakWidgets;
+```
+
+### Manual memory management
+
+UObjects should never be created with `new`, but only with the default creation methods (`NewObject()`, `SpawnActor()`, `CreateDefaultSubobject()`).
+
+### Collection and Mark as garbage
+
+<table><tr><td>
+
+## Conditions
+
+* By having a strong reference (`UPROPERTY`) to them (from objects that are also referenced)
+
+* By calling `UObject::AddReferencedObjects()` (from objects that are also referenced)
+
+* By adding them to the root set with `UObject::AddToRoot()` (typically unnecessary)
+
+</td></tr></table>
+
+When objects do not fulfill any of the above conditions, on the next GC cycle they will be marked as unreachable and garbage collected (destroyed).
+
+To force the destruction of objects that are still reachable, you can call `UObjectBaseUtility::MarkAsGarbage()` on them, and it will force their destruction on the next GC cycle (you generally want to avoid doing this, as that is what garbage collection is for, and some classes, like `AActor` and `UActorComponent` do not directly support it).
+
+The destruction of an object doesn't necessarily all happen in the same frame, when garbage collection starts on it, it will first call `BeginDestroy()` (do not call this yourself), then, when ready `FinishDestroy()`.
+
+> **Note**
+> Raw pointers declared with `UPROPERTY`, will be set to `nullptr`
+
+### Validation
+
+Whenever code references an `AActor` or a `UActorComponent`, it has to deal with the possibility that `AActor::Destroy()` could be called on the actor or `UActorComponent::DestroyComponent()` could be called on the component. These functions will mark them for pending kill, thus triggering their garbage collection at the first opportunity (note that destroying an actor also destroys all its components).
+
+Since the garbage collector automatically nulls out `UPROPERTY` pointers when it actually gets to destroy them, null-checking an actor or component pointer is sufficient to know it's safe to use, though you might also want to check `IsPendingKill()` on them (through `IsValid()`) to avoid accessing them after they have been marked for destruction (`TWeakObjectPtr` already checks for this when retrieving the raw pointer).
+
+```cpp
+bool IsValid(const UObject* Test);
+```
+
+Global function that automatically checks if an object pointer is non-null and not pending kill.
+
+```cpp
+UObjectBase::IsValidLowLevel();
+UObjectBase::IsValidLowLevelFast();
+```
+
+Should not be used for Garbage Collection checks, as on `UPROPERTY` pointers it will always return true, while on raw pointer it will return true or false depending on whether the object had already been destroyed, but in the latter case it's also likely to also crash the application as the pointed memory could have been overwritten.
+
 ## 💎 Unreal Header Tool
 
-Unreal Header Tool (UHT) is a code generator and reflection system in Unreal Engine. It processes special macros and meta tags in C++ header files and generates additional code to support Unreal Engine's reflection system, which enables various engine features like Blueprint integration, serialization, networking, and more.
+Unreal Header Tool (UHT[^3]) is a code generator and reflection system in Unreal Engine. It processes special macros and meta tags in C++ header files and generates additional code to support Unreal Engine's reflection system, which enables various engine features like Blueprint integration, serialization, networking, and more.
 
 Layout:
 
@@ -2568,40 +2775,26 @@ UMETA([specifier1=setting1, specifier2, ...])
 
 `UPROPERTY` is a macro used to declare a property within a class that needs to be exposed to the Unreal Engine's reflection system. It allows the property to be accessed and modified by the engine and Blueprint scripts.
 
-<table><tr><td>
-
 #### Specifiers
 
-* `EditAnywhere` - Allows the property to be edited in the editor and during runtime for all instances of the class.
-* `EditDefaultsOnly` - Permits editing the property only for the class's default object in the editor.
-* `EditInstanceOnly` - Enables editing the property only for instances of the class during runtime.
-* `VisibleAnywhere` - Displays the property value in the editor for all instances of the class.
-* `VisibleDefaultsOnly` - Shows the property value in the editor for the class's default object.
-* `VisibleInstanceOnly` - Displays the property value in the editor only for instances of the class.
-* `BlueprintReadOnly` - Exposes the property to Blueprint scripts, but only for reading, not writing.
-* `BlueprintReadWrite` - Exposes the property to Blueprint scripts for both reading and writing.
-* `Category` - Organizes properties into named categories in the editor for better organization and readability.
+* `EditAnywhere`: Allows the property to be edited in the editor and during runtime for all instances of the class.
+* `EditDefaultsOnly`: Permits editing the property only for the class's default object in the editor.
+* `EditInstanceOnly`: Enables editing the property only for instances of the class during runtime.
+* `VisibleAnywhere`: Displays the property value in the editor for all instances of the class.
+* `VisibleDefaultsOnly`: Shows the property value in the editor for the class's default object.
+* `VisibleInstanceOnly`: Displays the property value in the editor only for instances of the class.
+* `BlueprintReadOnly`: Exposes the property to Blueprint scripts, but only for reading, not writing.
+* `BlueprintReadWrite`: Exposes the property to Blueprint scripts for both reading and writing.
+* `Category`: Organizes properties into named categories in the editor for better organization and readability.
 
 #### Meta tags
 
-* ```cpp
-  DisplayName = "Custom Display Name";
-  ```
-* ```cpp
-  Tooltip = "This is a tooltip";
-  ```
-* ```cpp
-  ClampMin = 1; // Float and integers numbers
-  ```
-* ```cpp
-  ClampMax = 69; // Float and integers numbers
-  ```
-* ```cpp
-  AllowPrivateAccess = true; // Or false
-  ```
-* ```cpp
-  Units = "Kilograms"; // Or "kg"
-  ```
+* `DisplayName`: Sets a custom display name for the property in the Unreal Editor.
+* `Tooltip`: Provides a tooltip description for the property in the Unreal Editor.
+* `ClampMin`: Sets the minimum allowed value for the property in the Unreal Editor.
+* `ClampMax`: Sets the maximum allowed value for the property in the Unreal Editor.
+* `AllowPrivateAccess`: Allows access to private members within the class it belongs to.
+* `Units`: Provides a human-readable unit label for the property in the Unreal Editor.
 
 #### Examples
 
@@ -2627,42 +2820,30 @@ UPROPERTY(EditAnywhere, meta=(Units="times"))
 float Deliciousness;
 ```
 
-</td></tr></table>
-
 You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/uproperty/).
 
 ### UFUNCTION
 
 `UFUNCTION` is a macro used to declare a function within a class that needs to be exposed to the Unreal Engine's reflection system. It allows the function to be used in Blueprint scripts and network replication.
 
-<table><tr><td>
-
 #### Common Specifiers
 
-* `BlueprintCallable` - Exposes the function to Blueprint scripts, allowing it to be called from within Blueprint graphs.
-* `BlueprintPure` - Indicates that the function is a pure computation and does not modify any state, making it safe to use in Blueprint graphs without side effects.
-* `BlueprintImplementableEvent` - Serves as a placeholder function in C++ that can be overridden and implemented in Blueprint.
-* `BlueprintNativeEvent` - Similar to `BlueprintImplementableEvent`, but it also provides a C++ implementation that can be optionally overridden in Blueprint.
-* `Category` - Organizes properties into named categories in the editor for better organization and readability.
+* `BlueprintCallable`: Exposes the function to Blueprint scripts, allowing it to be called from within Blueprint graphs.
+* `BlueprintPure`: Indicates that the function is a pure computation and does not modify any state, making it safe to use in Blueprint graphs without side effects.
+* `BlueprintImplementableEvent`: Serves as a placeholder function in C++ that can be overridden and implemented in Blueprint.
+* `BlueprintNativeEvent`: Similar to `BlueprintImplementableEvent`, but it also provides a C++ implementation that can be optionally overridden in Blueprint.
+* `Category`: Organizes properties into named categories in the editor for better organization and readability.
 
 #### Common Meta tags
 
-* ```cpp
-  DisplayName = "Explode current vehicle";
-  ```
-* ```cpp
-  Tooltip = "Long Tooltip";
-  ```
-* ```cpp
-  ShortToolTip = "Short Tooltip";
-  ```
-* ```cpp
-  AllowPrivateAccess = true; // Or false
-  ```
-* `HideSelfPin` - Hides the "self" pin, which indicates the object on which the function is being called. The "self" pin is automatically hidden on `BlueprintPure` functions that are compatible with the calling Blueprint's Class. Functions that use the `HideSelfPin` Meta Tag frequently also use the `DefaultToSelf` Specifier.
-* `BlueprintInternalUseOnly` - This function is an internal implementation detail, used to implement another function or node. It is never directly exposed in a Blueprint graph.
-* `BlueprintProtected` - This function can only be called on the owning Object in a Blueprint. It cannot be called on another instance.
-* `DeprecatedFunction` - Any Blueprint references to this function will cause compilation warnings telling the user that the function is deprecated. You can add to the deprecation warning message (for example, to provide instructions on replacing the deprecated function) using the `DeprecationMessage` metadata specifier.
+* `DisplayName`: Sets a custom display name for the function in the Unreal Editor.
+* `Tooltip`: Provides a tooltip description for the function in the Unreal Editor.
+* `ShortToolTip`: Provides a short tooltip description for the function in the Unreal Editor.
+* `AllowPrivateAccess`: Allows access to private members within the class it belongs to.
+* `HideSelfPin`: Hides the "self" pin, which indicates the object on which the function is being called. The "self" pin is automatically hidden on `BlueprintPure` functions that are compatible with the calling Blueprint's Class. Functions that use the `HideSelfPin` Meta Tag frequently also use the `DefaultToSelf` Specifier.
+* `BlueprintInternalUseOnly`: This function is an internal implementation detail, used to implement another function or node. It is never directly exposed in a Blueprint graph.
+* `BlueprintProtected`: This function can only be called on the owning Object in a Blueprint. It cannot be called on another instance.
+* `DeprecatedFunction`: Any Blueprint references to this function will cause compilation warnings telling the user that the function is deprecated. You can add to the deprecation warning message (for example, to provide instructions on replacing the deprecated function) using the `DeprecationMessage` metadata specifier.
 
 #### Examples
 
@@ -2685,15 +2866,11 @@ UFUNCTION(BlueprintCallable, Category = "Doggy Daycare", meta=(ReturnDisplayName
 bool TryPetDog(const FName Name);
 ```
 
-</td></tr></table>
-
 You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/ufunction/).
 
 ### UCLASS
 
 `UCLASS` is a macro used to declare a class that is intended to be used in Unreal Engine's reflection system. It allows the class to be instantiated, exposed to Blueprint, and used in various engine systems.
-
-<table><tr><td>
 
 #### Common Specifiers
 
@@ -2744,8 +2921,6 @@ You can read more about [UCLASS by BenUi](https://benui.ca/unreal/uclass/).
 
 `USTRUCT` is a macro used to declare a C++ struct that is intended to be used in Unreal Engine's reflection system. It enables the struct to be used as a property within UCLASSes and exposed to Blueprint.
 
-<table><tr><td>
-
 #### Common Specifiers
 
 - `BlueprintType`: Specifies that the structure can be used in Blueprint scripts.
@@ -2782,8 +2957,6 @@ You can read more about [USTRUCT by BenUi](https://benui.ca/unreal/ustruct/).
 
 `UENUM` is a macro used to declare an enumeration that is intended to be used in Unreal Engine's reflection system. It allows the enumeration to be exposed to Blueprint and used within `UCLASS`es.
 
-<table><tr><td>
-
 #### Common Specifiers
 
 - `BlueprintType`: Specifies that the enumeration can be used in Blueprint scripts.
@@ -2810,15 +2983,11 @@ enum class EWeaponType
 };
 ```
 
-</td></tr></table>
-
 You can read more about [UENUM by BenUi](https://benui.ca/unreal/uenum/).
 
 ### UPARAM
 
 `UPARAM` is a macro used to provide additional information to the Unreal Header Tool. It is used with parameters of UFUNCTION and UPROPERTY to specify how the engine should handle the data.
-
-<table><tr><td>
 
 - `UPARAM(Ref)`: Used to mark a parameter that is passed by reference. It ensures that the parameter is treated as a reference during code generation, which may affect how the engine handles the parameter.
 
@@ -2847,15 +3016,11 @@ public:
 };
 ```
 
-</td></tr></table>
-
 You can read more about [UPARAM by BenUi](https://benui.ca/unreal/uparam/).
 
 ### UMETA
 
 `UMETA` is a macro used to specify additional metadata for an UENUM entry. It allows adding custom information to enum values for use in Blueprint, UI, and other engine systems.
-
-<table><tr><td>
 
 #### Common Specifiers
 
@@ -2877,8 +3042,6 @@ enum class EMyEnum
     Value3 UMETA(Hidden),
 };
 ```
-
-</td></tr></table>
 
 You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
 
@@ -3560,45 +3723,105 @@ You can read more about [reflection system from their docs](https://docs.unreale
 
 #### 📦 Refactoring
 
+Refactoring is the process of making changes to the codebase to improve its structure, readability, and maintainability without changing its external behavior.
+
+Refactoring is an essential practice in software development that helps keep the codebase clean, maintainable, and scalable. It involves making incremental improvements to the code without changing its external behavior, which is crucial for maintaining a healthy and sustainable codebase throughout the software development lifecycle.
+
 ##### Renaming
 
-Lorem Ipsum
+Renaming members, such as variables, functions, or classes, is a common refactoring technique used to give them more meaningful and descriptive names, making the code easier to understand and maintain.
+
+Example:
 
 ```cpp
-// ...
+// Before refactoring
+class Rectangle
+{
+private:
+    int w; // Width
+    int h; // Height
+
+public:
+    Rectangle(int width, int height) : w(width), h(height) {}
+
+    int area() { return w * h; }
+};
+
+// After refactoring
+class Rectangle
+{
+private:
+    int width; // Descriptive name for width
+    int height; // Descriptive name for height
+
+public:
+    Rectangle(int width, int height) : width(width), height(height) {}
+
+    int area() { return width * height; }
+};
 ```
 
 ##### Extract Method﻿
 
-Lorem Ipsum
+Extract Method is a refactoring technique where you take a portion of code within a method and move it into a separate method. This helps improve code readability, encourages code reuse, and simplifies complex methods.
+
+Example:
 
 ```cpp
-// ...
+// Before refactoring
+void printFullName(std::string firstName, std::string lastName)
+{
+    std::cout << "Full Name: " << firstName << " " << lastName << std::endl;
+    // Some other logic related to printing the full name
+}
+
+// After refactoring
+void printFullName(std::string firstName, std::string lastName)
+{
+    print("Full Name: " + firstName + " " + lastName);
+}
+
+void print(const std::string& message)
+{
+    std::cout << message << std::endl;
+}
 ```
 
 ##### Introduce/Inline typedef﻿s
 
-Lorem Ipsum
+Introducing a typedef can make complex type names more concise and easier to understand. On the other hand, inline typedefs are useful for reducing the complexity of code and improving code readability by avoiding unnecessary type aliases.
+
+Example:
 
 ```cpp
-// ...
+// Before refactoring
+typedef std::map<std::string, std::vector<int>> NameToNumbersMap;
+
+NameToNumbersMap numbers;
+
+// After refactoring (Introduce typedef)
+using NumbersVector = std::vector<int>;
+using NameToNumbersMap = std::map<std::string, NumbersVector>;
+
+NameToNumbersMap numbers;
+
+// After refactoring (Inline typedef)
+std::map<std::string, std::vector<int>> numbers;
 ```
 
 ##### Introduce Variable﻿
 
-Lorem Ipsum
+Introducing a variable can simplify complex expressions or improve code readability by giving meaningful names to intermediate results.
+
+Example:
 
 ```cpp
-// ...
-```
+// Before refactoring
+int total = (price + tax) * quantity - discount + shippingCost;
 
-##### Inline Function﻿
-
-Lorem Ipsum
-
-```cpp
-UFUNCTION(BlueprintPure, Category = "")
-FORCEINLINE bool GetVehicleDead() const { return false; } 
+// After refactoring
+int netPrice = price + tax;
+int totalPrice = netPrice * quantity - discount + shippingCost;
 ```
 
 ##### Invert 'if' statement to reduce nesting
@@ -3686,15 +3909,9 @@ SetActorTickEnabled()
 SetComponentTickEnabled()
 ```
 
-#### ```FTickFunction```
+#### `FTickFunction`
 
-*Abstract base class for all tick functions.*
-
-> **Note**
-> Tick any object you want, UObject or not!
-
-> **Warning**
-> `USTRUCT` don't support expose functions with UHT[^2].
+Abstract base class for all tick functions.
 
 Sample code to get started:
 
@@ -3754,7 +3971,21 @@ void FMyTickableThing::Tick( float DeltaTime )
 }
 ```
 
+> **Note**
+> Tick any object you want, UObject or not!
+
+> **Warning**
+> `USTRUCT` don't support expose functions with UHT[^2].
+
 #### 🔌 Direct references
+
+In C++, a direct reference is a reference variable that directly refers to the memory location of another variable. When you use a direct reference, you are essentially creating an alias or an alternative name for the original variable. This means any changes made to the reference will be reflected in the original variable, and vice versa.
+
+Using direct references can be beneficial for performance in certain situations because it avoids creating unnecessary copies of data. When you pass large objects or structures as function arguments, using direct references instead of passing by value (copy) can save memory and processing time, especially for complex objects.
+
+Using the `const` qualifier in a direct reference serves as a safety mechanism to prevent accidental modifications to the referenced variable. When you declare a variable as const, it means that its value cannot be changed after initialization.
+
+In some cases, using `const` in direct references can also enable certain compiler optimizations, as it provides additional information to the compiler about the immutability of the referenced value.
 
 ```cpp
 int a = 5;
@@ -3781,31 +4012,28 @@ The Math Expression node acts like a collapsed graph. It is a single node that y
 
 Read more <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">here</a>!
 
-#### Call In Editor and `CallInEditor`
+#### Call function in editor
 
-Expose a function to call inside the Blueprint editor. With C++, you can mark UFUNCTION specifier `CallInEditor`.
+Expose a function to call inside the Blueprint editor. With C++, you can mark `UFUNCTION` specifier `CallInEditor`.
 
 Here is an example:
 
 ```cpp
 UFUNCTION(CallInEditor, BlueprintCallable)
-void DebugMessage()
-{
-  // Display message
-}
+void DebugMessage();
 ```
 
 ## 📛 Console Commands
 
-* `stat fps` - Display FPS.
-* `stat unit` - Display frame time.
-* `stat game` - Display a general idea on how long the various gameplay ticks are taking.
-* `dumpticks` - Display a list of current actors, which currently ticks in the level.
-* `slomo` - To speed up or slow down the game time.
-* `obj list` - Display a list of current loaded objects.
-* `obj list class=BP_PlayerCharacter_C` - Same as `obj list` but with a filter.
-* `obj gc` - Collect all objects with GC (Garbage Collector).
-* `au.Debug.AudioSoloSoundWave` - Text.
+* `stat fps`: Display FPS.
+* `stat unit`: Display frame time.
+* `stat game`: Display a general idea on how long the various gameplay ticks are taking.
+* `dumpticks`: Display a list of current actors, which currently ticks in the level.
+* `slomo`: To speed up or slow down the game time.
+* `obj list`: Display a list of current loaded objects.
+* `obj list class=BP_PlayerCharacter_C`: Same as `obj list` but with a filter.
+* `obj gc`: Collect all objects with GC (Garbage Collector).
+* `au.Debug.AudioSoloSoundWave`: Takes a sound wave name as an additional input, and toggles whether that sound wave is solo (the only audible sound).
 
 Here is also a [website](https://pongrit.github.io/) by Pongrit, which showcase all of Unreal Engine's console commands.
 
