@@ -20,7 +20,7 @@
 * Add more content to [Tips and best practices](#-tips-and-best-practices) section.
 * Fix Lorem Ipsum text.
 * Rewrite [💎 Unreal Header Tool](#-unreal-header-tool) section.
-* Rewrite [Pointers](#pointers) section.
+* Rewrite [👈 Pointers](#-pointers) section.
 * All [Emojis List](https://www.freecodecamp.org/news/all-emojis-emoji-list-for-copy-and-paste/)
 
 </td></tr></table>
@@ -109,7 +109,7 @@
       * 7.7.3\. [TMap](#tmap)
       * 7.7.4\. [TMultiMap](#tmultimap)
     * 7.8\. [Value type vs Reference type](#value-type-vs-reference-type)
-    * 7.9\. [Pointers](#pointers)
+    * 7.9\. [👈 Pointers](#-pointers)
       * 7.9.1\. [Raw pointers](#raw-pointers)
       * 7.9.2\. [Smart pointers](#smart-pointers)
       * 7.9.3\. [TWeakObjectPtr](#tweakobjectptr)
