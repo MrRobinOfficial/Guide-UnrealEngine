@@ -79,7 +79,7 @@
     * 2.12.3\. [Virtual functions](#virtual-functions)
   * 2.13\. [Generic Programming](#generic-programming)
   * 2.14\. [Lambda](#lambda)
-  * 2.15\. [Stack vs Heap](#stack-vs-heap)
+  * 2.15\. [💥 Stack vs Heap](#-stack-vs-heap)
   * 2.16\. [Design Patterns And Principles](#design-patterns-and-principles)
   	* 2.16.1\. [Open-Closed Principle](#open-closed-principle)
    	* 2.16.2\. [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
@@ -2567,6 +2567,8 @@ TObjectPtr<AActor> ActorPtr = nullptr;
 
 #### 🤖 Smart pointers library
 
+You can read more about [Unreal Smart Pointer Library on their docs](https://docs.unrealengine.com/5.2/en-US/smart-pointers-in-unreal-engine/).
+
 ##### TSharedPtr
 
 This smart pointer is a general-purpose shared pointer that can hold a reference to any class or struct. It uses reference counting to automatically manage the memory. It is used when multiple references need to share ownership of an object.
@@ -2679,7 +2681,9 @@ Garbage Collection is an automatic memory management feature used in modern lang
 
 In a garbage-collected environment, you can create objects, use them, and then set the variable pointing to them as null when done, and the garbage collector takes care of freeing up the memory. Unlike lower-level languages like C and C++, which require manual memory management, Unreal Engine has its own Garbage Collection system to simplify memory management for developers.
 
-You can read more about [Stack vs Heap](#) section. Which tells more about how the memory is management in programming languages.
+You can read more about [Stack vs Heap](#-stack-vs-heap) section. Which tells more about how the memory is management in programming languages.
+
+You can also read more about [Unreal Object Handling on their docs](https://docs.unrealengine.com/5.2/en-US/unreal-object-handling-in-unreal-engine/).
 
 ### How does it work
 
