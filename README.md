@@ -19,6 +19,7 @@
 * Add image/banner cover to help visualize.
 * Fix TOC.
 * All [Emojis List](https://www.freecodecamp.org/news/all-emojis-emoji-list-for-copy-and-paste/)
+* [emojipedia](https://emojipedia.org/bone/)
 
 </td></tr></table>
 
