@@ -12,17 +12,6 @@
 
 #
 
-<table><tr><td>
-
-## TODO LIST
-
-* Add image/banner cover to help visualize.
-* Rewrite [📖 Strings](#-strings) section.
-
-</td></tr></table>
-
-#
-
 **Are you interested in creating games with Unreal Engine using C++?**
 
 *In this repo, we'll guide you through the basics of getting started with Unreal Engine and C++. We'll cover the fundamentals of C++ programming, such as data types and pointers, and show you how to use these concepts in the context of game development with Unreal Engine. We'll also introduce you to the Unreal Engine module system, which is an important aspect of organizing your game code into smaller, more manageable pieces.*
@@ -2256,51 +2245,61 @@ typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 
 ### 📖 Strings
 
-Strings differs in Unreal Engine and native C++.
+Strings in programming languages are fundamental data types used to represent and manipulate sequences of characters, such as words, sentences, or even binary data. They are extensively used in various programming tasks, including input/output operations, text processing, data serialization, and more.
+
+In Unreal Engine, strings play a crucial role in handling text-based information within the game or application. Unreal Engine provides several string-related classes to cater to different use cases and requirements.
 
 You can read more about [string handling from the docs](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/).
 
+### Text Macros
+
+* TEXT(): The `TEXT` macro is used to create an `FString` from a string literal. It marks the string for localization, allowing Unreal Engine's localization system to replace the text with the appropriate translation for the user's language.
+
+* INVTEXT(): The `INVTEXT` macro is used to mark a string as non-localizable. It indicates that the text should not be translated and should remain constant across different languages.
+
+* LOCTEXT(): The `LOCTEXT` macro is used to create `FText` literals specifically for localization. It takes a namespace and a key to identify the localized string.
+
 #### FName
+
+In Unreal Engine, `FName` (Fast Name) is a specialized type used for identifying objects within the Unreal Engine object system. It is optimized for fast comparison and storage and is commonly used for referencing actors, components, or assets in a performance-efficient manner.
+
+The `FName` class stores strings as hashed indices, making it a lightweight and fast alternative to regular strings.
+
+For example:
+
+```cpp
+FName MyName = FName("PlayerName");
+```
+
+#### FString
+
+`FString` is a dynamic, **mutable** string type in Unreal Engine, which provides a more flexible approach to string manipulation. Unlike `FName`, `FString` allows for modifications, such as appending, inserting, or removing characters, making it suitable for general string operations. It is widely used for various tasks, such as displaying messages, concatenating text, or formatting output strings.
+
+Example usage:
+
+```cpp
+FString MyString = FString("Hello, World!");
+```
 
 #### FText
 
-You also have other data types for storing string/text. Here is other examples:
+`FText` is a specialized string class designed for localization support in Unreal Engine. Unlike `FString`, `FText` is **immutable**, ensuring consistency and avoiding accidental modifications. FText provides the ability to represent text in different languages and cultures, making it a crucial component for building multi-language games or applications.
+
+Example usage:
 
 ```cpp
 // Helpful in the editor to localize the text into another language.
 FText NewGameText = FText::FromString(TEXT("New Game"));
 
-// Helpful for storing short name string.
-// Also, FNames are case-insensitive, and are stored as a combination of an index into a table of unique strings and an instance number.
-FName Username = FName(TEXT("mRrObIN"));
+FText TooltipText = INVTEXT("Lorem Ipsum!");
 ```
 
-#### FString
+#### Examples of usages
 
-This is how you would define it in native C++:
-
-```cpp
-std::string Message("Hello, World!"); // This is string in C++ standard library
-```
-
-And this is how you define it in Unreal Engine's C++:
+How to add on-screen debug message:
 
 ```cpp
-FString Message = TEXT("Hello, World!"); // Unreal always uses a macro called 'TEXT' to ensure the string is in Unicode characters.
-```
-
-#### FString Examples
-
-Also, here is an example how to add on-screen debug message.
-
-```cpp
-GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("This is an on screen message!"));
-GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Some variable values: x: %f, y: %f"), x, y));
-```
-
-And here is the function parameters:
-
-```cpp
+/*
 void AddOnScreenDebugMessage
 (
     uint64 Key, // A unique key to prevent the same message from being added multiple times.
@@ -2311,8 +2310,35 @@ void AddOnScreenDebugMessage
     const FVector2D & TextScale
 )
 
-// Add a FString to the On-screen debug message system. bNewerOnTop only works with Key == INDEX_NONE
-// This function will add a debug message to the onscreen message list. It will be displayed for FrameCount frames.
+Add a FString to the On-screen debug message system. bNewerOnTop only works with Key == INDEX_NONE
+This function will add a debug message to the onscreen message list. It will be displayed for FrameCount frames.
+
+*/
+
+GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("This is an on screen message!"));
+GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Some variable values: x: %f, y: %f"), x, y));
+```
+
+Replace a substring with another in a `FString`:
+
+```cpp
+FString OriginalString = FString("Hello, my friend.");
+OriginalString.ReplaceInline(TEXT("friend"), TEXT("buddy")); // Output: "Hello, my buddy."
+```
+
+Split a `FString` into an array of substrings using a delimiter:
+
+```cpp
+FString Sentence = FString("This is a sentence.");
+TArray<FString> Words;
+Sentence.ParseIntoArray(Words, TEXT(" "), true); // Output: ["This", "is", "a", "sentence."]
+```
+
+Reverse a `FString`:
+
+```cpp
+FString Text = FString("abcde");
+Text.ReverseString(); // Output: "edcba"
 ```
 
 ---
@@ -2325,10 +2351,13 @@ void AddOnScreenDebugMessage
 
 ### 🚀 Vector, Rotator, Quat and Transform
 
-* `FVector` - A struct representing a 3D vector, consisting of three float values for the `X`, `Y`, and `Z` components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
-* `FRotator` - A struct representing a rotation in 3D space, consisting of three float values for the `Pitch`, `Yaw`, and `Roll` angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
-* `FQuat` (Quaternion) - A struct representing a quaternion, which is a mathematical concept used to represent 3D rotations. It is commonly used in conjunction with `FVector` to represent orientations and rotations in 3D space.
-* ```FTransform``` - A struct representing a 3D transformation, consisting of a `FVector` for translation, a `FRotator` for rotation, and a `FVector` for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
+* `FVector`: A struct representing a 3D vector, consisting of three float values for the `X`, `Y`, and `Z` components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+
+* `FRotator`: A struct representing a rotation in 3D space, consisting of three float values for the `Pitch`, `Yaw`, and `Roll` angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
+
+* `FQuat` (Quaternion): A struct representing a quaternion, which is a mathematical concept used to represent 3D rotations. It is commonly used in conjunction with `FVector` to represent orientations and rotations in 3D space.
+
+* `FTransform`: A struct representing a 3D transformation, consisting of a `FVector` for translation, a `FRotator` for rotation, and a `FVector` for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
   
 ```cpp
 FVector Location = FVector::ZeroVector; // X, Y and Z
