@@ -108,7 +108,7 @@
       * 7.7.4\. [TMultiMap](#tmultimap)
     * 7.8\. [Value type vs Reference type](#value-type-vs-reference-type)
     * 7.9\. [👈 Pointers](#-pointers)
-      * 7.9.1\. [Raw pointers](#raw-pointers)
+      * 7.9.1\. [🦴 Raw pointers](#-raw-pointers)
       * 7.9.2\. [Smart pointers](#smart-pointers)
       * 7.9.3\. [TWeakObjectPtr](#tweakobjectptr)
       * 7.9.4\. [TWeakInterfacePtr](#tweakinterfaceptr)
@@ -172,7 +172,7 @@
 
 Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
 
-C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](https://en.wikipedia.org/wiki/C_(programming_language)), originally named C with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
+C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](https://en.wikipedia.org/wiki/C_(programming_language)), originally named C[^14] with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
 
 Using C++ with Unreal Engine unlocks the engine's full feature set, allowing developers to harness advanced graphics rendering, physics simulations, networking, and AI capabilities. C++ provides a level of control, customization, and performance optimization that complements visual scripting.
 
@@ -257,7 +257,7 @@ Weak and strong typing refer to different approaches in how programming language
 
 In C++, the language is considered strongly typed, as it requires explicit type conversions and does not perform implicit type coercion without the programmer's explicit instruction. C++ enforces strong typing to ensure type safety and minimize potential errors.
 
-Weak Typing (Python code):
+Weak Typing (Python[^12] code):
 
 ```python3
 a = 5 # Correct! Because Python is a weak typing language.
@@ -277,7 +277,7 @@ In C++, a semicolon (<kbd>;</kbd>) is used to mark the end of a statement. It se
 
 The requirement for semicolons in C++ is a design choice that provides explicit statement termination. This approach allows for more fine-grained control over program execution and eliminates ambiguity.
 
-In contrast, languages like Python use indentation to define blocks of code, eliminating the need for explicit statement termination with semicolons.
+In contrast, languages like Python[^12] use indentation to define blocks of code, eliminating the need for explicit statement termination with semicolons.
 
 ```cpp
 int a = 5; // Correct
@@ -366,7 +366,7 @@ In the early days of computing, languages like [Fortran](https://en.wikipedia.or
 
 </td></tr></table>
 
-Other languages, like C#, Java, and Python, continued to use single file extensions because they adopted a more integrated approach to handling both declarations and implementations within a single file.
+Other languages, like C#[^10], Java[^11], and Python[^12], continued to use single file extensions because they adopted a more integrated approach to handling both declarations and implementations within a single file.
 
 In modern programming, the choice of using single file extensions or separate header and source files depends on the language's design philosophy and the needs of the development community. Both approaches have their strengths and weaknesses, and different languages adopt the one that best aligns with their goals and use cases.
 
@@ -889,7 +889,7 @@ Static members are commonly used for class-level data and utility functions that
 
 ### `auto` keyword
 
-In C++, the `auto` keyword is used for type inference, allowing the compiler to deduce the data type of a variable automatically based on its initialization value (similar to `var` keyword in C#). It was introduced in [C++11](https://en.wikipedia.org/wiki/C%2B%2B11) as part of the modern C++ features.
+In C++, the `auto` keyword is used for type inference, allowing the compiler to deduce the data type of a variable automatically based on its initialization value (similar to `var` keyword in C#[^10]). It was introduced in [C++11](https://en.wikipedia.org/wiki/C%2B%2B11) as part of the modern C++ features.
 
 Here's how you can use the `auto` keyword:
 
@@ -2445,7 +2445,7 @@ Here is an example:
 
 Let's talk about what value type and reference types.
 
-In various programming languages like Python, Java, and C#, you may have encountered both value types and reference types.
+In various programming languages like Python[^12], Java[^11], and C#[^10], you may have encountered both value types and reference types.
 
 A value type creates a copy when initialized from another variable. For instance, let's consider variable A, and when we initialize variable B with the value of A, a separate copy of the value is created in B. Essentially, B is an independent entity that holds its own value.
 
@@ -2516,7 +2516,7 @@ int main()
 }
 ```
 
-With references, you can only assign them once, and they cannot be changed throughout the code. For example, you can have a direct reference to an argument passed into a function. This argument can then be modified within the function, similar to how an "out" parameter works in C#.
+With references, you can only assign them once, and they cannot be changed throughout the code. For example, you can have a direct reference to an argument passed into a function. This argument can then be modified within the function, similar to how an [out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/out-parameter-modifier) parameter works in C#[^10].
 
 Here's an example:
 
@@ -2541,13 +2541,13 @@ if (DamageHealth(PlayerHealth)) // Passing the `PlayerHealth` as a direct refere
 
 And lastly, we have pointers. This section, will go over about raw pointers and smart pointers. If you have no clue about pointers, highly recommend watching [Cherno about pointers](https://www.youtube.com/watch?v=DTxHyVn0ODg).
 
-Pointers and references are similar in that they both refer to variables, but there's one key difference. Pointers are **indirect references**, meaning they can change throughout the code, pointing to different variables. On the other hand, regular references are direct and can only refer to the specific variable they were initialized with.
+Pointers and references are similar in that they both refer to variables, but there's one key difference. Pointers are **indirect references**, meaning they can change throughout the code, pointing to different variables. On the other hand, regular references are **direct** and can only **refer to the specific variable** they were initialized with.
 
-In a short summary, a pointer is like writing down the address of a building on a piece of paper. The address on the paper tells you where the building is located, just as the memory address stored in the pointer variable tells you where a variable is located in memory. Similarly, you can also pass the address on the paper to someone else, allowing them to find the building too, just as you can pass a pointer variable to a function or another part of your code, allowing it to access the variable in memory.
+_In a short summary, a pointer is like writing down the address of a building on a piece of paper. The address on the paper tells you where the building is located, just as the memory address stored in the pointer variable tells you where a variable is located in memory. Similarly, you can also pass the address on the paper to someone else, allowing them to find the building too, just as you can pass a pointer variable to a function or another part of your code, allowing it to access the variable in memory._
 
 Pointers are valuable tools in programming as they allow us to store memory addresses, enabling dynamic memory allocation and manipulation of data structures. By using pointers, we can create more flexible and efficient code that can adapt to changing data requirements during program execution.
 
-Additionally, pointers are essential in scenarios like data structures, linked lists, and passing data to functions by reference, providing a level of control and precision that enhances the capabilities of the program. However, it's important to handle pointers with care, as incorrect usage can lead to **memory leaks** or **segmentation faults**.
+Additionally, pointers are essential in scenarios like data structures, linked lists, and passing data to functions by reference, providing a level of control and precision that enhances the capabilities of the program. However, **it's important to handle pointers with care**, as incorrect usage can lead to **memory leaks** or **segmentation faults**.
 
 #### 🦴 Raw pointers
 
@@ -2584,7 +2584,7 @@ void KillActor()
 > **Warning**
 > If something else is referencing `ActorPtr`, the pointer will not be destroyed via garbage collection (unless if it's a weak pointer).
 
-After Unreal Engine (5.0) version, is now recommending to use `TObjectPtr` instead of `*` to mark raw pointers. `TObjectPtr` contains some optimization for the editor.
+After Unreal Engine (5.0) version, is now recommending to use `TObjectPtr` instead of `*` to mark raw pointers. `TObjectPtr` class contains some optimization for the editor.
 
 Here is the updated code:
 
@@ -2595,29 +2595,48 @@ TObjectPtr<AActor> ActorPtr = nullptr;
 
 #### 🤖 Smart pointers library
 
+In Unreal Engine, the Smart Pointer's library provides a set of template classes to manage memory and object ownership more efficiently and safely. These smart pointers automatically handle memory management, such as allocating and deallocating memory, and help prevent memory leaks and null pointer dereferences.
+
+The key smart pointers in Unreal Engine's library include `TSharedPtr`, `TWeakPtr`, and `TUniquePtr`. They are designed to handle various ownership scenarios and provide a safer alternative to raw pointers.
+
 You can read more about [Unreal Smart Pointer Library on their docs](https://docs.unrealengine.com/5.2/en-US/smart-pointers-in-unreal-engine/).
 
 ##### TSharedPtr
 
-This smart pointer is a general-purpose shared pointer that can hold a reference to any class or struct. It uses reference counting to automatically manage the memory. It is used when multiple references need to share ownership of an object.
+`TSharedPtr` is a smart pointer that manages shared ownership of a dynamically allocated object. It uses reference counting to keep track of the number of shared references to the object and automatically releases the memory when the last reference goes out of scope.
+
+Example:
+
+```cpp
+TSharedPtr<int32> sharedPtr = MakeShared<int32>(42);
+```
 
 ##### TWeakPtr
 
-This smart pointer is another smart pointer provided by the engine. It is used to hold a weak reference to an object derived from `TSharedFromThis`.
+`TWeakPtr` is a smart pointer that represents a weak reference to a dynamically allocated object. It allows accessing the object as long as it exists but does not affect the object's reference count. It is commonly used to avoid circular reference issues.
 
-`TWeakPtr` is used specifically for weak references to objects derived from `TSharedFromThis`, while `TWeakObjectPtr` is a more general-purpose weak pointer for any `UObject` subclass. `TWeakPtr` requires the object to inherit from `TSharedFromThis` to enable weak referencing, whereas `TWeakObjectPtr` can be used without such a requirement.
+Example:
 
-##### UniquePtr
+```cpp
+TSharedPtr<int32> sharedPtr = MakeShared<int32>(42);
+TWeakPtr<int32> weakPtr = sharedPtr;
+```
 
-`UniquePtr` is a smart pointer class that provides automatic memory management for dynamically allocated objects. It is part of the Unreal Smart Pointer Library and serves as a unique ownership container.
+##### TUniquePtr
 
-The purpose of `UniquePtr` is to ensure that only a single `UniquePtr` instance owns a particular object at any given time. This ownership means that when the `UniquePtr` is destroyed or reassigned, it automatically deletes the associated object, freeing up the memory.
+`TUniquePtr` is a smart pointer that represents sole ownership of a dynamically allocated object. It ensures that only one pointer can own the object, and when the owning `TUniquePtr` goes out of scope, the memory is automatically deallocated.
+
+Example:
+
+```cpp
+TUniquePtr<int32> uniquePtr = MakeUnique<int32>(42);
+```
 
 #### 🤖 Smart `UObject` pointers
 
-In contrast, smart pointers in Unreal Engine are specialized classes, such as `TSharedPtr` and `TWeakPtr`, that handle memory management automatically. Smart pointers offer benefits like automatic deallocation, reference counting, and improved memory safety. They help prevent memory leaks and simplify memory management tasks within the game engine.
+Unreal Engine's Smart Pointers, such as `TSharedPtr`, `TWeakPtr`, and `TUniquePtr`, are generic smart pointers that can be used with any C++ classes or types, not limited to Unreal Engine's UObject-derived classes.
 
-By using smart pointers in Unreal Engine, developers can reduce the risk of memory-related issues, such as accessing invalid memory or leaking resources. Smart pointers handle the lifetime of objects, making it easier to manage dynamically loaded or created objects during gameplay. They provide a more robust and efficient approach to memory management compared to raw pointers in the context of Unreal Engine.
+On the other hand, UObject Smart Pointers are specific to Unreal Engine's UObject-derived classes. These smart pointers, such as `TWeakObjectPtr`, `TWeakInterfacePtr`, `TSoftObjectPtr` and `TSoftClassPtr`, are designed to handle `UObject` ownership and management within the Unreal Engine ecosystem.
 
 ##### TWeakObjectPtr
 
@@ -2665,6 +2684,8 @@ if (WeakPtr.IsValid())
 
 This smart pointer is used to hold a soft reference to an `UObject` subclass. It is used for referencing assets that can be loaded and unloaded during runtime. Soft references do not prevent the asset from being garbage collected.
 
+![image](https://github.com/MrRobinOfficial/Guide-UnrealEngine/assets/61658252/c6943179-7b39-4a8d-91a3-597a97571086)
+
 Example usage:
 
 ```cpp
@@ -2672,7 +2693,7 @@ TSoftObjectPtr<UTexture2D> SoftPtr; // Assign soft reference to a texture asset
 
 if (SoftPtr.IsValid())
 {
-    UTexture2D* Texture = SoftPtr.LoadSynchronous();
+    UTexture2D* Texture = SoftPtr.LoadSynchronous(); // This will cause a lag spike (if the asset is heavily chained or large in size)
     
     if (Texture)
     {
@@ -2681,9 +2702,37 @@ if (SoftPtr.IsValid())
 }
 ```
 
+Asynchronous Solution:
+
+```cpp
+TSoftObjectPtr<UTexture2D> SoftPtr; // Assign soft reference to a texture asset
+
+if (SoftPtr.IsValid())
+{
+    OnTextureLoadedDelegate.BindLambda([]()
+    {
+        // Called when the texture is loaded and ready to use
+        UTexture2D* Texture = SoftPtr.Get();
+
+        if (Texture)
+        {
+            // Use the loaded texture as needed
+        }
+    });
+
+    StreamableManager.RequestAsyncLoad(SoftPtr.ToSoftObjectPath(), OnTextureLoadedDelegate);
+}
+```
+
+> **Warning**
+> Don't use `FSoftObjectPath` or `FSoftObjectPtr`. Used for internal purpose.
+
 ##### TSoftClassPtr
 
 This smart pointer is used to hold a soft reference to a `UClass` subclass. It is used for referencing blueprint classes or other classes that can be loaded and unloaded during runtime.
+
+![image](https://github.com/MrRobinOfficial/Guide-UnrealEngine/assets/61658252/965cdec3-6102-47d8-a420-65d500a9c06c)
+
 
 Example usage:
 
@@ -2692,7 +2741,7 @@ TSoftClassPtr<AMyBlueprintClass> SoftPtr; // Assign soft reference to a blueprin
 
 if (SoftPtr.IsValid())
 {
-    UClass* Class = SoftPtr.LoadSynchronous();
+    UClass* Class = SoftPtr.LoadSynchronous(); // This will cause a lag spike (if the asset is heavily chained or large in size)
 
     if (Class)
     {
@@ -2701,13 +2750,56 @@ if (SoftPtr.IsValid())
 }
 ```
 
+Asynchronous Solution:
+
+```cpp
+TSoftClassPtr<AMyBlueprintClass> SoftPtr; // Assign soft reference to a blueprint class
+
+if (SoftPtr.IsValid())
+{
+    OnBlueprintLoadedDelegate.BindLambda([]()
+    {
+        // Called when the blueprint class is loaded and ready to use
+        UClass* BlueprintClass = SoftPtr.Get();
+
+        if (BlueprintClass)
+        {
+            // Use the loaded blueprint class as needed
+            AMyBlueprintClass* NewActor = GetWorld()->SpawnActor<AMyBlueprintClass>(BlueprintClass);
+
+            if (NewActor)
+            {
+                // Successfully spawned the actor based on the loaded blueprint class
+            }
+        }
+    });
+
+    StreamableManager.RequestAsyncLoad(SoftPtr.ToSoftObjectPath(), OnBlueprintLoadedDelegate);
+}
+```
+
+> **Warning**
+> Don't use `FSoftClassPath`. Legacy code.
+
+---
+
+| Smart Pointer      | Type Based On      | Description                                                |
+|--------------------|--------------------|------------------------------------------------------------|
+| TSharedPtr         | Regular C++ Classes | Shared pointer for managing ownership of dynamically allocated objects. Allows multiple pointers to share ownership. |
+| TWeakPtr           | Regular C++ Classes | Weak pointer for non-owning references to dynamically allocated objects. |
+| TUniquePtr         | Regular C++ Classes | Unique pointer for exclusive ownership of dynamically allocated objects. Ensures only one pointer owns the object. |
+| TWeakObjectPtr     | UObject Classes    | Weak pointer for non-owning references to UObject-derived objects. |
+| TWeakInterfacePtr  | UObject Classes    | Weak pointer for non-owning references to objects implementing a specific interface. |
+| TSoftObjectPtr     | UObject Classes    | Soft pointer for non-owning references to UObject-derived objects. Allows loading the object when needed, but won't prevent it from being garbage collected. |
+| TSoftClassPtr      | UObject Classes    | Soft pointer for non-owning references to UClass-derived objects. Allows loading the class when needed, but won't prevent it from being garbage collected. |
+
 </details>
 
 ## 🗑️ Garbage Collection
 
-Garbage Collection is an automatic memory management feature used in modern languages like C#, Python, and Javascript, which automatically removes objects from memory when they are no longer in use.
+Garbage Collection is an automatic memory management feature used in modern languages like C#[^10], Python[^12], and Javascript[^13], which automatically removes objects from memory when they are no longer in use.
 
-In a garbage-collected environment, you can create objects, use them, and then set the variable pointing to them as null when done, and the garbage collector takes care of freeing up the memory. Unlike lower-level languages like C and C++, which require manual memory management, Unreal Engine has its own Garbage Collection system to simplify memory management for developers.
+In a garbage-collected environment, you can create objects, use them, and then set the variable pointing to them as null when done, and the garbage collector takes care of freeing up the memory. Unlike lower-level languages like C[^14] and C++, which require manual memory management, Unreal Engine has its own Garbage Collection system to simplify memory management for developers.
 
 You can read more about [Stack vs Heap](#-stack-vs-heap) section. Which tells more about how the memory is management in programming languages.
 
@@ -4242,3 +4334,8 @@ If you have any questions or issue, just write either to my [YouTube channel](ht
 [^3]: `ASCII` or American Standard Code for Information Interchange. A character encoding standard for representing English (Latin) characters and symbols.
 [^4]: Macros in C++ are preprocessor directives that enable the definition of reusable code snippets through text replacement before compilation. Here is a [video about it](https://www.youtube.com/watch?v=j3mYki1SrKE).
 [^5]: GitHub is a web-based platform and version control repository that allows individuals and teams to collaborate on software development projects by providing a centralized location for code storage, version tracking, issue tracking, and collaboration features such as pull requests and code reviews. [Link to there site](https://github.com/).
+[^10] [C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) is a high-level, object-oriented programming language developed by Microsoft, widely used for building Windows applications and games using the .NET framework.
+[^11] [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) is a versatile, platform-independent language known for its "write once, run anywhere" capability, commonly used in web development and enterprise applications.
+[^12] [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) is a user-friendly, high-level language often used for scripting, data analysis, web development, and artificial intelligence applications.
+[^13] [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a versatile, dynamic scripting language commonly used for web development to add interactivity and functionality to websites.
+[^14] [C](https://en.wikipedia.org/wiki/C_(programming_language)) is a procedural programming language known for its efficiency and portability, commonly used for system-level programming and embedded systems development.
