@@ -17,6 +17,7 @@
 ## TODO LIST
 
 * Add image/banner cover to help visualize.
+* Rewrite [📖 Strings](#-strings) section.
 
 </td></tr></table>
 
@@ -117,59 +118,92 @@
 * 4\. [🪧 Unreal's Architecture](#-unreals-architecture)
 * 5\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
 	* 5.1\. [Prefixes](#prefixes)
-	* 5.2\. [Abbreviations, Acronyms and Synonyms](#abbreviations-acronyms-and-synonyms)
-* 7\. [🧱 Data Types](#-data-types)
-	* 7.1\. [Char](#char)
-    * 7.2\. [Booleans](#booleans)
-    * 7.3\. [Integers](#integers)
-    * 7.4\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles)
-    * 7.5\. [Modifiers/Typedefs](#modifierstypedefs)
-    * 7.6\. [Strings](#strings)
-    * 7.7\. [Vector, Rotator, Quat and Transform](#vector-rotator-quat-and-transform)
-    * 7.7\. [Collections](#collections)
+	* 5.2\. [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
+* 7\. [🧱 Data Types](#-data-types-1)
+	* 7.1\. [Char](#char-1)
+    * 7.2\. [Booleans](#booleans-1)
+    * 7.3\. [Integers](#integers-1)
+    * 7.4\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles-1)
+    * 7.5\. [🦺 Unreal Engine Typedefs](#-unreal-engine-typedefs)
+    * 7.6\. [📖 Strings](#-strings)
+    * 7.7\. [🚀 Vector, Rotator, Quat and Transform](#vector-rotator-quat-and-transform)
+    * 7.7\. [💐 Collections](#collections)
       * 7.7.1\. [TArray](#tarray)
       * 7.7.2\. [TSet](#tset)
       * 7.7.3\. [TMap](#tmap)
       * 7.7.4\. [TMultiMap](#tmultimap)
-    * 7.8\. [Value type vs Reference type](#value-type-vs-reference-type)
+      * 7.7.5\. [TStaticArray](#tstaticarray)
+    * 7.8\. [🧨 Value type vs Reference type](#value-type-vs-reference-type)
     * 7.9\. [👈 Pointers](#-pointers)
       * 7.9.1\. [🦴 Raw pointers](#-raw-pointers)
-      * 7.9.2\. [Smart pointers](#smart-pointers)
-      * 7.9.3\. [TWeakObjectPtr](#tweakobjectptr)
-      * 7.9.4\. [TWeakInterfacePtr](#tweakinterfaceptr)
-      * 7.9.5\. [TSoftObjectPtr](#tsoftobjectptr)
-      * 7.9.6\. [TSoftClassPtr](#tsoftclassptr)
-      * 7.9.7\. [TSharedPtr](#tsharedptr)
-      * 7.9.8\. [TWeakPtr](#tweakptr)
-      * 7.9.9\. [UniquePtr](#uniqueptr)
+      * 7.9.2\. [🤖 Smart pointers library](#smart-pointers)
+        * 7.9.2.1\. [TSharedPtr](#tsharedptr)
+        * 7.9.2.1\. [TWeakPtr](#tweakptr)
+        * 7.9.2.1\. [TUniquePtr](#tuniqueptr)
+      * 7.9.3\. [🤖 Smart `UObject` pointers](#-smart-uobject-pointers)
+        * 7.9.3.1\. [TWeakObjectPtr](#tweakobjectptr)
+        * 7.9.3.2\. [TWeakInterfacePtr](#tweakinterfaceptr)
+        * 7.9.3.3\. [TSoftObjectPtr](#tsoftobjectptr)
+        * 7.9.3.4\. [TSoftClassPtr](#tsoftclassptr)
+* 9\. [🗑️ Garbage Collection](#%EF%B8%8F-garbage-collection)
 * 8\. [💎 Unreal Header Tool](#-unreal-header-tool)
+  * 8.1\. [UPROPERTY](#uproperty)
+  * 8.2\. [UFUNCTION](#ufunction)
+  * 8.3\. [UCLASS](#uclass)
+  * 8.4\. [USTRUCT](#ustruct)
+  * 8.5\. [UENUM](#uenum)
+  * 8.6\. [UPARAM](#uparam)
+  * 8.7\. [UMETA](#umeta)
 * 9\. [👷 Constructors and Destructors](#-constructors-and-destructors)
+  * 9.1\ [Constructors](#constructors)
+  * 9.2\ [Destructors](#destructors)
+  * 9.3\ [Usage in Unreal Engine](#usage-in-unreal-engine)
 * 10\. [💾 Soft vs hard references](#-soft-vs-hard-references)
+  * 10.1\ [Soft References](#soft-references)
+  * 10.2\ [Hard References](#hard-references)
 * 11\. [🌍 Global Functions](#-global-functions)
 * 12\. [🏛️ Libraries](#%EF%B8%8F-libraries)
+  * 12.1\ [Kismet Library](#kismet-library)
 * 13\. [📃 Macros](#-macros4)
 * 14\. [☑️ Assertions](#%EF%B8%8F-assertions)
+  * 14.1\ [Check](#check)
+  * 14.1\ [Verify](#verify)
+  * 14.1\ [Ensure](#ensure)
 * 15\. [🔔 Delegates](#-delegates)
+  * 15.1\ [Define a delegate type](#define-a-delegate-type)
+  * 15.1\ [Declare a delegate variable](#declare-a-delegate-variable)
+  * 15.1\ [Bind functions to the delegate](#bind-functions-to-the-delegate)
+  * 15.1\ [Trigger the delegate](#trigger-the-delegate)
 * 16\. [🪪 Unreal Motion Graphics (UMG)](#-unreal-motion-graphics-umg)
+  * 16.1\ [UMG Blueprints with C++](#umg-blueprints-with-c)
+  * 16.2\ [UI Tweening Library](#ui-tweening-library)
 * 17\. [📚 Creating modules](#-creating-modules)
-  * 17.1\. [♻️ Circular Dependency](#%EF%B8%8F-circular-dependency)
+  * 17.1\. [Module structure](#module-structure)
+  * 17.2\. [♻️ Circular Dependency](#%EF%B8%8F-circular-dependency)
 * 18\. [💡 Creating a plugin](#-creating-a-plugin)
 * 19\. [📝 preprocessor](#-preprocessor)
     * 19.1\. [Pragma once](#pragma-once)
-    * 19.2\. [Editor code](#editor-code)
-* 20\. [Deep Dive](#deep-dive)
+    * 19.2\. [Strip out editor functionality](#strip-out-editor-functionality)
+* 20\. [🧠 Deep dive](#-deep-dive)
     * 20.1\. [🔖 Keywords](#-keywords)
     * 20.2\. [🛸 Reflection System](#direct-references)
     * 20.3\. [🪄 Tips and best practices](#-tips-and-best-practices)
-        * 20.3.1\. [Ticking](#ticking)
-        * 20.3.2\. [Direct references](#ticking)
-        * 20.3.3\. [Math Expression Node](#math-expression-node)
-        * 20.3.4\. [Call In Editor and `CallInEditor`](#call-in-editor-and-callineditor)
-* 21\. [📛 Console Commands](#%EF%B8%8F%EF%B8%8F-console-commandss)
+        * 20.3.1\ [📦 Refactoring](#-refactoring)
+            * 20.3.1.1\ [Renaming](#renaming)
+            * 20.3.1.2\ [Extract Method﻿](#extract-method)
+            * 20.3.1.3\ [Introduce/Inline typedef﻿s](#introduceinline-typedefs)
+            * 20.3.1.4\ [Introduce Variable﻿](#introduce-variable)
+            * 20.3.1.5\ [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
+        * 20.3.2\. [⏱ Ticking](#-ticking)
+        * 20.3.3\. [`FTickFunction`](#ftickfunction)
+        * 20.3.4\. [🔌 Direct references](#-direct-references)
+        * 20.3.5\. [➗ Math Expression Node](#-math-expression-node)
+        * 20.3.6\. [Call function in editor](#call-function-in-editor)
+* 21\. [📛 Console Commands](#-console-commands)
 * 22\. [📌 Shortcuts](#-shortcuts)
 * 23\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
-    * 23.1\. [Compiler Error C2628](#compiler-error-c2628)
-    * 23.2\. [Compiler Error C2065](#compiler-error-c2065)
+    * 23.1\. [⛔ Compiler Error C2628](#-compiler-error-c2628)
+    * 23.2\. [⛔ Compiler Error C2065](#-compiler-error-c2065)
 * 24\. [🔗 Helpful links](#-helpful-links)
 * 25\. [🆘 Support](#-support)
 * 26\. [📍 Footnotes](#-footnotes)
@@ -2289,7 +2323,7 @@ void AddOnScreenDebugMessage
 | `FText` | A localized string that supports text localization and provides text display features. | Ideal for displaying text to users in the game, supporting multiple languages and localization. |
 | `FString` | A dynamic string that can be modified and used for general-purpose string manipulation. | Suitable for general text handling and string operations within the game code. |
 
-### Vector, Rotator, Quat and Transform
+### 🚀 Vector, Rotator, Quat and Transform
 
 * `FVector` - A struct representing a 3D vector, consisting of three float values for the `X`, `Y`, and `Z` components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
 * `FRotator` - A struct representing a rotation in 3D space, consisting of three float values for the `Pitch`, `Yaw`, and `Roll` angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
@@ -2332,7 +2366,7 @@ UE_LOG(LogTemp, Display, TEXT("MyTransformPosition: %s"), *MyTransformPosition.T
 UE_LOG(LogTemp, Display, TEXT("MyTransformRotation: %s"), *MyTransformRotation.ToString());
 ```
 
-### Collections
+### 💐 Collections
 
 ![Collections](static/img/Collections.png)
 
@@ -2466,7 +2500,7 @@ Here is an example:
 | TMultiMap      | Similar to TMap, but allows multiple values to be associated with the same key, making it possible to have duplicate keys in the container.                                                                                                                    | Useful when you need to associate multiple values with a single key, allowing efficient access and retrieval of related data.                                                            |
 | TStaticArray   | A fixed-size array with compile-time constant size, providing fast access to elements and suitable for a known number of elements at compile time.                                                                                                           | Used when you know the exact number of elements needed at compile time and want to avoid dynamic memory allocation.                                                                       |
 
-### Value type vs Reference type
+### 🧨 Value type vs Reference type
 
 Let's talk about what value type and reference types.
 
@@ -3634,11 +3668,11 @@ Inside the function, we check if the `PlayerDisplayNameText` widget is valid. If
 
 You can read more about binding widgets with C++ from the [article by BenUI](https://benui.ca/unreal/ui-bindwidget/).
 
-### UI Tweening Libary
+### UI Tweening Library
 
 [BenUI](https://benui.ca/) has also created a free helpful plugin, which helps you animate UMG in C++. Plugin can be install from github[^5]. [Link to repository](https://github.com/benui-dev/UE-BUITween).
 
-Here's an example from UI Tweening Libary:
+Here's an example from UI Tweening Library:
 
 ```cpp
 UBUITween::Create( SomeWidget, 0.2f )
