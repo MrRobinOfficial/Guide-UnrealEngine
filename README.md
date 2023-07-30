@@ -55,11 +55,11 @@
     * 2.3.1\. [Integers](#integers)
     * 2.3.1\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles)
   * 2.4\. [🙋‍♂️ Typedefs](#%EF%B8%8F-typedefs)
-  * 2.5\. [🍂 Members](#members)
+  * 2.5\. [🍂 Members](#-members)
     * 2.5.1\. [Variables](#variables)
     * 2.5.2\. [Assignments](#assignments)
     * 2.5.3\. [Functions](#functions)
-  * 2.6\. [🧬 Classes](#classes)
+  * 2.6\. [🧬 Classes](#-classes)
   * 2.7\. [💔 Accessibility](#-accessibility)
   * 2.8\. [🤔 If-statements](#-if-statements)
   * 2.9\. [🔣 Comparisons and Boolean Operators](#-comparisons-and-boolean-operators)
@@ -73,7 +73,7 @@
   * 2.12\. [🦋 Immutable vs Mutable](#-immutable-vs-mutable)
     * 2.12.1\. [Mutable](#mutable)
     * 2.12.2\. [Immutable](#immutable)
-  * 2.13\. [🪝 Try Catch](#)
+  * 2.13\. [🪝 Try Catch](#-try-catch)
   * 2.14\. [🪞 Casting](#)
     * 2.14.1\. [Static casting](#static-casting)
     * 2.14.2\. [Const casting](#const-casting)
@@ -81,7 +81,7 @@
   * 2.15\. [🛼 Inlining](#)
   * 2.16\. [📇 Namespace](#)
   * 2.17\. [🌐 Static members](#)
-  * 2.18\. [`auto` keyword](#)
+  * 2.18\. [`auto` keyword](#auto-keyword)
   * 2.19\. [🌱 Polymorphism (In Depth)](#polymorphism-in-depth)
     * 2.19.1\. [Operator Overloading](#operator-overloading)
     * 2.19.2\. [Function Overloading](#function-overloading)
@@ -239,7 +239,7 @@ Popular IDEs used in Unreal Engine and C++ development include:
 <details>
   <summary>Click to expand</summary>
 
-### Object-Oriented Programming
+### ✨ Object-Oriented Programming
 
 <details>
   <summary>Click to expand</summary>
@@ -276,7 +276,7 @@ Syntax refers to the set of rules that define the structure, format, and grammar
 
 C++ follows a structured syntax that includes elements such as keywords[^1], identifiers, operators, punctuation, and control structures. The syntax is designed to provide precise instructions to the compiler on how to interpret and execute the code.
 
-#### ✨ Weak vs Strong typing
+#### Weak vs Strong typing
 
 Weak and strong typing refer to different approaches in how programming languages handle data types and type safety.
 
@@ -785,7 +785,7 @@ catch (const char* errorMessage)
 
 Using `try-catch` blocks allows you to handle exceptional situations gracefully, providing error messages to users or logging errors for debugging, instead of crashing or corrupting the program's data. It helps in making your programs more robust and user-friendly.
 
-### Casting
+### 🪞 Casting
 
 Casting, in the context of programming languages, refers to the conversion of one data type into another. It allows you to change the interpretation or representation of a variable or object, which can be useful in various situations.
 
@@ -819,7 +819,7 @@ BaseClass* basePtr = new DerivedClass;
 DerivedClass* derivedPtr = dynamic_cast<DerivedClass*>(basePtr); // Dynamic cast from BaseClass to DerivedClass
 ```
 
-### Inlining
+### 🛼 Inlining
 
 Inlining is a compiler optimization technique used to improve the performance of code by inserting the body of a function directly at the call site, eliminating the overhead of function calls. It reduces the execution time by avoiding the function call stack setup and cleanup.
 
@@ -845,7 +845,7 @@ When choosing between using a macro or a function for inlining, it is generally 
 
 Using inline functions offers a good balance between performance and maintainability. They provide the benefits of inlining without sacrificing the advantages of type-checking and debugging support that functions offer. However, keep in mind that the inline keyword is just a hint to the compiler, and it may or may not `inline` the function depending on the specific context and compiler optimizations.
 
-### Namespace
+### 📇 Namespace
 
 In programming languages, a namespace is a feature that allows you to organize code elements (such as variables, functions, classes) into distinct named scopes to avoid name collisions and improve code organization.
 
@@ -877,7 +877,7 @@ Library2::Vector vec2;
 > **Warning**
 > Unreal Engine doesn't support namespaces with UHT[^3].
 
-### Static members
+### 🌐 Static members
 
 In programming languages, static members are class members (variables or functions) that belong to the class itself rather than individual objects of the class. They are shared among all instances (objects) of the class and are independent of any specific object's state.
 
@@ -936,7 +936,7 @@ Using the `auto` keyword for return function values can be a double-edged sword.
 | Reduces the need to explicitly specify types  | Potential impact on code maintainability as the codebase grows larger and complex |
 | Improves code readability in some cases       | Team coding standards and practices may not always favor using 'auto'             |
 
-### Polymorphism (In Depth)
+### 🌱 Polymorphism (In Depth)
 
 The power of polymorphism lies in the ability to use a base class pointer or reference to refer to objects of derived classes. This allows you to write code that operates on the base class, without needing to know the specific derived class. During runtime, the appropriate version of the overridden method in the derived class will be invoked, based on the actual type of the object being referred to.
 
