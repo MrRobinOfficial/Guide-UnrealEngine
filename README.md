@@ -2309,18 +2309,19 @@ How to add on-screen debug message:
 
 ```cpp
 /*
-void AddOnScreenDebugMessage
-(
-    uint64 Key, // A unique key to prevent the same message from being added multiple times.
-    float TimeToDisplay, // How long to display the message, in seconds.
-    FColor DisplayColor, // The color to display the text in.
-    const FString & DebugMessage, // The message to display.
-    bool bNewerOnTop,
-    const FVector2D & TextScale
-)
 
-Add a FString to the On-screen debug message system. bNewerOnTop only works with Key == INDEX_NONE
-This function will add a debug message to the onscreen message list. It will be displayed for FrameCount frames.
+    void AddOnScreenDebugMessage
+    (
+        uint64 Key, // A unique key to prevent the same message from being added multiple times.
+        float TimeToDisplay, // How long to display the message, in seconds.
+        FColor DisplayColor, // The color to display the text in.
+        const FString & DebugMessage, // The message to display.
+        bool bNewerOnTop,
+        const FVector2D & TextScale
+    )
+    
+    Add a FString to the On-screen debug message system. bNewerOnTop only works with Key == INDEX_NONE
+    This function will add a debug message to the onscreen message list. It will be displayed for FrameCount frames.
 
 */
 
