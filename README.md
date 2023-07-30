@@ -956,6 +956,12 @@ The `auto` keyword is especially useful when dealing with complex data types or 
 
 Using the `auto` keyword for return function values can be a double-edged sword. While it can make the code more concise and reduce the need to explicitly specify return types, it can also make the code less readable and harder to understand, especially when the function's logic is complex.
 
+```cpp
+auto player = GetPlayer(); // Bad
+
+Player* player = GetPlayer(); // Good
+```
+
 | Pros of Using 'auto' for Return Values         | Cons of Using 'auto' for Return Values                                              |
 |-----------------------------------------------|-----------------------------------------------------------------------------------|
 | Concise code with reduced type annotations    | Lack of clarity: Return type might not be immediately apparent from the code     |
@@ -987,7 +993,7 @@ public:
     MyClass(int val) : value(val) {}
 
     bool operator>=(const MyClass& other) const
-	{
+    {
         return value >= other.value;
     }
 };
