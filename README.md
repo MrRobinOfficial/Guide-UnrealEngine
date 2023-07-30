@@ -264,12 +264,12 @@ Popular IDEs used in Unreal Engine and C++ development include:
 
 ## 🗺️ Summary of C++ and Programming World
 
-<details>
+<details open>
   <summary>Click to expand</summary>
 
 ### ✨ Object-Oriented Programming
 
-<details>
+<details open>
   <summary>Click to expand</summary>
 
 Object-Oriented Programming (**OOP**) is a programming paradigm that organizes code around objects, which are instances of classes. It focuses on the concept of objects, their properties (attributes), and behaviors (methods), allowing for modular, reusable, and structured code design.
