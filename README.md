@@ -115,6 +115,11 @@
     * 7.4\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles-1)
     * 7.5\. [🦺 Unreal Engine Typedefs](#-unreal-engine-typedefs)
     * 7.6\. [📖 Strings](#-strings)
+      * 7.6.1\. [Text Macros](#text-macros)
+      * 7.6.2\. [FName](#fname)
+      * 7.6.3\. [FString](#fstring)
+      * 7.6.4\. [FText](#ftext)
+      * 7.6.5\. [Examples of usages](#examples-of-usages)
     * 7.7\. [🚀 Vector, Rotator, Quat and Transform](#-vector-rotator-quat-and-transform)
     * 7.7\. [💐 Collections](#-collections)
       * 7.7.1\. [TArray](#tarray)
@@ -2253,11 +2258,15 @@ You can read more about [string handling from the docs](https://docs.unrealengin
 
 ### Text Macros
 
+<table><tr><td>
+
 * TEXT(): The `TEXT` macro is used to create an `FString` from a string literal. It marks the string for localization, allowing Unreal Engine's localization system to replace the text with the appropriate translation for the user's language.
 
 * INVTEXT(): The `INVTEXT` macro is used to mark a string as non-localizable. It indicates that the text should not be translated and should remain constant across different languages.
 
 * LOCTEXT(): The `LOCTEXT` macro is used to create `FText` literals specifically for localization. It takes a namespace and a key to identify the localized string.
+
+</td></tr></table>
 
 #### FName
 
