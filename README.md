@@ -4,8 +4,8 @@
   
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mrrobinofficial/guide-unitysteamnetcodegameobjects/blob/HEAD/LICENSE.txt)
 ![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-orange)
-![reading-time](https://img.shields.io/badge/reading_time-110.5_mins-blue)
-![word-count](https://img.shields.io/badge/word_count-14,369-blue)
+![reading-time](https://img.shields.io/badge/reading_time-188.4_mins-blue)
+![word-count](https://img.shields.io/badge/word_count-24,492-blue)
 ![guide-status](https://img.shields.io/badge/guide_status-wip-yellow)
 
 </div>
