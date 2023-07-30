@@ -188,7 +188,7 @@
     * 20.1\. [🔖 Keywords](#-keywords)
     * 20.2\. [🛸 Reflection System](#direct-references)
     * 20.3\. [🪄 Tips and best practices](#-tips-and-best-practices)
-        * 20.3.1\ [📦 Refactoring](#-refactoring)
+        * 20.3.1\. [📦 Refactoring](#-refactoring)
             * 20.3.1.1\. [Renaming](#renaming)
             * 20.3.1.2\. [Extract Method﻿](#extract-method)
             * 20.3.1.3\. [Introduce/Inline typedef﻿s](#introduceinline-typedefs)
