@@ -172,7 +172,7 @@
 
 Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
 
-C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](https://en.wikipedia.org/wiki/C_(programming_language)), originally named C[^6] with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
+C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](https://en.wikipedia.org/wiki/C_(programming_language)), originally named C[^10] with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
 
 Using C++ with Unreal Engine unlocks the engine's full feature set, allowing developers to harness advanced graphics rendering, physics simulations, networking, and AI capabilities. C++ provides a level of control, customization, and performance optimization that complements visual scripting.
 
@@ -257,7 +257,7 @@ Weak and strong typing refer to different approaches in how programming language
 
 In C++, the language is considered strongly typed, as it requires explicit type conversions and does not perform implicit type coercion without the programmer's explicit instruction. C++ enforces strong typing to ensure type safety and minimize potential errors.
 
-Weak Typing (Python[^7] code):
+Weak Typing (Python[^11] code):
 
 ```python3
 a = 5 # Correct! Because Python is a weak typing language.
@@ -277,7 +277,7 @@ In C++, a semicolon (<kbd>;</kbd>) is used to mark the end of a statement. It se
 
 The requirement for semicolons in C++ is a design choice that provides explicit statement termination. This approach allows for more fine-grained control over program execution and eliminates ambiguity.
 
-In contrast, languages like Python[^7] use indentation to define blocks of code, eliminating the need for explicit statement termination with semicolons.
+In contrast, languages like Python[^11] use indentation to define blocks of code, eliminating the need for explicit statement termination with semicolons.
 
 ```cpp
 int a = 5; // Correct
@@ -366,7 +366,7 @@ In the early days of computing, languages like [Fortran](https://en.wikipedia.or
 
 </td></tr></table>
 
-Other languages, like C#[^8], Java[^9], and Python[^7], continued to use single file extensions because they adopted a more integrated approach to handling both declarations and implementations within a single file.
+Other languages, like C#[^12], Java[^13], and Python[^11], continued to use single file extensions because they adopted a more integrated approach to handling both declarations and implementations within a single file.
 
 In modern programming, the choice of using single file extensions or separate header and source files depends on the language's design philosophy and the needs of the development community. Both approaches have their strengths and weaknesses, and different languages adopt the one that best aligns with their goals and use cases.
 
@@ -889,7 +889,7 @@ Static members are commonly used for class-level data and utility functions that
 
 ### `auto` keyword
 
-In C++, the `auto` keyword is used for type inference, allowing the compiler to deduce the data type of a variable automatically based on its initialization value (similar to `var` keyword in C#[^8]). It was introduced in [C++11](https://en.wikipedia.org/wiki/C%2B%2B11) as part of the modern C++ features.
+In C++, the `auto` keyword is used for type inference, allowing the compiler to deduce the data type of a variable automatically based on its initialization value (similar to `var` keyword in C#[^12]). It was introduced in [C++11](https://en.wikipedia.org/wiki/C%2B%2B11) as part of the modern C++ features.
 
 Here's how you can use the `auto` keyword:
 
@@ -2009,7 +2009,7 @@ Unreal Engine has a convention for naming boolean variables, which is to use a p
 ## Tools/Frameworks
 
 * `IDE` or Integrated Development Environment - A software application that provides facilities to programmers for software development.
-* `JSON` or Javascript Object Notation – A file format, written with JavaScript[^10] notation, used widely for transferring data over the network.
+* `JSON` or Javascript Object Notation – A file format, written with JavaScript[^14] notation, used widely for transferring data over the network.
 * `XML` or Extensible Markup Language – A markup language used mainly for storing and transporting data.
 * `SQL` or Structured Query Language – A query language for storage, retrieval, and modification of data.
 * `CSV` or Comma-separated values - A CSV file is a delimited text file that uses a comma to separate values.
@@ -2445,7 +2445,7 @@ Here is an example:
 
 Let's talk about what value type and reference types.
 
-In various programming languages like Python[^7], Java[^9], and C#[^8], you may have encountered both value types and reference types.
+In various programming languages like Python[^11], Java[^13], and C#[^12], you may have encountered both value types and reference types.
 
 A value type creates a copy when initialized from another variable. For instance, let's consider variable A, and when we initialize variable B with the value of A, a separate copy of the value is created in B. Essentially, B is an independent entity that holds its own value.
 
@@ -2461,7 +2461,7 @@ int A = 69;
 int& B = A; // A reference
 ```
 
-Everything in C++ is value type by default. Even classes, which differ from C#[^8].
+Everything in C++ is value type by default. Even classes, which differ from C#[^12].
 
 You can watch this video about [references in C++ from Low Level Learning](https://www.youtube.com/watch?v=wro8Bb6JnwU).
 
@@ -2516,7 +2516,7 @@ int main()
 }
 ```
 
-With references, you can only assign them once, and they cannot be changed throughout the code. For example, you can have a direct reference to an argument passed into a function. This argument can then be modified within the function, similar to how an [out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/out-parameter-modifier) parameter works in C#[^8].
+With references, you can only assign them once, and they cannot be changed throughout the code. For example, you can have a direct reference to an argument passed into a function. This argument can then be modified within the function, similar to how an [out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/out-parameter-modifier) parameter works in C#[^12].
 
 Here's an example:
 
@@ -2797,9 +2797,9 @@ if (SoftPtr.IsValid())
 
 ## 🗑️ Garbage Collection
 
-Garbage Collection is an automatic memory management feature used in modern languages like C#[^8], Python[^7], and Javascript[^10], which automatically removes objects from memory when they are no longer in use.
+Garbage Collection is an automatic memory management feature used in modern languages like C#[^12], Python[^11], and Javascript[^14], which automatically removes objects from memory when they are no longer in use.
 
-In a garbage-collected environment, you can create objects, use them, and then set the variable pointing to them as null when done, and the garbage collector takes care of freeing up the memory. Unlike lower-level languages like C[^6] and C++, which require manual memory management, Unreal Engine has its own Garbage Collection system to simplify memory management for developers.
+In a garbage-collected environment, you can create objects, use them, and then set the variable pointing to them as null when done, and the garbage collector takes care of freeing up the memory. Unlike lower-level languages like C[^10] and C++, which require manual memory management, Unreal Engine has its own Garbage Collection system to simplify memory management for developers.
 
 You can read more about [Stack vs Heap](#-stack-vs-heap) section. Which tells more about how the memory is management in programming languages.
 
@@ -4334,8 +4334,8 @@ If you have any questions or issue, just write either to my [YouTube channel](ht
 [^3]: `ASCII` or American Standard Code for Information Interchange. A character encoding standard for representing English (Latin) characters and symbols.
 [^4]: Macros in C++ are preprocessor directives that enable the definition of reusable code snippets through text replacement before compilation. Here is a [video about it](https://www.youtube.com/watch?v=j3mYki1SrKE).
 [^5]: GitHub is a web-based platform and version control repository that allows individuals and teams to collaborate on software development projects by providing a centralized location for code storage, version tracking, issue tracking, and collaboration features such as pull requests and code reviews. [Link to there site](https://github.com/).
-[^6]: [C](https://en.wikipedia.org/wiki/C_(programming_language)) is a procedural programming language known for its efficiency and portability, commonly used for system-level programming and embedded systems development.
-[^7]: [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) is a user-friendly, high-level language often used for scripting, data analysis, web development, and artificial intelligence applications.
-[^8]: [C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) is a high-level, object-oriented programming language developed by Microsoft, widely used for building Windows applications and games using the .NET framework.
-[^9]: [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) is a versatile, platform-independent language known for its "write once, run anywhere" capability, commonly used in web development and enterprise applications.
-[^10]: [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a versatile, dynamic scripting language commonly used for web development to add interactivity and functionality to websites.
+[^10]: [C](https://en.wikipedia.org/wiki/C_(programming_language)) is a procedural programming language known for its efficiency and portability, commonly used for system-level programming and embedded systems development.
+[^11]: [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) is a user-friendly, high-level language often used for scripting, data analysis, web development, and artificial intelligence applications.
+[^12]: [C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) is a high-level, object-oriented programming language developed by Microsoft, widely used for building Windows applications and games using the .NET framework.
+[^13]: [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) is a versatile, platform-independent language known for its "write once, run anywhere" capability, commonly used in web development and enterprise applications.
+[^14]: [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a versatile, dynamic scripting language commonly used for web development to add interactivity and functionality to websites.
