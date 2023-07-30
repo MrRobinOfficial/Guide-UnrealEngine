@@ -17,9 +17,6 @@
 ## TODO LIST
 
 * Add image/banner cover to help visualize.
-* Fix TOC.
-* All [Emojis List](https://www.freecodecamp.org/news/all-emojis-emoji-list-for-copy-and-paste/)
-* [emojipedia](https://emojipedia.org/bone/)
 
 </td></tr></table>
 
@@ -39,55 +36,83 @@
     * 1.2\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
     * 1.3\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
 * 2\. [🗺️ Summary of C++ and Programming World](#%EF%B8%8F-summary-of-c-and-programming-world)
-  * 2.1\. [Object-Oriented Programming](#object-oriented-programming)
+  * 2.1\. [✨ Object-Oriented Programming](#object-oriented-programming)
   	* 2.1.1\. [Encapsulation](#encapsulation)
    	* 2.1.2\. [Data Hiding](#data-hiding)
    	* 2.1.3\. [Inheritance](#inheritance)
 	* 2.1.4\. [Polymorphism](#polymorphism)
-  * 2.2\. [Syntax and Structure](#syntax-and-structure)
-    * 2.2.1\. [Weak vs Strong typing](#weak-vs-strong-typing)
+  * 2.2\. [⌨️ Syntax and Structure](#syntax-and-structure)
+    * 2.2.1\. [Weak vs Strong typing](#-weak-vs-strong-typing)
     * 2.2.2\. [Semicolons in C++](#semicolons-in-c)
     * 2.2.3\. [Curly Braces in C++](#curly-braces-in-c)
     * 2.2.4\. [Comments in C++](#comments-in-c)
       * 2.2.4.1\. [Single-line comments](#single-line-comments)
       * 2.2.4.2\. [Multi-line comments](#multi-line-comments)
-  * 2.3\. [Data types](#data-types)
+    * 2.2.5\. [Headers vs source files](#headers-vs-source-files)
+  * 2.3\. [🔢 Data types](#-data-types)
     * 2.3.1\. [Char](#char)
     * 2.3.1\. [Booleans](#booleans)
     * 2.3.1\. [Integers](#integers)
     * 2.3.1\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles)
-  * 2.4\. [Modifiers](#modifiers)
-  * 2.5\. [Typedefs](#typedefs)
-  * 2.6\. [Members](#members)
-    * 2.6.1\. [Variables](#variables)
-    * 2.6.2\. [Assignments](#assignments)
-    * 2.6.3\. [Functions](#functions)
-  * 2.7\. [Classes](#classes)
-  * 2.8\. [Accessibility](#accessibility)
-  * 2.9\. [If-statements](#if-statements)
-  * 2.10\. [Comparisons and Boolean Operators](#comparisons-and-boolean-operators)
-    * 2.10.1\. [Conditional Expressions](#conditional-expressions)
-  * 2.10\. [Switches](#switches)
-  * 2.11\. [Loops](#loops)
-    * 2.11.1\. [While Loop](#while-loop)
-    * 2.11.2\. [Do-While Loop](#do-while-loop)
-    * 2.11.3\. [For Loop](#for-loop)
-    * 2.11.4\. [Foreach Loop](#foreach-loop)
-  * 2.12\. [Polymorphism (In Depth)](#polymorphism-in-depth)
-    * 2.12.1\. [Operator Overloading](#operator-overloading)
-    * 2.12.2\. [Function Overloading](#function-overloading)
-    * 2.12.3\. [Virtual functions](#virtual-functions)
-  * 2.13\. [Generic Programming](#generic-programming)
-  * 2.14\. [Lambda](#lambda)
-  * 2.15\. [💥 Stack vs Heap](#-stack-vs-heap)
-  * 2.16\. [Design Patterns And Principles](#design-patterns-and-principles)
-  	* 2.16.1\. [Open-Closed Principle](#open-closed-principle)
-   	* 2.16.2\. [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
-    * 2.16.3\. [Singleton](#singleton)
-    * 2.16.4\. [Observer](#observer)
-    * 2.16.5\. [Factory](#factory)
-    * 2.16.6\. [Strategy](#strategy)
-    * 2.16.7\. [MVC (Model-View-Controller)](#mvc-model-view-controller)
+  * 2.4\. [🙋‍♂️ Typedefs](#%EF%B8%8F-typedefs)
+  * 2.5\. [🍂 Members](#members)
+    * 2.5.1\. [Variables](#variables)
+    * 2.5.2\. [Assignments](#assignments)
+    * 2.5.3\. [Functions](#functions)
+  * 2.6\. [🧬 Classes](#classes)
+  * 2.7\. [💔 Accessibility](#-accessibility)
+  * 2.8\. [🤔 If-statements](#-if-statements)
+  * 2.9\. [🔣 Comparisons and Boolean Operators](#-comparisons-and-boolean-operators)
+    * 2.9.1\. [❓ Conditional Expressions](#-conditional-expressions-ternary-operator)
+  * 2.10\. [🔀 Switches](#-switches)
+  * 2.11\. [🔄️ Loops](#%EF%B8%8F-loops)
+    * 2.11.1\. [♾️ While Loop](#%EF%B8%8F-while-loop)
+    * 2.11.2\. [🔃 Do-While Loop](#-do-while-loop)
+    * 2.11.3\. [🔂 For Loop](#-for-loop)
+    * 2.11.4\. [🗂️ Foreach Loop](#%EF%B8%8F-foreach-loop)
+  * 2.12\. [🦋 Immutable vs Mutable](#-immutable-vs-mutable)
+    * 2.12.1\. [Mutable](#mutable)
+    * 2.12.2\. [Immutable](#immutable)
+  * 2.13\. [🪝 Try Catch](#)
+  * 2.14\. [🪞 Casting](#)
+    * 2.14.1\. [Static casting](#static-casting)
+    * 2.14.2\. [Const casting](#const-casting)
+    * 2.14.3\. [Dynamic casting](#dynamic-casting)
+  * 2.15\. [🛼 Inlining](#)
+  * 2.16\. [📇 Namespace](#)
+  * 2.17\. [🌐 Static members](#)
+  * 2.18\. [`auto` keyword](#)
+  * 2.19\. [🌱 Polymorphism (In Depth)](#polymorphism-in-depth)
+    * 2.19.1\. [Operator Overloading](#operator-overloading)
+    * 2.19.2\. [Function Overloading](#function-overloading)
+    * 2.19.3\. [Virtual functions](#virtual-functions)
+  * 2.20\. [🧙‍♂️ Generic Programming](#%EF%B8%8F-generic-programming)
+  * 2.21\. [😵 Recursion](#-recursion)
+  * 2.22\. [🫀 Lambda](#-lambda)
+  * 2.23\. [🦾 Bitwise Operators](#-bitwise-operators)
+  * 2.24\. [💥 Stack vs Heap](#-stack-vs-heap)
+  * 2.25\. [⚓ Design Patterns And Principles](#design-patterns-and-principles)
+  	* 2.25.1\. [Open-Closed Principle](#open-closed-principle)
+   	* 2.25.2\. [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
+    * 2.25.3\. [Singleton](#singleton)
+    * 2.25.4\. [Observer](#observer)
+    * 2.25.5\. [Factory](#factory)
+    * 2.25.6\. [Strategy](#strategy)
+    * 2.25.7\. [MVC (Model-View-Controller)](#mvc-model-view-controller)
+  * 2.26\. [💯 Structures](#-structures)
+    * 2.26.1\. [Array](#array)
+    * 2.26.2\. [List](#list)
+    * 2.26.2\. [Queue](#queue)
+    * 2.26.2\. [Hash Set (Lookup table)](#hash-set-lookup-table)
+    * 2.26.2\. [Dictionary (Map)](#dictionary-map)
+    * 2.26.2\. [Linked List](#linked-list)
+  * 2.27\. [⏰ Time Complexity](#-time-complexity)
+    * 2.27.1\. [Constant - O(1)](#constant---o1)
+    * 2.27.2\. [Logarithmic - O(log n)](#logarithmic---olog-n)
+    * 2.27.3\. [Linear - O(n)](#linear---on)
+    * 2.27.4\. [Quadratic - O(n^2)](#quadratic---on2)
+    * 2.27.5\. [Exponential - O(2^n)](#exponential---o2n)
+    * 2.27.6\. [Factorial - O(n!)](#factorial---on)
 * 3\. [🚧 Blueprint vs C++](#-blueprint-vs-c)
 * 4\. [🪧 Unreal's Architecture](#-unreals-architecture)
 * 5\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
@@ -140,7 +165,7 @@
         * 20.3.2\. [Direct references](#ticking)
         * 20.3.3\. [Math Expression Node](#math-expression-node)
         * 20.3.4\. [Call In Editor and `CallInEditor`](#call-in-editor-and-callineditor)
-* 21\. [👁️‍🗨️ Console Commands](#%EF%B8%8F%EF%B8%8F-console-commandss)
+* 21\. [📛 Console Commands](#%EF%B8%8F%EF%B8%8F-console-commandss)
 * 22\. [📌 Shortcuts](#-shortcuts)
 * 23\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
     * 23.1\. [Compiler Error C2628](#compiler-error-c2628)
@@ -457,7 +482,7 @@ And here is how you can use these typedefs for specifying a size for an integer:
 > **Warning**
 > Unreal Engine doesn't support typedefs with UHT[^2]. Meaning, you can't expose to Blueprint.
 
-### Members
+### 🍂 Members
 
 Members are variables or functions that are part of a class or object. They define the properties and behaviors of the class.
 
@@ -486,7 +511,7 @@ Functions are blocks of code that perform a specific task or set of tasks. They 
 
 Functions can be defined outside of classes as standalone functions or can be defined within classes as member functions. Standalone functions are typically used for common tasks that are not specific to any particular class or object.
 
-### Classes
+### 🧬 Classes
 
 Classes are the building blocks of object-oriented programming (OOP). They are a blueprint for creating objects, which are instances of a class. A class defines the structure and behavior of objects by specifying the members it contains.
 
@@ -733,7 +758,7 @@ const int immutableValue = 10; // Immutable variable
 | Memory Overhead            | Additional memory allocation for each update | Direct modification, no additional memory overhead |
 | Performance Characteristics | Generally more memory-efficient but slower for frequent updates | May be less memory-efficient but faster for frequent updates |
 
-### Try Catch
+### 🪝 Try Catch
 
 In programming, `try-catch` is a mechanism used for error handling and exception handling. It allows you to write code that can handle potential errors or exceptions that may occur during the program's execution, preventing crashes or data corruption.
 
