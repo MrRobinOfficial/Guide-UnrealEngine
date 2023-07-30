@@ -68,6 +68,7 @@
     * 2.14.1\. [Static casting](#static-casting)
     * 2.14.2\. [Const casting](#const-casting)
     * 2.14.3\. [Dynamic casting](#dynamic-casting)
+    * 2.14.4\. [Reinterpret Casting](#reinterpret-casting)
   * 2.15\. [🛼 Inlining](#-inlining)
   * 2.16\. [📇 Namespace](#-namespace)
   * 2.17\. [🌐 Static members](#-static-members)
@@ -821,6 +822,8 @@ Casting, in the context of programming languages, refers to the conversion of on
 
 This is the most basic and straightforward form of casting. It is performed using the (type) syntax and works for converting between related types, like integer to float or vice versa. However, it may not be safe in some situations, so you need to be cautious when using it.
 
+Example:
+
 ```cpp
 int num1 = 10;
 double num2 = static_cast<double>(num1); // Static cast from int to double
@@ -829,6 +832,8 @@ double num2 = static_cast<double>(num1); // Static cast from int to double
 #### Const casting
 
 This is used to add or remove the const qualifier from a variable. It allows you to modify the constness of a variable.
+
+Example:
 
 ```cpp
 const int x = 5;
@@ -839,12 +844,24 @@ const_cast<int&>(x) = 10; // Const cast to remove const and modify the value of 
 
 This is primarily used for casting pointers or references to objects in a class hierarchy. It is particularly useful when working with polymorphic classes. Dynamic casting checks the validity of the cast at runtime and returns a null pointer if the cast is not valid.
 
+Example:
+
 ```cpp
 class BaseClass { /* ... */ };
 class DerivedClass : public BaseClass { /* ... */ };
 
 BaseClass* basePtr = new DerivedClass;
 DerivedClass* derivedPtr = dynamic_cast<DerivedClass*>(basePtr); // Dynamic cast from BaseClass to DerivedClass
+```
+
+#### Reinterpret Casting
+
+This is primarily used to convert one pointer or reference type to another, regardless of their unrelated types. It is a low-level and potentially unsafe casting operation that allows developers to treat the underlying binary representation of a pointer as a different type. Unlike `static_cast`, `reinterpret_cast` doesn't perform any type checking or conversions, and it's up to the programmer to ensure the correctness of the cast.
+
+Example:
+
+```cpp
+result_type = reinterpret_cast<result_type>(expression);
 ```
 
 ### 🛼 Inlining
@@ -3398,11 +3415,12 @@ Global functions are functions that are defined outside of any class and are not
 
 Global functions in Unreal Engine are commonly used for utility functions, helper functions, or functions that operate on data independently of any particular object instance.
 
-* `IsValid()` - Is used to check if a pointer or object reference is valid. This is important to avoid accessing or modifying null pointers, which can cause crashes or other unexpected behavior.
-* `IsValidChecked()` - Checks if an object is valid, which means that it is not a nullptr and is not pending kill. It is intended for use in low-level code and is faster than `IsValid()`.
-* `IsValidLowLevel()` - Similar to `IsValidChecked()`, but it also performs a runtime check in debug builds to ensure that the object is valid. If the check fails, it will trigger an assertion.
-* `Cast()` - Is used to attempt to cast an object from one type to another. If the object is not of the specified type, it will return a nullptr. If the object is of the specified type or a subclass of it, the function will return a pointer to the object cast to the specified type.
-* `CastChecked()` - Is similar to `Cast()`, but it also performs a runtime check in debug builds to ensure that the object is of the specified type. If the check fails, it will trigger an assertion. This function is useful when you are certain that an object should be of a particular type and want to catch errors early in development.
+* `IsValid()`: Check if a pointer or object reference is valid. This is important to avoid accessing or modifying null pointers, which can cause crashes or other unexpected behavior.
+* `Swap()`: Swaps the contents of two `TObjectPtr` objects.
+* `Exchange()`: Exchanges the contents of a `TObjectPtr` with a new object, returning the previous object.
+* `MakeWeakObjectPtr()`: Creates a weak pointer (`TWeakObjectPtr`) from a `TObjectPtr`, allowing for non-owning references to the object.
+* `Cast()`: Is used to attempt to cast an object from one type to another. If the object is not of the specified type, it will return a nullptr. If the object is of the specified type or a subclass of it, the function will return a pointer to the object cast to the specified type.
+* `CastChecked()`: Is similar to `Cast()`, but it also performs a runtime check in debug builds to ensure that the object is of the specified type. If the check fails, it will trigger an assertion. This function is useful when you are certain that an object should be of a particular type and want to catch errors early in development.
 
 ## 🏛️ Libraries
 
@@ -3897,6 +3915,19 @@ void SetupArrow()
 #endif
 }
 
+```
+
+You can also used `UE_BUILD_SHIPPING` for negation to isolate debug code, so it wont be compiled in shipping build.
+
+Example:
+
+```cpp
+ void APlayerCharacter::Kill()
+ {
+ #if !UE_BUILD_SHIPPING
+    GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, TEXT("Hello, World!"));
+ #endif
+ }
 ```
 
 ## 🧠 Deep dive
