@@ -686,6 +686,60 @@ In modern C++, the distinction between `class` and `struct` has become more a ma
 | `mutable`   |	Class	         | Specifies that a member variable can be modified even if the owning object is const.                 |
 | `friend`    | Class          | Allows a non-member function or class to access the private and protected members of a class.        |
 
+```cpp
+class MyClass
+{
+public:
+    int publicVar; // Public member variable
+
+    // Public member function
+    void publicFunction()
+    {  
+        // ...
+    }
+
+protected:
+    int protectedVar; // Protected member variable
+
+    // Protected member function
+    void protectedFunction()
+    {  
+        // ...
+    }
+
+private:
+    int privateVar; // Private member variable
+
+    // Private member function
+    void privateFunction()
+    {
+        // ...
+    }
+
+    mutable int mutableVar; // Mutable member variable
+
+    friend void friendFunction(MyClass& obj); // Friend function declaration
+};
+
+void friendFunction(MyClass& obj)
+{
+    obj.privateVar = 42; // Friend function can access private member variable
+}
+
+MyClass obj;
+
+// Accessing public members
+obj.publicVar = 10; // Compiled!
+obj.publicFunction(); // Compiled!
+
+// Accessing private members via friend function
+friendFunction(obj); // Compiled!
+
+// Accessing private members directly (only possible within the class)
+obj.privateVar = 20; // Error!
+obj.privateFunction(); // Error!
+```
+
 ### 🤔 If-statements
 
 If-statement is a fundamental control structure that allows you to conditionally execute a block of code based on a specified condition.
