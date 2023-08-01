@@ -497,10 +497,10 @@ C++ allows the char, int, and double data types to have modifiers preceding them
 
 ## List of modifiers
 
-* signed
-* unsigned
-* long
-* short
+* `signed`
+* `unsigned`
+* `long`
+* `short`
 
 <br>
 
