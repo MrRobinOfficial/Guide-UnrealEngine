@@ -83,7 +83,7 @@
   * 2.23\. [🦾 Bitwise Operators](#-bitwise-operators)
   * 2.24\. [💥 Stack vs Heap](#-stack-vs-heap)
   * 2.25\. [⚓ Design Patterns And Principles](#design-patterns-and-principles)
-  	* 2.25.1\. [Open-Closed Principle](#open-closed-principle)
+  	* 2.25.1\. [SOLID Principle](#solid-principle)
    	* 2.25.2\. [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
     * 2.25.3\. [Singleton](#singleton)
     * 2.25.4\. [Observer](#observer)
@@ -1308,7 +1308,7 @@ Design patterns are reusable solutions to common programming problems that have 
 
 Here are a few notable design patterns:
 
-#### SOLID
+#### SOLID Principle
 
 `SOLID` or Single responsibility principle, Open-closed principle, Liskov substitution principle, Interface segregation principle, and Dependency inversion principle. SOLID is a mnemonic acronym for five design principles designed to make software designs more flexible, understandable, and maintainable.
 
