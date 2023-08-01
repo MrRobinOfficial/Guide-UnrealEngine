@@ -439,6 +439,38 @@ In modern programming, the choice of using single file extensions or separate he
 
 <br>
 
+| Type Name           | Bytes | Other Names                          | Range of Values                                       |
+|---------------------|-------|--------------------------------------|-------------------------------------------------------|
+| `int`                 | 4     | `signed`                               | -2,147,483,648 to 2,147,483,647                       |
+| `unsigned int`        | 4     | `unsigned`                             | 0 to 4,294,967,295                                   |
+| `__int8`              | 1     | `char`                                 | -128 to 127                                          |
+| `unsigned __int8`     | 1     | `unsigned char`                        | 0 to 255                                             |
+| `__int16`             | 2     | `short`, `short int`, `signed short int`   | -32,768 to 32,767                                    |
+| `unsigned __int16`    | 2     | `unsigned short`, `unsigned short int`   | 0 to 65,535                                          |
+| `__int32`             | 4     | `signed`, `signed int`, `int`              | -2,147,483,648 to 2,147,483,647                      |
+| `unsigned __int32`    | 4     | `unsigned`, `unsigned int`               | 0 to 4,294,967,295                                  |
+| `__int64`             | 8     | `long long`, `signed long long`          | -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
+| `unsigned __int64`    | 8     | `unsigned long long`                   | 0 to 18,446,744,073,709,551,615                      |
+| `bool`                | 1     | none                                 | `false` or `true`                                        |
+| `char`                | 1     | none                                 | -128 to 127 by default; 0 to 255 when compiled by using /J |
+| `signed char`         | 1     | none                                 | -128 to 127                                          |
+| `unsigned char`       | 1     | none                                 | 0 to 255                                             |
+| `short`               | 2     | `short int`, `signed short int`          | -32,768 to 32,767                                    |
+| `unsigned short`      | 2     | `unsigned short int`                   | 0 to 65,535                                          |
+| `long`                | 4     | `long int`, `signed long int`            | -2,147,483,648 to 2,147,483,647                      |
+| `unsigned long`       | 4     | `unsigned long int`                    | 0 to 4,294,967,295                                  |
+| `long long`           | 8     | none (but equivalent to `__int64`)     | -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
+| `unsigned long long`  | 8     | none (but equivalent to `unsigned __int64`) | 0 to 18,446,744,073,709,551,615                      |
+| `enum`                | varies| none                                 |                                                       |
+| `float`               | 4     | none                                 | 3.4E +/- 38 (7 digits)                               |
+| `double`              | 8     | none                                 | 1.7E +/- 308 (15 digits)                             |
+| `long double`         | same as `double` | none                        | Same as `double`                                       |
+| `wchar_t`             | 2     | `__wchar_t`                            | 0 to 65,535                                          |
+
+If its name begins with two underscores (`__`), a data type is non-standard.
+
+<br>
+
 </td></tr></table>
 
 #### Char
@@ -461,23 +493,44 @@ int health = 10;
 
 ##### Modifiers
 
-The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, which are used to modify the size of integer types. You can read more about [typedef keyword in C++ docs](https://en.cppreference.com/w/cpp/language/typedef).
+C++ allows the char, int, and double data types to have modifiers preceding them. A modifier is used to alter the meaning of the base type so that it more precisely fits the needs of various situations.
+
+The data type modifiers are listed here:
+
+<table><tr><td>
+
+* signed
+* unsigned
+* long
+* short
+
+</td></tr></table>
+
+The modifiers `signed`, `unsigned`, `long` and `short` can be applied to integer base types. In addition, `signed` and `unsigned` can be applied to `char`, and `long` can be applied to `double`.
+
+The modifiers `signed` and `unsigned` can also be used as prefix to `long` or `short` modifiers.
+
+For example:
+
+```cpp
+unsigned long int // Same as unsigned 32-bit integer (unsigned int)
+```
 
 > **Note**
 > The default behavior for all integer types is `signed`.
 
-Here is s list of modifiers for **integer** data type:
+Here is a list of modifiers for **integer** data type:
 
-| Declare    | Size (bits) | Min Value                   | Max Value                     |
-|---------|-------------|-----------------------------|------------------------------|
-| `unsigned char`   | 8           | 0                           | 255                          |
-| `unsigned short int`  | 16          | 0                           | 65,535                       |
-| `unsigned int`  | 32          | 0                           | 4,294,967,295                |
-| `unsigned long long`  | 64          | 0                           | 18,446,744,073,709,551,615   |
-| `signed char`    | 8           | -128                        | 127                          |
-| `signed short int`   | 16          | -32,768                     | 32,767                       |
-| `signed int`   | 32          | -2,147,483,648              | 2,147,483,647                |
-| `signed long long`   | 64          | -9,223,372,036,854,775,808  | 9,223,372,036,854,775,807    |
+| Declare            | Size (bits) | Size (bytes) | Min Value                   | Max Value                     |
+|--------------------|-------------|--------------|-----------------------------|------------------------------|
+| `unsigned char`    | 8           | 1            | 0                           | 255                          |
+| `unsigned short int` | 16          | 2            | 0                           | 65,535                       |
+| `unsigned int`     | 32          | 4            | 0                           | 4,294,967,295                |
+| `unsigned long long` | 64          | 8            | 0                           | 18,446,744,073,709,551,615   |
+| `signed char`      | 8           | 1            | -128                        | 127                          |
+| `signed short int` | 16          | 2            | -32,768                     | 32,767                       |
+| `signed int`       | 32          | 4            | -2,147,483,648              | 2,147,483,647                |
+| `signed long long` | 64          | 8            | -9,223,372,036,854,775,808  | 9,223,372,036,854,775,807    |
 
 <table><tr><td>
 
