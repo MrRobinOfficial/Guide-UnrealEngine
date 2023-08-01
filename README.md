@@ -624,7 +624,7 @@ public:
 
     void DisplayInfo()
     {
-        std::cout << "Name: " << name << ", Age: " << age << std::endl;
+        // ...
     }
 
 private:
@@ -644,6 +644,32 @@ It is similar to a `class`, but with some key differences.
 
 **Difference between `class` and `struct`**
 In C++, the main difference between a `class` and a `struct` is the default access level. In a `class`, the default access level for its members is private, while in a `struct`, the default access level is public. This means that members of a `struct` are accessible outside the struct without the need for access specifiers.
+
+For example:
+
+```cpp
+struct Vector3
+{
+    float x;
+    float y;
+    float z;
+
+    Vector3(float _x = 0.0f, float _y = 0.0f, float _z = 0.0f)
+        : x(_x)
+        , y(_y)
+        , z(_z)
+    { }
+};
+
+Vector3 v1(1.0f, 2.0f, 3.0f);
+Vector3 v2(4.0f, 5.0f, 6.0f);
+
+float dx = v1.x - v2.x;
+float dy = v1.y - v2.y;
+float dz = v1.z - v2.z;
+
+float dist = std::sqrt(dx * dx + dy * dy + dz * dz);
+```
 
 **Historical difference with C language**
 In C, there was no concept of classes, and `struct` was the primary way to define user-defined data types. In C++, the `struct` keyword was retained to maintain compatibility with C, but it gained additional features and behavior, such as the ability to have member functions and access specifiers.
