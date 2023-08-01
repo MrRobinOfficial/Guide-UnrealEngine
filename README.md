@@ -502,6 +502,8 @@ C++ allows the char, int, and double data types to have modifiers preceding them
 * long
 * short
 
+<br>
+
 </td></tr></table>
 
 The modifiers `signed`, `unsigned`, `long` and `short` can be applied to integer base types. In addition, `signed` and `unsigned` can be applied to `char`, and `long` can be applied to `double`.
