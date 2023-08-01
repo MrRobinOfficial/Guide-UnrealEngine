@@ -530,16 +530,6 @@ Here is a list of modifiers for **integer** data type:
 | `signed int`       | 32          | 4            | -2,147,483,648              | 2,147,483,647                |
 | `signed long long` | 64          | 8            | -9,223,372,036,854,775,808  | 9,223,372,036,854,775,807    |
 
-<table><tr><td>
-
-* Enhancing Code Readability: By creating typedefs with meaningful names, you can make the code more self-explanatory and easier to understand, especially when dealing with complex or lengthy type names.
-
-* Abstraction and Portability: Typedefs provide a level of abstraction that allows you to switch the underlying type without affecting the rest of the code. If you need to change the type used, you only need to update the typedef rather than modifying every occurrence of the original type.
-
-* Simplifying Complex Declarations: Typedefs can simplify complex declarations involving function pointers, function signatures, or template specializations by providing more concise and descriptive names.
-
-</td></tr></table>
-
 #### Floating points (floats and doubles)
 
 ```cpp
