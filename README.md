@@ -41,15 +41,17 @@
     * 2.2.5\. [Headers vs source files](#headers-vs-source-files)
   * 2.3\. [🔢 Data types](#-data-types)
     * 2.3.1\. [Char](#char)
-    * 2.3.1\. [Booleans](#booleans)
-    * 2.3.1\. [Integers](#integers)
-    * 2.3.1\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles)
+    * 2.3.2\. [Booleans](#booleans)
+    * 2.3.3\. [Integers](#integers)
+      * 3.3.3.1\. [Modifiers](#modifiers)
+    * 2.3.4\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles)
   * 2.4\. [🙋‍♂️ Typedefs](#%EF%B8%8F-typedefs)
   * 2.5\. [🍂 Members](#-members)
     * 2.5.1\. [Variables](#variables)
     * 2.5.2\. [Assignments](#assignments)
     * 2.5.3\. [Functions](#functions)
   * 2.6\. [🧬 Classes](#-classes)
+    * 2.6.1\. [Structs](#structs)
   * 2.7\. [💔 Accessibility](#-accessibility)
   * 2.8\. [🤔 If-statements](#-if-statements)
   * 2.9\. [🔣 Comparisons and Boolean Operators](#-comparisons-and-boolean-operators)
@@ -232,7 +234,7 @@ Using C++ with Unreal Engine unlocks the engine's full feature set, allowing dev
 
 Developing with C++ in Unreal Engine enables better debugging, profiling, and performance optimization through techniques such as multithreading and memory management. It also facilitates integration with third-party libraries, expanding the range of functionality and flexibility available to developers.
 
-To use C++ effectively in Unreal Engine, it is crucial to have a strong foundation in programming principles and understand Unreal Engine's architecture and conventions. Leveraging resources like the Unreal Engine documentation, community forums, and collaboration with other developers helps to gain knowledge and best practices.
+To use C++ effectively in Unreal Engine, it is crucial to have a strong foundation in programming principles and understanding of Unreal Engine's architecture and conventions. Leveraging resources like the Unreal Engine documentation, community forums, and collaboration with other developers helps to gain knowledge and best practices.
 
 *By combining the power of C++ and Unreal Engine, developers can create immersive experiences and unlock the full potential of the engine's capabilities.*
 
@@ -301,28 +303,27 @@ Polymorphism is often illustrated through inheritance, where you have a base cla
 
 ### ⌨️ Syntax and Structure
 
-Syntax refers to the set of rules that define the structure, format, and grammar of a programming language. It dictates how statements and expressions should be written to form valid code.
+Syntax refers to the set of rules that define the structure, format and grammar of a programming language. It dictates how statements and expressions should be written to form valid code.
 
-C++ follows a structured syntax that includes elements such as keywords[^1], identifiers, operators, punctuation, and control structures. The syntax is designed to provide precise instructions to the compiler on how to interpret and execute the code.
+C++ follows a structured syntax that includes elements such as keywords[^1], identifiers, operators and control structures. The syntax is designed to provide precise instructions to the compiler on how to interpret and execute the code.
 
 #### Weak vs Strong typing
 
 Weak and strong typing refer to different approaches in how programming languages handle data types and type safety.
 
-In C++, the language is considered strongly typed, as it requires explicit type conversions and does not perform implicit type coercion without the programmer's explicit instruction. C++ enforces strong typing to ensure type safety and minimize potential errors.
+In C++, the language is considered strongly typed, as it requires explicit type conversions and does not perform implicit type coercion without the programmer's explicit instruction (except number data types). C++ enforces strong typing to ensure type safety and minimize potential errors.
 
 Weak Typing (Python[^11] code):
 
 ```python3
-a = 5 # Correct! Because Python is a weak typing language.
+a = 5 # Compiled! Because Python is a weak typing language.
 ```
 
 Strong Typing (C++ code):
 
 ```cpp
 a = 5; // Error!
-
-int a = 5; // Correct!
+int a = 5; // Compiled!
 ```
 
 #### Semicolons in C++
@@ -334,13 +335,13 @@ The requirement for semicolons in C++ is a design choice that provides explicit 
 In contrast, languages like Python[^11] use indentation to define blocks of code, eliminating the need for explicit statement termination with semicolons.
 
 ```cpp
-int a = 5; // Correct
+int a = 5; // Compiled!
 int b = 5 // Error! Semicolon missing.
 ```
 
 #### Curly Braces in C++
 
-C++ uses curly braces (<kbd>{}</kbd>) as block delimiters to enclose multiple statements or define the body of control structures, functions, and classes. The use of curly braces provides a clear and explicit way to define the boundaries of code blocks (also know as a scope).
+C++ uses curly braces (<kbd>{}</kbd>) as block delimiters to enclose multiple statements or define the body of control structures, functions, and classes. The use of curly braces provides a clear and explicit way to define the boundaries of code blocks (also know as a **scope**).
 
 Curly braces help define the scope of variables and maintain code readability. They ensure that statements within the braces are treated as a single unit, making it easier to understand the flow and logic of the program.
 
@@ -383,14 +384,14 @@ They are typically used for brief comments or explanations on a single line.
 
 ##### Multi-line comments
 
-Multi-line comments, also known as block comments, start with a forward slash followed by an asterisk (`*`) `/` and end with an asterisk followed by a forward slash `/`.
+Multi-line comments, also known as block comments, start with a forward slash (`/`) followed by an asterisk (`*`) and end with an asterisk (`*`) followed by a forward slash (`/`).
 
 Multi-line comments can span multiple lines and are used for more extensive comments or documentation.
 
 ```cpp
 /*
-This is a multi-line comment
-It can span multiple lines
+    This is a multi-line comment
+    It can span multiple lines
 */
 ```
 
@@ -436,6 +437,8 @@ In modern programming, the choice of using single file extensions or separate he
 * `float` - Represents a floating-point number, which is a real number with a fractional component
 * `double` - Represents a double-precision floating-point number, which has twice the precision of a float
 
+<br>
+
 </td></tr></table>
 
 #### Char
@@ -456,6 +459,41 @@ bool isDead = true;
 int health = 10;
 ```
 
+##### Modifiers
+
+The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, which are used to modify the size of integer types. You can read more about [typedef keyword in C++ docs](https://en.cppreference.com/w/cpp/language/typedef).
+
+> **Note**
+> The default behavior for all integer types is `signed`.
+
+The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, which are used to modify the size of integer types. You can read more about [typedef keyword in C++ docs](https://en.cppreference.com/w/cpp/language/typedef).
+
+> **Note**
+> The default behavior for all integer types is `signed`.
+
+Here is s list of modifiers for **integer** data type:
+
+| Declare    | Size (bits) | Min Value                   | Max Value                     |
+|---------|-------------|-----------------------------|------------------------------|
+| `unsigned char`   | 8           | 0                           | 255                          |
+| `unsigned short int`  | 16          | 0                           | 65,535                       |
+| `unsigned int`  | 32          | 0                           | 4,294,967,295                |
+| `unsigned long long`  | 64          | 0                           | 18,446,744,073,709,551,615   |
+| `signed char`    | 8           | -128                        | 127                          |
+| `signed short int`   | 16          | -32,768                     | 32,767                       |
+| `signed int`   | 32          | -2,147,483,648              | 2,147,483,647                |
+| `signed long long`   | 64          | -9,223,372,036,854,775,808  | 9,223,372,036,854,775,807    |
+
+<table><tr><td>
+
+* Enhancing Code Readability: By creating typedefs with meaningful names, you can make the code more self-explanatory and easier to understand, especially when dealing with complex or lengthy type names.
+
+* Abstraction and Portability: Typedefs provide a level of abstraction that allows you to switch the underlying type without affecting the rest of the code. If you need to change the type used, you only need to update the typedef rather than modifying every occurrence of the original type.
+
+* Simplifying Complex Declarations: Typedefs can simplify complex declarations involving function pointers, function signatures, or template specializations by providing more concise and descriptive names.
+
+</td></tr></table>
+
 #### Floating points (floats and doubles)
 
 ```cpp
@@ -468,7 +506,7 @@ double speedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a 
 
 ### 🙋‍♂️ Typedefs
 
-In C++, the `typedef` keyword[^1] is used to create an alias or alternative name for existing data types. It provides a way to define a new name that can be used as a shorthand for the original type, improving code readability and maintainability.
+In C++, the `typedef` keyword[^1] is used to create an **alias** or **alternative name** for existing data types. It provides a way to define a new name that can be used as a shorthand for the original type, improving code readability and maintainability.
 
 Here's an example:
 
@@ -477,36 +515,6 @@ typedef int myInt; // Declare our alias for custom type
 
 myInt x = 5;  // Equivalent to: int x = 5;
 ```
-
-The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, which are used to modify the size of integer types. You can read more about [typedef keyword in C++ docs](https://en.cppreference.com/w/cpp/language/typedef).
-
-> **Note**
-> The default behavior for all integer types is `signed`.
-
-Here is s list of custom typedefs:
-
-| Declare    | Size (bits) | MinValue                    | MaxValue                     |
-|---------|-------------|-----------------------------|------------------------------|
-| `unsigned char`   | 8           | 0                           | 255                          |
-| `unsigned short int`  | 16          | 0                           | 65,535                       |
-| `unsigned int`  | 32          | 0                           | 4,294,967,295                |
-| `unsigned long long`  | 64          | 0                           | 18,446,744,073,709,551,615   |
-| `signed char`    | 8           | -128                        | 127                          |
-| `signed short int`   | 16          | -32,768                     | 32,767                       |
-| `signed int`   | 32          | -2,147,483,648              | 2,147,483,647                |
-| `signed long long`   | 64          | -9,223,372,036,854,775,808  | 9,223,372,036,854,775,807    |
-
-And here is how you can use these typedefs for specifying a size for an integer:
-
-<table><tr><td>
-
-* Enhancing Code Readability: By creating typedefs with meaningful names, you can make the code more self-explanatory and easier to understand, especially when dealing with complex or lengthy type names.
-
-* Abstraction and Portability: Typedefs provide a level of abstraction that allows you to switch the underlying type without affecting the rest of the code. If you need to change the type used, you only need to update the typedef rather than modifying every occurrence of the original type.
-
-* Simplifying Complex Declarations: Typedefs can simplify complex declarations involving function pointers, function signatures, or template specializations by providing more concise and descriptive names.
-
-</td></tr></table>
 
 > **Warning**
 > Unreal Engine doesn't support typedefs with UHT[^2]. Meaning, you can't expose to Blueprint.
@@ -540,6 +548,21 @@ Functions are blocks of code that perform a specific task or set of tasks. They 
 
 Functions can be defined outside of classes as standalone functions or can be defined within classes as member functions. Standalone functions are typically used for common tasks that are not specific to any particular class or object.
 
+Here's an example:
+
+```cpp
+/// @brief Calculates the factorial of a number using recursion.
+/// @param n Number of times.
+/// @result A number.
+int Factorial(int n)
+{
+    if (n == 0 || n == 1)
+        return 1;
+    else
+        return n * Factorial(n - 1);
+}
+```
+
 ### 🧬 Classes
 
 Classes are the building blocks of object-oriented programming (OOP). They are a blueprint for creating objects, which are instances of a class. A class defines the structure and behavior of objects by specifying the members it contains.
@@ -549,6 +572,45 @@ A class can have variables (members) to store data and functions (methods) to pe
 Objects created from a class can access and modify the class's members. They provide a way to create multiple instances that share the same structure and behavior defined by the class. Objects can be thought of as individual entities that represent real-world objects or abstract concepts.
 
 Classes allow for code reusability, encapsulation (hiding internal details), and the ability to model complex systems by organizing related data and behavior together.
+
+Here's an example:
+
+```cpp
+class Person
+{
+public:
+    Person(std::string name, int age)
+        : name(name)
+        , age(age)
+    { }
+
+    void DisplayInfo()
+    {
+        std::cout << "Name: " << name << ", Age: " << age << std::endl;
+    }
+
+private:
+    std::string name;
+    int age;
+};
+```
+
+#### Structs
+
+In C++, a `struct` is a user-defined data type that allows you to group multiple variables of different data types under a single name.
+It is similar to a `class`, but with some key differences.
+
+**Usage of `struct` in C++**
+- Structs are used to create lightweight data structures to hold related data elements.
+- They are commonly used to represent simple data objects or records that do not require complex behavior or methods.
+
+**Difference between `class` and `struct`**
+In C++, the main difference between a `class` and a `struct` is the default access level. In a `class`, the default access level for its members is private, while in a `struct`, the default access level is public. This means that members of a `struct` are accessible outside the struct without the need for access specifiers.
+
+**Historical difference with C language**
+In C, there was no concept of classes, and `struct` was the primary way to define user-defined data types. In C++, the `struct` keyword was retained to maintain compatibility with C, but it gained additional features and behavior, such as the ability to have member functions and access specifiers.
+
+In modern C++, the distinction between `class` and `struct` has become more a matter of convention and coding style rather than a strict rule. Many developers prefer to use `struct` for simple data containers with public data members and `class` for more complex objects with private data members and member functions. However, you can use either `class` or `struct` based on your design preferences.
 
 ### 💔 Accessibility
 
