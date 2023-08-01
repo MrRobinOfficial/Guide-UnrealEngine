@@ -39,73 +39,74 @@
       * 2.2.4.1\. [Single-line comments](#single-line-comments)
       * 2.2.4.2\. [Multi-line comments](#multi-line-comments)
     * 2.2.5\. [Headers vs source files](#headers-vs-source-files)
-  * 2.3\. [🔢 Data types](#-data-types)
-    * 2.3.1\. [Char](#char)
-    * 2.3.2\. [Booleans](#booleans)
-    * 2.3.3\. [Integers](#integers)
-      * 3.3.3.1\. [Modifiers](#modifiers)
-    * 2.3.4\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles)
-  * 2.4\. [🙋‍♂️ Typedefs](#%EF%B8%8F-typedefs)
-  * 2.5\. [🍂 Members](#-members)
-    * 2.5.1\. [Variables](#variables)
-    * 2.5.2\. [Assignments](#assignments)
-    * 2.5.3\. [Functions](#functions)
-  * 2.6\. [🧬 Classes](#-classes)
-    * 2.6.1\. [Structs](#structs)
-  * 2.7\. [💔 Accessibility](#-accessibility)
-  * 2.8\. [🤔 If-statements](#-if-statements)
-  * 2.9\. [🔣 Comparisons and Boolean Operators](#-comparisons-and-boolean-operators)
-    * 2.9.1\. [❓ Conditional Expressions](#-conditional-expressions-ternary-operator)
-  * 2.10\. [🔀 Switches](#-switches)
-  * 2.11\. [🔄️ Loops](#%EF%B8%8F-loops)
-    * 2.11.1\. [♾️ While Loop](#%EF%B8%8F-while-loop)
-    * 2.11.2\. [🔃 Do-While Loop](#-do-while-loop)
-    * 2.11.3\. [🔂 For Loop](#-for-loop)
-    * 2.11.4\. [🗂️ Foreach Loop](#%EF%B8%8F-foreach-loop)
-  * 2.12\. [🦋 Immutable vs Mutable](#-immutable-vs-mutable)
-    * 2.12.1\. [Mutable](#mutable)
-    * 2.12.2\. [Immutable](#immutable)
-  * 2.13\. [🪝 Try Catch](#-try-catch)
-  * 2.14\. [🪞 Casting](#-casting)
-    * 2.14.1\. [Static casting](#static-casting)
-    * 2.14.2\. [Const casting](#const-casting)
-    * 2.14.3\. [Dynamic casting](#dynamic-casting)
-    * 2.14.4\. [Reinterpret Casting](#reinterpret-casting)
-  * 2.15\. [🛼 Inlining](#-inlining)
-  * 2.16\. [📇 Namespace](#-namespace)
-  * 2.17\. [🌐 Static members](#-static-members)
-  * 2.18\. [`auto` keyword](#auto-keyword)
-  * 2.19\. [🌱 Polymorphism (In Depth)](#polymorphism-in-depth)
-    * 2.19.1\. [Operator Overloading](#operator-overloading)
-    * 2.19.2\. [Function Overloading](#function-overloading)
-    * 2.19.3\. [Virtual functions](#virtual-functions)
-  * 2.20\. [🧙‍♂️ Generic Programming](#%EF%B8%8F-generic-programming)
-  * 2.21\. [😵 Recursion](#-recursion)
-  * 2.22\. [🫀 Lambda](#-lambda)
-  * 2.23\. [🦾 Bitwise Operators](#-bitwise-operators)
-  * 2.24\. [💥 Stack vs Heap](#-stack-vs-heap)
-  * 2.25\. [⚓ Design Patterns And Principles](#design-patterns-and-principles)
-  	* 2.25.1\. [SOLID Principle](#solid-principle)
-   	* 2.25.2\. [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
-    * 2.25.3\. [Singleton](#singleton)
-    * 2.25.4\. [Observer](#observer)
-    * 2.25.5\. [Factory](#factory)
-    * 2.25.6\. [Strategy](#strategy)
-    * 2.25.7\. [MVC (Model-View-Controller)](#mvc-model-view-controller)
-  * 2.26\. [💯 Structures](#-structures)
-    * 2.26.1\. [Array](#array)
-    * 2.26.2\. [List](#list)
-    * 2.26.2\. [Queue](#queue)
-    * 2.26.2\. [Hash Set (Lookup table)](#hash-set-lookup-table)
-    * 2.26.2\. [Dictionary (Map)](#dictionary-map)
-    * 2.26.2\. [Linked List](#linked-list)
-  * 2.27\. [⏰ Time Complexity](#-time-complexity)
-    * 2.27.1\. [Constant - O(1)](#constant---o1)
-    * 2.27.2\. [Logarithmic - O(log n)](#logarithmic---olog-n)
-    * 2.27.3\. [Linear - O(n)](#linear---on)
-    * 2.27.4\. [Quadratic - O(n^2)](#quadratic---on2)
-    * 2.27.5\. [Exponential - O(2^n)](#exponential---o2n)
-    * 2.27.6\. [Factorial - O(n!)](#factorial---on)
+  * 2.3\. [🔥 Standard Library](#-standard-library)
+  * 2.4\. [🔢 Data types](#-data-types)
+    * 2.4.1\. [Char](#char)
+    * 2.4.2\. [Booleans](#booleans)
+    * 2.4.3\. [Integers](#integers)
+      * 2.4.3.1\. [Modifiers](#modifiers)
+    * 2.4.4\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles)
+  * 2.5\. [🙋‍♂️ Typedefs](#%EF%B8%8F-typedefs)
+  * 2.6\. [🍂 Members](#-members)
+    * 2.6.1\. [Variables](#variables)
+    * 2.6.2\. [Assignments](#assignments)
+    * 2.6.3\. [Functions](#functions)
+  * 2.7\. [🧬 Classes](#-classes)
+    * 2.7.1\. [Structs](#structs)
+  * 2.8\. [💔 Accessibility](#-accessibility)
+  * 2.9\. [🤔 If-statements](#-if-statements)
+  * 2.10\. [🔣 Comparisons and Boolean Operators](#-comparisons-and-boolean-operators)
+    * 2.10.1\. [❓ Conditional Expressions](#-conditional-expressions-ternary-operator)
+  * 2.11\. [🔀 Switches](#-switches)
+  * 2.12\. [🔄️ Loops](#%EF%B8%8F-loops)
+    * 2.12.1\. [♾️ While Loop](#%EF%B8%8F-while-loop)
+    * 2.12.2\. [🔃 Do-While Loop](#-do-while-loop)
+    * 2.12.3\. [🔂 For Loop](#-for-loop)
+    * 2.12.4\. [🗂️ Foreach Loop](#%EF%B8%8F-foreach-loop)
+  * 2.13\. [🦋 Immutable vs Mutable](#-immutable-vs-mutable)
+    * 2.13.1\. [Mutable](#mutable)
+    * 2.13.2\. [Immutable](#immutable)
+  * 2.14\. [🪝 Try Catch](#-try-catch)
+  * 2.15\. [🪞 Casting](#-casting)
+    * 2.15.1\. [Static casting](#static-casting)
+    * 2.15.2\. [Const casting](#const-casting)
+    * 2.15.3\. [Dynamic casting](#dynamic-casting)
+    * 2.15.4\. [Reinterpret Casting](#reinterpret-casting)
+  * 2.16\. [🛼 Inlining](#-inlining)
+  * 2.17\. [📇 Namespace](#-namespace)
+  * 2.18\. [🌐 Static members](#-static-members)
+  * 2.19\. [`auto` keyword](#auto-keyword)
+  * 2.20\. [🌱 Polymorphism (In Depth)](#polymorphism-in-depth)
+    * 2.20.1\. [Operator Overloading](#operator-overloading)
+    * 2.20.2\. [Function Overloading](#function-overloading)
+    * 2.20.3\. [Virtual functions](#virtual-functions)
+  * 2.21\. [🧙‍♂️ Generic Programming](#%EF%B8%8F-generic-programming)
+  * 2.22\. [😵 Recursion](#-recursion)
+  * 2.23\. [🫀 Lambda](#-lambda)
+  * 2.24\. [🦾 Bitwise Operators](#-bitwise-operators)
+  * 2.25\. [💥 Stack vs Heap](#-stack-vs-heap)
+  * 2.26\. [⚓ Design Patterns And Principles](#design-patterns-and-principles)
+  	* 2.26.1\. [SOLID Principle](#solid-principle)
+   	* 2.26.2\. [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
+    * 2.26.3\. [Singleton](#singleton)
+    * 2.26.4\. [Observer](#observer)
+    * 2.26.5\. [Factory](#factory)
+    * 2.26.6\. [Strategy](#strategy)
+    * 2.26.7\. [MVC (Model-View-Controller)](#mvc-model-view-controller)
+  * 2.27\. [💯 Structures](#-structures)
+    * 2.27.1\. [Array](#array)
+    * 2.27.2\. [List](#list)
+    * 2.27.2\. [Queue](#queue)
+    * 2.27.2\. [Hash Set (Lookup table)](#hash-set-lookup-table)
+    * 2.27.2\. [Dictionary (Map)](#dictionary-map)
+    * 2.27.2\. [Linked List](#linked-list)
+  * 2.28\. [⏰ Time Complexity](#-time-complexity)
+    * 2.28.1\. [Constant - O(1)](#constant---o1)
+    * 2.28.2\. [Logarithmic - O(log n)](#logarithmic---olog-n)
+    * 2.28.3\. [Linear - O(n)](#linear---on)
+    * 2.28.4\. [Quadratic - O(n^2)](#quadratic---on2)
+    * 2.28.5\. [Exponential - O(2^n)](#exponential---o2n)
+    * 2.28.6\. [Factorial - O(n!)](#factorial---on)
 * 3\. [🚧 Blueprint vs C++](#-blueprint-vs-c)
 * 4\. [🪧 Unreal's Architecture](#-unreals-architecture)
 * 5\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
@@ -424,6 +425,35 @@ In the early days of computing, languages like [Fortran](https://en.wikipedia.or
 Other languages, like C#[^12], Java[^13], and Python[^11], continued to use single file extensions because they adopted a more integrated approach to handling both declarations and implementations within a single file.
 
 In modern programming, the choice of using single file extensions or separate header and source files depends on the language's design philosophy and the needs of the development community. Both approaches have their strengths and weaknesses, and different languages adopt the one that best aligns with their goals and use cases.
+
+### 🔥 Standard Library
+
+The standard library in C++ is a collection of pre-defined classes and functions that provide a wide range of functionality for common tasks. It is a part of the [C++ Standard Template Library (STL)](https://en.wikipedia.org/wiki/Standard_Template_Library) and is officially known as the [C++ Standard Library](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library). The library is designed to be platform-independent and provides a standardized set of features that are supported across different C++ compilers and environments.
+
+The C++ Standard Library is organized into several header files, each of which contains declarations for specific classes and functions. Some of the key components of the standard library include containers (like vectors, lists, maps, etc.), algorithms (sorting, searching, etc.), iterators, input/output operations, strings, and more.
+
+To use the standard library in C++, you include the appropriate header files in your code, and then you can directly use the classes and functions provided by the library. For example, to use the `std::vector` class, you include the `<vector>` header file and then create instances of the vector and use its methods.
+
+The name "std" comes from the fact that all the classes, functions, and other elements of the standard library are part of the `std` namespace. The namespace `std` is used to avoid naming conflicts with other libraries and user-defined code. By using the `std::` prefix before any element from the standard library, you explicitly specify that you are referring to the elements in the `std` namespace.
+
+Here's a simple example of how to use the standard library in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+std::vector<int> numbers = {5, 2, 9, 1, 7};
+
+// Use standard library algorithm to sort the vector
+std::sort(numbers.begin(), numbers.end());
+
+// Use standard library to print the sorted vector
+for (int num : numbers)
+{
+    std::cout << num << " ";
+}
+```
 
 ### 🔢 Data types
 
