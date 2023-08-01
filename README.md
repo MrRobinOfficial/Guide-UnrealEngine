@@ -439,6 +439,8 @@ In modern programming, the choice of using single file extensions or separate he
 
 <br>
 
+</td></tr></table>
+
 | Type Name           | Bytes | Other Names                          | Range of Values                                       |
 |---------------------|-------|--------------------------------------|-------------------------------------------------------|
 | `int`                 | 4     | `signed`                               | -2,147,483,648 to 2,147,483,647                       |
@@ -468,10 +470,6 @@ In modern programming, the choice of using single file extensions or separate he
 | `wchar_t`             | 2     | `__wchar_t`                            | 0 to 65,535                                          |
 
 If its name begins with two underscores (`__`), a data type is non-standard.
-
-<br>
-
-</td></tr></table>
 
 #### Char
 
