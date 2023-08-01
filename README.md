@@ -781,7 +781,7 @@ Conditional expressions in C++ are statements that evaluate a condition and retu
 The basic syntax of a conditional expression in C++ is as follows:
 
 ```cpp
-(condition) ? value_if_true : value_if_false;
+int value = isDead ? 100 : -100; // condition ? value_if_true : value_if_false;
 ```
 
 * 1\. The condition within the parentheses is evaluated.
