@@ -466,11 +466,6 @@ The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, w
 > **Note**
 > The default behavior for all integer types is `signed`.
 
-The most common modifiers in C++ are `signed`, `unsigned`, `long` and `short`, which are used to modify the size of integer types. You can read more about [typedef keyword in C++ docs](https://en.cppreference.com/w/cpp/language/typedef).
-
-> **Note**
-> The default behavior for all integer types is `signed`.
-
 Here is s list of modifiers for **integer** data type:
 
 | Declare    | Size (bits) | Min Value                   | Max Value                     |
