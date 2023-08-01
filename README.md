@@ -1347,13 +1347,8 @@ T add(T a, T b)
     return a + b;
 }
 
-int main()
-{
-    int result1 = add(5, 10);        // Instantiated as add<int>(5, 10)
-    double result2 = add(3.5, 2.7);  // Instantiated as add<double>(3.5, 2.7)
-    // ...
-    return 0;
-}
+int result1 = add(5, 10);        // Instantiated as add<int>(5, 10)
+double result2 = add(3.5, 2.7);  // Instantiated as add<double>(3.5, 2.7)
 ```
 
 ### 😵 Recursion
@@ -2533,7 +2528,7 @@ Example usage:
 // Helpful in the editor to localize the text into another language.
 FText NewGameText = FText::FromString(TEXT("New Game"));
 
-FText TooltipText = INVTEXT("Lorem Ipsum!");
+FText TooltipText = INVTEXT("Tooltip Text");
 ```
 
 #### Examples of usages
@@ -2756,7 +2751,7 @@ Here's an example:
 Here is an example:
 
 ```cpp
-// ...
+// Lorem Ipsum
 ```
 
 > **Warning**
