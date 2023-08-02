@@ -2641,6 +2641,8 @@ UE_LOG(LogTemp, Display, TEXT("MyTransformRotation: %s"), *MyTransformRotation.T
 
 A dynamic array that can store a variable number of elements of the same type. It provides many useful functions, such as adding, removing, sorting, and searching for elements, as well as iterating over them.
 
+Here's an example:
+
 ```cpp
 // Declare a TArray of integers
 TArray<int32> MyIntArray;
@@ -2662,7 +2664,7 @@ for (int32 Element : MyIntArray)
 
 A set of unique elements of a single type, implemented as a hash table. It provides many of the same functions as ```TArray```, but with faster lookup times for large collections of elements.
 
-Here is an example:
+Here's an example:
 
 ```cpp
 // Declare a TSet of strings
@@ -2717,6 +2719,8 @@ MyIntStringMap.Remove(3);
 
 Similar to ```TMap```, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
 
+Here's an example:
+
 ```cpp
 // Declare a TMultiMap of integers to strings
 TMultiMap<int32, FString> MyIntStringMultiMap;
@@ -2748,7 +2752,7 @@ Here's an example:
 
 #### TStaticArray
 
-Here is an example:
+Here's an example:
 
 ```cpp
 const uint32 Size = 4u + 4u; // 16u
@@ -2762,6 +2766,268 @@ for (FVector& Pos : Positions)
 
 > **Warning**
 > Unreal Engine doesn't support `TStaticArray` with UHT[^3]. Meaning, you can't expose to Blueprint.
+
+#### FStringView
+
+`FStringView` is a lightweight, non-owning view of the string data, and copying the view itself is efficient and does not affect the underlying data. However, when you copy the `FStringView`, the new instance of the view still refers to the same original string data.
+
+Here's an example:
+
+```cpp
+#include "Containers/UnrealString.h"
+
+void ProcessString(FStringView StringView)
+{
+    // Use FStringView to read the string data without copying it.
+    UE_LOG(LogTemp, Warning, TEXT("String: %s"), *StringView);
+}
+
+FString MyString = TEXT("Hello, FStringView!");
+
+// Pass FString as FStringView to the function without copying the data.
+ProcessString(MyString);
+
+// Copy FStringView to another variable.
+FStringView CopiedStringView = MyString;
+
+// Modifying the original FString does not affect the copied FStringView.
+MyString = TEXT("Modified String");
+
+// Print the contents of the copied FStringView.
+UE_LOG(LogTemp, Warning, TEXT("Copied StringView: %s"), *CopiedStringView);
+```
+
+#### TStringBuilder
+
+Here's an example:
+
+```cpp
+TStringBuilder<256> MessageBuilder;
+
+float PlayerHealth = 110.5285f;
+MessageBuilder << TEXTVIEW("Player's health: ") << FString::SanitizeFloat(PlayerHealth);
+
+return FString { MessageBuilder };
+```
+
+#### FHashTable
+
+Dynamically sized hash table, used to index another data structure.
+Vastly simpler and faster than `TMap`.
+
+Here's an example:
+
+```cpp
+#include "Containers/HashTable.h"
+
+FHashTable HashTable;
+
+const uint16 Hash = 50u;
+const uint16 Index = 10u;
+
+HashTable.Add(Hash, Index);
+```
+
+#### TStaticHashTable
+
+Statically sized hash table, used to index another data structure.
+Vastly simpler and faster than `TMap`.
+
+Here's an example:
+
+```cpp
+#include "Containers/HashTable.h"
+
+static const uint32 Capacity = 16u;
+TStaticHashTable<1024u, Capacity> HashTable;
+
+const uint16 Hash = 50u;
+const uint16 Index = 10u;
+
+HashTable.Add(Hash, Index);
+```
+
+#### TSortedMap
+
+A Map of keys to value, implemented as a sorted `TArray` of TPairs.
+
+It has a mostly identical interface to `TMap` and is designed as a drop in replacement. Keys must be unique, there is no equivalent sorted version of `TMultiMap`. It uses half as much memory as `TMap`, but adding and removing elements is O(n), and finding is O(Log n). In practice it is faster than `TMap` for low element counts, and slower as n increases, This map is always kept sorted by the key type so cannot be sorted manually.
+
+Here's an example:
+
+```cpp
+#include "Containers/SortedMap.h"
+
+// Create a TSortedMap of strings to integers.
+TSortedMap<FString, int32> MyMap;
+
+// Add some elements to the map.
+MyMap.Add("One", 1);
+MyMap.Add("Two", 2);
+MyMap.Add("Three", 3);
+
+// Get the value associated with a key.
+int32 Value = MyMap["One"];
+
+// Check if a key exists in the map.
+bool Exists = MyMap.Contains("One");
+
+// Iterate over the map.
+for (const auto& Element : MyMap)
+{
+    UE_LOG(LogTemp, Warning, TEXT("Key: %s, Value: %d"), *Element.Key, Element.Value);
+}
+```
+
+#### TArrayView
+
+Templated fixed-size view of another array
+
+A statically sized view of an array of typed elements. Designed to allow functions to take either a fixed C array or a `TArray` with an arbitrary allocator as an argument when the function neither adds nor removes elements
+
+Here's an example:
+
+```cpp
+#include "Containers/ArrayView.h"
+
+int32 SumAll(TArrayView<const int32> array)
+{
+    return Algo::Accumulate(array);
+}
+
+SumAll(MyTArray);
+SumAll(MyCArray);
+SumAll(MakeArrayView(Ptr, Num));
+
+auto Values = { 1, 2, 3 };
+SumAll(Values);
+```
+
+View classes are not const-propagating! If you want a view where the elements are const, you need `TArrayView<const T>` not `const TArrayView<T>`! Caution: Treat a view like a reference to the elements in the array. **DO NOT** free or reallocate the array while the view exists! For this reason, be mindful of lifetime when constructing TArrayViews from rvalue initializer lists:
+
+```cpp
+TArrayView<int> View = { 1, 2, 3 }; // construction of array view from rvalue initializer list
+int n = View[0]; // undefined behavior, as the initializer list was destroyed at the end of the previous line
+```
+
+#### TEnumAsByte
+
+Template to store enumeration values as bytes in a type-safe way.
+
+Here's an example:
+
+```cpp
+#include "Containers/EnumAsByte.h"
+
+// Create a TEnumAsByte of the EMyEnum type.
+TEnumAsByte<EMyEnum> MyEnum(EMyEnum::One);
+
+// Set the value of the enum.
+MyEnum = EMyEnum::Two;
+
+// Get the value of the enum.
+EMyEnum Value = MyEnum.GetValue();
+
+// Check if the enum is equal to a value.
+bool Equals = MyEnum == EMyEnum::Two;
+```
+
+#### TLinkedList
+
+Encapsulates a link in a single linked list with constant access time.
+
+This linked list is non-intrusive, i.e. it stores a copy of the element passed to it (typically a pointer)
+
+Here's an example:
+
+```cpp
+#include "Containers/List.h"
+
+// Create a TLinkedList of strings.
+TLinkedList<FString> MyList;
+
+// Add some elements to the list.
+MyList.Add("One");
+MyList.Add("Two");
+MyList.Add("Three");
+
+// Get the first element in the list.
+FString FirstElement = MyList.GetFirst();
+
+// Get the last element in the list.
+FString LastElement = MyList.GetLast();
+
+// Iterate over the list.
+for (const auto& Element : MyList)
+{
+    UE_LOG(LogTemp, Warning, TEXT("Element: %s"), *Element);
+}
+```
+
+#### TList
+
+Simple single-linked list template.
+
+Here's an example:
+
+```cpp
+#include "Containers/List.h"
+
+// Create a TList of integers.
+TList<int32> MyList;
+
+// Add some elements to the list.
+MyList.Add(1);
+MyList.Add(2);
+MyList.Add(3);
+
+// Get the first element in the list.
+int32 FirstElement = MyList[0];
+
+// Get the last element in the list.
+int32 LastElement = MyList[MyList.Num() - 1];
+
+// Iterate over the list.
+for (int32 Element : MyList)
+{
+    UE_LOG(LogTemp, Warning, TEXT("Element: %d"), Element);
+}
+```
+
+#### TQueue
+
+Template for queues.
+
+This template implements an unbounded non-intrusive queue using a lock-free linked list that stores copies of the queued items. The template can operate in two modes: Multiple-producers single-consumer (MPSC) and Single-producer single-consumer (SPSC).
+
+The queue is thread-safe in both modes. The `Dequeue()` method ensures thread-safety by writing it in a way that does not depend on possible instruction reordering on the CPU. The `Enqueue()` method uses an atomic compare-and-swap in multiple-producers scenarios.
+
+Here's an example:
+
+```cpp
+#include "Containers/Queue.h"
+
+// Create a TQueue of strings.
+TQueue<FString> MyQueue;
+
+// Add some elements to the queue.
+MyQueue.Enqueue("One");
+MyQueue.Enqueue("Two");
+MyQueue.Enqueue("Three");
+
+// Dequeue the first element in the queue.
+FString DequeuedElement = MyQueue.Dequeue();
+
+// Check if the queue is empty.
+bool IsEmpty = MyQueue.IsEmpty();
+
+// Iterate over the queue.
+while (!MyQueue.IsEmpty())
+{
+    FString Element = MyQueue.Dequeue();
+    UE_LOG(LogTemp, Warning, TEXT("Element: %s"), *Element);
+}
+```
 
 ---
 
