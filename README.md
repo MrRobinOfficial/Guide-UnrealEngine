@@ -2751,7 +2751,13 @@ Here's an example:
 Here is an example:
 
 ```cpp
-// Lorem Ipsum
+const uint32 Size = 4u + 4u; // 16u
+TStaticArray<FVector, Size> Positions;
+
+for (FVector& Pos : Positions)
+{
+    Pos = FVector(0.0f, 10.0f, 5.0f); // Alter the data of each element
+}
 ```
 
 > **Warning**
