@@ -131,9 +131,9 @@
       * 7.7.3\. [TMap](#tmap)
       * 7.7.4\. [TMultiMap](#tmultimap)
       * 7.7.5\. [TStaticArray](#tstaticarray)
-      * 7.7.6\. [TSortedMap](#tsortedmap)
-      * 7.7.7\. [FHashTable](#fhashtable)
-      * 7.7.8\. [TStaticHashTable](#tstatichashtable)
+      * 7.7.6\. [FHashTable](#fhashtable)
+      * 7.7.7\. [TStaticHashTable](#tstatichashtable)
+      * 7.7.8\. [TSortedMap](#tsortedmap)
       * 7.7.9\. [TList](#tlist)
       * 7.7.10\. [TLinkedList](#tlinkedlist)
       * 7.7.11\. [TQueue](#tqueue)
@@ -2777,49 +2777,6 @@ for (FVector& Pos : Positions)
 > **Warning**
 > Unreal Engine doesn't support `TStaticArray` with UHT[^3]. Meaning, you can't expose to Blueprint.
 
-#### FStringView
-
-`FStringView` is a lightweight, non-owning view of the string data, and copying the view itself is efficient and does not affect the underlying data. However, when you copy the `FStringView`, the new instance of the view still refers to the same original string data.
-
-Here's an example:
-
-```cpp
-#include "Containers/UnrealString.h"
-
-void ProcessString(FStringView StringView)
-{
-    // Use FStringView to read the string data without copying it.
-    UE_LOG(LogTemp, Warning, TEXT("String: %s"), *StringView);
-}
-
-FString MyString = TEXT("Hello, FStringView!");
-
-// Pass FString as FStringView to the function without copying the data.
-ProcessString(MyString);
-
-// Copy FStringView to another variable.
-FStringView CopiedStringView = MyString;
-
-// Modifying the original FString does not affect the copied FStringView.
-MyString = TEXT("Modified String");
-
-// Print the contents of the copied FStringView.
-UE_LOG(LogTemp, Warning, TEXT("Copied StringView: %s"), *CopiedStringView);
-```
-
-#### TStringBuilder
-
-Here's an example:
-
-```cpp
-TStringBuilder<256> MessageBuilder;
-
-float PlayerHealth = 110.5285f;
-MessageBuilder << TEXTVIEW("Player's health: ") << FString::SanitizeFloat(PlayerHealth);
-
-return FString { MessageBuilder };
-```
-
 #### FHashTable
 
 Dynamically sized hash table, used to index another data structure.
@@ -2889,57 +2846,34 @@ for (const auto& Element : MyMap)
 }
 ```
 
-#### TArrayView
+#### TList
 
-Templated fixed-size view of another array
-
-A statically sized view of an array of typed elements. Designed to allow functions to take either a fixed C array or a `TArray` with an arbitrary allocator as an argument when the function neither adds nor removes elements
+Simple single-linked list template.
 
 Here's an example:
 
 ```cpp
-#include "Containers/ArrayView.h"
+#include "Containers/List.h"
 
-int32 SumAll(TArrayView<const int32> array)
+// Create a TList of integers.
+TList<int32> MyList;
+
+// Add some elements to the list.
+MyList.Add(1);
+MyList.Add(2);
+MyList.Add(3);
+
+// Get the first element in the list.
+int32 FirstElement = MyList[0];
+
+// Get the last element in the list.
+int32 LastElement = MyList[MyList.Num() - 1];
+
+// Iterate over the list.
+for (int32 Element : MyList)
 {
-    return Algo::Accumulate(array);
+    UE_LOG(LogTemp, Warning, TEXT("Element: %d"), Element);
 }
-
-SumAll(MyTArray);
-SumAll(MyCArray);
-SumAll(MakeArrayView(Ptr, Num));
-
-auto Values = { 1, 2, 3 };
-SumAll(Values);
-```
-
-View classes are not const-propagating! If you want a view where the elements are const, you need `TArrayView<const T>` not `const TArrayView<T>`! Caution: Treat a view like a reference to the elements in the array. **DO NOT** free or reallocate the array while the view exists! For this reason, be mindful of lifetime when constructing TArrayViews from rvalue initializer lists:
-
-```cpp
-TArrayView<int> View = { 1, 2, 3 }; // construction of array view from rvalue initializer list
-int n = View[0]; // undefined behavior, as the initializer list was destroyed at the end of the previous line
-```
-
-#### TEnumAsByte
-
-Template to store enumeration values as bytes in a type-safe way.
-
-Here's an example:
-
-```cpp
-#include "Containers/EnumAsByte.h"
-
-// Create a TEnumAsByte of the EMyEnum type.
-TEnumAsByte<EMyEnum> MyEnum(EMyEnum::One);
-
-// Set the value of the enum.
-MyEnum = EMyEnum::Two;
-
-// Get the value of the enum.
-EMyEnum Value = MyEnum.GetValue();
-
-// Check if the enum is equal to a value.
-bool Equals = MyEnum == EMyEnum::Two;
 ```
 
 #### TLinkedList
@@ -2971,36 +2905,6 @@ FString LastElement = MyList.GetLast();
 for (const auto& Element : MyList)
 {
     UE_LOG(LogTemp, Warning, TEXT("Element: %s"), *Element);
-}
-```
-
-#### TList
-
-Simple single-linked list template.
-
-Here's an example:
-
-```cpp
-#include "Containers/List.h"
-
-// Create a TList of integers.
-TList<int32> MyList;
-
-// Add some elements to the list.
-MyList.Add(1);
-MyList.Add(2);
-MyList.Add(3);
-
-// Get the first element in the list.
-int32 FirstElement = MyList[0];
-
-// Get the last element in the list.
-int32 LastElement = MyList[MyList.Num() - 1];
-
-// Iterate over the list.
-for (int32 Element : MyList)
-{
-    UE_LOG(LogTemp, Warning, TEXT("Element: %d"), Element);
 }
 ```
 
@@ -3037,6 +2941,102 @@ while (!MyQueue.IsEmpty())
     FString Element = MyQueue.Dequeue();
     UE_LOG(LogTemp, Warning, TEXT("Element: %s"), *Element);
 }
+```
+
+#### TArrayView
+
+Templated fixed-size view of another array
+
+A statically sized view of an array of typed elements. Designed to allow functions to take either a fixed C array or a `TArray` with an arbitrary allocator as an argument when the function neither adds nor removes elements
+
+Here's an example:
+
+```cpp
+#include "Containers/ArrayView.h"
+
+int32 SumAll(TArrayView<const int32> array)
+{
+    return Algo::Accumulate(array);
+}
+
+SumAll(MyTArray);
+SumAll(MyCArray);
+SumAll(MakeArrayView(Ptr, Num));
+
+auto Values = { 1, 2, 3 };
+SumAll(Values);
+```
+
+View classes are not const-propagating! If you want a view where the elements are const, you need `TArrayView<const T>` not `const TArrayView<T>`! Caution: Treat a view like a reference to the elements in the array. **DO NOT** free or reallocate the array while the view exists! For this reason, be mindful of lifetime when constructing TArrayViews from rvalue initializer lists:
+
+```cpp
+TArrayView<int> View = { 1, 2, 3 }; // construction of array view from rvalue initializer list
+int n = View[0]; // undefined behavior, as the initializer list was destroyed at the end of the previous line
+```
+
+#### FStringView
+
+`FStringView` is a lightweight, non-owning view of the string data, and copying the view itself is efficient and does not affect the underlying data. However, when you copy the `FStringView`, the new instance of the view still refers to the same original string data.
+
+Here's an example:
+
+```cpp
+#include "Containers/UnrealString.h"
+
+void ProcessString(FStringView StringView)
+{
+    // Use FStringView to read the string data without copying it.
+    UE_LOG(LogTemp, Warning, TEXT("String: %s"), *StringView);
+}
+
+FString MyString = TEXT("Hello, FStringView!");
+
+// Pass FString as FStringView to the function without copying the data.
+ProcessString(MyString);
+
+// Copy FStringView to another variable.
+FStringView CopiedStringView = MyString;
+
+// Modifying the original FString does not affect the copied FStringView.
+MyString = TEXT("Modified String");
+
+// Print the contents of the copied FStringView.
+UE_LOG(LogTemp, Warning, TEXT("Copied StringView: %s"), *CopiedStringView);
+```
+
+#### TStringBuilder
+
+Here's an example:
+
+```cpp
+TStringBuilder<256> MessageBuilder;
+
+float PlayerHealth = 110.5285f;
+MessageBuilder << TEXTVIEW("Player's health: ") << FString::SanitizeFloat(PlayerHealth);
+
+return FString { MessageBuilder };
+```
+
+#### TEnumAsByte
+
+Template to store enumeration values as bytes in a type-safe way.
+
+Here's an example:
+
+```cpp
+#include "Containers/EnumAsByte.h"
+
+// Create a TEnumAsByte of the EMyEnum type.
+TEnumAsByte<EMyEnum> MyEnum(EMyEnum::One);
+
+// Set the value of the enum.
+MyEnum = EMyEnum::Two;
+
+// Get the value of the enum.
+EMyEnum Value = MyEnum.GetValue();
+
+// Check if the enum is equal to a value.
+bool Equals = MyEnum == EMyEnum::Two;
 ```
 
 ---
