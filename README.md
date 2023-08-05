@@ -262,7 +262,9 @@ Popular IDEs used in Unreal Engine and C++ development include:
 
 * [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
 
-* [CLion](https://www.jetbrains.com/clion/): CLion is another popular IDE developed by JetBrains, designed specifically for C++ development, and it offers solid integration with Unreal Engine projects. `Cost`.
+* [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
+
+* [Clion](https://www.jetbrains.com/clion/): Clion is another popular IDE developed by JetBrains, designed specifically for C++ development. NOTE, it doesn't offer integration with Unreal Engine projects. `Cost`.
 
 ### 🟢 Benefits of using C++ with Unreal Engine
 
