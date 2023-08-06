@@ -3,10 +3,15 @@
 <div align="center">
   
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mrrobinofficial/guide-unitysteamnetcodegameobjects/blob/HEAD/LICENSE.txt)
+![GitHub Repo stars](https://img.shields.io/github/stars/MrRobinOfficial/Guide-UnrealEngine)
+![guide-status](https://img.shields.io/badge/guide_status-wip-yellow)
+
 ![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-orange)
 ![reading-time](https://img.shields.io/badge/reading_time-202.3_mins-blue)
 ![word-count](https://img.shields.io/badge/word_count-26,300-blue)
-![guide-status](https://img.shields.io/badge/guide_status-wip-yellow)
+
+![GitHub issues](https://img.shields.io/github/issues/MrRobinOfficial/Guide-UnrealEngine)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/MrRobinOfficial/Guide-UnrealEngine)
 
 </div>
 
