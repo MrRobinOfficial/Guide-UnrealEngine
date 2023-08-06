@@ -17,7 +17,7 @@
 *In this repo, we'll guide you through the basics of getting started with Unreal Engine and C++. We'll cover the fundamentals of C++ programming, such as data types and pointers, and show you how to use these concepts in the context of game development with Unreal Engine. We'll also introduce you to the Unreal Engine module system, which is an important aspect of organizing your game code into smaller, more manageable pieces.*
 
 > **Note**
-> This repository was created in conjunction with [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT) to assist in writing and formulating each sentence. While it provides valuable information, it may not be entirely accurate. If you detect any errors or false statements, please feel free to create a new [issue](https://github.com/MrRobinOfficial/Guide-UnrealEngine/issues/) to report them for further improvement and clarification. Your contributions and feedback, as well as the collaboration with ChatGPT, are appreciated!
+> This repository was created in conjunction with [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT) to assist in writing and formulating each sentence. While it provides valuable information, it may not be entirely accurate. If you detect any errors or false statements, please feel free to create a new [issue](https://github.com/MrRobinOfficial/Guide-UnrealEngine/issues/) to report them for further improvement and clarification. Your contributions and feedback are appreciated!
 
 ## Table of contents
 
@@ -42,6 +42,7 @@
       * 2.2.4.1\. [Single-line comments](#single-line-comments)
       * 2.2.4.2\. [Multi-line comments](#multi-line-comments)
     * 2.2.5\. [Headers vs source files](#headers-vs-source-files)
+    * 2.2.6\. [Includes](#includes)
   * 2.3\. [🔥 Standard Library](#-standard-library)
   * 2.4\. [🔢 Data types](#-data-types)
     * 2.4.1\. [Char](#char)
@@ -440,6 +441,29 @@ In the early days of computing, languages like [Fortran](https://en.wikipedia.or
 Other languages, like C#[^12], Java[^13], and Python[^11], continued to use single file extensions because they adopted a more integrated approach to handling both declarations and implementations within a single file.
 
 In modern programming, the choice of using single file extensions or separate header and source files depends on the language's design philosophy and the needs of the development community. Both approaches have their strengths and weaknesses, and different languages adopt the one that best aligns with their goals and use cases.
+
+#### Includes
+
+In C++, the `include` directive is used to bring external code (headers or libraries) into your source code. It allows you to access the declarations and definitions present in those files.
+
+The `include` directive is typically written as:
+
+```cpp
+#include "filename.h"   // Using double quotes for user-defined headers
+#include <filename.h>   // Using angular brackets for standard library headers
+```
+
+Here's the difference between using double quotes and angular brackets:
+
+1. **Double Quotes (`"filename.h")**: When you use double quotes, the preprocessor searches for the header file in the current directory first. If it doesn't find the file there, it will look in the additional include directories specified in the project settings.
+
+   Example: `#include "MyHeader.h"`
+
+2. **Angular Brackets (`<filename.h>`)**: When you use angular brackets, the preprocessor only searches for the header file in the standard library directories specified for the compiler.
+
+   Example: `#include <iostream>`
+
+In general, you use double quotes for your own header files (which may be part of your project) and angular brackets for standard library headers (like `iostream`, `vector`, etc.) or headers from external libraries.
 
 ### 🔥 Standard Library
 
@@ -2063,8 +2087,8 @@ Some of the notorious classes, that inherit from `UObject` include:
   * `ACharacter` can be used as a base class for player characters, enemies, and other types of characters in the game.
 
 * `AController`
-  * Represents a controller in the game, which can be used to control a ```APawn``` or ```ACharacter```.
-  * ```AController``` provides input handling and navigation functionality, allowing players or AI to move and interact with the game world. ```AController``` can be used to implement different types of control schemes, such as first-person or third-person controls, and can be customized to support different input devices and control configurations.
+  * Represents a controller in the game, which can be used to control a `APawn` or `ACharacter`.
+  * `AController` provides input handling and navigation functionality, allowing players or AI to move and interact with the game world. `AController` can be used to implement different types of control schemes, such as first-person or third-person controls, and can be customized to support different input devices and control configurations.
 
 * `UActorComponent`
   * A base class for every object placed inside AActor.
