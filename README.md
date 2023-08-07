@@ -2189,23 +2189,113 @@ Some of the notorious classes, that inherit from `UObject` include:
  
 </details>
 
-You can watch this video, which explain in small details about main classes in Unreal Engine. <a href="https://www.youtube.com/watch?v=QcXHEsR0xHI" target="_blank">Link here</a>!
+You can watch a video from [underscore about Unreal Engine Architecture](https://www.youtube.com/watch?v=QcXHEsR0xHI).
 
-You can also watch a video discussion about Multiplayer Framework of Unreal Engine from *Kekdot*. <a href="https://www.youtube.com/watch?v=Hsr6mbNKBLU" target="_blank">Link here</a>!
+You can also watch a video discussion about [Multiplayer Framework of Unreal Engine from Kekdot](https://www.youtube.com/watch?v=Hsr6mbNKBLU).
 
 > **Note**
 > This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can ignore some of the main classes.
 
-You can also watch "*The Unreal Engine Game Framework: From int main() to BeginPlay*" by Alex Forsythe, which talks about Unreal Engine's architecture.
-<a href="https://www.youtube.com/watch?v=IaU2Hue-ApI" target="_blank">Link here</a>
+You can also watch [The Unreal Engine Game Framework: From int main() to BeginPlay by Alex Forsythe](https://www.youtube.com/watch?v=IaU2Hue-ApI), which he talks about Unreal Engine's architecture and how Unreal starts your game/editor.
 
 ## ✍️ Naming Convention
 
 ![Naming Conventions](static/img/Naming_conventions.png)
 
-Here is a github repo about <a href="https://github.com/Allar/ue5-style-guide" target="_blank">Unreal Engine's style guide by Michael Allar</a>.
+There is a github repo, which talks about Unreal's naming convention. The repo is very detail and explain how you should name your assets, as well as your code. Repo is called [Unreal Engine's style guide by Michael Allar](https://github.com/Allar/ue5-style-guide).
 
-Unreal Engine has a convention for naming boolean variables, which is to use a prefix of b followed by a descriptive name in camel case. For example, a boolean variable that controls whether a character is running might be named `bIsRunning`.  
+You can read more about [Epic C++ Coding Standard on their docs](https://docs.unrealengine.com/5.2/en-US/epic-cplusplus-coding-standard-for-unreal-engine/).
+
+Unreal Engine follows a specific naming convention that helps maintain consistency and readability in the codebase. When using Naming Conventions, all code and comments should use U.S. English spelling and grammar.
+
+Pascal case is a naming convention used in programming and other contexts where compound words or phrases are created by capitalizing the first letter of each word and joining them without spaces. In Unreal Engine, pascal case is commonly used for naming classes, member variables, functions, and other constructs.
+
+In Unreal Engine, the use of pascal case for classes is part of the naming convention for user-defined classes. When you create a new class in Unreal Engine, it is recommended to use pascal case for the class name. For example:
+
+```cpp
+class MyPlayerCharacter : public ACharacter
+{
+    // Class definition here
+};
+```
+
+Similarly, pascal case is used for member variables and functions in Unreal Engine to maintain consistency and improve code readability. For example:
+
+```cpp
+class MyPlayerCharacter : public ACharacter
+{
+public:
+    UPROPERTY()
+    float MovementSpeed;
+
+    UFUNCTION()
+    void Jump();
+};
+```
+
+Boolean variables, which uses a prefix of `b` followed by a descriptive name in pascal case.
+For example, a boolean variable that controls whether a character is running might be named: `bIsRunning`.
+
+Constants are sometimes written in all capital letters (also known as SCREAMING_SNAKE_CASE) to differentiate them from regular variables and to indicate that their values are meant to be treated as fixed and unchangeable throughout the program's execution.
+
+The convention of using all capital letters for constants is a common practice in various programming languages, not just in Unreal Engine C++. It helps developers easily identify constants in the code and makes the code more readable.
+
+Here's an example of a constant defined in Unreal Engine C++ using all capital letters:
+
+```cpp
+const int MAX_HEALTH = 100;
+```
+
+Variable, method, and class names should be:
+
+* Clear
+* Unambiguous
+* Descriptive
+
+The greater the scope of the name, the greater the importance of a good, descriptive name. Avoid over-abbreviation.
+
+```cpp
+// what does true mean?
+bool CheckTea(FTea Tea);
+
+// name makes it clear true means tea is fresh
+bool IsTeaFresh(FTea Tea);
+```
+
+Enumerated (Enum) classes are a replacement for old-style namespaced enums, both for regular enums and `UENUMs`. For example:
+
+```cpp
+// Old enum
+UENUM()
+namespace EThing
+{
+    enum Type
+    {
+        Thing1,
+        Thing2
+    };
+}
+
+// New enum
+UENUM()
+enum class EThing : uint8
+{
+    Thing1,
+    Thing2
+}
+```
+
+Enums are supported as `UPROPERTYs`, and replace the old `TEnumAsByte<>` workaround. Enum properties can also be any size, not just bytes:
+
+```cpp
+// Old property
+UPROPERTY()
+TEnumAsByte<EThing::Type> MyProperty;
+
+// New property
+UPROPERTY()
+EThing MyProperty;
+```
 
 ### Prefixes
 
