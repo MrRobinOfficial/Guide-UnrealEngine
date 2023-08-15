@@ -4033,7 +4033,7 @@ You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
 | UPARAM        | Specifies how a function parameter should be treated when used in Blueprint or other Unreal Engine systems.                                                                             | Used to define parameter properties, such as Blueprint read/write access, in C++ functions exposed to Blueprint.    |
 | UMETA         | Provides additional metadata for UPROPERTY, UFUNCTION, UCLASS, USTRUCT, and UENUM, allowing customization of their behavior in Unreal Engine's reflection system.                     | Used to attach additional information or customizations to C++ entities exposed to Unreal Engine reflection.       |
 
-### 👷 Constructors and Destructors
+### 👷 Constructors, destructors and initialization
 
 #### Constructors
 
@@ -4104,6 +4104,30 @@ void AMyActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
     Super::EndPlay(EndPlayReason);
 }
 ```
+
+#### Initialization
+
+In C++, initialization refers to the process of assigning an initial value to a variable when it is declared. Initialization is crucial because it ensures that variables have well-defined starting values, which can help avoid unexpected behavior and improve code clarity.
+
+Here's a code snippet that demonstrates:
+
+```cpp
+// Initialization using assignment statement
+int num1 = 10;
+
+// Initialization using brace initializer
+int num2{20};
+```
+
+There is an **important** difference when using brace initializer, especially in cases where narrowing conversions are involved. A narrowing conversion occurs when a value is assigned to a variable that has a smaller range than the provided value. For example:
+
+```cpp
+int num3 = 1000;       // OK, no narrowing conversion
+int num4 = 1000.5;     // OK, narrowing conversion from double to int
+int num5{1000.5};      // Error, narrowing conversion from double to int
+```
+
+In the last line, using brace initializer, the compiler will generate an error because it detects a narrowing conversion from `double` to `int`, which could potentially lead to data loss. This is a safety feature to help catch unintended data truncation.
 
 ## 💾 Soft vs hard references
 
