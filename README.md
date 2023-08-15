@@ -1476,17 +1476,68 @@ int result = sum(num1, num2);
 
 ### 🦾 Bitwise Operators
 
-Bitwise Operators in C++ are used to perform bitwise operations on individual bits of integer data types. These operators directly manipulate the binary representation of integers at the bit level.
+#### Binary code
+
+Binary code is a system of representing data and instructions using a two-symbol system, typically `0` and `1`. It is the fundamental language that computers understand and use internally to process information. Each 0 or 1 is called a "**bit**" (short for binary digit), and a group of 8 bits is called a "**byte**".
+
+#### Logic gates
+
+Logic gates are fundamental building blocks of digital circuits, responsible for performing logical operations on binary inputs to produce binary outputs. These gates form the basis of digital systems, including computers and other electronic devices. Each logic gate implements a specific Boolean function, which takes one or more binary inputs and produces an output based on a defined truth table.
+
+There are several types of logic gates, each representing a different fundamental logical operation:
+
+1. **AND Gate:** This gate produces an output of 1 (or "high") only when both of its input signals are 1. Otherwise, the output is 0 (or "low"). It behaves like the logical "AND" operation.
+
+2. **OR Gate:** The OR gate produces an output of 1 if at least one of its input signals is 1. It produces an output of 0 only when both inputs are 0. It behaves like the logical "OR" operation.
+
+3. **NOT Gate:** Also known as an inverter, this gate has a single input and produces the opposite value as its output. If the input is 1, the output is 0, and vice versa. It behaves like the logical "NOT" operation.
+
+4. **NAND Gate:** The NAND gate is a combination of an AND gate followed by a NOT gate. It produces the opposite output of an AND gate: it gives a 0 output when both inputs are 1, and a 1 output otherwise.
+
+5. **NOR Gate:** Similar to the NAND gate, the NOR gate combines an OR gate with a NOT gate. It produces the opposite output of an OR gate: it gives a 1 output only when both inputs are 0.
+
+6. **XOR Gate:** The XOR (exclusive OR) gate produces a 1 output when the number of 1 inputs is odd. If the number of 1 inputs is even, the output is 0.
+
+7. **XNOR Gate:** The XNOR (exclusive NOR) gate is the complement of the XOR gate. It produces a 1 output when the number of 1 inputs is even, and a 0 output otherwise.
+
+#### Hexadecimal
+
+Hexadecimal (hex) is a base-16 numbering system that is commonly used in computers to represent and manipulate binary data in a more human-readable and compact format. In the hexadecimal system, each digit represents a value from 0 to 15, making it a convenient way to represent binary data.
+
+In the decimal (base-10) numbering system, we use ten symbols (0 to 9) to represent numbers. Similarly, in hexadecimal, we use sixteen symbols (0 to 9 and A to F) to represent values. The symbols A to F represent the decimal values 10 to 15, respectively.
+
+Here is a comparison of decimal and hexadecimal representations:
+
+| Decimal | Hexadecimal |
+|---------|-------------|
+| 0       | 0           |
+| 1       | 1           |
+| 2       | 2           |
+| 3       | 3           |
+| 4       | 4           |
+| 5       | 5           |
+| 6       | 6           |
+| 7       | 7           |
+| 8       | 8           |
+| 9       | 9           |
+| 10      | A           |
+| 11      | B           |
+| 12      | C           |
+| 13      | D           |
+| 14      | E           |
+| 15      | F           |
+
+As an example, `255` in hexadecimal would be `FF`.
+
+---
+
+Bitwise Operators in C++ are used to perform bitwise operations on individual bits of data type. These operators directly manipulate the binary representation of data type at the bit level.
 
 Bitwise operations can bring performance benefits in certain situations because they operate at a low level, dealing directly with binary representations. This can make certain operations faster and more memory-efficient compared to other higher-level approaches.
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/igIjGxF2J-w/maxresdefault.jpg)](https://youtu.be/igIjGxF2J-w)
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/g8ACeN9QMdY/maxresdefault.jpg)](https://youtu.be/g8ACeN9QMdY)
-
-**Bitwise Operators** in C++ are used to perform bitwise operations on individual bits of integer data types. These operators directly manipulate the binary representation of integers at the bit level.
-
-Bitwise operations can bring performance benefits in certain situations because they operate at a low level, dealing directly with binary representations. This can make certain operations faster and more memory-efficient compared to other higher-level approaches.
 
 Here's a table listing all the bitwise operators in C++ and their functionality:
 
