@@ -3667,6 +3667,14 @@ UMETA([specifier1=setting1, specifier2, ...])
 * `BlueprintReadOnly`: Exposes the property to Blueprint scripts, but only for reading, not writing.
 * `BlueprintReadWrite`: Exposes the property to Blueprint scripts for both reading and writing.
 * `Category`: Organizes properties into named categories in the editor for better organization and readability.
+* `EditFixedSize`: Specifies that an `TArray` or `TMap` property should be editable in the Details Panel of the Unreal Editor with a fixed number of elements, preventing addition or removal.
+* `Transient`: Indicates that a property should not be serialized, making it non-persistent and not saved when saving the state of the object.
+* `Replicated`: Automatically replicates the property's value to clients in a multiplayer environment when the property changes on the server.
+* `ReplicatedUsing`: Specifies a custom function that should be called on both the server and clients to handle replication of the property's value.
+* `SimpleDisplay`: Indicates that the property's value should be displayed in a simple and concise manner in editor UI.
+* `AdvancedDisplay`: Indicates that the property's value should be displayed with advanced options in editor UI.
+* `Config`: Marks the property to be serialized to the project configuration file for external customization.
+* `GlobalConfig`: Marks the property to be serialized to the global configuration file for external customization across all projects.
 
 #### Meta tags
 
@@ -3682,6 +3690,42 @@ UMETA([specifier1=setting1, specifier2, ...])
 ```cpp
 UPROPERTY(EditAnywhere, Category="Hello|Cruel|World")
 int32 EditAnywhereNumber;
+```
+
+```cpp
+UPROPERTY(Transient, Replicated)
+int32 CurrentHealth;
+
+UPROPERTY(Transient, ReplicatedUsing=OnArmorChanged)
+int32 CurrentArmor;
+
+UFUNCTION()
+void OnArmorChanged();
+```
+
+```cpp
+UPROPERTY(EditAnywhere, SimpleDisplay)
+int32 MaxHealth = 100;
+
+UPROPERTY(EditAnywhere, AdvancedDisplay)
+float HealthRegenerationTime = 5.0f;
+```
+
+```cpp
+// Must mark UCLASS with Config specifier
+
+// Config can be overriden from the base class.
+UPROPERTY(Config, BlueprintReadOnly)
+bool bRegenerateHealth;
+
+// GlobalConfig CANNOT be overridden from the base class.
+UPROPERTY(GlobalConfig, BlueprintReadOnly)
+bool bEnableHealthSimulation;
+```
+
+```cpp
+UPROPERTY(EditAnywhere, EditFixedSize)
+TArray<FName> Usernames = { TEXT("JohnDoe"), TEXT("MrRobin"), TEXT("JaneDoe") };
 ```
 
 ```cpp
