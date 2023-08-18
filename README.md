@@ -96,7 +96,10 @@
   * 2.21\. [🧙‍♂️ Generic Programming](#%EF%B8%8F-generic-programming)
   * 2.22\. [😵 Recursion](#-recursion)
   * 2.23\. [🫀 Lambda](#-lambda)
-  * 2.24\. [🦾 Bitwise Operators](#-bitwise-operators)
+  * 2.24\. [🦾 Binary code](#-binary-code)
+    * 2.24.1\. [Logic gates](#logic-gates)
+    * 2.24.2\. [Hexadecimal](#hexadecimal)
+    * 2.24.1\. [Bitwise Operators](#bitwise-operators)
   * 2.25\. [💥 Stack vs Heap](#-stack-vs-heap)
   * 2.26\. [⚓ Design Patterns And Principles](#design-patterns-and-principles)
   	* 2.26.1\. [SOLID Principle](#solid-principle)
@@ -1474,9 +1477,7 @@ int num2 = 10;
 int result = sum(num1, num2);
 ```
 
-### 🦾 Bitwise Operators
-
-#### Binary code
+### 🦾 Binary code
 
 Binary code is a system of representing data and instructions using a two-symbol system, typically `0` and `1`. It is the fundamental language that computers understand and use internally to process information. Each 0 or 1 is called a "**bit**" (short for binary digit), and a group of 8 bits is called a "**byte**".
 
@@ -1529,7 +1530,7 @@ Here is a comparison of decimal and hexadecimal representations:
 
 As an example, `255` in hexadecimal would be `FF`.
 
----
+#### Bitwise Operators
 
 Bitwise Operators in C++ are used to perform bitwise operations on individual bits of data type. These operators directly manipulate the binary representation of data type at the bit level.
 
