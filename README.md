@@ -2204,9 +2204,9 @@ Some of the notorious classes, that inherit from `UObject` include:
   * Manages the player's input, screen rendering, and other local gameplay-related tasks. ULocalPlayer is often used in conjunction with other classes, such as APlayerController, to manage local player interactions with the game.
 
 * `UWorld`
-* Represents a single instance of a level or map. It contains all the actors, components, and other objects that are present in the level, as well as information about the level's environment and physics settings.
-* Functions:
-  * `SpawnActor()` and `SpawnActorDeferred()` (deferred allow you to set actor properties before it's spawned into the world.)
+    * Represents a single instance of a level or map. It contains all the actors, components, and other objects that are present in the level, as well as information about the level's environment and physics settings.
+    * Functions:
+        * `SpawnActor()` and `SpawnActorDeferred()` (deferred allow you to set actor properties before it's spawned into the world.)
 
 * `ULevel`
   * Represents a level in the game world that contains actors, geometry, lighting, and other assets.
