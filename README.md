@@ -5073,7 +5073,7 @@ To change any of the shortcuts, you can access the keyboard shortcut settings vi
 * <kbd>Mouse Wheel Up/Down</kbd>: Zoom
 
 ### Outliner
-* <kbd>Ctrl + G</kbd> or `Shift + G`: Group/Ungroup
+* <kbd>Ctrl + G</kbd> or <kbd>Shift + G</kbd>: Group/Ungroup
 * <kbd>Right-Click</kbd> on Group: Pin/Unpin
 
 ### Blueprint editor
