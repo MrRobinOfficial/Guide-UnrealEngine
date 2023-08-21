@@ -4980,7 +4980,7 @@ void FMyTickableThing::Tick( float DeltaTime )
 ```
 
 > **Note**
-> Tick any object you want, UObject or not!
+> Tick any object you want, `UObject` or not!
 
 > **Warning**
 > `USTRUCT` don't support expose functions with UHT[^2].
