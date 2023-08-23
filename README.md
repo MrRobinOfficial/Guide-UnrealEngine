@@ -2687,11 +2687,11 @@ You can read more about [string handling from the docs](https://docs.unrealengin
 
 <table><tr><td>
 
-* TEXT(): The `TEXT` macro is used to create an `FString` from a string literal. It marks the string for localization, allowing Unreal Engine's localization system to replace the text with the appropriate translation for the user's language.
+* `TEXT`: The `TEXT()` macro is used for specifying wide-character (UTF-16) encoding. This makes the string literal for being platform independent. Without this macro, you are using ANSI encoding (which can cause issue on other machines).
 
-* INVTEXT(): The `INVTEXT` macro is used to mark a string as non-localizable. It indicates that the text should not be translated and should remain constant across different languages.
+* `INVTEXT`: The `INVTEXT()` macro is used to mark a string as non-localizable. It indicates that the text should not be translated and should remain constant across different languages.
 
-* LOCTEXT(): The `LOCTEXT` macro is used to create `FText` literals specifically for localization. It takes a namespace and a key to identify the localized string.
+* `LOCTEXT`: The `LOCTEXT()` macro is used to create `FText` literals specifically for localization. It takes a namespace and a key to identify the localized string.
 
 </td></tr></table>
 
@@ -4257,7 +4257,7 @@ Here's an example of PI macro:
 Here is a list of common macros in Unreal Engine:
 
 * `GENERATED_BODY()` - Boilerplate code required by the engine.
-* `TEXT()` - Convert a string literal to a platform independent string literal. Without this macro, you are using ANSI encoding (which can cause issue on other machines).
+* `TEXT()` - Used for specifying wide-character (UTF-16) encoding. This makes the string literal for being platform independent. Without this macro, you are using ANSI encoding (which can cause issue on other machines).
 * `TEXTVIEW()` - Calculates the length of a string from a string literal at compile time.
 * `INVTEXT()` - Mark text strings for localization. It stands for "Invariant Text" and is used to specify text that should remain unchanged during the localization process.
 * `LOCTEXT()` - Creating localized text. It stands for "Localized Text" and allows you to define text literals that can be localized for different languages.
