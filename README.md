@@ -190,7 +190,7 @@
 * 13\. [🌍 Global Functions](#-global-functions)
 * 14\. [🏛️ Libraries](#%EF%B8%8F-libraries)
   * 14.1\. [Kismet Library](#kismet-library)
-* 15\. [📃 Macros](#-macros4)
+* 15\. [📃 Macros](#-macros)
 * 16\. [☑️ Assertions](#%EF%B8%8F-assertions)
   * 16.1\. [Check](#check)
   * 16.2\. [Verify](#verify)
@@ -4237,9 +4237,9 @@ You can read more about [Blueprint Function Libraries here](https://docs.unreale
 * `FMath` - Math helper functions (Check ```GenericPlatformMath.h``` for additional math functions).
 * `DrawDebugHelpers.h` - Header file containg debug draw functions. Read more about <a href="https://unrealcpp.com/draw-debug-helpers/" target="_blank">here</a>!
 
-## 📃 Macros[^4]
+## 📃 Macros
 
-Macros are preprocessor directives that perform text replacements before the compilation process. They are denoted by the <kbd>#</kbd> symbol and are used to define reusable code snippets, conditionally include or exclude code, and perform other preprocessing operations.
+Macros[^4] are preprocessor directives that perform text replacements before the compilation process. They are denoted by the <kbd>#</kbd> symbol and are used to define reusable code snippets, conditionally include or exclude code, and perform other preprocessing operations.
 
 Creating a macro in C++ with Unreal Engine is straightforward. You can use the #define preprocessor directive to define a macro. Here's the basic syntax:
 
