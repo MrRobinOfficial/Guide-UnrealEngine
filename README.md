@@ -5016,7 +5016,7 @@ f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
 
 The Math Expression node acts like a collapsed graph. It is a single node that you can Double-click to open the sub-graph that makes up its functionality. Initially, the name/expression is blank. Whenever you rename the node, then the new expression is parsed and a new sub-graph is generated.
 
-![image](https://github.com/MrRobinOfficial/Guide-UnrealEngine/assets/61658252/8d0a2205-8c25-469b-8254-b3a3d00bb01d)
+![Math Node Example](static/img/math_node_example.png)
 
 Read more <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">here</a>!
 
