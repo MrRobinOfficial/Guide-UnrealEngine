@@ -28,13 +28,17 @@
 >
 > **Your contributions and feedback are appreciated!**
 
+> **Note**
+> Examples and documentation are intended to work on **UE 5.0** version and upwards. Some code may or may not work on previous versions!
+
 ## Table of contents
 
 <table><tr><td>
 
 * 0\. [👑 Cheatsheets](#-cheatsheets)
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
-    * 1.1\. [🌈 Integrated Development Environment](#-benefits-of-using-c-with-unreal-engine) 
+    * 1.1\. [🌈 Integrated Development Environment](#-benefits-of-using-c-with-unreal-engine)
+    * 1.2\. [✂️ Tools to help your journey](#-tools-to-help-your-journey)
     * 1.2\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
     * 1.3\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
 * 2\. [🗺️ Summary of C++ and Programming World](#%EF%B8%8F-summary-of-c-and-programming-world)
@@ -133,42 +137,43 @@
     * 7.2\. [Booleans](#booleans-1)
     * 7.3\. [Integers](#integers-1)
     * 7.4\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles-1)
-    * 7.5\. [🦺 Unreal Engine Typedefs](#-unreal-engine-typedefs)
-    * 7.6\. [📖 Strings](#-strings)
-      * 7.6.1\. [Text Macros](#text-macros)
-      * 7.6.2\. [FName](#fname)
-      * 7.6.3\. [FString](#fstring)
-      * 7.6.4\. [FText](#ftext)
-      * 7.6.5\. [Examples of usages](#examples-of-usages)
-    * 7.7\. [🚀 Vector, Rotator, Quat and Transform](#-vector-rotator-quat-and-transform)
-    * 7.7\. [💐 Collections](#-collections)
-      * 7.7.1\. [TArray](#tarray)
-      * 7.7.2\. [TSet](#tset)
-      * 7.7.3\. [TMap](#tmap)
-      * 7.7.4\. [TMultiMap](#tmultimap)
-      * 7.7.5\. [TStaticArray](#tstaticarray)
-      * 7.7.6\. [FHashTable](#fhashtable)
-      * 7.7.7\. [TStaticHashTable](#tstatichashtable)
-      * 7.7.8\. [TSortedMap](#tsortedmap)
-      * 7.7.9\. [TList](#tlist)
-      * 7.7.10\. [TLinkedList](#tlinkedlist)
-      * 7.7.11\. [TQueue](#tqueue)
-      * 7.7.12\. [TArrayView](#tarrayView)
-      * 7.7.13\. [FStringView](#fstringview)
-      * 7.7.14\. [TStringBuilder](#tstringbuilder)
-      * 7.7.15\. [TEnumAsByte](#tenumasbyte)
-    * 7.8\. [🧨 Value type vs Reference type](#-value-type-vs-reference-type)
-    * 7.9\. [👈 Pointers](#-pointers)
-      * 7.9.1\. [🦴 Raw pointers](#-raw-pointers)
-      * 7.9.2\. [🤖 Smart pointers library](#smart-pointers)
-        * 7.9.2.1\. [TSharedPtr](#tsharedptr)
-        * 7.9.2.1\. [TWeakPtr](#tweakptr)
-        * 7.9.2.1\. [TUniquePtr](#tuniqueptr)
-      * 7.9.3\. [🤖 Smart `UObject` pointers](#-smart-uobject-pointers)
-        * 7.9.3.1\. [TWeakObjectPtr](#tweakobjectptr)
-        * 7.9.3.2\. [TWeakInterfacePtr](#tweakinterfaceptr)
-        * 7.9.3.3\. [TSoftObjectPtr](#tsoftobjectptr)
-        * 7.9.3.4\. [TSoftClassPtr](#tsoftclassptr)
+    * 7.5\. [🛟 Size can vary](#-size-can-vary)
+    * 7.6\. [🦺 Unreal Engine Typedefs](#-unreal-engine-typedefs)
+    * 7.7\. [📖 Strings](#-strings)
+      * 7.7.1\. [Text Macros](#text-macros)
+      * 7.7.2\. [FName](#fname)
+      * 7.7.3\. [FString](#fstring)
+      * 7.7.4\. [FText](#ftext)
+      * 7.7.5\. [Examples of usages](#examples-of-usages)
+    * 7.8\. [🚀 Vector, Rotator, Quat and Transform](#-vector-rotator-quat-and-transform)
+    * 7.8\. [💐 Collections](#-collections)
+      * 7.8.1\. [TArray](#tarray)
+      * 7.8.2\. [TSet](#tset)
+      * 7.8.3\. [TMap](#tmap)
+      * 7.8.4\. [TMultiMap](#tmultimap)
+      * 7.8.5\. [TStaticArray](#tstaticarray)
+      * 7.8.6\. [FHashTable](#fhashtable)
+      * 7.8.7\. [TStaticHashTable](#tstatichashtable)
+      * 7.8.8\. [TSortedMap](#tsortedmap)
+      * 7.8.9\. [TList](#tlist)
+      * 7.8.10\. [TLinkedList](#tlinkedlist)
+      * 7.8.11\. [TQueue](#tqueue)
+      * 7.8.12\. [TArrayView](#tarrayView)
+      * 7.8.13\. [FStringView](#fstringview)
+      * 7.8.14\. [TStringBuilder](#tstringbuilder)
+      * 7.8.15\. [TEnumAsByte](#tenumasbyte)
+    * 7.9\. [🧨 Value type vs Reference type](#-value-type-vs-reference-type)
+    * 7.10\. [👈 Pointers](#-pointers)
+      * 7.10.1\. [🦴 Raw pointers](#-raw-pointers)
+      * 7.10.2\. [🤖 Smart pointers library](#smart-pointers)
+        * 7.10.2.1\. [TSharedPtr](#tsharedptr)
+        * 7.10.2.2\. [TWeakPtr](#tweakptr)
+        * 7.10.2.3\. [TUniquePtr](#tuniqueptr)
+      * 7.10.3\. [🤖 Smart `UObject` pointers](#-smart-uobject-pointers)
+        * 7.10.3.1\. [TWeakObjectPtr](#tweakobjectptr)
+        * 7.10.3.2\. [TWeakInterfacePtr](#tweakinterfaceptr)
+        * 7.10.3.3\. [TSoftObjectPtr](#tsoftobjectptr)
+        * 7.10.3.4\. [TSoftClassPtr](#tsoftclassptr)
 * 8\. [🛸 Reflection System](#-reflection-system)
 * 9\. [🗑️ Garbage Collection](#%EF%B8%8F-garbage-collection)
 * 10\. [💎 Unreal Header Tool](#-unreal-header-tool)
@@ -278,28 +283,39 @@ An Integrated Development Environment (IDE) is a software application that provi
 
 Popular IDEs used in Unreal Engine and C++ development include:
 
-* [Visual Studio](https://visualstudio.microsoft.com/): The Visual Studio IDE with the Visual Studio Unreal Engine Extension (VAX) is a widely used choice for Unreal Engine development. It offers a powerful set of C++ tools and seamless integration with Unreal Engine, providing a robust development environment. `Free`.
+* [Visual Studio](https://visualstudio.microsoft.com/): The Visual Studio IDE for Unreal Engine development. It offers a powerful set of C++ tools and seamless integration with Unreal Engine, providing a robust development environment. `Free`.
 
 * [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
 
 * [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
 
-* [Clion](https://www.jetbrains.com/clion/): Clion is another popular IDE developed by JetBrains, designed specifically for C++ development. NOTE, it doesn't offer integration with Unreal Engine projects. `Cost`.
+### ✂️ Tools to help your journey
+
+Here are some tools that can be integrated into your IDE's for better performance, debugging or writing good code practices.
+
+* [Visual Assist](https://www.wholetomato.com/): A productivity tool for refactoring, reading, writing, navigating and generating C/C++/C# code. `Cost` and for `VS`.
+
+* [UnrealMacroGenerator](https://marketplace.visualstudio.com/items?itemName=Naotsun.Naotsun-UE-UMG): Provides a macro editor used by Unreal C ++ of Unreal Engine. You can create macros and edit already written macros. `Free` and for `VS`.
 
 ### 🟢 Benefits of using C++ with Unreal Engine
 
 * High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
-* Access to low-level functionality: C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
+
 * Integration with existing codebases: If you have existing C++ code that you want to integrate with your Unreal Engine project, using C++ allows you to do so more easily.
-* More control over memory management: C++ requires you to manage memory manually, which can be a challenge but also gives you more control over how your code uses memory. This can be important in situations where memory usage is a concern, such as on mobile devices or consoles.
-* Flexibility: With C++, you have the flexibility to write code in a variety of styles, including object-oriented, procedural, and functional programming. This allows you to choose the approach that best suits your needs.
+
+* Access to low-level functionality: C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
+
+* Garbage Collection and Memory Management: While C++ demands manual memory management, Unreal Engine provides a [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) that efficiently clears out `UObject` classes from memory. With the control over manual memory handling, you can precisely dictate when to allocate and deallocate memory as necessary.
 
 ### 🔴 Drawbacks of using C++ with Unreal Engine
 
-* Steep learning curve: C++ is a complex language with many features, and it can be difficult to learn for beginners. Unreal Engine's architecture can also be challenging to understand, especially if you're new to game development.
-* Time-consuming: Writing C++ code can be more time-consuming than using other programming languages. C++ requires more attention to detail, and it can take longer to write and debug code.
-* More prone to errors: C++ requires manual memory management and has less strict type checking than some other languages. This can make it more prone to errors like memory leaks, null pointer dereferences, and type mismatches.
-* Harder to prototype: Because C++ requires more code to accomplish even simple tasks, it can be harder to quickly prototype ideas in C++ than in other programming languages.
+* More prone to errors: C++ is a strongly typed language, requiring the precise use of semicolons, braces and accurate syntax to ensure successful compilation. Rectifying these issues can be time-consuming. On the contrary, the Blueprint's node-based graph system operates without the need for "correct" syntax, offering a more "forgiving" environment.
+
+* Tied to Unreal's API: Throughout the evolution of Unreal Engine, Epic Games may modify the source code, rendering certain functions and members as **obsolete**/**deprecated**. Consequently, Unreal might recommend the need to update the codebase with the latest [API](https://en.wikipedia.org/wiki/API) changes. Failure to do so can lead to compilation errors, in the future.
+
+* Updating your codebase: When working with C++ and Unreal Engine, your C++ code is compiled into a [.DLL](https://en.wikipedia.org/wiki/Dynamic-link_library) (in Windows OS) file that Unreal Engine can read and use within Blueprint graphs. However, this necessitates Unreal Engine to reload to incorporate your code changes. Epic Games has introduced [Hot Reload](https://unrealcommunity.wiki/live-compiling-in-unreal-projects-tp14jcgs), allowing for code reloading without editor restart, streamlining the development process. While Hot Reload often works for a while, it is unreliable and frequently causes blueprint corruption or other issues.
+
+* Requires more storage: When working with C++ within Unreal Engine, it often involves using "Editor Symbols for debugging," consuming approximately 60 GB of storage. Similarly, if you opt to build Unreal Engine from its source code (on their github page), you'll require around 200 GB of storage space.
 
 ## 🗺️ Summary of C++ and Programming World
 
@@ -529,6 +545,8 @@ for (int num : numbers)
 
 </td></tr></table>
 
+Table from [Microsoft Learn about Data Type Ranges](https://learn.microsoft.com/en-us/cpp/cpp/data-type-ranges?view=msvc-170).
+
 | Type Name           | Bytes | Other Names                          | Range of Values                                       |
 |---------------------|-------|--------------------------------------|-------------------------------------------------------|
 | `int`                 | 4     | `signed`                               | -2,147,483,648 to 2,147,483,647                       |
@@ -558,6 +576,20 @@ for (int num : numbers)
 | `wchar_t`             | 2     | `__wchar_t`                            | 0 to 65,535                                          |
 
 If its name begins with two underscores (`__`), a data type is non-standard.
+
+> **Warning**
+> C++ lacks explicitness about data types size, leading to potential variation. For instance, the `int` type can manifest as either 16-bits or 32-bits, depending on the context.
+
+Here is a summary of the explicit data sizes:
+
+<table><tr><td>
+
+* `char`, `signed char` and `unsigned char` are at least 8 bits
+* `signed short`, `unsigned short`, `signed int` and `unsigned int` are at least 16 bits
+* `signed long` and `unsigned long` are at least 32 bits
+* `signed long long` and `unsigned long long` are at least 64 bits
+
+</td></tr></table>
 
 #### Char
 
@@ -1600,7 +1632,7 @@ C++ provides features like dynamic memory allocation with `new` and `delete` ope
 ---
 
 > **Warning**
-> Don't use `new` and `delete` operators `UObject` classes, as this would interfere with Unreal's garbage collection system.
+> Don't use `new` and `delete` operators on `UObject` classes, as this would interfere with Unreal's garbage collection system.
 
 | Aspect           | Stack                                    | Heap                                        |
 |------------------|------------------------------------------|---------------------------------------------|
@@ -2031,14 +2063,6 @@ int main()
 
 [![Watch the video by Alex Forsythe](https://img.youtube.com/vi/VMZftEVDuCE/maxresdefault.jpg)](https://youtu.be/VMZftEVDuCE)
 
-|             | Pros of Blueprint                          | Cons of Blueprint                              | Pros of C++                                   | Cons of C++                                       |
-|-------------|--------------------------------------------|------------------------------------------------|-----------------------------------------------|--------------------------------------------------|
-| Ease of Use | Visual scripting with a node-based interface | Limited control over low-level optimizations   | Greater control over memory management         | Steeper learning curve                           |
-| Rapid       | Quick iteration and prototyping             | Performance may be slower compared to C++      | Efficient execution and runtime performance    | More verbose syntax and code complexity          |
-| Development | No compilation required                     | Limited support for complex algorithms         | Extensive standard library and third-party libraries for various functionalities     | Error-prone manual Potential for crashes and undefined behavior memory management             |
-| Flexibility | Easy to modify and maintain                 | Limited access to low-level engine features     | Full access to Unreal Engine internals         | Requires understanding of engine architecture   |
-| Collaboration| Visual representation of logic             | More challenging for team collaboration        | Easier integration with external libraries     | Collaboration may require code comprehension    |
-
 **Choose C++** when you anticipate the need for interaction with other C++ code or require extensive control over low-level optimizations and memory management. C++ is well-suited for classes that require direct access to engine internals and efficient execution.
 
 **Use Blueprint** as an inherited class when you want to benefit from the visual scripting capabilities and quick prototyping offered by Blueprint, while still having the option to incorporate C++ code in the future. This allows for a flexible approach where you can leverage the power of Blueprint while having the ability to extend functionality with C++ when needed.
@@ -2366,6 +2390,9 @@ EThing MyProperty;
 | T      | Template     | `TSubclassOf<T>`, `TArray<T>`, `TSet<T>`, `TMap<T>`, `TMultiMap<T>`       |
 | G      | Global Class | `GEngine`, `GConfig`, `GWorld`, `GEngineLoop`, `GIsEditor`                |
 
+> **Trivia**
+> Did you know that `F` prefix actually stands for `Float` (floating point). but it was inadvertently spread throughout and has lost its original meaning.
+
 ### 🎨 Abbreviations, Acronyms and Synonyms
 
 <table><tr><td>
@@ -2549,7 +2576,8 @@ EThing MyProperty;
 * `bool` - Represents a logical value, either `true` or `false`
 * `char` - Represents a single character in the ASCII[^3] character set
 * `int8` - Represents a signed 8-bit integer
-* `int` or `int32` - Represents a signed 32-bit integer
+* `int` - Represents a signed integer that varies between 16-bit and 32-bit depending on the context.
+* `int32` - Represents a signed 32-bit integer
 * `int16` - Represents a signed 16-bit integer
 * `int64` - Represents a signed 64-bit integer
 * `uint8` - Represents an unsigned 8-bit integer
@@ -2590,15 +2618,6 @@ bool bIsDead = true; // Unreal has prefixed of a 'b' (always lowercase)
 ### Integers
 
 ```cpp
-int Health = 10; // Unreal always uses PascalCase naming convention.
-```
-
-> **Note**
-> It is generally recommended to use `int32` instead of `int` for representing 32-bit signed integers. This is because the exact size of `int` is not defined by the C++ standard and can vary across different platforms and compilers. By using `int32`, you can ensure that the size of the integer is consistent regardless of the platform.
-
-So, here is the updated code:
-
-```cpp
 int32 Health = 10; // Unreal always uses PascalCase naming convention.
 ```
 
@@ -2611,6 +2630,32 @@ float SpeedInMetersPerSecond = 5.5f; // C++ always uses 'f' or 'F' literal for d
 ```cpp
 double SpeedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a double variable.
 ```
+
+### 🛟 Size can vary
+
+It is generally recommended to use Unreal's typedefs, such as `int32` instead of `int` for representing 32-bit signed integers. This is because the exact size of `int` is not defined by the C++ standard.
+
+C++ implementation can define the size of a data type in bytes (`sizeof(type)`) to be any value, as long as:
+
+* The expression `sizeof(type) * CHAR_BIT` evaluates to a number of bits high enough to contain required ranges.
+* And the ordering of type is still valid (e.g. `sizeof(int) <= sizeof(long)`).
+
+The `CHAR_BIT` is the number of bits in char. It is declared in “limits.h” header file in C++ language. It is of 8-bits per byte.
+
+You can read more about data ranges in this [section](#-data-types).
+
+So, the summary data sizes would be:
+
+<table><tr><td>
+
+* `char`, `signed char` and `unsigned char` are at least 8 bits
+* `signed short`, `unsigned short`, `signed int` and `unsigned int` are at least 16 bits
+* `signed long` and `unsigned long` are at least 32 bits
+* `signed long long` and `unsigned long long` are at least 64 bits
+
+</td></tr></table>
+
+You can read more in-depth about this from [Alex on Stack Overflow](https://stackoverflow.com/a/589684/17067030).
 
 ### 🦺 Unreal Engine Typedefs
 
@@ -2697,7 +2742,7 @@ You can read more about [string handling from the docs](https://docs.unrealengin
 
 #### FName
 
-In Unreal Engine, `FName` (Fast Name) is a specialized type used for identifying objects within the Unreal Engine object system. It is optimized for fast comparison and storage and is commonly used for referencing actors, components, or assets in a performance-efficient manner.
+In Unreal Engine, `FName` is a specialized type used for identifying objects within the Unreal Engine object system. It is optimized for fast comparison and storage and is commonly used for referencing actors, components, or assets in a performance-efficient manner.
 
 The `FName` class stores strings as hashed indices, making it a lightweight and fast alternative to regular strings.
 
@@ -2916,7 +2961,7 @@ MyIntStringMap.Remove(3);
 
 #### TMultiMap
 
-Similar to ```TMap```, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
+Similar to `TMap`, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
 
 Here's an example:
 
@@ -3159,7 +3204,7 @@ SumAll(Values);
 View classes are not const-propagating! If you want a view where the elements are const, you need `TArrayView<const T>` not `const TArrayView<T>`! Caution: Treat a view like a reference to the elements in the array. **DO NOT** free or reallocate the array while the view exists! For this reason, be mindful of lifetime when constructing TArrayViews from rvalue initializer lists:
 
 ```cpp
-TArrayView<int> View = { 1, 2, 3 }; // construction of array view from rvalue initializer list
+TArrayView<int32> View = { 1, 2, 3 }; // construction of array view from rvalue initializer list
 int n = View[0]; // undefined behavior, as the initializer list was destroyed at the end of the previous line
 ```
 
@@ -3383,7 +3428,7 @@ void KillActor()
 > **Warning**
 > If something else is referencing `ActorPtr`, the pointer will not be destroyed via garbage collection (unless if it's a weak pointer).
 
-After Unreal Engine (5.0) version, is now recommending to use `TObjectPtr` instead of `*` to mark raw pointers. `TObjectPtr` class contains some optimization for the editor.
+After Unreal Engine (**5.0**) version, is now recommending to use `TObjectPtr` instead of `*` to mark raw pointers. `TObjectPtr` class contains some optimization for the editor.
 
 Here is the updated code:
 
@@ -4234,8 +4279,11 @@ You can read more about [Blueprint Function Libraries here](https://docs.unreale
 * `UKismetInputLibrary` - `input` utility functions that can be called from both Blueprint and C++
 * `UKismetGuidLibrary` - `guid` utility functions that can be called from both Blueprint and C++
 * `UKismetArrayLibrary` - `array` utility functions that can be called from both Blueprint and C++
-* `FMath` - Math helper functions (Check ```GenericPlatformMath.h``` for additional math functions).
-* `DrawDebugHelpers.h` - Header file containg debug draw functions. Read more about <a href="https://unrealcpp.com/draw-debug-helpers/" target="_blank">here</a>!
+
+### Misc Library
+
+* `FMath` - Math helper functions (Check `GenericPlatformMath.h` for additional math functions).
+* `DrawDebugHelpers.h` - Header file containg debug draw functions. Read more about [here](https://unrealcpp.com/draw-debug-helpers/).
 
 ## 📃 Macros
 
@@ -4472,7 +4520,7 @@ void UMainMenu::NativeConstruct()
     if (PlayerDisplayNameText == nullptr)
         return;
 
-    PlayerDisplayNameText->OnClicked.AddDyanmic(this, &UMainMenu::UpdatePlayerDisplayName);
+    PlayerDisplayNameText->OnClicked.AddDynamic(this, &UMainMenu::UpdatePlayerDisplayName);
 }
 
 void UMainMenu::UpdatePlayerDisplayName()
