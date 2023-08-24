@@ -319,7 +319,7 @@ Here are some tools that can be integrated into your IDE's for better performanc
 
 ## 🗺️ Summary of C++ and Programming World
 
-<details open>
+<details>
   <summary>Click to expand</summary>
 
 ### ✨ Object-Oriented Programming
