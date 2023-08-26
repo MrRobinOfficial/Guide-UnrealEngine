@@ -1593,7 +1593,7 @@ The [linker](https://en.wikipedia.org/wiki/Linker_(computing)) is a program that
 
 The linker's job is to resolve undefined symbols. If the linker cannot resolve the issue, it then gives you a linkage error, and you have to resolve it instead.
 
-You can also flag the linker to export some extra debugging files (or so called [.pdb](https://devblogs.microsoft.com/cppblog/whats-inside-a-pdb-file/) (Program Debug Database) file). These files can be helpful for other programmers, as they contain extra information (such as comments and other debugging information).
+You can also flag the linker to export some extra debugging files or so called [.pdb](https://devblogs.microsoft.com/cppblog/whats-inside-a-pdb-file/) (Program Debug Database) file. These files can be helpful for other programmers, as they contain extra information (such as comments and other debugging information).
 
 The linker can be configured to accept either static library or dynamic library when creating your project.
 
@@ -1614,7 +1614,7 @@ The linker can be configured to accept either static library or dynamic library 
 When you compile, you have the options to compile the source code into a [.lib](https://en.wikipedia.org/wiki/Static_library) file. The .lib file can then be read by the linker, which include all files, when executing a compilation.
 
 > **Note**
-> Because static library is merged into .exe file. It increases the final size of .exe file.
+> Because static library is merged into .exe file, it increases the final size of .exe file.
 
 **Use static library if you want to access content statically and have compiling errors to ensure that the code can be executed.**
 
