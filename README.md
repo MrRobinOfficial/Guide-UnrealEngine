@@ -2983,7 +2983,7 @@ You can read more about [string handling from the docs](https://docs.unrealengin
 
 * `TEXT`: The `TEXT()` macro is used for specifying wide-character (UTF-16) encoding. This makes the string literal for being platform independent. Without this macro, you are using ANSI encoding (which can cause issue on other machines).
 
-* `INVTEXT`: The `INVTEXT()` macro is used to mark a string as non-localizable. It indicates that the text should not be translated and should remain constant across different languages.
+* `INVTEXT`: The `INVTEXT()` macro is calling FText::AsCultureInvariant(TEXT(InTextLiteral)) with InTextLiteral as parameter. Helpful creating culture invariant FText from the given string literal.
 
 * `LOCTEXT`: The `LOCTEXT()` macro is used to create `FText` literals specifically for localization. It takes a namespace and a key to identify the localized string.
 
@@ -3024,35 +3024,60 @@ You can read more about [FText at Unreal Engine's docs](https://docs.unrealengin
 Example usage:
 
 ```cpp
-// Create FText from a string literal
-FText NewGameText = FText::FromString(TEXT("New Game"));
+	// Create FText from a string literal (non-localized)
+	FText NewGameText = FText::FromString(TEXT("New Game")); // Avoid this, since they cause more performance than initializing directly as FText.
 
-// There is also a macro to create a culture invariant FText from a string literal
-FText TooltipText = INVTEXT("Tooltip Text");
+	// There is also a macro to create a culture invariant FText from a string literal
+	FText TooltipText = INVTEXT("Tooltip Text");
 
-// Does the same thing as INVTEXT() macro.
-FText NewTooltipText = FText::AsCultureInvariant(TEXT("This is another tooltip text")); 
+	/*
+		Inside Unreal Engine source code:
 
-// Helpful in the editor to localize the text into another language.
-FText PlayGameText = LOCTEXT("PlayGame", "Start Game");
-FText QuitGameText = NSLOCTEXT("StartMenu", "QuitGame", "Exit the game");
+		// Creates a culture invariant FText from the given string literal.
+		#define INVTEXT(InTextLiteral) FText::AsCultureInvariant(TEXT(InTextLiteral))
+	*/
 
-// Formatting with FText. The supported types is: int32, uint32, float, double, FText, ETextGender.
-FText VersionMessageText = FText::Format(LOCTEXT("VersionMessage", "You current version is {0} and is running on {1}"), VersionNumber, MachineOS);
+	// So, FText::AsCultureInvariant does the same thing as INVTEXT() macro.
+	FText NewTooltipText = FText::AsCultureInvariant(TEXT("This is another tooltip text"));
 
-// FString also has FString::Prinf() function for formatting. FString::Prinf() is also similar to the native C++ sprintf() function.
+	// Define the namespace to use with LOCTEXT
+	// This is only valid within a single file, and must be undefined before the end of the file
+#define LOCTEXT_NAMESPACE "MyNamespace"
+	// Create text literals
+	FText PlayGameText = LOCTEXT("PlayGame", "Spiel beginnen"); // German langauge
 
-// Use FFormatNamedArguments for organizing the FText::Format function.
-FFormatNamedArguments Args;
-Args.Add(TEXT("Name"), UserName);
-Args.Add(TEXT("Age"), UserAge);
-FText UserText = FText::Format(LOCTEXT("UserData", "User's name is {UserName} and is {Age} years old."), Args);
+	// Helpful in the editor to localize the text into another language.
+	FText QuitGameText = NSLOCTEXT("StartMenu", "QuitGame", "Avsluta spelet"); // Swedish language
 
-// You can also use FText::FormatNamed() function for formatting as well. Great for inlining the code.
-FText CarMessageText = FText::FormatNamed(LOCTEXT("VehicleMessage", "You current speed is {Speed} km/h and the fuel is at {Fuel}%"),
-	TEXT("Speed"), SpeedInKph,
-	TEXT("Fuel"), FuelInPercentage
-);
+	uint32 VersionNumber = 1405476850;
+	FText MachineOS = INVTEXT("Windows 11 Pro, 22H2, 22621.2215");
+	FText UserName = INVTEXT("MrRobin");
+	int32 UserAge = 22;
+	int32 SpeedInKph = 30;
+	int32 FuelInPercentage = 80;
+
+	// Formatting with FText. The supported types is: int32, uint32, float, double, FText, ETextGender.
+	FText VersionMessageText = FText::Format(
+		LOCTEXT("VersionMessage", "You current version is {0} and is running on {1}"),
+		VersionNumber,
+		MachineOS
+	);
+
+	// FString also has FString::Prinf() function for formatting. FString::Prinf() is also similar to the native C++ sprintf() function.
+
+	// Use FFormatNamedArguments for organizing the FText::Format function.
+	FFormatNamedArguments Args;
+	Args.Add(TEXT("Name"), UserName);
+	Args.Add(TEXT("Age"), UserAge);
+	FText UserText = FText::Format(LOCTEXT("UserData", "User's name is {UserName} and is {Age} years old."), Args);
+
+	// You can also use FText::FormatNamed() function for formatting as well. Great for inlining the code.
+	FText CarMessageText = FText::FormatNamed(
+		LOCTEXT("VehicleMessage", "You current speed is {Speed} and the fuel is at {Fuel}%"),
+		TEXT("Speed"), SpeedInKph,
+		TEXT("Fuel"), FuelInPercentage
+	);
+#undef LOCTEXT_NAMESPACE
 ```
 
 #### Examples of usages
