@@ -99,34 +99,37 @@
     * 2.20.3\. [Virtual functions](#virtual-functions)
   * 2.21\. [🧙‍♂️ Generic Programming](#%EF%B8%8F-generic-programming)
   * 2.22\. [😵 Recursion](#-recursion)
-  * 2.23\. [🫀 Lambda](#-lambda)
-  * 2.24\. [🦾 Binary code](#-binary-code)
-    * 2.24.1\. [Logic gates](#logic-gates)
-    * 2.24.2\. [Hexadecimal](#hexadecimal)
-    * 2.24.1\. [Bitwise Operators](#bitwise-operators)
-  * 2.25\. [💥 Stack vs Heap](#-stack-vs-heap)
-  * 2.26\. [⚓ Design Patterns And Principles](#design-patterns-and-principles)
-  	* 2.26.1\. [SOLID Principle](#solid-principle)
-   	* 2.26.2\. [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
-    * 2.26.3\. [Singleton](#singleton)
-    * 2.26.4\. [Observer](#observer)
-    * 2.26.5\. [Factory](#factory)
-    * 2.26.6\. [Strategy](#strategy)
-    * 2.26.7\. [MVC (Model-View-Controller)](#mvc-model-view-controller)
-  * 2.27\. [💯 Structures](#-structures)
-    * 2.27.1\. [Array](#array)
-    * 2.27.2\. [List](#list)
-    * 2.27.2\. [Queue](#queue)
-    * 2.27.2\. [Hash Set (Lookup table)](#hash-set-lookup-table)
-    * 2.27.2\. [Dictionary (Map)](#dictionary-map)
-    * 2.27.2\. [Linked List](#linked-list)
-  * 2.28\. [⏰ Time Complexity](#-time-complexity)
-    * 2.28.1\. [Constant - O(1)](#constant---o1)
-    * 2.28.2\. [Logarithmic - O(log n)](#logarithmic---olog-n)
-    * 2.28.3\. [Linear - O(n)](#linear---on)
-    * 2.28.4\. [Quadratic - O(n^2)](#quadratic---on2)
-    * 2.28.5\. [Exponential - O(2^n)](#exponential---o2n)
-    * 2.28.6\. [Factorial - O(n!)](#factorial---on)
+  * 2.23\. [⚙️ Linker](#-linker)
+  * 2.23.1\. [Static Library](#static-library)
+  * 2.23.2\. [Dynamic Library](#dynamic-library)
+  * 2.24\. [🫀 Lambda](#-lambda)
+  * 2.25\. [🦾 Binary code](#-binary-code)
+    * 2.25.1\. [Logic gates](#logic-gates)
+    * 2.25.2\. [Hexadecimal](#hexadecimal)
+    * 2.25.1\. [Bitwise Operators](#bitwise-operators)
+  * 2.26\. [💥 Stack vs Heap](#-stack-vs-heap)
+  * 2.27\. [⚓ Design Patterns And Principles](#design-patterns-and-principles)
+  	* 2.27.1\. [SOLID Principle](#solid-principle)
+   	* 2.27.2\. [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
+    * 2.27.3\. [Singleton](#singleton)
+    * 2.27.4\. [Observer](#observer)
+    * 2.27.5\. [Factory](#factory)
+    * 2.27.6\. [Strategy](#strategy)
+    * 2.27.7\. [MVC (Model-View-Controller)](#mvc-model-view-controller)
+  * 2.28\. [💯 Structures](#-structures)
+    * 2.28.1\. [Array](#array)
+    * 2.28.2\. [List](#list)
+    * 2.28.2\. [Queue](#queue)
+    * 2.28.2\. [Hash Set (Lookup table)](#hash-set-lookup-table)
+    * 2.28.2\. [Dictionary (Map)](#dictionary-map)
+    * 2.28.2\. [Linked List](#linked-list)
+  * 2.29\. [⏰ Time Complexity](#-time-complexity)
+    * 2.29.1\. [Constant - O(1)](#constant---o1)
+    * 2.29.2\. [Logarithmic - O(log n)](#logarithmic---olog-n)
+    * 2.29.3\. [Linear - O(n)](#linear---on)
+    * 2.29.4\. [Quadratic - O(n^2)](#quadratic---on2)
+    * 2.29.5\. [Exponential - O(2^n)](#exponential---o2n)
+    * 2.29.6\. [Factorial - O(n!)](#factorial---on)
 * 3\. [🚧 Blueprint vs C++](#-blueprint-vs-c)
 * 4\. [🪧 Unreal's Architecture](#-unreals-architecture)
 * 5\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
@@ -259,6 +262,10 @@
 
 ## ⌛ Getting started with C++
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
 
 You can also watch a playlist from [GGameDev about getting started with Unreal Engine C++](https://youtube.com/playlist?list=PLaaDnVlfJwc4Lncf4XTYaTRG_osOk-T0N).
@@ -279,6 +286,10 @@ To use C++ effectively in Unreal Engine, it is crucial to have a strong foundati
 
 ### 🌈 Integrated Development Environment
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 An Integrated Development Environment (IDE) is a software application that provides comprehensive tools for writing, debugging, and managing code. IDEs offer a streamlined and feature-rich environment for software development, making it easier for developers to work on their projects efficiently.
 
 Popular IDEs used in Unreal Engine and C++ development include:
@@ -291,6 +302,10 @@ Popular IDEs used in Unreal Engine and C++ development include:
 
 ### ✂️ Tools to help your journey
 
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
+
 Here are some tools that can be integrated into your IDE's for better performance, debugging or writing good code practices.
 
 * [Visual Assist](https://www.wholetomato.com/): A productivity tool for refactoring, reading, writing, navigating and generating C/C++/C# code. `Cost` and for `VS`.
@@ -298,6 +313,10 @@ Here are some tools that can be integrated into your IDE's for better performanc
 * [UnrealMacroGenerator](https://marketplace.visualstudio.com/items?itemName=Naotsun.Naotsun-UE-UMG): Provides a macro editor used by Unreal C ++ of Unreal Engine. You can create macros and edit already written macros. `Free` and for `VS`.
 
 ### 🟢 Benefits of using C++ with Unreal Engine
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 * High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
 
@@ -309,9 +328,13 @@ Here are some tools that can be integrated into your IDE's for better performanc
 
 ### 🔴 Drawbacks of using C++ with Unreal Engine
 
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
+
 * More prone to errors: C++ is a strongly typed language, requiring the precise use of semicolons, braces and accurate syntax to ensure successful compilation. Rectifying these issues can be time-consuming. On the contrary, the Blueprint's node-based graph system operates without the need for "correct" syntax, offering a more "forgiving" environment.
 
-* Tied to Unreal's API: Throughout the evolution of Unreal Engine, Epic Games may modify the source code, rendering certain functions and members as **obsolete**/**deprecated**. Consequently, Unreal might recommend the need to update the codebase with the latest [API](https://en.wikipedia.org/wiki/API) changes. Failure to do so can lead to compilation errors, in the future.
+* Tied to Unreal's API: Throughout the evolution of Unreal Engine, Epic Games may modify the [source code](https://en.wikipedia.org/wiki/Source_code), rendering certain functions and members as **obsolete**/**deprecated**. Consequently, Unreal might recommend the need to update the codebase with the latest [API](https://en.wikipedia.org/wiki/API) changes. Failure to do so can lead to compilation errors, in the future.
 
 * Updating your codebase: When working with C++ and Unreal Engine, your C++ code is compiled into a [.DLL](https://en.wikipedia.org/wiki/Dynamic-link_library) (in Windows OS) file that Unreal Engine can read and use within Blueprint graphs. However, this necessitates Unreal Engine to reload to incorporate your code changes. Epic Games has introduced [Hot Reload](https://unrealcommunity.wiki/live-compiling-in-unreal-projects-tp14jcgs), allowing for code reloading without editor restart, streamlining the development process. While Hot Reload often works for a while, it is unreliable and frequently causes blueprint corruption or other issues.
 
@@ -323,6 +346,10 @@ Here are some tools that can be integrated into your IDE's for better performanc
   <summary>Click to expand</summary>
 
 ### ✨ Object-Oriented Programming
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 <details open>
   <summary>Click to expand</summary>
@@ -354,6 +381,10 @@ Polymorphism is often illustrated through inheritance, where you have a base cla
 </details>
 
 ### ⌨️ Syntax and Structure
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Syntax refers to the set of rules that define the structure, format and grammar of a programming language. It dictates how statements and expressions should be written to form valid code.
 
@@ -502,6 +533,10 @@ In general, you use double quotes for your own header files (which may be part o
 
 ### 🔥 Standard Library
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 The standard library in C++ is a collection of pre-defined classes and functions that provide a wide range of functionality for common tasks. It is a part of the [C++ Standard Template Library (STL)](https://en.wikipedia.org/wiki/Standard_Template_Library) and is officially known as the [C++ Standard Library](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library). The library is designed to be platform-independent and provides a standardized set of features that are supported across different C++ compilers and environments.
 
 The C++ Standard Library is organized into several header files, each of which contains declarations for specific classes and functions. Some of the key components of the standard library include containers (like vectors, lists, maps, etc.), algorithms (sorting, searching, etc.), iterators, input/output operations, strings, and more.
@@ -530,6 +565,10 @@ for (int num : numbers)
 ```
 
 ### 🔢 Data types
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 <table><tr><td>
 
@@ -664,6 +703,10 @@ double speedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a 
 
 ### 🙋‍♂️ Typedefs
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 In C++, the `typedef` keyword[^1] is used to create an **alias** or **alternative name** for existing data types. It provides a way to define a new name that can be used as a shorthand for the original type, improving code readability and maintainability.
 
 Here's an example:
@@ -678,6 +721,10 @@ myInt x = 5;  // Equivalent to: int x = 5;
 > Unreal Engine doesn't support typedefs with UHT[^2]. Meaning, you can't expose to Blueprint.
 
 ### 🍂 Members
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Members are variables or functions that are part of a class or object. They define the properties and behaviors of the class.
 
@@ -722,6 +769,10 @@ int Factorial(int n)
 ```
 
 ### 🧬 Classes
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Classes are the building blocks of object-oriented programming (OOP). They are a blueprint for creating objects, which are instances of a class. A class defines the structure and behavior of objects by specifying the members it contains.
 
@@ -798,6 +849,10 @@ In modern C++, the distinction between `class` and `struct` has become more a ma
 
 ### 💔 Accessibility
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 | Keyword	    | Access ability | Description                                                                                          |
 | ----------- | -------------- | ---------------------------------------------------------------------------------------------------- |
 | `public`    | All	           | Members and functions are accessible from anywhere, including outside the class.                     |
@@ -862,6 +917,10 @@ obj.privateFunction(); // Error!
 
 ### 🤔 If-statements
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 If-statement is a fundamental control structure that allows you to conditionally execute a block of code based on a specified condition.
 It provides a way to control the flow of execution in your program.
 
@@ -882,6 +941,10 @@ else
 
 ### 🔣 Comparisons and Boolean Operators
 
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
+
 Here are some operations for creating conditions:
 
 * `==` 	- Equality check
@@ -895,6 +958,10 @@ Here are some operations for creating conditions:
 * `!` 	- Expression !A is 0 if A is nonzero, and is 1 if A is 0. Also called `NOT` operator.
 
 #### ❓ Conditional Expressions (Ternary operator)
+
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
 
 Conditional expressions in C++ are statements that evaluate a condition and return a value based on the result of the condition. They provide a concise way to express simple conditions and perform different actions or assignments based on the outcome.
 
@@ -911,6 +978,10 @@ int value = isDead ? 100 : -100; // condition ? value_if_true : value_if_false;
 * 3\. If the condition is false, the value or expression after the colon is returned as the result.
 
 ### 🔀 Switches
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 In C++, a switch statement is a control flow construct used to select one of many possible execution paths based on the value of a given expression. It provides an alternative to using multiple if-else statements when checking a variable against different values.
 
@@ -939,6 +1010,10 @@ switch (expression)
 * 3\. If none of the cases match the expression's value, the code block associated with the default case (optional) is executed. The default case serves as a fallback option when no matching cases are found.
 
 ### 🔄️ Loops
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Loops are essential constructs in programming languages that allow repetitive execution of a block of code based on a specified condition. They provide a way to automate tasks, process collections of data, and iterate over a sequence of elements.
 
@@ -1024,6 +1099,10 @@ In summary:
 
 ### 🦋 Immutable vs Mutable
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 The terms `immutable` and `mutable` refer to the state of an object or variable and whether it can be changed after its creation. Understanding the difference between `immutable` and `mutable` objects is essential in programming as it affects how data is manipulated and shared within the code.
 
 #### Mutable
@@ -1089,6 +1168,10 @@ const int immutableValue = 10; // Immutable variable
 
 ### 🪝 Try Catch
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 In programming, `try-catch` is a mechanism used for error handling and exception handling. It allows you to write code that can handle potential errors or exceptions that may occur during the program's execution, preventing crashes or data corruption.
 
 In C++, the try and catch blocks are used for implementing this mechanism. Here's how it works:
@@ -1115,6 +1198,10 @@ catch (const char* errorMessage)
 Using `try-catch` blocks allows you to handle exceptional situations gracefully, providing error messages to users or logging errors for debugging, instead of crashing or corrupting the program's data. It helps in making your programs more robust and user-friendly.
 
 ### 🪞 Casting
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Casting, in the context of programming languages, refers to the conversion of one data type into another. It allows you to change the interpretation or representation of a variable or object, which can be useful in various situations.
 
@@ -1166,6 +1253,10 @@ result_type = reinterpret_cast<result_type>(expression);
 
 ### 🛼 Inlining
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 Inlining is a compiler optimization technique used to improve the performance of code by inserting the body of a function directly at the call site, eliminating the overhead of function calls. It reduces the execution time by avoiding the function call stack setup and cleanup.
 
 In C++, you can use the inline keyword to suggest to the compiler that a function should be inlined. For example:
@@ -1191,6 +1282,10 @@ When choosing between using a macro or a function for inlining, it is generally 
 Using inline functions offers a good balance between performance and maintainability. They provide the benefits of inlining without sacrificing the advantages of type-checking and debugging support that functions offer. However, keep in mind that the inline keyword is just a hint to the compiler, and it may or may not `inline` the function depending on the specific context and compiler optimizations.
 
 ### 📇 Namespace
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 In programming languages, a namespace is a feature that allows you to organize code elements (such as variables, functions, classes) into distinct named scopes to avoid name collisions and improve code organization.
 
@@ -1223,6 +1318,10 @@ Library2::Vector vec2;
 > Unreal Engine doesn't support namespaces with UHT[^3].
 
 ### 🌐 Static members
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 In programming languages, static members are class members (variables or functions) that belong to the class itself rather than individual objects of the class. They are shared among all instances (objects) of the class and are independent of any specific object's state.
 
@@ -1259,6 +1358,10 @@ Static members are commonly used for class-level data and utility functions that
 
 ### `auto` keyword
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 In C++, the `auto` keyword is used for type inference, allowing the compiler to deduce the data type of a variable automatically based on its initialization value (similar to `var` keyword in C#[^12]). It was introduced in [C++11](https://en.wikipedia.org/wiki/C%2B%2B11) as part of the modern C++ features.
 
 Here's how you can use the `auto` keyword:
@@ -1288,6 +1391,10 @@ Player* player = GetPlayer(); // Good
 | Improves code readability in some cases       | Team coding standards and practices may not always favor using 'auto'             |
 
 ### 🌱 Polymorphism (In Depth)
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 The power of polymorphism lies in the ability to use a base class pointer or reference to refer to objects of derived classes. This allows you to write code that operates on the base class, without needing to know the specific derived class. During runtime, the appropriate version of the overridden method in the derived class will be invoked, based on the actual type of the object being referred to.
 
@@ -1422,6 +1529,10 @@ Using virtual functions, you can write code that works with objects based on the
 
 ### 🧙‍♂️ Generic Programming
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 Generic Programming is a programming paradigm that focuses on writing reusable code by abstracting away specific types and working with generic types that can be instantiated with various concrete types. It allows programmers to create functions, classes, and algorithms that can operate on different data types without requiring code duplication.
 
 In C++, the `template` keyword[^1] is used to implement generic programming through templates. Templates allow you to define functions or classes that can be instantiated with different types. They provide a powerful mechanism for code reuse and flexibility.
@@ -1472,7 +1583,96 @@ int factorial(int n)
 > **Warning**
 > While recursion can be powerful, it's essential to use it judiciously. Recursive solutions may consume more memory and time compared to iterative solutions for certain problems. Additionally, recursive functions can lead to stack overflow errors if not implemented correctly or when dealing with very large inputs.
 
+### ⚙️ Linker
+
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
+
+The [linker](https://en.wikipedia.org/wiki/Linker_(computing)) is a program that makes executable files for your project, in order to run the [.exe](https://en.wikipedia.org/wiki/.exe) file.
+
+The linker's job is to resolve undefined symbols. If the linker cannot resolve the issue, it then gives you a linkage error, and you have to resolve it instead.
+
+You can also flag the linker to export some extra debugging files (or so called [.pdb](https://devblogs.microsoft.com/cppblog/whats-inside-a-pdb-file/) (Program Debug Database) file). These files can be helpful for other programmers, as they contain extra information (such as comments and other debugging information).
+
+The linker can be configured to accept either static library or dynamic library when creating your project.
+
+#### Static Library
+
+<table><tr><td>
+
+## File extensions
+
+* `.lib` = Windows
+* `.a` = Linux
+* `.a` = macOS
+
+<br>
+
+</td></tr></table>
+
+When you compile, you have the options to compile the source code into a [.lib](https://en.wikipedia.org/wiki/Static_library) file. The .lib file can then be read by the linker, which include all files, when executing a compilation.
+
+> **Note**
+> Because static library is merged into .exe file. It increases the final size of .exe file.
+
+**Use static library if you want to access content statically and have compiling errors to ensure that the code can be executed.**
+
+#### Dynamic Library
+
+<table><tr><td>
+
+## File extensions
+
+* `.dll` = Windows
+* `.so` = Linux
+* `.dynlib` = macOS
+
+<br>
+
+</td></tr></table>
+
+When you compile, you have the options to compile the source code into a [.dll](https://en.wikipedia.org/wiki/Dynamic-link_library) file. The .dll file can then be read by the .exe file at runtime.
+
+There are major problems when development a project using .dll files. Not only, do you have to make sure that all the files are correct and exists. But you also have to make sure that necessary information is available to use.
+
+To access contents of .dll file, you have to use either `__declspec(dllimport)` or `__declspec(dllexport)`.
+
+* Use `dllimport` for importing functions and variables.
+* Use `dllexport` for exporting functions and variables.
+
+```cpp
+// Example of the dllimport and dllexport class attributes
+__declspec( dllimport ) int i;
+__declspec( dllexport ) void func();
+```
+
+```cpp
+// To make the code more readable, use macro definitions!
+#define DllImport   __declspec( dllimport )
+#define DllExport   __declspec( dllexport )
+
+DllExport void func();
+DllExport int i = 10;
+DllImport int j;
+DllExport int n;
+```
+
+You can read more about it from [Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/dllexport-dllimport?view=msvc-170).
+
+> **Note**
+> Because dynamic library is loaded at runtime. It's then loaded into RAM memory, instead of being statically compiled into the .exe file.
+
+> **Warning**
+> Because dynamic library is loaded at runtime, it also means that dynamic library stores source code directly to the .dll file and some small extra metadata about the code. This means, the code is unsecure and more accessible for a reverse engineer to use it and modify it.
+
+**Use dynamic library if you want to access content at runtime and share the code between different programs.**
+
 ### 🫀 Lambda
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 In C++, a lambda expression, often referred to as a lambda function or lambda, is an anonymous function that you can define inline. It provides a convenient way to create small, inline functions without the need for explicitly declaring a separate function.
 
@@ -1513,6 +1713,10 @@ int result = sum(num1, num2);
 ```
 
 ### 🦾 Binary code
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Binary code is a system of representing data and instructions using a two-symbol system, typically `0` and `1`. It is the fundamental language that computers understand and use internally to process information. Each 0 or 1 is called a "**bit**" (short for binary digit), and a group of 8 bits is called a "**byte**".
 
@@ -1602,6 +1806,10 @@ int rightShift = a >> 1;    // Binary representation: 0000 0010 (2 in decimal)
 
 ### 💥 Stack vs Heap
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 In programming languages, stack and heap are two different areas of memory used for [memory allocation](https://en.wikipedia.org/wiki/Memory_management). They serve distinct purposes and have different characteristics.
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/5OJRqkYbK-4/maxresdefault.jpg)](https://youtu.be/5OJRqkYbK-4)
@@ -1645,6 +1853,10 @@ C++ provides features like dynamic memory allocation with `new` and `delete` ope
 | Risk of Overflow | May cause a stack overflow if too much memory is used, leading to program termination. | Generally less prone to overflow as it can grow dynamically, but can still cause out-of-memory errors if not managed properly. |
 
 ### Design Patterns And Principles
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Design patterns are reusable solutions to common programming problems that have been proven effective over time. They provide guidelines and templates for structuring code, promoting best practices, and improving software design.
 
@@ -1707,6 +1919,10 @@ The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a
 | MVC Pattern       | Model-View-Controller: Separates an application into three components - the model (data and business logic), the view (user interface), and the controller (manages user input and updates the model and view). | Structuring applications for better maintainability and scalability. |
 
 ### 💯 Structures
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/SCkbQSPH--A/maxresdefault.jpg)](https://youtu.be/SCkbQSPH--A)
 
@@ -1852,6 +2068,10 @@ int main()
 | Linked List      | A linear data structure where elements are stored in nodes, each containing a value and a reference to the next node. | Suitable when frequent insertion and deletion at any position are required.  |
 
 ### ⏰ Time Complexity
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Time complexity is a measure of how the runtime of an algorithm grows with the size of the input data. It helps us understand how efficient an algorithm is and how it will scale when dealing with larger datasets.
 
@@ -2060,6 +2280,10 @@ int main()
 </details>
 
 ## 🚧 Blueprint vs C++
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 [![Watch the video by Alex Forsythe](https://img.youtube.com/vi/VMZftEVDuCE/maxresdefault.jpg)](https://youtu.be/VMZftEVDuCE)
 
@@ -2281,6 +2505,10 @@ You can also watch [The Unreal Engine Game Framework: From int main() to BeginPl
 
 ## ✍️ Naming Convention
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 ![Naming Conventions](static/img/Naming_conventions.png)
 
 There is a github repo, which talks about Unreal's naming convention. The repo is very detail and explain how you should name your assets, as well as your code. Repo is called [Unreal Engine's style guide by Michael Allar](https://github.com/Allar/ue5-style-guide).
@@ -2380,6 +2608,10 @@ EThing MyProperty;
 
 ### Prefixes
 
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
+
 | Prefix | Class        | Subclasses                                                                |
 | ------ | ------------ | ------------------------------------------------------------------------- |
 | U      | `UObject`    | `UActorComponent`, `UPrimaryDataAsset`, `UEngine`, `UGameplayStatics`     |
@@ -2394,6 +2626,10 @@ EThing MyProperty;
 > Did you know that `F` prefix actually stands for `Float` (floating point). but it was inadvertently spread throughout and has lost its original meaning.
 
 ### 🎨 Abbreviations, Acronyms and Synonyms
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 <table><tr><td>
 
@@ -2563,6 +2799,10 @@ EThing MyProperty;
 </td></tr></table>
 
 ## 🧱 Data Types
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 ![Data types](static/img/Data_types.png)
 
@@ -2764,15 +3004,46 @@ FString MyString = FString("Hello, World!");
 
 #### FText
 
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
+
 `FText` is a specialized string class designed for localization support in Unreal Engine. Unlike `FString`, `FText` is **immutable**, ensuring consistency and avoiding accidental modifications. FText provides the ability to represent text in different languages and cultures, making it a crucial component for building multi-language games or applications.
+
+You can read more about [FText at Unreal Engine's docs](https://docs.unrealengine.com/5.2/en-US/ftext-in-unreal-engine/).
 
 Example usage:
 
 ```cpp
-// Helpful in the editor to localize the text into another language.
+// Create FText from a string literal
 FText NewGameText = FText::FromString(TEXT("New Game"));
 
+// There is also a macro to create a culture invariant FText from a string literal
 FText TooltipText = INVTEXT("Tooltip Text");
+
+// Does the same thing as INVTEXT() macro.
+FText NewTooltipText = FText::AsCultureInvariant(TEXT("This is another tooltip text")); 
+
+// Helpful in the editor to localize the text into another language.
+FText PlayGameText = LOCTEXT("PlayGame", "Start Game");
+FText QuitGameText = NSLOCTEXT("StartMenu", "QuitGame", "Exit the game");
+
+// Formatting with FText. The supported types is: int32, uint32, float, double, FText, ETextGender.
+FText VersionMessageText = FText::Format(LOCTEXT("VersionMessage", "You current version is {0} and is running on {1}"), VersionNumber, MachineOS);
+
+// FString also has FString::Prinf() function for formatting. FString::Prinf() is also similar to the native C++ sprintf() function.
+
+// Use FFormatNamedArguments for organizing the FText::Format function.
+FFormatNamedArguments Args;
+Args.Add(TEXT("Name"), UserName);
+Args.Add(TEXT("Age"), UserAge);
+FText UserText = FText::Format(LOCTEXT("UserData", "User's name is {UserName} and is {Age} years old."), Args);
+
+// You can also use FText::FormatNamed() function for formatting as well. Great for inlining the code.
+FText CarMessageText = FText::FormatNamed(LOCTEXT("VehicleMessage", "You current speed is {Speed} km/h and the fuel is at {Fuel}%"),
+	TEXT("Speed"), SpeedInKph,
+	TEXT("Fuel"), FuelInPercentage
+);
 ```
 
 #### Examples of usages
@@ -3285,6 +3556,10 @@ bool Equals = MyEnum == EMyEnum::Two;
 
 ### 🧨 Value type vs Reference type
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 Let's talk about what value type and reference types.
 
 In various programming languages like Python[^11], Java[^13], and C#[^12], you may have encountered both value types and reference types.
@@ -3378,6 +3653,10 @@ if (DamageHealth(PlayerHealth)) // Passing the `PlayerHealth` as a direct refere
 ```
 
 ### 👈 Pointers
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 ![Pointers](static/img/Pointers.png)
 
@@ -3577,7 +3856,6 @@ This smart pointer is used to hold a soft reference to a `UClass` subclass. It i
 
 ![image](https://github.com/MrRobinOfficial/Guide-UnrealEngine/assets/61658252/965cdec3-6102-47d8-a420-65d500a9c06c)
 
-
 Example usage:
 
 ```cpp
@@ -3641,6 +3919,10 @@ if (SoftPtr.IsValid())
 
 ### 🛸 Reflection System
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT[^2]) during compilation. With the help of `GENERATED_BODY()` macro and `[FileName].generated.h` header.
 
 The generated header file is typically included in the source file that defines the corresponding class or struct, and it is also included in any other source files that use that class or struct. This ensures that the metadata is available to the engine at compile-time and runtime.
@@ -3652,6 +3934,10 @@ One of the key benefits of the header system is that it allows for very efficien
 You can read more about [reflection system from their docs](https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/).
 
 ## 🗑️ Garbage Collection
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Garbage Collection is an automatic memory management feature used in modern languages like C#[^12], Python[^11], and Javascript[^14], which automatically removes objects from memory when they are no longer in use.
 
@@ -3737,6 +4023,10 @@ UObjectBase::IsValidLowLevelFast();
 Should not be used for Garbage Collection checks, as on `UPROPERTY` pointers it will always return true, while on raw pointer it will return true or false depending on whether the object had already been destroyed, but in the latter case it's also likely to also crash the application as the pointed memory could have been overwritten.
 
 ## 💎 Unreal Header Tool
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Unreal Header Tool (UHT[^3]) is a code generator and reflection system in Unreal Engine. It processes special macros and meta tags in C++ header files and generates additional code to support Unreal Engine's reflection system, which enables various engine features like Blueprint integration, serialization, networking, and more.
 
@@ -4084,6 +4374,10 @@ You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
 
 ### 👷 Constructors, destructors and initialization
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 #### Constructors
 
 Constructors are special member functions in C++ that are automatically called when an object is created. They are used to initialize the object's data members and set up its initial state. Constructors have the same name as the class and can be overloaded to take different sets of parameters, allowing for object initialization in various ways.
@@ -4180,6 +4474,10 @@ In the last line, using brace initializer, the compiler will generate an error b
 
 ## 💾 Soft vs hard references
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 ![Soft vs hard references](static/img/Soft_Hard_Refs.png)
 
 ### Soft References
@@ -4214,6 +4512,10 @@ You can also read more about Unreal Engine docs about [Referencing Assets](https
 
 ## 🌍 Global Functions
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 Global functions are functions that are defined outside of any class and are not tied to any specific object instance. They are accessible from any part of the codebase and can be used to perform tasks or calculations that do not require access to specific object properties or methods. 
 
 Global functions in Unreal Engine are commonly used for utility functions, helper functions, or functions that operate on data independently of any particular object instance.
@@ -4226,6 +4528,10 @@ Global functions in Unreal Engine are commonly used for utility functions, helpe
 * `CastChecked()`: Is similar to `Cast()`, but it also performs a runtime check in debug builds to ensure that the object is of the specified type. If the check fails, it will trigger an assertion. This function is useful when you are certain that an object should be of a particular type and want to catch errors early in development.
 
 ## 🏛️ Libraries
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 Blueprint Function Libraries (`UBlueprintFunctionLibrary`) are a collection of static functions that provide utility functionality not tied to a particular gameplay object. These libraries can be grouped into logical function sets, e.g. AI Blueprint Library, or contain utility functions that provide access to many different functional areas, e.g. System Blueprint Library.
 
@@ -4335,6 +4641,10 @@ Difference between a macro and function then?
 
 ## ☑️ Assertions
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 ![Assertions](static/img/Assertions.png)
 
 Assertions are a programming technique used to detect and report errors or unexpected behavior in code. In Unreal Engine, assert macros are provided to make it easier to add assertions to code and to customize the behavior of the engine when an assertion fails.
@@ -4430,13 +4740,17 @@ You can also watch a video about it from [Sneaky Kitty Game Dev](https://www.you
 
 ## 🔔 Delegates
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 ![Delegates](static/img/Delegates.png)
 
 Delegates are a powerful feature of the Unreal Engine that allows developers to create and manage events in a flexible and modular way. A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
 
 ### Define a delegate type
 
-The first step in using delegates is to define a delegate type. This is done using the ```DECLARE_DYNAMIC_MULTICAST_DELEGATE()``` macro, which takes the name of the delegate as an argument.  
+The first step in using delegates is to define a delegate type. This is done using the `DECLARE_DYNAMIC_MULTICAST_DELEGATE()` macro, which takes the name of the delegate as an argument.  
 
 ```cpp
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FMyDelegate);
@@ -4486,6 +4800,10 @@ By using delegates, developers can create modular and flexible event systems tha
 | `FTimerDynamicDelegate` (Dynamic Singlecast) | No                 | Yes               |
 
 ## 🪪 Unreal Motion Graphics (UMG)
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 UMG (Unreal Motion Graphics) is a visual interface authoring tool in Unreal Engine that enables the creation of user interfaces (UI) and interactive elements for games and applications. It provides a user-friendly, node-based system for designing UI elements and connecting them to C++ code for functionality and interactivity.
 
@@ -4555,6 +4873,10 @@ UBUITween::Create( SomeWidget, 0.2f )
 ```
 
 ## 📚 Creating modules
+
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
 
 You can read more about Unreal Engine's modules [here](https://docs.unrealengine.com/5.1/en-US/unreal-engine-modules/)!
 
@@ -4630,6 +4952,10 @@ public class ModuleB : ModuleRules
 
 ## 💡 Creating a plugin
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 Plugins are a powerful feature of the Unreal Engine that allows developers to easily extend and customize the engine's functionality to fit their specific needs. A plugin is essentially a module that can be added to a Unreal Engine project to provide additional features, tools, and content. Unlike modules, plugins are designed to be self-contained and can be shared across multiple projects.
 
 When you create a plugin, you can define your own modules, content, and assets that can be loaded and used in your project. Plugins can include any number of modules, each with their own classes, assets, and functionality. This allows you to keep your code organized and separated, making it easier to manage and maintain.
@@ -4641,6 +4967,10 @@ Plugins can also be used to add support for third-party libraries and tools, suc
 *You can read more about plugins, <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/" target="_blank">over here</a>!*
 
 ## 📝 Preprocessor
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 In programming languages, including C++, the preprocessor is a component of the compiler that performs text manipulation before the actual compilation process. It operates on the source code and handles directives starting with a hash symbol <kbd>#</kbd>.
 
@@ -4740,6 +5070,10 @@ Example:
 
 ## 🧠 Deep dive
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 ### 🔖 Keywords
 
 Here is a video about [constants keywords in C++ by Cazz](https://www.youtube.com/watch?v=KBny6MZJR64)
@@ -4776,6 +5110,10 @@ Difference between a class and struct then?
 In Unreal Engine, it's recommended to use the built-in memory management functions like `NewObject()` and `MakeShared()` to allocate memory for objects, rather than using `new` and `delete`. Using `new` and `delete` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
 
 ### 🪄 Tips and best practices
+
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
 
 #### 📦 Refactoring
 
@@ -5035,6 +5373,10 @@ void FMyTickableThing::Tick( float DeltaTime )
 
 #### 🔌 Direct references
 
+<table><tr><td>
+This section was written in conjugation with ChatGPT.
+</td></tr></table>
+
 In C++, a direct reference is a reference variable that directly refers to the memory location of another variable. When you use a direct reference, you are essentially creating an alias or an alternative name for the original variable. This means any changes made to the reference will be reflected in the original variable, and vice versa.
 
 Using direct references can be beneficial for performance in certain situations because it avoids creating unnecessary copies of data. When you pass large objects or structures as function arguments, using direct references instead of passing by value (copy) can save memory and processing time, especially for complex objects.
@@ -5062,6 +5404,10 @@ f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
 
 #### ➗ Math Expression Node
 
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
+
 The Math Expression node acts like a collapsed graph. It is a single node that you can Double-click to open the sub-graph that makes up its functionality. Initially, the name/expression is blank. Whenever you rename the node, then the new expression is parsed and a new sub-graph is generated.
 
 ![Math Node Example](static/img/math_node_example.png)
@@ -5081,6 +5427,10 @@ void DebugMessage();
 
 ## 📛 Console Commands
 
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
+
 * `stat fps`: Display FPS.
 * `stat unit`: Display frame time.
 * `stat game`: Display a general idea on how long the various gameplay ticks are taking.
@@ -5094,6 +5444,10 @@ void DebugMessage();
 Here is also a [website](https://pongrit.github.io/) by Pongrit, which showcase all of Unreal Engine's console commands.
 
 ## 📌 Shortcuts
+
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
 
 To change any of the shortcuts, you can access the keyboard shortcut settings via **Editor Preferences**, then under **General** select **Keyboard Shortcuts**.
 
@@ -5157,6 +5511,10 @@ To change any of the shortcuts, you can access the keyboard shortcut settings vi
 * <kbd>Ctrl + Shift + Comma</kbd>: GPU Visualizer
 
 ## ⚠️ Common Problems/Issues
+
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
 
 ![Common Errors](static/img/Cpp_Errors.png)
 
@@ -5225,6 +5583,10 @@ int main()
 [Link](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/compiler-error-c2065?view=msvc-170) to error message.
 
 ## 🔗 Helpful links
+
+<table><tr><td>
+This section was NOT written in conjugation with ChatGPT.
+</td></tr></table>
 
 | Type | Author | Title | Length | Description | Link |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
