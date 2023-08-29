@@ -320,7 +320,7 @@ This section was NOT written in conjugation with ChatGPT.
     * 2.20.3\. [Virtual functions](#virtual-functions)
 * 2.21\. [🧙‍♂️ Generic Programming](#%EF%B8%8F-generic-programming)
 * 2.22\. [😵 Recursion](#-recursion)
-* 2.23\. [⚙️ Linker](#-linker)
+* 2.23\. [⚙️ Linker](#%EF%B8%8F-linker)
     * 2.23.1\. [Static Library](#static-library)
     * 2.23.2\. [Dynamic Library](#dynamic-library)
 * 2.24\. [🫀 Lambda](#-lambda)
