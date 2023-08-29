@@ -37,14 +37,14 @@
 
 * 0\. [👑 Cheatsheets](#-cheatsheets)
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
-    * 1.1\. [🌈 Integrated Development Environment](#-benefits-of-using-c-with-unreal-engine)
-    * 1.2\. [✂️ Tools to help your journey](#-tools-to-help-your-journey)
+    * 1.1\. [🌈 Integrated Development Environment](#-integrated-development-environment)
+    * 1.2\. [⛏️ Tools to help your journey](#-tools-to-help-your-journey)
     * 1.2\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
     * 1.3\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
-* 2\. [🗺️ Summary of C++ and Programming World](#%EF%B8%8F-summary-of-c-and-programming-world)
+* 2\. [🌍 Summary of C++ and Programming World](#-summary-of-c-and-programming-world)
 * 3\. [🚧 Blueprint vs C++](#-blueprint-vs-c)
 * 4\. [🪧 Unreal's Architecture](#-unreals-architecture)
-* 5\. [✍️ Naming Convention](#%EF%B8%8F-naming-convention)
+* 5\. [⚓ Naming Convention](#-naming-convention)
 	* 5.1\. [Prefixes](#prefixes)
 	* 5.2\. [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
 * 7\. [🧱 Data Types](#-data-types-1)
@@ -212,7 +212,7 @@ Popular IDEs used in Unreal Engine and C++ development include:
 
 * [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
 
-### ✂️ Tools to help your journey
+### ⛏️ Tools to help your journey
 
 <table><tr><td>
 This section was NOT written in conjugation with ChatGPT.
@@ -252,7 +252,7 @@ This section was NOT written in conjugation with ChatGPT.
 
 * Requires more storage: When working with C++ within Unreal Engine, it often involves using "Editor Symbols for debugging," consuming approximately 60 GB of storage. Similarly, if you opt to build Unreal Engine from its source code (on their github page), you'll require around 200 GB of storage space.
 
-## 🗺️ Summary of C++ and Programming World
+## 🌍 Summary of C++ and Programming World
 
 <details>
   <summary>Click to expand</summary>
@@ -2541,7 +2541,7 @@ You can also watch a video discussion about [Multiplayer Framework of Unreal Eng
 
 You can also watch [The Unreal Engine Game Framework: From int main() to BeginPlay by Alex Forsythe](https://www.youtube.com/watch?v=IaU2Hue-ApI), which he talks about Unreal Engine's architecture and how Unreal starts your game/editor.
 
-## ✍️ Naming Convention
+## ⚓ Naming Convention
 
 <table><tr><td>
 This section was written in conjugation with ChatGPT.
