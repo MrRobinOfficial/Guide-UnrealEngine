@@ -38,7 +38,7 @@
 * 0\. [👑 Cheatsheets](#-cheatsheets)
 * 1\. [⌛ Getting started with C++](#-getting-started-with-c)
     * 1.1\. [🌈 Integrated Development Environment](#-integrated-development-environment)
-    * 1.2\. [⛏️ Tools to help your journey](#-tools-to-help-your-journey)
+    * 1.2\. [⛏️ Tools to help your journey](#%EF%B8%8F-tools-to-help-your-journey)
     * 1.2\. [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
     * 1.3\. [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
 * 2\. [🌍 Summary of C++ and Programming World](#-summary-of-c-and-programming-world)
