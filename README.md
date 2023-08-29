@@ -1641,14 +1641,34 @@ When you compile, you have the options to compile the source code into a [.lib](
 
 </td></tr></table>
 
+[![Watch the video by James McNellis from CppCon 2017](https://img.youtube.com/vi/JPQWQfDhICA/maxresdefault.jpg)](https://youtu.be/JPQWQfDhICA)
+
 When you compile, you have the options to compile the source code into a [.dll](https://en.wikipedia.org/wiki/Dynamic-link_library) file. The .dll file can then be read by the .exe file at runtime.
 
-There are major problems when development a project using .dll files. Not only, do you have to make sure that all the files are correct and exists. But you also have to make sure that necessary information is available to use.
+There are major problems when developing a project that uses .dll files. Not only, do you have to make sure that all the files are correct versions but also exists and can be executed correctly.
+
+<table><tr><td>
+
+## Benefits
+
+* Can reduce disk and memory space usages
+* Improved serviceability (bug fixes, security patching, etc.)
+* Improved maintainability
+
+## Drawbacks
+
+* Increased potential for incompatibles versions. Also, known as [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell).
+* Every call across a DLL boundary is necessarily an indirect call.
+
+</td></tr></table>
 
 To access contents of .dll file, you have to use either `__declspec(dllimport)` or `__declspec(dllexport)`.
 
 * Use `dllimport` for importing functions and variables.
 * Use `dllexport` for exporting functions and variables.
+
+> **Important**
+> __declspec(dllimport) is required for data imports (such as member variables).
 
 ```cpp
 // Example of the dllimport and dllexport class attributes
@@ -1670,10 +1690,19 @@ DllExport int n;
 You can read more about it from [Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/dllexport-dllimport?view=msvc-170).
 
 > **Note**
-> Because dynamic library is loaded at runtime. It's then loaded into RAM memory, instead of being statically compiled into the .exe file.
+> Because the dynamic library is loaded at runtime, it's then loaded into RAM memory, instead of being statically compiled into the .exe file. This can take up more memory space. However, if the code use repeatably, throughout other programs, then memory space is greatly improved.
 
 > **Warning**
-> Because dynamic library is loaded at runtime, it also means that dynamic library stores source code directly to the .dll file and some small extra metadata about the code. This means, the code is unsecure and more accessible for a reverse engineer to use it and modify it.
+> Using .dll also means that the library stores compiled code directly into the file. It also may contain small extra metadata about the code (debugging symbols, comments and etc). This means, the code is unsecure and more accessible for a reverse engineer to use it and modify it. C# require storing debug symbol information (for the reflection system), hence why it is easier to reverse engineer than C++ code. While you have the options to enable debug symbol information in C++. But is not automatically turn on by default.
+
+> **Important**
+> There is no way to guarantee to stop a reverse engineer to look at the compiled code or modify the game unless you run a program, which check the game's content as a hash data and compare to cloud stored version (this would take long time, but would be a safe approach).
+>
+> When calling a function, you can trace the code execution in .dll file (with the [assembly language](https://en.wikipedia.org/wiki/Assembly_language) viewer), thus understanding the function intention and then either replicated the function or modify it.
+>
+> Most devs are most likely to focusing on the multiplayer aspect. Such as client/server prediction and assumptions. My suggestion, is to never store any password, API keys or any important information inside the game's source code.
+>
+> If you need to store important information, use [strip functionality](https://en.wikipedia.org/wiki/Dead-code_elimination). To make sure the final product of your game, doesn't contain any secret information. Also, hash your password and keys ([MD5](https://www.cryptopp.com/wiki/MD5) and [SHA2](https://www.cryptopp.com/wiki/SHA2) methods).
 
 **Use dynamic library if you want to access content at runtime and share the code between different programs.**
 
