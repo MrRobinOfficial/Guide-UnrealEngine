@@ -177,7 +177,7 @@
 ## ⌛ Getting started with C++
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
@@ -201,7 +201,7 @@ To use C++ effectively in Unreal Engine, it is crucial to have a strong foundati
 ### 🌈 Integrated Development Environment
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 An Integrated Development Environment (IDE) is a software application that provides comprehensive tools for writing, debugging, and managing code. IDEs offer a streamlined and feature-rich environment for software development, making it easier for developers to work on their projects efficiently.
@@ -217,7 +217,7 @@ Popular IDEs used in Unreal Engine and C++ development include:
 ### ⛏️ Tools to help your journey
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 Here are some tools that can be integrated into your IDE's for better performance, debugging or writing good code practices.
@@ -229,7 +229,7 @@ Here are some tools that can be integrated into your IDE's for better performanc
 ### 🟢 Benefits of using C++ with Unreal Engine
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 * High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
@@ -243,7 +243,7 @@ This section was written in conjugation with ChatGPT.
 ### 🔴 Drawbacks of using C++ with Unreal Engine
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 * More prone to errors: C++ is a strongly typed language, requiring the precise use of semicolons, braces and accurate syntax to ensure successful compilation. Rectifying these issues can be time-consuming. On the contrary, the Blueprint's node-based graph system operates without the need for "correct" syntax, offering a more "forgiving" environment.
@@ -359,7 +359,7 @@ This section was NOT written in conjugation with ChatGPT.
 ### ✨ Object-Oriented Programming
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 <details open>
@@ -394,7 +394,7 @@ Polymorphism is often illustrated through inheritance, where you have a base cla
 ### ⌨️ Syntax and Structure
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Syntax refers to the set of rules that define the structure, format and grammar of a programming language. It dictates how statements and expressions should be written to form valid code.
@@ -545,7 +545,7 @@ In general, you use double quotes for your own header files (which may be part o
 ### 🔥 Standard Library
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 The standard library in C++ is a collection of pre-defined classes and functions that provide a wide range of functionality for common tasks. It is a part of the [C++ Standard Template Library (STL)](https://en.wikipedia.org/wiki/Standard_Template_Library) and is officially known as the [C++ Standard Library](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library). The library is designed to be platform-independent and provides a standardized set of features that are supported across different C++ compilers and environments.
@@ -578,7 +578,7 @@ for (int num : numbers)
 ### 🔢 Data types
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 <table><tr><td>
@@ -715,7 +715,7 @@ double speedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a 
 ### 🙋‍♂️ Typedefs
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 In C++, the `typedef` keyword[^1] is used to create an **alias** or **alternative name** for existing data types. It provides a way to define a new name that can be used as a shorthand for the original type, improving code readability and maintainability.
@@ -734,7 +734,7 @@ myInt x = 5;  // Equivalent to: int x = 5;
 ### 🍂 Members
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Members are variables or functions that are part of a class or object. They define the properties and behaviors of the class.
@@ -782,7 +782,7 @@ int Factorial(int n)
 ### 🧬 Classes
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Classes are the building blocks of object-oriented programming (OOP). They are a blueprint for creating objects, which are instances of a class. A class defines the structure and behavior of objects by specifying the members it contains.
@@ -861,7 +861,7 @@ In modern C++, the distinction between `class` and `struct` has become more a ma
 ### 💔 Accessibility
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 | Keyword	    | Access ability | Description                                                                                          |
@@ -929,7 +929,7 @@ obj.privateFunction(); // Error!
 ### 🤔 If-statements
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 If-statement is a fundamental control structure that allows you to conditionally execute a block of code based on a specified condition.
@@ -953,7 +953,7 @@ else
 ### 🔣 Comparisons and Boolean Operators
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 Here are some operations for creating conditions:
@@ -971,7 +971,7 @@ Here are some operations for creating conditions:
 #### ❓ Conditional Expressions (Ternary operator)
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 Conditional expressions in C++ are statements that evaluate a condition and return a value based on the result of the condition. They provide a concise way to express simple conditions and perform different actions or assignments based on the outcome.
@@ -991,7 +991,7 @@ int value = isDead ? 100 : -100; // condition ? value_if_true : value_if_false;
 ### 🔀 Switches
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 In C++, a switch statement is a control flow construct used to select one of many possible execution paths based on the value of a given expression. It provides an alternative to using multiple if-else statements when checking a variable against different values.
@@ -1023,7 +1023,7 @@ switch (expression)
 ### 🔄️ Loops
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Loops are essential constructs in programming languages that allow repetitive execution of a block of code based on a specified condition. They provide a way to automate tasks, process collections of data, and iterate over a sequence of elements.
@@ -1111,7 +1111,7 @@ In summary:
 ### 🦋 Immutable vs Mutable
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 The terms `immutable` and `mutable` refer to the state of an object or variable and whether it can be changed after its creation. Understanding the difference between `immutable` and `mutable` objects is essential in programming as it affects how data is manipulated and shared within the code.
@@ -1180,7 +1180,7 @@ const int immutableValue = 10; // Immutable variable
 ### 🪝 Try Catch
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 In programming, `try-catch` is a mechanism used for error handling and exception handling. It allows you to write code that can handle potential errors or exceptions that may occur during the program's execution, preventing crashes or data corruption.
@@ -1211,7 +1211,7 @@ Using `try-catch` blocks allows you to handle exceptional situations gracefully,
 ### 🪞 Casting
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Casting, in the context of programming languages, refers to the conversion of one data type into another. It allows you to change the interpretation or representation of a variable or object, which can be useful in various situations.
@@ -1265,7 +1265,7 @@ result_type = reinterpret_cast<result_type>(expression);
 ### 🛼 Inlining
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Inlining is a compiler optimization technique used to improve the performance of code by inserting the body of a function directly at the call site, eliminating the overhead of function calls. It reduces the execution time by avoiding the function call stack setup and cleanup.
@@ -1295,7 +1295,7 @@ Using inline functions offers a good balance between performance and maintainabi
 ### 📇 Namespace
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 In programming languages, a namespace is a feature that allows you to organize code elements (such as variables, functions, classes) into distinct named scopes to avoid name collisions and improve code organization.
@@ -1331,7 +1331,7 @@ Library2::Vector vec2;
 ### 🌐 Static members
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 In programming languages, static members are class members (variables or functions) that belong to the class itself rather than individual objects of the class. They are shared among all instances (objects) of the class and are independent of any specific object's state.
@@ -1370,7 +1370,7 @@ Static members are commonly used for class-level data and utility functions that
 ### `auto` keyword
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 In C++, the `auto` keyword is used for type inference, allowing the compiler to deduce the data type of a variable automatically based on its initialization value (similar to `var` keyword in C#[^12]). It was introduced in [C++11](https://en.wikipedia.org/wiki/C%2B%2B11) as part of the modern C++ features.
@@ -1404,7 +1404,7 @@ Player* player = GetPlayer(); // Good
 ### 🌱 Polymorphism (In Depth)
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 The power of polymorphism lies in the ability to use a base class pointer or reference to refer to objects of derived classes. This allows you to write code that operates on the base class, without needing to know the specific derived class. During runtime, the appropriate version of the overridden method in the derived class will be invoked, based on the actual type of the object being referred to.
@@ -1541,7 +1541,7 @@ Using virtual functions, you can write code that works with objects based on the
 ### 🧙‍♂️ Generic Programming
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Generic Programming is a programming paradigm that focuses on writing reusable code by abstracting away specific types and working with generic types that can be instantiated with various concrete types. It allows programmers to create functions, classes, and algorithms that can operate on different data types without requiring code duplication.
@@ -1597,7 +1597,7 @@ int factorial(int n)
 ### ⚙️ Linker
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 The [linker](https://en.wikipedia.org/wiki/Linker_(computing)) is a program that makes executable files for your project, in order to run the [.exe](https://en.wikipedia.org/wiki/.exe) file.
@@ -1711,7 +1711,7 @@ You can read more about it from [Microsoft Learn](https://learn.microsoft.com/en
 ### 🫀 Lambda
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 In C++, a lambda expression, often referred to as a lambda function or lambda, is an anonymous function that you can define inline. It provides a convenient way to create small, inline functions without the need for explicitly declaring a separate function.
@@ -1755,7 +1755,7 @@ int result = sum(num1, num2);
 ### 🦾 Binary code
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Binary code is a system of representing data and instructions using a two-symbol system, typically `0` and `1`. It is the fundamental language that computers understand and use internally to process information. Each 0 or 1 is called a "**bit**" (short for binary digit), and a group of 8 bits is called a "**byte**".
@@ -1847,7 +1847,7 @@ int rightShift = a >> 1;    // Binary representation: 0000 0010 (2 in decimal)
 ### 💥 Stack vs Heap
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 In programming languages, stack and heap are two different areas of memory used for [memory allocation](https://en.wikipedia.org/wiki/Memory_management). They serve distinct purposes and have different characteristics.
@@ -1895,7 +1895,7 @@ C++ provides features like dynamic memory allocation with `new` and `delete` ope
 ### Design Patterns And Principles
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Design patterns are reusable solutions to common programming problems that have been proven effective over time. They provide guidelines and templates for structuring code, promoting best practices, and improving software design.
@@ -1961,7 +1961,7 @@ The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a
 ### 💯 Structures
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/SCkbQSPH--A/maxresdefault.jpg)](https://youtu.be/SCkbQSPH--A)
@@ -2110,7 +2110,7 @@ int main()
 ### ⏰ Time Complexity
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Time complexity is a measure of how the runtime of an algorithm grows with the size of the input data. It helps us understand how efficient an algorithm is and how it will scale when dealing with larger datasets.
@@ -2322,7 +2322,7 @@ int main()
 ## 🚧 Blueprint vs C++
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 [![Watch the video by Alex Forsythe](https://img.youtube.com/vi/VMZftEVDuCE/maxresdefault.jpg)](https://youtu.be/VMZftEVDuCE)
@@ -2546,7 +2546,7 @@ You can also watch [The Unreal Engine Game Framework: From int main() to BeginPl
 ## ⚓ Naming Convention
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 ![Naming Conventions](static/img/Naming_conventions.png)
@@ -2649,7 +2649,7 @@ EThing MyProperty;
 ### Prefixes
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 | Prefix | Class        | Subclasses                                                                |
@@ -2668,7 +2668,7 @@ This section was NOT written in conjugation with ChatGPT.
 ### 🎨 Abbreviations, Acronyms and Synonyms
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 <table><tr><td>
@@ -2841,7 +2841,7 @@ This section was written in conjugation with ChatGPT.
 ## 🧱 Data Types
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 ![Data types](static/img/Data_types.png)
@@ -3045,7 +3045,7 @@ FString MyString = FString("Hello, World!");
 #### FText
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 `FText` is a specialized string class designed for localization support in Unreal Engine. Unlike `FString`, `FText` is **immutable**, ensuring consistency and avoiding accidental modifications. FText provides the ability to represent text in different languages and cultures, making it a crucial component for building multi-language games or applications.
@@ -3622,7 +3622,7 @@ bool Equals = MyEnum == EMyEnum::Two;
 ### 🧨 Value type vs Reference type
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Let's talk about what value type and reference types.
@@ -3720,7 +3720,7 @@ if (DamageHealth(PlayerHealth)) // Passing the `PlayerHealth` as a direct refere
 ### 👈 Pointers
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 ![Pointers](static/img/Pointers.png)
@@ -3985,7 +3985,7 @@ if (SoftPtr.IsValid())
 ### 🛸 Reflection System
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT[^2]) during compilation. With the help of `GENERATED_BODY()` macro and `[FileName].generated.h` header.
@@ -4001,7 +4001,7 @@ You can read more about [reflection system from their docs](https://docs.unreale
 ## 🗑️ Garbage Collection
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Garbage Collection is an automatic memory management feature used in modern languages like C#[^12], Python[^11], and Javascript[^14], which automatically removes objects from memory when they are no longer in use.
@@ -4090,7 +4090,7 @@ Should not be used for Garbage Collection checks, as on `UPROPERTY` pointers it 
 ## 💎 Unreal Header Tool
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Unreal Header Tool (UHT[^3]) is a code generator and reflection system in Unreal Engine. It processes special macros and meta tags in C++ header files and generates additional code to support Unreal Engine's reflection system, which enables various engine features like Blueprint integration, serialization, networking, and more.
@@ -4440,7 +4440,7 @@ You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
 ### 👷 Constructors, destructors and initialization
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 #### Constructors
@@ -4540,7 +4540,7 @@ In the last line, using brace initializer, the compiler will generate an error b
 ## 💾 Soft vs hard references
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 ![Soft vs hard references](static/img/Soft_Hard_Refs.png)
@@ -4578,7 +4578,7 @@ You can also read more about Unreal Engine docs about [Referencing Assets](https
 ## 🌍 Global Functions
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Global functions are functions that are defined outside of any class and are not tied to any specific object instance. They are accessible from any part of the codebase and can be used to perform tasks or calculations that do not require access to specific object properties or methods. 
@@ -4595,7 +4595,7 @@ Global functions in Unreal Engine are commonly used for utility functions, helpe
 ## 🏛️ Libraries
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Blueprint Function Libraries (`UBlueprintFunctionLibrary`) are a collection of static functions that provide utility functionality not tied to a particular gameplay object. These libraries can be grouped into logical function sets, e.g. AI Blueprint Library, or contain utility functions that provide access to many different functional areas, e.g. System Blueprint Library.
@@ -4707,7 +4707,7 @@ Difference between a macro and function then?
 ## ☑️ Assertions
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 ![Assertions](static/img/Assertions.png)
@@ -4806,7 +4806,7 @@ You can also watch a video about it from [Sneaky Kitty Game Dev](https://www.you
 ## 🔔 Delegates
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 ![Delegates](static/img/Delegates.png)
@@ -4867,7 +4867,7 @@ By using delegates, developers can create modular and flexible event systems tha
 ## 🪪 Unreal Motion Graphics (UMG)
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 UMG (Unreal Motion Graphics) is a visual interface authoring tool in Unreal Engine that enables the creation of user interfaces (UI) and interactive elements for games and applications. It provides a user-friendly, node-based system for designing UI elements and connecting them to C++ code for functionality and interactivity.
@@ -4940,7 +4940,7 @@ UBUITween::Create( SomeWidget, 0.2f )
 ## 📚 Creating modules
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 You can read more about Unreal Engine's modules [here](https://docs.unrealengine.com/5.1/en-US/unreal-engine-modules/)!
@@ -5018,7 +5018,7 @@ public class ModuleB : ModuleRules
 ## 💡 Creating a plugin
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 Plugins are a powerful feature of the Unreal Engine that allows developers to easily extend and customize the engine's functionality to fit their specific needs. A plugin is essentially a module that can be added to a Unreal Engine project to provide additional features, tools, and content. Unlike modules, plugins are designed to be self-contained and can be shared across multiple projects.
@@ -5034,7 +5034,7 @@ Plugins can also be used to add support for third-party libraries and tools, suc
 ## 📝 Preprocessor
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 In programming languages, including C++, the preprocessor is a component of the compiler that performs text manipulation before the actual compilation process. It operates on the source code and handles directives starting with a hash symbol <kbd>#</kbd>.
@@ -5136,7 +5136,7 @@ Example:
 ## 🧠 Deep dive
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 ### 🔖 Keywords
@@ -5177,7 +5177,7 @@ In Unreal Engine, it's recommended to use the built-in memory management functio
 ### 🪄 Tips and best practices
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 #### 📦 Refactoring
@@ -5439,7 +5439,7 @@ void FMyTickableThing::Tick( float DeltaTime )
 #### 🔌 Direct references
 
 <table><tr><td>
-This section was written in conjugation with ChatGPT.
+This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
 In C++, a direct reference is a reference variable that directly refers to the memory location of another variable. When you use a direct reference, you are essentially creating an alias or an alternative name for the original variable. This means any changes made to the reference will be reflected in the original variable, and vice versa.
@@ -5470,7 +5470,7 @@ f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
 #### ➗ Math Expression Node
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 The Math Expression node acts like a collapsed graph. It is a single node that you can Double-click to open the sub-graph that makes up its functionality. Initially, the name/expression is blank. Whenever you rename the node, then the new expression is parsed and a new sub-graph is generated.
@@ -5493,7 +5493,7 @@ void DebugMessage();
 ## 📛 Console Commands
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 * `stat fps`: Display FPS.
@@ -5511,7 +5511,7 @@ Here is also a [website](https://pongrit.github.io/) by Pongrit, which showcase 
 ## 📌 Shortcuts
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 To change any of the shortcuts, you can access the keyboard shortcut settings via **Editor Preferences**, then under **General** select **Keyboard Shortcuts**.
@@ -5578,7 +5578,7 @@ To change any of the shortcuts, you can access the keyboard shortcut settings vi
 ## ⚠️ Common Problems/Issues
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 ![Common Errors](static/img/Cpp_Errors.png)
@@ -5650,7 +5650,7 @@ int main()
 ## 🔗 Helpful links
 
 <table><tr><td>
-This section was NOT written in conjugation with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 | Type | Author | Title | Length | Description | Link |
