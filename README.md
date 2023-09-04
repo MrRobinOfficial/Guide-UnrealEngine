@@ -11,7 +11,9 @@
 ![word-count](https://img.shields.io/badge/word_count-27,875-blue)
 
 ![GitHub issues](https://img.shields.io/github/issues/MrRobinOfficial/Guide-UnrealEngine)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/MrRobinOfficial/Guide-UnrealEngine)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/MrRobinOfficial/Guide-UnrealEngine)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/MrRobinOfficial/Guide-UnrealEngine)
 
 </div>
 
