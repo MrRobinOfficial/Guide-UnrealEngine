@@ -2416,7 +2416,7 @@ graph TD;
 
 You can read more about [Unreal Architecture at their docs](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/).
 
-Some of the notorious classes, that inherit from `UObject` include:
+Some of the notable classes, that inherit from `UObject` include:
 
 <details>
   <summary>Click to expand</summary>
@@ -2551,7 +2551,7 @@ This section was written in conjunction with ChatGPT.
 
 ![Naming Conventions](static/img/Naming_conventions.png)
 
-There is a github repo, which talks about Unreal's naming convention. The repo is very detail and explain how you should name your assets, as well as your code. Repo is called [Unreal Engine's style guide by Michael Allar](https://github.com/Allar/ue5-style-guide).
+There is a github repo, which talks about Unreal's naming convention. The repo is very detailed and explains how you should name your assets, as well as your code. Repo is called [Unreal Engine's style guide by Michael Allar](https://github.com/Allar/ue5-style-guide).
 
 You can read more about [Epic C++ Coding Standard on their docs](https://docs.unrealengine.com/5.2/en-US/epic-cplusplus-coding-standard-for-unreal-engine/).
 
@@ -2787,7 +2787,6 @@ This section was written in conjunction with ChatGPT.
 * `OAuth` or Open Authentication – An open standard for authenticating applications or websites to access the content.
 * `TCP` or Transmission Control Protocol – A standard defining how to exchange messages between systems.
 * `UDP` or User Datagram Protocol – A standard defining how to exchange messages between systems.
-* `UDP` or User Datagram Protocol – A standard defining how to exchange messages between systems.
 
 ## Tools/Frameworks
 
@@ -2892,7 +2891,7 @@ char myChar = 'a';
 ### Booleans
 
 ```cpp
-bool bIsDead = true; // Unreal has prefixed of a 'b' (always lowercase) 
+bool bIsDead = true; // Unreal uses a 'b' prefix for booleans (always in lowercase).
 ```
 
 ### Integers
@@ -2939,11 +2938,11 @@ You can read more in-depth about this from [Alex on Stack Overflow](https://stac
 
 ### 🦺 Unreal Engine Typedefs
 
-In Unreal Engine, instead of writing `signed long long` for an 64-bit integer, you can now write `int64` instead. These alias are called **typedefs**, which you can read more about [typedef keyword in C++ docs](https://en.cppreference.com/w/cpp/language/typedef).
+In Unreal Engine, instead of writing `signed long long` for a 64-bit integer, you can now write `int64` instead. These aliases are called **typedefs**, which you can read more about [typedef keyword in C++ docs](https://en.cppreference.com/w/cpp/language/typedef).
 
 You can read more about C++ typedefs in [this section](#typedefs).
 
-Here is s full list of Unreal Engine's typedefs:
+Here is a full list of Unreal Engine's typedefs:
 
 ```cpp
 //~ Unsigned base types.
@@ -3012,7 +3011,7 @@ You can read more about [string handling from the docs](https://docs.unrealengin
 
 <table><tr><td>
 
-* `TEXT`: The `TEXT()` macro is used for specifying wide-character (UTF-16) encoding. This makes the string literal for being platform independent. Without this macro, you are using ANSI encoding (which can cause issue on other machines).
+* `TEXT`: The `TEXT()` macro is used for specifying wide-character (UTF-16) encoding. This makes the string literal platform independent. Without this macro, you are using ANSI encoding (which can cause issues on other machines).
 
 * `INVTEXT`: The `INVTEXT()` macro is calling FText::AsCultureInvariant(TEXT(InTextLiteral)) with InTextLiteral as parameter. Helpful creating culture invariant FText from the given string literal.
 
