@@ -104,7 +104,7 @@
 * 11\. [👷 Constructors, destructors and initialization](#-constructors-destructors-and-initialization)
   * 11.1\. [Constructors](#constructors)
   * 11.2\. [Destructors](#destructors)
-  * 11.3\. [Usage in Unreal Engine](#usage-in-unreal-engine)
+  * 11.3\. [Constructors and destructors in UE](#constructors-and-destructors-in-ue)
   * 11.4\. [Initialization](#initialization)
 * 12\. [💾 Soft vs hard references](#-soft-vs-hard-references)
   * 12.1\. [Soft References](#soft-references)
@@ -4474,7 +4474,7 @@ class RegularClass
 };
 ```
 
-#### Usage in Unreal Engine
+#### Constructors and destructors in UE
 
 In Unreal Engine, you can define constructors and destructors in C++ classes just like in standard C++. Constructors are useful for initializing properties and setting up components when an object is created, while destructors can be used for cleanup tasks like releasing resources or stopping background processes when an object is destroyed.
 
@@ -4493,29 +4493,29 @@ Here's an example:
 AMyActor::AMyActor()
 {
     // Set this actor to call Tick() every frame. You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
-
+    PrimaryActorTick.bCanEverTick = false;
+    
     // This is the default constructor for an Actor class in Unreal Engine.
     // You can initialize properties and set up components here.
-
+    
     RootComponent = CreateDefaultSubobject<USceneComponent>("SceneComponent");
-
-	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
-	MeshComponent->SetupAttachment(RootComponent);
-	MeshComponent->bCastDynamicShadow = false;
-
+    
+    MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
+    MeshComponent->SetupAttachment(RootComponent);
+    MeshComponent->bCastDynamicShadow = false;
+    
     checkf(MeshComponent, TEXT("MeshComponent cannot be a nullptr!"));
-	verifyf(MeshComponent, TEXT("MeshComponent cannot be a nullptr!"));
-	ensureMsgf(MeshComponent, TEXT("MeshComponent cannot be a nullptr!"));
-
+    verifyf(MeshComponent, TEXT("MeshComponent cannot be a nullptr!"));
+    ensureMsgf(MeshComponent, TEXT("MeshComponent cannot be a nullptr!"));
+    
     // Cast<T> has to be used for *UObjects* due to type safety; it will return *nullptr* in case of a failure in comparison with *StaticCast()*. StaticCast is just a wrapper to *static_cast* function. 
-	if (UMovementComponent* MeshAsMovementComponent = Cast<UMovementComponent>(MeshComponent))
+    if (UMovementComponent* MeshAsMovementComponent = Cast<UMovementComponent>(MeshComponent))
     {
         // Cast worked!
-
+    
         MeshAsMovementComponent->bSnapToPlaneAtStart = true;
     }
-
+    
     UStaticMeshComponent* RootAsActorComponent = CastChecked<UActorComponent>(RootComponent); // Cast must work, otherwise a crash will occur.
 }
 
