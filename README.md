@@ -4487,12 +4487,36 @@ Here's an example:
 ```cpp
 #include "MyActor.h"
 
+#include "GameFramework/Actor.h"
+#include "GameFramework/MovementComponent.h"
+
 AMyActor::AMyActor()
 {
+    // Set this actor to call Tick() every frame. You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = false;
+
     // This is the default constructor for an Actor class in Unreal Engine.
     // You can initialize properties and set up components here.
 
     RootComponent = CreateDefaultSubobject<USceneComponent>("SceneComponent");
+
+	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
+	MeshComponent->SetupAttachment(RootComponent);
+	MeshComponent->bCastDynamicShadow = false;
+
+    checkf(MeshComponent, TEXT("MeshComponent cannot be a nullptr!"));
+	verifyf(MeshComponent, TEXT("MeshComponent cannot be a nullptr!"));
+	ensureMsgf(MeshComponent, TEXT("MeshComponent cannot be a nullptr!"));
+
+    // Cast<T> has to be used for *UObjects* due to type safety; it will return *nullptr* in case of a failure in comparison with *StaticCast()*. StaticCast is just a wrapper to *static_cast* function. 
+	if (UMovementComponent* MeshAsMovementComponent = Cast<UMovementComponent>(MeshComponent))
+    {
+        // Cast worked!
+
+        MeshAsMovementComponent->bSnapToPlaneAtStart = true;
+    }
+
+    UStaticMeshComponent* RootAsActorComponent = CastChecked<UActorComponent>(RootComponent); // Cast must work, otherwise a crash will occur.
 }
 
 void AMyActor::BeginPlay()
@@ -5063,13 +5087,12 @@ Here is an example:
 UINTERFACE(BlueprintType)
 class COMMONVEHICLE_API UVehicle : public UInterface
 {
-	GENERATED_UINTERFACE_BODY()
+    GENERATED_UINTERFACE_BODY()
 };
 
 class COMMONVEHICLE_API IVehicle
 {
-	GENERATED_IINTERFACE_BODY()
-
+    GENERATED_IINTERFACE_BODY()
     // ...
 };
 ```
