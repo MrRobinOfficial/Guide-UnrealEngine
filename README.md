@@ -117,6 +117,8 @@
   * 16.1\. [Check](#check)
   * 16.2\. [Verify](#verify)
   * 16.3\. [Ensure](#ensure)
+  * 16.3\. [Alternatives Assertions](#alternatives-assertions)
+  * 16.3\. [Misc Assertions](#misc-assertions)
 * 17\. [🔔 Delegates](#-delegates)
   * 17.1\. [Define a delegate type](#define-a-delegate-type)
   * 17.2\. [Declare a delegate variable](#declare-a-delegate-variable)
