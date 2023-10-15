@@ -4718,6 +4718,15 @@ Here is a list of common macros in Unreal Engine:
 * `INLINE` - Suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it. (Replacement for `inline` keyword[^1])
 * `FORCEINLINE` - A stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for `force_inline` keyword[^1])'
 * `UE_LOG` - Outputs the log message into the log file. The first input parameter it takes is the name of the logging category.
+* `check` and `checkf` (**NOT ALLOWED IN BUILDS**) - Halts execution if `Expression` is false. `checkf` outputs `FormattedText` to the log.
+* `verify` and `verifyf` (**ALLOWED IN BUILDS**) - Halts execution if `Expression` is false. `verifyf` outputs `FormattedText` to the log.
+* `ensure` and `ensureMsgf` (**ALLOWED IN BUILDS**) - Notifies the crash reporter on the first time `Expression` is false. `ensureMsgf` outputs `FormattedText` to the log.
+* `ensureAlways` and `ensureAlwaysMsgf` (**ALLOWED IN BUILDS**) - Notifies the crash reporter if Expression is false. `ensureAlwaysMsgf` outputs `FormattedText` to the log.
+* `unimplemented` - Halts execution if the line is ever hit, similar to `check(false)`, but intended for virtual functions that should be overridden and not called.
+* `checkCode` - Executes `Code` within a do-while loop structure that runs once; primarily useful as a way to prepare information that another Check requires.
+* `checkNoEntry` - Halts execution if the line is ever hit, similar to `check(false)`, but intended for code paths that should be unreachable
+* `checkNoReentry` - Halts execution if the line is hit more than once.
+* `checkNoRecursion` - Halts execution if the line is hit more than once without leaving scope.
 
 What are inlined functions?
 > When a function is inlined, the compiler replaces the function call with the actual code of the function, as if the code had been written directly in place of the call.
@@ -4805,6 +4814,64 @@ void MyFunction()
 ```
 
 </td></tr></table>
+
+### Misc Assertions
+
+There is also an `unimplemented` assert macro. Useful for writing functions that require code, but is currently unimplemented.
+
+```cpp
+void DoSomething()
+{
+    unimplemented();
+}
+```
+Another assert macro is `checkCode`. Which is an asserted marco to check your code is valid. Behind the scene, the code runs inside a do-while loop with while set to false. This prevents from looping. The main point of using this technique is to clean up memory afterwards and the ability to use `continue` or `break` keyword.
+
+```cpp
+checkCode(
+    if (ObjectItem->IsPendingKill())
+    {
+        UE_LOG(LogGarbage, Fatal, TEXT("Object %s is part of root set though has been marked RF_PendingKill!"), *Object->GetFullName());
+    }
+);
+```
+
+And lastly, we have `checkNoEntry`, `checkNoReentry` and `checkNoRecursion` assert macros.
+
+* `checkNoEntry` indicates that code should never be reached.
+* `checkNoReentry` indicates that code should not be executed more than once.
+* `checkNoRecursion` indicates that code should never be called recursively.
+
+```cpp
+void KillPlayer()
+{
+    PlayerPtr->Destroy();
+    PlayerPtr = nullptr;
+
+    if (IsValid(Player))
+    {
+        checkNoEntry();
+    }
+}
+
+void CleanupCharacters(int32 Count)
+{
+    if (Count > 3)
+        return;
+
+    checkNoRecursion();
+
+    if (IsValid(Player))
+    {
+        checkNoReentry();
+        KillPlayer();
+    }
+
+    CleanupCharacters(Count + 1);
+}
+```
+
+---
   
 You can read more about [Assertions from the docs](https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/).
 
