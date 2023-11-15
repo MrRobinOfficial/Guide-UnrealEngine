@@ -5827,6 +5827,30 @@ UFUNCTION(CallInEditor, BlueprintCallable)
 void DebugMessage();
 ```
 
+#### Call function via Console Commands
+
+In order to call a `UFUNCTION` inside the console command, you can use `Exec` specifier. This tells Unreal Engine to add the function into the console commands list.
+
+Here's an example:
+
+```cpp
+UFUNCTION(Exec)
+void KillCharacter();
+```
+
+However, there is a downside from using this approach. Because Unreal finds the function and map to the corresponding name, Unreal cannot call multiple instances of the same function. It only prioritizes the current pawn, which is currently under possession by the player.
+
+To call a function with multiple instances, you can type `ke * FunctionName`.
+
+Here's an example:
+
+```console
+$ ke * KillCharacter
+```
+
+> **Note**
+> In the context of a Command Line Interface (CLI), the dollar sign (`$`) is typically referred to as a "prompt symbol" or simply a "prompt." It indicates that the CLI is ready to receive input from the user. The specific appearance and behavior of the prompt may vary depending on the operating system and shell being used.
+
 #### Renaming variables without breaking references
 
 <table><tr><td>
