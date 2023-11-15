@@ -3516,6 +3516,10 @@ while (!MyQueue.IsEmpty())
 
 #### TArrayView
 
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
 When you want to reuse an array without copying or referencing the base class, you can use `TArrayView`.
 
 A statically sized view of an array of typed elements. Designed to allow functions to take either a fixed C-style array or a `TArray` with an arbitrary allocator as an argument when the function neither adds nor removes elements.
@@ -5822,6 +5826,145 @@ Here is an example:
 UFUNCTION(CallInEditor, BlueprintCallable)
 void DebugMessage();
 ```
+
+#### Renaming variables without breaking references
+
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
+During development, there are occasions when you have to rename a property, function or a class. If you compile before changing the name in other location of your code, it can cause Unreal to no longer recognize existing Assets. And therefore replace with its default initialization value.
+
+To address this issue, Unreal Engine uses Core Redirects. Core Redirects should be configured in your project's `DefaultEngine.ini` file, or, in the case of a Plugin, the prefixed, self-named .ini file for that Plugin (for example, `BasePaper2D.ini` for the Engine's Paper2D Plugin, or `Default<GamePluginName>.ini` for a game Plugin).
+
+In either case, the Core Redirects will be placed in the "[CoreRedirects]" section. These Core Redirects will automatically remap obsolete data while loading Assets, thus preventing data loss resulting from the renaming process.
+
+Here is the following structure for a redirect of a property value:
+
+```dosini
++PropertyRedirect=(OldName="CurrentClass.OldVariableName", NewName="NewOldVariableName")
+```
+
+Here's a full example of different use cases with redirects:
+
+```dosini
+[CoreRedirects]
++PropertyRedirect=(OldName="PlayerCharacter.StartHealth", NewName="InitialHealth")
+
++ClassRedirects=(OldName="Pawn",NewName="MyPawn",InstanceOnly=true)
+
++ClassRedirects=(OldName="/Script/MyModule.MyOldClass",NewName="/Script/MyModule.MyNewClass")
+
++ClassRedirects=(OldName="PointLightComponent",NewName="PointLightComponent",ValueChanges=(("PointLightComponent0","LightComponent0")))
+
++ClassRedirects=(OldName="AnimNotify_PlayParticleEffect_C",NewName="/Script/Engine.AnimNotify_PlayParticleEffect",OverrideClassName="/Script/CoreUObject.Class")
+
++EnumRedirects=(OldName="ENumbers",NewName="ELetters",ValueChanges=(("NumberTwo","LetterB"),("NumberThree","LetterC")))
+
++FunctionRedirects=(OldName="MyOldActor.OldFunction",NewName="MyNewActor.NewFunction")
++FunctionRedirects=(OldName="MyActor.OldFunction",NewName="NewFunction")
+
++PackageRedirects=(OldName="OldPlugin",NewName="/NewPlugin/",MatchSubstring=true)
++PackageRedirects=(OldName="/Game/DeletedContentPackage",Removed=true)
+
++StructRedirects=(OldName="MyStruct",NewName="MyNewStruct")
+```
+
+You can read more about on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/core-redirects-in-unreal-engine/).
+
+---
+
+The `MatchSubstring` argument can be used in any Core Redirect type. If present and set to `true`, the `OldName` and `NewName` fields will be treated as substrings rather than requiring exact matches. This enables multiple matches with a single Core Redirect. In the following example, we will start with a struct and a class.
+
+Original code and values:
+
+```cpp
+USTRUCT()
+struct FMyStruct
+{
+    GENERATED_BODY()
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestInt;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestIntFromStruct;
+};
+
+UCLASS()
+class REDIRECTORSTEST_API AMyActor : public AActor
+{
+    GENERATED_BODY()
+
+public:
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestInt;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 MainClassTestInt;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    FMyStruct TestStruct;
+};
+```
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Original Values" />
+    <figcaption>This is the original code and the original set of values we're saving into our `AMyActor` Asset.</figcaption>
+</figure>
+
+After creating and saving an `AMyActor` Asset with the values shown above, we can close the Editor and alter the the code in the `.h` file and the Core Redirects in the game's `.ini` file. We will change the code to read as follows, changing the names of our `int32` properties:
+
+```cpp
+USTRUCT()
+struct FMyStruct
+{
+    GENERATED_BODY()
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestInteger;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestIntegerFromStruct;
+};
+
+UCLASS()
+class REDIRECTORSTEST_API AMyActor : public AActor
+{
+    GENERATED_BODY()
+
+public:
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestInteger;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 MainClassTestInteger;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    FMyStruct TestStruct;
+};
+```
+
+With this change, we can examine the effects of a Core Redirect, and in particular the impact of `MatchSubstring`.
+
+Results follow:
+
+<figure>
+    <img src="static/img/NoCoreRedirect.jpg" alt="NoCoreRedirect" />
+    <figcaption>The properties were renamed in code, but no Core Redirect was created. As a result, no data values have migrated to the new properties.</figcaption>
+</figure>
+
+<figure>
+    <img src="static/img/CoreRedirectWithoutMatchSubstring.jpg" alt="CoreRedirectWithoutMatchSubstring" />
+    <figcaption>`PropertyRedirects=(OldName="TestInt",NewName="TestInteger")` causes only the two preoperties with exact name matches to migrate their data.</figcaption>
+</figure>
+
+<figure>
+    <img src="static/img/CoreRedirectWithMatchSubstring.jpg" alt="CoreRedirectWithMatchSubstring" />
+    <figcaption>`PropertyRedirects=(OldName="TestInt",NewName="TestInteger",MatchSubstring=true)` causes all four of our properties to migrate, due to substring matching.</figcaption>
+</figure>
+
+> **Note**
+> Because `MatchSubtring` requires checking incoming Assets much more thoroughly, it can impact startup times. `MatchSubstring` is intended to be used temporarily as a fixup when making sweeping changes. It is recommended that Assets involved in these changes be resaved immediately and checked into your project's source control database with any related code changes, and that the Core Redirect be deleted without entering source control.
 
 ## 📛 Console Commands
 
