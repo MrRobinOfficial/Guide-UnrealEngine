@@ -3296,6 +3296,290 @@ MyIntStringMap[2] = TEXT("NewTwo");
 MyIntStringMap.Remove(3);
 ```
 
+#### Common and helpful functions
+
+With these containers, you can use a couple of helpful functions.
+
+* `Empty()` - Clears out the store elements (as well as resizing the buffer to zero).
+* `Reset()` - Clears out the store elements (without resizing the buffer).
+* `GetSlack()` - Gets the number of store elements minus it's buffer size. `Slack = NumOfElements - BufferCapacity`.
+* `GetAllocationSize()` - Gets the buffer capacity. 
+* `Shrink()` - It will reset the buffer size to the number of elements, currently being stored.
+* `Reserve()` - It will expand buffer size to that amount. Note, buffer size can change later on.
+* `RemoveAll` - Will remove all elements with prediction as an argument.
+* `RemoveAllSwap` - Same as `RemoveAll()` function, but doesn't preserve the order.
+
+Here's an example:
+
+```cpp
+#include "Containers/Array.h"
+
+TArray<int32> Array = { 1, 2, 2, 3, 4, 4, 5 };
+
+// Create a lamba function (which is a temporary function, which takes this class as reference parameter)
+Array.RemoveAll([&](const int32& Item)
+{
+    // Removes all item, if the item is equal to: 2
+    return Item == 2;
+});
+
+// Current elements: { 1, 3, 4, 4, 5 }
+
+Array.RemoveAllSwap([&](const int32& Item)
+{
+    // Removes all item, if the item is equal to: 2
+    return Item == 4;
+});
+
+// Current elements: { 5, 3, 1 }
+```
+
+```cpp
+#include "Containers/Array.h"
+
+TArray<int32> Array;
+Array.Add(1);
+Array.Add(2);
+
+// Current element count: 2
+// Current buffer size: 4
+
+Array.Empty();
+
+// Current element count: 0
+// Current buffer size: 0
+
+Array.Add(1);
+Array.Add(2);
+
+// Current element count: 2
+// Current buffer size: 4
+
+Array.Reset();
+
+// Current element count: 0
+// Current buffer size: 4
+```
+
+```cpp
+TArray<int32> Array;
+Array.Add(1);
+Array.Add(2);
+Array.Add(3);
+Array.Add(4);
+Array.Add(5);
+
+// Current element count: 5
+// Current buffer size: 22
+
+int32 SlackAmount = Array.GetSlack(); // 22 - 5 = 17 (Slack = BufferCapacity - NumOfElements)
+
+Array.RemoveAt(0);
+Array.RemoveAt(1);
+
+// Current element count: 3
+// Current buffer size: 22
+
+Array.Shrink();
+
+// Current element count: 3
+// Current buffer size: 4
+```
+
+---
+
+In order to remove an element without allowing the container to shrink, you can use these arguments:
+
+```cpp
+#include "Containers/Array.h"
+
+TArray<int32> Array { 1, 2, 3 };
+
+// Removes the last element, without enable the container to shrink itself.
+int32 LastElementIndex = Array.Num() - 1;
+int32 NumToRemove = 1;
+bool bAllowShrinking = false;
+Array.RemoveAt(LastElementIndex, NumToRemove, bAllowShrinking)
+```
+
+---
+
+When and how much does the container allocated memory for future use cases?
+
+If you run a for-loop and running the debugger, we can analyze the allocation size and where the container has its breakpoints for requesting more memory.
+
+```cpp
+#include "Containers/Array.h"
+
+void UpdatingAllocationSize()
+{
+    TArray<int32> Array;
+
+    int32 PreviousAllocatedSize = Array.GetAllocatedSize();
+
+    for (int32 i = 0; i < 100; ++i)
+    {
+        Array.Add(69);
+
+        int32 NewAllocatedSize = Array.GetAllocatedSize();
+
+        if (PreviousAllocatedSize != NewAllocatedSize)
+        {
+            UE_LOG(LogTemp, Log, TEXT("[%s - %s]: Allocation size has changed from: %i to: %i. Current number of elements: %i and current max size: %i"), ANSI_TO_TCHAR(__FUNCTION__), TEXT("Adding"), PreviousAllocatedSize, NewAllocatedSize, Array.Num(), NewAllocatedSize / sizeof(int32));
+
+            PreviousAllocatedSize = NewAllocatedSize;
+        }
+    }
+
+    // Allocation size is data size times buffer size.
+
+    // Int32 is 4 bytes in size
+    // And the buffer size is currently at 4.
+
+    // Allocation size = 4 * 4 = 16 bytes
+
+    /*
+        LogTemp: Allocation size has changed from: 0 to: 16. Current number of elements: 1 and current max size: 4
+        LogTemp: Allocation size has changed from: 16 to: 88. Current number of elements: 5 and current max size: 22
+        LogTemp: Allocation size has changed from: 88 to: 188. Current number of elements: 23 and current max size: 47
+        LogTemp: Allocation size has changed from: 188 to: 328. Current number of elements: 48 and current max size: 82
+        LogTemp: Allocation size has changed from: 328 to: 520. Current number of elements: 83 and current max size: 130
+    */
+
+    for (int32 i = 0; Array.Num() != 0; ++i)
+    {
+        Array.RemoveAt(Array.Num() - 1);
+
+        int32 NewAllocatedSize = Array.GetAllocatedSize();
+
+        if (PreviousAllocatedSize != NewAllocatedSize)
+        {
+            UE_LOG(LogTemp, Log, TEXT("[%s - %s]: Allocation size has changed from: %i to: %i. Current number of elements: %i and current max size: %i"), ANSI_TO_TCHAR(__FUNCTION__), TEXT("Removing"), PreviousAllocatedSize, NewAllocatedSize, Array.Num(), NewAllocatedSize / sizeof(int32));
+
+            PreviousAllocatedSize = NewAllocatedSize;
+        }
+    }
+
+    /*
+        LogTemp: Allocation size has changed from: 520 to: 260. Current number of elements: 65 and current max size: 65
+        LogTemp: Allocation size has changed from: 260 to: 0. Current number of elements: 0 and current max size: 0
+    */
+}
+```
+
+#### Algo Namespace
+
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
+Algo is a namespace containing a lot of helper functions for container.
+
+Here is common functions:
+
+* `Algo::Accumulate()` - Sums a range.
+* `Algo::AllOf()` - Checks if every projection of the elements in the range is truthy.
+* `Algo::AnyOf()` - Checks if any projection of the elements in the range is truthy.
+* `Algo::BinarySearch()` - Returns index to the first found element matching a value in a range, the range must be sorted by `<`
+* `Algo::BinarySearchBy()` - Same as `Algo::BinarySearch()`, but with custom logic.
+* `Algo::Compare()` - Compares two contiguous containers using operator== to compare pairs of elements.
+* `Algo::CompareByPredicate()` - Compares two contiguous containers using a predicate to compare pairs of elements.
+* `Algo::Copy()` - Copies a range into a container.
+* `Algo::CopyIf()` - Conditionally copies a range into a container.
+* `Algo::Count()` - Counts elements of a range that equal the supplied value.
+* `Algo::CountBy()` - Counts elements of a range whose projection equals the supplied value.
+* `Algo::CountIf()` - Counts elements of a range that match a given predicate.
+* `Algo::Find()` - Returns a pointer to the first element in the range which is equal to the given value.
+* `Algo::FindBy()` - Returns a pointer to the first element in the range whose projection is equal to the given value.
+* `Algo::FindLast()` - Returns a pointer to the last element in the range which is equal to the given value.
+* `Algo::FindLastBy()` - Returns a pointer to the last element in the range whose projection is equal to the given value.
+* `Algo::FindSequence()` - Searches for the first occurrence of a sequence of elements in another sequence.
+* `Algo::ForEach()` - Invokes a callable to each element in a range.
+* `Algo::Includes()` - Checks if one sorted contiguous container is a subsequence of another sorted contiguous container by comparing pairs of elements.
+* `Algo::IndexOf()` - Returns the index of the first element in the range which is equal to the given value.
+* `Algo::IndexOfByPredicate()` - Returns the index of the first element in the range which matches the predicate.
+* `Algo::IsSorted()` - Tests if a range is sorted by its element type's operator `<`.
+* `Algo::MaxElement()` - Returns a pointer to the maximum element in a range.
+* `Algo::MinElement()` - Returns a pointer to the minimum element in a range.
+* `Algo::NoneOf()` - Checks if no element in the range is truthy.
+* `Algo::Sort()` - Sort the range. It will default to `<` operator (ascending order). However, custom logic can be added.
+* `Algo::SortBy()` - Same as `Algo::Sort`, but uses a projection method. Projections are transformations but for values.
+* `Algo::RandomShuffle()` - Randomly shuffle a range of elements.
+* `Algo::RemoveIf()` - Moves all elements which do not match the predicate to the front of the range, while leaving all other elements is a constructed but unspecified state.
+* `Algo::Replace()` - Replaces all elements that compare equal to one value with a new value.
+* `Algo::ReplaceIf()` - Replaces all elements that satisfy the predicate with the given value.
+* `Algo::Reverse()` - Reverses a range.
+* `Algo::Transform()` - Applies a transform to a range and stores the results into a container.
+
+You can read more about Algo on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Algo/).
+
+Here's an example of using them:
+
+```cpp
+#include "Algo/ForEach.h"
+#include "Algo/Accumulate.h"
+#include "Algo/IndexOf.h"
+
+TArray<FString> Array;
+Array.Add(TEXT("hello"));
+Array.Add(TEXT("cRuEL"));
+Array.Add(TEXT("WORLD"));
+
+const int32 FoundIndex = Algo::IndexOf(Array, FString(TEXT("cRuEL")));
+
+if (FoundIndex != INDEX_NONE)
+{
+    // Successfully found the index
+}
+
+const int32 FoundIndexPred = Algo::IndexOfByPredicate(Array, 
+    [&](const FString& Arg)
+    {
+        return TEXT("hello") == Arg.ToLower();
+    });
+
+if (FoundIndexPred != INDEX_NONE)
+{
+    // Successfully found the index with prediction
+}
+
+TArray<FString> TransformArray;
+
+Algo::Transform(Array, TransformArray, [](const FString& Item) { return Item.ToUpper(); });
+
+// { "HELLO", "CRUEL", "WORLD" }
+
+Algo::Reverse(TransformArray);
+
+// { "WORLD", "CRUEL", "HELLO" }
+
+TArray<int32> SortArray { 1, 5, 3, -4, 2, -1 };
+Algo::Sort(SortArray);
+
+// { -4, -1, 1, 2, 3, 5 }
+
+// Create a lambda function for this projection
+auto AbsProjection = [](int32 Value) { return FMath::Abs(Value); };
+
+// Will sort based on this projection. But will still reserve the original values.
+Algo::SortBy(SortArray, AbsProjection);
+
+// { -1, 1, 2, 3, -4, 5 }
+
+Algo::ForEach(SortArray, [](int32& Value)
+{
+    Value *= 2;
+});
+
+// { -2, 2, 4, 6, -8, 10 }
+
+// Will sort based on descending order
+auto ReverseSortPredicate = [](int32 A, int32 B) { return A > B; };
+Algo::SortBy(SortArray, AbsProjection, ReverseSortPredicate);
+
+// { 10, -8, 6, 4, 2, -2 }
+```
+
 #### TMultiMap
 
 Similar to `TMap`, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
@@ -3529,7 +3813,11 @@ You can read more about from [Unreal's docs](https://docs.unrealengine.com/5.3/e
 Here's an example:
 
 ```cpp
+#include "Containers/Array.h"
 #include "Containers/ArrayView.h"
+
+#include "Algo/ForEach.h"
+#include "Algo/Accumulate.h"
 
 int32 SumArray(TArrayView<const int32> ArrayView)
 {
