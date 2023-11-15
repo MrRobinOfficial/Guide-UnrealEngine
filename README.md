@@ -2697,7 +2697,6 @@ This section was written in conjunction with ChatGPT.
 * `dir` = Direction or Directory (depending on the context)
 
 * `elem` = Element
-* `elem` = Element
 * `err` = Error
 * `e` or `evt` = Event
 * `exe` = Execution
