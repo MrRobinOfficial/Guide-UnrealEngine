@@ -5990,6 +5990,20 @@ Results follow:
 > **Note**
 > Because `MatchSubtring` requires checking incoming Assets much more thoroughly, it can impact startup times. `MatchSubstring` is intended to be used temporarily as a fixup when making sweeping changes. It is recommended that Assets involved in these changes be resaved immediately and checked into your project's source control database with any related code changes, and that the Core Redirect be deleted without entering source control.
 
+#### Disable BlueprintPure
+
+When creating a `UFUNCTION` and marking it as `const`, Unreal will interpret this function as pure function. A pure function will evaluate everything it's called, compare to a regular function, which Unreal caches the result and save for later.
+
+If you want to mark a `UFUNCTION` as const without Unreal converting into a pure function, you can add this specifier:
+
+```cpp
+UFUNCTION(BlueprintCallable, BlueprintPure = false)
+void ComplexFunction() const
+{
+    // ...
+}
+```
+
 ## 📛 Console Commands
 
 <table><tr><td>
