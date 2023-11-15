@@ -3516,33 +3516,86 @@ while (!MyQueue.IsEmpty())
 
 #### TArrayView
 
-Templated fixed-size view of another array
+When you want to reuse an array without copying or referencing the base class, you can use `TArrayView`.
 
-A statically sized view of an array of typed elements. Designed to allow functions to take either a fixed C array or a `TArray` with an arbitrary allocator as an argument when the function neither adds nor removes elements
+A statically sized view of an array of typed elements. Designed to allow functions to take either a fixed C-style array or a `TArray` with an arbitrary allocator as an argument when the function neither adds nor removes elements.
+
+You can read more about from [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TArrayView/).
 
 Here's an example:
 
 ```cpp
 #include "Containers/ArrayView.h"
 
-int32 SumAll(TArrayView<const int32> array)
+int32 SumArray(TArrayView<const int32> ArrayView)
 {
-    return Algo::Accumulate(array);
+    // Sum the array
+    return Algo::Accumulate(ArrayView, 0);
 }
 
-SumAll(MyTArray);
-SumAll(MyCArray);
-SumAll(MakeArrayView(Ptr, Num));
+// Allocates on heap, but returns an array on the stack
+TArray<int32> RegularArray = { 1, 2, 3 };
 
-auto Values = { 1, 2, 3 };
-SumAll(Values);
+ // Allocates on the stack
+TArray<int32, TInlineAllocator<4>> StackAllocatedArray = { 1, 2, 3 };
+
+ // Allocates on the stack
+int32 CArray[4] = { 1, 2, 3 };
+
+UE_LOG(LogTemp, Log, TEXT("Sum=%i"), SumArray(RegularArray));
+
+UE_LOG(LogTemp, Log, TEXT("Sum=%i"), SumArray(StackAllocatedArray));
+
+UE_LOG(LogTemp, Log, TEXT("Sum=%i"), SumArray(CArray));
 ```
 
-View classes are not const-propagating! If you want a view where the elements are const, you need `TArrayView<const T>` not `const TArrayView<T>`! Caution: Treat a view like a reference to the elements in the array. **DO NOT** free or reallocate the array while the view exists! For this reason, be mindful of lifetime when constructing TArrayViews from rvalue initializer lists:
+> **Warning**
+> `TArrayView` is a fixed size and independent array. Meaning, it will not affect from its original assignment, nor does it support Add() or Remove() functions.
+
+> **Note**
+> It's still possible to use Algo library, which offers functions to use for TArrayView and TArray. Such as Algo::Reverse() and Algo::ForEach().
+
+> **Fatal**
+> Avoid using `TArrayView` with a temporary array variable. Since, the array can go out of scope and corrupt `TArrayView`. Since the view is relying on the array's memory block.
 
 ```cpp
-TArrayView<int32> View = { 1, 2, 3 }; // construction of array view from rvalue initializer list
-int n = View[0]; // undefined behavior, as the initializer list was destroyed at the end of the previous line
+#include "Containers/ArrayView.h"
+
+// Note how to mark an ArrayView const!
+void ConstArrayView()
+{
+    TArray<int32> MutableArray;
+    TArrayView<int32> ArrayView = MutableArray;
+    TArrayView<const int32> ConstArrayView = MutableArray;
+
+    ArrayView[0] = 1337; // Allowed!
+    ConstArrayView[0] = 69; // Compiling error!
+}
+
+// Do not create an array view to a temporary variable, as this can cause issues!
+void UnsafeArrayView()
+{
+    // Create Array view with temporary TArray
+    TArrayView<const int32> UnsafeArray = TArray<int32> { 1, 2, 3 };
+
+    // This memory block has likely been freed, but the array view doesn't know about it!
+    int32 Value = UnsafeArray[0]; // This will cause a crash!
+}
+
+// Do not modify the array while the array view is in scope! Array view is independent from the array.
+void ModifyArrayView()
+{
+    TArray<int32> Array { 1, 2, 3 };
+    TArrayView<int32> ArrayView = Array;
+
+    int32 PreviousValue = ArrayView[0];
+
+    Array.RemoveAt(0); // Will not update array view!
+
+    int32 NewValue = ArrayView[0];
+
+    bool bIsSame = PreviousValue == NewValue; // Will return true!
+}
 ```
 
 #### FStringView
