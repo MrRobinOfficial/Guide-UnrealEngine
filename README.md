@@ -3225,46 +3225,110 @@ A dynamic array that can store a variable number of elements of the same type. I
 Here's an example:
 
 ```cpp
+#include "Containers/Array.h"
+
 // Declare a TArray of integers
-TArray<int32> MyIntArray;
+TArray<int32> MyArray { 1, 2, 3 };
 
 // Add an element to the array
-MyIntArray.Add(5);
+MyArray.Add(4);
+
+// MyArray: { 1, 2, 3, 4 }
 
 // Add multiple elements to the array
-MyIntArray.Append({10, 15, 20});
+MyArray.Append({10, 15, 20});
+
+// MyArray: { 1, 2, 3, 4, 10, 15, 20 }
+
+MyArray.RemoveAt(0);
+MyArray.RemoveAt(0);
+
+// MyArray: { 3, 4, 10, 15, 20 }
+
+int32 NumOfElements = MyArray.Num(); // 5
 
 // Loop through the array and print each element
-for (int32 Element : MyIntArray)
+for (const int32& Element : MyArray)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Element: %d"), Element);
+    UE_LOG(LogTemp, Log, TEXT("Element: %i"), Element);
 }
 ```
 
+---
+
+You can either allocate an array on the **stack** or on the **heap**. Without specifying, you are creating the array allocation on the heap, while the array returns a data container on the stack.
+
+If you don't know about what the difference between **stack** and **heap** allocation, highly suggest reading upon the subject in [this section](#-stack-vs-heap).
+
+Here is a way to allocate an array on the stack:
+
+```cpp
+TArray<int32, TInlineAllocator<4>> StackArray; // Allocate 4 elements on the stack
+
+StackArray.Add(1);
+StackArray.Add(2);
+StackArray.Add(3);
+StackArray.Add(4);
+
+// Now we added the same amount of elements, to our buffer size (which has been allocated on the stack).
+// If we try to add more elements than allocated, Unreal will default TArray to use heap allocation for the rest of elements.
+
+StackArray.Add(5); // Will be allocated on the heap!
+```
+
+> **Warning**
+> If you're trying to allocate a heap object on the stack with `TInlineAllocator`, Unreal will default to a heap allocation.
+
+> **Warning**
+> If you add more elements than have been allocated for, Unreal will default to a heap allocation instead.
+
+> **Note**
+> Unreal will treat as stack allocated array as a different data type, compare to a regular array. To accommodate this, use `TArrayView` instead.
+
 #### TSet
 
-A set of unique elements of a single type, implemented as a hash table. It provides many of the same functions as ```TArray```, but with faster lookup times for large collections of elements.
+A set of unique elements of a single type, implemented as a hash table. It provides many of the same functions as `TArray`, but with faster lookup times for large collections of elements.
 
 Here's an example:
 
 ```cpp
-// Declare a TSet of strings
-TSet<FString> MyStringSet;
+#include "Containers/Set.h"
+
+// Declare a TSet of names
+TSet<FName> MySet;
 
 // Add an element to the set
-MyStringSet.Add(TEXT("Hello"));
+MySet.Add(TEXT("hello"));
 
 // Add multiple elements to the set
-MyStringSet.Append({TEXT("World"), TEXT("Unreal"), TEXT("Engine")});
+MySet.Append({TEXT("cruel"), TEXT("world"), TEXT("hello")});
+
+// MySet: { "hello", "curel", "world" }
+
+int32 NumOfElements = MySet.Num(); // 4
 
 // Check if an element exists in the set
-if (MyStringSet.Contains(TEXT("Unreal")))
+if (MySet.Contains(TEXT("cruel")))
 {
-    UE_LOG(LogTemp, Warning, TEXT("Unreal is in the set"));
+    UE_LOG(LogTemp, Log, TEXT("'Cruel' element is in the set"));
 }
 
 // Remove an element from the set
-MyStringSet.Remove(TEXT("Engine"));
+MySet.Remove(TEXT("cruel"));
+
+// MySet: { "hello", "world" }
+
+// Iterate through the set and log each element
+for (const FName& Name : MySet)
+{
+    UE_LOG(LogTemp, Log, TEXT("Name: %s"), *Name.ToString());
+}
+
+// Convert the set to an array
+TArray<FName> CopyOfSet = MySet.Array();
+CopyOfSet[0] = TEXT("goodbye");
+
+// CopyOfSet: { "goodbye", "world" }
 ```
 
 #### TMap
@@ -3274,26 +3338,61 @@ A map of key-value pairs, implemented as a hash table. It allows fast lookup of 
 Here's an example:
 
 ```cpp
-// Declare a TMap of integers to strings
-TMap<int32, FString> MyIntStringMap;
+#include "Containers/Map.h"
+
+// Declare a TMap of names to integers
+TMap<FName, int32> MyMap = { { TEXT("player_id"), 457865 }, { TEXT("player_age"), 35 } };
+
+// MyMap: { { "player_id", 457865 }, { "player_age", 35 } }
 
 // Add elements to the map
-MyIntStringMap.Add(1, TEXT("One"));
-MyIntStringMap.Add(2, TEXT("Two"));
-MyIntStringMap.Add(3, TEXT("Three"));
+int32& PlayerRankRef = MyMap.Add(TEXT("player_rank"));
+PlayerRankRef = 420;
+
+MyMap.Add(TEXT("player_speed"), 15);
+
+// MyMap: { { "player_id", 457865 }, { "player_age", 35 }, { "player_rank", 420 }, { "player_speed", 15 } }
+
+// Finds the value in the map from the key. Otherwise, create and add the key to the map (with default value).
+int32& PlayerIDRef = MyMap.FindOrAdd(TEXT("player_id"));
+PlayerIDRef = 001100;
+
+// MyMap: { { "player_id", 001100 }, { "player_age", 35 }, { "player_rank", 420 }, { "player_speed", 15 } }
+
+int32 NumOfElements = MyMap.Num(); // 4
+
+// Iterate through the map and log key-value pairs
+for (const TPair<FName, int32>& KeyValuePair : MyMap)
+{
+    UE_LOG(LogTemp, Log, TEXT("Key: %s, Value: %i"), *KeyValuePair.Key.ToString(), KeyValuePair.Value);
+}
+
+// Check if "player_rank" exists in the map and log its value if found
+if (int32* PlayerRankPtr = MyMap.Find(TEXT("player_rank")))
+{
+    UE_LOG(LogTemp, Log, TEXT("Player rank is: %i"), *PlayerRankPtr);
+}
 
 // Access an element in the map
-FString Value;
-if (MyIntStringMap.TryGetValue(2, Value))
+int32 OutSpeed;
+if (MyMap.TryGetValue(TEXT("player_speed"), OutSpeed))
 {
-    UE_LOG(LogTemp, Warning, TEXT("Value for key 2: %s"), *Value);
+    UE_LOG(LogTemp, Log, TEXT("Player's speed: %i [m/s]"), OutSpeed);
 }
 
 // Modify an element in the map
-MyIntStringMap[2] = TEXT("NewTwo");
+MyMap[TEXT("player_age")] = -1;
 
-// Remove an element from the map
-MyIntStringMap.Remove(3);
+// MyMap: { { "player_id", 001100 }, { "player_age", -1 }, { "player_rank", 420 }, { "player_speed", 15 } }
+
+// Remove an element from the map.
+MyMap.Remove(TEXT("player_age")); // Reference variables (such as PlayerRankRef and PlayerIDRef) become unsafe since the map size and elements have changed.
+
+// MyMap: { { "player_id", 001100 }, { "player_rank", 420 }, { "player_speed", 15 } }
+
+// Convert the map to an array of key-value pairs
+TArray<TPair<FName, int32>> KeyValueArray = MyMap.Array();
+int32 PlayerID = KeyValueArray[0].Value; // 001100
 ```
 
 #### Common and helpful functions
