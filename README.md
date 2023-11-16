@@ -3218,6 +3218,10 @@ UE_LOG(LogTemp, Display, TEXT("MyTransformRotation: %s"), *MyTransformRotation.T
 
 ![Collections](static/img/Collections.png)
 
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
 #### TArray
 
 A dynamic array that can store a variable number of elements of the same type. It provides many useful functions, such as adding, removing, sorting, and searching for elements, as well as iterating over them.
@@ -3284,6 +3288,25 @@ StackArray.Add(5); // Will be allocated on the heap!
 
 > **Note**
 > Unreal will treat as stack allocated array as a different data type, compare to a regular array. To accommodate this, use `TArrayView` instead.
+
+If you want to avoid filling up the rest of elements with heap allocation, then use `TFixedAllocator`:
+
+```cpp
+TArray<int32, TFixedAllocator<4>> StackArray; // Allocate 4 elements on the stack
+
+StackArray.Add(1);
+StackArray.Add(2);
+StackArray.Add(3);
+StackArray.Add(4);
+
+StackArray.Add(5); // Unreal calls an assertion, which will CRASH Unreal in runtime mode!
+
+// If you're continuing on with the assertion, using Visual Studio Debugger, Unreal will call Reset() function.
+// Clearing out all elements, but keeping the current allocation size.
+
+// Same thing happens with brace initialization.
+TArray<int32, TFixedAllocator<4>> StackArray{ 1, 2, 3, 4, 5 }; // Allocate 4 elements on the stack, but we got 5 elements!
+```
 
 #### TSet
 
@@ -3568,10 +3591,6 @@ void UpdatingAllocationSize()
 
 #### Algo Namespace
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 Algo is a namespace containing a lot of helper functions for container.
 
 Here is common functions:
@@ -3686,50 +3705,89 @@ Similar to `TMap`, but allows multiple values to be associated with the same key
 Here's an example:
 
 ```cpp
+#include "Containers/Map.h"
+
 // Declare a TMultiMap of integers to strings
-TMultiMap<int32, FString> MyIntStringMultiMap;
+TMultiMap<FName, float> MyMultiMap = { { TEXT("X"), 10.0f }, { TEXT("Y"), 69.0f }, { TEXT("Z"), 0.0f } }
 
 // Add elements to the map
-MyIntStringMultiMap.Add(1, TEXT("One"));
-MyIntStringMultiMap.Add(2, TEXT("Two"));
-MyIntStringMultiMap.Add(2, TEXT("AnotherTwo"));
-MyIntStringMultiMap.Add(3, TEXT("Three"));
+MyMultiMap.Add(TEXT("X"), -10.0f);
+MyMultiMap.Add(TEXT("Y"), 69.0f);
+MyMultiMap.AddUnique(TEXT("Y"), 69.0f); // Will not add if both key and value match an existing association in the map!
+
+// MyMultiMap: { { TEXT("X"), 10.0f }, { TEXT("Y"), 69.0f }, { TEXT("Z"), 0.0f }, { TEXT("Y"), 69.0f }, { TEXT("X"), -10.0f } }
 
 // Get all values for a key in the map
-TArray<FString> Values;
-MyIntStringMultiMap.MultiFind(2, Values);
+TArray<float> OutValues;
+MyMultiMap.MultiFind(TEXT("Y"), OutValues);
+
+// OutValues: { 69.0f, 69.0f }
+
+int32 NumOfElements = MyMultiMap.Num(); // 5
 
 // Loop through the values and print each one
-for (const FString& Value : Values)
+for (const float& Value : OutValues)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Value: %s"), *Value);
+    UE_LOG(LogTemp, Log, TEXT("Value: %f"), Value);
 }
 
 // Remove all values for a key in the map
-MyIntStringMultiMap.Remove(2);
+MyMultiMap.Remove(TEXT("Y"));
+
+// MyMultiMap: { { TEXT("X"), 10.0f }, { TEXT("Z"), 0.0f }, { TEXT("X"), -10.0f } }
+
+// Remove the first association between the specified key and value from the map.
+MyMultiMap.RemoveSingle(TEXT("X"), 10.0f);
+
+// MyMultiMap: { { TEXT("Z"), 0.0f }, { TEXT("X"), -10.0f } }
 ```
 
-Here's an example:
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TMultiMap/).
 
 > **Warning**
-> Unreal Engine doesn't support `TMultiMap` with UHT[^3]. Meaning, you can't expose to Blueprint.
+> Unreal doesn't support `TMultiMap` with UHT[^3]. Meaning, you can't expose to Blueprint.
 
 #### TStaticArray
+
+An array with a static number of elements.
+
+You cannot add or remove any of the entries of the static array. But you can still alter each element's data.
 
 Here's an example:
 
 ```cpp
-const uint32 Size = 4u + 4u; // 16u
-TStaticArray<FVector, Size> Positions;
+#include "Containers/StaticArray.h"
 
-for (FVector& Pos : Positions)
+TStaticArray<int32, 4> StaticArray { 1, 2, 3, 4 }; // Won't compile!
+
+// Use this method instead:
+
+// Allocate 4 elements of type 'FVector'
+TStaticArray<FVector, 4> StaticArray;
+
+// StaticArray: { (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0) }
+
+StaticArray[0] = FVector::OneVector;
+StaticArray[1] = FVector::ZeroVector;
+StaticArray[2] = FVector::OneVector;
+StaticArray[3] = FVector::ZeroVector;
+
+// StaticArray: { (1, 1, 1), (0, 0, 0), (1, 1, 1), (0, 0, 0) }
+
+int32 NumOfElements = StaticArray.Num(); // 4
+
+for (FVector& Elem : StaticArray)
 {
-    Pos = FVector(0.0f, 10.0f, 5.0f); // Alter the data of each element
+    Elem = FVector(Elem.X * 2.0f, Elem.Y * 0.5f, Elem.Z * 1.5f); // Alter the data of each element
 }
+
+// StaticArray: { (2, 0.5, 1.5), (0, 0, 0), (2, 0.5, 1.5), (0, 0, 0) }
 ```
 
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStaticArray/).
+
 > **Warning**
-> Unreal Engine doesn't support `TStaticArray` with UHT[^3]. Meaning, you can't expose to Blueprint.
+> Unreal Engine doesn't support `TStaticArray` with UHT[^3]. Meaning, you can't expose to Blueprint. To use a static array with Blueprint, use `FixedSized` specifier for UPROPERTY on `TArray` property.
 
 #### FHashTable
 
@@ -3899,10 +3957,6 @@ while (!MyQueue.IsEmpty())
 
 #### TArrayView
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 When you want to reuse an array without copying or referencing the base class, you can use `TArrayView`.
 
 A statically sized view of an array of typed elements. Designed to allow functions to take either a fixed C-style array or a `TArray` with an arbitrary allocator as an argument when the function neither adds nor removes elements.
@@ -4019,7 +4073,7 @@ MyString = TEXT("Modified String");
 UE_LOG(LogTemp, Warning, TEXT("Copied StringView: %s"), *CopiedStringView);
 ```
 
-#### TStringBuilder
+#### FStringBuilderBase
 
 Here's an example:
 
@@ -4058,11 +4112,9 @@ bool Equals = MyEnum == EMyEnum::Two;
 
 | Data Container | Description                                                                                                                                                                                                                                                     | Use Case                                                                                                                                                                                   |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| TArray         | A dynamic array that can grow or shrink in size at runtime, supporting random access and iteration.                                                                                                                                                            | Suitable for storing and managing a collection of elements where the size may change frequently and quick access to elements is required.                                                  |
-| TSet           | A set data structure that stores unique elements in no particular order, efficiently supporting element insertion, deletion, and membership checks.                                                                                                              | Ideal for maintaining a collection of distinct elements and performing fast membership checks without duplicates.                                                                          |
-| TMap           | An associative container that stores key-value pairs, allowing efficient lookup and retrieval based on keys.                                                                                                                                                  | Used for creating dictionaries or associative arrays, where data is organized based on unique keys for quick and efficient access.                                                          |
-| TMultiMap      | Similar to TMap, but allows multiple values to be associated with the same key, making it possible to have duplicate keys in the container.                                                                                                                    | Useful when you need to associate multiple values with a single key, allowing efficient access and retrieval of related data.                                                            |
-| TStaticArray   | A fixed-size array with compile-time constant size, providing fast access to elements and suitable for a known number of elements at compile time.                                                                                                           | Used when you know the exact number of elements needed at compile time and want to avoid dynamic memory allocation.                                                                       |
+| **TArray**         | A dynamic array that can grow or shrink in size at runtime, supporting random access and iteration.                                                                                                                                                            | Suitable for storing and managing a collection of elements where the size may change frequently and quick access to elements is required.                                                  |
+| **TSet**           | A set data structure that stores unique elements in no particular order, efficiently supporting element insertion, deletion, and membership checks.                                                                                                              | Ideal for maintaining a collection of distinct elements and performing fast membership checks without duplicates.                                                                          |
+| **TMap**           | An associative container that stores key-value pairs, allowing efficient lookup and retrieval based on keys.                                                                                                                                                  | Used for creating dictionaries or associative arrays, where data is organized based on unique keys for quick and efficient access.                                                          |
 
 ### 🧨 Value type vs Reference type
 
