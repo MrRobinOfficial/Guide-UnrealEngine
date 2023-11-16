@@ -3025,22 +3025,14 @@ You can read more about [string handling from the docs](https://docs.unrealengin
 
 In Unreal Engine, `FName` is a specialized type used for identifying objects within the Unreal Engine object system. It is optimized for fast comparison and storage and is commonly used for referencing actors, components, or assets in a performance-efficient manner.
 
-The `FName` class stores strings as hashed indices, making it a lightweight and fast alternative to regular strings.
+The `FName` class stores strings as hashed indices, making it a lightweight and fast alternative to regular strings. Because of this, `FName` are **immutable** string class.
 
 For example:
 
 ```cpp
+#include "UObject/NameTypes.h"
+
 FName MyName = FName("PlayerName");
-```
-
-#### FString
-
-`FString` is a dynamic, **mutable** string type in Unreal Engine, which provides a more flexible approach to string manipulation. Unlike `FName`, `FString` allows for modifications, such as appending, inserting, or removing characters, making it suitable for general string operations. It is widely used for various tasks, such as displaying messages, concatenating text, or formatting output strings.
-
-Example usage:
-
-```cpp
-FString MyString = FString("Hello, World!");
 ```
 
 #### FText
@@ -3049,13 +3041,15 @@ FString MyString = FString("Hello, World!");
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
-`FText` is a specialized string class designed for localization support in Unreal Engine. Unlike `FString`, `FText` is **immutable**, ensuring consistency and avoiding accidental modifications. FText provides the ability to represent text in different languages and cultures, making it a crucial component for building multi-language games or applications.
+`FText` is a specialized string class designed for localization support in Unreal Engine. Because of this, `FText` are **immutable** string class. FText provides the ability to represent text in different languages and cultures, making it a crucial component for building multi-language games or applications.
 
-You can read more about [FText at Unreal Engine's docs](https://docs.unrealengine.com/5.2/en-US/ftext-in-unreal-engine/).
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/ftext-in-unreal-engine/).
 
 Example usage:
 
 ```cpp
+#include "Internationalization/Text.h"
+
 	// Create FText from a string literal (non-localized)
 	FText NewGameText = FText::FromString(TEXT("New Game")); // Avoid this, since they cause more performance than initializing directly as FText.
 
@@ -3112,7 +3106,17 @@ Example usage:
 #undef LOCTEXT_NAMESPACE
 ```
 
-#### Examples of usages
+#### FString
+
+`FString` is a dynamic, **mutable** string type in Unreal Engine, which provides a more flexible approach to string manipulation. Unlike `FName`, `FString` allows for modifications, such as appending, inserting, or removing characters, making it suitable for general string operations. It is widely used for various tasks, such as displaying messages, concatenating text, or formatting output strings.
+
+Example usage:
+
+```cpp
+#include "Containers/UnrealString.h"
+
+FString MyString = FString("Hello, World!");
+```
 
 How to add on-screen debug message:
 
@@ -4047,6 +4051,8 @@ void ModifyArrayView()
 
 `FStringView` is a lightweight, non-owning view of the string data, and copying the view itself is efficient and does not affect the underlying data. However, when you copy the `FStringView`, the new instance of the view still refers to the same original string data.
 
+Same concept with `TArrayView` but with `FString` instead.
+
 Here's an example:
 
 ```cpp
@@ -4055,7 +4061,7 @@ Here's an example:
 void ProcessString(FStringView StringView)
 {
     // Use FStringView to read the string data without copying it.
-    UE_LOG(LogTemp, Warning, TEXT("String: %s"), *StringView);
+    UE_LOG(LogTemp, Log, TEXT("String: %s"), *StringView);
 }
 
 FString MyString = TEXT("Hello, FStringView!");
@@ -4070,10 +4076,61 @@ FStringView CopiedStringView = MyString;
 MyString = TEXT("Modified String");
 
 // Print the contents of the copied FStringView.
-UE_LOG(LogTemp, Warning, TEXT("Copied StringView: %s"), *CopiedStringView);
+UE_LOG(LogTemp, Log, TEXT("Copied StringView: %s"), *CopiedStringView);
 ```
 
-#### FStringBuilderBase
+#### String Builder
+
+When working strings, you might have to concatenate a lot of string together. Sometimes, this can create complex and messy code to read. Whilst, `FString` is **mutable** and allows the developer to alter its data without copy a new instance. A string builder can still be a very helpful tool.
+
+The string builder allocates a buffer space which is used to hold the constructed string. The intent is that the builder is allocated on the stack as a function local variable to avoid heap allocations.
+
+The buffer is always contiguous, and the class is not intended to be used to construct extremely large strings.
+
+This is not intended to be used as a mechanism for holding on to strings for a long time. The use case is explicitly to aid in constructing strings on the stack and subsequently passing the string into a function call or a more permanent string storage mechanism like `FString` et al.
+
+The amount of buffer space to allocate is specified via a template parameter and if the constructed string should overflow this initial buffer, a new buffer will be allocated using regular dynamic memory allocations.
+
+---
+
+**There are two ways to construct a string builder**. Either with initialize buffer size or with unknown buffer size.
+
+To create a string builder with an unknown buffer size:
+
+```cpp
+FStringBuilderBase StringBuilder; // Note! This is using a regular dynamic memory allocation.
+```
+
+To create a string builder with initialize buffer size:
+
+```cpp
+int32 BufferSize = 12; // 12 characters of TCHAR
+TStringBuilder<BufferSize> StringBuilder;
+
+StringBuilder.Appendchar('H');
+StringBuilder.Appendchar('e');
+StringBuilder.Appendchar('l');
+StringBuilder.Appendchar('l');
+StringBuilder.Appendchar('o');
+StringBuilder.Appendchar(',');
+StringBuilder.Appendchar(' ');
+StringBuilder.Appendchar('W');
+StringBuilder.Appendchar('o');
+StringBuilder.Appendchar('r');
+StringBuilder.Appendchar('l');
+StringBuilder.Appendchar('d');
+
+// StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd' }
+
+// In order to get the string either call ToString() or ToView()
+FString Str = StringBuilder.ToString();
+FStringView StrView = StringBuilder.ToView();
+
+// Note! The string builder will allocate more memory, if necessary.
+StringBuilder.Append(TEXT(" and welcome!"));
+
+// StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', ' ', 'a', 'n', 'd', ' ', 'w', 'e', 'l', 'c', 'o', 'm', 'e', '!' }
+```
 
 Here's an example:
 
