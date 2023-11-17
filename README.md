@@ -135,28 +135,29 @@
     * 21.1\. [Pragma once](#pragma-once)
     * 21.2\. [Strip out editor functionality](#strip-out-editor-functionality)
 * 22\. [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
-* 22\. [🗝️ Deep dive](#-deep-dive)
-    * 22.1\. [🔖 Keywords](#-keywords)
-    * 22.2\. [🪄 Tips and best practices](#-tips-and-best-practices)
-        * 22.2.1\. [📦 Refactoring](#-refactoring)
-            * 22.2.1.1\. [Renaming](#renaming)
-            * 22.2.1.2\. [Extract Method﻿](#extract-method)
-            * 22.2.1.3\. [Introduce/Inline typedef﻿s](#introduceinline-typedefs)
-            * 22.2.1.4\. [Introduce Variable﻿](#introduce-variable)
-            * 22.2.1.5\. [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
-        * 22.2.2\. [⏱ Ticking](#-ticking)
-        * 22.2.3\. [`FTickFunction`](#ftickfunction)
-        * 22.2.4\. [🔌 Direct references](#-direct-references)
-        * 22.2.5\. [➗ Math Expression Node](#-math-expression-node)
-        * 22.2.6\. [Call function in editor](#call-function-in-editor)
-* 23\. [📛 Console Commands](#-console-commands)
-* 24\. [📌 Shortcuts](#-shortcuts)
-* 25\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
-    * 25.1\. [⛔ Compiler Error C2628](#-compiler-error-c2628)
-    * 25.2\. [⛔ Compiler Error C2065](#-compiler-error-c2065)
-* 26\. [🔗 Helpful links](#-helpful-links)
-* 27\. [🆘 Support](#-support)
-* 28\. [📍 Footnotes](#-footnotes)
+* 23\. [🎯 Extend Unreal Editor](#-extend-unreal-editor)
+* 24\. [🗝️ Deep dive](#-deep-dive)
+    * 24.1\. [🔖 Keywords](#-keywords)
+    * 24.2\. [🪄 Tips and best practices](#-tips-and-best-practices)
+        * 24.2.1\. [📦 Refactoring](#-refactoring)
+            * 24.2.1.1\. [Renaming](#renaming)
+            * 24.2.1.2\. [Extract Method﻿](#extract-method)
+            * 24.2.1.3\. [Introduce/Inline typedef﻿s](#introduceinline-typedefs)
+            * 24.2.1.4\. [Introduce Variable﻿](#introduce-variable)
+            * 24.2.1.5\. [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
+        * 24.2.2\. [⏱ Ticking](#-ticking)
+        * 24.2.3\. [`FTickFunction`](#ftickfunction)
+        * 24.2.4\. [🔌 Direct references](#-direct-references)
+        * 24.2.5\. [➗ Math Expression Node](#-math-expression-node)
+        * 24.2.6\. [Call function in editor](#call-function-in-editor)
+* 25\. [📛 Console Commands](#-console-commands)
+* 26\. [📌 Shortcuts](#-shortcuts)
+* 27\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
+    * 27.1\. [⛔ Compiler Error C2628](#-compiler-error-c2628)
+    * 27.2\. [⛔ Compiler Error C2065](#-compiler-error-c2065)
+* 28\. [🔗 Helpful links](#-helpful-links)
+* 29\. [🆘 Support](#-support)
+* 30\. [📍 Footnotes](#-footnotes)
 
 </td></tr></table>
 
@@ -5963,6 +5964,20 @@ MyTask->StartBackgroundTask();
 ---
 
 As said before, Ayliroé wrote an awesome documentation on Unreal's multithreading and asynchronous tasks system, which you can read either from [Google Docs](https://docs.google.com/document/d/1uw9Dfui5ZepSrBpMc1DrxFOeRFnDu8ubzFse8Mr_s7E/) or from [Forum Post](https://forums.unrealengine.com/t/multithreading-and-performance-in-unreal/1216417/1).
+
+## 🎯 Extend Unreal Editor
+
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
+### Slate
+
+Lorem Ipsum
+
+### Creating custom asset type
+
+Lorem Ipsum
 
 ## 🗝️ Deep dive
 
