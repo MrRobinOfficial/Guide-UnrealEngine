@@ -3818,6 +3818,8 @@ const uint16 Index = 10u;
 HashTable.Add(Hash, Index);
 ```
 
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/FHashTable/).
+
 #### TStaticHashTable
 
 Statically sized hash table, used to index another data structure.
@@ -3829,13 +3831,15 @@ Here's an example:
 #include "Containers/HashTable.h"
 
 static const uint32 Capacity = 16u;
-TStaticHashTable<1024u, Capacity> HashTable;
+TStaticHashTable<1024u, Capacity> StaticHashTable;
 
 const uint16 Hash = 50u;
 const uint16 Index = 10u;
 
-HashTable.Add(Hash, Index);
+StaticHashTable.Add(Hash, Index);
 ```
+
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStaticHashTable/).
 
 #### TSortedMap
 
@@ -3848,26 +3852,28 @@ Here's an example:
 ```cpp
 #include "Containers/SortedMap.h"
 
-// Create a TSortedMap of strings to integers.
-TSortedMap<FString, int32> MyMap;
+// Create a TSortedMap of names to integers.
+TSortedMap<FName, int32> MyMap;
 
 // Add some elements to the map.
-MyMap.Add("One", 1);
-MyMap.Add("Two", 2);
-MyMap.Add("Three", 3);
+MyMap.Add(TEXT("One"), 1);
+MyMap.Add(TEXT("Two"), 2);
+MyMap.Add(TEXT("Three"), 3);
 
 // Get the value associated with a key.
-int32 Value = MyMap["One"];
+int32 Value = MyMap[TEXT("One")];
 
 // Check if a key exists in the map.
-bool Exists = MyMap.Contains("One");
+bool Exists = MyMap.Contains(TEXT("One"));
 
 // Iterate over the map.
-for (const auto& Element : MyMap)
+for (const TPair<FName, int32>& Element : MyMap)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Key: %s, Value: %d"), *Element.Key, Element.Value);
+    UE_LOG(LogTemp, Log, TEXT("Key: %s, Value: %i"), *Element.Key.ToString(), Element.Value);
 }
 ```
+
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TSortedMap/).
 
 #### TList
 
@@ -3893,11 +3899,13 @@ int32 FirstElement = MyList[0];
 int32 LastElement = MyList[MyList.Num() - 1];
 
 // Iterate over the list.
-for (int32 Element : MyList)
+for (const int32& Element : MyList)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Element: %d"), Element);
+    UE_LOG(LogTemp, Log, TEXT("Element: %i"), Element);
 }
 ```
+
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TList/).
 
 #### TLinkedList
 
@@ -3910,26 +3918,28 @@ Here's an example:
 ```cpp
 #include "Containers/List.h"
 
-// Create a TLinkedList of strings.
-TLinkedList<FString> MyList;
+// Create a TLinkedList of roads.
+TLinkedList<ARoad*> RoadNetworkList;
 
 // Add some elements to the list.
-MyList.Add("One");
-MyList.Add("Two");
-MyList.Add("Three");
+RoadNetworkList.Add(GetRoad(0));
+RoadNetworkList.Add(GetRoad(1));
+RoadNetworkList.Add(GetRoad(2));
 
 // Get the first element in the list.
-FString FirstElement = MyList.GetFirst();
+ARoad* FirstElement = RoadNetworkList.GetFirst();
 
 // Get the last element in the list.
-FString LastElement = MyList.GetLast();
+ARoad* LastElement = RoadNetworkList.GetLast();
 
 // Iterate over the list.
-for (const auto& Element : MyList)
+for (const ARoad* Road : RoadNetworkList)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Element: %s"), *Element);
+    UE_LOG(LogTemp, Log, TEXT("Road: %s"), *Road->GetName());
 }
 ```
+
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TLinkedList/).
 
 #### TQueue
 
@@ -3944,16 +3954,20 @@ Here's an example:
 ```cpp
 #include "Containers/Queue.h"
 
-// Create a TQueue of strings.
-TQueue<FString> MyQueue;
+// Create a TQueue of hit results.
+TQueue<FHitResult> MyQueue;
+
+AActor* TargetActor = this;
+UPrimitiveComponent* TargetComponent = this;
+FVector HitLocation = FVector(900.0f, 0.0f, 500.0f);
+FVector HitNormal = FVector(0.0f, 0.0f, 1.0f);
 
 // Add some elements to the queue.
-MyQueue.Enqueue("One");
-MyQueue.Enqueue("Two");
-MyQueue.Enqueue("Three");
+MyQueue.Enqueue(FHitResult(TargetActor, TargetComponent, HitLocation, HitNormal));
+MyQueue.Enqueue(FHitResult(nullptr, nullptr, FVector::ZeroVector, FVector::OneVector.GetSafeNormal()));
 
 // Dequeue the first element in the queue.
-FString DequeuedElement = MyQueue.Dequeue();
+FHitResult DequeuedElement = MyQueue.Dequeue();
 
 // Check if the queue is empty.
 bool IsEmpty = MyQueue.IsEmpty();
@@ -3961,10 +3975,13 @@ bool IsEmpty = MyQueue.IsEmpty();
 // Iterate over the queue.
 while (!MyQueue.IsEmpty())
 {
-    FString Element = MyQueue.Dequeue();
-    UE_LOG(LogTemp, Warning, TEXT("Element: %s"), *Element);
+    FHitResult HitResult = MyQueue.Dequeue();
+
+    UE_LOG(LogTemp, Log, TEXT("Hit Target: %s"), *HitResult.GetActor()->GetName());
 }
 ```
+
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TQueue/).
 
 #### TArrayView
 
@@ -4054,7 +4071,7 @@ void ModifyArrayView()
 }
 ```
 
-#### FStringView
+#### String View
 
 `FStringView` is a lightweight, non-owning view of the string data, and copying the view itself is efficient and does not affect the underlying data. However, when you copy the `FStringView`, the new instance of the view still refers to the same original string data.
 
@@ -4086,6 +4103,8 @@ MyString = TEXT("Modified String");
 UE_LOG(LogTemp, Log, TEXT("Copied StringView: %s"), *CopiedStringView);
 ```
 
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStringView/).
+
 #### String Builder
 
 When working strings, you might have to concatenate a lot of string together. Sometimes, this can create complex and messy code to read. Whilst, `FString` is **mutable** and allows the developer to alter its data without copy a new instance. A string builder can still be a very helpful tool.
@@ -4105,12 +4124,16 @@ The amount of buffer space to allocate is specified via a template parameter and
 To create a string builder with an unknown buffer size:
 
 ```cpp
+#include "Containers/StringFwd.h"
+
 FStringBuilderBase StringBuilder; // Note! This is using a regular dynamic memory allocation.
 ```
 
 To create a string builder with initialize buffer size:
 
 ```cpp
+#include "Containers/StringFwd.h"
+
 int32 BufferSize = 12; // 12 characters of TCHAR
 TStringBuilder<BufferSize> StringBuilder;
 
@@ -4139,7 +4162,7 @@ StringBuilder.Append(TEXT(" and welcome!"));
 // StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', ' ', 'a', 'n', 'd', ' ', 'w', 'e', 'l', 'c', 'o', 'm', 'e', '!' }
 ```
 
-Here's an example:
+Here's an another example:
 
 ```cpp
 TStringBuilder<256> MessageBuilder;
@@ -4149,6 +4172,8 @@ MessageBuilder << TEXTVIEW("Player's health: ") << FString::SanitizeFloat(Player
 
 return FString { MessageBuilder };
 ```
+
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStringBuilderBase/).
 
 #### TEnumAsByte
 
@@ -4171,6 +4196,8 @@ EMyEnum Value = MyEnum.GetValue();
 // Check if the enum is equal to a value.
 bool Equals = MyEnum == EMyEnum::Two;
 ```
+
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TEnumAsByte/).
 
 ### 🧨 Value type vs Reference type
 
