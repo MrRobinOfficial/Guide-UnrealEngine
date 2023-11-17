@@ -3237,32 +3237,54 @@ This section was NOT written in conjunction with ChatGPT.
 
 A dynamic array that can store a variable number of elements of the same type. It provides many useful functions, such as adding, removing, sorting, and searching for elements, as well as iterating over them.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/Array.h"
+```
 
-// Declare a TArray of integers
+Declare a `TArray` of `int32` (integers)
+
+```cpp
 TArray<int32> MyArray { 1, 2, 3 };
+```
 
-// Add an element to the array
+Add an element to the array:
+
+```cpp
 MyArray.Add(4);
 
 // MyArray: { 1, 2, 3, 4 }
+```
 
-// Add multiple elements to the array
+Add multiple elements to the array:
+
+```cpp
 MyArray.Append({10, 15, 20});
 
 // MyArray: { 1, 2, 3, 4, 10, 15, 20 }
+```
 
+Remove elements from the array:
+
+```cpp
 MyArray.RemoveAt(0);
 MyArray.RemoveAt(0);
 
 // MyArray: { 3, 4, 10, 15, 20 }
+```
 
+Get the number of elements from the array:
+
+```cpp
 int32 NumOfElements = MyArray.Num(); // 5
+```
 
-// Loop through the array and print each element
+Loop through the array and log each element:
+
+```cpp
 for (const int32& Element : MyArray)
 {
     UE_LOG(LogTemp, Log, TEXT("Element: %i"), Element);
@@ -3323,42 +3345,67 @@ TArray<int32, TFixedAllocator<4>> StackArray{ 1, 2, 3, 4, 5 }; // Allocate 4 ele
 
 A set of unique elements of a single type, implemented as a hash table. It provides many of the same functions as `TArray`, but with faster lookup times for large collections of elements.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/Set.h"
+```
 
-// Declare a TSet of names
+Declare a `TSet` of `FName` (names):
+
+```cpp
 TSet<FName> MySet;
+```
 
-// Add an element to the set
+Add elements to the set:
+
+```cpp
+// Add single element to the set
 MySet.Add(TEXT("hello"));
 
 // Add multiple elements to the set
 MySet.Append({TEXT("cruel"), TEXT("world"), TEXT("hello")});
 
 // MySet: { "hello", "curel", "world" }
+```
 
+Get number of elements from the set:
+
+```cpp
 int32 NumOfElements = MySet.Num(); // 4
+```
 
-// Check if an element exists in the set
+Check if an element exists in the set:
+
+```cpp
 if (MySet.Contains(TEXT("cruel")))
 {
     UE_LOG(LogTemp, Log, TEXT("'Cruel' element is in the set"));
 }
+```
 
-// Remove an element from the set
+Remove an element from the set:
+
+```cpp
 MySet.Remove(TEXT("cruel"));
 
 // MySet: { "hello", "world" }
+```
 
-// Iterate through the set and log each element
+Iterate through the set and log each element:
+
+```cpp
 for (const FName& Name : MySet)
 {
     UE_LOG(LogTemp, Log, TEXT("Name: %s"), *Name.ToString());
 }
+```
 
-// Convert the set to an array
+Convert the set to an array:
+
+```cpp
 TArray<FName> CopyOfSet = MySet.Array();
 CopyOfSet[0] = TEXT("goodbye");
 
@@ -3369,62 +3416,96 @@ CopyOfSet[0] = TEXT("goodbye");
 
 A map of key-value pairs, implemented as a hash table. It allows fast lookup of a value given a key, and supports adding, removing, and iterating over key-value pairs.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/Map.h"
+```
 
-// Declare a TMap of names to integers
+Declare a `TMap` of `FName` (names) to `int32` (integers):
+
+```cpp
 TMap<FName, int32> MyMap = { { TEXT("player_id"), 457865 }, { TEXT("player_age"), 35 } };
 
 // MyMap: { { "player_id", 457865 }, { "player_age", 35 } }
+```
 
-// Add elements to the map
+Add elements to the map:
+
+```cpp
 int32& PlayerRankRef = MyMap.Add(TEXT("player_rank"));
 PlayerRankRef = 420;
 
 MyMap.Add(TEXT("player_speed"), 15);
 
 // MyMap: { { "player_id", 457865 }, { "player_age", 35 }, { "player_rank", 420 }, { "player_speed", 15 } }
+```
 
-// Finds the value in the map from the key. Otherwise, create and add the key to the map (with default value).
+Finds the value in the map from the key. Otherwise, create and add the key to the map (with default value):
+
+```cpp
 int32& PlayerIDRef = MyMap.FindOrAdd(TEXT("player_id"));
 PlayerIDRef = 001100;
 
 // MyMap: { { "player_id", 001100 }, { "player_age", 35 }, { "player_rank", 420 }, { "player_speed", 15 } }
+```
 
+Get number of elements from the map:
+
+```cpp
 int32 NumOfElements = MyMap.Num(); // 4
+```
 
-// Iterate through the map and log key-value pairs
+Iterate through the map and log key-value pairs:
+
+```cpp
 for (const TPair<FName, int32>& KeyValuePair : MyMap)
 {
     UE_LOG(LogTemp, Log, TEXT("Key: %s, Value: %i"), *KeyValuePair.Key.ToString(), KeyValuePair.Value);
 }
+```
 
-// Check if "player_rank" exists in the map and log its value if found
+Check if "player_rank" exists in the map and log its value if found:
+
+```cpp
 if (int32* PlayerRankPtr = MyMap.Find(TEXT("player_rank")))
 {
     UE_LOG(LogTemp, Log, TEXT("Player rank is: %i"), *PlayerRankPtr);
 }
+```
 
-// Access an element in the map
+Access an element in the map:
+
+```cpp
 int32 OutSpeed;
+
 if (MyMap.TryGetValue(TEXT("player_speed"), OutSpeed))
 {
     UE_LOG(LogTemp, Log, TEXT("Player's speed: %i [m/s]"), OutSpeed);
 }
+```
 
-// Modify an element in the map
+Modify an element in the map:
+
+```cpp
 MyMap[TEXT("player_age")] = -1;
 
 // MyMap: { { "player_id", 001100 }, { "player_age", -1 }, { "player_rank", 420 }, { "player_speed", 15 } }
+```
 
-// Remove an element from the map.
+Remove an element from the map:
+
+```cpp
 MyMap.Remove(TEXT("player_age")); // Reference variables (such as PlayerRankRef and PlayerIDRef) become unsafe since the map size and elements have changed.
 
 // MyMap: { { "player_id", 001100 }, { "player_rank", 420 }, { "player_speed", 15 } }
+```
 
-// Convert the map to an array of key-value pairs
+Convert the map to an array of key-value pairs:
+
+```cpp
 TArray<TPair<FName, int32>> KeyValueArray = MyMap.Array();
 int32 PlayerID = KeyValueArray[0].Value; // 001100
 ```
@@ -3713,41 +3794,65 @@ Algo::SortBy(SortArray, AbsProjection, ReverseSortPredicate);
 
 Similar to `TMap`, but allows multiple values to be associated with the same key. It also provides functions for iterating over all the values associated with a particular key.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/Map.h"
+```
 
-// Declare a TMultiMap of integers to strings
+Declare a `TMultiMap` of `FName` (names) to floats:
+
+```cpp
 TMultiMap<FName, float> MyMultiMap = { { TEXT("X"), 10.0f }, { TEXT("Y"), 69.0f }, { TEXT("Z"), 0.0f } }
+```
 
-// Add elements to the map
+Add elements to the map:
+
+```cpp
 MyMultiMap.Add(TEXT("X"), -10.0f);
 MyMultiMap.Add(TEXT("Y"), 69.0f);
 MyMultiMap.AddUnique(TEXT("Y"), 69.0f); // Will not add if both key and value match an existing association in the map!
 
 // MyMultiMap: { { TEXT("X"), 10.0f }, { TEXT("Y"), 69.0f }, { TEXT("Z"), 0.0f }, { TEXT("Y"), 69.0f }, { TEXT("X"), -10.0f } }
+```
 
-// Get all values for a key in the map
+Get all values for a key in the map:
+
+```cpp
 TArray<float> OutValues;
 MyMultiMap.MultiFind(TEXT("Y"), OutValues);
 
 // OutValues: { 69.0f, 69.0f }
+```
 
+Get number of elements from the multi-map:
+
+```cpp
 int32 NumOfElements = MyMultiMap.Num(); // 5
+```
 
-// Loop through the values and print each one
+Loop through the values and log each one:
+
+```cpp
 for (const float& Value : OutValues)
 {
     UE_LOG(LogTemp, Log, TEXT("Value: %f"), Value);
 }
+```
 
-// Remove all values for a key in the map
+Remove all values for a key in the map:
+
+```cpp
 MyMultiMap.Remove(TEXT("Y"));
 
 // MyMultiMap: { { TEXT("X"), 10.0f }, { TEXT("Z"), 0.0f }, { TEXT("X"), -10.0f } }
+```
 
-// Remove the first association between the specified key and value from the map.
+Remove the first association between the specified key and value from the map:
+
+```cpp
 MyMultiMap.RemoveSingle(TEXT("X"), 10.0f);
 
 // MyMultiMap: { { TEXT("Z"), 0.0f }, { TEXT("X"), -10.0f } }
@@ -3764,35 +3869,53 @@ An array with a static number of elements.
 
 You cannot add or remove any of the entries of the static array. But you can still alter each element's data.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/StaticArray.h"
+```
 
-TStaticArray<int32, 4> StaticArray { 1, 2, 3, 4 }; // Won't compile!
+Declare a `TStaticArray` of `int32` (integers) with 4 elements pre-allocated:
 
-// Use this method instead:
-
+```cpp
 // Allocate 4 elements of type 'FVector'
 TStaticArray<FVector, 4> StaticArray;
 
 // StaticArray: { (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0) }
+```
 
+You **CANNOT** use brace initialization with `TStaticArray`:
+
+```cpp
+TStaticArray<int32, 4> StaticArray { 1, 2, 3, 4 }; // Won't compile!
+```
+
+Update each element's value:
+
+```cpp
 StaticArray[0] = FVector::OneVector;
 StaticArray[1] = FVector::ZeroVector;
 StaticArray[2] = FVector::OneVector;
 StaticArray[3] = FVector::ZeroVector;
 
 // StaticArray: { (1, 1, 1), (0, 0, 0), (1, 1, 1), (0, 0, 0) }
+```
 
+Get number of elements from the static array:
+
+```cpp
 int32 NumOfElements = StaticArray.Num(); // 4
+```
 
-for (FVector& Elem : StaticArray)
+Loop through the values and log each one:
+
+```cpp
+for (const FVector& Vec : StaticArray)
 {
-    Elem = FVector(Elem.X * 2.0f, Elem.Y * 0.5f, Elem.Z * 1.5f); // Alter the data of each element
+    UE_LOG(LogTemp, Log, TEXT("Value: %s"), *Vec.ToString());
 }
-
-// StaticArray: { (2, 0.5, 1.5), (0, 0, 0), (2, 0.5, 1.5), (0, 0, 0) }
 ```
 
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStaticArray/).
@@ -3805,13 +3928,23 @@ You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/
 Dynamically sized hash table, used to index another data structure.
 Vastly simpler and faster than `TMap`.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/HashTable.h"
+```
 
+Define a `FHashTable`:
+
+```cpp
 FHashTable HashTable;
+```
 
+Add a new hash element to the table:
+
+```cpp
 const uint16 Hash = 50u;
 const uint16 Index = 10u;
 
@@ -3825,14 +3958,24 @@ You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/
 Statically sized hash table, used to index another data structure.
 Vastly simpler and faster than `TMap`.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/HashTable.h"
+```
 
+Define a `TStaticHashTable`:
+
+```cpp
 static const uint32 Capacity = 16u;
 TStaticHashTable<1024u, Capacity> StaticHashTable;
+```
 
+Add a new hash element to the table:
+
+```cpp
 const uint16 Hash = 50u;
 const uint16 Index = 10u;
 
@@ -3847,26 +3990,43 @@ A Map of keys to value, implemented as a sorted `TArray` of TPairs.
 
 It has a mostly identical interface to `TMap` and is designed as a drop in replacement. Keys must be unique, there is no equivalent sorted version of `TMultiMap`. It uses half as much memory as `TMap`, but adding and removing elements is O(n), and finding is O(Log n). In practice it is faster than `TMap` for low element counts, and slower as n increases, This map is always kept sorted by the key type so cannot be sorted manually.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/SortedMap.h"
+```
 
-// Create a TSortedMap of names to integers.
+Create a `TSortedMap` of `FName` (names) to `int32` (integers):
+
+```cpp
 TSortedMap<FName, int32> MyMap;
+```
 
-// Add some elements to the map.
+Add some elements to the map:
+
+```cpp
 MyMap.Add(TEXT("One"), 1);
 MyMap.Add(TEXT("Two"), 2);
 MyMap.Add(TEXT("Three"), 3);
+```
 
-// Get the value associated with a key.
+Get the value associated with a key:
+
+```cpp
 int32 Value = MyMap[TEXT("One")];
+```
 
-// Check if a key exists in the map.
+Check if a key exists in the map:
+
+```cpp
 bool Exists = MyMap.Contains(TEXT("One"));
+```
 
-// Iterate over the map.
+Iterate over the map and log each one:
+
+```cpp
 for (const TPair<FName, int32>& Element : MyMap)
 {
     UE_LOG(LogTemp, Log, TEXT("Key: %s, Value: %i"), *Element.Key.ToString(), Element.Value);
@@ -3879,26 +4039,43 @@ You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/
 
 Simple single-linked list template.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/List.h"
+```
 
-// Create a TList of integers.
+Define a `TList` of `ìnt32` (integers):
+
+```cpp
 TList<int32> MyList;
+```
 
-// Add some elements to the list.
+Add some elements to the list:
+
+```cpp
 MyList.Add(1);
 MyList.Add(2);
 MyList.Add(3);
+```
 
-// Get the first element in the list.
+Get the first element in the list:
+
+```cpp
 int32 FirstElement = MyList[0];
+```
 
-// Get the last element in the list.
+Get the last element in the list:
+
+```cpp
 int32 LastElement = MyList[MyList.Num() - 1];
+```
 
-// Iterate over the list.
+Iterate over the list and log each one:
+
+```cpp
 for (const int32& Element : MyList)
 {
     UE_LOG(LogTemp, Log, TEXT("Element: %i"), Element);
@@ -3913,26 +4090,43 @@ Encapsulates a link in a single linked list with constant access time.
 
 This linked list is non-intrusive, i.e. it stores a copy of the element passed to it (typically a pointer)
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/List.h"
+```
 
-// Create a TLinkedList of roads.
+Define a `TLinkedList` of `ARoad` (roads):
+
+```cpp
 TLinkedList<ARoad*> RoadNetworkList;
+```
 
-// Add some elements to the list.
+Add some elements to the list:
+
+```cpp
 RoadNetworkList.Add(GetRoad(0));
 RoadNetworkList.Add(GetRoad(1));
 RoadNetworkList.Add(GetRoad(2));
+```
 
-// Get the first element in the list.
+Get the first element in the list:
+
+```cpp
 ARoad* FirstElement = RoadNetworkList.GetFirst();
+```
 
-// Get the last element in the list.
+Get the last element in the list:
+
+```cpp
 ARoad* LastElement = RoadNetworkList.GetLast();
+```
 
-// Iterate over the list.
+Iterate over the list and log each one:
+
+```cpp
 for (const ARoad* Road : RoadNetworkList)
 {
     UE_LOG(LogTemp, Log, TEXT("Road: %s"), *Road->GetName());
@@ -3943,36 +4137,51 @@ You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/
 
 #### TQueue
 
-Template for queues.
-
 This template implements an unbounded non-intrusive queue using a lock-free linked list that stores copies of the queued items. The template can operate in two modes: Multiple-producers single-consumer (MPSC) and Single-producer single-consumer (SPSC).
 
 The queue is thread-safe in both modes. The `Dequeue()` method ensures thread-safety by writing it in a way that does not depend on possible instruction reordering on the CPU. The `Enqueue()` method uses an atomic compare-and-swap in multiple-producers scenarios.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/Queue.h"
+```
 
-// Create a TQueue of hit results.
+Define a `TQueue` of `FHitResult` (hit results):
+
+```cpp
 TQueue<FHitResult> MyQueue;
+```
 
+Add some elements to the queue:
+
+```cpp
 AActor* TargetActor = this;
 UPrimitiveComponent* TargetComponent = this;
 FVector HitLocation = FVector(900.0f, 0.0f, 500.0f);
 FVector HitNormal = FVector(0.0f, 0.0f, 1.0f);
 
-// Add some elements to the queue.
 MyQueue.Enqueue(FHitResult(TargetActor, TargetComponent, HitLocation, HitNormal));
 MyQueue.Enqueue(FHitResult(nullptr, nullptr, FVector::ZeroVector, FVector::OneVector.GetSafeNormal()));
+```
 
-// Dequeue the first element in the queue.
+Dequeue the first element in the queue:
+
+```cpp
 FHitResult DequeuedElement = MyQueue.Dequeue();
+```
 
-// Check if the queue is empty.
+Check if the queue is empty:
+
+```cpp
 bool IsEmpty = MyQueue.IsEmpty();
+```
 
-// Iterate over the queue.
+Iterate over the queue:
+
+```cpp
 while (!MyQueue.IsEmpty())
 {
     FHitResult HitResult = MyQueue.Dequeue();
@@ -4121,22 +4330,30 @@ The amount of buffer space to allocate is specified via a template parameter and
 
 **There are two ways to construct a string builder**. Either with initialize buffer size or with unknown buffer size.
 
-To create a string builder with an unknown buffer size:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/StringFwd.h"
+```
 
+To create a string builder with an unknown buffer size:
+
+```cpp
 FStringBuilderBase StringBuilder; // Note! This is using a regular dynamic memory allocation.
 ```
 
 To create a string builder with initialize buffer size:
 
 ```cpp
-#include "Containers/StringFwd.h"
-
 int32 BufferSize = 12; // 12 characters of TCHAR
 TStringBuilder<BufferSize> StringBuilder;
+```
 
+Append characters to the string builder:
+
+```cpp
 StringBuilder.Appendchar('H');
 StringBuilder.Appendchar('e');
 StringBuilder.Appendchar('l');
@@ -4151,16 +4368,29 @@ StringBuilder.Appendchar('l');
 StringBuilder.Appendchar('d');
 
 // StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd' }
+```
 
-// In order to get the string either call ToString() or ToView()
+In order to get the string either call `ToString()` or `ToView()` functions:
+
+```cpp
 FString Str = StringBuilder.ToString();
 FStringView StrView = StringBuilder.ToView();
+```
 
+You can also append a string as well:
+
+```cpp
 // Note! The string builder will allocate more memory, if necessary.
+
+// We only allocated 12 characters, and this call will make it go over bound.
+// Causing to allocate more memory on heap.
 StringBuilder.Append(TEXT(" and welcome!"));
 
 // StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', ' ', 'a', 'n', 'd', ' ', 'w', 'e', 'l', 'c', 'o', 'm', 'e', '!' }
 ```
+
+> **Warning**
+> The string builder will allocate more memory, if necessary.
 
 Here's an another example:
 
@@ -4198,6 +4428,8 @@ bool Equals = MyEnum == EMyEnum::Two;
 ```
 
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TEnumAsByte/).
+
+---
 
 ### 🧨 Value type vs Reference type
 
