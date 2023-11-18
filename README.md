@@ -135,30 +135,31 @@
 * 22\. [📝 preprocessor](#-preprocessor)
     * 22.1\. [Pragma once](#pragma-once)
     * 22.2\. [Strip out editor functionality](#strip-out-editor-functionality)
-* 23\. [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
-* 24\. [🎯 Extend Unreal Editor](#-extend-unreal-editor)
-* 25\. [🗝️ Deep dive](#-deep-dive)
-    * 25.1\. [🔖 Keywords](#-keywords)
-    * 25.2\. [🪄 Tips and best practices](#-tips-and-best-practices)
-        * 25.2.1\. [📦 Refactoring](#-refactoring)
-            * 25.2.1.1\. [Renaming](#renaming)
-            * 25.2.1.2\. [Extract Method﻿](#extract-method)
-            * 25.2.1.3\. [Introduce/Inline typedef﻿s](#introduceinline-typedefs)
-            * 25.2.1.4\. [Introduce Variable﻿](#introduce-variable)
-            * 25.2.1.5\. [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
-        * 25.2.2\. [⏱ Ticking](#-ticking)
-        * 25.2.3\. [`FTickFunction`](#ftickfunction)
-        * 25.2.4\. [🔌 Direct references](#-direct-references)
-        * 25.2.5\. [➗ Math Expression Node](#-math-expression-node)
-        * 25.2.6\. [Call function in editor](#call-function-in-editor)
-* 26\. [📛 Console Commands](#-console-commands)
-* 27\. [📌 Shortcuts](#-shortcuts)
-* 28\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
-    * 28.1\. [⛔ Compiler Error C2628](#-compiler-error-c2628)
-    * 28.2\. [⛔ Compiler Error C2065](#-compiler-error-c2065)
-* 29\. [🔗 Helpful links](#-helpful-links)
-* 30\. [🆘 Support](#-support)
-* 31\. [📍 Footnotes](#-footnotes)
+* 23\. [🎨 Draw shapes](#-draw-shapes)
+* 24\. [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
+* 25\. [🎯 Extend Unreal Editor](#-extend-unreal-editor)
+* 26\. [🗝️ Deep dive](#-deep-dive)
+    * 26.1\. [🔖 Keywords](#-keywords)
+    * 26.2\. [🪄 Tips and best practices](#-tips-and-best-practices)
+        * 26.2.1\. [📦 Refactoring](#-refactoring)
+            * 26.2.1.1\. [Renaming](#renaming)
+            * 26.2.1.2\. [Extract Method﻿](#extract-method)
+            * 26.2.1.3\. [Introduce/Inline typedef﻿s](#introduceinline-typedefs)
+            * 26.2.1.4\. [Introduce Variable﻿](#introduce-variable)
+            * 26.2.1.5\. [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
+        * 26.2.2\. [⏱ Ticking](#-ticking)
+        * 26.2.3\. [`FTickFunction`](#ftickfunction)
+        * 26.2.4\. [🔌 Direct references](#-direct-references)
+        * 26.2.5\. [➗ Math Expression Node](#-math-expression-node)
+        * 26.2.6\. [Call function in editor](#call-function-in-editor)
+* 27\. [📛 Console Commands](#-console-commands)
+* 28\. [📌 Shortcuts](#-shortcuts)
+* 29\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
+    * 29.1\. [⛔ Compiler Error C2628](#-compiler-error-c2628)
+    * 29.2\. [⛔ Compiler Error C2065](#-compiler-error-c2065)
+* 30\. [🔗 Helpful links](#-helpful-links)
+* 31\. [🆘 Support](#-support)
+* 32\. [📍 Footnotes](#-footnotes)
 
 </td></tr></table>
 
@@ -6700,6 +6701,412 @@ MyTask->StartBackgroundTask();
 ---
 
 As said before, Ayliroé wrote an awesome documentation on Unreal's multithreading and asynchronous tasks system, which you can read either from [Google Docs](https://docs.google.com/document/d/1uw9Dfui5ZepSrBpMc1DrxFOeRFnDu8ubzFse8Mr_s7E/) or from [Forum Post](https://forums.unrealengine.com/t/multithreading-and-performance-in-unreal/1216417/1).
+
+## 🎨 Draw shapes
+
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
+<table><tr><td>
+TODO: Fix images
+</td></tr></table>
+
+Include the header file:
+
+```cpp
+#include "DrawDebugHelpers.h"
+```
+
+Draw a point:
+
+```cpp
+bool bPersistentLines = true;
+
+FVector Location = FVector(0, 0, 600);
+float Size = 200.0f;
+FColor Color = FColor(52, 220, 239);
+
+DrawDebugPoint(GetWorld(), Location, Size, Color, bPersistentLines);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a sphere:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 2.0f;
+
+FVector Center = FVector(0, -600, 600);
+float Radius = 200.0f;
+int32 Segments = 26;
+FColor Color = FColor(181, 0, 0);
+
+DrawDebugSphere(GetWorld(), Center, Radius, Segments, Color, bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a circle:
+
+```cpp
+float Radius = 200.0f;
+int32 Segments = 50;
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 10.0f;
+
+// Draw a circle via matrix
+FMatrix TransformMatrix = FMatrix();
+DrawDebugCircle(GetWorld(), TransformMatrix, Radius, Segments, FColor(0, 104, 167), bPersistentLines, LifeTime, DepthPriority, Thickness);
+
+// Draw a circle via location
+FVector Center = FVector(-300, 0, 600);
+DrawDebugCircle(GetWorld(), Center, Radius, Segments, FColor(0, 0, 0), bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a circle arc:
+
+```cpp
+
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 10.0f;
+
+FVector Center = FVector(-400, -600, 600);
+float Radius = 200.0f;
+FVector Direction = FVector::ForwardVector;
+float AngleWidth = 500.0;
+int32 Segments = 50;
+FColor Color = FColor::Yellow;
+
+DrawDebugCircleArc(GetWorld(), Center, Radius, Direction, AngleWidth, Segments, Color, bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a 2D donut:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 10.0f;
+
+FMatrix TransformMatrix = FMatrix();
+float InnerRadius = 100.0f;
+float OuterRadius = 300.0f;
+int32 Segments = 26;
+FColor Color = FColor::Cyan;
+
+DrawDebug2DDonut(GetWorld(), TransformMatrix, InnerRadius, OuterRadius, Segments, Color, bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a solid box:
+
+```cpp
+bool bPersistentLines = true;
+
+// Draw a solid box
+FVector MinPoint = FVector(0, 0, 0);
+FVector MaxPoint = FVector(200, 200, 200);
+FBox MyBox = FBox(MinPoint, MaxPoint);
+FTransform MyTransform = FTransform(FVector(400, 600, 900));
+
+DrawDebugSolidBox(GetWorld(), MyBox, FColor(20, 100, 240), MyTransform, bPersistentLines);
+```
+
+Draw a wired box:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 10.0f;
+
+// Draw a wired box
+FVector Center = FVector(-400, -600, 600);
+FVector Extent = FVector(100, 100, 100);
+FColor Color = FColor::Purple;
+
+DrawDebugBox(GetWorld(), Center, Extent, Color, bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a cylinder:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 2.0f;
+
+FVector Start = FVector(0, -600, 600);
+FVector End = FVector(0, -1800, 600);
+float Radius = 200.0f;
+int32 Segments = 26;
+FColor Color = FColor(181, 0, 0);
+
+DrawDebugCylinder(GetWorld(), Start, End, Radius, Segments, Color, bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a capsule:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 2.0f;
+
+FVector Center = FVector(0, -600, 600);
+float HalfHeight = 400.0f;
+float Radius = 200.0f;
+FQuat Rotation = FQuat::Identity;
+FColor Color = FColor(181, 0, 0);
+
+DrawDebugCapsule(GetWorld(), Center, HalfHeight, Radius, Rotation, Color, bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a cone:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 2.0f;
+
+FVector Origin = FVector(0, -600, 600);
+FVector Direction = FVector(0, -600, 600);
+float Length = 200.0f;
+float AngleWidth = 100.0f;
+float AngleHeight = 300.0f;
+int32 NumSides = 26;
+FColor Color = FColor::Yellow;
+
+DrawDebugCone(GetWorld(), Origin, Direction, Length, AngleWidth, AngleHeight, NumSides, Color, bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a plane:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 2.0f;
+
+FVector NormalVector = FVector::UpVector;
+FPlane Plane = FPlane(NormalVector);
+FVector Location = FVector(0, -600, 600);
+FColor Color = FColor(181, 0, 0);
+
+float Size = 100.0f;
+DrawDebugSolidPlane(GetWorld(), Plane, Location, float Size, Color, bPersistent, LifeTime, DepthPriority);
+
+FVector2D Extents = FVector2D::One();
+DrawDebugSolidPlane(GetWorld(), Plane, Location, Extents, Color, bPersistent, LifeTime, DepthPriority);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a line:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 10.0f;
+
+FVector LocationFrom = FVector(0, -600, 600);
+FVector LocationTo = FVector(0, 600, 600);
+FColor Color = FColor::Emerald;
+
+DrawDebugLine(GetWorld(), LocationFrom, LocationTo, Color, bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw an arrow:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 5.0f;
+
+FVector LocationFrom =  FVector(-300, 600, 600);
+FVector LocationTo = FVector(-300, -600, 600);
+float ArrowSize = 120.0f;
+FColor Color = FColor::Magenta;
+
+DrawDebugDirectionalArrow(GetWorld(), LocationFrom, LocationTo, ArrowSize, Color, bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a crosshair:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+
+FVector AxisLocation = FVector(0, 0, 1000);
+FRotator AxisRotation = FRotator::ZeroRotator;
+float Scale = 500.0f;
+FColor Color = FColor::White;
+
+DrawDebugCrosshairs(GetWorld(), AxisLocation, AxisRotation, Scale, Color, bPersistentLines, LifeTime, DepthPriority);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a camera:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+
+FVector Location = FVector(0, -600, 600);
+FRotator Rotation = FRotator::ZeroRotator;
+float FOVDeg = 45.0f;
+float Scale = 1.0f;
+FColor Color = FColor::White
+
+DrawDebugCamera(GetWorld(), Location, Rotation, FOVDeg, Scale, Color, bPersistentLines, LifeTime, DepthPriority);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a mesh:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+
+const TArray<FVector> Verts;
+const TArray<int32> Indices;
+FColor Color = FColor(181, 0, 0);
+
+DrawDebugMesh(GetWorld(), Verts, Indices, Color, bPersistent, LifeTime, DepthPriority);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a string:
+
+```cpp
+FVector TextLocation = FVector(0, -600, 600);
+FString Str = TEXT("Hello, World!");
+AActor* TestBaseActor = NULL;
+FColor TextColor = FColor::White;
+float Duration = -1.0f;
+bool bDrawShadow = false;
+float FontScale = 1.0f;
+
+DrawDebugString(GetWorld(), TextLocation, Str, TestBaseActor, TextColor, Duration, bDrawShadow, FontScale);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+
+Draw a centripetal catmull-rom spline:
+
+```cpp
+bool bPersistentLines = true;
+float LifeTime = -1.0f;
+uint8 DepthPriority = 0;
+float Thickness = 2.0f;
+
+TConstArrayView<FVector> Points;
+float Alpha = 0.5f;
+int32 NumSamplesPerSegment = 8;
+
+FColor Color = FColor(181, 0, 0);
+DrawCentripetalCatmullRomSpline(GetWorld(), Points, Color, Alpha, NumSamplesPerSegment, bPersistentLines, LifeTime, DepthPriority, Thickness);
+
+TConstArrayView<FColor> Colors;
+DrawCentripetalCatmullRomSpline(GetWorld(), Points, Colors, Alpha, NumSamplesPerSegment, bPersistentLines, LifeTime, DepthPriority, Thickness);
+```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <figcaption>Result</figcaption>
+</figure>
+---
+
+You can read more about [drawing shapes by Harrison McGuire](https://unrealcpp.com/draw-debug-helpers/).
+
+You can also watch a [video about it from Ryan Sweeney](https://www.youtube.com/watch?v=FQQmdirfVYg).
 
 ## 🎯 Extend Unreal Editor
 
