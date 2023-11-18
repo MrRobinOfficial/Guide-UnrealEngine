@@ -153,6 +153,9 @@
         * 27.2.4\. [🔌 Direct references](#-direct-references)
         * 27.2.5\. [➗ Math Expression Node](#-math-expression-node)
         * 27.2.6\. [Call function in editor](#call-function-in-editor)
+        * 27.2.7\. [Call function via Console Commands](#call-function-via-console-commands)
+        * 27.2.8\. [Disable BlueprintPure](#disable-blueprintpure)
+        * 27.2.9\. [Switch case fall-through](#switch-case-fall-through)
 * 28\. [📛 Console Commands](#-console-commands)
 * 29\. [📌 Shortcuts](#-shortcuts)
 * 30\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
@@ -7753,6 +7756,34 @@ UFUNCTION(BlueprintCallable, BlueprintPure = false)
 void ComplexFunction() const
 {
     // ...
+}
+```
+
+#### Switch case fall-through
+
+Lorem Ipsum
+
+```cpp
+double DistanceUnificationFactor(EUnit From)
+{
+    // Convert to meters
+    double Factor = 1;
+
+    switch (From)
+    {
+        case EUnit::Micrometers:		return 0.000001;
+        case EUnit::Millimeters:		return 0.001;
+        case EUnit::Centimeters:		return 0.01;
+        case EUnit::Kilometers:			return 1000;
+
+        case EUnit::Lightyears:			return 9.4605284e15;
+
+        case EUnit::Miles:				Factor *= 1760;				// fallthrough
+        case EUnit::Yards:				Factor *= 3;				// fallthrough
+        case EUnit::Feet:				Factor *= 12;				// fallthrough
+        case EUnit::Inches:				Factor /= 39.3700787;		// fallthrough
+        default: 						return Factor;				// return
+    }
 }
 ```
 
