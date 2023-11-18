@@ -135,31 +135,32 @@
 * 22\. [📝 preprocessor](#-preprocessor)
     * 22.1\. [Pragma once](#pragma-once)
     * 22.2\. [Strip out editor functionality](#strip-out-editor-functionality)
-* 23\. [🎨 Draw shapes](#-draw-shapes)
-* 24\. [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
-* 25\. [🎯 Extend Unreal Editor](#-extend-unreal-editor)
-* 26\. [🗝️ Deep dive](#-deep-dive)
-    * 26.1\. [🔖 Keywords](#-keywords)
-    * 26.2\. [🪄 Tips and best practices](#-tips-and-best-practices)
-        * 26.2.1\. [📦 Refactoring](#-refactoring)
-            * 26.2.1.1\. [Renaming](#renaming)
-            * 26.2.1.2\. [Extract Method﻿](#extract-method)
-            * 26.2.1.3\. [Introduce/Inline typedef﻿s](#introduceinline-typedefs)
-            * 26.2.1.4\. [Introduce Variable﻿](#introduce-variable)
-            * 26.2.1.5\. [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
-        * 26.2.2\. [⏱ Ticking](#-ticking)
-        * 26.2.3\. [`FTickFunction`](#ftickfunction)
-        * 26.2.4\. [🔌 Direct references](#-direct-references)
-        * 26.2.5\. [➗ Math Expression Node](#-math-expression-node)
-        * 26.2.6\. [Call function in editor](#call-function-in-editor)
-* 27\. [📛 Console Commands](#-console-commands)
-* 28\. [📌 Shortcuts](#-shortcuts)
-* 29\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
-    * 29.1\. [⛔ Compiler Error C2628](#-compiler-error-c2628)
-    * 29.2\. [⛔ Compiler Error C2065](#-compiler-error-c2065)
-* 30\. [🔗 Helpful links](#-helpful-links)
-* 31\. [🆘 Support](#-support)
-* 32\. [📍 Footnotes](#-footnotes)
+* 23\. [🦄 Units](#-units)
+* 24\. [🎨 Draw shapes](#-draw-shapes)
+* 25\. [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
+* 26\. [🎯 Extend Unreal Editor](#-extend-unreal-editor)
+* 27\. [🗝️ Deep dive](#-deep-dive)
+    * 27.1\. [🔖 Keywords](#-keywords)
+    * 27.2\. [🪄 Tips and best practices](#-tips-and-best-practices)
+        * 27.2.1\. [📦 Refactoring](#-refactoring)
+            * 27.2.1.1\. [Renaming](#renaming)
+            * 27.2.1.2\. [Extract Method﻿](#extract-method)
+            * 27.2.1.3\. [Introduce/Inline typedef﻿s](#introduceinline-typedefs)
+            * 27.2.1.4\. [Introduce Variable﻿](#introduce-variable)
+            * 27.2.1.5\. [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
+        * 27.2.2\. [⏱ Ticking](#-ticking)
+        * 27.2.3\. [`FTickFunction`](#ftickfunction)
+        * 27.2.4\. [🔌 Direct references](#-direct-references)
+        * 27.2.5\. [➗ Math Expression Node](#-math-expression-node)
+        * 27.2.6\. [Call function in editor](#call-function-in-editor)
+* 28\. [📛 Console Commands](#-console-commands)
+* 29\. [📌 Shortcuts](#-shortcuts)
+* 30\. [⚠️ Common Problems/Issues](#%EF%B8%8F-common-problemsissues)
+    * 30.1\. [⛔ Compiler Error C2628](#-compiler-error-c2628)
+    * 30.2\. [⛔ Compiler Error C2065](#-compiler-error-c2065)
+* 31\. [🔗 Helpful links](#-helpful-links)
+* 32\. [🆘 Support](#-support)
+* 33\. [📍 Footnotes](#-footnotes)
 
 </td></tr></table>
 
@@ -6701,6 +6702,105 @@ MyTask->StartBackgroundTask();
 ---
 
 As said before, Ayliroé wrote an awesome documentation on Unreal's multithreading and asynchronous tasks system, which you can read either from [Google Docs](https://docs.google.com/document/d/1uw9Dfui5ZepSrBpMc1DrxFOeRFnDu8ubzFse8Mr_s7E/) or from [Forum Post](https://forums.unrealengine.com/t/multithreading-and-performance-in-unreal/1216417/1).
+
+## 🦄 Units
+
+Lorem Ipsum
+
+Here's a list of units:
+
+```cpp
+/** Enum *must* be zero-indexed and sequential. Must be grouped by relevance and ordered by magnitude. */
+/** Enum *must* match the mirrored enum that exists in CoreUObject/Classes/Object.h for the purposes of UObject reflection */
+enum class EUnit : uint8
+{
+    /** Scalar distance/length units */
+    Micrometers, Millimeters, Centimeters, Meters, Kilometers,
+    Inches, Feet, Yards, Miles,
+    Lightyears,
+
+    /** Angular units */
+    Degrees, Radians,
+
+    /** Speed units */
+    CentimetersPerSecond, MetersPerSecond, KilometersPerHour, MilesPerHour,
+
+    /** Temperature units */
+    Celsius, Farenheit, Kelvin,
+
+    /** Mass units */
+    Micrograms, Milligrams, Grams, Kilograms, MetricTons,
+    Ounces, Pounds, Stones,
+
+    /** Force units */
+    Newtons, PoundsForce, KilogramsForce, KilogramCentimetersPerSecondSquared,
+
+    /** Torque Units */
+    NewtonMeters, KilogramCentimetersSquaredPerSecondSquared,
+
+    /** Frequency units */
+    Hertz, Kilohertz, Megahertz, Gigahertz, RevolutionsPerMinute,
+
+    /** Data Size units */
+    Bytes, Kilobytes, Megabytes, Gigabytes, Terabytes,
+
+    /** Luminous flux units, luminous intensity, illuminance, luminance, exposure value */
+    Lumens, Candela, Lux, CandelaPerMeter2, ExposureValue,
+
+    /** Time units */
+    Nanoseconds, Microseconds, Milliseconds, Seconds, Minutes, Hours, Days, Months, Years,
+
+    /** Pixel density units */
+    PixelsPerInch,
+
+    /** Arbitrary multipliers */
+    Percentage,	Multiplier,
+
+    /** Stress units */
+    Pascals, KiloPascals, MegaPascals, GigaPascals,
+
+    /** Symbolic entry, not specifiable on meta data */
+    Unspecified
+};
+```
+
+Enumeration that specifies particular classes of unit:
+
+```cpp
+enum class EUnitType
+{
+    Distance, Angle, Speed, Temperature, Mass, Force, Torque, Frequency, DataSize, LuminousFlux, LuminousIntensity, Illuminance, Luminance, Time, PixelDensity, Multipliers, ExposureValue, Stress,
+
+    // Symbolic entry - do not use directly
+    NumberOf,
+};
+```
+
+Now, we know what types of units there are. We can now use them inside our code.
+
+Here's an example:
+
+```cpp
+float Distance = 15.535f; // Miles
+Distance = FUnitConversion::Convert(Distance, EUnit::Miles, EUnit::Kilometers); // Miles -> Kilometers
+
+// Distance: 25 [km]
+```
+
+```cpp
+EUnitType UnitType = FUnitConversion::GetUnitType(EUnit::Lumens);
+// UnitType: LuminousFlux
+```
+
+```cpp
+float Distance = 300000.0f; // Centimeters
+FNumericUnit<float> DistanceUnit = FUnitConversion::QuantizeUnitsToBestFit(Distance, EUnit::Centimeters); // Will auto select a better unit
+
+EUnit NewUnit = DistanceUnit.Units;
+float NewDistance = DistanceUnit.Value;
+
+// NewDistance: 3.0 [km]
+```
 
 ## 🎨 Draw shapes
 
