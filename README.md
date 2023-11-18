@@ -4039,6 +4039,68 @@ You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/
 
 Simple single-linked list template.
 
+It only stores two things:
+
+```cpp
+ElementType			Element; // Value
+TList<ElementType>* Next; // Pointer to the next node
+```
+
+Helpful for scenarios like: Pathfinding, binary tree searching or dialogue tree system.
+
+A linked list have some benefits compare to `TArray`, mainly it has **O(1)** in time complexity, for adding and removing elements in the list. This is because, every node has a pointer to the next node in the list. Thus giving `TList` a time complexity to **O(1)**.
+
+You can read more about [time complexity by Joel Olawanle](https://www.freecodecamp.org/news/big-o-cheat-sheet-time-complexity-chart/).
+
+There is a couple of downsides of using `TList` compare to `TArray`:
+
+<table><tr><td>
+
+## Cache misses
+
+When the computer reads the memory, it reads from RAM (Random-access memory). Hence, the name it will access the memory at random location. With `TArray`, your memory allocation contiguous. Meaning, that `TArray` will ask for a big spot to have its memory block.
+
+However, if `TArray` cannot find nor fit a specific spot (as the `TArray` can grow and shrink), it needs to recalculate and find a new spot. Thus making it annoying to add or to remove elements.
+
+But what `TArray` have which a linked list lacks is **cache hits**. Cache hits is a terminology, where the CPU can preload an array into CPU cached memory. Because an array stores in contiguous, allows the CPU to preload the whole array without jumping back and forth in memory location.
+
+With linked lists, there is no contiguous memory. Meaning, the CPU needs to find each node in different location. Which doesn't allow the CPU to cache previous result into its memory. And this called a cache miss.
+
+<figure>
+    <img src="static/img/LinkedListMemory.png" alt="Linked List's memory allocation" />
+    <figcaption>Image from <a href="https://dhathriblog.medium.com/linked-list-data-structure-dc13fd807096">Dhathri Vupparapalli's blog</a>.</figcaption>
+</figure>
+
+Here is a video from [SimonDev about cache misses and hits](https://www.youtube.com/watch?v=247cXLkYt2M).
+
+You can also read more about the [CPU's cache on Wikipedia](https://en.wikipedia.org/wiki/Cache_(computing)).
+
+## Memory space
+
+`TList` takes up more memory space per each node.
+
+Since every node needs to keep track of the next node in the list. And the next variable is a pointer, which takes up 4 bytes in 32-bit and 8 bytes in 64-bit computers.
+
+And if you just want to use primary data types, such as (`int`, `float`, `double`, `bool` or `char`), then you can just use `TArray` instead. Whilst a `TArray` stores some overhead, it's very minimal overhead.
+
+## No helper functions
+
+`TList` only offers the data element and the next node (as a pointer variable).
+
+`TList` does **NOT** offer any helper functions for adding or removing a node in the list.
+
+If you wish to have these functions, then you can just use `TLinkedList` instead.
+
+## Only goes forward
+
+With `TList`, you can only forwards.
+
+This is becuase there is no previous node per node. Meaning, you cannot go backwards in the list.
+
+If you wish to go backwards, then you can just use `TDoubleLinkedList` instead.
+
+</td></tr></table>
+
 **Here's an example:**
 
 Include the header file:
@@ -4047,40 +4109,34 @@ Include the header file:
 #include "Containers/List.h"
 ```
 
-Define a `TList` of `ìnt32` (integers):
-
 ```cpp
-TList<int32> MyList;
-```
+// Create the head of the list with data value of 69
+TList<int32> Head(69);
 
-Add some elements to the list:
+// Create a new node with data 1337 and link it to the head
+Head.Next = new TList<int32>(1337);
 
-```cpp
-MyList.Add(1);
-MyList.Add(2);
-MyList.Add(3);
-```
+// Create another node with data 3 and link it to the previous node
+Head.Next->Next = new TList<int32>(3);
 
-Get the first element in the list:
+// Re-assign the data value
+Head.Next->Next->Next.Element = 420;
 
-```cpp
-int32 FirstElement = MyList[0];
-```
+// Print the elements in the linked list
+TList<int32>* CurrentNode = &Head;
 
-Get the last element in the list:
-
-```cpp
-int32 LastElement = MyList[MyList.Num() - 1];
-```
-
-Iterate over the list and log each one:
-
-```cpp
-for (const int32& Element : MyList)
+while (CurrentNode != nullptr)
 {
-    UE_LOG(LogTemp, Log, TEXT("Element: %i"), Element);
+    UE_LOG(LogTemp, Log, TEXT("Element: %i"), CurrentNode->Element);
+    CurrentNode = CurrentNode->Next;
 }
 ```
+
+> **Note**
+> `TList` doesn't offer an insert nor a remove function for each node. If you wish to use those function, then use `TLinkedList`.
+
+> **Note**
+> As a rule of thumb, you should almost always use `TArray`, unless you have specific reasons to use a linked list.
 
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TList/).
 
@@ -4098,42 +4154,113 @@ Include the header file:
 #include "Containers/List.h"
 ```
 
-Define a `TLinkedList` of `ARoad` (roads):
+Define a `TLinkedList` of `int32` (integer):
 
 ```cpp
-TLinkedList<ARoad*> RoadNetworkList;
+TLinkedList<int32> HeadNode;
 ```
 
-Add some elements to the list:
+Iterate over the linked list using `TIterator`:
 
 ```cpp
-RoadNetworkList.Add(GetRoad(0));
-RoadNetworkList.Add(GetRoad(1));
-RoadNetworkList.Add(GetRoad(2));
-```
-
-Get the first element in the list:
-
-```cpp
-ARoad* FirstElement = RoadNetworkList.GetFirst();
-```
-
-Get the last element in the list:
-
-```cpp
-ARoad* LastElement = RoadNetworkList.GetLast();
-```
-
-Iterate over the list and log each one:
-
-```cpp
-for (const ARoad* Road : RoadNetworkList)
+for (TLinkedList<int32>::TIterator It(&HeadNode); It; It.Next())
 {
-    UE_LOG(LogTemp, Log, TEXT("Road: %s"), *Road->GetName());
+    // Get the value at the current position of the iterator
+    int32 Value = *It;
+
+    // Log the value.
+    UE_LOG(LogTemp, Log, TEXT("Value: %i"), Value);
 }
 ```
 
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TLinkedList/).
+
+#### TDoubleLinkedList
+
+It only stores three things:
+
+```cpp
+ElementType            Value;
+TDoubleLinkedListNode* NextNode;
+TDoubleLinkedListNode* PrevNode;
+```
+
+**Here's an example:**
+
+Include the header file:
+
+```cpp
+#include "Containers/List.h"
+```
+
+Define a `TDoubleLinkedList` of `int32` (integers):
+
+```cpp
+TDoubleLinkedList<int32> A;
+```
+
+Add node to the head/tail of the list:
+
+```cpp
+A.AddHead(69);
+A.AddTail(1337);
+```
+
+Get the number of elements in the list:
+
+```cpp
+int32 NumOfElements = A.Num();
+```
+
+Check if the list contains the value 5:
+
+```cpp
+bool bContains = A.Contains(5);
+```
+
+Find a node with value 1 in the list:
+
+```cpp
+TDoubleLinkedList<int32>::TDoubleLinkedListNode* Node = A.FindNode(1);
+
+// Log the value of the found node
+if (Node != nullptr)
+{
+    UE_LOG(LogTemp, Log, TEXT("Value of the node: %i"), Node->GetValue());
+}
+else
+{
+    UE_LOG(LogTemp, Log, TEXT("Node with value 1 not found."));
+}
+```
+
+Get the next node and previous node in the list:
+
+```cpp
+TDoubleLinkedList<int32>::TDoubleLinkedListNode* NextNode = Node->GetNextNode();
+TDoubleLinkedList<int32>::TDoubleLinkedListNode* PrevNode = Node->GetPrevNode();
+
+// Log the values of the next and previous nodes
+if (NextNode != nullptr)
+{
+    UE_LOG(LogTemp, Log, TEXT("Value of the next node: %i"), NextNode->GetValue());
+}
+else
+{
+    UE_LOG(LogTemp, Log, TEXT("Next node is null."));
+}
+
+if (PrevNode != nullptr)
+{
+    UE_LOG(LogTemp, Log, TEXT("Value of the previous node: %i"), PrevNode->GetValue());
+}
+else
+{
+    UE_LOG(LogTemp, Log, TEXT("Previous node is null."));
+}
+```
+
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TDoubleLinkedList/).
 
 #### TQueue
 
