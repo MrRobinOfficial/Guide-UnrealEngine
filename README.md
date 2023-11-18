@@ -4578,27 +4578,49 @@ You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/
 
 Template to store enumeration values as bytes in a type-safe way.
 
-Here's an example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Containers/EnumAsByte.h"
-
-// Create a TEnumAsByte of the EMyEnum type.
-TEnumAsByte<EMyEnum> MyEnum(EMyEnum::One);
-
-// Set the value of the enum.
-MyEnum = EMyEnum::Two;
-
-// Get the value of the enum.
-EMyEnum Value = MyEnum.GetValue();
-
-// Check if the enum is equal to a value.
-bool Equals = MyEnum == EMyEnum::Two;
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TEnumAsByte/).
+Declare a `TEnumAsByte` with the enumeration type `ECollisionChannel`:
 
----
+```cpp
+TEnumAsByte<ECollisionChannel> Channel;
+```
+
+Get the value of the `TEnumAsByte`:
+
+```cpp
+ECollisionChannel Val = Channel.GetValue();
+```
+
+Get the integer value of the `TEnumAsByte`:
+
+```cpp
+int32 IntVal = Channel.GetIntValue();
+```
+
+Assign a new value to the `TEnumAsByte`
+
+```cpp
+Channel = ECollisionChannel::ECC_Camera;
+```
+
+Log the values:
+
+```cpp
+UE_LOG(LogTemp, Log, TEXT("Value of the: %i"), UEnum::GetValueAsName(Val));
+UE_LOG(LogTemp, Log, TEXT("Integer value of the: %i"), IntVal);
+```
+
+> **Note**
+> That regular enums are supported by `UPROPERTY` and replaces the need of using `TEnumAsByte` anymore.
+
+You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TEnumAsByte/).
 
 ### 🧨 Value type vs Reference type
 
