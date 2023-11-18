@@ -3028,11 +3028,17 @@ In Unreal Engine, `FName` is a specialized type used for identifying objects wit
 
 The `FName` class stores strings as hashed indices, making it a lightweight and fast alternative to regular strings. Because of this, `FName` are **immutable** string class.
 
-For example:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "UObject/NameTypes.h"
+```
 
+Declare `FName`:
+
+```cpp
 FName MyName = FName("PlayerName");
 ```
 
@@ -3046,66 +3052,101 @@ This section was NOT written in conjunction with ChatGPT.
 
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/ftext-in-unreal-engine/).
 
-Example usage:
+**Here's an example:**
+
+Include the header file:
 
 ```cpp
 #include "Internationalization/Text.h"
-
-	// Create FText from a string literal (non-localized)
-	FText NewGameText = FText::FromString(TEXT("New Game")); // Avoid this, since they cause more performance than initializing directly as FText.
-
-	// There is also a macro to create a culture invariant FText from a string literal
-	FText TooltipText = INVTEXT("Tooltip Text");
-
-	/*
-		Inside Unreal Engine source code:
-
-		// Creates a culture invariant FText from the given string literal.
-		#define INVTEXT(InTextLiteral) FText::AsCultureInvariant(TEXT(InTextLiteral))
-	*/
-
-	// So, FText::AsCultureInvariant does the same thing as INVTEXT() macro.
-	FText NewTooltipText = FText::AsCultureInvariant(TEXT("This is another tooltip text"));
-
-	// Define the namespace to use with LOCTEXT
-	// This is only valid within a single file, and must be undefined before the end of the file
-#define LOCTEXT_NAMESPACE "MyNamespace"
-	// Create text literals
-	FText PlayGameText = LOCTEXT("PlayGame", "Spiel beginnen"); // German langauge
-
-	// Helpful in the editor to localize the text into another language.
-	FText QuitGameText = NSLOCTEXT("StartMenu", "QuitGame", "Avsluta spelet"); // Swedish language
-
-	uint32 VersionNumber = 1405476850;
-	FText MachineOS = INVTEXT("Windows 11 Pro, 22H2, 22621.2215");
-	FText UserName = INVTEXT("MrRobin");
-	int32 UserAge = 22;
-	int32 SpeedInKph = 30;
-	int32 FuelInPercentage = 80;
-
-	// Formatting with FText. The supported types is: int32, uint32, float, double, FText, ETextGender.
-	FText VersionMessageText = FText::Format(
-		LOCTEXT("VersionMessage", "You current version is {0} and is running on {1}"),
-		VersionNumber,
-		MachineOS
-	);
-
-	// FString also has FString::Prinf() function for formatting. FString::Prinf() is also similar to the native C++ sprintf() function.
-
-	// Use FFormatNamedArguments for organizing the FText::Format function.
-	FFormatNamedArguments Args;
-	Args.Add(TEXT("Name"), UserName);
-	Args.Add(TEXT("Age"), UserAge);
-	FText UserText = FText::Format(LOCTEXT("UserData", "User's name is {UserName} and is {Age} years old."), Args);
-
-	// You can also use FText::FormatNamed() function for formatting as well. Great for inlining the code.
-	FText CarMessageText = FText::FormatNamed(
-		LOCTEXT("VehicleMessage", "You current speed is {Speed} and the fuel is at {Fuel}%"),
-		TEXT("Speed"), SpeedInKph,
-		TEXT("Fuel"), FuelInPercentage
-	);
-#undef LOCTEXT_NAMESPACE
 ```
+
+Declare `FText` from a string literal (non-localized):
+
+```cpp
+// Avoid this! Since this cost more performance than initializing directly as FText.
+FText NewGameText = FText::FromString(TEXT("New Game"));
+```
+
+Declare `FText` from `INVTEXT()` macro. Which creates a culture invariant `FText` from a string literal:
+
+```cpp
+FText TooltipText = INVTEXT("Tooltip Text");
+
+/*
+    Inside Unreal Engine source code:
+
+    // Creates a culture invariant FText from the given string literal.
+    #define INVTEXT(InTextLiteral) FText::AsCultureInvariant(TEXT(InTextLiteral))
+*/
+
+// So, FText::AsCultureInvariant does the same thing as INVTEXT() macro.
+FText NewTooltipText = FText::AsCultureInvariant(TEXT("This is another tooltip text"));
+```
+
+```cpp
+// Define the namespace to use with LOCTEXT
+// This is only valid within a single file, and must be undefined before the end of the file
+#define LOCTEXT_NAMESPACE "MyNamespace"
+// Create text literals
+FText PlayGameText = LOCTEXT("PlayGame", "Spiel beginnen"); // German langauge
+
+// Helpful in the editor to localize the text into another language.
+FText QuitGameText = NSLOCTEXT("StartMenu", "QuitGame", "Avsluta spelet"); // Swedish language
+
+uint32 VersionNumber = 1405476850;
+FText MachineOS = INVTEXT("Windows 11 Pro, 22H2, 22621.2215");
+FText UserName = INVTEXT("MrRobin");
+int32 UserAge = 22;
+int32 SpeedInKph = 30;
+int32 FuelInPercentage = 80;
+
+// Formatting with FText. The supported types is: int32, uint32, float, double, FText, ETextGender.
+FText VersionMessageText = FText::Format(
+    LOCTEXT("VersionMessage", "You current version is {0} and is running on {1}"),
+    VersionNumber,
+    MachineOS
+);
+
+// FString also has FString::Prinf() function for formatting. FString::Prinf() is also similar to the native C++ sprintf() function.
+
+// Use FFormatNamedArguments for organizing the FText::Format function.
+FFormatNamedArguments Args;
+Args.Add(TEXT("Name"), UserName);
+Args.Add(TEXT("Age"), UserAge);
+FText UserText = FText::Format(LOCTEXT("UserData", "User's name is {UserName} and is {Age} years old."), Args);
+
+// You can also use FText::FormatNamed() function for formatting as well. Great for inlining the code.
+FText CarMessageText = FText::FormatNamed(
+    LOCTEXT("VehicleMessage", "You current speed is {Speed} and the fuel is at {Fuel}%"),
+    TEXT("Speed"), SpeedInKph,
+    TEXT("Fuel"), FuelInPercentage
+);
+
+#undef LOCTEXT_NAMESPACE // Undefine the current namespace
+```
+
+You can convert specific data type into `FText` format. For an example, can you use `FText::AsNumber()` to convert a number into `FText` with specific `FNumberFormattingOptions` formatting options.
+
+Here's an example:
+
+```cpp
+float Health = 99.8999f; // We want to round this up, like this: 100.00
+
+bool bIncludeLeadingZero = true;
+int32 Precision = 2; // Number of decimals after decimal point. (0.00)
+
+FNumberFormattingOptions NumberFormat;
+NumberFormat.MinimumIntegralDigits = (bIncludeLeadingZero) ? 1 : 0;
+NumberFormat.MaximumIntegralDigits = 10000;
+NumberFormat.MinimumFractionalDigits = Precision;
+NumberFormat.MaximumFractionalDigits = Precision;
+
+FText NumberText = FText::AsNumber(Health, &NumberFormat);
+NumberText = FText::AsCultureInvariant(NumberText); // Disable the culture formatting
+```
+
+> **Note**
+> By default, Unreal will use local culture when doing this format. If you wish to disable culture formatting, use `FText::AsCultureInvariant` function.
 
 #### FString
 
