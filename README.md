@@ -2464,7 +2464,7 @@ Some of the notable classes, that inherit from `UObject` include:
   * `UActorComponent` doesn't appear in the world.
   * *Functions*:
     * `BeginPlay()` - Begins Play for component.
-    * `TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)` - Function called every frame on ActorComponent.
+    * `TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)` - Function called every frame on ActorComponent.
     * `EndPlay(const EEndPlayReason::Type EndPlayReason)` - Ends gameplay for component.
  
 * `UMovementComponent`
@@ -2473,7 +2473,7 @@ Some of the notable classes, that inherit from `UObject` include:
 
 * `USceneComponent`
   * A base class for every component which actually appears in the world, it has a transform evaluated every frame.
-  * It's used by components that need to know its place in the world to run the logic, i.e. ```UAudioComponnent```, ```UCameraComponent```.
+  * It's used by components that need to know its place in the world to run the logic, i.e. `UAudioComponnent`, `UCameraComponent`.
   * Component of this class isn't rendered or doesn't collide with anything.
 
 * `UPrimitiveComponent`
@@ -2519,18 +2519,18 @@ Some of the notable classes, that inherit from `UObject` include:
 * `AGameMode`
   * Defines the rules and mechanics of a particular game mode, such as deathmatch or capture the flag.
   * Can be used to control game behavior, spawn actors, manage player input and game state, and perform other game-specific tasks.
-  * Each level in a game can have its own ```AGameMode```, allowing for different game modes to be used in different levels.
+  * Each level in a game can have its own `AGameMode`, allowing for different game modes to be used in different levels.
 
 * `AGameState`
-  * Represents the state of the game during play. ```AGameState``` can be used to store and manage data that is specific to a particular game, such as player scores, game timers, and other game state information.
+  * Represents the state of the game during play. `AGameState` can be used to store and manage data that is specific to a particular game, such as player scores, game timers, and other game state information.
   * `AGameState` can also be used to synchronize game state across multiple clients in a networked game, ensuring that all players have an accurate view of the game world.
 
 * `UUserWidget`
-  * Represents a user interface (UI) widget in the game. ```UUserWidget``` provides a flexible framework for creating UI elements such as buttons, text fields, and images, and can be customized to implement complex UI behaviors such as animations, transitions, and data binding.
+  * Represents a user interface (UI) widget in the game. `UUserWidget` provides a flexible framework for creating UI elements such as buttons, text fields, and images, and can be customized to implement complex UI behaviors such as animations, transitions, and data binding.
   * `UUserWidget` can be used to create menus, health bars, inventory screens, and other UI elements in the game.
 
 * `UPrimaryDataAsset`
-  * Represents a primary data asset in the engine. A primary data asset is a piece of game content that is created in the Unreal Editor, such as a mesh, texture, sound, or level. ```UPrimaryDataAsset``` provides a base class for creating custom data assets that can be loaded and used by the game at runtime.
+  * Represents a primary data asset in the engine. A primary data asset is a piece of game content that is created in the Unreal Editor, such as a mesh, texture, sound, or level. `UPrimaryDataAsset` provides a base class for creating custom data assets that can be loaded and used by the game at runtime.
   * `UPrimaryDataAsset` can be used to manage and organize game content, and can be customized to provide additional functionality such as data validation and metadata management.
 
 * `USoundBase`
@@ -2855,10 +2855,65 @@ In C++ native, you write a character by using `char` data type:
 char myChar = 'a';
 ```
 
-In Unreal, you write a character by using `TChar`:
+In Unreal, there are couples or `char` data types:
+
+* `ANSICHAR` - An ANSI character. Normally a signed type.
+* `WIDECHAR` - A wide character. Normally a signed type.
+* `TCHAR` - Either `ANSICHAR` or `WIDECHAR`, depending on whether the platform supports wide characters or the requirements of the licensee.
+* `UTF8CHAR` - An 8-bit character containing a UTF8 (Unicode, 8-bit, variable-width) code unit.
+* `UTF16CHAR` - An 16-bit character containing a UTF16 (Unicode, 16-bit, variable-width) code unit.
+* `UTF32CHAR` - An 32-bit character containing a UTF32 (Unicode, 32-bit, fixed-width) code unit.
+
+When working with Unreal, you are typical going to work with `TCHAR` data type as a `char` type.
+
+Define `TCHAR`:
 
 ```cpp
-TChar MyChar = 'A';
+TCHAR MyChar = 'A';
+```
+
+And to use the extra functions for these data types, you must use:
+
+* `FChar` for `TCHAR`
+* `FCharWide`  for `WIDECHAR`
+* `FCharAnsi` for `ANSICHAR`
+
+Here's a list of functions, you can access from `FChar`:
+
+* `ToUpper()` - Only converts ASCII characters.
+* `ToLower()` - Only converts ASCII characters.
+* `IsUpper()` - Returns a boolean if the character is an uppercase letter.
+* `IsLower()` - Returns a boolean if the character is a lowercase letter.
+* `IsAlpha()` - Returns a boolean if the character is an alphabetic letter.
+* `IsGraph()` - Returns a boolean if the character is a graphic character (printable and not a space).
+* `IsPrint()` - Returns a boolean if the character is a printable character (including whitespace).
+* `IsPunct()` - Returns a boolean if the character is a punctuation character (neither alphanumeric nor a whitespace).
+* `IsAlnum()` - Returns a boolean if the character is an alphanumeric character (a letter or a digit).
+* `IsDigit()` - Returns a boolean if the character is a hexadecimal digit (0-9, a-f or A-f).
+* `IsHexDigit()` - Returns a boolean if the character is a decimal digit (0-9).
+* `IsWhitespace()` - Returns a boolean if the character is a whitespace character (space, tab, newline, carriage return, vertical tab or form feed).
+* `IsControl()` - Returns a boolean if the character is a control character (non-printing).
+* `IsOctDigit()` - Returns a boolean if the character is an octal digit (0-7).
+* `ConvertCharDigitToInt()` - Converts a character representing a decimal digit to an integer.
+* `IsIdentifier()` - Returns a boolean if the character is an alphanumeric or underscore character.
+* `IsUnderscore()` - Returns a boolean if the character is an underscore.
+* `ToUnsigned()` - Convert a character to an unsigned integer to avoid sign extension problems with signed characters smaller than `int`.
+
+Include the header file:
+
+```cpp
+#include "Misc/Char.h"
+```
+
+Here's an example, of using these functions from `FChar`:
+
+```cpp
+TCHAR MyChar = 'a';
+
+MyChar = FChar::ToUpper(MyChar); // MyChar: A
+
+bool bIsDigit = FChar::IsDigit(MyChar); // false
+bool bIsDigit = FChar::IsAlpha(MyChar); // true
 ```
 
 You can read more about [TCHAR on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Misc/TChar/).
@@ -3181,30 +3236,6 @@ Example usage:
 #include "Containers/UnrealString.h"
 
 FString MyString = FString("Hello, World!");
-```
-
-How to add on-screen debug message:
-
-```cpp
-/*
-
-    void AddOnScreenDebugMessage
-    (
-        uint64 Key, // A unique key to prevent the same message from being added multiple times.
-        float TimeToDisplay, // How long to display the message, in seconds.
-        FColor DisplayColor, // The color to display the text in.
-        const FString & DebugMessage, // The message to display.
-        bool bNewerOnTop,
-        const FVector2D & TextScale
-    )
-    
-    Add a FString to the On-screen debug message system. bNewerOnTop only works with Key == INDEX_NONE
-    This function will add a debug message to the onscreen message list. It will be displayed for FrameCount frames.
-
-*/
-
-GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("This is an on screen message!"));
-GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Some variable values: x: %f, y: %f"), x, y));
 ```
 
 Replace a substring with another in a `FString`:
@@ -6480,6 +6511,23 @@ Currently, we have only logged to the console. In order to display the console m
 Here's an example:
 
 ```cpp
+/*
+
+    void AddOnScreenDebugMessage
+    (
+        uint64 Key, // A unique key to prevent the same message from being added multiple times.
+        float TimeToDisplay, // How long to display the message, in seconds.
+        FColor DisplayColor, // The color to display the text in.
+        const FString & DebugMessage, // The message to display.
+        bool bNewerOnTop,
+        const FVector2D & TextScale
+    )
+    
+    Add a FString to the On-screen debug message system. bNewerOnTop only works with Key == INDEX_NONE
+    This function will add a debug message to the onscreen message list. It will be displayed for FrameCount frames.
+
+*/
+
 GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::White, TEXT("This message will appear on the screen!"));
 ```
 
