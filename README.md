@@ -3244,7 +3244,7 @@ Text.ReverseString(); // Output: "edcba"
 
 #### Vector4
 
-A struct representing a 4D vector, consisting of three float values for the `X`, `Y`, `Z`, and `W` components. It is often used to represent position or direction in 4D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+A struct representing a 4D vector, consisting of four float values for the `X`, `Y`, `Z`, and `W` components.
 
 Declare and initialize a `FVector4`:
 
@@ -3293,21 +3293,90 @@ FVector OldLocation = FVector::ZeroVector; // (0, 0, 0)
 FVector NewLocation = FVector::OneVector; // (1, 1, 1)
 ```
 
+You can select each component separately:
+
+```cpp
+FVector Vec = FVector::OneVector;
+
+double X = Vec.X;
+double Y = Vec.Y;
+double Z = Vec.Z;
+
+// or
+
+double& X = Vec[0];
+double& Y = Vec[1];
+double& Z = Vec[2];
+```
+
 > ![NOTE]
 > Use `FVector3f` for `float` and `FVector3d` for `double`, as explicit data type for the backend conversion.
+
+---
+
+Common static functions to use:
+
+* `FVector::Cross()` - Calculate cross product this and another vector.
+* `FVector::CrossProduct()` - Calculate the cross product of two vectors.
+* `FVector::Dot()` - Calculate the dot product between this and another vector.
+* `FVector::DotProduct()` - Calculate the dot product of two vectors.
+* `FVector::Dist()` or `FVector::Distance()` - Euclidean distance between two points.
+* `FVector::Dist2D()` or `FVector::DistXY()` - Euclidean distance between two points in the XY plane (ignoring Z).
+* `FVector::DistSquared()` - Squared distance between two points.
+* `FVector::DistSquared2D()` or `FVector::DistSquaredXY()` - Squared distance between two points in the XY plane only.
+* `FVector::AllComponentsEqual()` - Check whether all components of this vector are the same, within a tolerance.
+
+> [!TIP]
+> You can use `|` operator for calling the dot product.
+
+> [!TIP]
+> You can use `^` operator for calling the cross product.
+
+Common local functions to use:
+
+* `GetComponentForAxis()` - Get a specific component of the vector, given a specific axis by enum.
+* `SetGetComponentForAxis()` - Set a specified component of the vector, given a specific axis by enum.
+* `Set()` - Set the values of the vector directly.
+* `GetMax()` - Get the maximum value of the vector's components.
+* `GetAbsMax()` - Get the maximum absolute value of the vector's components.
+* `GetMin()` - Get the minimum absolute value of the vector's components.
+* `GetAbsMin()` - Get the minimum absolute value of the vector's components.
+* `GetAbs()` - Get a copy of this vector with absolute value of each component.
+* `Size()` or `Length()` - Get the length (magnitude) of this vector.
+* `SizeSquared()` or `SquaredLength()` - Get the squared length of this vector.
+* `Size2D()` - Get the length of the 2D components of this vector.
+* `SizeSquared2D()` - Get the squared length of the 2D components of this vector.
+* `HeadingAngle()` - Convert a direction vector into a 'heading' angle.
+* `IsNearlyZero()` - Check whether vector is near to zero within a specified tolerance.
+* `IsZero()` - Check whether all components of the vector are exactly zero.
+* `IsUnit()` - Check if the vector is of unit length, with specified tolerance.
+* `IsNormalized()` - Checks whether vector is normalized.
+* `Normalize()` - Normalize this vector in-place if it is larger than a given tolerance. Leaves it unchanged, if not.
+* `GetSignVector()` - Get a copy of the vector as sign only. Each component is set to +1 or -1, with the sign of zero treated as +1.
+* `Projection()` - Projects 2D components of vector based Z.
+* `GridSnap()` - Get a copy of this vector snapped to a grid.
+* `IsUniform()` - Check whether X, Y and Z are nearly equal.
+* `ConstainsNaN()` - Utility to check if there are any non-finite values (NaN or Inf) in this vector.
+* `ToString()` - Get a textural representation of this vector.
+* `ToCompactString()` - Get a short textural representation of this vector, for compact, readable logging.
+* `ToText()` - Get a locale aware textural representation of this vector.
+* `ToCompactText()` - Get a short locale aware textural representation of this vector, for compact, readable logging.
 
 ---
 
 To use the integer version of `FVector`:
 
 ```cpp
-FIntVector IntVector; // Default to 32-bit
+FIntVector IntVector = FIntVector(5, 10, -25); // Default to 32-bit
+FUintVector UintVector = FUintVector(5, 10, 25); // Default to unsigned 32-bit
+```
 
+Here's the more explicit versions: 
+
+```cpp
 FIntVector3 IntVector3; // Default to 32-bit
 FInt32Vector3 Int32Vector3; // 32-bit
 FInt64Vector3 Int64Vector3; // 64-bit
-
-FUintVector UintVector; // Default to unsigned 32-bit
 
 FUintVector3 UintVector3; // Default to unsigned 32-bit
 FUint32Vector3 Uint32Vector3; // Unsigned 32-bit
@@ -3316,7 +3385,7 @@ FUint64Vector3 FUint64Vector3; // Unsigned 64-bit
 
 #### Vector2
 
-A struct representing a 2D vector, consisting of three float values for the `X` and `Y` components. It is often used to represent position or direction in 2D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+A struct representing a 2D vector, consisting of two float values for the `X` and `Y` components.
 
 Declare and initialize a `FVector2D`:
 
@@ -3350,37 +3419,47 @@ FUint64Vector2 FUint64Vector2; // Unsigned 64-bit
 
 #### IntPoint
 
-A struct representing a 2D vector, consisting of three float values for the `X` and `Y` components. It is often used to represent position or direction in 2D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+A struct representing a 2D integer points, consisting of two int values for the `X` and `Y` components.
 
 Declare and initialize a `FIntPoint`:
 
 ```cpp
-// Int points
-using FInt32Point = UE::Math::TIntPoint<int32>;
-using FInt64Point = UE::Math::TIntPoint<int64>;
-using FUint32Point = UE::Math::TIntPoint<uint32>;
-using FUint64Point = UE::Math::TIntPoint<uint64>;
-
-using FIntPoint = FInt32Point;
-using FUintPoint = FUint32Point;
+FIntPoint MinPoint = FIntPoint(-127, -127);
+FIntPoint MaxPoint = FIntPoint(128, 128);
 ```
 
-#### IntReact
-
-A struct representing a 2D vector, consisting of three float values for the `X` and `Y` components. It is often used to represent position or direction in 2D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
-
-Declare and initialize a `FIntReact`:
+Declare and initialize a `FUIntPoint`:
 
 ```cpp
-// Int rects
-using FInt32Rect = UE::Math::TIntRect<int32>;
-using FInt64Rect = UE::Math::TIntRect<int64>;
-using FUint32Rect = UE::Math::TIntRect<uint32>;
-using FUint64Rect = UE::Math::TIntRect<uint64>;
-
-using FIntRect = UE::Math::TIntRect<int32>;
-using FUintRect = UE::Math::TIntRect<uint32>;
+FUIntPoint UnsignedMinPoint = FUIntPoint(0, 0);
+FUIntPoint UnsignedMaxPoint = FUIntPoint(255, 255);
 ```
+
+> ![NOTE]
+> Use `FInt32Point` for `int32`, `FUint32Point` for `uint32`, `FInt64Point` for `int64` and `FUint64Point` for `uint64`, as explicit data type for the backend conversion.
+
+#### IntRect
+
+A struct representing a 2D integer rectangles, consisting of two IntPoint values for the `Min` and `Max` components.
+
+Declare and initialize a `FIntRect`:
+
+```cpp
+FIntPoint MinPoint = FIntPoint(-127, -127);
+FIntPoint MaxPoint = FIntPoint(128, 128);
+FIntReact Rect = FIntRect(MinPoint, MaxPoint);
+```
+
+Declare and initialize a `FUIntReact`:
+
+```cpp
+FUIntPoint UnsignedMinPoint = FUIntPoint(0, 0);
+FUIntPoint UnsignedMaxPoint = FUIntPoint(255, 255);
+FUIntReact UnsignedRect = FIntRect(UnsignedMinPoint, UnsignedMaxPoint);
+```
+
+> ![NOTE]
+> Use `FInt32Rect` for `int32`, `FUint32Rect` for `uint32`, `FInt64Rect` for `int64` and `FUint64Rect` for `uint64`, as explicit data type for the backend conversion.
 
 #### Rotator
 
@@ -3401,20 +3480,31 @@ FRotator MyRotator = FRotator::ZeroRotator; // (0, 0, 0)
 > ![NOTE]
 > Use `FRotator3f` for `float` and `FRotator3d` for `double`, as explicit data type for the backend conversion.
 
+---
+
+Common static functions to use:
+
+* `FRotator::Vector()` - Convert a rotation into a unit vector facing in its direction.
+
+Common local functions to use:
+
+* `GetInverse()` - Returns the inverse of the rotator.
+* `GridSnap()` - Get the rotation, snapped to specified degree segments.
+
 #### Quaternion
 
-A struct representing a quaternion, which is a mathematical concept used to represent 3D rotations. It is commonly used in conjunction with `FVector` to represent orientations and rotations in 3D space.
+A struct representing a quaternion in 3D space, consisting of three float values for the `X`, `Y`, `Z`, and `W` components. Quaternion a mathematical concept used to represent 3D rotations. It is commonly used in conjunction with `FVector` to represent orientations and rotations in 3D space.
 
-Declare and initialize a `FRotator`:
+Declare and initialize a `FQuat`:
 
 ```cpp
-FQuat MyRotator = FRotator(0.0f, 90.0f, 0.0f);
+FQuat MyQuaternion = FQuat(0.0f, 90.0f, 0.0f, 0.0f);
 ```
 
 You can also initalize by an pre-made quaternion:
 
 ```cpp
-FQuat MyRotator = FQuat::Identify; // (0, 0, 0, 0)
+FQuat MyQuaternion = FQuat::Identify; // (0, 0, 0, 0)
 ```
 
 > ![NOTE]
@@ -3422,7 +3512,7 @@ FQuat MyRotator = FQuat::Identify; // (0, 0, 0, 0)
 
 #### Transform
 
-A struct representing a 3D transformation, consisting of a `FVector` for translation, a `FRotator` for rotation, and a `FVector` for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
+A struct representing a 3D transformation, consisting of a `FVector` for translation, a `FQuat` for rotation, and a `FVector` for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
 
 Declare and initialize a `FTransform`:
 
@@ -3431,6 +3521,7 @@ FVector Location = FVector::ZeroVector;
 FRotator Rotation = FRotator::ZeroRotator;
 FVector Scale = FVector::OneVector;
 
+// Note! Unreal will convert FRotator into FQuat in the backend.
 FTransform MyTransform = FTransform(Rotation, Location, Scale);
 ```
 
@@ -3443,34 +3534,76 @@ FTransform MyTransform = FTransform::Identify; // NaN
 > ![NOTE]
 > Use `FTransform3f` for `float` and `FTransform3d` for `double`, as explicit data type for the backend conversion.
 
-#### Matrix
-
-Here's an example:
-
-```cpp
-
-```
-
-> ![NOTE]
-> Use `FMatrix44f` for `float` and `FMatrix44d` for `double`, as explicit data type for the backend conversion.
-
 #### Plane
 
+A struct representing a 3D plane.
+
 Here's an example:
 
 ```cpp
-FPlane Plane;
+float X = 0.0f;
+float Y = 0.0f;
+float X = 0.0f;
+
+FPlane Plane = FVector(X, Y, Z);
+```
+
+Here's another way to initialize `FPlane`:
+
+```cpp
+FPlane Plane = FVector(FVector(0.0f, 0.0f, 0.0f));
 ```
 
 > ![NOTE]
 > Use `FPlane4f` for `float` and `FPlane4d` for `double`, as explicit data type for the backend conversion.
 
-#### Sphere
+#### Matrix
+
+A struct representing a 4x4 matrix of loating point values.
 
 Here's an example:
 
 ```cpp
-FSphere Sphere;
+FPlane XPlane = FPlane(1.0f, 0.0f, 0.0f, 0.0f);
+FPlane YPlane = FPlane(0.0f, 1.0f, 0.0f, 0.0f);
+FPlane ZPlane = FPlane(0.0f, 0.0f, 1.0f, 0.0f);
+FPlane WPlane = FPlane(0.0f, 0.0f, 0.0f, 1.0f);
+
+FMatrix Matrix = FMatrix(XPlane, YPlane, ZPlane, WPlane);
+```
+
+```cpp
+FVector XVector = FVector(1.0f, 0.0f, 0.0f);
+FVector YVector = FVector(0.0f, 1.0f, 0.0f);
+FVector ZVector = FVector(0.0f, 0.0f, 1.0f);
+FVector WVector = FVector(0.0f, 0.0f, 0.0f);
+
+FMatrix Matrix = FMatrix(XVector, YVector, ZVector, WVector);
+```
+
+```cpp
+FMatrix Matrix;
+
+int32 RowIndex = 0;
+int32 ColumnIndex = 0;
+
+double Element = Matrix[RowIndex][ColumnIndex];
+```
+
+> ![NOTE]
+> Use `FMatrix44f` for `float` and `FMatrix44d` for `double`, as explicit data type for the backend conversion.
+
+#### Sphere
+
+A struct representing a 3D sphere.
+
+Here's an example:
+
+```cpp
+FVector Center = FVector::ZeroVector;
+float Radius = 500.0f;
+
+FSphere Sphere = FSphere(Center, Radius);
 ```
 
 > ![NOTE]
@@ -3478,10 +3611,15 @@ FSphere Sphere;
 
 #### Box
 
+A struct representing a 3D box.
+
 Here's an example:
 
 ```cpp
-FBox Box;
+FVector MinPoint = FVector(15.5f, 15.5f);
+FVector MaxPoint = FVector(25.0f, 25.0f);
+
+FBox Box2D = FBox(MinPoint, MaxPoint);
 ```
 
 > ![NOTE]
@@ -3489,10 +3627,15 @@ FBox Box;
 
 #### Box2D
 
+A struct representing a 2D box.
+
 Here's an example:
 
 ```cpp
-FBox2D Box2D;
+FVector2D MinPoint = FVector2D(10, 10);
+FVector2D MaxPoint = FVector2D(20, 20);
+
+FBox2D Box2D = FBox2D(MinPoint, MaxPoint);
 ```
 
 > ![NOTE]
@@ -3500,42 +3643,88 @@ FBox2D Box2D;
 
 #### Ray
 
+A struct representing a 3D ray, consisting of two vector values for the `Origin` and `Direction` components.
+
 Here's an example:
 
 ```cpp
-FRay Ray;
+FVector Origin = FVector::ZeroVector;
+FVector Direction = FVector::ForwardVector;
+bool bDirectionIsNormalized = false;
+
+FRay Ray = FRay(Origin, Direction, bDirectionIsNormalized);
+```
+
+Functions to use with `FRay`:
+
+```cpp
+FVector Point = FVector::ZeroVector;
+
+FVector ClosestPoint = Ray.ClosestPoint(Point);
+double MinDistance = Ray.Dist(Point);
+double MinSqrtDistance = Ray.DistSquared(Point);
+
+double ScalarDistance = 0.5; // Along the ray
+FVector PointAt = Ray.PointAt(ScalarDistance);
+double CalcScalarDistance = Ray.GetParameter(PointAt); // Will convert back to 'ScalarDistance'
 ```
 
 > ![NOTE]
 > Use `FRay3f` for `float` and `FRay3d` for `double`, as explicit data type for the backend conversion.
 
-#### Bounds
-
-A struct representing a 2D vector, consisting of three float values for the `X` and `Y` components. It is often used to represent position or direction in 2D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
-
-Declare and initialize a `FIntReact`:
-
-```cpp
-using FBoxSphereBounds3f = UE::Math::TBoxSphereBounds<float, float>;
-using FBoxSphereBounds3d = UE::Math::TBoxSphereBounds<double, double>;
-// FCompactBoxSphereBounds always stores float extents
-using FCompactBoxSphereBounds3d = UE::Math::TBoxSphereBounds<double, float>;
-
-using FBoxSphereBounds = FBoxSphereBounds3d;
-using FCompactBoxSphereBounds = FCompactBoxSphereBounds3d;
-```
-
 #### Colors
 
-Here's an example:
+`FColor` stores a color with 8 bits (byte) of precision per channel.
+
+`FLinearColor` stores a linear color with 32-bit/component floating point RGBA color.
+
+Here's an example, how to initialize them:
 
 ```cpp
-FLinearColor LinearColor; // Lorem Ipsum
+FLinearColor LinearColor = FLinearColor(0.5f, 1.0f, 0.3f);
 ```
 
 ```cpp
-FColor Color = FColor::Yellow; // Lorem Ipsum
+FColor Color = FColor(150, 200, 50);
+
+// or
+
+// Supported formats are: RGB, RRGGBB, RRGGBBAA, RGB, #RRGGBB, #RRGGBBAA
+FColor HexColor = FColor::FromHex(TEXT("#9fd99e"));
+FString HexString = HexColor.ToHex(); // Convert it back to a string. The format of the string is RRGGBBAA.
 ```
+
+List of common colors of ´FLinearColor´:
+
+* `FLinearColor::White`
+* `FLinearColor::Gray`
+* `FLinearColor::Black`
+* `FLinearColor::Transparent`
+* `FLinearColor::Red`
+* `FLinearColor::Green`
+* `FLinearColor::Blue`
+* `FLinearColor::Yellow`
+
+List of common colors of `FColor`:
+
+* `FColor::White`
+* `FColor::Black`
+* `FColor::Transparent`
+* `FColor::Red`
+* `FColor::Green`
+* `FColor::Blue`
+* `FColor::Yellow`
+* `FColor::Cyan`
+* `FColor::Magenta`
+* `FColor::Orange`
+* `FColor::Purple`
+* `FColor::Turquoise`
+* `FColor::Silver`
+* `FColor::Emerald`
+
+You can read more about [linear color at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Math/FLinearColor/).
+
+You can also read more about [color at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Math/FColor/).
 
 ### 💐 Collections
 
