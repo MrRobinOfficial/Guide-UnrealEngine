@@ -1,7 +1,7 @@
 ![Banner](static/img/Banner.png)
 
 <div align="center">
-  
+
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mrrobinofficial/guide-unitysteamnetcodegameobjects/blob/HEAD/LICENSE.txt)
 ![GitHub Repo stars](https://img.shields.io/github/stars/MrRobinOfficial/Guide-UnrealEngine)
 ![guide-status](https://img.shields.io/badge/guide_status-revision-91ff00)
@@ -23,14 +23,14 @@
 
 *In this repo, we'll guide you through the basics of getting started with Unreal Engine and C++. We'll cover the fundamentals of C++ programming, such as data types and pointers, and show you how to use these concepts in the context of game development with Unreal Engine. We'll also introduce you to the Unreal Engine module system, which is an important aspect of organizing your game code into smaller, more manageable pieces.*
 
-> **Note**
+> [!NOTE]
 > This repository was created in conjunction with [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT) to assist in writing and formulating each sentence. While it provides valuable information, it may not be entirely accurate. If you detect any errors or false statements, please feel free to create a new [issue](https://github.com/MrRobinOfficial/Guide-UnrealEngine/issues/) to report them for further improvement and clarification.
 >
 > You can also send a new [pull request](https://github.com/MrRobinOfficial/Guide-UnrealEngine/pulls) to make correct changes to codebase.
 >
 > **Your contributions and feedback are appreciated!**
 
-> **Note**
+> [!NOTE]
 > Examples and documentation are intended to work on **UE 5.0** version and upwards. Some code may or may not work on previous versions!
 
 ## Table of contents
@@ -637,7 +637,7 @@ Table from [Microsoft Learn about Data Type Ranges](https://learn.microsoft.com/
 
 If its name begins with two underscores (`__`), a data type is non-standard.
 
-> **Warning**
+> [!WARNING]
 > C++ lacks explicitness about data types size, leading to potential variation. For instance, the `int` type can manifest as either 16-bits or 32-bits, depending on the context.
 
 Here is a summary of the explicit data sizes:
@@ -696,7 +696,7 @@ For example:
 unsigned long int // Same as unsigned 32-bit integer (unsigned int)
 ```
 
-> **Note**
+> [!NOTE]
 > The default behavior for all integer types is `signed`.
 
 Here is a list of modifiers for **integer** data type:
@@ -738,7 +738,7 @@ typedef int myInt; // Declare our alias for custom type
 myInt x = 5;  // Equivalent to: int x = 5;
 ```
 
-> **Warning**
+> [!WARNING]
 > Unreal Engine doesn't support typedefs with UHT[^2]. Meaning, you can't expose to Blueprint.
 
 ### 🍂 Members
@@ -1161,7 +1161,7 @@ When to use `mutable` keyword:
 
 The mutable keyword is used in situations where a class member maintains a state that should be allowed to change even in a const object. Common use cases for mutable include caching and lazily initializing data. By making certain members mutable, you can improve performance in specific scenarios without sacrificing the const-correctness of your class.
 
-> **Warning**
+> [!WARNING]
 > While `mutable` can be useful, it should be used judiciously. Modifying mutable members inside `const` functions can lead to unexpected behavior and make the code harder to reason about. Ensure that the state being modified using `mutable` doesn't affect the logical constness of the class or lead to thread-safety issues.
 
 #### Immutable
@@ -1335,7 +1335,7 @@ Library2::Vector vec2;
 // Use vec1 and vec2 without conflicts
 ```
 
-> **Warning**
+> [!WARNING]
 > Unreal Engine doesn't support namespaces with UHT[^3].
 
 ### 🌐 Static members
@@ -1491,7 +1491,7 @@ With function overloading, it provides several benefits, including:
 
 </td></tr></table>
 
-> **Warning**
+> [!WARNING]
 > Unreal Engine doesn't support function overloading with UHT[^2]. Meaning, you can't expose to Blueprint.
 
 ##### Virtual functions
@@ -1601,7 +1601,7 @@ int factorial(int n)
 
 </td></tr></table>
 
-> **Warning**
+> [!WARNING]
 > While recursion can be powerful, it's essential to use it judiciously. Recursive solutions may consume more memory and time compared to iterative solutions for certain problems. Additionally, recursive functions can lead to stack overflow errors if not implemented correctly or when dealing with very large inputs.
 
 ### ⚙️ Linker
@@ -1634,7 +1634,7 @@ The linker can be configured to accept either static library or dynamic library 
 
 When you compile, you have the options to compile the source code into a [.lib](https://en.wikipedia.org/wiki/Static_library) file. The .lib file can then be read by the linker, which include all files, when executing a compilation.
 
-> **Note**
+> [!NOTE]
 > Because static library is merged into .exe file, it increases the final size of .exe file.
 
 **Use static library if you want to access content statically and have compiling errors to ensure that the code can be executed.**
@@ -1679,7 +1679,7 @@ To access contents of .dll file, you have to use either `__declspec(dllimport)` 
 * Use `dllimport` for importing functions and variables.
 * Use `dllexport` for exporting functions and variables.
 
-> **Important**
+> [!IMPORTANT]
 > __declspec(dllimport) is required for data imports (such as member variables).
 
 ```cpp
@@ -1701,13 +1701,13 @@ DllExport int n;
 
 You can read more about it from [Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/dllexport-dllimport?view=msvc-170).
 
-> **Note**
+> [!NOTE]
 > Because the dynamic library is loaded at runtime, it's then loaded into RAM memory, instead of being statically compiled into the .exe file. This can take up more memory space. However, if the code use repeatably, throughout other programs, then memory space is greatly improved.
 
-> **Warning**
+> [!WARNING]
 > Using .dll also means that the library stores compiled code directly into the file. It also may contain small extra metadata about the code (debugging symbols, comments and etc). This means, the code is unsecure and more accessible for a reverse engineer to use it and modify it. C# require storing debug symbol information (for the reflection system), hence why it is easier to reverse engineer than C++ code. While you have the options to enable debug symbol information in C++. But is not automatically turn on by default.
 
-> **Important**
+> [!IMPORTANT]
 > There is no way to guarantee to stop a reverse engineer to look at the compiled code or modify the game unless you run a program, which check the game's content as a hash data and compare to cloud stored version (this would take long time, but would be a safe approach).
 >
 > When calling a function, you can trace the code execution in .dll file (with the [assembly language](https://en.wikipedia.org/wiki/Assembly_language) viewer), thus understanding the function intention and then either replicated the function or modify it.
@@ -1889,7 +1889,7 @@ C++ provides features like dynamic memory allocation with `new` and `delete` ope
 
 ---
 
-> **Warning**
+> [!WARNING]
 > Don't use `new` and `delete` operators on `UObject` classes, as this would interfere with Unreal's garbage collection system.
 
 | Aspect           | Stack                                    | Heap                                        |
@@ -2058,7 +2058,7 @@ myDictionary["orange"] = 8;
 
 A linked list is a linear data structure where elements (nodes) are connected via pointers. It supports efficient insertion and deletion but requires more memory compared to arrays.
 
-> **Note**
+> [!NOTE]
 > Linked list structure doesn't exist in C++ standard library.
 
 Here's an example:
@@ -2548,7 +2548,7 @@ You can watch a video from [underscore about Unreal Engine Architecture](https:/
 
 You can also watch a video discussion about [Multiplayer Framework of Unreal Engine from Kekdot](https://www.youtube.com/watch?v=Hsr6mbNKBLU).
 
-> **Note**
+> [!NOTE]
 > This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can ignore some of the main classes.
 
 You can also watch [The Unreal Engine Game Framework: From int main() to BeginPlay by Alex Forsythe](https://www.youtube.com/watch?v=IaU2Hue-ApI), which he talks about Unreal Engine's architecture and how Unreal starts your game/editor.
@@ -2563,7 +2563,7 @@ This section was written in conjunction with ChatGPT.
 
 There is a github repo, which talks about Unreal's naming convention. The repo is very detailed and explains how you should name your assets, as well as your code. Repo is called [Unreal Engine's style guide by Michael Allar](https://github.com/Allar/ue5-style-guide).
 
-You can read more about [Epic C++ Coding Standard on their docs](https://docs.unrealengine.com/5.2/en-US/epic-cplusplus-coding-standard-for-unreal-engine/).
+You can read more about [Epic C++ Coding Standard on their docs](https://docs.unrealengine.com/5.3/en-US/epic-cplusplus-coding-standard-for-unreal-engine/).
 
 Unreal Engine follows a specific naming convention that helps maintain consistency and readability in the codebase. When using Naming Conventions, all code and comments should use U.S. English spelling and grammar.
 
@@ -2572,7 +2572,7 @@ Pascal case is a naming convention used in programming and other contexts where 
 In Unreal Engine, the use of pascal case for classes is part of the naming convention for user-defined classes. When you create a new class in Unreal Engine, it is recommended to use pascal case for the class name. For example:
 
 ```cpp
-class MyPlayerCharacter : public ACharacter
+class AMyPlayerCharacter : public ACharacter
 {
     // Class definition here
 };
@@ -2581,7 +2581,7 @@ class MyPlayerCharacter : public ACharacter
 Similarly, pascal case is used for member variables and functions in Unreal Engine to maintain consistency and improve code readability. For example:
 
 ```cpp
-class MyPlayerCharacter : public ACharacter
+class AMyPlayerCharacter : public ACharacter
 {
 public:
     UPROPERTY()
@@ -2594,16 +2594,6 @@ public:
 
 Boolean variables, which uses a prefix of `b` followed by a descriptive name in pascal case.
 For example, a boolean variable that controls whether a character is running might be named: `bIsRunning`.
-
-Constants are sometimes written in all capital letters (also known as SCREAMING_SNAKE_CASE) to differentiate them from regular variables and to indicate that their values are meant to be treated as fixed and unchangeable throughout the program's execution.
-
-The convention of using all capital letters for constants is a common practice in various programming languages, not just in Unreal Engine C++. It helps developers easily identify constants in the code and makes the code more readable.
-
-Here's an example of a constant defined in Unreal Engine C++ using all capital letters:
-
-```cpp
-const int MAX_HEALTH = 100;
-```
 
 Variable, method, and class names should be:
 
@@ -2672,7 +2662,7 @@ This section was NOT written in conjunction with ChatGPT.
 | T      | Template     | `TSubclassOf<T>`, `TArray<T>`, `TSet<T>`, `TMap<T>`, `TMultiMap<T>`       |
 | G      | Global Class | `GEngine`, `GConfig`, `GWorld`, `GEngineLoop`, `GIsEditor`                |
 
-> **Trivia**
+> [!TIP]
 > Did you know that `F` prefix actually stands for `Float` (floating point). but it was inadvertently spread throughout and has lost its original meaning.
 
 ### 🎨 Abbreviations, Acronyms and Synonyms
@@ -2857,167 +2847,71 @@ This section was written in conjunction with ChatGPT.
 <details open>
   <summary>Click to expand</summary>
 
-```cpp
-// Forward declaration of concrete types				// Macro version - declares all three variants.
-using FVector 		= UE::Math::TVector<double>;		// UE_DECLARE_LWC_TYPE(Vector, 3);
-using FVector2D 	= UE::Math::TVector2<double>;		// UE_DECLARE_LWC_TYPE(Vector2,, FVector2D);
-using FVector4 		= UE::Math::TVector4<double>;		// UE_DECLARE_LWC_TYPE(Vector4);
-using FQuat 		= UE::Math::TQuat<double>;			// UE_DECLARE_LWC_TYPE(Quat, 4);
-using FMatrix 		= UE::Math::TMatrix<double>;		// UE_DECLARE_LWC_TYPE(Matrix, 44);
-using FPlane 		= UE::Math::TPlane<double>;			// UE_DECLARE_LWC_TYPE(Plane, 4);
-using FTransform 	= UE::Math::TTransform<double>;		// UE_DECLARE_LWC_TYPE(Transform, 3);
-using FSphere 		= UE::Math::TSphere<double>;		// UE_DECLARE_LWC_TYPE(Sphere, 3);
-using FBox 			= UE::Math::TBox<double>;			// UE_DECLARE_LWC_TYPE(Box, 3);
-using FBox2D 		= UE::Math::TBox2<double>;			// UE_DECLARE_LWC_TYPE(Box2,, FBox2D);
-using FRotator 		= UE::Math::TRotator<double>;		// UE_DECLARE_LWC_TYPE(Rotator, 3);
-using FRay			= UE::Math::TRay<double>;			// UE_DECLARE_LWC_TYPE(Ray, 3);
+### Characters
 
-using FVector3d 	= UE::Math::TVector<double>;
-using FVector2d 	= UE::Math::TVector2<double>;
-using FVector4d 	= UE::Math::TVector4<double>;
-using FQuat4d 		= UE::Math::TQuat<double>;
-using FMatrix44d 	= UE::Math::TMatrix<double>;
-using FPlane4d 		= UE::Math::TPlane<double>;
-using FTransform3d 	= UE::Math::TTransform<double>;
-using FSphere3d 	= UE::Math::TSphere<double>;
-using FBox3d 		= UE::Math::TBox<double>;
-using FBox2d 		= UE::Math::TBox2<double>;
-using FRotator3d 	= UE::Math::TRotator<double>;
-using FRay3d		= UE::Math::TRay<double>;
-
-using FVector3f		= UE::Math::TVector<float>;
-using FVector2f		= UE::Math::TVector2<float>;
-using FVector4f		= UE::Math::TVector4<float>;
-using FQuat4f		= UE::Math::TQuat<float>;
-using FMatrix44f	= UE::Math::TMatrix<float>;
-using FPlane4f		= UE::Math::TPlane<float>;
-using FTransform3f	= UE::Math::TTransform<float>;
-using FSphere3f		= UE::Math::TSphere<float>;
-using FBox3f		= UE::Math::TBox<float>;
-using FBox2f		= UE::Math::TBox2<float>;
-using FRotator3f	= UE::Math::TRotator<float>;
-using FRay3f		= UE::Math::TRay<float>;
-
-
-struct FColor;
-struct FLinearColor;
-
-// Int vectors
-using FIntVector2 = UE::Math::TIntVector2<int32>;
-using FIntVector3 = UE::Math::TIntVector3<int32>;
-using FIntVector4 = UE::Math::TIntVector4<int32>;
-using FInt32Vector2 = UE::Math::TIntVector2<int32>;
-using FInt32Vector3 = UE::Math::TIntVector3<int32>;
-using FInt32Vector4 = UE::Math::TIntVector4<int32>;
-using FInt32Vector = FInt32Vector3;
-using FInt64Vector2 = UE::Math::TIntVector2<int64>;
-using FInt64Vector3 = UE::Math::TIntVector3<int64>;
-using FInt64Vector4 = UE::Math::TIntVector4<int64>;
-using FInt64Vector = FInt64Vector3;
-
-using FUintVector2 = UE::Math::TIntVector2<uint32>;
-using FUintVector3 = UE::Math::TIntVector3<uint32>;
-using FUintVector4 = UE::Math::TIntVector4<uint32>;
-using FUint32Vector2 = UE::Math::TIntVector2<uint32>;
-using FUint32Vector3 = UE::Math::TIntVector3<uint32>;
-using FUint32Vector4 = UE::Math::TIntVector4<uint32>;
-using FUint32Vector = FUint32Vector3;
-using FUint64Vector2 = UE::Math::TIntVector2<uint64>;
-using FUint64Vector3 = UE::Math::TIntVector3<uint64>;
-using FUint64Vector4 = UE::Math::TIntVector4<uint64>;
-using FUint64Vector = FUint64Vector3;
-
-using FIntVector = FInt32Vector3;
-using FUintVector = FUint32Vector3;
-
-// Int points
-using FInt32Point = UE::Math::TIntPoint<int32>;
-using FInt64Point = UE::Math::TIntPoint<int64>;
-using FUint32Point = UE::Math::TIntPoint<uint32>;
-using FUint64Point = UE::Math::TIntPoint<uint64>;
-
-using FIntPoint = FInt32Point;
-using FUintPoint = FUint32Point;
-
-// Int rects
-using FInt32Rect = UE::Math::TIntRect<int32>;
-using FInt64Rect = UE::Math::TIntRect<int64>;
-using FUint32Rect = UE::Math::TIntRect<uint32>;
-using FUint64Rect = UE::Math::TIntRect<uint64>;
-
-using FIntRect = UE::Math::TIntRect<int32>;
-using FUintRect = UE::Math::TIntRect<uint32>;
-
-
-using FBoxSphereBounds3f = UE::Math::TBoxSphereBounds<float, float>;
-using FBoxSphereBounds3d = UE::Math::TBoxSphereBounds<double, double>;
-// FCompactBoxSphereBounds always stores float extents
-using FCompactBoxSphereBounds3d = UE::Math::TBoxSphereBounds<double, float>;
-
-using FBoxSphereBounds = FBoxSphereBounds3d;
-using FCompactBoxSphereBounds = FCompactBoxSphereBounds3d;
-```
-
-<table><tr><td>
-
-## All Types
-
-* `bool` - Represents a logical value, either `true` or `false`
-* `char` - Represents a single character in the ASCII[^3] character set
-* `int8` - Represents a signed 8-bit integer
-* `int` - Represents a signed integer that varies between 16-bit and 32-bit depending on the context.
-* `int32` - Represents a signed 32-bit integer
-* `int16` - Represents a signed 16-bit integer
-* `int64` - Represents a signed 64-bit integer
-* `uint8` - Represents an unsigned 8-bit integer
-* `uint16` - Represents an unsigned 16-bit integer
-* `uint32` - Represents an unsigned 32-bit integer
-* `uint64`- Represents an unsigned 64-bit integer
-* `float` - Represents a floating-point number, which is a real number with a fractional component
-* `double` - Represents a double-precision floating-point number, which has twice the precision of a float
-* `FName` - Represents a unique [immutable](#immutable) name (case-insensitive, and are stored as a combination of an index into a table of unique strings and an instance number).
-* `FText` - Represents a localized [immutable](#immutable) string of characters. Primarily used for UMG and other kind of user interface.
-* `FString` - Represents a [mutable](#mutable) string of characters. Most expensive than `FName` and `FText`, but allow you to split, append, create substrings and manipulate the string.
-* `FVector` - Represents a 3D vector, which consists of three float values (X, Y, and Z). It is often used to represent positions, directions, and velocities in 3D space.
-* `FRotator` - Represents a rotation in 3D space, which consists of three float values (Pitch, Yaw, and Roll) that correspond to rotations around the X, Y, and Z axes, respectively
-* `FQuat` - Represents a quaternion that describes rotations in 3D space using four components (x, y, z, w).
-* `FTransform` - Represents a transformation in 3D space, which consists of a location, rotation, and scale
-* `TArray` - Dynamic array data structure that can hold any type of data
-* `TSet` - Dynamic set data structure that can hold any type of data
-* `TMap` - Dynamic map data structure that can hold key-value pairs of any type of data (similar to Dictionary)
-* `TMultiMap` - Dynamic map data structure that allows storing multiple values for the same key, facilitating efficient storage and retrieval of data based on keys.
-* `TStaticArray` - Static array data structure that provides compile-time array size validation and is suitable for cases where the size of the array is known at compile time and doesn't change during runtime.
-
-</td></tr></table>
-
-We start off with simple variables types, such as `char`, `bool`, `int` and `float`:
-
-### Char
+In C++ native, you write a character by using `char` data type:
 
 ```cpp
 char myChar = 'a';
 ```
 
+In Unreal, you write a character by using `TChar`:
+
+```cpp
+TChar MyChar = 'A';
+```
+
+You can read more about [TCHAR on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Misc/TChar/).
+
 ### Booleans
 
 ```cpp
-bool bIsDead = true; // Unreal uses a 'b' prefix for booleans (always in lowercase).
+// Unreal uses a 'b' prefix for booleans (always in lowercase).
+bool bIsDead = true;
 ```
 
 ### Integers
 
+In C++ native, you write a integer by using `int` data type:
+
 ```cpp
-int32 Health = 10; // Unreal always uses PascalCase naming convention.
+int health = 10;
 ```
 
-### Floating points (floats and doubles)
+In Unreal, you write a integer by using `int32`:
 
 ```cpp
-float SpeedInMetersPerSecond = 5.5f; // C++ always uses 'f' or 'F' literal for defining a float variable.
+int32 Health = 10;
+```
+
+In Unreal, the availability of different integer types such as `int8`, `int16`, and `int64` alongside the standard `int32` provides developers with a range of options tailored to specific needs in terms of both data size and numerical range.
+
+```cpp
+int8 NumberA = 0;       // -128                             ->      127
+int16 NumberB = 0;      // -32,768                           ->      32,767
+int32 NumberC = 0;      // -2,147,483,648                   ->      2,147,483,647
+int64 NumberD = 0;      // 9,223,372,036,854,775,808        ->      9,223,372,036,854,775,807
+```
+
+You also have unsigned (positive-only) integers as well:
+
+```cpp
+uint8 NumberA = 0;      // 0    ->      255
+uint16 NumberB = 0;     // 0    ->      65,535
+uint32 NumberC = 0;     // 0    ->      4,294,967,295
+uint64 NumberD = 0;     // 0    ->      18,446,744,073,709,551,615
+```
+
+### Floating point numbers
+
+```cpp
+// C++ always uses 'f' or 'F' literal for defining a float variable.
+float SpeedInMetersPerSecond = 5.5f;
 ```
 
 ```cpp
-double SpeedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a double variable.
+// C++ never uses a literal for defining a double variable.
+double SpeedInMetersPerSecond = 5.5;
 ```
 
 ### 🛟 Size can vary
@@ -3038,13 +2932,35 @@ So, the summary data sizes would be:
 <table><tr><td>
 
 * `char`, `signed char` and `unsigned char` are at least 8 bits
+
 * `signed short`, `unsigned short`, `signed int` and `unsigned int` are at least 16 bits
+
 * `signed long` and `unsigned long` are at least 32 bits
+
 * `signed long long` and `unsigned long long` are at least 64 bits
 
 </td></tr></table>
 
 You can read more in-depth about this from [Alex on Stack Overflow](https://stackoverflow.com/a/589684/17067030).
+
+---
+
+Here's a full list of Unreal's data type sizes:
+
+| Data Type | Signed | Size (bytes) |
+| --------- | ------ | ------------ |
+| `bool`   | -  | NEVER assume the size |
+| `TCHAR`   | -  | NEVER assume the size |
+| `uint8`   | false  | 1            |
+| `int8`    | true   | 1            |
+| `uint16`  | false  | 2            |
+| `int16`   | true   | 2            |
+| `uint32`  | false  | 4            |
+| `int32`   | true   | 4            |
+| `uint64`  | false  | 8            |
+| `int64`   | true   | 8            |
+| `float`   | true   | 4            |
+| `double`  | true   | 8            |
 
 ### 🦺 Unreal Engine Typedefs
 
@@ -3106,10 +3022,10 @@ typedef FPlatformTypes::TYPE_OF_NULL	TYPE_OF_NULL;
 typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 ```
 
-> **Warning**
+> [!WARNING]
 > `uint16`, `uint32`, `uint64`, `int8`, `int16` and `double` are not supported with UHT[^3]. Meaning, can't expose to Blueprint.
 
-### 📖 Strings
+### 📖 Strings Data Types
 
 Strings in programming languages are fundamental data types used to represent and manipulate sequences of characters, such as words, sentences, or even binary data. They are extensively used in various programming tasks, including input/output operations, text processing, data serialization, and more.
 
@@ -3146,7 +3062,7 @@ Include the header file:
 Declare `FName`:
 
 ```cpp
-FName MyName = FName("PlayerName");
+FName MyName = FName(TEXT("PlayerName"));
 ```
 
 #### FText
@@ -3252,7 +3168,7 @@ FText NumberText = FText::AsNumber(Health, &NumberFormat);
 NumberText = FText::AsCultureInvariant(NumberText); // Disable the culture formatting
 ```
 
-> **Note**
+> [!NOTE]
 > By default, Unreal will use local culture when doing this format. If you wish to disable culture formatting, use `FText::AsCultureInvariant` function.
 
 #### FString
@@ -3321,50 +3237,304 @@ Text.ReverseString(); // Output: "edcba"
 | `FText` | A localized string that supports text localization and provides text display features. | Ideal for displaying text to users in the game, supporting multiple languages and localization. |
 | `FString` | A dynamic string that can be modified and used for general-purpose string manipulation. | Suitable for general text handling and string operations within the game code. |
 
-### 🚀 Vector, Rotator, Quat and Transform
+### 🚀 Math Data Types
 
-* `FVector`: A struct representing a 3D vector, consisting of three float values for the `X`, `Y`, and `Z` components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+> [!NOTE]
+> In Unreal Engine 5.0+, by default, all math related data types are using `double` as backend data type. This allows Unreal to support [large world coordinates (LWC)](https://docs.unrealengine.com/5.3/en-US/large-world-coordinates-in-unreal-engine-5/).
 
-* `FRotator`: A struct representing a rotation in 3D space, consisting of three float values for the `Pitch`, `Yaw`, and `Roll` angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
+#### Vector4
 
-* `FQuat` (Quaternion): A struct representing a quaternion, which is a mathematical concept used to represent 3D rotations. It is commonly used in conjunction with `FVector` to represent orientations and rotations in 3D space.
+A struct representing a 4D vector, consisting of three float values for the `X`, `Y`, `Z`, and `W` components. It is often used to represent position or direction in 4D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
 
-* `FTransform`: A struct representing a 3D transformation, consisting of a `FVector` for translation, a `FRotator` for rotation, and a `FVector` for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
-  
+Declare and initialize a `FVector4`:
+
 ```cpp
-FVector Location = FVector::ZeroVector; // X, Y and Z
-FRotator Rotation = FRotator::Identify; // Pitch, Yaw and Roll
-FTransform Transform = FTransform::Identify;
+FVector4 MyVector = FVector(1.0f, 2.0f, 3.0f, 4.0f);
 ```
+
+You can also initalize by an pre-made vector:
+
+```cpp
+FVector4 OldLocation = FVector4::ZeroVector; // (0, 0, 0)
+FVector4 NewLocation = FVector4::OneVector; // (1, 1, 1)
+```
+
+> ![NOTE]
+> Use `FVector4f` for `float` and `FVector4d` for `double`, as explicit data type for the backend conversion.
+
+---
+
+To use the integer version of `FVector4`:
+
+```cpp
+FIntVector4 IntVector4; // Default to 32-bit
+FInt32Vector4 Int32Vector4; // 32-bit
+FInt64Vector4 Int64Vector4; // 64-bit
+
+FUintVector4 UintVector4; // Default to unsigned 32-bit
+FUint32Vector4 Uint32Vector4; // Unsigned 32-bit
+FUint64Vector4 FUint64Vector4; // Unsigned 64-bit
+```
+
+#### Vector3
+
+A struct representing a 3D vector, consisting of three float values for the `X`, `Y`, and `Z` components. It is often used to represent position or direction in 3D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+
+Declare and initialize a `FVector`:
+
+```cpp
+FVector MyVector = FVector(1.0f, 2.0f, 3.0f);
+```
+
+You can also initalize by an pre-made vector:
+
+```cpp
+FVector OldLocation = FVector::ZeroVector; // (0, 0, 0)
+FVector NewLocation = FVector::OneVector; // (1, 1, 1)
+```
+
+> ![NOTE]
+> Use `FVector3f` for `float` and `FVector3d` for `double`, as explicit data type for the backend conversion.
+
+---
+
+To use the integer version of `FVector`:
+
+```cpp
+FIntVector IntVector; // Default to 32-bit
+
+FIntVector3 IntVector3; // Default to 32-bit
+FInt32Vector3 Int32Vector3; // 32-bit
+FInt64Vector3 Int64Vector3; // 64-bit
+
+FUintVector UintVector; // Default to unsigned 32-bit
+
+FUintVector3 UintVector3; // Default to unsigned 32-bit
+FUint32Vector3 Uint32Vector3; // Unsigned 32-bit
+FUint64Vector3 FUint64Vector3; // Unsigned 64-bit
+```
+
+#### Vector2
+
+A struct representing a 2D vector, consisting of three float values for the `X` and `Y` components. It is often used to represent position or direction in 2D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+
+Declare and initialize a `FVector2D`:
+
+```cpp
+FVector2D MyVector = FVector2D(1.0f, 2.0f, 3.0f);
+```
+
+You can also initalize by an pre-made vector:
+
+```cpp
+FVector2D OldLocation = FVector2D::ZeroVector; // (0, 0, 0)
+FVector2D NewLocation = FVector2D::OneVector; // (1, 1, 1)
+```
+
+> ![NOTE]
+> Use `FVector2f` for `float` and `FVector2d` for `double`, as explicit data type for the backend conversion.
+
+---
+
+To use the integer version of `FVector2D`:
+
+```cpp
+FIntVector2 IntVector2; // Default to 32-bit
+FInt32Vector2 Int32Vector2; // 32-bit
+FInt64Vector2 Int64Vector2; // 64-bit
+
+FUintVector2 UintVector2; // Default to unsigned 32-bit
+FUint32Vector2 Uint32Vector2; // Unsigned 32-bit
+FUint64Vector2 FUint64Vector2; // Unsigned 64-bit
+```
+
+#### IntPoint
+
+A struct representing a 2D vector, consisting of three float values for the `X` and `Y` components. It is often used to represent position or direction in 2D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+
+Declare and initialize a `FIntPoint`:
+
+```cpp
+// Int points
+using FInt32Point = UE::Math::TIntPoint<int32>;
+using FInt64Point = UE::Math::TIntPoint<int64>;
+using FUint32Point = UE::Math::TIntPoint<uint32>;
+using FUint64Point = UE::Math::TIntPoint<uint64>;
+
+using FIntPoint = FInt32Point;
+using FUintPoint = FUint32Point;
+```
+
+#### IntReact
+
+A struct representing a 2D vector, consisting of three float values for the `X` and `Y` components. It is often used to represent position or direction in 2D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+
+Declare and initialize a `FIntReact`:
+
+```cpp
+// Int rects
+using FInt32Rect = UE::Math::TIntRect<int32>;
+using FInt64Rect = UE::Math::TIntRect<int64>;
+using FUint32Rect = UE::Math::TIntRect<uint32>;
+using FUint64Rect = UE::Math::TIntRect<uint64>;
+
+using FIntRect = UE::Math::TIntRect<int32>;
+using FUintRect = UE::Math::TIntRect<uint32>;
+```
+
+#### Rotator
+
+A struct representing a rotation in 3D space, consisting of three float values for the `Pitch`, `Yaw`, and `Roll` angles. It is often used to represent the orientation of an object, and provides many useful functions such as conversion to and from quaternions, and rotation of other vectors and rotators.
+
+Declare and initialize a `FRotator`:
+
+```cpp
+FRotator MyRotator = FRotator(0.0f, 90.0f, 0.0f);
+```
+
+You can also initalize by an pre-made rotator:
+
+```cpp
+FRotator MyRotator = FRotator::ZeroRotator; // (0, 0, 0)
+```
+
+> ![NOTE]
+> Use `FRotator3f` for `float` and `FRotator3d` for `double`, as explicit data type for the backend conversion.
+
+#### Quaternion
+
+A struct representing a quaternion, which is a mathematical concept used to represent 3D rotations. It is commonly used in conjunction with `FVector` to represent orientations and rotations in 3D space.
+
+Declare and initialize a `FRotator`:
+
+```cpp
+FQuat MyRotator = FRotator(0.0f, 90.0f, 0.0f);
+```
+
+You can also initalize by an pre-made quaternion:
+
+```cpp
+FQuat MyRotator = FQuat::Identify; // (0, 0, 0, 0)
+```
+
+> ![NOTE]
+> Use `FQuat4f` for `float` and `FQuat4d` for `double`, as explicit data type for the backend conversion.
+
+#### Transform
+
+A struct representing a 3D transformation, consisting of a `FVector` for translation, a `FRotator` for rotation, and a `FVector` for scale. It is often used to represent the position, orientation, and size of an object in 3D space, and provides many useful functions for transforming other vectors and transforms.
+
+Declare and initialize a `FTransform`:
+
+```cpp
+FVector Location = FVector::ZeroVector;
+FRotator Rotation = FRotator::ZeroRotator;
+FVector Scale = FVector::OneVector;
+
+FTransform MyTransform = FTransform(Rotation, Location, Scale);
+```
+
+You can also initalize by an pre-made transform:
+
+```cpp
+FTransform MyTransform = FTransform::Identify; // NaN
+```
+
+> ![NOTE]
+> Use `FTransform3f` for `float` and `FTransform3d` for `double`, as explicit data type for the backend conversion.
+
+#### Matrix
 
 Here's an example:
 
 ```cpp
-// Declare and initialize a FVector
-FVector MyVector(1.0f, 2.0f, 3.0f);
 
-// Declare and initialize a FRotator
-FRotator MyRotator(0.0f, 90.0f, 0.0f);
+```
 
-// Create a new FQuat representing a rotation of 90 degrees around the X axis
-FQuat MyQuat = FQuat(FRotator(90.0f, 0.0f, 0.0f));
+> ![NOTE]
+> Use `FMatrix44f` for `float` and `FMatrix44d` for `double`, as explicit data type for the backend conversion.
 
-// Apply the rotation to a vector
-MyVector = MyQuat.RotateVector(MyVector);
+#### Plane
 
-// Combine the FVector and FRotator to create a FTransform
-FTransform MyTransform(MyRotator, MyVector);
+Here's an example:
 
-// Access the position and rotation components of the FTransform
-FVector MyTransformPosition = MyTransform.GetLocation();
-FRotator MyTransformRotation = MyTransform.Rotator();
+```cpp
+FPlane Plane;
+```
 
-// Output the values to the log
-UE_LOG(LogTemp, Display, TEXT("MyVector: %s"), *MyVector.ToString());
-UE_LOG(LogTemp, Display, TEXT("MyRotator: %s"), *MyRotator.ToString());
-UE_LOG(LogTemp, Display, TEXT("MyTransform: %s"), *MyTransform.ToHumanReadableString());
-UE_LOG(LogTemp, Display, TEXT("MyTransformPosition: %s"), *MyTransformPosition.ToString());
-UE_LOG(LogTemp, Display, TEXT("MyTransformRotation: %s"), *MyTransformRotation.ToString());
+> ![NOTE]
+> Use `FPlane4f` for `float` and `FPlane4d` for `double`, as explicit data type for the backend conversion.
+
+#### Sphere
+
+Here's an example:
+
+```cpp
+FSphere Sphere;
+```
+
+> ![NOTE]
+> Use `FSphere3f` for `float` and `FSphere3d` for `double`, as explicit data type for the backend conversion.
+
+#### Box
+
+Here's an example:
+
+```cpp
+FBox Box;
+```
+
+> ![NOTE]
+> Use `FBox3f` for `float` and `FBox3d` for `double`, as explicit data type for the backend conversion.
+
+#### Box2D
+
+Here's an example:
+
+```cpp
+FBox2D Box2D;
+```
+
+> ![NOTE]
+> Use `FBox2f` for `float` and `FBox2d` for `double`, as explicit data type for the backend conversion.
+
+#### Ray
+
+Here's an example:
+
+```cpp
+FRay Ray;
+```
+
+> ![NOTE]
+> Use `FRay3f` for `float` and `FRay3d` for `double`, as explicit data type for the backend conversion.
+
+#### Bounds
+
+A struct representing a 2D vector, consisting of three float values for the `X` and `Y` components. It is often used to represent position or direction in 2D space, and provides many useful functions such as vector addition, subtraction, normalization, and dot and cross products.
+
+Declare and initialize a `FIntReact`:
+
+```cpp
+using FBoxSphereBounds3f = UE::Math::TBoxSphereBounds<float, float>;
+using FBoxSphereBounds3d = UE::Math::TBoxSphereBounds<double, double>;
+// FCompactBoxSphereBounds always stores float extents
+using FCompactBoxSphereBounds3d = UE::Math::TBoxSphereBounds<double, float>;
+
+using FBoxSphereBounds = FBoxSphereBounds3d;
+using FCompactBoxSphereBounds = FCompactBoxSphereBounds3d;
+```
+
+#### Colors
+
+Here's an example:
+
+```cpp
+FLinearColor LinearColor; // Lorem Ipsum
+```
+
+```cpp
+FColor Color = FColor::Yellow; // Lorem Ipsum
 ```
 
 ### 💐 Collections
@@ -3461,13 +3631,13 @@ StackArray.Add(4);
 StackArray.Add(5); // Will be allocated on the heap!
 ```
 
-> **Warning**
+> [!WARNING]
 > If you're trying to allocate a heap object on the stack with `TInlineAllocator`, Unreal will default to a heap allocation.
 
-> **Warning**
+> [!WARNING]
 > If you add more elements than have been allocated for, Unreal will default to a heap allocation instead.
 
-> **Note**
+> [!NOTE]
 > Unreal will treat as stack allocated array as a different data type, compare to a regular array. To accommodate this, use `TArrayView` instead.
 
 If you want to avoid filling up the rest of elements with heap allocation, then use `TFixedAllocator`:
@@ -4008,7 +4178,7 @@ MyMultiMap.RemoveSingle(TEXT("X"), 10.0f);
 
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TMultiMap/).
 
-> **Warning**
+> [!WARNING]
 > Unreal doesn't support `TMultiMap` with UHT[^3]. Meaning, you can't expose to Blueprint.
 
 #### TStaticArray
@@ -4068,7 +4238,7 @@ for (const FVector& Vec : StaticArray)
 
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStaticArray/).
 
-> **Warning**
+> [!WARNING]
 > Unreal Engine doesn't support `TStaticArray` with UHT[^3]. Meaning, you can't expose to Blueprint. To use a static array with Blueprint, use `FixedSized` specifier for UPROPERTY on `TArray` property.
 
 #### FHashTable
@@ -4280,10 +4450,10 @@ while (CurrentNode != nullptr)
 }
 ```
 
-> **Note**
+> [!NOTE]
 > `TList` doesn't offer an insert nor a remove function for each node. If you wish to use those function, then use `TLinkedList`.
 
-> **Note**
+> [!NOTE]
 > As a rule of thumb, you should almost always use `TArray`, unless you have specific reasons to use a linked list.
 
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TList/).
@@ -4506,13 +4676,13 @@ UE_LOG(LogTemp, Log, TEXT("Sum=%i"), SumArray(StackAllocatedArray));
 UE_LOG(LogTemp, Log, TEXT("Sum=%i"), SumArray(CArray));
 ```
 
-> **Warning**
+> [!WARNING]
 > `TArrayView` is a fixed size and independent array. Meaning, it will not affect from its original assignment, nor does it support Add() or Remove() functions.
 
-> **Note**
+> [!NOTE]
 > It's still possible to use Algo library, which offers functions to use for TArrayView and TArray. Such as Algo::Reverse() and Algo::ForEach().
 
-> **Fatal**
+> [!CAUTION]
 > Avoid using `TArrayView` with a temporary array variable. Since, the array can go out of scope and corrupt `TArrayView`. Since the view is relying on the array's memory block.
 
 ```cpp
@@ -4664,7 +4834,7 @@ StringBuilder.Append(TEXT(" and welcome!"));
 // StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', ' ', 'a', 'n', 'd', ' ', 'w', 'e', 'l', 'c', 'o', 'm', 'e', '!' }
 ```
 
-> **Warning**
+> [!WARNING]
 > The string builder will allocate more memory, if necessary.
 
 Here's an another example:
@@ -4723,7 +4893,7 @@ UE_LOG(LogTemp, Log, TEXT("Value of the: %i"), UEnum::GetValueAsName(Val));
 UE_LOG(LogTemp, Log, TEXT("Integer value of the: %i"), IntVal);
 ```
 
-> **Note**
+> [!NOTE]
 > That regular enums are supported by `UPROPERTY` and replaces the need of using `TEnumAsByte` anymore.
 
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TEnumAsByte/).
@@ -4875,10 +5045,10 @@ void KillActor()
 }
 ```
 
-> **Note**
+> [!NOTE]
 `ActorPtr` is marked with `UPROPERTY()`in order to tell UHT[^3], that this pointer exists. When the pointer is unused, the garbage collector then marks it and deletes its memory. Also note, that this process can take a couple frames and is not instantaneously. Therefore, always use `IsValid()` function, which also checks if the pointer is not marked for the garbage collector. Avoid using manual checking, like this: `PlayerCharacter != nullptr` (since it will not work with GC system).
 
-> **Warning**
+> [!WARNING]
 > If something else is referencing `ActorPtr`, the pointer will not be destroyed via garbage collection (unless if it's a weak pointer).
 
 After Unreal Engine (**5.0**) version, is now recommending to use `TObjectPtr` instead of `*` to mark raw pointers. `TObjectPtr` class contains some optimization for the editor.
@@ -4981,7 +5151,7 @@ if (WeakPtr.IsValid())
 
 This smart pointer is used to hold a soft reference to an `UObject` subclass. It is used for referencing assets that can be loaded and unloaded during runtime. Soft references do not prevent the asset from being garbage collected.
 
-![image](https://github.com/MrRobinOfficial/Guide-UnrealEngine/assets/61658252/c6943179-7b39-4a8d-91a3-597a97571086)
+![TSoftObjectPtr](static/img/TSoftObjectPtr+BP.png)
 
 Example usage:
 
@@ -5021,14 +5191,14 @@ if (SoftPtr.IsValid())
 }
 ```
 
-> **Warning**
+> [!WARNING]
 > Don't use `FSoftObjectPath` or `FSoftObjectPtr`. Used for internal purpose.
 
 ##### TSoftClassPtr
 
 This smart pointer is used to hold a soft reference to a `UClass` subclass. It is used for referencing blueprint classes or other classes that can be loaded and unloaded during runtime.
 
-![image](https://github.com/MrRobinOfficial/Guide-UnrealEngine/assets/61658252/965cdec3-6102-47d8-a420-65d500a9c06c)
+![TSoftClassPtr](static/img/TSoftClassPtr+BP.png)
 
 Example usage:
 
@@ -5074,7 +5244,7 @@ if (SoftPtr.IsValid())
 }
 ```
 
-> **Warning**
+> [!WARNING]
 > Don't use `FSoftClassPath`. Legacy code.
 
 ---
@@ -5138,7 +5308,7 @@ Member pointers should only point at `UObject` or UObject-derived objects
 Any non-UObject pointer must be pointing to something “global” in the engine, or something within its own `UObject`
 > The garbage collector could delete the object that owns what you are pointing at.
 
-> **Warning**
+> [!WARNING]
 > For the garbage collector to do its work of determining what is safe to delete (for a container), it must traverse every field of every object. While Unreal provides several types of containers (`TArray`, `TMap`, …) the garbage collector only considers pointers in `TArray`.
 
 #### Examples
@@ -5174,7 +5344,7 @@ To force the destruction of objects that are still reachable, you can call `UObj
 
 The destruction of an object doesn't necessarily all happen in the same frame, when garbage collection starts on it, it will first call `BeginDestroy()` (do not call this yourself), then, when ready `FinishDestroy()`.
 
-> **Note**
+> [!NOTE]
 > Raw pointers declared with `UPROPERTY`, will be set to `nullptr`
 
 ### Validation
@@ -6111,7 +6281,7 @@ UE_LOGFMT(LogCore, Warning, "Loading '{0}' failed with error {1}", Package->GetN
 UE_LOGFMT(LogCore, Warning, "Loading '{Name}' failed with error {Error}", ("Error", ErrorCode), ("Name", Package->GetName()), ("Flags", LoadFlags));
 ```
 
-> **Note**
+> [!NOTE]
 > `FText` is not supported with `UE_LOGFMT()`, in order to use `FText` you need to convert into `FString` by simply calling `ToString()` function.
 
 ### Log to game-view
@@ -6334,10 +6504,10 @@ MyEvent.Broadcast();
 
 By using delegates, developers can create modular and flexible event systems that can be easily extended and customized. Delegates can be used to trigger events in response to user input, game state changes, or other types of events, and can be used to implement a wide variety of gameplay features and mechanics.
 
-> **Tip**
+> [!TIP]
 > Here is an [online tool by BenUI](https://benui.ca/unreal/delegates-advanced/#delegate-signature-tool) for helping you to create a delegate macro.
 
-> **Tip**
+> [!TIP]
 > Try to **USE** delegates where ticking is not necessary. This help save on performance.
 
 | Type                                         | Binds C++ Function | Binds `UFUNCTION` |
@@ -6435,7 +6605,7 @@ In Unreal Engine, a module is a way to organize game code into smaller pieces, s
 
 For example, you could create a module called `Vehicle` to contain all the code related to the vehicle system. This would allow you to isolate the vehicle code from other parts of the game, such as the inventory system, and make it easier to maintain and update.
 
-> **Note**
+> [!NOTE]
 > Unreal Engine modules are not related to C++ 20 modules.
 
 Here is a list of Unreal Engine's modules:
@@ -7306,6 +7476,7 @@ DrawCentripetalCatmullRomSpline(GetWorld(), Points, Colors, Alpha, NumSamplesPer
     <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
     <figcaption>Result</figcaption>
 </figure>
+
 ---
 
 You can read more about [drawing shapes by Harrison McGuire](https://unrealcpp.com/draw-debug-helpers/).
@@ -7625,10 +7796,10 @@ void FMyTickableThing::Tick( float DeltaTime )
 }
 ```
 
-> **Note**
+> [!NOTE]
 > Tick any object you want, `UObject` or not!
 
-> **Warning**
+> [!WARNING]
 > `USTRUCT` don't support expose functions with UHT[^2].
 
 #### 🔌 Direct references
@@ -7706,7 +7877,7 @@ Here's an example:
 $ ke * KillCharacter
 ```
 
-> **Note**
+> [!NOTE]
 > In the context of a Command Line Interface (CLI), the dollar sign (`$`) is typically referred to as a "prompt symbol" or simply a "prompt." It indicates that the CLI is ready to receive input from the user. The specific appearance and behavior of the prompt may vary depending on the operating system and shell being used.
 
 #### Renaming variables without breaking references
@@ -7845,7 +8016,7 @@ Results follow:
     <figcaption>`PropertyRedirects=(OldName="TestInt",NewName="TestInteger",MatchSubstring=true)` causes all four of our properties to migrate, due to substring matching.</figcaption>
 </figure>
 
-> **Note**
+> [!NOTE]
 > Because `MatchSubtring` requires checking incoming Assets much more thoroughly, it can impact startup times. `MatchSubstring` is intended to be used temporarily as a fixup when making sweeping changes. It is recommended that Assets involved in these changes be resaved immediately and checked into your project's source control database with any related code changes, and that the Core Redirect be deleted without entering source control.
 
 #### Disable BlueprintPure
