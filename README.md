@@ -49,63 +49,64 @@
 * 5\. [⚓ Naming Convention](#-naming-convention)
 	* 5.1\. [Prefixes](#prefixes)
 	* 5.2\. [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
-* 7\. [🧱 Data Types](#-data-types-1)
-	* 7.1\. [Char](#char-1)
-    * 7.2\. [Booleans](#booleans-1)
-    * 7.3\. [Integers](#integers-1)
-    * 7.4\. [Floating points (floats and doubles)](#floating-points-floats-and-doubles-1)
-    * 7.5\. [🛟 Size can vary](#-size-can-vary)
-    * 7.6\. [🦺 Unreal Engine Typedefs](#-unreal-engine-typedefs)
-    * 7.7\. [📖 Strings](#-strings)
-      * 7.7.1\. [Text Macros](#text-macros)
-      * 7.7.2\. [FName](#fname)
-      * 7.7.3\. [FString](#fstring)
-      * 7.7.4\. [FText](#ftext)
-      * 7.7.5\. [Examples of usages](#examples-of-usages)
-    * 7.8\. [🚀 Vector, Rotator, Quat and Transform](#-vector-rotator-quat-and-transform)
-    * 7.8\. [💐 Collections](#-collections)
-      * 7.8.1\. [TArray](#tarray)
-      * 7.8.2\. [TSet](#tset)
-      * 7.8.3\. [TMap](#tmap)
-      * 7.8.4\. [TMultiMap](#tmultimap)
-      * 7.8.5\. [TStaticArray](#tstaticarray)
-      * 7.8.6\. [FHashTable](#fhashtable)
-      * 7.8.7\. [TStaticHashTable](#tstatichashtable)
-      * 7.8.8\. [TSortedMap](#tsortedmap)
-      * 7.8.9\. [TList](#tlist)
-      * 7.8.10\. [TLinkedList](#tlinkedlist)
-      * 7.8.11\. [TQueue](#tqueue)
-      * 7.8.12\. [TArrayView](#tarrayView)
-      * 7.8.13\. [FStringView](#fstringview)
-      * 7.8.14\. [TStringBuilder](#tstringbuilder)
-      * 7.8.15\. [TEnumAsByte](#tenumasbyte)
-    * 7.9\. [🧨 Value type vs Reference type](#-value-type-vs-reference-type)
-    * 7.10\. [👈 Pointers](#-pointers)
-      * 7.10.1\. [🦴 Raw pointers](#-raw-pointers)
-      * 7.10.2\. [🤖 Smart pointers library](#smart-pointers)
-        * 7.10.2.1\. [TSharedPtr](#tsharedptr)
-        * 7.10.2.2\. [TWeakPtr](#tweakptr)
-        * 7.10.2.3\. [TUniquePtr](#tuniqueptr)
-      * 7.10.3\. [🤖 Smart `UObject` pointers](#-smart-uobject-pointers)
-        * 7.10.3.1\. [TWeakObjectPtr](#tweakobjectptr)
-        * 7.10.3.2\. [TWeakInterfacePtr](#tweakinterfaceptr)
-        * 7.10.3.3\. [TSoftObjectPtr](#tsoftobjectptr)
-        * 7.10.3.4\. [TSoftClassPtr](#tsoftclassptr)
-* 8\. [🛸 Reflection System](#-reflection-system)
-* 9\. [🗑️ Garbage Collection](#%EF%B8%8F-garbage-collection)
-* 10\. [💎 Unreal Header Tool](#-unreal-header-tool)
-  * 10.1\. [UPROPERTY](#uproperty)
-  * 10.2\. [UFUNCTION](#ufunction)
-  * 10.3\. [UCLASS](#uclass)
-  * 10.4\. [USTRUCT](#ustruct)
-  * 10.5\. [UENUM](#uenum)
-  * 10.6\. [UPARAM](#uparam)
-  * 10.7\. [UMETA](#umeta)
-* 11\. [👷 Constructors, destructors and initialization](#-constructors-destructors-and-initialization)
-  * 11.1\. [Constructors](#constructors)
-  * 11.2\. [Destructors](#destructors)
-  * 11.3\. [Constructors and destructors in UE](#constructors-and-destructors-in-ue)
-  * 11.4\. [Initialization](#initialization)
+* 6\. [🧱 Data Types](#-data-types-1)
+	* 6.1\. [Characters](#characters)
+    * 6.2\. [Booleans](#booleans-1)
+    * 6.3\. [Integers](#integers-1)
+    * 6.4\. [Floating point numbers](#floating-point-numbers)
+    * 6.5\. [🛟 Size can vary](#-size-can-vary)
+    * 6.6\. [🦺 Unreal Engine Typedefs](#-unreal-engine-typedefs)
+    * 6.7\. [📖 String Data Types](#-string-data-types)
+      * 6.7.1\. [Text Macros](#text-macros)
+      * 6.7.2\. [FName](#fname)
+      * 6.7.3\. [FString](#fstring)
+      * 6.7.4\. [FText](#ftext)
+      * 6.7.5\. [Examples of usages](#examples-of-usages)
+    * 6.8\. [🚀 Math Data Types](#-math-data-types)
+    * 6.8\. [💐 Collections](#-collections)
+      * 6.8.1\. [TArray](#tarray)
+      * 6.8.2\. [TSet](#tset)
+      * 6.8.3\. [TMap](#tmap)
+      * 6.8.4\. [TMultiMap](#tmultimap)
+      * 6.8.5\. [TStaticArray](#tstaticarray)
+      * 6.8.6\. [FHashTable](#fhashtable)
+      * 6.8.7\. [TStaticHashTable](#tstatichashtable)
+      * 6.8.8\. [TSortedMap](#tsortedmap)
+      * 6.8.9\. [TList](#tlist)
+      * 6.8.10\. [TLinkedList](#tlinkedlist)
+      * 6.8.11\. [TQueue](#tqueue)
+      * 6.8.12\. [TArrayView](#tarrayView)
+      * 6.8.13\. [FStringView](#fstringview)
+      * 6.8.14\. [TStringBuilder](#tstringbuilder)
+      * 6.8.15\. [TEnumAsByte](#tenumasbyte)
+    * 6.9\. [🧨 Value type vs Reference type](#-value-type-vs-reference-type)
+    * 6.10\. [👈 Pointers](#-pointers)
+      * 6.10.1\. [🦴 Raw pointers](#-raw-pointers)
+      * 6.10.2\. [🤖 Smart pointers library](#smart-pointers)
+        * 6.10.2.1\. [TSharedPtr](#tsharedptr)
+        * 6.10.2.2\. [TWeakPtr](#tweakptr)
+        * 6.10.2.3\. [TUniquePtr](#tuniqueptr)
+      * 6.10.3\. [🤖 Smart `UObject` pointers](#-smart-uobject-pointers)
+        * 6.10.3.1\. [TWeakObjectPtr](#tweakobjectptr)
+        * 6.10.3.2\. [TWeakInterfacePtr](#tweakinterfaceptr)
+        * 6.10.3.3\. [TSoftObjectPtr](#tsoftobjectptr)
+        * 6.10.3.4\. [TSoftClassPtr](#tsoftclassptr)
+* 7\. [💎 Unreal Header Tool](#-unreal-header-tool)
+  * 7.1\. [UPROPERTY](#uproperty)
+  * 7.2\. [UFUNCTION](#ufunction)
+  * 7.3\. [UCLASS](#uclass)
+  * 7.4\. [USTRUCT](#ustruct)
+  * 7.5\. [UENUM](#uenum)
+  * 7.6\. [UPARAM](#uparam)
+  * 7.7\. [UMETA](#umeta)
+* 8\. [👷 Constructors, destructors and initialization](#-constructors-destructors-and-initialization)
+  * 8.1\. [Constructors](#constructors)
+  * 8.2\. [Destructors](#destructors)
+  * 8.3\. [Constructors and destructors in UE](#constructors-and-destructors-in-ue)
+  * 8.4\. [Initialization](#initialization)
+* 9\. [🏛 Create custom class](#-create-custom-class)
+* 10\. [🛸 Reflection System](#-reflection-system)
+* 11\. [🗑️ Garbage Collection](#%EF%B8%8F-garbage-collection)
 * 12\. [💾 Soft vs hard references](#-soft-vs-hard-references)
   * 12.1\. [Soft References](#soft-references)
   * 12.2\. [Hard References](#hard-references)
@@ -3080,9 +3081,9 @@ typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 > [!WARNING]
 > `uint16`, `uint32`, `uint64`, `int8`, `int16` and `double` are not supported with UHT[^3]. Meaning, can't expose to Blueprint.
 
-### 📖 Strings Data Types
+### 📖 String Data Types
 
-Strings in programming languages are fundamental data types used to represent and manipulate sequences of characters, such as words, sentences, or even binary data. They are extensively used in various programming tasks, including input/output operations, text processing, data serialization, and more.
+String in programming languages are fundamental data types used to represent and manipulate sequences of characters, such as words, sentences, or even binary data. They are extensively used in various programming tasks, including input/output operations, text processing, data serialization, and more.
 
 In Unreal Engine, strings play a crucial role in handling text-based information within the game or application. Unreal Engine provides several string-related classes to cater to different use cases and requirements.
 
@@ -5481,111 +5482,6 @@ if (SoftPtr.IsValid())
 
 </details>
 
-### 🛸 Reflection System
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT[^2]) during compilation. With the help of `GENERATED_BODY()` macro and `[FileName].generated.h` header.
-
-The generated header file is typically included in the source file that defines the corresponding class or struct, and it is also included in any other source files that use that class or struct. This ensures that the metadata is available to the engine at compile-time and runtime.
-
-The reflection system is also used in many other areas of the engine, such as serialization and networking. When objects are saved to disk or sent over the network, their properties are serialized into a binary format. The reflection system is used to determine which properties to serialize, and how to convert them to and from their binary representation.
-
-One of the key benefits of the header system is that it allows for very efficient compilation times. Because each C++ file has its own header file, changes to one file do not require recompilation of other files that depend on it. Instead, only the files that include the modified header file need to be recompiled.
-
-You can read more about [reflection system from their docs](https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/).
-
-## 🗑️ Garbage Collection
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-Garbage Collection is an automatic memory management feature used in modern languages like C#[^12], Python[^11], and Javascript[^14], which automatically removes objects from memory when they are no longer in use.
-
-In a garbage-collected environment, you can create objects, use them, and then set the variable pointing to them as null when done, and the garbage collector takes care of freeing up the memory. Unlike lower-level languages like C[^10] and C++, which require manual memory management, Unreal Engine has its own Garbage Collection system to simplify memory management for developers.
-
-You can read more about [Stack vs Heap](#-stack-vs-heap) section. Which tells more about how the memory is management in programming languages.
-
-You can also read more about [Unreal Object Handling on their docs](https://docs.unrealengine.com/5.2/en-US/unreal-object-handling-in-unreal-engine/).
-
-### How does it work
-
-When you create a UObject-derived object in Unreal Engine, it becomes part of the garbage collection system, which automatically identifies and removes unused objects every 30-60 seconds or as needed based on system memory. The garbage collection system maintains a "Root Set" of objects that should always be kept alive, and it uses reflection to trace object references and ensure objects are reachable. Objects outside the Root Set and not reachable are marked for garbage collection, and their memory is freed.
-
-By properly using UE's decorators, you can avoid issues with dangling pointers and crashes caused by accessing garbage-collected objects.
-
-#### Rules
-
-Every member of a class should be declared as a `UPROPERTY`
-> If an member is left “naked,” unreal will not know about it. So, an object you are pointing at could get deleted out from under you! It is safe to leave value types such as an `int` or a `bool` “naked” although they could not be saved, replicated, or appear in the editor.
-
-Member pointers should only point at `UObject` or UObject-derived objects
-> The garbage collector is only smart enough to recognize relationships to an object, so the object could get deleted out from under your pointer.
-
-Any non-UObject pointer must be pointing to something “global” in the engine, or something within its own `UObject`
-> The garbage collector could delete the object that owns what you are pointing at.
-
-> [!WARNING]
-> For the garbage collector to do its work of determining what is safe to delete (for a container), it must traverse every field of every object. While Unreal provides several types of containers (`TArray`, `TMap`, …) the garbage collector only considers pointers in `TArray`.
-
-#### Examples
-
-```cpp
-UPROPERTY()
-TArray<UWidget*> LotsOfWidgets;
-
-TMap<int, TWeakObjectPtr<UWidget>> LotsOfWeakWidgets;
-```
-
-### Manual memory management
-
-UObjects should never be created with `new`, but only with the default creation methods (`NewObject()`, `SpawnActor()`, `CreateDefaultSubobject()`).
-
-### Collection and Mark as garbage
-
-<table><tr><td>
-
-## Conditions
-
-* By having a strong reference (`UPROPERTY`) to them (from objects that are also referenced)
-
-* By calling `UObject::AddReferencedObjects()` (from objects that are also referenced)
-
-* By adding them to the root set with `UObject::AddToRoot()` (typically unnecessary)
-
-</td></tr></table>
-
-When objects do not fulfill any of the above conditions, on the next GC cycle they will be marked as unreachable and garbage collected (destroyed).
-
-To force the destruction of objects that are still reachable, you can call `UObjectBaseUtility::MarkAsGarbage()` on them, and it will force their destruction on the next GC cycle (you generally want to avoid doing this, as that is what garbage collection is for, and some classes, like `AActor` and `UActorComponent` do not directly support it).
-
-The destruction of an object doesn't necessarily all happen in the same frame, when garbage collection starts on it, it will first call `BeginDestroy()` (do not call this yourself), then, when ready `FinishDestroy()`.
-
-> [!NOTE]
-> Raw pointers declared with `UPROPERTY`, will be set to `nullptr`
-
-### Validation
-
-Whenever code references an `AActor` or a `UActorComponent`, it has to deal with the possibility that `AActor::Destroy()` could be called on the actor or `UActorComponent::DestroyComponent()` could be called on the component. These functions will mark them for pending kill, thus triggering their garbage collection at the first opportunity (note that destroying an actor also destroys all its components).
-
-Since the garbage collector automatically nulls out `UPROPERTY` pointers when it actually gets to destroy them, null-checking an actor or component pointer is sufficient to know it's safe to use, though you might also want to check `IsPendingKill()` on them (through `IsValid()`) to avoid accessing them after they have been marked for destruction (`TWeakObjectPtr` already checks for this when retrieving the raw pointer).
-
-```cpp
-bool IsValid(const UObject* Test);
-```
-
-Global function that automatically checks if an object pointer is non-null and not pending kill.
-
-```cpp
-UObjectBase::IsValidLowLevel();
-UObjectBase::IsValidLowLevelFast();
-```
-
-Should not be used for Garbage Collection checks, as on `UPROPERTY` pointers it will always return true, while on raw pointer it will return true or false depending on whether the object had already been destroyed, but in the latter case it's also likely to also crash the application as the pointed memory could have been overwritten.
-
 ## 💎 Unreal Header Tool
 
 <table><tr><td>
@@ -5605,6 +5501,16 @@ UENUM([specifier1=setting1, specifier2, ...])
 UPARAM([specifier1=setting1, specifier2, ...])
 UMETA([specifier1=setting1, specifier2, ...])
 ```
+
+| Macro          | Description                                                                                                                                                                                  | Use Case                                                                                                        |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| UPROPERTY     | Specifies properties of a class member, such as replication, serialization, editability, and blueprint visibility.                                                                      | Used to define properties of variables within a class to control how they are handled by Unreal Engine systems.   |
+| UFUNCTION     | Identifies a C++ function that can be accessed and called from Blueprint visual scripting or other systems in Unreal Engine.                                                            | Used to expose C++ functions to Blueprint for easy use in visual scripting and integration with Unreal Engine.     |
+| UCLASS        | Defines a C++ class that is exposed to Unreal Engine's reflection system, allowing it to be used in Blueprint and other engine features.                                                 | Used to define classes that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.    |
+| USTRUCT       | Specifies a C++ struct that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                                                  | Used to define structs that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.     |
+| UENUM         | Defines a C++ enumeration that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                                               | Used to define enumerations that can be used in Blueprint and integrated into Unreal Engine systems like the Editor. |
+| UPARAM        | Specifies how a function parameter should be treated when used in Blueprint or other Unreal Engine systems.                                                                             | Used to define parameter properties, such as Blueprint read/write access, in C++ functions exposed to Blueprint.    |
+| UMETA         | Provides additional metadata for UPROPERTY, UFUNCTION, UCLASS, USTRUCT, and UENUM, allowing customization of their behavior in Unreal Engine's reflection system.                     | Used to attach additional information or customizations to C++ entities exposed to Unreal Engine reflection.       |
 
 ### UPROPERTY
 
@@ -5924,19 +5830,7 @@ enum class EMyEnum
 
 You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
 
----
-
-| Macro          | Description                                                                                                                                                                                  | Use Case                                                                                                        |
-|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| UPROPERTY     | Specifies properties of a class member, such as replication, serialization, editability, and blueprint visibility.                                                                      | Used to define properties of variables within a class to control how they are handled by Unreal Engine systems.   |
-| UFUNCTION     | Identifies a C++ function that can be accessed and called from Blueprint visual scripting or other systems in Unreal Engine.                                                            | Used to expose C++ functions to Blueprint for easy use in visual scripting and integration with Unreal Engine.     |
-| UCLASS        | Defines a C++ class that is exposed to Unreal Engine's reflection system, allowing it to be used in Blueprint and other engine features.                                                 | Used to define classes that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.    |
-| USTRUCT       | Specifies a C++ struct that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                                                  | Used to define structs that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.     |
-| UENUM         | Defines a C++ enumeration that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                                               | Used to define enumerations that can be used in Blueprint and integrated into Unreal Engine systems like the Editor. |
-| UPARAM        | Specifies how a function parameter should be treated when used in Blueprint or other Unreal Engine systems.                                                                             | Used to define parameter properties, such as Blueprint read/write access, in C++ functions exposed to Blueprint.    |
-| UMETA         | Provides additional metadata for UPROPERTY, UFUNCTION, UCLASS, USTRUCT, and UENUM, allowing customization of their behavior in Unreal Engine's reflection system.                     | Used to attach additional information or customizations to C++ entities exposed to Unreal Engine reflection.       |
-
-### 👷 Constructors, destructors and initialization
+## 👷 Constructors, destructors and initialization
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
@@ -6059,6 +5953,134 @@ int num5{1000.5};      // Error, narrowing conversion from double to int
 ```
 
 In the last line, using brace initializer, the compiler will generate an error because it detects a narrowing conversion from `double` to `int`, which could potentially lead to data loss. This is a safety feature to help catch unintended data truncation.
+
+## 🏛 Create custom class
+
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
+<figure>
+    <img src="static/img/ActorLifeCycle.png" alt="Lifecycle breakdown" />
+    <figcaption>Lifecycle breakdown</figcaption>
+</figure>
+
+You can read more about [actor's lifecycle at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/unreal-engine-actor-lifecycle/).
+
+By inheriting from `AActor` class:
+
+```cpp
+void PostInitComponents();
+void BeginPlay(); // Can be called multiple times
+void Tick(float DeltaTime);
+void EndPlay();
+```
+
+## 🛸 Reflection System
+
+<table><tr><td>
+This section was written in conjunction with ChatGPT.
+</td></tr></table>
+
+Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT[^2]) during compilation. With the help of `GENERATED_BODY()` macro and `[FileName].generated.h` header.
+
+The generated header file is typically included in the source file that defines the corresponding class or struct, and it is also included in any other source files that use that class or struct. This ensures that the metadata is available to the engine at compile-time and runtime.
+
+The reflection system is also used in many other areas of the engine, such as serialization and networking. When objects are saved to disk or sent over the network, their properties are serialized into a binary format. The reflection system is used to determine which properties to serialize, and how to convert them to and from their binary representation.
+
+One of the key benefits of the header system is that it allows for very efficient compilation times. Because each C++ file has its own header file, changes to one file do not require recompilation of other files that depend on it. Instead, only the files that include the modified header file need to be recompiled.
+
+You can read more about [reflection system from their docs](https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/).
+
+## 🗑️ Garbage Collection
+
+<table><tr><td>
+This section was written in conjunction with ChatGPT.
+</td></tr></table>
+
+Garbage Collection is an automatic memory management feature used in modern languages like C#[^12], Python[^11], and Javascript[^14], which automatically removes objects from memory when they are no longer in use.
+
+In a garbage-collected environment, you can create objects, use them, and then set the variable pointing to them as null when done, and the garbage collector takes care of freeing up the memory. Unlike lower-level languages like C[^10] and C++, which require manual memory management, Unreal Engine has its own Garbage Collection system to simplify memory management for developers.
+
+You can read more about [Stack vs Heap](#-stack-vs-heap) section. Which tells more about how the memory is management in programming languages.
+
+You can also read more about [Unreal Object Handling on their docs](https://docs.unrealengine.com/5.2/en-US/unreal-object-handling-in-unreal-engine/).
+
+### How does it work
+
+When you create a UObject-derived object in Unreal Engine, it becomes part of the garbage collection system, which automatically identifies and removes unused objects every 30-60 seconds or as needed based on system memory. The garbage collection system maintains a "Root Set" of objects that should always be kept alive, and it uses reflection to trace object references and ensure objects are reachable. Objects outside the Root Set and not reachable are marked for garbage collection, and their memory is freed.
+
+By properly using UE's decorators, you can avoid issues with dangling pointers and crashes caused by accessing garbage-collected objects.
+
+#### Rules
+
+Every member of a class should be declared as a `UPROPERTY`
+> If an member is left “naked,” unreal will not know about it. So, an object you are pointing at could get deleted out from under you! It is safe to leave value types such as an `int` or a `bool` “naked” although they could not be saved, replicated, or appear in the editor.
+
+Member pointers should only point at `UObject` or UObject-derived objects
+> The garbage collector is only smart enough to recognize relationships to an object, so the object could get deleted out from under your pointer.
+
+Any non-UObject pointer must be pointing to something “global” in the engine, or something within its own `UObject`
+> The garbage collector could delete the object that owns what you are pointing at.
+
+> [!WARNING]
+> For the garbage collector to do its work of determining what is safe to delete (for a container), it must traverse every field of every object. While Unreal provides several types of containers (`TArray`, `TMap`, …) the garbage collector only considers pointers in `TArray`.
+
+#### Examples
+
+```cpp
+UPROPERTY()
+TArray<UWidget*> LotsOfWidgets;
+
+TMap<int, TWeakObjectPtr<UWidget>> LotsOfWeakWidgets;
+```
+
+### Manual memory management
+
+UObjects should never be created with `new`, but only with the default creation methods (`NewObject()`, `SpawnActor()`, `CreateDefaultSubobject()`).
+
+### Collection and Mark as garbage
+
+<table><tr><td>
+
+## Conditions
+
+* By having a strong reference (`UPROPERTY`) to them (from objects that are also referenced)
+
+* By calling `UObject::AddReferencedObjects()` (from objects that are also referenced)
+
+* By adding them to the root set with `UObject::AddToRoot()` (typically unnecessary)
+
+</td></tr></table>
+
+When objects do not fulfill any of the above conditions, on the next GC cycle they will be marked as unreachable and garbage collected (destroyed).
+
+To force the destruction of objects that are still reachable, you can call `UObjectBaseUtility::MarkAsGarbage()` on them, and it will force their destruction on the next GC cycle (you generally want to avoid doing this, as that is what garbage collection is for, and some classes, like `AActor` and `UActorComponent` do not directly support it).
+
+The destruction of an object doesn't necessarily all happen in the same frame, when garbage collection starts on it, it will first call `BeginDestroy()` (do not call this yourself), then, when ready `FinishDestroy()`.
+
+> [!NOTE]
+> Raw pointers declared with `UPROPERTY`, will be set to `nullptr`
+
+### Validation
+
+Whenever code references an `AActor` or a `UActorComponent`, it has to deal with the possibility that `AActor::Destroy()` could be called on the actor or `UActorComponent::DestroyComponent()` could be called on the component. These functions will mark them for pending kill, thus triggering their garbage collection at the first opportunity (note that destroying an actor also destroys all its components).
+
+Since the garbage collector automatically nulls out `UPROPERTY` pointers when it actually gets to destroy them, null-checking an actor or component pointer is sufficient to know it's safe to use, though you might also want to check `IsPendingKill()` on them (through `IsValid()`) to avoid accessing them after they have been marked for destruction (`TWeakObjectPtr` already checks for this when retrieving the raw pointer).
+
+```cpp
+bool IsValid(const UObject* Test);
+```
+
+Global function that automatically checks if an object pointer is non-null and not pending kill.
+
+```cpp
+UObjectBase::IsValidLowLevel();
+UObjectBase::IsValidLowLevelFast();
+```
+
+Should not be used for Garbage Collection checks, as on `UPROPERTY` pointers it will always return true, while on raw pointer it will return true or false depending on whether the object had already been destroyed, but in the latter case it's also likely to also crash the application as the pointed memory could have been overwritten.
+
 
 ## 💾 Soft vs hard references
 
@@ -7780,11 +7802,245 @@ Difference between a class and struct then?
 
 In Unreal Engine, it's recommended to use the built-in memory management functions like `NewObject()` and `MakeShared()` to allocate memory for objects, rather than using `new` and `delete`. Using `new` and `delete` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
 
+### K2Node
+
+Lorem Ipsum
+
+You can read more about [K2Node by Oscar Olsson](https://olssondev.github.io/2023-02-13-K2Nodes/).
+
+### ➗ Math Expression Node
+
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
+The Math Expression node acts like a collapsed graph. It is a single node that you can Double-click to open the sub-graph that makes up its functionality. Initially, the name/expression is blank. Whenever you rename the node, then the new expression is parsed and a new sub-graph is generated.
+
+![Math Node Example](static/img/math_node_example.png)
+
+Read more <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">here</a>!
+
+### Call function in editor
+
+Expose a function to call inside the Blueprint editor. With C++, you can mark `UFUNCTION` specifier `CallInEditor`.
+
+Here is an example:
+
+```cpp
+UFUNCTION(CallInEditor, BlueprintCallable)
+void DebugMessage();
+```
+
+### Call function via Console Commands
+
+In order to call a `UFUNCTION` inside the console command, you can use `Exec` specifier. This tells Unreal Engine to add the function into the console commands list.
+
+Here's an example:
+
+```cpp
+UFUNCTION(Exec)
+void KillCharacter();
+```
+
+However, there is a downside from using this approach. Because Unreal finds the function and map to the corresponding name, Unreal cannot call multiple instances of the same function. It only prioritizes the current pawn, which is currently under possession by the player.
+
+To call a function with multiple instances, you can type `ke * FunctionName`.
+
+Here's an example:
+
+```console
+$ ke * KillCharacter
+```
+
+> [!NOTE]
+> In the context of a Command Line Interface (CLI), the dollar sign (`$`) is typically referred to as a "prompt symbol" or simply a "prompt." It indicates that the CLI is ready to receive input from the user. The specific appearance and behavior of the prompt may vary depending on the operating system and shell being used.
+
+### Renaming variables without breaking references
+
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
+During development, there are occasions when you have to rename a property, function or a class. If you compile before changing the name in other location of your code, it can cause Unreal to no longer recognize existing Assets. And therefore replace with its default initialization value.
+
+To address this issue, Unreal Engine uses Core Redirects. Core Redirects should be configured in your project's `DefaultEngine.ini` file, or, in the case of a Plugin, the prefixed, self-named .ini file for that Plugin (for example, `BasePaper2D.ini` for the Engine's Paper2D Plugin, or `Default<GamePluginName>.ini` for a game Plugin).
+
+In either case, the Core Redirects will be placed in the "[CoreRedirects]" section. These Core Redirects will automatically remap obsolete data while loading Assets, thus preventing data loss resulting from the renaming process.
+
+Here is the following structure for a redirect of a property value:
+
+```dosini
++PropertyRedirect=(OldName="CurrentClass.OldVariableName", NewName="NewOldVariableName")
+```
+
+Here's a full example of different use cases with redirects:
+
+```dosini
+[CoreRedirects]
++PropertyRedirect=(OldName="PlayerCharacter.StartHealth", NewName="InitialHealth")
+
++ClassRedirects=(OldName="Pawn",NewName="MyPawn",InstanceOnly=true)
+
++ClassRedirects=(OldName="/Script/MyModule.MyOldClass",NewName="/Script/MyModule.MyNewClass")
+
++ClassRedirects=(OldName="PointLightComponent",NewName="PointLightComponent",ValueChanges=(("PointLightComponent0","LightComponent0")))
+
++ClassRedirects=(OldName="AnimNotify_PlayParticleEffect_C",NewName="/Script/Engine.AnimNotify_PlayParticleEffect",OverrideClassName="/Script/CoreUObject.Class")
+
++EnumRedirects=(OldName="ENumbers",NewName="ELetters",ValueChanges=(("NumberTwo","LetterB"),("NumberThree","LetterC")))
+
++FunctionRedirects=(OldName="MyOldActor.OldFunction",NewName="MyNewActor.NewFunction")
++FunctionRedirects=(OldName="MyActor.OldFunction",NewName="NewFunction")
+
++PackageRedirects=(OldName="OldPlugin",NewName="/NewPlugin/",MatchSubstring=true)
++PackageRedirects=(OldName="/Game/DeletedContentPackage",Removed=true)
+
++StructRedirects=(OldName="MyStruct",NewName="MyNewStruct")
+```
+
+You can read more about on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/core-redirects-in-unreal-engine/).
+
+---
+
+The `MatchSubstring` argument can be used in any Core Redirect type. If present and set to `true`, the `OldName` and `NewName` fields will be treated as substrings rather than requiring exact matches. This enables multiple matches with a single Core Redirect. In the following example, we will start with a struct and a class.
+
+Original code and values:
+
+```cpp
+USTRUCT()
+struct FMyStruct
+{
+    GENERATED_BODY()
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestInt;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestIntFromStruct;
+};
+
+UCLASS()
+class REDIRECTORSTEST_API AMyActor : public AActor
+{
+    GENERATED_BODY()
+
+public:
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestInt;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 MainClassTestInt;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    FMyStruct TestStruct;
+};
+```
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Original Values" />
+    <figcaption>This is the original code and the original set of values we're saving into our `AMyActor` Asset.</figcaption>
+</figure>
+
+After creating and saving an `AMyActor` Asset with the values shown above, we can close the Editor and alter the the code in the `.h` file and the Core Redirects in the game's `.ini` file. We will change the code to read as follows, changing the names of our `int32` properties:
+
+```cpp
+USTRUCT()
+struct FMyStruct
+{
+    GENERATED_BODY()
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestInteger;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestIntegerFromStruct;
+};
+
+UCLASS()
+class REDIRECTORSTEST_API AMyActor : public AActor
+{
+    GENERATED_BODY()
+
+public:
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 TestInteger;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    int32 MainClassTestInteger;
+
+    UPROPERTY(EditAnywhere, Category = "Documentation")
+    FMyStruct TestStruct;
+};
+```
+
+With this change, we can examine the effects of a Core Redirect, and in particular the impact of `MatchSubstring`.
+
+Results follow:
+
+<figure>
+    <img src="static/img/NoCoreRedirect.jpg" alt="NoCoreRedirect" />
+    <figcaption>The properties were renamed in code, but no Core Redirect was created. As a result, no data values have migrated to the new properties.</figcaption>
+</figure>
+
+<figure>
+    <img src="static/img/CoreRedirectWithoutMatchSubstring.jpg" alt="CoreRedirectWithoutMatchSubstring" />
+    <figcaption>`PropertyRedirects=(OldName="TestInt",NewName="TestInteger")` causes only the two preoperties with exact name matches to migrate their data.</figcaption>
+</figure>
+
+<figure>
+    <img src="static/img/CoreRedirectWithMatchSubstring.jpg" alt="CoreRedirectWithMatchSubstring" />
+    <figcaption>`PropertyRedirects=(OldName="TestInt",NewName="TestInteger",MatchSubstring=true)` causes all four of our properties to migrate, due to substring matching.</figcaption>
+</figure>
+
+> [!NOTE]
+> Because `MatchSubtring` requires checking incoming Assets much more thoroughly, it can impact startup times. `MatchSubstring` is intended to be used temporarily as a fixup when making sweeping changes. It is recommended that Assets involved in these changes be resaved immediately and checked into your project's source control database with any related code changes, and that the Core Redirect be deleted without entering source control.
+
 ### 🪄 Tips and best practices
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
 </td></tr></table>
+
+### Disable BlueprintPure
+
+When creating a `UFUNCTION` and marking it as `const`, Unreal will interpret this function as pure function. A pure function will evaluate everything it's called, compare to a regular function, which Unreal caches the result and save for later.
+
+If you want to mark a `UFUNCTION` as const without Unreal converting into a pure function, you can add this specifier:
+
+```cpp
+UFUNCTION(BlueprintCallable, BlueprintPure = false)
+void ComplexFunction() const
+{
+    // ...
+}
+```
+
+### Switch case fall-through
+
+Lorem Ipsum
+
+```cpp
+double DistanceUnificationFactor(EUnit From)
+{
+    // Convert to meters
+    double Factor = 1;
+
+    switch (From)
+    {
+        case EUnit::Micrometers:		return 0.000001;
+        case EUnit::Millimeters:		return 0.001;
+        case EUnit::Centimeters:		return 0.01;
+        case EUnit::Kilometers:			return 1000;
+
+        case EUnit::Lightyears:			return 9.4605284e15;
+
+        case EUnit::Miles:				Factor *= 1760;				// fallthrough
+        case EUnit::Yards:				Factor *= 3;				// fallthrough
+        case EUnit::Feet:				Factor *= 12;				// fallthrough
+        case EUnit::Inches:				Factor /= 39.3700787;		// fallthrough
+        default: 						return Factor;				// return
+    }
+}
+```
 
 #### 📦 Refactoring
 
@@ -8071,234 +8327,6 @@ const int& e = 10; // Direct reference (use const for stopping ability to modify
 const int& f = e;
 
 f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
-```
-
-#### ➗ Math Expression Node
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
-The Math Expression node acts like a collapsed graph. It is a single node that you can Double-click to open the sub-graph that makes up its functionality. Initially, the name/expression is blank. Whenever you rename the node, then the new expression is parsed and a new sub-graph is generated.
-
-![Math Node Example](static/img/math_node_example.png)
-
-Read more <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">here</a>!
-
-#### Call function in editor
-
-Expose a function to call inside the Blueprint editor. With C++, you can mark `UFUNCTION` specifier `CallInEditor`.
-
-Here is an example:
-
-```cpp
-UFUNCTION(CallInEditor, BlueprintCallable)
-void DebugMessage();
-```
-
-#### Call function via Console Commands
-
-In order to call a `UFUNCTION` inside the console command, you can use `Exec` specifier. This tells Unreal Engine to add the function into the console commands list.
-
-Here's an example:
-
-```cpp
-UFUNCTION(Exec)
-void KillCharacter();
-```
-
-However, there is a downside from using this approach. Because Unreal finds the function and map to the corresponding name, Unreal cannot call multiple instances of the same function. It only prioritizes the current pawn, which is currently under possession by the player.
-
-To call a function with multiple instances, you can type `ke * FunctionName`.
-
-Here's an example:
-
-```console
-$ ke * KillCharacter
-```
-
-> [!NOTE]
-> In the context of a Command Line Interface (CLI), the dollar sign (`$`) is typically referred to as a "prompt symbol" or simply a "prompt." It indicates that the CLI is ready to receive input from the user. The specific appearance and behavior of the prompt may vary depending on the operating system and shell being used.
-
-#### Renaming variables without breaking references
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
-During development, there are occasions when you have to rename a property, function or a class. If you compile before changing the name in other location of your code, it can cause Unreal to no longer recognize existing Assets. And therefore replace with its default initialization value.
-
-To address this issue, Unreal Engine uses Core Redirects. Core Redirects should be configured in your project's `DefaultEngine.ini` file, or, in the case of a Plugin, the prefixed, self-named .ini file for that Plugin (for example, `BasePaper2D.ini` for the Engine's Paper2D Plugin, or `Default<GamePluginName>.ini` for a game Plugin).
-
-In either case, the Core Redirects will be placed in the "[CoreRedirects]" section. These Core Redirects will automatically remap obsolete data while loading Assets, thus preventing data loss resulting from the renaming process.
-
-Here is the following structure for a redirect of a property value:
-
-```dosini
-+PropertyRedirect=(OldName="CurrentClass.OldVariableName", NewName="NewOldVariableName")
-```
-
-Here's a full example of different use cases with redirects:
-
-```dosini
-[CoreRedirects]
-+PropertyRedirect=(OldName="PlayerCharacter.StartHealth", NewName="InitialHealth")
-
-+ClassRedirects=(OldName="Pawn",NewName="MyPawn",InstanceOnly=true)
-
-+ClassRedirects=(OldName="/Script/MyModule.MyOldClass",NewName="/Script/MyModule.MyNewClass")
-
-+ClassRedirects=(OldName="PointLightComponent",NewName="PointLightComponent",ValueChanges=(("PointLightComponent0","LightComponent0")))
-
-+ClassRedirects=(OldName="AnimNotify_PlayParticleEffect_C",NewName="/Script/Engine.AnimNotify_PlayParticleEffect",OverrideClassName="/Script/CoreUObject.Class")
-
-+EnumRedirects=(OldName="ENumbers",NewName="ELetters",ValueChanges=(("NumberTwo","LetterB"),("NumberThree","LetterC")))
-
-+FunctionRedirects=(OldName="MyOldActor.OldFunction",NewName="MyNewActor.NewFunction")
-+FunctionRedirects=(OldName="MyActor.OldFunction",NewName="NewFunction")
-
-+PackageRedirects=(OldName="OldPlugin",NewName="/NewPlugin/",MatchSubstring=true)
-+PackageRedirects=(OldName="/Game/DeletedContentPackage",Removed=true)
-
-+StructRedirects=(OldName="MyStruct",NewName="MyNewStruct")
-```
-
-You can read more about on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/core-redirects-in-unreal-engine/).
-
----
-
-The `MatchSubstring` argument can be used in any Core Redirect type. If present and set to `true`, the `OldName` and `NewName` fields will be treated as substrings rather than requiring exact matches. This enables multiple matches with a single Core Redirect. In the following example, we will start with a struct and a class.
-
-Original code and values:
-
-```cpp
-USTRUCT()
-struct FMyStruct
-{
-    GENERATED_BODY()
-
-    UPROPERTY(EditAnywhere, Category = "Documentation")
-    int32 TestInt;
-
-    UPROPERTY(EditAnywhere, Category = "Documentation")
-    int32 TestIntFromStruct;
-};
-
-UCLASS()
-class REDIRECTORSTEST_API AMyActor : public AActor
-{
-    GENERATED_BODY()
-
-public:
-    UPROPERTY(EditAnywhere, Category = "Documentation")
-    int32 TestInt;
-
-    UPROPERTY(EditAnywhere, Category = "Documentation")
-    int32 MainClassTestInt;
-
-    UPROPERTY(EditAnywhere, Category = "Documentation")
-    FMyStruct TestStruct;
-};
-```
-<figure>
-    <img src="static/img/OriginalValues.jpg" alt="Original Values" />
-    <figcaption>This is the original code and the original set of values we're saving into our `AMyActor` Asset.</figcaption>
-</figure>
-
-After creating and saving an `AMyActor` Asset with the values shown above, we can close the Editor and alter the the code in the `.h` file and the Core Redirects in the game's `.ini` file. We will change the code to read as follows, changing the names of our `int32` properties:
-
-```cpp
-USTRUCT()
-struct FMyStruct
-{
-    GENERATED_BODY()
-
-    UPROPERTY(EditAnywhere, Category = "Documentation")
-    int32 TestInteger;
-
-    UPROPERTY(EditAnywhere, Category = "Documentation")
-    int32 TestIntegerFromStruct;
-};
-
-UCLASS()
-class REDIRECTORSTEST_API AMyActor : public AActor
-{
-    GENERATED_BODY()
-
-public:
-    UPROPERTY(EditAnywhere, Category = "Documentation")
-    int32 TestInteger;
-
-    UPROPERTY(EditAnywhere, Category = "Documentation")
-    int32 MainClassTestInteger;
-
-    UPROPERTY(EditAnywhere, Category = "Documentation")
-    FMyStruct TestStruct;
-};
-```
-
-With this change, we can examine the effects of a Core Redirect, and in particular the impact of `MatchSubstring`.
-
-Results follow:
-
-<figure>
-    <img src="static/img/NoCoreRedirect.jpg" alt="NoCoreRedirect" />
-    <figcaption>The properties were renamed in code, but no Core Redirect was created. As a result, no data values have migrated to the new properties.</figcaption>
-</figure>
-
-<figure>
-    <img src="static/img/CoreRedirectWithoutMatchSubstring.jpg" alt="CoreRedirectWithoutMatchSubstring" />
-    <figcaption>`PropertyRedirects=(OldName="TestInt",NewName="TestInteger")` causes only the two preoperties with exact name matches to migrate their data.</figcaption>
-</figure>
-
-<figure>
-    <img src="static/img/CoreRedirectWithMatchSubstring.jpg" alt="CoreRedirectWithMatchSubstring" />
-    <figcaption>`PropertyRedirects=(OldName="TestInt",NewName="TestInteger",MatchSubstring=true)` causes all four of our properties to migrate, due to substring matching.</figcaption>
-</figure>
-
-> [!NOTE]
-> Because `MatchSubtring` requires checking incoming Assets much more thoroughly, it can impact startup times. `MatchSubstring` is intended to be used temporarily as a fixup when making sweeping changes. It is recommended that Assets involved in these changes be resaved immediately and checked into your project's source control database with any related code changes, and that the Core Redirect be deleted without entering source control.
-
-#### Disable BlueprintPure
-
-When creating a `UFUNCTION` and marking it as `const`, Unreal will interpret this function as pure function. A pure function will evaluate everything it's called, compare to a regular function, which Unreal caches the result and save for later.
-
-If you want to mark a `UFUNCTION` as const without Unreal converting into a pure function, you can add this specifier:
-
-```cpp
-UFUNCTION(BlueprintCallable, BlueprintPure = false)
-void ComplexFunction() const
-{
-    // ...
-}
-```
-
-#### Switch case fall-through
-
-Lorem Ipsum
-
-```cpp
-double DistanceUnificationFactor(EUnit From)
-{
-    // Convert to meters
-    double Factor = 1;
-
-    switch (From)
-    {
-        case EUnit::Micrometers:		return 0.000001;
-        case EUnit::Millimeters:		return 0.001;
-        case EUnit::Centimeters:		return 0.01;
-        case EUnit::Kilometers:			return 1000;
-
-        case EUnit::Lightyears:			return 9.4605284e15;
-
-        case EUnit::Miles:				Factor *= 1760;				// fallthrough
-        case EUnit::Yards:				Factor *= 3;				// fallthrough
-        case EUnit::Feet:				Factor *= 12;				// fallthrough
-        case EUnit::Inches:				Factor /= 39.3700787;		// fallthrough
-        default: 						return Factor;				// return
-    }
-}
 ```
 
 ## 📛 Console Commands
