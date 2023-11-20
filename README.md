@@ -105,6 +105,7 @@
   * 8.3\. [Constructors and destructors in UE](#constructors-and-destructors-in-ue)
   * 8.4\. [Initialization](#initialization)
 * 9\. [🏛 Create custom class](#-create-custom-class)
+* 9\. [🏛 Interfaces](#-create-custom-class)
 * 10\. [🛸 Reflection System](#-reflection-system)
 * 11\. [🗑️ Garbage Collection](#%EF%B8%8F-garbage-collection)
 * 12\. [💾 Soft vs hard references](#-soft-vs-hard-references)
@@ -5976,6 +5977,8 @@ void Tick(float DeltaTime);
 void EndPlay();
 ```
 
+## 🏛 Interfaces
+
 ## 🛸 Reflection System
 
 <table><tr><td>
@@ -7388,7 +7391,7 @@ DrawDebugSphere(GetWorld(), Center, Radius, Segments, Color, bPersistentLines, L
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Sphere" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7412,7 +7415,7 @@ DrawDebugCircle(GetWorld(), Center, Radius, Segments, FColor(0, 0, 0), bPersiste
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Circle" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7436,7 +7439,7 @@ DrawDebugCircleArc(GetWorld(), Center, Radius, Direction, AngleWidth, Segments, 
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Cricle Arc" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7458,7 +7461,7 @@ DrawDebug2DDonut(GetWorld(), TransformMatrix, InnerRadius, OuterRadius, Segments
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug 2D Donut" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7475,6 +7478,11 @@ FTransform MyTransform = FTransform(FVector(400, 600, 900));
 
 DrawDebugSolidBox(GetWorld(), MyBox, FColor(20, 100, 240), MyTransform, bPersistentLines);
 ```
+
+<figure>
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Soild Box" />
+    <figcaption>Result</figcaption>
+</figure>
 
 Draw a wired box:
 
@@ -7493,7 +7501,7 @@ DrawDebugBox(GetWorld(), Center, Extent, Color, bPersistentLines, LifeTime, Dept
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Wired Box" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7515,7 +7523,7 @@ DrawDebugCylinder(GetWorld(), Start, End, Radius, Segments, Color, bPersistentLi
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Cylinder" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7537,7 +7545,7 @@ DrawDebugCapsule(GetWorld(), Center, HalfHeight, Radius, Rotation, Color, bPersi
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Capsule" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7561,12 +7569,7 @@ DrawDebugCone(GetWorld(), Origin, Direction, Length, AngleWidth, AngleHeight, Nu
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
-    <figcaption>Result</figcaption>
-</figure>
-
-<figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Cone" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7591,7 +7594,7 @@ DrawDebugSolidPlane(GetWorld(), Plane, Location, Extents, Color, bPersistent, Li
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Plane" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7611,7 +7614,7 @@ DrawDebugLine(GetWorld(), LocationFrom, LocationTo, Color, bPersistentLines, Lif
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Line" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7632,7 +7635,7 @@ DrawDebugDirectionalArrow(GetWorld(), LocationFrom, LocationTo, ArrowSize, Color
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Arrow" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7652,7 +7655,7 @@ DrawDebugCrosshairs(GetWorld(), AxisLocation, AxisRotation, Scale, Color, bPersi
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Crosshair" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7673,7 +7676,7 @@ DrawDebugCamera(GetWorld(), Location, Rotation, FOVDeg, Scale, Color, bPersisten
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Camera" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7692,7 +7695,7 @@ DrawDebugMesh(GetWorld(), Verts, Indices, Color, bPersistent, LifeTime, DepthPri
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Mesh" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7711,7 +7714,7 @@ DrawDebugString(GetWorld(), TextLocation, Str, TestBaseActor, TextColor, Duratio
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug String" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7735,7 +7738,7 @@ DrawCentripetalCatmullRomSpline(GetWorld(), Points, Colors, Alpha, NumSamplesPer
 ```
 
 <figure>
-    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Point" />
+    <img src="static/img/OriginalValues.jpg" alt="Draw Debug Centripetal catmull-rom spline" />
     <figcaption>Result</figcaption>
 </figure>
 
@@ -7993,6 +7996,166 @@ Results follow:
 
 > [!NOTE]
 > Because `MatchSubtring` requires checking incoming Assets much more thoroughly, it can impact startup times. `MatchSubstring` is intended to be used temporarily as a fixup when making sweeping changes. It is recommended that Assets involved in these changes be resaved immediately and checked into your project's source control database with any related code changes, and that the Core Redirect be deleted without entering source control.
+
+### Gameplay Timers
+
+Timer construct for performing delayed or repeated actions. Timers are incredibly helpful for gameplay scenarios.
+
+**Timers** schedule actions to be performed after a delay, or over a period of time. For example, you may want to make the player invulnerable after obtaining a power-up item, then restore vulnerability after 10 seconds. Or you may want to apply damage once per second while the player moves through a room filled with toxic gas. Such actions can be achieved through the use of timers.
+
+> [!NOTE]
+> Timers will be canceled automatically if the Object that they are going to be called on, such as an Actor, is destroyed before the time is up. In this case, the timer handle will become invalid and the function will not be called.
+
+```cpp
+// .h
+
+/* Handle to manage the timer */
+FTimerHandle TimerHandle;
+
+// Must mark a function with UFUNCTION, as UHT needs it, in order to find it.
+UFUNCTION()
+void OnExplode();
+```
+
+```cpp
+// .cpp
+
+/* Activate the bomb to explode after 1.5 seconds */
+void ABombActor::OnUsed(APawn* InstigatorPawn)
+{
+    float Delay = 1.5f; // In seconds
+    bool bLooping = false; // If we want to repeat this.
+
+    GetWorld()->GetTimerManager().SetTimer(
+        TimerHandle, // handle to cancel timer at a later time
+        this, // the owning object
+        &ABombActor::OnExplode, // function to call on elapsed
+        Delay,
+        bLooping
+    );
+}
+
+void ABombActor::OnExplode()
+{
+    // ...
+}
+```
+
+Instead of calling `SetTimer()`, you can create delegate object with a bind function.
+
+```cpp
+FTimerHandle TimerHandle;
+FTimerDelegate Delegate; // Delegate to bind function with parameters
+
+Delegate.BindUFunction(this, &ABombActor::OnExplode);
+
+float Delay = 1.5f;
+bool bLooping = false;
+
+GetWorld()->GetTimerManager().SetTimer(TimerHandle, Delegate, Delay, bLooping);
+```
+
+You can also specify parameters, if you wish to pass to the bounded function:
+
+```cpp
+Delegate.BindUFunction(this, &APlayerCharacter::Heal, 150, true);
+
+void Heal(int32 HealAmount, bool bReviveIfDead)
+{
+    // ...
+}
+```
+
+If we wish to stop any of the timer, we can either call `ClearTimer()` or `ClearAllTimersForObject()`:
+
+```cpp
+// Clear the specified timer handle
+GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+
+// Alternatively you can clear ALL timers that belong to this (Actor) instance.
+GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
+```
+
+> [!TIP]
+> Calling `SetTimer()` with a rate less than or equal to zero is identical to calling `ClearTimer()`.
+
+To pause or unpause a timer, you can call either `PauseTimer()` or `UnPauseTimer()` function:
+
+```cpp
+// Pause the specified timer handle
+GetWorld()->GetTimerManager().PauseTimer(TimerHandle);
+
+// Unpause the specified timer handle
+GetWorld()->GetTimerManager().UnPauseTimer(TimerHandle);
+```
+
+To check if a timer is running, you can call `IsTimerActive()` function:
+
+```cpp
+// Is this weapon waiting to be able to fire again?
+GetWorldTimerManager().IsTimerActive(this, &AUTWeapon::RefireCheckTimer);
+```
+
+You can also access the current rate (time between activations) of a timer from its timer handle:
+
+```cpp
+// This weapon's rate of fire changes as it warms up. Is it currently waiting to fire, and if so, how long is the current delay between shots?
+GetWorldTimerManager().GetTimerRate(this, &AUTWeapon::RefireCheckTimer);
+```
+
+If you want the elapsed and remaining time, you can access via `GetTimerElapsed()` function:
+
+```cpp
+// How long will it be until this weapon is ready to fire again? If the answer comes back as -1, it is ready now.
+GetWorldTimerManager().GetTimerElapsed(this, &AUTWeapon::RefireCheckTimer);
+```
+
+You can read more about [Gameplay Timers on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/gameplay-timers-in-unreal-engine/).
+
+### Sampling a curve
+
+Sometimes, you probably want to work with a curve. To access a curve inside C++, you can use `UCurveFloat` class. This class gives you access to interpolated points to evaluate over a given range.
+
+You can create them from the **Content Browser** through **Miscellaneous → Curve**.
+
+<table><tr><td>
+
+Module: `Engine`
+
+Header file:
+
+```cpp
+#include "Curves/CurveFloat.h"
+```
+
+</td></tr></table>
+
+```cpp
+// .h
+
+UPROPERTY(EditAnywhere)
+UCurveFloat TimeCycle;
+
+UPROPERTY(EditAnywhere, meta = (ClampMin = 0.0, ClampMax = 1.0))
+float TimeOfDay = 0.5f; // Range between 0 -> 1
+```
+
+```cpp
+// .cpp
+
+// This will be our output value from the curve
+float SunIntensity = 0.0f;
+
+// Check if the curve is valid before accessing it.
+// Otherwise, if curve is a nullptr, a crash will happen.
+if (IsValid(TimeCycle))
+{
+    // We read the curve at the current level, and assign the value to MaxHP
+    SunIntensity = TimeCycle->GetFloatValue(TimeOfDay);
+}
+```
+
+You can read more about [curves on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Engine/Curves/UCurveFloat/).
 
 ### 🪄 Tips and best practices
 
