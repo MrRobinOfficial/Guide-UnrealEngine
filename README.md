@@ -6380,6 +6380,9 @@ How to log to the console with `FString` as an argument:
 UE_LOG(LogTemp, Warning, TEXT("The Actor's name is: %s"), *YourActor->GetName());
 ```
 
+> [!TIP]
+> You can use `__func__`, `__FUNCTION__` or `__PRETTY_FUNCTION__` to get the name of the function and print it out in the log. However, to add this string, you must convert it into a TCHAR pointer. By using `ANSI_TO_TCHAR()` macro.
+
 Sadly, `UE_LOG` does **NOT** support `bool` data type.
 
 In order to print a boolean with `UE_LOG`, you can use `%i` or `%d` to convert a `bool` (boolean) into a `int32` (integer).
