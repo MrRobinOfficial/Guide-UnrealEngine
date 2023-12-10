@@ -1,0 +1,6 @@
+{
+    "spellchecker.ignoreWordsList": [
+        "multithreading",
+        "plugin"
+    ]
+}
