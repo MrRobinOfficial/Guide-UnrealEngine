@@ -459,7 +459,7 @@ FVector4 OldLocation = FVector4::ZeroVector; // (0, 0, 0)
 FVector4 NewLocation = FVector4::OneVector; // (1, 1, 1)
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FVector4f` for `float` and `FVector4d` for `double`, as explicit data type for the backend conversion.
 
 ---
@@ -509,7 +509,7 @@ double& Y = Vec[1];
 double& Z = Vec[2];
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FVector3f` for `float` and `FVector3d` for `double`, as explicit data type for the backend conversion.
 
 ---
@@ -600,7 +600,7 @@ FVector2D OldLocation = FVector2D::ZeroVector; // (0, 0, 0)
 FVector2D NewLocation = FVector2D::OneVector; // (1, 1, 1)
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FVector2f` for `float` and `FVector2d` for `double`, as explicit data type for the backend conversion.
 
 ---
@@ -635,7 +635,7 @@ FUIntPoint UnsignedMinPoint = FUIntPoint(0, 0);
 FUIntPoint UnsignedMaxPoint = FUIntPoint(255, 255);
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FInt32Point` for `int32`, `FUint32Point` for `uint32`, `FInt64Point` for `int64` and `FUint64Point` for `uint64`, as explicit data type for the backend conversion.
 
 #### IntRect
@@ -658,7 +658,7 @@ FUIntPoint UnsignedMaxPoint = FUIntPoint(255, 255);
 FUIntReact UnsignedRect = FIntRect(UnsignedMinPoint, UnsignedMaxPoint);
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FInt32Rect` for `int32`, `FUint32Rect` for `uint32`, `FInt64Rect` for `int64` and `FUint64Rect` for `uint64`, as explicit data type for the backend conversion.
 
 #### Rotator
@@ -677,7 +677,7 @@ You can also initalize by an pre-made rotator:
 FRotator MyRotator = FRotator::ZeroRotator; // (0, 0, 0)
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FRotator3f` for `float` and `FRotator3d` for `double`, as explicit data type for the backend conversion.
 
 ---
@@ -707,7 +707,7 @@ You can also initalize by an pre-made quaternion:
 FQuat MyQuaternion = FQuat::Identify; // (0, 0, 0, 0)
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FQuat4f` for `float` and `FQuat4d` for `double`, as explicit data type for the backend conversion.
 
 #### Transform
@@ -731,7 +731,7 @@ You can also initalize by an pre-made transform:
 FTransform MyTransform = FTransform::Identify; // NaN
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FTransform3f` for `float` and `FTransform3d` for `double`, as explicit data type for the backend conversion.
 
 #### Plane
@@ -754,7 +754,7 @@ Here's another way to initialize `FPlane`:
 FPlane Plane = FVector(FVector(0.0f, 0.0f, 0.0f));
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FPlane4f` for `float` and `FPlane4d` for `double`, as explicit data type for the backend conversion.
 
 #### Matrix
@@ -790,7 +790,7 @@ int32 ColumnIndex = 0;
 double Element = Matrix[RowIndex][ColumnIndex];
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FMatrix44f` for `float` and `FMatrix44d` for `double`, as explicit data type for the backend conversion.
 
 #### Sphere
@@ -806,7 +806,7 @@ float Radius = 500.0f;
 FSphere Sphere = FSphere(Center, Radius);
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FSphere3f` for `float` and `FSphere3d` for `double`, as explicit data type for the backend conversion.
 
 #### Box
@@ -822,7 +822,7 @@ FVector MaxPoint = FVector(25.0f, 25.0f);
 FBox Box2D = FBox(MinPoint, MaxPoint);
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FBox3f` for `float` and `FBox3d` for `double`, as explicit data type for the backend conversion.
 
 #### Box2D
@@ -838,7 +838,7 @@ FVector2D MaxPoint = FVector2D(20, 20);
 FBox2D Box2D = FBox2D(MinPoint, MaxPoint);
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FBox2f` for `float` and `FBox2d` for `double`, as explicit data type for the backend conversion.
 
 #### Ray
@@ -869,7 +869,7 @@ FVector PointAt = Ray.PointAt(ScalarDistance);
 double CalcScalarDistance = Ray.GetParameter(PointAt); // Will convert back to 'ScalarDistance'
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Use `FRay3f` for `float` and `FRay3d` for `double`, as explicit data type for the backend conversion.
 
 #### Colors
