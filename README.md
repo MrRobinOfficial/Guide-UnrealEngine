@@ -264,6 +264,10 @@
   - [APawn](#apawn)
   - [UObject](#uobject)
 - [🏛 Create custom interface](#-create-custom-interface)
+  - [Creating interface inside C++](#creating-interface-inside-c)
+  - [Extending the interface function:](#extending-the-interface-function)
+  - [Calling the interface function](#calling-the-interface-function)
+  - [Reference to an interface object](#reference-to-an-interface-object)
 - [🛸 Reflection System](#-reflection-system)
 - [🗑️ Garbage Collection](#-garbage-collection)
   - [How does it work](#how-does-it-work)
@@ -334,7 +338,7 @@
   - [Sampling a curve](#sampling-a-curve)
   - [HTTP requests](#http-requests)
   - [Encryption and Decryption](#encryption-and-decryption)
-  - [🪄 Tips and best practices](#-tips-and-best-practices)
+  - [🐣 Tips and best practices](#-tips-and-best-practices)
   - [Disable BlueprintPure](#disable-blueprintpure)
   - [Switch case fall-through](#switch-case-fall-through)
     - [📦 Refactoring](#-refactoring)
@@ -6225,10 +6229,139 @@ By inheriting from `UObject` class, you have these popular functions:
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
-<!-- TODO: Fix this -->
+Interface are very useful for handling functions in a generic way. It allows you to create a contract with specified functions, which a programmer can extend on top of a specified class.
+
+For an example, IVehicle can contain functions such as `Honk()` or `StallEngine()`. However, these functions can be implemented in a range of classes. Such as `ACarPawn` or `ABoatPawn`.
+
+When calling the interface function in C++, Unreal will check if the type extends the interface. If not, the call gets skipped. This allows you to call the interface function on `UObject` and is not limited to only types of `ACarPawn` or `ABoatPawn`.
+
+This also allows you to extend the interface inside Blueprint instead. For an example, you don't have to create the interface logic inside C++, but rather create the logic at Blueprint level instead.
+
+### Creating interface inside C++
+
+```cpp
+// IVehicle.h
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "UObject/Interface.h"
+#include "IVehicle.generated.h"
+
+/*
+This class does not need to be modified.
+Empty class for reflection system visibility.
+Uses the UINTERFACE macro.
+Inherits from UInterface.
+*/
+UINTERFACE(MinimalAPI, Blueprintable)
+class UVehicle : public UInterface
+{
+    GENERATED_BODY()
+};
+
+/* Actual Interface declaration. */
+class IVehicle
+{
+    GENERATED_BODY()
+
+    // Add interface functions to this class. This is the class that will be inherited to implement this interface.
+
+public:
+    // Add interface function declarations here
+
+    // BlueprintNativeEvent - Allows you to overwrite the function in either C++ or Blueprint
+    // BlueprintImplementableEvent - Allows the function to only be overwritten in Blueprint
+
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Vehicle")
+    void Honk();
+
+    UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Vehicle")
+    void StallEngine();
+
+    UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Vehicle")
+    void Explode(bool bForce = true);
+};
+```
+
+> [!WARNING] > `BlueprintNativeEvent` allows you to overwrite the function in either C++ or Blueprint, but if you use `BlueprintImplementableEvent` it only allows the function to only be overwritten in Blueprint.
+
+### Extending the interface function:
+
+When adding an interface class to a C++ class, you must use the suffix of `_Implementation` for all the functions that you are overwriting. Otherwise, UHT will not recognize the function.
+
+Here's an example, of extending the interface functions inside C++:
+
+```cpp
+// ACarPawn.h
+
+#include "CoreMinimal.h"
+#include "GameFramework/Pawn.h"
+#include "IVehicle.h" // Include the interface's header
+#include "CarPawn.generated.h"
+
+UCLASS()
+class ACarPawn : public APawn, public IVehicle
+{
+protected:
+    void Honk_Implementation();
+    void StallEngine_Implementation();
+    void Explode_Implementation(bool bForce);
+};
+```
+
+```cpp
+// ACarPawn.cpp
+
+void ACarPawn::Honk_Implementation()
+{
+    // Add code here...
+}
+
+void ACarPawn::StallEngine_Implementation()
+{
+    // Add code here...
+}
+
+void ACarPawn::Explode_Implementation(bool bForce)
+{
+    // Add code here...
+}
+```
+
+### Calling the interface function
+
+When calling the interface function inside C++, you are required to call the function with a prefix of `Execute`. If you don't use the prefix, you will get a warning from Unreal Engine.
+
+> [!NOTE]
+> You are calling the interface function from the interface itself. Meaning, instead of `ACarPawn->Explode()`, which is an interface function. You must call the function as: `IVehicle::Execute_Explode()` instead. With the parameter being on what object you want the interface function to be called on.
+
+```cpp
+UObject* CarObject = nullptr; // The UObject, that you wish to call the function on.
+const bool bForce = true; // Parameters
+
+// The syntax for calling the interface function
+IVehicle::Execute_Explode(CarObject, bForce);
+```
+
+### Reference to an interface object
+
+If you ever wish to reference an interface object, you then must you `TScriptInterface<>`, which works both for C++ and Blueprint. However, if you wish to have a pointer to the interface, you may want to use the `TWeakInterfacePtr` instead. Note, that this pointer is weak. Meaning, the weak pointer will not prevent destruction of the object it references.
+
+For more information on weak pointers, you can read at [💾 Soft vs hard references](#-soft-vs-hard-references).
 
 > [!TIP]
 > You can use `TWeakInterfacePtr` for storing a weak pointer to a partial interface.
+
+```cpp
+void DestroyVehicle(const TScriptInterface<IVehicle>& Vehicle)
+{
+    const bool bForce = true;
+    IVehicle::Execute_Explode(Vehicle.GetObject(), bForce);
+}
+```
+
+> [!TIP] > `TScriptInterface` inside Blueprint is nicer to look at, than C++ version.
 
 ## 🛸 Reflection System
 
@@ -8249,31 +8382,32 @@ This section was written in conjunction with ChatGPT.
 
 Here is a video about [constants keywords in C++ by Cazz](https://www.youtube.com/watch?v=KBny6MZJR64)
 
-* `const` - Specifies that an object or variable is read-only and cannot be modified.
-* `constexpr` - Specifies that a function or variable can be evaluated at compile-time. `constexpr` can be used for inlining variables, without using macros[^4]. **Note**, the compiler does not guarantee compile-time evaluation (only it **CAN** be evaluated at compile-time).
-* `consteval` - Specifies that a function must be evaluated at compile-time. **Note**, the compiler has to evaluated at compile-time.
-* `constinit` - Specifies that an object with static or thread storage duration should be initialized only with constant expressions.
-* `auto` - Allows the compiler to deduce the type of a variable based on its initializer.
-* `static` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
-* `virtual` - Specifies that a function should be polymorphic, meaning that it can be overridden by a derived class.
-* `override` - Indicates that a function in a derived class is intended to override a function in the base class.
-* `break` - Causes the program to exit a loop or switch statement.
-* `continue` - Causes the program to skip to the next iteration of a loop.
-* `class` and `struct` - Are used to define user-defined types that encapsulate data and functions.
-* `inline` - Specifies that a function should be inlined (i.e., its code should be inserted directly into the calling code rather than calling the function).
-* `force_inline` - Instructs the compiler to inline a function, regardless of whether it would normally do so.
-* `new` - Allocates memory for an object and calls its constructor.
-* `delete` - Deallocates memory that was allocated with new.
-* `dynamic_cast` - Performs a runtime check to determine whether an object can be cast to a different type.
-* `static_cast` - Performs a static cast, which allows an expression to be converted to a different data type at compile time.
-* `const_cast` - - Performs a const cast.
-* `explicit` - Specifies that a constructor or conversion operator cannot be used for implicit type conversions.
-* `namespace` - Defines a scope for identifiers to avoid naming conflicts.
-* `operator` - Declares a function as an overloaded operator.
-* `template` - Allows generic programming by defining a type or function with parameters that are specified at compile time.
-* `try` and `catch` - Implements exception handling by trying a block of code that may throw an exception and catching the exception if it is thrown.
+-   `const` - Specifies that an object or variable is read-only and cannot be modified.
+-   `constexpr` - Specifies that a function or variable can be evaluated at compile-time. `constexpr` can be used for inlining variables, without using macros[^4]. **Note**, the compiler does not guarantee compile-time evaluation (only it **CAN** be evaluated at compile-time).
+-   `consteval` - Specifies that a function must be evaluated at compile-time. **Note**, the compiler has to evaluated at compile-time.
+-   `constinit` - Specifies that an object with static or thread storage duration should be initialized only with constant expressions.
+-   `auto` - Allows the compiler to deduce the type of a variable based on its initializer.
+-   `static` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
+-   `virtual` - Specifies that a function should be polymorphic, meaning that it can be overridden by a derived class.
+-   `override` - Indicates that a function in a derived class is intended to override a function in the base class.
+-   `break` - Causes the program to exit a loop or switch statement.
+-   `continue` - Causes the program to skip to the next iteration of a loop.
+-   `class` and `struct` - Are used to define user-defined types that encapsulate data and functions.
+-   `inline` - Specifies that a function should be inlined (i.e., its code should be inserted directly into the calling code rather than calling the function).
+-   `force_inline` - Instructs the compiler to inline a function, regardless of whether it would normally do so.
+-   `new` - Allocates memory for an object and calls its constructor.
+-   `delete` - Deallocates memory that was allocated with new.
+-   `dynamic_cast` - Performs a runtime check to determine whether an object can be cast to a different type.
+-   `static_cast` - Performs a static cast, which allows an expression to be converted to a different data type at compile time.
+-   `const_cast` - - Performs a const cast.
+-   `explicit` - Specifies that a constructor or conversion operator cannot be used for implicit type conversions.
+-   `namespace` - Defines a scope for identifiers to avoid naming conflicts.
+-   `operator` - Declares a function as an overloaded operator.
+-   `template` - Allows generic programming by defining a type or function with parameters that are specified at compile time.
+-   `try` and `catch` - Implements exception handling by trying a block of code that may throw an exception and catching the exception if it is thrown.
 
 Difference between a class and struct then?
+
 > In native C++, the main difference between a struct and a class is that struct members are public by default, whereas class members are private by default. However, this difference is largely syntactic, and struct and class can be used interchangeably to define custom types.
 
 > However, Unreal Engine structs are used to represent data types that are typically used for data storage and manipulation, whereas classes are used to represent objects that have behavior and state.
@@ -8413,6 +8547,7 @@ public:
     FMyStruct TestStruct;
 };
 ```
+
 <figure>
     <img src="static/img/OriginalValues.jpg" alt="Original Values" />
     <figcaption>This is the original code and the original set of values we're saving into our `AMyActor` Asset.</figcaption>
@@ -8900,7 +9035,7 @@ FString YourClass::DecryptToString(FString EncryptedValue, FString EncryptionKey
 }
 ```
 
-### 🪄 Tips and best practices
+### 🐣 Tips and best practices
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
@@ -8908,7 +9043,13 @@ This section was written in conjunction with ChatGPT.
 
 ### Disable BlueprintPure
 
-When creating a `UFUNCTION` and marking it as `const`, Unreal will interpret this function as pure function. A pure function will evaluate everything it's called, compare to a regular function, which Unreal caches the result and save for later.
+When creating a `UFUNCTION` and marking it as `const`, Unreal will interpret this function as pure function. A pure function will evaluate every time it's called (inside Blueprint), compare to a regular function, which Unreal caches the result and save for later.
+
+Pure function are helpful for small or quick function to execute. For an example: **getters**.
+
+With Blueprint, every time you drag a pin from the result, the function will be evaluated every single time. And the result may differ at different execution time.
+
+This is not the same, as a regular function. With regular function, Blueprint will then cache the result. And when dragging multiple pins from the result of the function, the same value will be used.
 
 If you want to mark a `UFUNCTION` as const without Unreal converting into a pure function, you can add this specifier:
 
@@ -8916,13 +9057,15 @@ If you want to mark a `UFUNCTION` as const without Unreal converting into a pure
 UFUNCTION(BlueprintCallable, BlueprintPure = false)
 void ComplexFunction() const
 {
-    // ...
+    // Expensive calculations
 }
 ```
 
 ### Switch case fall-through
 
-Lorem Ipsum
+When working with switch case, one benefits it's to have fall-through cases. Where, a case can fall under multiple cases and same performance.
+
+Although, it may be harder to read and understand this code, then doing with if-statements.
 
 ```cpp
 double DistanceUnificationFactor(EUnit From)
@@ -8961,6 +9104,8 @@ Renaming members, such as variables, functions, or classes, is a common refactor
 Example:
 
 ```cpp
+// Note, this is regular raw C++ code.
+
 // Before refactoring
 class Rectangle
 {
@@ -8995,6 +9140,8 @@ Extract Method is a refactoring technique where you take a portion of code withi
 Example:
 
 ```cpp
+// Note, this is regular raw C++ code.
+
 // Before refactoring
 void printFullName(std::string firstName, std::string lastName)
 {
@@ -9021,6 +9168,8 @@ Introducing a typedef can make complex type names more concise and easier to und
 Example:
 
 ```cpp
+// Note, this is regular raw C++ code.
+
 // Before refactoring
 typedef std::map<std::string, std::vector<int>> NameToNumbersMap;
 
@@ -9043,6 +9192,8 @@ Introducing a variable can simplify complex expressions or improve code readabil
 Example:
 
 ```cpp
+// Note, this is regular raw C++ code.
+
 // Before refactoring
 int total = (price + tax) * quantity - discount + shippingCost;
 
@@ -9122,14 +9273,14 @@ PrimaryComponentTick.bStartWithTickEnabled = false;
 
 ##### If you have to use tick
 
-* Set the tick interval to the maximum value you can get away with. Unfortunately this is often per frame for smoothly moving things
+-   Set the tick interval to the maximum value you can get away with. Unfortunately this is often per frame for smoothly moving things
 
 ```cpp
 PrimaryActorTick.TickInterval = 0.2f;
 PrimaryComponentTick.TickInterval = 0.2f;
 ```
 
-* Enable/disable tick to only tick when required.
+-   Enable/disable tick to only tick when required.
 
 ```cpp
 SetActorTickEnabled()
@@ -9153,26 +9304,29 @@ Sample code to get started:
 class FMyTickableThing : public FTickableGameObject
 {
 public:
-	// FTickableGameObject Begin
-	virtual void Tick( float DeltaTime ) override;
-	virtual ETickableTickType GetTickableTickType() const override
-	{
-		return ETickableTickType::Always;
-	}
-	virtual TStatId GetStatId() const override
-	{
-		RETURN_QUICK_DECLARE_CYCLE_STAT( FMyTickableThing, STATGROUP_Tickables );
-	}
-	virtual bool IsTickableWhenPaused() const
-	{
-		return true;
-	}
-	virtual bool IsTickableInEditor() const
-	{
-		return false;
-	}
-	// FTickableGameObject End
+    // FTickableGameObject Begin
+    void Tick( float DeltaTime ) override;
 
+    ETickableTickType GetTickableTickType() const override
+    {
+        return ETickableTickType::Always;
+    }
+
+    TStatId GetStatId() const override
+    {
+        RETURN_QUICK_DECLARE_CYCLE_STAT( FMyTickableThing, STATGROUP_Tickables );
+    }
+
+    bool IsTickableWhenPaused() const
+    {
+        return true;
+    }
+
+    bool IsTickableInEditor() const
+    {
+        return false;
+    }
+    // FTickableGameObject End
 
 private:
 	// The last frame number we were ticked.
@@ -9201,8 +9355,7 @@ void FMyTickableThing::Tick( float DeltaTime )
 > [!NOTE]
 > Tick any object you want, `UObject` or not!
 
-> [!WARNING]
-> `USTRUCT` don't support expose functions with UHT[^2].
+> [!WARNING] > `USTRUCT` don't support expose functions with UHT[^2].
 
 #### 🔌 Direct references
 
@@ -9219,6 +9372,8 @@ Using the `const` qualifier in a direct reference serves as a safety mechanism t
 In some cases, using `const` in direct references can also enable certain compiler optimizations, as it provides additional information to the compiler about the immutability of the referenced value.
 
 ```cpp
+// Note, this is regular raw C++ code.
+
 int a = 5;
 int b = a; // Gets a copy
 
