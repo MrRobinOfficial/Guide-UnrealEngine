@@ -41,6 +41,11 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [👑 Cheatsheets](#-cheatsheets)
+- [🎩 Plugins](#-plugins)
+  - [Marketplace Plugins](#marketplace-plugins)
+  - [Github Plugins](#github-plugins)
+  - [Epic Games Plugins](#epic-games-plugins)
+  - [MrRobinOfficial's Plugins](#mrrobinofficials-plugins)
 - [⌛ Getting started with C++](#-getting-started-with-c)
   - [🌈 Integrated Development Environment](#-integrated-development-environment)
   - [⛏️ Tools to help your journey](#-tools-to-help-your-journey)
@@ -254,6 +259,10 @@
     - [Constructors and destructors in UE](#constructors-and-destructors-in-ue)
     - [Initialization](#initialization)
 - [🏛 Create custom class](#-create-custom-class)
+  - [AActor](#aactor)
+  - [UActorComponent](#uactorcomponent)
+  - [APawn](#apawn)
+  - [UObject](#uobject)
 - [🏛 Create custom interface](#-create-custom-interface)
 - [🛸 Reflection System](#-reflection-system)
 - [🗑️ Garbage Collection](#-garbage-collection)
@@ -287,11 +296,13 @@
   - [Declare a delegate variable](#declare-a-delegate-variable)
   - [Bind functions to the delegate](#bind-functions-to-the-delegate)
   - [Trigger the delegate](#trigger-the-delegate)
+  - [Summary](#summary)
 - [🧩 UMG](#-umg)
   - [UMG with C++](#umg-with-c)
   - [UI Tweening Library](#ui-tweening-library)
 - [📚 Create custom module](#-create-custom-module)
   - [Module structure](#module-structure)
+  - [Module code](#module-code)
   - [♻️ Circular Dependency](#-circular-dependency)
 - [💡 Create custom plugin](#-create-custom-plugin)
 - [📝 Preprocessor](#-preprocessor)
@@ -373,6 +384,101 @@
 ![Winslow - Unreal Engine 5 Editor CheatSheet Dark Theme](static/img/unreal-engine-5-editor-cheat-sheet-dark-theme-1.png)[Winslow - Unreal Engine 5 Editor CheatSheet Dark Theme](https://uecasts.com/resources/unreal-engine-5-editor-hotkeys-cheat-sheet-dark-theme?utm_source=epicgames&utm_campaign=cheat_sheet_ue5&utm_content=hotkeys_dark)
 
 ![VictoriaLyons - ProfilingCheatSheet](static/img/ProfilingCheatSheet-1.png)[VictoriaLyons - ProfilingCheatSheet](https://www.reddit.com/r/unrealengine/comments/gqi2xu/quick_performance_cheat_sheet/)
+
+</details>
+
+## 🎩 Plugins
+
+<details open>
+  <summary>Click to expand</summary>
+
+Over these years, I found some awesome and helpful plugins for extending and improving my productivity.
+
+The plugins that I recommend the most are: **Batch Rename Tool**, **Common Maps**, **Quick Actions**, **ActorLocker**, **FlatNodes**, **CrystalNodes**, **ALS** and **Audio Meters**.
+
+And here is a full list of plugins that I discovered so far:
+
+### Marketplace Plugins
+
+-   [Achievement System](https://www.unrealengine.com/marketplace/en-US/product/achievement-system-blueprint-compatible) (Easily define and manage achievements in any UE4 project).
+-   [Animate](https://www.unrealengine.com/marketplace/en-US/product/animate-curve-driven-animations) (Animate anything using Vector Curves).
+-   [Attachment Sync](https://www.unrealengine.com/marketplace/en-US/product/attachment-sync) (Ability to any weapon to have attachments).
+-   [Audio Metering Lite](https://www.unrealengine.com/marketplace/en-US/product/audio-metering-lite) (lets you analyze and meter Submixes).
+-   [Auto Size Comments](https://www.unrealengine.com/marketplace/en-US/product/auto-size-comments) (makes comment boxes auto resize to fit the nodes inside).
+-   [Blueprintable Developer Settings](https://www.unrealengine.com/marketplace/en-US/product/blueprintable-developer-settings) (access to work with config files through blueprints and editor, just like `UDeveloperSettings`).
+-   [Common Maps](https://www.unrealengine.com/marketplace/en-US/product/common-maps) (Allows you to quickly switch to the maps you use frequently in the project you are working on by storing them in a list).
+-   [Custom Details Sections](https://www.unrealengine.com/marketplace/en-US/product/custom-details-sections) (Organize the details panel by grouping your variables into custom sections).
+-   [DzX Radial Menu](https://www.unrealengine.com/marketplace/en-US/product/dzx-radial-menu-umg/questions) (The radial menu plugin gives complete freedom in widget design for pie chart looking widgets).
+-   [Enhanced Input Sequence](https://www.unrealengine.com/marketplace/en-US/product/enhanced-input-sequence) (allows you to process Input Actions and their sequences).
+-   [Extended Debug Library](https://www.unrealengine.com/marketplace/en-US/product/extended-debug-library) (Extends some of the native debugging functions, exposing more functionality).
+-   [File System Library](https://www.unrealengine.com/marketplace/en-US/product/file-system-library) (Open, Save, Copy, Move and delete files and directories in tranquillity).
+-   [Game Flow](https://www.unrealengine.com/marketplace/en-US/product/game-flow) (Allows user to create state machines and configure them for various reasons).
+-   [Gradient Generator](https://www.unrealengine.com/marketplace/en-US/product/gradient-generator) (helps you create complex gradients).
+-   [Live Blueprint Debugger](https://www.unrealengine.com/marketplace/en-US/product/live-blueprint-debugger) (Integrates the Blueprint Debugger's variables window directly into the Level Editor's details panel for any selected Actor that is an instance of a Blueprint class).
+-   [Outliner Shortcuts](https://www.unrealengine.com/marketplace/en-US/product/outliner-shortcuts) (Allows the binding of shortcuts to some basic World Outliner functions).
+-   [Project Acoustics](https://www.unrealengine.com/marketplace/en-US/product/project-acoustics-for-unreal-audio) (audio wave acoustics engine for adding accurate acoustics to your 3D environments).
+-   [Project Cleaner](https://www.unrealengine.com/marketplace/en-US/product/projectcleaner) (Remove unused assets and empty folders in project).
+-   [Quest Editor Plugin](https://www.unrealengine.com/marketplace/en-US/product/quest-editor-plugin) (manage and create quests and dialogs for NPCs, with very dynamic and customizable features).
+-   [Quick Actions](https://www.unrealengine.com/marketplace/en-US/product/quick-actions) (Find anything inside Unreal quick).
+-   [Regex in Blueprints](https://www.unrealengine.com/marketplace/en-US/product/regex-in-blueprints) (Regular expressions available for blueprints).
+-   [Restart Unreal Editor](https://www.unrealengine.com/marketplace/en-US/product/restart-editor-01) (Utility to restart the Unreal Editor with a click or with a shortcut).
+-   [Screen Fade Library](https://www.unrealengine.com/marketplace/en-US/product/screen-fade-library) (Plugin that makes it easy to implement screen fade in Blueprints and C++).
+-   [SweejTech Audio Inspector](https://www.unrealengine.com/marketplace/en-US/product/sweejtech-audio-inspector) (Allows you to see a detailed, useful info about all active sounds in game in a compact editor tab window).
+-   [Time Clock](https://www.unrealengine.com/marketplace/en-US/product/time-clock) (Easily track how long you have to work in a project, and manage your times with alarms).
+-   [Universal Camera](https://www.unrealengine.com/marketplace/en-US/product/universal-camera) (A flexible camera for your games).
+
+### Github Plugins
+
+-   [ActorLocker](https://github.com/Gradess2019/ActorLocker) (Ability to lock actors while editing the level).
+-   [Advanced Locomotion System Refactored](https://github.com/Sixze/ALS-Refactored) (C++ version).
+-   [Agora Static Mesh Thumbnail Renderer](https://github.com/ryanjon2040/AgoraStaticMeshThumbnailRenderer) (Provides some information about Static Mesh in Content Browser).
+-   [Aliaser](https://github.com/AyeTSG/Aliaser) (Allows aliases to be shown in the Content Browser).
+-   [ALS-Refactored XT](https://github.com/Voidware-Prohibited/ALSXT) (Expand ALS Refactored with expanded Character States, Improved Foot Print system, Sliding, Vaulting and Wallrunning).
+-   [AsyncLoadingScreen](https://github.com/truong-bui/AsyncLoadingScreen) (Ability to add custom loading screen).
+-   [Audio Analysis Tools](https://github.com/gtreshchev/AudioAnalysisTools) (Provides a variety of functions for analyzing audio data. Works in conjunction with the Runtime Audio Importer plugin).
+-   [Audio Meters for Unreal Engine 5.1](https://michaelgarydean.itch.io/audio-metering-editor-utility-widget) (Ability to monitoring your audio levels).
+-   [Batch Rename Tool](https://github.com/FrozenStormInteractive/Unreal-Batch-Rename-Tool) (rename multiple assets quickly with a set of naming rules).
+-   [BlueprintUE C++](https://github.com/blueprintue/blueprintue-cpp-plugin) (Allows you to send your blueprints on [](https://blueprintUE.com) associated to your account).
+-   [BUI Cheat Manager](https://github.com/benui-dev/UE-BUICheatManager/) (Cheat manager, providing a way of defining cheat shortcut).
+-   [Circular Dependencies Detector](https://github.com/bstt/CircularDependenciesDetector/).
+-   [CrystalNodes](https://github.com/SkylakeOfficial/CrystalNodes) (Beautify the unreal editor graph nodes).
+-   [CsToCpp](https://github.com/CSharpForUnrealEngine5/CsToCpp) (C# to UE C++ compiler).
+-   [CustomShapeButton](https://github.com/JanSeliv/CustomShapeButton) (Allows to make buttons of any shape in UE5.3).
+-   [Elementus Inventory](https://github.com/lucoiso/UEElementusInventory) (Data-Driven Inventory & Items system).
+-   [ExtendedUnreal](https://github.com/BenVlodgi/UE-ExtendedUnreal) (Exposes useful functions to Blueprints).
+-   [FlatNodes](https://github.com/brumenn/FlatNodes) (A minimalist style for Unreal Engine graph nodes).
+-   [FlowGraph](https://github.com/MothCocoon/FlowGraph) (Design-agnostic node system for scripting game’s flow).
+-   [Function Picker](https://github.com/JanSeliv/FunctionPicker) (Allows to choose a function right in the property from any blueprint in UE5.3).
+-   [Hotbar and Inventory System](https://github.com/finalstack/InventorySystem) (Easy to use Hotbar and Inventory system).
+-   [MDMetaDataEditor](https://github.com/DoubleDeez/MDMetaDataEditor) (Ability to edit metadata of Blueprint Properties, Functions, and Function and Event Parameters).
+-   [Neat Metadata](https://github.com/pramberg/NeatMetadata) (Allow various metadata to be used in Blueprints that is otherwise only available in C++.).
+-   [ObjectPool](https://github.com/dslabkowski/ObjectPool/) (Improve performance and memory use by reusing objects from a fixed pool instead of allocating and freeing them individually).
+-   [PBCharacterMovement](https://github.com/ProjectBorealis/PBCharacterMovement) (HL2-style, classic FPS movement for UE in C++).
+-   [Pool Manager](https://github.com/JanSeliv/PoolManager) (Helps reuse objects in UE5.3).
+-   [RefreshAllNodes](https://github.com/nachomonkey/RefreshAllNodes) (Ability to refresh all nodes in a single Blueprint Instance. Helpful when Blueprint version has not been updated to its counterpart of C++).
+-   [Serial Communication](https://github.com/videofeedback/Unreal_Engine_SerialCOM_Plugin) (Serial Com Port Library).
+-   [Settings Widget Constructor](https://github.com/JanSeliv/SettingsWidgetConstructor) (Automated UI generation of game settings from data table in UE5.3).
+-   [Subsystem Browser Plugin](https://github.com/aquanox/SubsystemBrowserPlugin/) (Adds a Subsystem Browser panel to explore running subsystems and edit their properties).
+-   [TabRestore](https://github.com/Theliraan/TabRestore) (restore closed tabs).
+-   [UI Tweening Library for UE4/UMG](https://github.com/benui-dev/UE-BUITween).
+-   [Unreal Blueprint CSV Parsing](https://github.com/IncantaGames/unreal-bp-csv-parsing).
+-   [UnrealImGui](https://github.com/benui-dev/UnrealImGui) (Integrates [Dear ImGui](https://github.com/ocornut/imgui) framework into Unreal Engine).
+-   [VoxelCore](https://github.com/VoxelPlugin/VoxelCore) (Use voxel inside UE).
+
+### Epic Games Plugins
+
+-   [Chaos Vehicles](https://docs.unrealengine.com/5.3/en-US/vehicles-in-unreal-engine/) made by Epic Games (Vehicle System).
+-   [Common UI](https://docs.unrealengine.com/5.3/en-US/common-ui-plugin-for-advanced-user-interfaces-in-unreal-engine/) made by Epic Games. ​
+-   [Enhanced Input](https://docs.unrealengine.com/5.3/en-US/enhanced-input-in-unreal-engine/) made by Epic Games.
+-   [Sun Position Calculator](https://docs.unrealengine.com/5.3/en-US/geographically-accurate-sun-positioning-tool-in-unreal-engine/) made by Epic Games (Real-time sky).
+
+### MrRobinOfficial's Plugins
+
+-   [Common Time](https://github.com/MrRobinOfficial/Unreal-CommonTime) (Provides an editor view for editing DateTime and Timespan values).
+-   [Common Vehicle](https://github.com/MrRobinOfficial/Unreal-CommonVehicle) (Extend Chaos Vehicle System).
+-   [IniParser](https://github.com/MrRobinOfficial/Unreal-IniParser) (Import/export .ini files).
+
+I am planning to make more plugins, which you can find me on [Github](https://github.com/MrRobinOfficial).
 
 </details>
 
@@ -6066,15 +6172,51 @@ This section was NOT written in conjunction with ChatGPT.
     <figcaption>Lifecycle breakdown</figcaption>
 </figure>
 
-You can read more about [actor's lifecycle at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/unreal-engine-actor-lifecycle/).
+You can read more about [Actor's lifecycle at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/unreal-engine-actor-lifecycle/).
 
-By inheriting from `AActor` class:
+### AActor
+
+By inheriting from `AActor` class, you have these popular functions:
 
 ```cpp
+// Safe way to initialize components inside the editor
+// Calls after the class's constructor
 void PostInitComponents();
-void BeginPlay(); // Can be called multiple times
+
+// "Awake/Start" method
+// Calls when being spawned or respawned
+void BeginPlay();
+
+// "Update" method
 void Tick(float DeltaTime);
+
+// "Destroy" method
+// Calls when despawning or when being force to destroy
 void EndPlay();
+```
+
+### UActorComponent
+
+By inheriting from `UActorComponent` class, you have these popular functions:
+
+```cpp
+// Code here
+```
+
+### APawn
+
+By inheriting from `APawn` class, you have these popular functions:
+
+```cpp
+// Code here
+```
+
+### UObject
+
+By inheriting from `UObject` class, you have these popular functions:
+
+```cpp
+// Code here
 ```
 
 ## 🏛 Create custom interface
@@ -6835,24 +6977,52 @@ You can also watch a video about it from [Sneaky Kitty Game Dev](https://www.you
 ## 🔔 Delegates
 
 <table><tr><td>
-This section was written in conjunction with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 ![Delegates](static/img/Delegates.png)
 
-Delegates are a powerful feature of the Unreal Engine that allows developers to create and manage events in a flexible and modular way. A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
+A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
+
+In Blueprint, you might have encounter "**Event Dispatcher**", which under the hood is just multicast delegate.
+
+There are three types of delegates, that Unreal uses. **Single**, **Multicast** and **Dynamic**.
+
+Dynamic or non-dynamic essential means if we want to support binding functions inside Blueprint via reflection system[^1], which tends to be slower in performance. And non-dynamic only support binding function inside C++ code.
+
+Then, we have multicast and single delegate. Multicast support multiple listener and execute them all at once. Whist the single delegate only support one listener at all time.
+
+You can read more about multicast delegates, at [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/multicast-delegates-in-unreal-engine/).
 
 ### Define a delegate type
 
-The first step in using delegates is to define a delegate type. This is done using the `DECLARE_DYNAMIC_MULTICAST_DELEGATE()` macro, which takes the name of the delegate as an argument.
+To define a dynamic multicast delegate, you can declare via this macro: `DECLARE_DYNAMIC_MULTICAST_DELEGATE()`, which takes the name of the delegate as an argument.
 
 ```cpp
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FMyDelegate);
 ```
 
+To define a non-dynamic multicast delegate, you can declare via this macro: `DECLARE_MULTICAST_DELEGATE()`, which takes the name of the delegate as an argument.
+
+```cpp
+DECLARE_MULTICAST_DELEGATE(FMyDelegate);
+```
+
+To define a dynamic single delegate, you can declare via this macro: `DECLARE_DYNAMIC_DELEGATE()`, which takes the name of the delegate as an argument.
+
+```cpp
+DECLARE_DYNAMIC_DELEGATE(FMyDelegate);
+```
+
+To define a non-dynamic single delegate, you can declare via this macro: `DECLARE_DELEGATE()`, which takes the name of the delegate as an argument.
+
+```cpp
+DECLARE_DELEGATE(FMyDelegate);
+```
+
 ### Declare a delegate variable
 
-Once you have defined a delegate type, you can declare a delegate variable of that type. This is done using the UPROPERTY() macro to ensure that the delegate variable is properly managed by the Unreal Engine.
+Once you have defined a delegate type, you can declare a delegate variable of that type. This is done using the `UPROPERTY()` macro to ensure that the delegate variable is properly managed by the Unreal Engine.
 
 ```cpp
 UPROPERTY(BlueprintAssignable)
@@ -6861,33 +7031,103 @@ FMyDelegate MyEvent;
 
 ### Bind functions to the delegate
 
-With the delegate variable declared, you can now bind one or more functions to it using the BindDynamic() method. This method takes a reference to the object that owns the function, the name of the function, and an optional user data parameter.
+With the dynamic delegate variable declared, you can now bind one or more functions to it using the `BindDynamic()` macro.
+
+These are macros, will helps you to write smaller code. Behind the scenes, it will automatically generates the function name string. The macro takes a reference to the object that owns the function, the name of the function, and an optional user data parameter.
+
+* `BindDynamic(UserObject, FuncName, ...)`
+* `AddDynamic(UserObject, FuncName)`
+* `RemoveDynamic(UserObject, FuncName)`
 
 ```cpp
 MyEvent.BindDynamic(this, &AMyActor::MyFunction);
 ```
 
+```cpp
+MyEvent.AddDynamic(this, &AMyActor::MyFunction);
+```
+
+```cpp
+MyEvent.RemoveDynamic(this, &AMyActor::MyFunction);
+```
+
+With some arguments:
+
+```cpp
+MyEvent.BindDynamic(this, &AMyActor::MyFunction, 100, true, TEXT("Hello, World!"));
+```
+
+<!-- DECLARE_DYNAMIC_DELEGATE[_RetVal, ...]( DelegateName ) -->
+<!-- TODO: Fix this -->
+
+Here is a list of binding functions for Non-Dynamic Single Delegate:
+
+* `Bind()` - Binds to an existing delegate object.
+* `BindLambda()` - Binds a functor. This is generally used for lambda functions.
+* `BindRaw()` - Binds a raw C++ pointer delegate. Since raw pointers do not use any sort of reference, calling `Execute()` or `ExecuteIfBound()` after deleting the target object is unsafe.
+* `BindStatic()` - Binds a raw C++ pointer global function delegate.
+* `BindSP()` - Binds a shared pointer-based member function delegate. Shared pointer delegates keep a weak reference to your object. You can use `ExecuteIfBound()` to call them.
+* `BindUFUnction()` - Lorem Ipsum
+* `BindUObject()` - Binds a `UObject` member function delegate. `UObject` delegates keep a weak reference to the `UObject` you target. You can use `ExecuteIfBound()` to call them.
+* `BindWeakLambda()` - Lorem Ipsum
+* `BindThreadSafeSP()` - Lorem Ipsum
+* `UnBind()` - Unbinds this delegate.
+
+And here is the list of binding functions for Non-Dynamic Multicast Delegate:
+
+* `Add()` - Adds a function delegate to this multi-cast delegate's invocation list.
+* `AddLambda()` - Lorem Ipsum
+* `AddRaw()` - Adds a raw C++ pointer delegate.
+* `AddStatic()` - Adds a raw C++ pointer global function delegate.
+* `AddSP()` - Adds a shared pointer-based (fast, not thread-safe) member function delegate. Shared pointer delegates keep a weak reference to your object.
+* `AddUObject()` - Adds a UObject-based member function delegate. UObject delegates keep a weak reference to your object.
+* `AddUFunction()` - Lorem Ipsum
+* `AddWeakLambda()` - Lorem Ipsum
+* `AddThreadSafeSP()` - Lorem Ipsum
+* `Remove()` - Removes a function from this multi-cast delegate's invocation list (performance is O(N)). Note that the order of the delegates may not be preserved!
+* `RemoveAll()` - Removes all functions from this multi-cast delegate's invocation list that are bound to the specified UserObject. Note that the order of the delegates may not be preserved!
+
 ### Trigger the delegate
 
-Finally, you can trigger the delegate by calling the broadcast() method. This will cause all bound functions to be called with the specified parameters.
+Finally, you can trigger the multicast delegate by calling the `Broadcast()` method. This will cause all bound functions to be called with the specified parameters.
 
 ```cpp
 MyEvent.Broadcast();
 ```
 
-By using delegates, developers can create modular and flexible event systems that can be easily extended and customized. Delegates can be used to trigger events in response to user input, game state changes, or other types of events, and can be used to implement a wide variety of gameplay features and mechanics.
+And you can also trigger a single delegate, by calling the `Execute()` or `ExecuteIfBound()` method. This will cause the bound function to be called with the  specified parameters.
+
+```cpp
+// If delegate is not bound, this will cause a crash.
+MyEvent.Execute();
+
+// Use this function, if you are unsure, if the delegate is bound or not.
+MyEvent.ExecuteIfBound();
+
+// You can also do manual checking, before calling ´Execute()´ function.
+bool bIsBound = MyEvent.IsBound();
+```
+
+### Summary
+
+By using delegates, developers can create modular and flexible event systems that can be easily extended and customized.
+
+Delegates can be used to trigger events in response to user input, game state changes, or other types of events, and can be used to implement a wide variety of gameplay features and mechanics.
 
 > [!TIP]
 > Here is an [online tool by BenUI](https://benui.ca/unreal/delegates-advanced/#delegate-signature-tool) for helping you to create a delegate macro.
 
 > [!TIP]
-> Try to **USE** delegates where ticking is not necessary. This help save on performance.
+> Try to **USE** delegates where ticking is not necessary. This help save on performance on tick
+
+> [!CAUTION]
+> If you don't remove the binding afterward, when the `UObject` gets destroyed. This will cause a memory leak. Since, the binding is still alive, even though the `UObject` not be alive.
 
 | Type                                         | Binds C++ Function | Binds `UFUNCTION` |
 | -------------------------------------------- | ------------------ | ----------------- |
 | Singlecast                                   | Yes                | Yes               |
 | Multicast                                    | Yes                | No                |
-| Event                                        | Yes                | ?                 |
+| ~~Event~~ (**OBSOLETE**)                                        | Yes                | ?                 |
 | Dynamic Singlecast                           | No                 | Yes               |
 | Dynamic Multicast                            | No                 | Yes               |
 | `FTimerDelegate` (Singlecast)                | Yes                | Yes               |
@@ -6972,11 +7212,11 @@ UBUITween::Create( SomeWidget, 0.2f )
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
-You can read more about Unreal Engine's modules [here](https://docs.unrealengine.com/5.1/en-US/unreal-engine-modules/)!
-
 In Unreal Engine, a module is a way to organize game code into smaller pieces, similar to Unity's Assembly Definitions. By separating code into modules, you can reduce compile times and keep your code more organized.
 
 For example, you could create a module called `Vehicle` to contain all the code related to the vehicle system. This would allow you to isolate the vehicle code from other parts of the game, such as the inventory system, and make it easier to maintain and update.
+
+You can read more about Unreal Engine's modules [here](https://docs.unrealengine.com/5.1/en-US/unreal-engine-modules/)!
 
 > [!NOTE]
 > Unreal Engine modules are not related to C++ 20 modules.
@@ -6985,15 +7225,15 @@ Here is a list of Unreal Engine's modules:
 
 <table><tr><td>
 
-* Core
-* CoreUObject
-* InputCore
-* Engine
-* UnrealEd
-* SlateCore
-* Slate
-* UMG
-* UMGEditor
+-   Core
+-   CoreUObject
+-   InputCore
+-   Engine
+-   UnrealEd
+-   SlateCore
+-   Slate
+-   UMG
+-   UMGEditor
 
 </td></tr></table>
 
@@ -7007,6 +7247,107 @@ There should also be a [ModuleName].Build.csfile for each module in its root fol
 
 ![image](https://user-images.githubusercontent.com/61658252/236797649-1acb5aac-ab05-4676-86a4-959e443de404.png)
 
+### Module code
+
+```csharp
+// Gameplay.Build.cs
+
+using UnrealBuildTool;
+
+public class Gameplay : ModuleRules
+{
+    public Gameplay(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PublicIncludePaths.AddRange(new string[]
+        {
+            // ... add public include paths required here ...
+        });
+
+
+        PrivateIncludePaths.AddRange(new string[]
+        {
+            // ... add other private include paths required here ...
+        });
+
+
+        PublicDependencyModuleNames.AddRange(new string[]
+        {
+            "Core",
+            // ... add other public dependencies that you statically link with here ...
+        });
+
+        PrivateDependencyModuleNames.AddRange(new string[]
+        {
+            // ... add private dependencies that you statically link with here ...
+
+            // NOTE, private dependencies will not be required to import in other modules
+            // This means, if you require a plugin but don't want to import in other modules, here is the list for that.
+        });
+
+        DynamicallyLoadedModuleNames.AddRange(new string[]
+        {
+            // ... add any modules that your module loads dynamically here ...
+        });
+    }
+}
+```
+
+```cpp
+// Private/GameplayModule.cpp
+
+#include "Modules/ModuleManager.h"
+
+// NOTE, this macro is handling the default implementation for a module setup.
+IMPLEMENT_MODULE(FDefaultModuleImpl, Gameplay);
+```
+
+If you require more setup for a module (callbacks on the editor), you must create a specific class for that.
+
+Here is a full setup of module class:
+
+```cpp
+// Private/GameplayModule.cpp
+
+#include "GameplayModule.h"
+
+#define LOCTEXT_NAMESPACE "FGameplayModule"
+
+void FGameplayModule::StartupModule()
+{
+	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
+}
+
+void FGameplayModule::ShutdownModule()
+{
+	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
+	// we call this function before unloading the module.
+}
+
+#undef LOCTEXT_NAMESPACE
+
+IMPLEMENT_MODULE(FGameplayModule, Gameplay)
+```
+
+```cpp
+// Public/GameplayModule.h
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Modules/ModuleManager.h"
+
+class FGameplayModule : public IModuleInterface
+{
+public:
+
+	/** IModuleInterface implementation */
+	void StartupModule() override;
+	void ShutdownModule() override;
+};
+```
+
 ### ♻️ Circular Dependency
 
 It's possible to encounter circular dependencies when multiple modules access the same module. This occurs when module A depends on module B, and module B also depends on module A.
@@ -7015,7 +7356,7 @@ To resolve circular dependencies, you can take several approaches:
 
 <table><tr><td>
 
-* One option is to use the `CircularlyReferencedDependentModules` statement in the [ModuleName].Build.cs file. You can read more about [here](https://forums.unrealengine.com/t/workaround-for-circular-dependencies/264945)!
+-   One option is to use the `CircularlyReferencedDependentModules` statement in the [ModuleName].Build.cs file. You can read more about [here](https://forums.unrealengine.com/t/workaround-for-circular-dependencies/264945)!
 
 Here's an example:
 
@@ -7036,13 +7377,13 @@ public class ModuleB : ModuleRules
 }
 ```
 
-* Another option is to create another module to further separate the code into smaller pieces.
+-   Another option is to create another module to further separate the code into smaller pieces.
 
-* Finally, you can also refactor your modules to avoid circular dependencies altogether.
+-   Finally, you can also refactor your modules to avoid circular dependencies altogether.
 
 </td></tr></table>
 
-*The best solution will depend on your specific situation and the complexity of your code.*
+_The best solution will depend on your specific situation and the complexity of your code._
 
 ## 💡 Create custom plugin
 

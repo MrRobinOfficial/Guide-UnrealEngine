@@ -2,6 +2,8 @@
 
 <<[cheatsheets.md]
 
+<<[plugins.md]
+
 <<[getting_started_with_cpp.md]
 
 <<[summary_of_cpp_and_programming_world.md]
