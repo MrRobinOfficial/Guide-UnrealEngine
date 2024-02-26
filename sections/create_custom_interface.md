@@ -1,3 +1,5 @@
+<!-- prettier-ignore-start -->
+
 ## 🏛 Create custom interface
 
 <table><tr><td>
@@ -61,7 +63,8 @@ public:
 };
 ```
 
-> [!WARNING] > `BlueprintNativeEvent` allows you to overwrite the function in either C++ or Blueprint, but if you use `BlueprintImplementableEvent` it only allows the function to only be overwritten in Blueprint.
+> [!WARNING]
+> `BlueprintNativeEvent` allows you to overwrite the function in either C++ or Blueprint, but if you use `BlueprintImplementableEvent` it only allows the function to only be overwritten in Blueprint.
 
 ### Extending the interface function:
 
@@ -138,4 +141,7 @@ void DestroyVehicle(const TScriptInterface<IVehicle>& Vehicle)
 }
 ```
 
-> [!TIP] > `TScriptInterface` inside Blueprint is nicer to look at, than C++ version.
+> [!TIP]
+> `TScriptInterface` inside Blueprint is nicer to look at, than C++ version.
+
+<!-- prettier-ignore-end -->
