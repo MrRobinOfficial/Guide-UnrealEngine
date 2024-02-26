@@ -1,3 +1,5 @@
+<!-- prettier-ignore-start -->
+
 ## 🌍 Summary of C++ and Programming World
 
 <details>
@@ -1965,3 +1967,5 @@ int main()
 | Factorial (O(n!))   | The time grows factorially with the input size.          | Recursive permutation algorithm. | Extremely slow, highly impractical for most cases.   |
 
 </details>
+
+<!-- prettier-ignore-end -->

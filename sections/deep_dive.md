@@ -1,3 +1,5 @@
+<!-- prettier-ignore-start -->
+
 ## 🗝️ Deep dive
 
 <table><tr><td>
@@ -981,7 +983,8 @@ void FMyTickableThing::Tick( float DeltaTime )
 > [!NOTE]
 > Tick any object you want, `UObject` or not!
 
-> [!WARNING] > `USTRUCT` don't support expose functions with UHT[^2].
+> [!WARNING]
+> `USTRUCT` don't support expose functions with UHT[^2].
 
 #### 🔌 Direct references
 
@@ -1015,3 +1018,5 @@ const int& f = e;
 
 f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
 ```
+
+<!-- prettier-ignore-end -->

@@ -566,6 +566,8 @@ This section was NOT written in conjunction with ChatGPT.
 
 * Requires more storage: When working with C++ within Unreal Engine, it often involves using "Editor Symbols for debugging," consuming approximately 60 GB of storage. Similarly, if you opt to build Unreal Engine from its source code (on their github page), you'll require around 200 GB of storage space.
 
+<!-- prettier-ignore-start -->
+
 ## 🌍 Summary of C++ and Programming World
 
 <details>
@@ -2534,6 +2536,8 @@ int main()
 
 </details>
 
+<!-- prettier-ignore-end -->
+
 ## 🚧 Blueprint vs C++
 
 <table><tr><td>
@@ -3040,6 +3044,8 @@ This section was written in conjunction with ChatGPT.
 * `repo` = Repository
 
 </td></tr></table>
+
+<!-- prettier-ignore-start -->
 
 ## 🧱 Data Types
 
@@ -5693,6 +5699,8 @@ if (SoftPtr.IsValid())
 
 </details>
 
+<!-- prettier-ignore-end -->
+
 ## 💎 Unreal Header Tool
 
 <table><tr><td>
@@ -6387,6 +6395,8 @@ One of the key benefits of the header system is that it allows for very efficien
 
 You can read more about [reflection system from their docs](https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/).
 
+<!-- prettier-ignore-start -->
+
 ## 🗑️ Garbage Collection
 
 <table><tr><td>
@@ -6475,6 +6485,8 @@ UObjectBase::IsValidLowLevelFast();
 ```
 
 Should not be used for Garbage Collection checks, as on `UPROPERTY` pointers it will always return true, while on raw pointer it will return true or false depending on whether the object had already been destroyed, but in the latter case it's also likely to also crash the application as the pointed memory could have been overwritten.
+
+<!-- prettier-ignore-end -->
 
 ## 💾 Soft vs hard references
 
@@ -8380,6 +8392,8 @@ Lorem Ipsum
 
 Lorem Ipsum
 
+<!-- prettier-ignore-start -->
+
 ## 🗝️ Deep dive
 
 <table><tr><td>
@@ -9363,7 +9377,8 @@ void FMyTickableThing::Tick( float DeltaTime )
 > [!NOTE]
 > Tick any object you want, `UObject` or not!
 
-> [!WARNING] > `USTRUCT` don't support expose functions with UHT[^2].
+> [!WARNING]
+> `USTRUCT` don't support expose functions with UHT[^2].
 
 #### 🔌 Direct references
 
@@ -9397,6 +9412,8 @@ const int& f = e;
 
 f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
 ```
+
+<!-- prettier-ignore-end -->
 
 ## 📛 Console Commands
 

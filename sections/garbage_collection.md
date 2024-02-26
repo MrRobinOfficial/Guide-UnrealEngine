@@ -1,3 +1,5 @@
+<!-- prettier-ignore-start -->
+
 ## 🗑️ Garbage Collection
 
 <table><tr><td>
@@ -86,3 +88,5 @@ UObjectBase::IsValidLowLevelFast();
 ```
 
 Should not be used for Garbage Collection checks, as on `UPROPERTY` pointers it will always return true, while on raw pointer it will return true or false depending on whether the object had already been destroyed, but in the latter case it's also likely to also crash the application as the pointed memory could have been overwritten.
+
+<!-- prettier-ignore-end -->

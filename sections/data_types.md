@@ -1,3 +1,5 @@
+<!-- prettier-ignore-start -->
+
 ## 🧱 Data Types
 
 <table><tr><td>
@@ -2649,3 +2651,5 @@ if (SoftPtr.IsValid())
 | TSoftClassPtr      | UObject Classes    | Soft pointer for non-owning references to UClass-derived objects. Allows loading the class when needed, but won't prevent it from being garbage collected. |
 
 </details>
+
+<!-- prettier-ignore-end -->
