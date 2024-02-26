@@ -5114,7 +5114,6 @@ UE_LOG(LogTemp, Log, TEXT("Sum=%i"), SumArray(StackAllocatedArray));
 UE_LOG(LogTemp, Log, TEXT("Sum=%i"), SumArray(CArray));
 ```
 
-<p>
 > [!WARNING]
 > `TArrayView` is a fixed size and independent array. Meaning, it will not affect from its original assignment, nor does it support Add() or Remove() functions.
 
@@ -5123,7 +5122,6 @@ UE_LOG(LogTemp, Log, TEXT("Sum=%i"), SumArray(CArray));
 
 > [!CAUTION]
 > Avoid using `TArrayView` with a temporary array variable. Since, the array can go out of scope and corrupt `TArrayView`. Since the view is relying on the array's memory block.
-</p>
 
 ```cpp
 #include "Containers/ArrayView.h"
