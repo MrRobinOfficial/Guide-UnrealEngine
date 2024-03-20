@@ -23,13 +23,13 @@ Data hiding is a principle closely related to encapsulation. It involves conceal
 
 #### Inheritance
 
-![Inheritance](static/img/Inheritance.png)
+![Inheritance](../static/img/Inheritance.png)
 
 Inheritance is a mechanism in OOP that allows new classes (derived classes or subclasses) to inherit properties and behaviors from existing classes (base classes or superclasses). Inheritance promotes code reuse, as derived classes can inherit and extend the functionality of their base classes. The derived classes can add new attributes and behaviors or override existing ones to customize the behavior of inherited members. Inheritance facilitates code organization, modularity, and the creation of hierarchical relationships between classes.
 
 #### Polymorphism
 
-![Polymorphism](static/img/Polymorphism.png)
+![Polymorphism](../static/img/Polymorphism.png)
 
 Polymorphism is a fundamental concept in object-oriented programming (OOP) that allows objects of different classes to be treated as objects of a common base class. It enables you to write code that can work with objects of multiple types in a uniform manner.
 
