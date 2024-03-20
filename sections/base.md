@@ -6,7 +6,9 @@
 
 <<[getting_started_with_cpp.md]
 
-<<[summary_of_cpp_and_programming_world.md]
+## 🌍 Summary of C++ and Programming World
+
+If you wish to extend your knowledge about C++ and general programming principles and ideology, I highly recommend reading about this [section]().
 
 <<[blueprint_vs_cpp.md]
 
