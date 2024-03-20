@@ -467,7 +467,7 @@ This section was NOT written in conjunction with ChatGPT.
 
 ## 🌍 Summary of C++ and Programming World
 
-If you wish to extend your knowledge about C++ and general programming principles and ideology, I highly recommend reading about this [section]().
+If you wish to extend your knowledge about C++ and general programming principles and ideology, I highly recommend reading about this [section](https://github.com/MrRobinOfficial/Guide-UnrealEngine/blob/dev/sections/summary_of_cpp_and_programming_world.md).
 
 ## 🚧 Blueprint vs C++
 

@@ -2,9 +2,6 @@
 
 ## 🌍 Summary of C++ and Programming World
 
-<details>
-  <summary>Click to expand</summary>
-
 ### ✨ Object-Oriented Programming
 
 <table><tr><td>
@@ -1965,7 +1962,5 @@ int main()
 | Quadratic (O(n^2)) | The time grows quadratically with the input size.         | Nested loops.            | Becomes inefficient for large input, grows rapidly.    |
 | Exponential (O(2^n)) | The time grows exponentially with the input size.         | Recursive Fibonacci.     | Very slow, becomes impractical for even small inputs.  |
 | Factorial (O(n!))   | The time grows factorially with the input size.          | Recursive permutation algorithm. | Extremely slow, highly impractical for most cases.   |
-
-</details>
 
 <!-- prettier-ignore-end -->
