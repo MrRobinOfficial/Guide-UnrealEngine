@@ -160,6 +160,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 - [🏛 Create custom class](#-create-custom-class)
   - [AActor](#aactor)
   - [UActorComponent](#uactorcomponent)
+  - [USceneComponent](#uscenecomponent)
   - [APawn](#apawn)
   - [UObject](#uobject)
 - [🏛 Create custom interface](#-create-custom-interface)
@@ -3321,49 +3322,50 @@ You can watch this video about [references in C++ from Low Level Learning](https
 Here's an example:
 
 ```cpp
-#include <iostream>
-#include <string>
-
-struct Coords // Test struct and class
+// Test struct and class
+struct Coords
 {
-public:
-    Coords(int x, int y)
-        : X(x)
-        , Y(y) {}
+    // Constructor: Initialize X and Y with given values
+    Coords(int x, int y) : X(x), Y(y) {}
 
 public:
-    int X;
-    int Y;
+    int X; // X coordinate
+    int Y; // Y coordinate
 
 public:
+    // Return a string representation of this Coords struct
     std::string toString() const
     {
-        return "(" + std::to_string(X) +  ", " + std::to_string(Y) + ")";
+        // Use stringstream to concatenate strings
+        std::stringstream ss;
+        ss << "(" << X << ", " << Y << ")";
+        return ss.str();
     }
 };
 
 int main()
 {
-    Coords A(1, 2);
-    Coords& B = A; // Test value type and reference type
-    Coords* C = &B;
-    Coords* D = new Coords(5, 10);
-    Coords* E = &(*C); // Or &*C;
+    Coords A(1, 2); // Create struct A
+    Coords& B = A; // B is a reference to A
+    Coords* C = &B; // C is a pointer to A
+    Coords* D = new Coords(5, 10); // Create a new Coords struct with new
+    Coords* E = &(*C); // E is a pointer to what C points to
 
-    B.X = 69;
-    C->Y = 1337;
-    D->Y = D->Y * 2;
+    B.X = 69; // Modify X of A through B
+    C->Y = 1337; // Modify Y of A through C
+    D->Y = D->Y * 2; // Modify Y of dynamically allocated struct
 
-    E = &*D;
-    E->X = 10;
+    E = &*D; // Make E point to what D points to
+    E->X = 10; // Modify X of dynamically allocated struct
 
+    // Print statements
     std::cout << A.toString() << std::endl;
     std::cout << B.toString() << std::endl;
     std::cout << C->toString() << std::endl;
     std::cout << D->toString() << std::endl;
     std::cout << E->toString() << std::endl;
 
-    delete D; // Remember: Delete raw pointers
+    delete D; // Deallocate memory of dynamically allocated struct
 
     return 0;
 }
@@ -4016,11 +4018,29 @@ Constructors are special member functions in C++ that are automatically called w
 Here's an example:
 
 ```cpp
+/**
+ * This is a simple C++ class that demonstrates how to define a constructor.
+ * Constructors are special member functions in C++ that are automatically
+ * called when an object is created. They are used to initialize the object's
+ * data members and set up its initial state.
+ *
+ * In Unreal Engine, you can define constructors and destructors in C++ classes
+ * just like in standard C++. Constructors are useful for initializing
+ * properties and setting up components when an object is created, while
+ * destructors can be used for cleanup tasks like releasing resources or
+ * stopping background processes when an object is destroyed.
+ *
+ * NOTE; Don't clean up UObject memory! As Unreal's garbage collector does this for you. Interfering with Unreal's GC can cause issue and even crashes.
+ */
 class RegularClass
 {
     RegularClass()
     {
-        // Constructor called
+        // This constructor is called automatically,
+        // when an instance of RegularClass is created.
+
+        // It is used to initialize the object's data members,
+        // and set up its initial state.
     }
 };
 ```
@@ -4032,11 +4052,25 @@ Destructors are another type of special member function in C++ that is automatic
 Here's an example:
 
 ```cpp
+/**
+ * The destructor is a special member function in C++ that is automatically called
+ * when an object is destroyed or goes out of scope. It is used to perform cleanup
+ * tasks, release resources, and deallocate memory allocated during the object's
+ * lifetime.
+ *
+ * In Unreal Engine, it is generally advised not to use destructors explicitly
+ * for memory cleanup. Instead, Unreal Engine provides other mechanisms, such as
+ * `BeginDestroy` and `EndPlay`, to handle object cleanup and resource release when
+ * an object is destroyed or removed from the game world.
+ */
 class RegularClass
 {
+public:
+
     ~RegularClass()
     {
-        // Destructor called
+        // Destructor called when an instance of RegularClass is destroyed.
+        // Or goes out of scope (curly brackets).
     }
 };
 ```
@@ -4145,20 +4179,116 @@ You can read more about [Actor's lifecycle at Unreal's docs](https://docs.unreal
 By inheriting from `AActor` class, you have these popular functions:
 
 ```cpp
-// Safe way to initialize components inside the editor
-// Calls after the class's constructor
+/**
+ * This function is called after the class's constructor, inside the Editor.
+ * It's a safe way to initialize components inside the editor.
+ */
 void PostInitComponents();
 
-// "Awake/Start" method
-// Calls when being spawned or respawned
+/**
+ * "Awake/Start" method
+ *
+ * This function is called when an actor is spawned or respawned.
+ *
+ * It's the perfect place to set up default values for your actor's
+ * properties, initialize components, and start any asynchronous work
+ * that needs to occur when the actor is first created.
+ */
 void BeginPlay();
 
-// "Update" method
+/**
+ * "Update" method
+ *
+ * This function is called every frame, with the time since the last
+ * update as its parameter.
+ *
+ * Use this function to update your actor's state, like checking
+ * whether it's colliding with something or not.
+ *
+ * NOTE; Try to avoid overusing Tick() function. Since, Unreal's core logic, is simply as runs for loop and calling each function for each lickable UObject. Which can be very expensive, with many and unnecessary update calls.
+ * Here are some tips to overcome this issue:
+ *      - Change your workflow to an event based driven system. Either by using delegates or single call functions.
+ *      - Change your tick interval to a slower interval. If you require for UObject to tick, but don't require updating a single frame (then this is a perfect fit).
+ *
+ * @param DeltaTime Time since last update
+ */
 void Tick(float DeltaTime);
 
-// "Destroy" method
-// Calls when despawning or when being force to destroy
+/**
+ * "Destroy" method
+ *
+ * This function is called when an actor is destroyed, or when it's
+ * forced to be destroyed (e.g. when its outermost `UWorld` is shut
+ * down).
+ *
+ * It's a good place to clean up any resources that your actor
+ * allocated during its lifetime. Like delegates (NOTE; some delegates are bind directly to UObject and don't require to unbind directly).
+ */
 void EndPlay();
+
+/**
+ * Returns the location of the RootComponent of this Actor
+ *
+ * @return Location of the RootComponent
+ */
+FVector GetActorLocation() const;
+
+/**
+ * Returns the rotation of the RootComponent of this Actor
+ *
+ * @return Rotation of the RootComponent
+ */
+FRotator GetActorRotation() const;
+
+/**
+ * Returns the Actor's world-space scale.
+ *
+ * @return The world-space scale of the actor
+ */
+FVector GetActorScale3D() const;
+
+/**
+ * Getter for the cached world pointer, will return null if the actor is not actually spawned in a level
+ *
+ * @return The world pointer
+ */
+UWorld* GetWorld() const;
+
+/**
+ * Get the owner of this Actor, used primarily for network replication.
+ *
+ * @return The owner of this Actor
+ */
+AActor* GetOwner() const;
+
+/**
+ * Find all Actors which are attached directly to a component in this actor
+ *
+ * @param[out] OutActors       The array to fill with the attached actors
+ * @param bResetArray          Whether to reset the array before adding new Actors
+ * @param bRecursivelyIncludeAttachedActors Whether to include attached actors of attached actors also
+ */
+void GetAttachedActors(TArray<AActor*>& OutActors, bool bResetArray = true, bool bRecursivelyIncludeAttachedActors = false) const;
+
+/**
+ * Get all components derived from specified ComponentClass and fill in the OutComponents array with the result.
+ *
+ * @tparam AllocatorType       The allocator type to use for OutComponents
+ * @tparam ComponentType       The type of the components to get
+ * @param ComponentClass       The class of the components to get
+ * @param[out] OutComponents  The array to fill with the found components
+ * @param bIncludeFromChildActors Whether to include components from Child Actors also
+ */
+template<class AllocatorType, class ComponentType>
+void GetComponents(TSubclassOf<UActorComponent> ComponentClass, TArray<ComponentType*, AllocatorType>& OutComponents, bool bIncludeFromChildActors = false) const;
+
+/**
+ * Searches components array and returns first encountered component of the specified class
+ *
+ * @param ComponentClass    The class of the component to search for
+ * @return The found component or nullptr if not found
+ */
+UActorComponent* GetComponentByClass(TSubclassOf<UActorComponent> ComponentClass) const;
 ```
 
 ### UActorComponent
@@ -4166,7 +4296,164 @@ void EndPlay();
 By inheriting from `UActorComponent` class, you have these popular functions:
 
 ```cpp
-// Code here
+/**
+ * Returns the owner of this component
+ *
+ * @return Owner of this component
+ */
+UObject* GetOwner() const;
+
+/**
+ * Returns the SceneComponent this component is attached to, or nullptr if not attached.
+ *
+ * @return The SceneComponent this component is attached to, or nullptr if not attached
+ */
+UWorld* GetWorld() const;
+
+/**
+ * Returns whether the component is active or not
+ */
+bool IsActive() const;
+
+/**
+ * Returns whether this component has tick enabled or not
+ */
+bool IsComponentTickEnabled() const;
+
+/**
+ * Activates the SceneComponent, should be overridden by native child classes.
+ *
+ * @param bReset If true, reset the component before activating it
+ */
+void Activate(bool bReset);
+
+/**
+ * Deactivates the SceneComponent.
+ */
+void Deactivate();
+
+/**
+ * Set this component's tick functions to be enabled or disabled.
+ *
+ * @param bEnabled If true, enable the tick functions, otherwise disable
+ */
+void SetComponentTickEnabled(bool bEnabled);
+
+/**
+ * Sets the tick interval for this component's primary tick function.
+ *
+ * @param TickInterval The tick interval in seconds
+ */
+void SetComponentTickInterval(float TickInterval);
+
+/**
+ * Function called every frame on this ActorComponent.
+ *
+ * @param DeltaTime The time since the last frame in seconds
+ * @param TickType The kind of tick this is (LEVELTICK_All, LEVELTICK_Editor, LEVELTICK_TimeOnly)
+ * @param ThisTickFunction Pointer to the original function that is being called
+ */
+void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction);
+```
+
+### USceneComponent
+
+By inheriting from `USceneComponent` class, you have these popular functions:
+
+```cpp
+/**
+ * Returns the SceneComponent this component is attached to, or nullptr if not attached.
+ *
+ * @return The SceneComponent this component is attached to, or nullptr if not attached
+ */
+USceneComponent* GetAttachmentRoot() const;
+
+/**
+ * Detaches this component from its parent component.
+ *
+ * @param bMaintainWorldTransform Whether to maintain the world transform of this component
+ */
+void DetachFromComponent(bool bMaintainWorldTransform = false);
+
+/**
+ * Attaches this component to the supplied parent component.
+ *
+ * @param Parent                The component to attach to
+ * @param SocketName            If the parent is a USkeletalMeshComponent, this is the name of the socket to attach to
+ * @param AttachLocation        The location in world space to attach this component
+ */
+void AttachToComponent(USceneComponent* Parent, FName SocketName = NAME_None, const FAttachmentTransformRules& AttachRules = AttachmentTransformRules::KeepRelativeTransform);
+
+/**
+ * Attaches this component to the supplied parent component.
+ *
+ * @param Parent                The component to attach to
+ * @param AttachLocation        The location in world space to attach this component
+ */
+void AttachToComponent(USceneComponent* Parent, const FTransform& AttachLocation, const FAttachmentTransformRules& AttachRules  FAttachmentTransformRules::KeepRelativeTransform);
+
+/**
+ * Attaches this component to the supplied parent component.
+ *
+ * @param Parent                The component to attach to
+ */
+void AttachTo(USceneComponent* Parent);
+
+/**
+ * Attaches this component to the supplied parent component.
+ *
+ * @param Parent                The component to attach to
+ */
+void AttachTo(AActor* Parent);
+
+/**
+ * Attaches this component to the supplied parent component.
+ *
+ * @param Parent                The component to attach to
+ */
+void AttachToComponent(UActorComponent* Parent, const FAttachmentTransformRules& AttachRules = AttachmentTransformRules::KeepRelativeTransform);
+
+/**
+ * Attaches this component to the supplied parent component.
+ *
+ * @param Parent                The component to attach to
+ */
+void AttachToComponent(UActorComponent* Parent, const FTransform& AttachLocation, const FAttachmentTransformRules& AttachRules  FAttachmentTransformRules::KeepRelativeTransform);
+
+/**
+ * Attaches this component to the supplied parent component.
+ *
+ * @param Parent                The component to attach to
+ */
+void AttachTo(UActorComponent* Parent);
+
+/**
+ * Returns true if this component is currently attached to the supplied component
+ *
+ * @param InComponent           The component to check against
+ * @return                      true if this component is currently attached to InComponent
+ */
+bool IsAttachedTo(const USceneComponent* InComponent) const;
+
+/**
+ * Returns true if this component is currently attached to the supplied component
+ *
+ * @param InComponent           The component to check against
+ * @return                      true if this component is currently attached to InComponent
+ */
+bool IsAttachedTo(const UActorComponent* InComponent) const;
+
+/**
+ * Returns the Component to World transform, calculated from this component's AttachmentTransform,
+ * unless overridden by any parents.
+ */
+const FTransform& GetComponentToWorld() const;
+
+/**
+ * Returns the Component to World transform, calculated from this component's AttachmentTransform,
+ * unless overridden by any parents.
+ */
+FTransform CalcNewComponentToWorld(const FTransform& NewAttachmentTransform) const;
 ```
 
 ### APawn
@@ -4174,7 +4461,57 @@ By inheriting from `UActorComponent` class, you have these popular functions:
 By inheriting from `APawn` class, you have these popular functions:
 
 ```cpp
-// Code here
+
+/**
+ * Add movement input along the given world direction vector (usually normalized) scaled by 'ScaleValue'.
+ *
+ * This function is used to control movement of an actor without using physics or movement components.
+ * For example, it can be used to move a character in a top-down game.
+ *
+ * @param WorldDirection Direction vector (in world space) in which movement is input.
+ * @param ScaleValue Scale value for the input.
+ * @param bForce If `true`, forces the input to be applied even if the component is not moving.
+ */
+void AddMovementInput(FVector WorldDirection, float ScaleValue, bool bForce);
+
+/**
+ * Add input (affecting Yaw) to the Controller's ControlRotation, if it is a local PlayerController.
+ *
+ * This function is used to control rotation of an actor without using a camera component.
+ * For example, it can be used to rotate a character in a first-person shooter game.
+ *
+ * @param Val Input value (affecting Yaw) to be applied to the Controller's ControlRotation.
+ */
+void AddControllerYawInput(float Val);
+
+/**
+ * Add input (affecting Pitch) to the Controller's ControlRotation, if it is a local PlayerController.
+ *
+ * This function is used to control rotation of an actor without using a camera component.
+ * For example, it can be used to rotate a character in a first-person shooter game.
+ *
+ * @param Val Input value (affecting Pitch) to be applied to the Controller's ControlRotation.
+ */
+void AddControllerPitchInput(float Val);
+
+/**
+ * Add input (affecting Roll) to the Controller's ControlRotation, if it is a local PlayerController.
+ *
+ * This function is used to control rotation of an actor without using a camera component.
+ * For example, it can be used to rotate a character in a first-person shooter game.
+ *
+ * @param Val Input value (affecting Roll) to be applied to the Controller's ControlRotation.
+ */
+void AddControllerRollInput(float Val);
+
+/**
+ * Returns velocity (in cm/s (Unreal Units/second) of the rootcomponent if it is either using physics or has an associated ovementComponent
+ *
+ * This function is used to get the current velocity of an actor.
+ *
+ * @return Current velocity of the actor's root component (in cm/s (Unreal Units/second) or (0, 0, 0) if it doesn't have any ovement components.
+ */
+FVector GetVelocity();
 ```
 
 ### UObject
@@ -4182,7 +4519,44 @@ By inheriting from `APawn` class, you have these popular functions:
 By inheriting from `UObject` class, you have these popular functions:
 
 ```cpp
-// Code here
+/**
+ * Returns the name of this object (with no path information)
+ *
+ * Name of the object.
+ *
+ * @return Name of the object (with no path information).
+ */
+FString GetName() const;
+
+/**
+ * Returns the UClass that defines the fields of this object
+ *
+ * @return UClass that defines the fields of this object.
+ */
+UClass* GetClass();
+
+/**
+ * Returns the UObject this object resides in (e.g. parent object)
+ *
+ * @return UObject this object resides in (e.g. parent object).
+ */
+UObject* GetOuter();
+
+/**
+ * Checks to see if the object appears to be valid
+ *
+ * @return true if the object appears to be valid, false otherwise.
+ */
+bool IsValidLowLevel();
+
+/**
+ * Returns true if this object is of the specified type.
+ *
+ * @param SomeBase The class to check this object against.
+ * @return true if this object is of the specified type, false otherwise.
+ */
+template<typename OtherClassType>
+bool IsA(OtherClassType SomeBase) const;
 ```
 
 <!-- prettier-ignore-start -->

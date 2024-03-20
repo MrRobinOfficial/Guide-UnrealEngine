@@ -11,11 +11,29 @@ Constructors are special member functions in C++ that are automatically called w
 Here's an example:
 
 ```cpp
+/**
+ * This is a simple C++ class that demonstrates how to define a constructor.
+ * Constructors are special member functions in C++ that are automatically
+ * called when an object is created. They are used to initialize the object's
+ * data members and set up its initial state.
+ *
+ * In Unreal Engine, you can define constructors and destructors in C++ classes
+ * just like in standard C++. Constructors are useful for initializing
+ * properties and setting up components when an object is created, while
+ * destructors can be used for cleanup tasks like releasing resources or
+ * stopping background processes when an object is destroyed.
+ *
+ * NOTE; Don't clean up UObject memory! As Unreal's garbage collector does this for you. Interfering with Unreal's GC can cause issue and even crashes.
+ */
 class RegularClass
 {
     RegularClass()
     {
-        // Constructor called
+        // This constructor is called automatically,
+        // when an instance of RegularClass is created.
+
+        // It is used to initialize the object's data members,
+        // and set up its initial state.
     }
 };
 ```
@@ -27,11 +45,25 @@ Destructors are another type of special member function in C++ that is automatic
 Here's an example:
 
 ```cpp
+/**
+ * The destructor is a special member function in C++ that is automatically called
+ * when an object is destroyed or goes out of scope. It is used to perform cleanup
+ * tasks, release resources, and deallocate memory allocated during the object's
+ * lifetime.
+ *
+ * In Unreal Engine, it is generally advised not to use destructors explicitly
+ * for memory cleanup. Instead, Unreal Engine provides other mechanisms, such as
+ * `BeginDestroy` and `EndPlay`, to handle object cleanup and resource release when
+ * an object is destroyed or removed from the game world.
+ */
 class RegularClass
 {
+public:
+
     ~RegularClass()
     {
-        // Destructor called
+        // Destructor called when an instance of RegularClass is destroyed.
+        // Or goes out of scope (curly brackets).
     }
 };
 ```

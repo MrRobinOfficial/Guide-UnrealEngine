@@ -2320,49 +2320,50 @@ You can watch this video about [references in C++ from Low Level Learning](https
 Here's an example:
 
 ```cpp
-#include <iostream>
-#include <string>
-
-struct Coords // Test struct and class
+// Test struct and class
+struct Coords
 {
-public:
-    Coords(int x, int y)
-        : X(x)
-        , Y(y) {}
+    // Constructor: Initialize X and Y with given values
+    Coords(int x, int y) : X(x), Y(y) {}
 
 public:
-    int X;
-    int Y;
+    int X; // X coordinate
+    int Y; // Y coordinate
 
 public:
+    // Return a string representation of this Coords struct
     std::string toString() const
     {
-        return "(" + std::to_string(X) +  ", " + std::to_string(Y) + ")";
+        // Use stringstream to concatenate strings
+        std::stringstream ss;
+        ss << "(" << X << ", " << Y << ")";
+        return ss.str();
     }
 };
 
 int main()
 {
-    Coords A(1, 2);
-    Coords& B = A; // Test value type and reference type
-    Coords* C = &B;
-    Coords* D = new Coords(5, 10);
-    Coords* E = &(*C); // Or &*C;
+    Coords A(1, 2); // Create struct A
+    Coords& B = A; // B is a reference to A
+    Coords* C = &B; // C is a pointer to A
+    Coords* D = new Coords(5, 10); // Create a new Coords struct with new
+    Coords* E = &(*C); // E is a pointer to what C points to
 
-    B.X = 69;
-    C->Y = 1337;
-    D->Y = D->Y * 2;
+    B.X = 69; // Modify X of A through B
+    C->Y = 1337; // Modify Y of A through C
+    D->Y = D->Y * 2; // Modify Y of dynamically allocated struct
 
-    E = &*D;
-    E->X = 10;
+    E = &*D; // Make E point to what D points to
+    E->X = 10; // Modify X of dynamically allocated struct
 
+    // Print statements
     std::cout << A.toString() << std::endl;
     std::cout << B.toString() << std::endl;
     std::cout << C->toString() << std::endl;
     std::cout << D->toString() << std::endl;
     std::cout << E->toString() << std::endl;
 
-    delete D; // Remember: Delete raw pointers
+    delete D; // Deallocate memory of dynamically allocated struct
 
     return 0;
 }
