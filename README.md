@@ -57,12 +57,6 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 - [⚓ Naming Convention](#-naming-convention)
   - [Prefixes](#prefixes)
   - [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
-- [Common Language features](#common-language-features)
-- [Unreal Engine features](#unreal-engine-features)
-- [Networking](#networking)
-- [Tools/Frameworks](#toolsframeworks)
-- [Math](#math)
-- [Misc](#misc)
 - [🧱 Data Types](#-data-types)
   - [Characters](#characters)
   - [Booleans](#booleans)
@@ -103,10 +97,6 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
     - [TStaticHashTable](#tstatichashtable)
     - [TSortedMap](#tsortedmap)
     - [TList](#tlist)
-- [Cache misses](#cache-misses)
-- [Memory space](#memory-space)
-- [No helper functions](#no-helper-functions)
-- [Only goes forward](#only-goes-forward)
     - [TLinkedList](#tlinkedlist)
     - [TDoubleLinkedList](#tdoublelinkedlist)
     - [TQueue](#tqueue)
@@ -175,7 +165,6 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
     - [Examples](#examples-7)
   - [Manual memory management](#manual-memory-management)
   - [Collection and Mark as garbage](#collection-and-mark-as-garbage)
-- [Conditions](#conditions)
   - [Validation](#validation)
 - [💾 Soft vs hard references](#-soft-vs-hard-references)
   - [Soft References](#soft-references)
@@ -186,7 +175,6 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [Misc Library](#misc-library)
 - [📃 Macros](#-macros)
 - [📜 Logging](#-logging)
-- [Predefined log categories](#predefined-log-categories)
   - [UE_LOGFMT](#ue_logfmt)
   - [Log to game-view](#log-to-game-view)
 - [☑️ Assertions](#-assertions)
@@ -257,12 +245,6 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
     - [🔌 Direct references](#-direct-references)
 - [📛 Console Commands](#-console-commands)
 - [📌 Shortcuts](#-shortcuts)
-  - [Basic](#basic)
-  - [Outliner](#outliner)
-  - [Blueprint editor](#blueprint-editor)
-  - [Level editing](#level-editing)
-  - [Camera/transformation](#cameratransformation)
-  - [Tools](#tools)
 - [⚠️ Common Issues](#-common-issues)
   - [⛔ Compiler Error C2628](#-compiler-error-c2628)
   - [⛔ Compiler Error C2065](#-compiler-error-c2065)
@@ -833,9 +815,9 @@ For example, a boolean variable that controls whether a character is running mig
 
 Variable, method, and class names should be:
 
-* Clear
-* Unambiguous
-* Descriptive
+-   Clear
+-   Unambiguous
+-   Descriptive
 
 The greater the scope of the name, the greater the importance of a good, descriptive name. Avoid over-abbreviation.
 
@@ -888,15 +870,15 @@ EThing MyProperty;
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
-| Prefix | Class        | Subclasses                                                                |
-| ------ | ------------ | ------------------------------------------------------------------------- |
-| U      | `UObject`    | `UActorComponent`, `UPrimaryDataAsset`, `UEngine`, `UGameplayStatics`     |
-| A      | `AActor`     | `APawn`, `ACharaacter`, `AController`, `AHUD`, `AGameMode`                |
-| F      | Struct       | `FHitResult`, `FVector`, `FRotator`, `FTableRowBase`                      |
-| E      | Enum         | `EEnvQueryStatus`, `EConstraintType`, `EEndPlayReason`                    |
-| I      | Inteface     | `IInputDevice`, `IHapticDevice`, `ITargetPlatform`                        |
-| T      | Template     | `TSubclassOf<T>`, `TArray<T>`, `TSet<T>`, `TMap<T>`, `TMultiMap<T>`       |
-| G      | Global Class | `GEngine`, `GConfig`, `GWorld`, `GEngineLoop`, `GIsEditor`                |
+| Prefix | Class        | Subclasses                                                            |
+| ------ | ------------ | --------------------------------------------------------------------- |
+| U      | `UObject`    | `UActorComponent`, `UPrimaryDataAsset`, `UEngine`, `UGameplayStatics` |
+| A      | `AActor`     | `APawn`, `ACharaacter`, `AController`, `AHUD`, `AGameMode`            |
+| F      | Struct       | `FHitResult`, `FVector`, `FRotator`, `FTableRowBase`                  |
+| E      | Enum         | `EEnvQueryStatus`, `EConstraintType`, `EEndPlayReason`                |
+| I      | Inteface     | `IInputDevice`, `IHapticDevice`, `ITargetPlatform`                    |
+| T      | Template     | `TSubclassOf<T>`, `TArray<T>`, `TSet<T>`, `TMap<T>`, `TMultiMap<T>`   |
+| G      | Global Class | `GEngine`, `GConfig`, `GWorld`, `GEngineLoop`, `GIsEditor`            |
 
 > [!TIP]
 > Did you know that `F` prefix actually stands for `Float` (floating point). but it was inadvertently spread throughout and has lost its original meaning.
@@ -909,166 +891,177 @@ This section was written in conjunction with ChatGPT.
 
 <table><tr><td>
 
-## Common Language features
+Common Language features
 
-* `arg` = Argument
-* `arr` = Array
-* `async` = Asynchronous
-* `attr` = Attribute
-* `auth` = Authentication
+-   `arg` = Argument
+-   `arr` = Array
+-   `async` = Asynchronous
+-   `attr` = Attribute
+-   `auth` = Authentication
 
-* `btn` = Button
-* `buff` = Buffer
+-   `btn` = Button
+-   `buff` = Buffer
 
-* `ctx` = Context
-* `const` = Constant
+-   `ctx` = Context
+-   `const` = Constant
 
-* `db` = Database
-* `dest` = Destination
-* `desc` = Description
-* `doc` or `docs` = Documentation
-* `dir` = Direction or Directory (depending on the context)
+-   `db` = Database
+-   `dest` = Destination
+-   `desc` = Description
+-   `doc` or `docs` = Documentation
+-   `dir` = Direction or Directory (depending on the context)
 
-* `elem` = Element
-* `err` = Error
-* `e` or `evt` = Event
-* `exe` = Execution
-* `expr` = Expression
-* `ext` = Extension
+-   `elem` = Element
+-   `err` = Error
+-   `e` or `evt` = Event
+-   `exe` = Execution
+-   `expr` = Expression
+-   `ext` = Extension
 
-* `func` = Function
-* `fmt` = Format
+-   `func` = Function
+-   `fmt` = Format
 
-* `gen` = Generation
+-   `gen` = Generation
 
-* `hex` = Hexadecimal
+-   `hex` = Hexadecimal
 
-* `impl` = Implementation
-* `imp` = Import
-* `i` or `idx` = Index
-* `info` = Information
-* `init` = initialization
-* `it` or `iter` = Iterator
-* `ident` = Identifier
+-   `impl` = Implementation
+-   `imp` = Import
+-   `i` or `idx` = Index
+-   `info` = Information
+-   `init` = initialization
+-   `it` or `iter` = Iterator
+-   `ident` = Identifier
 
-* `lang` = Language
-* `len` = Length
-* `lvl` = Level
-* `lib` = Library
-* `loc` = Location
+-   `lang` = Language
+-   `len` = Length
+-   `lvl` = Level
+-   `lib` = Library
+-   `loc` = Location
 
-* `msg` = Message
+-   `msg` = Message
 
-* `num` = Number
+-   `num` = Number
 
-* `obj` = Object
-* `opt` = Option
-* `out` = Output
+-   `obj` = Object
+-   `opt` = Option
+-   `out` = Output
 
-* `pkg` = Package
-* `param` = Parameter
-* `px` = Pixel
-* `pos` = Position
-* `prev` = Previous
-* `priv` = Private
-* `pub` = Public
+-   `pkg` = Package
+-   `param` = Parameter
+-   `px` = Pixel
+-   `pos` = Position
+-   `prev` = Previous
+-   `priv` = Private
+-   `pub` = Public
 
-* `q` = Query
+-   `q` = Query
 
-* `rand` = Random
-* `rng` = Range
-* `ref` = Reference
-* `rm` or `rmv` = Remove
-* `req` = Request
-* `res` = Result or Response (depending on the context)
-* `ret` = Return
+-   `rand` = Random
+-   `rng` = Range
+-   `ref` = Reference
+-   `rm` or `rmv` = Remove
+-   `req` = Request
+-   `res` = Result or Response (depending on the context)
+-   `ret` = Return
 
-* `sel` = Selection
-* `sep` = Separator
-* `sec` = Sequence
-* `sol` = Solver
-* `src` = Source
-* `spec` = Specifier or Specification (depending on the context)
-* `std` = Standard
-* `stdio` = Standard Input Output
-* `stmt` = Statement
-* `stat` = Statistic
-* `str` = String
-* `sync` = Synchronization
+-   `sel` = Selection
+-   `sep` = Separator
+-   `sec` = Sequence
+-   `sol` = Solver
+-   `src` = Source
+-   `spec` = Specifier or Specification (depending on the context)
+-   `std` = Standard
+-   `stdio` = Standard Input Output
+-   `stmt` = Statement
+-   `stat` = Statistic
+-   `str` = String
+-   `sync` = Synchronization
 
-* `tmp` = Temperature
-* `temp` = Temporary
+-   `tmp` = Temperature
+-   `temp` = Temporary
 
-* `util` = Utility
+-   `util` = Utility
 
-* `val` = Value
-* `var` = Variable
+-   `val` = Value
+-   `var` = Variable
 
-* `ws` = White space
-* `win` = Windows
-* `wiz` = Wizard
+-   `ws` = White space
+-   `win` = Windows
+-   `wiz` = Wizard
 
-## Unreal Engine features
+---
 
-* `PC` - Indicates that a variable is a **PlayerController**
-* `LP` - Indicates that a variable is a **LocalPlayer**
-* `Char` = Indicates that a variable is a **Character** (not to be confused about `char` data type)
-* `Comp` - Indicates that a variable is a **component**
-* `Ptr` - Indicates that a variable is a **pointer** to an object.
-* `Ref` - Indicates that a variable is a **reference** to an object.
-* `dt` = Delta Time
+Unreal Engine features
 
-## Networking
-* `OAuth` or Open Authentication – An open standard for authenticating applications or websites to access the content.
-* `TCP` or Transmission Control Protocol – A standard defining how to exchange messages between systems.
-* `UDP` or User Datagram Protocol – A standard defining how to exchange messages between systems.
+-   `PC` - Indicates that a variable is a **PlayerController**
+-   `LP` - Indicates that a variable is a **LocalPlayer**
+-   `Char` = Indicates that a variable is a **Character** (not to be confused about `char` data type)
+-   `Comp` - Indicates that a variable is a **component**
+-   `Ptr` - Indicates that a variable is a **pointer** to an object.
+-   `Ref` - Indicates that a variable is a **reference** to an object.
+-   `dt` = Delta Time
 
-## Tools/Frameworks
+---
 
-* `IDE` or Integrated Development Environment - A software application that provides facilities to programmers for software development.
-* `JSON` or Javascript Object Notation – A file format, written with JavaScript[^14] notation, used widely for transferring data over the network.
-* `XML` or Extensible Markup Language – A markup language used mainly for storing and transporting data.
-* `SQL` or Structured Query Language – A query language for storage, retrieval, and modification of data.
-* `CSV` or Comma-separated values - A CSV file is a delimited text file that uses a comma to separate values.
+Networking
 
-## Math
+-   `OAuth` or Open Authentication – An open standard for authenticating applications or websites to access the content.
+-   `TCP` or Transmission Control Protocol – A standard defining how to exchange messages between systems.
+-   `UDP` or User Datagram Protocol – A standard defining how to exchange messages between systems.
 
-* `add` = Addition
-* `sub` = Subtraction
-* `mul` = Multiplication
-* `div` = Division
+---
 
-* `abs` = Absolute
-* `sin` = Sinus
-* `cos` = Cosinus
-* `tan` = Tangens
-* `rad` = Radian
-* `r` = Radius
+Tools/Frameworks
 
-* `frac` = Fraction
-* `freq` = Frequency
-* `long` = Longitude or Longitudinal (depending on the context)
-* `lat` = Latitude or Lateral (depending on the context)
+-   `IDE` or Integrated Development Environment - A software application that provides facilities to programmers for software development.
+-   `JSON` or Javascript Object Notation – A file format, written with JavaScript[^14] notation, used widely for transferring data over the network.
+-   `XML` or Extensible Markup Language – A markup language used mainly for storing and transporting data.
+-   `SQL` or Structured Query Language – A query language for storage, retrieval, and modification of data.
+-   `CSV` or Comma-separated values - A CSV file is a delimited text file that uses a comma to separate values.
 
-* `sqrt` = Square Root
-* `mod` = Modulo
-* `min` = Minimum
-* `max` = Maximum
-* `lerp` = Linear Interpolation
+---
 
-## Misc
+Math
 
-* `API` or Application Programming Interface – An interface for connecting multiple isolated components.
-* `SDK` or Software Development Kit – A collection of software often needed for development in a specific platform.
-* `TDD` or Test-driven development - TDD is a software development process that is based on the repetition of a short development cycle: requirements are turned into specific test cases, and then the code is fixed so that the tests pass.
-* `UUID` or Universally unique identifier - A UUID is a 128-bit number used to identify information in computer systems.
-* `GUI` or Graphic User Interface - A GUI or graphical user interface is a form of user interface that allows users to interact with electronic devices through a graphical interface.
-* `misc` = Miscellaneous
-* `os` = Operating System
-* `org` = Organization
-* `pwr` = Power
-* `pref` = Preference
-* `repo` = Repository
+-   `add` = Addition
+-   `sub` = Subtraction
+-   `mul` = Multiplication
+-   `div` = Division
+
+-   `abs` = Absolute
+-   `sin` = Sinus
+-   `cos` = Cosinus
+-   `tan` = Tangens
+-   `rad` = Radian
+-   `r` = Radius
+
+-   `frac` = Fraction
+-   `freq` = Frequency
+-   `long` = Longitude or Longitudinal (depending on the context)
+-   `lat` = Latitude or Lateral (depending on the context)
+
+-   `sqrt` = Square Root
+-   `mod` = Modulo
+-   `min` = Minimum
+-   `max` = Maximum
+-   `lerp` = Linear Interpolation
+
+---
+
+Misc
+
+-   `API` or Application Programming Interface – An interface for connecting multiple isolated components.
+-   `SDK` or Software Development Kit – A collection of software often needed for development in a specific platform.
+-   `TDD` or Test-driven development - TDD is a software development process that is based on the repetition of a short development cycle: requirements are turned into specific test cases, and then the code is fixed so that the tests pass.
+-   `UUID` or Universally unique identifier - A UUID is a 128-bit number used to identify information in computer systems.
+-   `GUI` or Graphic User Interface - A GUI or graphical user interface is a form of user interface that allows users to interact with electronic devices through a graphical interface.
+-   `misc` = Miscellaneous
+-   `os` = Operating System
+-   `org` = Organization
+-   `pwr` = Power
+-   `pref` = Preference
+-   `repo` = Repository
 
 </td></tr></table>
 
@@ -2839,7 +2832,7 @@ There is a couple of downsides of using `TList` compare to `TArray`:
 
 <table><tr><td>
 
-## Cache misses
+Cache misses
 
 When the computer reads the memory, it reads from RAM (Random-access memory). Hence, the name it will access the memory at random location. With `TArray`, your memory allocation contiguous. Meaning, that `TArray` will ask for a big spot to have its memory block.
 
@@ -2858,7 +2851,9 @@ Here is a video from [SimonDev about cache misses and hits](https://www.youtube.
 
 You can also read more about the [CPU's cache on Wikipedia](https://en.wikipedia.org/wiki/Cache_(computing)).
 
-## Memory space
+---
+
+Memory space
 
 `TList` takes up more memory space per each node.
 
@@ -2866,7 +2861,9 @@ Since every node needs to keep track of the next node in the list. And the next 
 
 And if you just want to use primary data types, such as (`int`, `float`, `double`, `bool` or `char`), then you can just use `TArray` instead. Whilst a `TArray` stores some overhead, it's very minimal overhead.
 
-## No helper functions
+---
+
+No helper functions
 
 `TList` only offers the data element and the next node (as a pointer variable).
 
@@ -2874,7 +2871,9 @@ And if you just want to use primary data types, such as (`int`, `float`, `double
 
 If you wish to have these functions, then you can just use `TLinkedList` instead.
 
-## Only goes forward
+---
+
+Only goes forward
 
 With `TList`, you can only forwards.
 
@@ -3749,15 +3748,15 @@ UPARAM([specifier1=setting1, specifier2, ...])
 UMETA([specifier1=setting1, specifier2, ...])
 ```
 
-| Macro          | Description                                                                                                                                                                                  | Use Case                                                                                                        |
-|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| UPROPERTY     | Specifies properties of a class member, such as replication, serialization, editability, and blueprint visibility.                                                                      | Used to define properties of variables within a class to control how they are handled by Unreal Engine systems.   |
-| UFUNCTION     | Identifies a C++ function that can be accessed and called from Blueprint visual scripting or other systems in Unreal Engine.                                                            | Used to expose C++ functions to Blueprint for easy use in visual scripting and integration with Unreal Engine.     |
-| UCLASS        | Defines a C++ class that is exposed to Unreal Engine's reflection system, allowing it to be used in Blueprint and other engine features.                                                 | Used to define classes that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.    |
-| USTRUCT       | Specifies a C++ struct that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                                                  | Used to define structs that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.     |
-| UENUM         | Defines a C++ enumeration that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                                               | Used to define enumerations that can be used in Blueprint and integrated into Unreal Engine systems like the Editor. |
-| UPARAM        | Specifies how a function parameter should be treated when used in Blueprint or other Unreal Engine systems.                                                                             | Used to define parameter properties, such as Blueprint read/write access, in C++ functions exposed to Blueprint.    |
-| UMETA         | Provides additional metadata for UPROPERTY, UFUNCTION, UCLASS, USTRUCT, and UENUM, allowing customization of their behavior in Unreal Engine's reflection system.                     | Used to attach additional information or customizations to C++ entities exposed to Unreal Engine reflection.       |
+| Macro     | Description                                                                                                                                                       | Use Case                                                                                                             |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| UPROPERTY | Specifies properties of a class member, such as replication, serialization, editability, and blueprint visibility.                                                | Used to define properties of variables within a class to control how they are handled by Unreal Engine systems.      |
+| UFUNCTION | Identifies a C++ function that can be accessed and called from Blueprint visual scripting or other systems in Unreal Engine.                                      | Used to expose C++ functions to Blueprint for easy use in visual scripting and integration with Unreal Engine.       |
+| UCLASS    | Defines a C++ class that is exposed to Unreal Engine's reflection system, allowing it to be used in Blueprint and other engine features.                          | Used to define classes that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.      |
+| USTRUCT   | Specifies a C++ struct that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                          | Used to define structs that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.      |
+| UENUM     | Defines a C++ enumeration that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                       | Used to define enumerations that can be used in Blueprint and integrated into Unreal Engine systems like the Editor. |
+| UPARAM    | Specifies how a function parameter should be treated when used in Blueprint or other Unreal Engine systems.                                                       | Used to define parameter properties, such as Blueprint read/write access, in C++ functions exposed to Blueprint.     |
+| UMETA     | Provides additional metadata for UPROPERTY, UFUNCTION, UCLASS, USTRUCT, and UENUM, allowing customization of their behavior in Unreal Engine's reflection system. | Used to attach additional information or customizations to C++ entities exposed to Unreal Engine reflection.         |
 
 ### UPROPERTY
 
@@ -3765,32 +3764,32 @@ UMETA([specifier1=setting1, specifier2, ...])
 
 #### Specifiers
 
-* `EditAnywhere`: Allows the property to be edited in the editor and during runtime for all instances of the class.
-* `EditDefaultsOnly`: Permits editing the property only for the class's default object in the editor.
-* `EditInstanceOnly`: Enables editing the property only for instances of the class during runtime.
-* `VisibleAnywhere`: Displays the property value in the editor for all instances of the class.
-* `VisibleDefaultsOnly`: Shows the property value in the editor for the class's default object.
-* `VisibleInstanceOnly`: Displays the property value in the editor only for instances of the class.
-* `BlueprintReadOnly`: Exposes the property to Blueprint scripts, but only for reading, not writing.
-* `BlueprintReadWrite`: Exposes the property to Blueprint scripts for both reading and writing.
-* `Category`: Organizes properties into named categories in the editor for better organization and readability.
-* `EditFixedSize`: Specifies that an `TArray` or `TMap` property should be editable in the Details Panel of the Unreal Editor with a fixed number of elements, preventing addition or removal.
-* `Transient`: Indicates that a property should not be serialized, making it non-persistent and not saved when saving the state of the object.
-* `Replicated`: Automatically replicates the property's value to clients in a multiplayer environment when the property changes on the server.
-* `ReplicatedUsing`: Specifies a custom function that should be called on both the server and clients to handle replication of the property's value.
-* `SimpleDisplay`: Indicates that the property's value should be displayed in a simple and concise manner in editor UI.
-* `AdvancedDisplay`: Indicates that the property's value should be displayed with advanced options in editor UI.
-* `Config`: Marks the property to be serialized to the project configuration file for external customization.
-* `GlobalConfig`: Marks the property to be serialized to the global configuration file for external customization across all projects.
+-   `EditAnywhere`: Allows the property to be edited in the editor and during runtime for all instances of the class.
+-   `EditDefaultsOnly`: Permits editing the property only for the class's default object in the editor.
+-   `EditInstanceOnly`: Enables editing the property only for instances of the class during runtime.
+-   `VisibleAnywhere`: Displays the property value in the editor for all instances of the class.
+-   `VisibleDefaultsOnly`: Shows the property value in the editor for the class's default object.
+-   `VisibleInstanceOnly`: Displays the property value in the editor only for instances of the class.
+-   `BlueprintReadOnly`: Exposes the property to Blueprint scripts, but only for reading, not writing.
+-   `BlueprintReadWrite`: Exposes the property to Blueprint scripts for both reading and writing.
+-   `Category`: Organizes properties into named categories in the editor for better organization and readability.
+-   `EditFixedSize`: Specifies that an `TArray` or `TMap` property should be editable in the Details Panel of the Unreal Editor with a fixed number of elements, preventing addition or removal.
+-   `Transient`: Indicates that a property should not be serialized, making it non-persistent and not saved when saving the state of the object.
+-   `Replicated`: Automatically replicates the property's value to clients in a multiplayer environment when the property changes on the server.
+-   `ReplicatedUsing`: Specifies a custom function that should be called on both the server and clients to handle replication of the property's value.
+-   `SimpleDisplay`: Indicates that the property's value should be displayed in a simple and concise manner in editor UI.
+-   `AdvancedDisplay`: Indicates that the property's value should be displayed with advanced options in editor UI.
+-   `Config`: Marks the property to be serialized to the project configuration file for external customization.
+-   `GlobalConfig`: Marks the property to be serialized to the global configuration file for external customization across all projects.
 
 #### Meta tags
 
-* `DisplayName`: Sets a custom display name for the property in the Unreal Editor.
-* `Tooltip`: Provides a tooltip description for the property in the Unreal Editor.
-* `ClampMin`: Sets the minimum allowed value for the property in the Unreal Editor.
-* `ClampMax`: Sets the maximum allowed value for the property in the Unreal Editor.
-* `AllowPrivateAccess`: Allows access to private members within the class it belongs to.
-* `Units`: Provides a human-readable unit label for the property in the Unreal Editor.
+-   `DisplayName`: Sets a custom display name for the property in the Unreal Editor.
+-   `Tooltip`: Provides a tooltip description for the property in the Unreal Editor.
+-   `ClampMin`: Sets the minimum allowed value for the property in the Unreal Editor.
+-   `ClampMax`: Sets the maximum allowed value for the property in the Unreal Editor.
+-   `AllowPrivateAccess`: Allows access to private members within the class it belongs to.
+-   `Units`: Provides a human-readable unit label for the property in the Unreal Editor.
 
 #### Examples
 
@@ -3860,22 +3859,22 @@ You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/uproperty/)
 
 #### Common Specifiers
 
-* `BlueprintCallable`: Exposes the function to Blueprint scripts, allowing it to be called from within Blueprint graphs.
-* `BlueprintPure`: Indicates that the function is a pure computation and does not modify any state, making it safe to use in Blueprint graphs without side effects.
-* `BlueprintImplementableEvent`: Serves as a placeholder function in C++ that can be overridden and implemented in Blueprint.
-* `BlueprintNativeEvent`: Similar to `BlueprintImplementableEvent`, but it also provides a C++ implementation that can be optionally overridden in Blueprint.
-* `Category`: Organizes properties into named categories in the editor for better organization and readability.
+-   `BlueprintCallable`: Exposes the function to Blueprint scripts, allowing it to be called from within Blueprint graphs.
+-   `BlueprintPure`: Indicates that the function is a pure computation and does not modify any state, making it safe to use in Blueprint graphs without side effects.
+-   `BlueprintImplementableEvent`: Serves as a placeholder function in C++ that can be overridden and implemented in Blueprint.
+-   `BlueprintNativeEvent`: Similar to `BlueprintImplementableEvent`, but it also provides a C++ implementation that can be optionally overridden in Blueprint.
+-   `Category`: Organizes properties into named categories in the editor for better organization and readability.
 
 #### Common Meta tags
 
-* `DisplayName`: Sets a custom display name for the function in the Unreal Editor.
-* `Tooltip`: Provides a tooltip description for the function in the Unreal Editor.
-* `ShortToolTip`: Provides a short tooltip description for the function in the Unreal Editor.
-* `AllowPrivateAccess`: Allows access to private members within the class it belongs to.
-* `HideSelfPin`: Hides the "self" pin, which indicates the object on which the function is being called. The "self" pin is automatically hidden on `BlueprintPure` functions that are compatible with the calling Blueprint's Class. Functions that use the `HideSelfPin` Meta Tag frequently also use the `DefaultToSelf` Specifier.
-* `BlueprintInternalUseOnly`: This function is an internal implementation detail, used to implement another function or node. It is never directly exposed in a Blueprint graph.
-* `BlueprintProtected`: This function can only be called on the owning Object in a Blueprint. It cannot be called on another instance.
-* `DeprecatedFunction`: Any Blueprint references to this function will cause compilation warnings telling the user that the function is deprecated. You can add to the deprecation warning message (for example, to provide instructions on replacing the deprecated function) using the `DeprecationMessage` metadata specifier.
+-   `DisplayName`: Sets a custom display name for the function in the Unreal Editor.
+-   `Tooltip`: Provides a tooltip description for the function in the Unreal Editor.
+-   `ShortToolTip`: Provides a short tooltip description for the function in the Unreal Editor.
+-   `AllowPrivateAccess`: Allows access to private members within the class it belongs to.
+-   `HideSelfPin`: Hides the "self" pin, which indicates the object on which the function is being called. The "self" pin is automatically hidden on `BlueprintPure` functions that are compatible with the calling Blueprint's Class. Functions that use the `HideSelfPin` Meta Tag frequently also use the `DefaultToSelf` Specifier.
+-   `BlueprintInternalUseOnly`: This function is an internal implementation detail, used to implement another function or node. It is never directly exposed in a Blueprint graph.
+-   `BlueprintProtected`: This function can only be called on the owning Object in a Blueprint. It cannot be called on another instance.
+-   `DeprecatedFunction`: Any Blueprint references to this function will cause compilation warnings telling the user that the function is deprecated. You can add to the deprecation warning message (for example, to provide instructions on replacing the deprecated function) using the `DeprecationMessage` metadata specifier.
 
 #### Examples
 
@@ -3906,21 +3905,21 @@ You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/ufunction/)
 
 #### Common Specifiers
 
-- `Blueprintable`: Allows the class to be used as a blueprint in the Unreal Editor.
-- `BlueprintType`: Specifies that the class can be instantiated and manipulated in Blueprint scripts.
-- `Abstract`: Indicates that the class is an abstract class and cannot be instantiated directly.
-- `Transient`: Excludes the class from being serialized and saved in the game's persistent data.
-- `MinimalAPI`: Restricts the class's visibility for export, making it more suitable for engine internal use.
-- `NotBlueprintType`: Prevents the class from being used as a blueprint.
+-   `Blueprintable`: Allows the class to be used as a blueprint in the Unreal Editor.
+-   `BlueprintType`: Specifies that the class can be instantiated and manipulated in Blueprint scripts.
+-   `Abstract`: Indicates that the class is an abstract class and cannot be instantiated directly.
+-   `Transient`: Excludes the class from being serialized and saved in the game's persistent data.
+-   `MinimalAPI`: Restricts the class's visibility for export, making it more suitable for engine internal use.
+-   `NotBlueprintType`: Prevents the class from being used as a blueprint.
 
 #### Common Meta tags
 
-- `DisplayName`: Sets a custom display name for the class in the Unreal Editor.
-- `ToolTip`: Provides a tooltip description for the class in the Unreal Editor.
-- `HideCategories`: Hides specific property categories from being displayed in the Unreal Editor.
-- `ClassGroup`: Assigns the class to a specific group in the Unreal Editor's class picker.
-- `IncludePath`: Specifies the include path for the generated code of the class.
-- `BlueprintSpawnableComponent`: Marks a class derived from `USceneComponent` as spawnable in Blueprint.
+-   `DisplayName`: Sets a custom display name for the class in the Unreal Editor.
+-   `ToolTip`: Provides a tooltip description for the class in the Unreal Editor.
+-   `HideCategories`: Hides specific property categories from being displayed in the Unreal Editor.
+-   `ClassGroup`: Assigns the class to a specific group in the Unreal Editor's class picker.
+-   `IncludePath`: Specifies the include path for the generated code of the class.
+-   `BlueprintSpawnableComponent`: Marks a class derived from `USceneComponent` as spawnable in Blueprint.
 
 #### Examples
 
@@ -3955,15 +3954,15 @@ You can read more about [UCLASS by BenUi](https://benui.ca/unreal/uclass/).
 
 #### Common Specifiers
 
-- `BlueprintType`: Specifies that the structure can be used in Blueprint scripts.
-- `Atomic`: Ensures that the structure is treated as an atomic type for replication in multiplayer games.
-- `NotReplicated`: Excludes the structure from being replicated across the network.
+-   `BlueprintType`: Specifies that the structure can be used in Blueprint scripts.
+-   `Atomic`: Ensures that the structure is treated as an atomic type for replication in multiplayer games.
+-   `NotReplicated`: Excludes the structure from being replicated across the network.
 
 #### Common Meta tags
 
-- `DisplayName`: Sets a custom display name for the structure in the Unreal Editor.
-- `ToolTip`: Provides a tooltip description for the structure in the Unreal Editor.
-- `Category`: Specifies the category in which the structure will appear in the Unreal Editor.
+-   `DisplayName`: Sets a custom display name for the structure in the Unreal Editor.
+-   `ToolTip`: Provides a tooltip description for the structure in the Unreal Editor.
+-   `Category`: Specifies the category in which the structure will appear in the Unreal Editor.
 
 #### Examples
 
@@ -3991,16 +3990,16 @@ You can read more about [USTRUCT by BenUi](https://benui.ca/unreal/ustruct/).
 
 #### Common Specifiers
 
-- `BlueprintType`: Specifies that the enumeration can be used in Blueprint scripts.
-- `DisplayNames`: Specifies a list of custom display names for each enumeration value in the Unreal Editor.
+-   `BlueprintType`: Specifies that the enumeration can be used in Blueprint scripts.
+-   `DisplayNames`: Specifies a list of custom display names for each enumeration value in the Unreal Editor.
 
 #### Common Meta tags
 
-- `DisplayName`: Sets a custom display name for the enumeration in the Unreal Editor.
-- `ToolTip`: Provides a tooltip description for the enumeration in the Unreal Editor.
-- `Hidden`: Hides the enumeration from being displayed in the Unreal Editor.
-- `Bitflags`: Indicates that the enumeration represents a set of bit flags.
-- `EnumRange`: Specifies the minimum and maximum values for the enumeration.
+-   `DisplayName`: Sets a custom display name for the enumeration in the Unreal Editor.
+-   `ToolTip`: Provides a tooltip description for the enumeration in the Unreal Editor.
+-   `Hidden`: Hides the enumeration from being displayed in the Unreal Editor.
+-   `Bitflags`: Indicates that the enumeration represents a set of bit flags.
+-   `EnumRange`: Specifies the minimum and maximum values for the enumeration.
 
 #### Examples
 
@@ -4021,13 +4020,13 @@ You can read more about [UENUM by BenUi](https://benui.ca/unreal/uenum/).
 
 `UPARAM` is a macro used to provide additional information to the Unreal Header Tool. It is used with parameters of UFUNCTION and UPROPERTY to specify how the engine should handle the data.
 
-- `UPARAM(Ref)`: Used to mark a parameter that is passed by reference. It ensures that the parameter is treated as a reference during code generation, which may affect how the engine handles the parameter.
+-   `UPARAM(Ref)`: Used to mark a parameter that is passed by reference. It ensures that the parameter is treated as a reference during code generation, which may affect how the engine handles the parameter.
 
-- `UPARAM(DisplayName)`: Used to set a custom display name for a function parameter when it appears in the Unreal Editor's Blueprint node graph.
+-   `UPARAM(DisplayName)`: Used to set a custom display name for a function parameter when it appears in the Unreal Editor's Blueprint node graph.
 
-- `UPARAM(BlueprintCallable, BlueprintPure)`: Used to apply multiple specifiers to a function parameter. For example, to mark a parameter as both BlueprintCallable and BlueprintPure.
+-   `UPARAM(BlueprintCallable, BlueprintPure)`: Used to apply multiple specifiers to a function parameter. For example, to mark a parameter as both BlueprintCallable and BlueprintPure.
 
-- `UPARAM(meta = (CustomMetaTag))`: Allows developers to create custom meta tags and use them in function parameters to provide additional information to the Unreal Header Tool.
+-   `UPARAM(meta = (CustomMetaTag))`: Allows developers to create custom meta tags and use them in function parameters to provide additional information to the Unreal Header Tool.
 
 #### Examples
 
@@ -4056,12 +4055,12 @@ You can read more about [UPARAM by BenUi](https://benui.ca/unreal/uparam/).
 
 #### Common Specifiers
 
-- `DisplayName`: Sets a custom display name for the enumeration value in the Unreal Editor.
-- `ToolTip`: Provides a tooltip description for the enumeration value in the Unreal Editor.
-- `Hidden`: Hides the enumeration value from being displayed in the Unreal Editor.
-- `DisplayPriority`: Specifies the display priority for the enumeration value in the Unreal Editor.
-- `DisplayThumbnail`: Allows attaching a custom thumbnail image to the enumeration value in the Unreal Editor.
-- `CustomMetaData`: Specifies custom metadata that developers can define and use as needed.
+-   `DisplayName`: Sets a custom display name for the enumeration value in the Unreal Editor.
+-   `ToolTip`: Provides a tooltip description for the enumeration value in the Unreal Editor.
+-   `Hidden`: Hides the enumeration value from being displayed in the Unreal Editor.
+-   `DisplayPriority`: Specifies the display priority for the enumeration value in the Unreal Editor.
+-   `DisplayThumbnail`: Allows attaching a custom thumbnail image to the enumeration value in the Unreal Editor.
+-   `CustomMetaData`: Specifies custom metadata that developers can define and use as needed.
 
 #### Examples
 
@@ -4848,7 +4847,7 @@ UObjects should never be created with `new`, but only with the default creation 
 
 <table><tr><td>
 
-## Conditions
+Conditions
 
 * By having a strong reference (`UPROPERTY`) to them (from objects that are also referenced)
 
@@ -5084,54 +5083,54 @@ To log to the console with C++ in Unreal Engine, you can use `UE_LOG()` macro. T
 
 <table><tr><td>
 
-## Predefined log categories
+Predefined log categories
 
-* `LogPath`
-* `LogController`
-* `LogPhysics`
-* `LogBlueprint`
-* `LogBlueprintUserMessages`
-* `LogAnimation`
-* `LogRootMotion`
-* `LogLevel`
-* `LogSkeletalMesh`
-* `LogStaticMesh`
-* `LogNet`
-* `LogRep`
-* `LogNetPlayerMovement`
-* `LogNetTraffic`
-* `LogRepTraffic`
-* `LogNetFastTArray`
-* `LogNetDormancy`
-* `LogSkeletalControl`
-* `LogSubtitle`
-* `LogTexture`
-* `LogPlayerManagement`
-* `LogSecurity`
-* `LogEngineSessionManager`
-* `LogHAL`
-* `LogSerialization`
-* `LogUnrealMath`
-* `LogUnrealMatrix`
-* `LogContentComparisonCommandlet`
-* `LogNetPackageMap`
-* `LogNetSerialization`
-* `LogMemory`
-* `LogProfilingDebugging`
-* `LogCore`
-* `LogOutputDevice`
-* `LogSHA`
-* `LogStats`
-* `LogStreaming`
-* `LogInit`
-* `LogExit`
-* `LogExec`
-* `LogScript`
-* `LogLocalization`
-* `LogLongPackageNames`
-* `LogProcess`
-* `LogLoad`
-* `LogTemp`
+-   `LogPath`
+-   `LogController`
+-   `LogPhysics`
+-   `LogBlueprint`
+-   `LogBlueprintUserMessages`
+-   `LogAnimation`
+-   `LogRootMotion`
+-   `LogLevel`
+-   `LogSkeletalMesh`
+-   `LogStaticMesh`
+-   `LogNet`
+-   `LogRep`
+-   `LogNetPlayerMovement`
+-   `LogNetTraffic`
+-   `LogRepTraffic`
+-   `LogNetFastTArray`
+-   `LogNetDormancy`
+-   `LogSkeletalControl`
+-   `LogSubtitle`
+-   `LogTexture`
+-   `LogPlayerManagement`
+-   `LogSecurity`
+-   `LogEngineSessionManager`
+-   `LogHAL`
+-   `LogSerialization`
+-   `LogUnrealMath`
+-   `LogUnrealMatrix`
+-   `LogContentComparisonCommandlet`
+-   `LogNetPackageMap`
+-   `LogNetSerialization`
+-   `LogMemory`
+-   `LogProfilingDebugging`
+-   `LogCore`
+-   `LogOutputDevice`
+-   `LogSHA`
+-   `LogStats`
+-   `LogStreaming`
+-   `LogInit`
+-   `LogExit`
+-   `LogExec`
+-   `LogScript`
+-   `LogLocalization`
+-   `LogLongPackageNames`
+-   `LogProcess`
+-   `LogLoad`
+-   `LogTemp`
 
 </td></tr></table>
 
@@ -5165,15 +5164,15 @@ Now you can reuse the log category, via including the header file.
 
 Here is the list of types of verbosity levels:
 
-| Verbosity Level | Printed in Console ? | Printed in Editor's Log? |                      Notes                       |
-| ----------------- | --------------------- | -------------------------- | -------------------------------------------------- |
-| Fatal | Yes | N / A | Crashes the session, even if logging is disabled |
-| Error | Yes | Yes | Log text is coloured red                         |
-| Warning | Yes | Yes | Log text is coloured yellow                      |
-| Display | Yes | Yes | Log text is coloured grey                        |
-| Log | No | Yes | Log text is coloured grey                        |
-| Verbose | No | No                       |                                                  |
-| VeryVerbose | No | No                       |                                                  |
+| Verbosity Level | Printed in Console ? | Printed in Editor's Log? | Notes                                            |
+| --------------- | -------------------- | ------------------------ | ------------------------------------------------ |
+| Fatal           | Yes                  | N / A                    | Crashes the session, even if logging is disabled |
+| Error           | Yes                  | Yes                      | Log text is coloured red                         |
+| Warning         | Yes                  | Yes                      | Log text is coloured yellow                      |
+| Display         | Yes                  | Yes                      | Log text is coloured grey                        |
+| Log             | No                   | Yes                      | Log text is coloured grey                        |
+| Verbose         | No                   | No                       |                                                  |
+| VeryVerbose     | No                   | No                       |                                                  |
 
 You can also override some of the pre-existing verbosity levels. These settings can be set in either `Engine.ini` or `DefaultEngine.ini`.
 
@@ -5196,9 +5195,9 @@ Similar to `sprintf()` function in C++, where you can use specific different arg
 
 <table><tr><td>
 
-* `%s` - strings
-* `%d` or `%i` - integers and booleans
-* `%f` - floating point numbers (float and double)
+-   `%s` - strings
+-   `%d` or `%i` - integers and booleans
+-   `%f` - floating point numbers (float and double)
 
 </td></tr></table>
 
@@ -5291,9 +5290,9 @@ UE_LOG(LogTemp, Log, TEXT("The double value is: %,2f"), MyDouble); // The double
 
 <table><tr><td>
 
-* UE_LOG is extremely verbose, requiring the developer to constantly wrap log text in the `TEXT` macro.
-* UE_LOG is also incapable of printing basic types, such as `bool`, or `FStrings`, Unreal's standard String type.
-* UE_LOG requires awareness of types when printing different variables such as float, integer, booleans, strings.
+-   UE_LOG is extremely verbose, requiring the developer to constantly wrap log text in the `TEXT` macro.
+-   UE_LOG is also incapable of printing basic types, such as `bool`, or `FStrings`, Unreal's standard String type.
+-   UE_LOG requires awareness of types when printing different variables such as float, integer, booleans, strings.
 
 </td></tr></table>
 
@@ -5332,8 +5331,7 @@ UE_LOGFMT(LogCore, Warning, "Loading '{0}' failed with error {1}", Package->GetN
 UE_LOGFMT(LogCore, Warning, "Loading '{Name}' failed with error {Error}", ("Error", ErrorCode), ("Name", Package->GetName()), ("Flags", LoadFlags));
 ```
 
-> [!NOTE]
-> `FText` is not supported with `UE_LOGFMT()`, in order to use `FText` you need to convert into `FString` by simply calling `ToString()` function.
+> [!NOTE] > `FText` is not supported with `UE_LOGFMT()`, in order to use `FText` you need to convert into `FString` by simply calling `ToString()` function.
 
 ### Log to game-view
 
@@ -5907,8 +5905,6 @@ It's possible to encounter circular dependencies when multiple modules access th
 
 To resolve circular dependencies, you can take several approaches:
 
-<table><tr><td>
-
 -   One option is to use the `CircularlyReferencedDependentModules` statement in the [ModuleName].Build.cs file. You can read more about [here](https://forums.unrealengine.com/t/workaround-for-circular-dependencies/264945)!
 
 Here's an example:
@@ -5933,8 +5929,6 @@ public class ModuleB : ModuleRules
 -   Another option is to create another module to further separate the code into smaller pieces.
 
 -   Finally, you can also refactor your modules to avoid circular dependencies altogether.
-
-</td></tr></table>
 
 _The best solution will depend on your specific situation and the complexity of your code._
 
@@ -6838,7 +6832,7 @@ In Unreal Engine, it's recommended to use the built-in memory management functio
 
 ### K2Node
 
-Lorem Ipsum
+<!-- TODO: Write text here! -->
 
 You can read more about [K2Node by Oscar Olsson](https://olssondev.github.io/2023-02-13-K2Nodes/).
 
@@ -6852,7 +6846,7 @@ The Math Expression node acts like a collapsed graph. It is a single node that y
 
 ![Math Node Example](static/img/math_node_example.png)
 
-Read more <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">here</a>!
+You can read more about math expression node at <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">Unreal's docs</a>.
 
 ### Call function in editor
 
@@ -7841,64 +7835,82 @@ This section was NOT written in conjunction with ChatGPT.
 
 To change any of the shortcuts, you can access the keyboard shortcut settings via **Editor Preferences**, then under **General** select **Keyboard Shortcuts**.
 
-### Basic
-* <kbd>Ctrl + C</kbd>: Copy
-* <kbd>Ctrl + X</kbd>: Cut
-* <kbd>Ctrl + V</kbd>: Paste
+---
 
-* <kbd>Del</kbd> - Delete
-* <kbd>Ctrl + Y</kbd>: Undo
-* <kbd>Ctrl + Z</kbd>: Redo
-* <kbd>Ctrl + A</kbd>: Select All
+Basic
 
-* <kbd>Esc</kbd>: Clear Selection
-* <kbd>Up/Down/Left/Right Arrow Keys</kbd>: Move Selection
+-   <kbd>Ctrl + C</kbd>: Copy
+-   <kbd>Ctrl + X</kbd>: Cut
+-   <kbd>Ctrl + V</kbd>: Paste
 
-* <kbd>Ctrl + Spacebar</kbd>: Open Content Browser
-* <kbd>Ctrl + B</kbd>: Find in Content Browser
-* <kbd>Ctrl + Tab</kbd>: Browse Tabs
-* <kbd>Ctrl + O</kbd>: Open Level
-* <kbd>Ctrl + P</kbd>: Asset Picker
+-   <kbd>Del</kbd> - Delete
+-   <kbd>Ctrl + Y</kbd>: Undo
+-   <kbd>Ctrl + Z</kbd>: Redo
+-   <kbd>Ctrl + A</kbd>: Select All
 
-* <kbd>Alt + P</kbd> or <kbd>Alt + S</kbd>: Play/Simulate
-* <kbd>P</kbd>: Show Nav Mesh
-* <kbd>Mouse Wheel Up/Down</kbd>: Zoom
+-   <kbd>Esc</kbd>: Clear Selection
+-   <kbd>Up/Down/Left/Right Arrow Keys</kbd>: Move Selection
 
-### Outliner
-* <kbd>Ctrl + G</kbd> or <kbd>Shift + G</kbd>: Group/Ungroup
-* <kbd>Right-Click</kbd> on Group: Pin/Unpin
+-   <kbd>Ctrl + Spacebar</kbd>: Open Content Browser
+-   <kbd>Ctrl + B</kbd>: Find in Content Browser
+-   <kbd>Ctrl + Tab</kbd>: Browse Tabs
+-   <kbd>Ctrl + O</kbd>: Open Level
+-   <kbd>Ctrl + P</kbd>: Asset Picker
 
-### Blueprint editor
-* <kbd>Ctrl + S</kbd>: Save Blueprint
-* <kbd>Ctrl + F</kbd>: Find within Blueprint
-* <kbd>Ctrl + Shift + F</kbd>: Find in all Blueprints
+-   <kbd>Alt + P</kbd> or <kbd>Alt + S</kbd>: Play/Simulate
+-   <kbd>P</kbd>: Show Nav Mesh
+-   <kbd>Mouse Wheel Up/Down</kbd>: Zoom
 
-### Level editing
-* <kbd>Ctrl + S</kbd>: Save All
+---
 
-* <kbd>End</kbd>: Snap to Floor
-* <kbd>Alt + End</kbd>: Snap Pivot to Floor
-* <kbd>Shift + End</kbd>: Snap Bounds to Floor
-* <kbd>Ctrl + End</kbd>: Snap Origin to Grid
+Outliner
 
-* <kbd>Alt + Transform</kbd>: Duplicate and Transform
+-   <kbd>Ctrl + G</kbd> or <kbd>Shift + G</kbd>: Group/Ungroup
+-   <kbd>Right-Click</kbd> on Group: Pin/Unpin
 
-### Camera/transformation
-* <kbd>Alt + G</kbd>: Perspective View
-* <kbd>Alt + H</kbd>: Front View
-* <kbd>Alt + J</kbd>: Top View
-* <kbd>Alt + K</kbd>: Side View
+---
 
-* <kbd>F</kbd>: Focus
-* <kbd>G</kbd>: View
+Blueprint editor
 
-* <kbd>R</kbd>: Scale
-* <kbd>W</kbd>: Translate
-* <kbd>E</kbd>: Rotate
-* <kbd>Spacebar</kbd>: Toggle Move/Rotate/Scale
+-   <kbd>Ctrl + S</kbd>: Save Blueprint
+-   <kbd>Ctrl + F</kbd>: Find within Blueprint
+-   <kbd>Ctrl + Shift + F</kbd>: Find in all Blueprints
 
-### Tools
-* <kbd>Ctrl + Shift + Comma</kbd>: GPU Visualizer
+---
+
+Level editing
+
+-   <kbd>Ctrl + S</kbd>: Save All
+
+-   <kbd>End</kbd>: Snap to Floor
+-   <kbd>Alt + End</kbd>: Snap Pivot to Floor
+-   <kbd>Shift + End</kbd>: Snap Bounds to Floor
+-   <kbd>Ctrl + End</kbd>: Snap Origin to Grid
+
+-   <kbd>Alt + Transform</kbd>: Duplicate and Transform
+
+---
+
+Camera/transformation
+
+-   <kbd>Alt + G</kbd>: Perspective View
+-   <kbd>Alt + H</kbd>: Front View
+-   <kbd>Alt + J</kbd>: Top View
+-   <kbd>Alt + K</kbd>: Side View
+
+-   <kbd>F</kbd>: Focus
+-   <kbd>G</kbd>: View
+
+-   <kbd>R</kbd>: Scale
+-   <kbd>W</kbd>: Translate
+-   <kbd>E</kbd>: Rotate
+-   <kbd>Spacebar</kbd>: Toggle Move/Rotate/Scale
+
+---
+
+Tools
+
+-   <kbd>Ctrl + Shift + Comma</kbd>: GPU Visualizer
 
 ## ⚠️ Common Issues
 

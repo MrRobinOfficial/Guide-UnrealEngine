@@ -44,7 +44,7 @@ In Unreal Engine, it's recommended to use the built-in memory management functio
 
 ### K2Node
 
-Lorem Ipsum
+<!-- TODO: Write text here! -->
 
 You can read more about [K2Node by Oscar Olsson](https://olssondev.github.io/2023-02-13-K2Nodes/).
 
@@ -58,7 +58,7 @@ The Math Expression node acts like a collapsed graph. It is a single node that y
 
 ![Math Node Example](static/img/math_node_example.png)
 
-Read more <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">here</a>!
+You can read more about math expression node at <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">Unreal's docs</a>.
 
 ### Call function in editor
 

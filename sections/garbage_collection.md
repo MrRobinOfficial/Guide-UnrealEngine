@@ -51,7 +51,7 @@ UObjects should never be created with `new`, but only with the default creation 
 
 <table><tr><td>
 
-## Conditions
+Conditions
 
 * By having a strong reference (`UPROPERTY`) to them (from objects that are also referenced)
 

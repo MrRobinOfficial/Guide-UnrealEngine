@@ -1765,7 +1765,7 @@ There is a couple of downsides of using `TList` compare to `TArray`:
 
 <table><tr><td>
 
-## Cache misses
+Cache misses
 
 When the computer reads the memory, it reads from RAM (Random-access memory). Hence, the name it will access the memory at random location. With `TArray`, your memory allocation contiguous. Meaning, that `TArray` will ask for a big spot to have its memory block.
 
@@ -1784,7 +1784,9 @@ Here is a video from [SimonDev about cache misses and hits](https://www.youtube.
 
 You can also read more about the [CPU's cache on Wikipedia](https://en.wikipedia.org/wiki/Cache_(computing)).
 
-## Memory space
+---
+
+Memory space
 
 `TList` takes up more memory space per each node.
 
@@ -1792,7 +1794,9 @@ Since every node needs to keep track of the next node in the list. And the next 
 
 And if you just want to use primary data types, such as (`int`, `float`, `double`, `bool` or `char`), then you can just use `TArray` instead. Whilst a `TArray` stores some overhead, it's very minimal overhead.
 
-## No helper functions
+---
+
+No helper functions
 
 `TList` only offers the data element and the next node (as a pointer variable).
 
@@ -1800,7 +1804,9 @@ And if you just want to use primary data types, such as (`int`, `float`, `double
 
 If you wish to have these functions, then you can just use `TLinkedList` instead.
 
-## Only goes forward
+---
+
+Only goes forward
 
 With `TList`, you can only forwards.
 

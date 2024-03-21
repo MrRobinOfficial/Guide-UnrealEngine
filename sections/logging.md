@@ -18,54 +18,54 @@ To log to the console with C++ in Unreal Engine, you can use `UE_LOG()` macro. T
 
 <table><tr><td>
 
-## Predefined log categories
+Predefined log categories
 
-* `LogPath`
-* `LogController`
-* `LogPhysics`
-* `LogBlueprint`
-* `LogBlueprintUserMessages`
-* `LogAnimation`
-* `LogRootMotion`
-* `LogLevel`
-* `LogSkeletalMesh`
-* `LogStaticMesh`
-* `LogNet`
-* `LogRep`
-* `LogNetPlayerMovement`
-* `LogNetTraffic`
-* `LogRepTraffic`
-* `LogNetFastTArray`
-* `LogNetDormancy`
-* `LogSkeletalControl`
-* `LogSubtitle`
-* `LogTexture`
-* `LogPlayerManagement`
-* `LogSecurity`
-* `LogEngineSessionManager`
-* `LogHAL`
-* `LogSerialization`
-* `LogUnrealMath`
-* `LogUnrealMatrix`
-* `LogContentComparisonCommandlet`
-* `LogNetPackageMap`
-* `LogNetSerialization`
-* `LogMemory`
-* `LogProfilingDebugging`
-* `LogCore`
-* `LogOutputDevice`
-* `LogSHA`
-* `LogStats`
-* `LogStreaming`
-* `LogInit`
-* `LogExit`
-* `LogExec`
-* `LogScript`
-* `LogLocalization`
-* `LogLongPackageNames`
-* `LogProcess`
-* `LogLoad`
-* `LogTemp`
+-   `LogPath`
+-   `LogController`
+-   `LogPhysics`
+-   `LogBlueprint`
+-   `LogBlueprintUserMessages`
+-   `LogAnimation`
+-   `LogRootMotion`
+-   `LogLevel`
+-   `LogSkeletalMesh`
+-   `LogStaticMesh`
+-   `LogNet`
+-   `LogRep`
+-   `LogNetPlayerMovement`
+-   `LogNetTraffic`
+-   `LogRepTraffic`
+-   `LogNetFastTArray`
+-   `LogNetDormancy`
+-   `LogSkeletalControl`
+-   `LogSubtitle`
+-   `LogTexture`
+-   `LogPlayerManagement`
+-   `LogSecurity`
+-   `LogEngineSessionManager`
+-   `LogHAL`
+-   `LogSerialization`
+-   `LogUnrealMath`
+-   `LogUnrealMatrix`
+-   `LogContentComparisonCommandlet`
+-   `LogNetPackageMap`
+-   `LogNetSerialization`
+-   `LogMemory`
+-   `LogProfilingDebugging`
+-   `LogCore`
+-   `LogOutputDevice`
+-   `LogSHA`
+-   `LogStats`
+-   `LogStreaming`
+-   `LogInit`
+-   `LogExit`
+-   `LogExec`
+-   `LogScript`
+-   `LogLocalization`
+-   `LogLongPackageNames`
+-   `LogProcess`
+-   `LogLoad`
+-   `LogTemp`
 
 </td></tr></table>
 
@@ -99,15 +99,15 @@ Now you can reuse the log category, via including the header file.
 
 Here is the list of types of verbosity levels:
 
-| Verbosity Level | Printed in Console ? | Printed in Editor's Log? |                      Notes                       |
-| ----------------- | --------------------- | -------------------------- | -------------------------------------------------- |
-| Fatal | Yes | N / A | Crashes the session, even if logging is disabled |
-| Error | Yes | Yes | Log text is coloured red                         |
-| Warning | Yes | Yes | Log text is coloured yellow                      |
-| Display | Yes | Yes | Log text is coloured grey                        |
-| Log | No | Yes | Log text is coloured grey                        |
-| Verbose | No | No                       |                                                  |
-| VeryVerbose | No | No                       |                                                  |
+| Verbosity Level | Printed in Console ? | Printed in Editor's Log? | Notes                                            |
+| --------------- | -------------------- | ------------------------ | ------------------------------------------------ |
+| Fatal           | Yes                  | N / A                    | Crashes the session, even if logging is disabled |
+| Error           | Yes                  | Yes                      | Log text is coloured red                         |
+| Warning         | Yes                  | Yes                      | Log text is coloured yellow                      |
+| Display         | Yes                  | Yes                      | Log text is coloured grey                        |
+| Log             | No                   | Yes                      | Log text is coloured grey                        |
+| Verbose         | No                   | No                       |                                                  |
+| VeryVerbose     | No                   | No                       |                                                  |
 
 You can also override some of the pre-existing verbosity levels. These settings can be set in either `Engine.ini` or `DefaultEngine.ini`.
 
@@ -130,9 +130,9 @@ Similar to `sprintf()` function in C++, where you can use specific different arg
 
 <table><tr><td>
 
-* `%s` - strings
-* `%d` or `%i` - integers and booleans
-* `%f` - floating point numbers (float and double)
+-   `%s` - strings
+-   `%d` or `%i` - integers and booleans
+-   `%f` - floating point numbers (float and double)
 
 </td></tr></table>
 
@@ -225,9 +225,9 @@ UE_LOG(LogTemp, Log, TEXT("The double value is: %,2f"), MyDouble); // The double
 
 <table><tr><td>
 
-* UE_LOG is extremely verbose, requiring the developer to constantly wrap log text in the `TEXT` macro.
-* UE_LOG is also incapable of printing basic types, such as `bool`, or `FStrings`, Unreal's standard String type.
-* UE_LOG requires awareness of types when printing different variables such as float, integer, booleans, strings.
+-   UE_LOG is extremely verbose, requiring the developer to constantly wrap log text in the `TEXT` macro.
+-   UE_LOG is also incapable of printing basic types, such as `bool`, or `FStrings`, Unreal's standard String type.
+-   UE_LOG requires awareness of types when printing different variables such as float, integer, booleans, strings.
 
 </td></tr></table>
 
@@ -266,8 +266,7 @@ UE_LOGFMT(LogCore, Warning, "Loading '{0}' failed with error {1}", Package->GetN
 UE_LOGFMT(LogCore, Warning, "Loading '{Name}' failed with error {Error}", ("Error", ErrorCode), ("Name", Package->GetName()), ("Flags", LoadFlags));
 ```
 
-> [!NOTE]
-> `FText` is not supported with `UE_LOGFMT()`, in order to use `FText` you need to convert into `FString` by simply calling `ToString()` function.
+> [!NOTE] > `FText` is not supported with `UE_LOGFMT()`, in order to use `FText` you need to convert into `FString` by simply calling `ToString()` function.
 
 ### Log to game-view
 

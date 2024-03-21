@@ -146,8 +146,6 @@ It's possible to encounter circular dependencies when multiple modules access th
 
 To resolve circular dependencies, you can take several approaches:
 
-<table><tr><td>
-
 -   One option is to use the `CircularlyReferencedDependentModules` statement in the [ModuleName].Build.cs file. You can read more about [here](https://forums.unrealengine.com/t/workaround-for-circular-dependencies/264945)!
 
 Here's an example:
@@ -172,7 +170,5 @@ public class ModuleB : ModuleRules
 -   Another option is to create another module to further separate the code into smaller pieces.
 
 -   Finally, you can also refactor your modules to avoid circular dependencies altogether.
-
-</td></tr></table>
 
 _The best solution will depend on your specific situation and the complexity of your code._

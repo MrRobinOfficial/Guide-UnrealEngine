@@ -141,22 +141,30 @@ In C++, header files and source files are two types of files used to organize an
 
 <table><tr><td>
 
-## Header Files (.h)
+Header Files (.h)
 
 * Header files contain declarations of classes, functions, variables, and other elements that are used in the program.
 * They provide interfaces to the functionality implemented in the corresponding source files.
 * Header files are included in source files using `#include` directives to make the declarations visible to the compiler during the compilation process.
 
-## Source Files (.cpp)
+---
+
+Source Files (.cpp)
 
 * Source files contain the actual implementations of the functions and classes declared in the header files.
 * They define how the functions and classes behave and provide the logic for the program's functionality.
 * Source files are compiled to object files and then linked together to create the final executable.
 
-## Reason for Separate Header and Source Files
+---
+
+Reason for Separate Header and Source Files
+
 The separation of header and source files is a design choice that promotes modularity and improves build efficiency in C++. By keeping declarations in header files and implementations in source files, the compiler can easily check for correctness and compile only the necessary code, reducing build times and preventing redundant compilation.
 
-## History of Single File Extensions
+---
+
+History of Single File Extensions
+
 In the early days of computing, languages like [Fortran](https://en.wikipedia.org/wiki/Fortran) and [COBOL](https://en.wikipedia.org/wiki/COBOL) used single file extensions because of the limitations of the operating systems and compilers at the time. Each file had to adhere to a specific format defined by the language and its compiler, and the extension represented that format.
 
 </td></tr></table>
@@ -229,7 +237,7 @@ This section was written in conjunction with ChatGPT.
 
 <table><tr><td>
 
-## Native Types
+Native Types
 
 * `bool` - Represents a logical value, either `true` or `false`
 * `char` - Represents a single character in the ASCII[^3] character set
@@ -311,7 +319,7 @@ C++ allows the char, int, and double data types to have modifiers preceding them
 
 <table><tr><td>
 
-## List of modifiers
+List of modifiers
 
 * `signed`
 * `unsigned`
@@ -1227,7 +1235,7 @@ int factorial(int n)
 
 <table><tr><td>
 
-## Benefits of Recursion
+Benefits of Recursion
 
 * Simplicity: Recursive solutions can often be more straightforward and easier to understand for certain problems, especially those that have a recursive nature.
 
@@ -1258,7 +1266,7 @@ The linker can be configured to accept either static library or dynamic library 
 
 <table><tr><td>
 
-## File extensions
+File extensions
 
 * `.lib` = Windows
 * `.a` = Linux
@@ -1279,7 +1287,7 @@ When you compile, you have the options to compile the source code into a [.lib](
 
 <table><tr><td>
 
-## File extensions
+File extensions
 
 * `.dll` = Windows
 * `.so` = Linux
@@ -1297,13 +1305,15 @@ There are major problems when developing a project that uses .dll files. Not onl
 
 <table><tr><td>
 
-## Benefits
+Benefits
 
 * Can reduce disk and memory space usages
 * Improved serviceability (bug fixes, security patching, etc.)
 * Improved maintainability
 
-## Drawbacks
+---
+
+Drawbacks
 
 * Increased potential for incompatibles versions. Also, known as [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell).
 * Every call across a DLL boundary is necessarily an indirect call.
