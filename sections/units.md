@@ -87,7 +87,7 @@ By default, Unreal will override your unit with the respective unit for that cat
 If you want to disable this feature, then you can use the specifier `ForceUnits` instead.
 
 ```cpp
-UPROPERTY(meta = (Units = "lbs"))
+UPROPERTY(meta = (ForceUnits = "lbs"))
 float MassInPounds{ 22.0f };
 ```
 
