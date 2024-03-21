@@ -58,7 +58,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [Prefixes](#prefixes)
   - [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
 - [🧱 Data Types](#-data-types)
-- [Characters](#characters)
+  - [Characters](#characters)
   - [Booleans](#booleans)
   - [Integers](#integers)
   - [Floating point numbers](#floating-point-numbers)
@@ -1075,15 +1075,9 @@ This section was written in conjunction with ChatGPT.
 
 ![Data types](static/img/Data_types.png)
 
-<details open>
-  <summary>Click to expand</summary>
-
-## Characters
+### Characters
 
 In C++ native, you write a character by using `char` data type:
-
-> [!NOTE]
-> Useful information that users should know, even when skimming content.
 
 ```cpp
 char myChar = 'a';
@@ -3726,8 +3720,6 @@ if (SoftPtr.IsValid())
 | TWeakInterfacePtr  | UObject Classes    | Weak pointer for non-owning references to objects implementing a specific interface. |
 | TSoftObjectPtr     | UObject Classes    | Soft pointer for non-owning references to UObject-derived objects. Allows loading the object when needed, but won't prevent it from being garbage collected. |
 | TSoftClassPtr      | UObject Classes    | Soft pointer for non-owning references to UClass-derived objects. Allows loading the class when needed, but won't prevent it from being garbage collected. |
-
-</details>
 
 <!-- prettier-ignore-end -->
 
