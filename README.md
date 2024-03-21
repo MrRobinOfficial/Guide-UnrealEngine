@@ -1461,6 +1461,8 @@ FText NumberText = FText::AsNumber(Health, &NumberFormat);
 NumberText = FText::AsCultureInvariant(NumberText); // Disable the culture formatting
 ```
 
+Lorem Ipsum
+
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
 
