@@ -67,7 +67,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [📖 String Data Types](#-string-data-types)
   - [Text Macros](#text-macros)
     - [FName](#fname)
-- [FText](#ftext)
+    - [FText](#ftext)
     - [FString](#fstring)
   - [🚀 Math Data Types](#-math-data-types)
     - [Vector4](#vector4)
@@ -1351,7 +1351,7 @@ Declare `FName`:
 FName MyName = FName(TEXT("PlayerName"));
 ```
 
-## FText
+#### FText
 
 <table><tr><td>
 This section was NOT written in conjunction with ChatGPT.
@@ -1465,6 +1465,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sem mollis, 
 
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sem mollis, suscipit lorem et, tincidunt nibh. Fusce pulvinar accumsan tellus, eu ornare sapien finibus a. Etiam lorem ante, hendrerit nec consectetur nec, tempor sed est. Phasellus sollicitudin et libero sit amet hendrerit. Praesent cursus porta maximus. Curabitur ac diam vel felis finibus cursus eget pharetra magna. Praesent eu ante consectetur velit dapibus viverra ut et dolor. Phasellus ultrices sollicitudin mauris vitae blandit. Vivamus vitae dolor viverra, euismod lacus eget, tempus dui. Nulla facilisi. Aliquam vulputate aliquam est ac laoreet. Sed vitae viverra nunc. Curabitur auctor diam ipsum, in posuere enim efficitur consequat. Fusce non porttitor odio, sit amet placerat orci. Sed tristique magna ut leo pellentesque, id tincidunt enim luctus.
+
+> [!NOTE]
+> By default, Unreal will use local culture when doing this format. If you wish to disable culture formatting, use `FText::AsCultureInvariant` function.
 
 #### FString
 
