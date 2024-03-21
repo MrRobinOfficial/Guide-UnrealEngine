@@ -5326,7 +5326,8 @@ UE_LOGFMT(LogCore, Warning, "Loading '{0}' failed with error {1}", Package->GetN
 UE_LOGFMT(LogCore, Warning, "Loading '{Name}' failed with error {Error}", ("Error", ErrorCode), ("Name", Package->GetName()), ("Flags", LoadFlags));
 ```
 
-> [!NOTE] > `FText` is not supported with `UE_LOGFMT()`, in order to use `FText` you need to convert into `FString` by simply calling `ToString()` function.
+> [!NOTE]
+> FText is not supported with `UE_LOGFMT()`, in order to use `FText` you need to convert into `FString` by simply calling `ToString()` function.
 
 ### Log to game-view
 
