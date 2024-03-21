@@ -284,7 +284,7 @@ Declare `FName`:
 FName MyName = FName(TEXT("PlayerName"));
 ```
 
-#### FText
+## FText
 
 <table><tr><td>
 This section was NOT written in conjunction with ChatGPT.

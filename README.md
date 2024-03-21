@@ -67,7 +67,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [📖 String Data Types](#-string-data-types)
   - [Text Macros](#text-macros)
     - [FName](#fname)
-    - [FText](#ftext)
+- [FText](#ftext)
     - [FString](#fstring)
   - [🚀 Math Data Types](#-math-data-types)
     - [Vector4](#vector4)
@@ -1351,7 +1351,7 @@ Declare `FName`:
 FName MyName = FName(TEXT("PlayerName"));
 ```
 
-#### FText
+## FText
 
 <table><tr><td>
 This section was NOT written in conjunction with ChatGPT.
