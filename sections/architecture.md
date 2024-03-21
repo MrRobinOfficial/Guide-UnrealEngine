@@ -79,20 +79,44 @@ graph TD;
     UShapeComponent-->USphereComponent;
 ```
 
-`UObject` is a base class for objects in the engine that require some common functionality such as garbage collection, serialization, reflection, and more. `UObject` also provides some additional functionality such as networking support, dynamic class creation, and object-oriented programming features like inheritance and polymorphism.
-
 You can read more about [Unreal Architecture at their docs](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/).
 
-Some of the notable classes, that inherit from `UObject` include:
+Here is a list of notable classes in this architecture:
 
 <details open>
   <summary>Click to expand</summary>
 
--   `AActor`
+-   [UClass](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/CoreUObject/UObject/UClass) inherit `UStruct`
 
-    -   A base class for the every object placed in the world. It's an `UObject` that usually contains other `UObject`s specialized to be part of an actor - this what we call components.
-    -   This class contains a basic functionality to operate on the "object placed in the world".
+    -   An object class.
+
+-   [UObject](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/CoreUObject/UObject/UObject) inherit `UObjectBaseUtility`
+
+    -   The base class of all UE objects.
+    -   The type of an object is defined by its `UClass`.
+    -   This provides support functions for creating and using objects, and virtual functions that should be overridden in child classes.
+
+-   [AActor](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/AActor) inherit `UObject`
+
+    -   Actor is the base class for an Object that can be placed or spawned in a level.
+    -   Actors may contain a collection of ActorComponents, which can be used to control how actors move, how they are rendered, etc. The other main function of an Actor is the replication of properties and function calls across the network during play.
     -   `AActor` itself doesn't have a transform (i.e. position in the world), it depends on the transform of the root component.
+    -   _Common Functions_:
+        -   `void PreInitializeComponents()` - Called before InitializeComponent is called on the actor's components. This is only called during gameplay and in certain editor preview windows.
+        -   `void InitializeComponent()` - This will be called only if the component has bWantsInitializeComponentSet. This only happens once per gameplay session.
+        -   `void PostInitializeComponents()` - Called after the actor's components have been initialized, only during gameplay and some editor previews.´
+        -   `void BeginPlay()` - Called when the level starts ticking, only during actual gameplay. This normally happens right after PostInitializeComponents but can be delayed for networked or child actors.
+        -   `void Tick(float DeltaSeconds)` - Function called every frame on this Actor.
+        -   `void EndPlay(const EEndPlayReason::Type EndPlayReason)` - Overridable function called whenever this actor is being removed from a level
+        -   `void SetLifeSpan(float InLifespan)` - Set the lifespan of actor.
+        -   `void Destroy(bool bNetForce, bool bShouldModifyLevel)` - Destroy the actor.
+        -   `void SetActorTickEnabled(bool bEnabled)` - Set this actor's tick functions to be enabled or disabled.
+        -   `SetActorTickInterval(float TickInterval)` - Sets the tick interval of this actor's primary tick function.
+
+-   [APawn](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/APawn) inherit `AActor`
+
+    -   Pawn is the base class of all actors that can be possessed by players or AI. They are the physical representations of players and creatures in a level.
+    -   `APawn` provides basic possession mechanisms and support for input handling, as well as collision detection and physics simulation.
     -   _Common Functions_:
         -   `BeginPlay()` - Called when the level starts ticking, only during actual gameplay.
         -   `Tick(float DeltaSeconds)` - Update function, called every frame on Actor.
@@ -100,127 +124,169 @@ Some of the notable classes, that inherit from `UObject` include:
         -   `SetLifeSpan(float InLifespan)` - Set the lifespan of actor.
         -   `Destroy(bool bNetForce, bool bShouldModifyLevel)` - Destroy actor.
 
--   `APawn`
+-   [AHUD](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/AHUD) inherit `AActor`
 
-    -   Represents a pawn in the game world. A pawn is an entity that can be controlled by the player or by AI, and can move and interact with the game world.
-    -   `APawn` provides basic movement and input handling functionality, as well as collision detection and physics simulation.
+    -   Base class of the heads-up display. The HUD displays important information to the player, such as health and ammunition levels, as well as providing visual feedback for game events such as damage or power-up pickups.
+    -   This has a canvas and a debug canvas on which primitives can be drawn. It also contains a list of simple hit boxes that can be used for simple item click detection. A method of rendering debug text is also included. Provides some simple methods for rendering text, textures, rectangles and materials which can also be accessed from blueprints.
 
--   `AHUD`
+-   [ACharacter](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/ACharacter) inherit `APawn`
 
-    -   Represents the heads-up display (HUD) in the game. The HUD displays important information to the player, such as health and ammunition levels, as well as providing visual feedback for game events such as damage or power-up pickups.
-    -   `AHUD` can be customized to display different types of information and to use different visual styles.
-
--   `ACharacter`
-
-    -   Represents a playable character in the game world. `ACharacter` is a subclass of `APawn` and provides additional functionality specific to player-controlled characters, such as animation and movement controls, camera handling, and input management.
+    -   Characters are Pawns (`APawn`) that have a mesh, collision, and built-in movement logic.
+    -   They are responsible for all physical interaction between the player or AI and the world, and also implement basic networking and input models. They are designed for a vertically-oriented player representation that can walk, jump, fly, and swim through the world using `UCharacterMovementComponent`.
     -   `ACharacter` can be used as a base class for player characters, enemies, and other types of characters in the game.
 
--   `AController`
+-   [AController](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/AController) inherit `AActor`
 
-    -   Represents a controller in the game, which can be used to control a `APawn` or `ACharacter`.
-    -   `AController` provides input handling and navigation functionality, allowing players or AI to move and interact with the game world. `AController` can be used to implement different types of control schemes, such as first-person or third-person controls, and can be customized to support different input devices and control configurations.
+    -   Controllers are non-physical actors that can possess a Pawn to control its actions. PlayerControllers are used by human players to control pawns, while AIControllers implement the artificial intelligence for the pawns they control. Controllers take control of a pawn using their `Possess()` method, and relinquish control of the pawn by calling `UnPossess()`.
+    -   Controllers receive notifications for many of the events occurring for the Pawn they are controlling. This gives the controller the opportunity to implement the behavior in response to this event, intercepting the event and superseding the Pawn's default behavior.
+    -   ControlRotation (accessed via `GetControlRotation()`), determines the viewing/aiming direction of the controlled Pawn and is affected by input such as from a mouse or gamepad.
 
--   `UActorComponent`
+-   [UActorComponent](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Components/UActorComponent) inherit `UObject`
 
-    -   A base class for every object placed inside AActor.
-    -   Used for components contains only the logic, i.e. `UMovementComponent` or `USceneComponent`.
+    -   ActorComponent is the base class for components that define reusable behavior that can be added to different types of Actors.
+    -   ActorComponents that have a transform are known as SceneComponents (`USceneComponent`) and those that can be rendered are PrimitiveComponents (`UPrimitiveComponent`).
     -   `UActorComponent` doesn't appear in the world.
     -   _Common Functions_:
         -   `BeginPlay()` - Begins Play for component.
         -   `TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)` - Function called every frame on ActorComponent.
         -   `EndPlay(const EEndPlayReason::Type EndPlayReason)` - Ends gameplay for component.
 
--   `UMovementComponent`
+-   [UMovementComponent](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/UMovementComponent) inherit `UActorComponent`
 
-    -   Provides movement functionality to an actor in the game world. `UMovementComponent` can be used to implement a variety of movement types, such as flying, walking, swimming, or sliding.
-    -   `UMovementComponent` handles physics simulation and collision detection for the actor, and can be customized to provide different movement behaviors.
+    -   MovementComponent is an abstract component class that defines functionality for moving a PrimitiveComponent (our UpdatedComponent) each tick.
 
--   `USceneComponent`
+-   [USceneComponent](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Components/USceneComponent) inherit `UActorComponent`
 
-    -   A base class for every component which actually appears in the world, it has a transform evaluated every frame.
+    -   A SceneComponent has a transform and supports attachment, but has no rendering or collision capabilities.
+    -   Useful as a 'dummy' component in the hierarchy to offset others.
     -   It's used by components that need to know its place in the world to run the logic, i.e. `UAudioComponnent`, `UCameraComponent`.
-    -   Component of this class isn't rendered or doesn't collide with anything.
 
--   `UPrimitiveComponent`
+-   [UPrimitiveComponent](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Components/UPrimitiveComponent) inherit `USceneComponent`
 
-    -   And this finally the base class for all components representing any sort of geometry.
-    -   These components are rendered and tested for collision.
+    -   PrimitiveComponents are SceneComponents that contain or generate some sort of geometry, generally to be rendered or used as collision data.
+    -   There are several subclasses for the various types of geometry, but the most common by far are the ShapeComponents (Capsule, Sphere, Box), StaticMeshComponent, and SkeletalMeshComponent.
+    -   ShapeComponents generate geometry that is used for collision detection but are not rendered, while StaticMeshComponents and SkeletalMeshComponents contain pre-built geometry that is rendered, but can also be used for collision detection.
 
--   `USubsystem`
+-   [USubsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Subsystems/USubsystem) inherit `UObject`
 
-    -   Provide services or functionality that can be used by other parts of the engine or by games built with the engine.
-    -   Examples of subsystems in Unreal Engine include the rendering subsystem, the physics subsystem, and the input subsystem.
+    -   Subsystems are auto instanced classes that share the lifetime of certain engine constructs.
     -   Subsystems are responsible for initializing, updating, and shutting down their associated services, and can be used to customize or extend engine functionality as needed.
-    -   4 types of subsystems
-        -   Engine (Engine lifetime)
-        -   Editor (Editor lifetime)
-        -   GameInstance (Game instance lifetime)
-        -   LocalPlayer (share lifetime of local players)
+    -   6 types of subsystems
+        -   [UEngineSubsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Subsystems/UEngineSubsystem) Share lifetime of Engine.
+        -   [UEditorSubsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Editor/EditorSubsystem/UEditorSubsystem) - Share the lifetime of the Editor.
+        -   [UGameInstanceSubsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Subsystems/UGameInstanceSubsystem) Share lifetime of game instance.
+        -   [ULocalPlayerSubsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Subsystems/ULocalPlayerSubsystem) - Share lifetime of local players.
+        -   [UWorldSubsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Subsystems/UWorldSubsystem) - Share lifetime of a `UWorld`.
+        -   [UTickableWorldSubsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Subsystems/UTickableWorldSubsystem) - Share lifetime of a `UWorld` and are ticking along with it.
 
--   `UBlueprintFunctionLibrary`
+-   [UBlueprintFunctionLibrary](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Kismet/UBlueprintFunctionLibrary) inherit `UObject`
 
-    -   Allows you to create custom static functions that can be used in Blueprint graphs. These functions can be called from any Blueprint and can perform complex calculations or operations that are not easily achievable with standard Blueprint nodes.
+    -   This class is a base class for any function libraries exposed to blueprints.
+    -   Methods in subclasses are expected to be static, and no methods should be added to this base class.
 
--   `UEngine`, `UEditorEngine` and `UGameEngine`
+-   [UEngine](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/UEngine), [UEditorEngine](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Editor/UnrealEd/Editor/UEditorEngine) and [UGameEngine](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/UGameEngine) inherit `UObject`
 
-    -   Manages the main loop of the engine, handles rendering, input, audio, networking, and more.
-    -   `UEditorEngine` is used to manage the editor, which includes all of the tools and systems needed to create and edit levels, assets, and other game content.
-    -   `UGameEngine` is used to manage the game itself, which includes gameplay mechanics, AI, physics, rendering, and so on.
+    -   Abstract base class of all Engine classes, responsible for management of systems critical to editor or game systems. Also defines default classes for certain engine systems.
+    -   `UGameEngine` manages core systems that enable a game.
+    -   `UEditorEngine` drives the Editor. Separate from `UGameEngine` because it may have much different functionality than desired for an instance of a game itself.
 
--   `UGameViewportClient`
+-   [UGameViewportClient](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/UGameViewportClient) inherit `UScriptViewportClient`
 
-    -   Manages the viewport and input handling for the game. It is responsible for rendering the game's output to the screen, handling user input, and managing the game's display settings.
+    -   A game viewport (FViewport) is a high-level abstract interface for the platform specific rendering, audio, and input subsystems.
+    -   Exactly one GameViewportClient is created for each instance of the game.
 
--   `ULocalPlayer`
+-   [ULocalPlayer](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/ULocalPlayer) inherit `UObject`
 
-    -   Manages the player's input, screen rendering, and other local gameplay-related tasks. ULocalPlayer is often used in conjunction with other classes, such as APlayerController, to manage local player interactions with the game.
+    -   Each player that is active on the current client/listen server has a LocalPlayer.
+    -   It stays active across maps, and there may be several spawned in the case of splitscreen/coop. There will be 0 spawned on dedicated servers.
+    -   LocalPlayer is often used in conjunction with other classes, such as `APlayerController`, to manage local player interactions with the game.
+    -   _Common Functions_:
+        -   `TSubsystemClass* GetSubsystem() const` - Get a Subsystem of specified type
 
--   `UWorld`
+-   [UWorld](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/UWorld) inherit `UObject`
 
-    -   Represents a single instance of a level or map. It contains all the actors, components, and other objects that are present in the level, as well as information about the level's environment and physics settings.
-    -   Functions:
-        -   `SpawnActor()` and `SpawnActorDeferred()` (deferred allow you to set actor properties before it's spawned into the world.)
+    -   The World is the top level object representing a map or a sandbox in which Actors and Components will exist and be rendered.
+    -   A World can be a single Persistent Level with an optional list of streaming levels that are loaded and unloaded via volumes and blueprint functions or it can be a collection of levels organized with a World Composition.
+    -   In a standalone game, generally only a single World exists except during seamless area transitions when both a destination and current world exists. In the editor many Worlds exist: The level being edited, each PIE instance, each editor tool which has an interactive rendered viewport, and many more.
+    -   _Common Functions_:
+        -   `SpawnActor()` or `SpawnActorDeferred()` - Spawn an actor from it's class. Deferred method will allow you to set actor properties before it's spawned into the world.
 
--   `ULevel`
+-   [ULevel](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/ULevel)
 
-    -   Represents a level in the game world that contains actors, geometry, lighting, and other assets.
+    -   A Level is a collection of Actors (lights, volumes, mesh instances etc.). Multiple Levels can be loaded and unloaded into the World to create a streaming experience.
 
--   `UGameInstance`
+-   [UGameInstance](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/UGameInstance) inherit `UObject`
 
-    -   Represents the game instance, which is created when the game starts up and persists for the duration of the game.
+    -   High-level manager object for an instance of the running game. Spawned at game creation and not destroyed until game instance is shut down. Running as a standalone game, there will be one of these. Running in PIE (play-in-editor) will generate one of these per PIE instance.
     -   The game instance can be used to manage persistent data and game state across levels, as well as to perform global game operations such as handling networking, input, and other system-level tasks.
 
--   `AGameMode`
+-   [AGameMode](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/AGameMode) inherit `AGameModeBase`
 
-    -   Defines the rules and mechanics of a particular game mode, such as deathmatch or capture the flag.
-    -   Can be used to control game behavior, spawn actors, manage player input and game state, and perform other game-specific tasks.
-    -   Each level in a game can have its own `AGameMode`, allowing for different game modes to be used in different levels.
+    -   GameMode is a subclass of GameModeBase that behaves like a multiplayer match-based game.
+    -   It has default behavior for picking spawn points and match state. Or you define the rules and mechanics of a particular game mode, such as deathmatch or capture the flag.
+    -   If you want a simpler base, inherit from GameModeBase instead.
+    -   Each level (`ULevel`) in a game can have its own `AGameMode`, allowing for different game modes to be used in different levels.
 
--   `AGameState`
+-   [AGameState](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/AGameState) inherit `AGameStateBase`
 
-    -   Represents the state of the game during play. `AGameState` can be used to store and manage data that is specific to a particular game, such as player scores, game timers, and other game state information.
+    -   GameState is a subclass of GameStateBase that behaves like a multiplayer match-based game. It is tied to functionality in GameMode.
     -   `AGameState` can also be used to synchronize game state across multiple clients in a networked game, ensuring that all players have an accurate view of the game world.
 
--   `UUserWidget`
+-   [APlayerState](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/APlayerState) inherit `AInfo`
 
-    -   Represents a user interface (UI) widget in the game. `UUserWidget` provides a flexible framework for creating UI elements such as buttons, text fields, and images, and can be customized to implement complex UI behaviors such as animations, transitions, and data binding.
-    -   `UUserWidget` can be used to create menus, health bars, inventory screens, and other UI elements in the game.
+    -   A PlayerState is created for every player on a server (or in a standalone game).
+    -   PlayerStates are replicated to all clients, and contain network game relevant information about the player, such as playername, score, etc.
 
--   `UPrimaryDataAsset`
+-   [UWidget](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/UMG/Components/UWidget) inherit `UVisual`
 
+    -   This is the base class for all wrapped Slate controls that are exposed to UObjects.
+
+-   [UUserWidget](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/UMG/Blueprint/UUserWidget) inherit `UWidget`
+
+    -   A widget that enables UI extensibility through WidgetBlueprint.
+    -   `UUserWidget` provides a flexible framework for creating UI elements such as buttons, text fields, and images, and can be customized to implement complex UI behaviors such as animations, transitions, and data binding.
+
+-   [UAssetManager](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/UAssetManager) inherit `UObject`
+
+    -   A singleton `UObject` that is responsible for loading and unloading PrimaryAssets, and maintaining game-specific asset references Games should override this class and change the class reference
+
+-   [UDataAsset](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/UDataAsset) inherit `UObject`
+
+    -   Create a simple asset that stores data related to a particular system in an instance of this class.
+    -   Assets can be made in the Content Browser using any native class that inherits from this.
+    -   If you want data inheritance or a complicated hierarchy, Data Only Blueprint Classes should be created instead.
+
+-   [UPrimaryDataAsset](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/UPrimaryDataAsset) inherit `UDataAsset`
+
+    -   A DataAsset that implements `GetPrimaryAssetId()` and has asset bundle support, which allows it to be manually loaded/unloaded from the AssetManager (`UAssetManager`).
     -   Represents a primary data asset in the engine. A primary data asset is a piece of game content that is created in the Unreal Editor, such as a mesh, texture, sound, or level. `UPrimaryDataAsset` provides a base class for creating custom data assets that can be loaded and used by the game at runtime.
     -   `UPrimaryDataAsset` can be used to manage and organize game content, and can be customized to provide additional functionality such as data validation and metadata management.
 
--   `USoundBase`
+-   [USoundBase](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Sound/USoundBase) inherit `UObject`
 
-    -   Represents a sound or audio asset in the engine. ASoundBase can be used to play sound effects, music, and other audio in the game world. `ASoundBase` provides a number of features for controlling the playback of audio, including volume, pitch, and spatialization effects such as 3D sound and reverb.
+    -   The base class for a playable sound object
+    -   `USoundBase` can be used to play sound effects, music, and other audio in the game world.
+    -   `USoundBase` provides a number of features for controlling the playback of audio, including volume, pitch, and spatialization effects such as 3D sound and reverb.
 
--   `UMaterial`
+-   [UMaterial](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Materials/UMaterial) inherit `UMaterialInterface`
 
-    -   Represents a material which defines the visual appearance of objects in the game world.
+    -   A Material is an asset which can be applied to a mesh to control the visual look of the scene.
+    -   When light from the scene hits the surface, the shading model of the material is used to calculate how that light interacts with the surface.
 
--   `UTexture`
+-   [UMaterialInstance](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Materials/UMaterialInstanceDynamic) inherit `UMaterialInterface`
+
+    -   A instance of a material asset. This way, you can create a hierarchy material system.
+
+-   [UMaterialInstanceDynamic](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Materials/UMaterialInstanceDynamic) inherit `UMaterialInstance`
+
+    -   A dynamic spawned instance material.
+
+-   [UTexture](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/UTexture) inherit `UObject`
+
     -   Represents an image or texture that can be used in the engine for various purposes such as materials or user interface elements.
+
+-   [UTexture2D](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/UTexture2D) inherit `UTexture`
+    -   Represents an 2D image or texture that can be used in the engine for various purposes such as materials or user interface elements.
 
 </details>
 
