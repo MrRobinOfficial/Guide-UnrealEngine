@@ -1,5 +1,9 @@
 ## 🎪 Architecture
 
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
 ```mermaid
 graph TD;
     UObjectBase-->UObjectBaseUtility;
