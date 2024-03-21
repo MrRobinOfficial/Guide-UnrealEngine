@@ -395,6 +395,9 @@ NumberText = FText::AsCultureInvariant(NumberText); // Disable the culture forma
 ```
 
 > [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!NOTE]
 > By default, Unreal will use local culture when doing this format. If you wish to disable culture formatting, use `FText::AsCultureInvariant` function.
 
 #### FString
