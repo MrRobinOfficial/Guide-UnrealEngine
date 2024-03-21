@@ -563,9 +563,9 @@ graph TD;
     UShapeComponent-->USphereComponent;
 ```
 
-You can read more about [Unreal Architecture at their docs](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/).
+When getting started with Unreal Engine and their workflow, it can be intimidating to learn their architecture. However, I would argue it to facilitate your experience with Unreal, if you started learning each classes and their purpose.
 
-Here is a list of notable classes in this architecture:
+Unreal has many classes, which would take a long time to explain. However, here is a list of notable classes:
 
 <details open>
   <summary>Click to expand</summary>
@@ -774,7 +774,9 @@ Here is a list of notable classes in this architecture:
 
 </details>
 
-For more information about Unreal's Architecture. Then I highly recommend, you can watch [underscore about Unreal Engine Architecture](https://www.youtube.com/watch?v=QcXHEsR0xHI) video.
+You can read more about [Unreal Architecture at their docs](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/).
+
+And for more information about Unreal's Architecture. Then I highly recommend, you can watch [underscore about Unreal Engine Architecture](https://www.youtube.com/watch?v=QcXHEsR0xHI) video.
 
 You can also watch a video discussion about [Multiplayer Framework of Unreal Engine from Kekdot](https://www.youtube.com/watch?v=Hsr6mbNKBLU).
 
