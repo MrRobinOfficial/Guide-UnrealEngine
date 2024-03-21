@@ -58,7 +58,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [Prefixes](#prefixes)
   - [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
 - [🧱 Data Types](#-data-types)
-  - [Characters](#characters)
+- [Characters](#characters)
   - [Booleans](#booleans)
   - [Integers](#integers)
   - [Floating point numbers](#floating-point-numbers)
@@ -1078,7 +1078,7 @@ This section was written in conjunction with ChatGPT.
 <details open>
   <summary>Click to expand</summary>
 
-### Characters
+## Characters
 
 In C++ native, you write a character by using `char` data type:
 

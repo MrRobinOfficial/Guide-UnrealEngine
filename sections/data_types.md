@@ -11,7 +11,7 @@ This section was written in conjunction with ChatGPT.
 <details open>
   <summary>Click to expand</summary>
 
-### Characters
+## Characters
 
 In C++ native, you write a character by using `char` data type:
 
