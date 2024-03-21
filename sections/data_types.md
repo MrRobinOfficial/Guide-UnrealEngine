@@ -8,15 +8,15 @@ This section was written in conjunction with ChatGPT.
 
 ![Data types](static/img/Data_types.png)
 
-> [!NOTE]
-> Useful information that users should know, even when skimming content.
-
 <details open>
   <summary>Click to expand</summary>
 
 ### Characters
 
 In C++ native, you write a character by using `char` data type:
+
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
 
 ```cpp
 char myChar = 'a';
