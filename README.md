@@ -3631,7 +3631,7 @@ if (WeakPtr.IsValid())
 
 This smart pointer is used to hold a soft reference to an `UObject` subclass. It is used for referencing assets that can be loaded and unloaded during runtime. Soft references do not prevent the asset from being garbage collected.
 
-![TSoftObjectPtr](static/img/TSoftObjectPtr+BP.png)
+![TSoftObjectPtr](static/img/TSoftObjectPtr_BP.png)
 
 Example usage:
 
@@ -3678,7 +3678,7 @@ if (SoftPtr.IsValid())
 
 This smart pointer is used to hold a soft reference to a `UClass` subclass. It is used for referencing blueprint classes or other classes that can be loaded and unloaded during runtime.
 
-![TSoftClassPtr](static/img/TSoftClassPtr+BP.png)
+![TSoftClassPtr](static/img/TSoftClassPtr_BP.png)
 
 Example usage:
 
@@ -5600,9 +5600,9 @@ With the dynamic delegate variable declared, you can now bind one or more functi
 
 These are macros, will helps you to write smaller code. Behind the scenes, it will automatically generates the function name string. The macro takes a reference to the object that owns the function, the name of the function, and an optional user data parameter.
 
-* `BindDynamic(UserObject, FuncName, ...)`
-* `AddDynamic(UserObject, FuncName)`
-* `RemoveDynamic(UserObject, FuncName)`
+-   `BindDynamic(UserObject, FuncName, ...)`
+-   `AddDynamic(UserObject, FuncName)`
+-   `RemoveDynamic(UserObject, FuncName)`
 
 ```cpp
 MyEvent.BindDynamic(this, &AMyActor::MyFunction);
@@ -5623,34 +5623,48 @@ MyEvent.BindDynamic(this, &AMyActor::MyFunction, 100, true, TEXT("Hello, World!"
 ```
 
 <!-- DECLARE_DYNAMIC_DELEGATE[_RetVal, ...]( DelegateName ) -->
-<!-- TODO: Fix this -->
 
 Here is a list of binding functions for Non-Dynamic Single Delegate:
 
-* `Bind()` - Binds to an existing delegate object.
-* `BindLambda()` - Binds a functor. This is generally used for lambda functions.
-* `BindRaw()` - Binds a raw C++ pointer delegate. Since raw pointers do not use any sort of reference, calling `Execute()` or `ExecuteIfBound()` after deleting the target object is unsafe.
-* `BindStatic()` - Binds a raw C++ pointer global function delegate.
-* `BindSP()` - Binds a shared pointer-based member function delegate. Shared pointer delegates keep a weak reference to your object. You can use `ExecuteIfBound()` to call them.
-* `BindUFUnction()` - Lorem Ipsum
-* `BindUObject()` - Binds a `UObject` member function delegate. `UObject` delegates keep a weak reference to the `UObject` you target. You can use `ExecuteIfBound()` to call them.
-* `BindWeakLambda()` - Lorem Ipsum
-* `BindThreadSafeSP()` - Lorem Ipsum
-* `UnBind()` - Unbinds this delegate.
+-   `Bind()` - Binds to an existing delegate object. This allows you to bind a delegate to an existing delegate, allowing for a more flexible way of binding delegates together.
+
+-   `BindLambda()` - Binds a functor. This is generally used for lambda functions. The functor is stored by value, so make sure it's small and efficient to copy.
+
+-   `BindRaw()` - Binds a raw C++ pointer delegate. Since raw pointers do not use any sort of reference, calling `Execute()` or `ExecuteIfBound()` after deleting the target object is unsafe.
+
+-   `BindStatic()` - Binds a raw C++ pointer global function delegate. This is useful for binding to global functions that are not members of any class.
+
+-   `BindSP()` - Binds a shared pointer-based member function delegate. Shared pointer delegates keep a weak reference to your object. You can use `ExecuteIfBound()` to call them.
+
+-   `BindUFunction()` - Binds a `UFunction` delegate. This allows you to bind to a blueprint function or a function in a `UObject` subclass. When the delegate is executed, it will call the function on the object it was bound to at the time of binding. If the object is garbage collected, the delegate will not be executed. You can use `ExecuteIfBound()` to call the function if it's still valid.
+
+-   `BindUObject()` - Binds a `UObject` member function delegate. `UObject` delegates keep a weak reference to the `UObject` you target. You can use `ExecuteIfBound()` to call them.
+
+-   `BindWeakLambda()` - Binds a functor that keeps a weak reference to the object it's bound to. This allows you to bind a delegate to an object that may be garbage collected. When the delegate is executed, it will check if the object is still valid. If it is, it will call the functor. If it's not, the delegate will not be executed.
+
+-   `BindThreadSafeSP()` - Binds a shared pointer-based member function delegate that is safe to call from any thread. This is similar to `BindSP()`, but it uses a thread-safe reference counting scheme.
+
+-   `UnBind()` - Unbinds this delegate. This will clear the delegate, so it will not be executed when triggered.
 
 And here is the list of binding functions for Non-Dynamic Multicast Delegate:
 
-* `Add()` - Adds a function delegate to this multi-cast delegate's invocation list.
-* `AddLambda()` - Lorem Ipsum
-* `AddRaw()` - Adds a raw C++ pointer delegate.
-* `AddStatic()` - Adds a raw C++ pointer global function delegate.
-* `AddSP()` - Adds a shared pointer-based (fast, not thread-safe) member function delegate. Shared pointer delegates keep a weak reference to your object.
-* `AddUObject()` - Adds a UObject-based member function delegate. UObject delegates keep a weak reference to your object.
-* `AddUFunction()` - Lorem Ipsum
-* `AddWeakLambda()` - Lorem Ipsum
-* `AddThreadSafeSP()` - Lorem Ipsum
-* `Remove()` - Removes a function from this multi-cast delegate's invocation list (performance is O(N)). Note that the order of the delegates may not be preserved!
-* `RemoveAll()` - Removes all functions from this multi-cast delegate's invocation list that are bound to the specified UserObject. Note that the order of the delegates may not be preserved!
+-   `Add()` - Adds a function delegate to this multi-cast delegate's invocation list. The delegate will be executed when the `Broadcast()` function is called.
+
+-   `AddLambda()` - Adds a functor (a lambda, a std::function, or a functor class) as a delegate. The delegate will be executed when the `Broadcast()` function is called.
+
+-   `AddRaw()` - Adds a raw C++ pointer delegate. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
+
+-   `AddStatic()` - Adds a raw C++ pointer global function delegate. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
+
+-   `AddSP()` - Adds a shared pointer-based (fast, not thread-safe) member function delegate. Shared pointer delegates keep a weak reference to your object. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
+
+-   `AddUObject()` - Adds a UObject-based member function delegate. UObject delegates keep a weak reference to your object. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
+
+-   `AddUFunction()` - Adds a UFunction delegate. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
+
+-   `AddWeakLambda()` - Adds a functor that keeps a weak reference to the object it's bound to. This allows you to bind a delegate to an object that may be garbage collected. When the delegate is executed, it will check if the object is still valid. If it is, it will call the functor. If it's not, the delegate will not be executed. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
+
+-   `AddThreadSafeSP()` - Adds a shared pointer-based member function delegate that is safe to call from any thread. This is similar to `AddSP()`, but it uses a thread-safe reference counting scheme. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
 
 ### Trigger the delegate
 
@@ -5660,7 +5674,7 @@ Finally, you can trigger the multicast delegate by calling the `Broadcast()` met
 MyEvent.Broadcast();
 ```
 
-And you can also trigger a single delegate, by calling the `Execute()` or `ExecuteIfBound()` method. This will cause the bound function to be called with the  specified parameters.
+And you can also trigger a single delegate, by calling the `Execute()` or `ExecuteIfBound()` method. This will cause the bound function to be called with the specified parameters.
 
 ```cpp
 // If delegate is not bound, this will cause a crash.
@@ -5692,7 +5706,7 @@ Delegates can be used to trigger events in response to user input, game state ch
 | -------------------------------------------- | ------------------ | ----------------- |
 | Singlecast                                   | Yes                | Yes               |
 | Multicast                                    | Yes                | No                |
-| ~~Event~~ (**OBSOLETE**)                                        | Yes                | ?                 |
+| ~~Event~~ (**OBSOLETE**)                     | Yes                | ?                 |
 | Dynamic Singlecast                           | No                 | Yes               |
 | Dynamic Multicast                            | No                 | Yes               |
 | `FTimerDelegate` (Singlecast)                | Yes                | Yes               |

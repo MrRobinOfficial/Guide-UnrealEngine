@@ -2546,7 +2546,7 @@ if (WeakPtr.IsValid())
 
 This smart pointer is used to hold a soft reference to an `UObject` subclass. It is used for referencing assets that can be loaded and unloaded during runtime. Soft references do not prevent the asset from being garbage collected.
 
-![TSoftObjectPtr](static/img/TSoftObjectPtr+BP.png)
+![TSoftObjectPtr](static/img/TSoftObjectPtr_BP.png)
 
 Example usage:
 
@@ -2593,7 +2593,7 @@ if (SoftPtr.IsValid())
 
 This smart pointer is used to hold a soft reference to a `UClass` subclass. It is used for referencing blueprint classes or other classes that can be loaded and unloaded during runtime.
 
-![TSoftClassPtr](static/img/TSoftClassPtr+BP.png)
+![TSoftClassPtr](static/img/TSoftClassPtr_BP.png)
 
 Example usage:
 
