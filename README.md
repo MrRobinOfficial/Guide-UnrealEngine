@@ -5379,7 +5379,13 @@ The `check(Expression)` macro is typically used to detect programming errors or 
 void MyFunction()
 {
     APlayerCharacter* PC = Cast<APlayerController>(GetController());
-    check(PC); // Critical check, program will terminate if PC is a `nullptr`
+
+    // If the condition returns false, the game will crash.
+    // By default, C++ and Unreal has some overloads for pointers and classes, which allows them to return as boolean.
+    check(PC);
+
+    // But, if you wish to be explicit, then you have these options:
+    check(PC != nullptr);
 }
 ```
 
@@ -5393,7 +5399,10 @@ The `verify(Expression)` macro is typically used to detect errors during develop
 void MyFunction()
 {
     APlayerCharacter* PC = Cast<APlayerController>(GetController());
-    verify(PC); // Assertion in all builds, including shipping builds
+
+    // Same as 'check' assertion.
+    // However, this assertion will include in all builds (including shipping builds).
+    verify(PC);
 }
 ```
 
@@ -5407,7 +5416,13 @@ The `ensure(Expression)` macro is typically used to detect non-fatal errors or u
 void MyFunction()
 {
     APlayerCharacter* PC = Cast<APlayerController>(GetController());
-    ensure(PC); // Non-critical check, assertion only during development and editor builds
+
+    // Non-critical check (assertion only during development and editor builds).
+    // This will only call once and will not retrigger for each play.
+    ensure(PC);
+
+    // To have this assertion retriggerable, then use this macro instead:
+    ensureAlways(PC);
 }
 ```
 
@@ -5417,10 +5432,10 @@ There is also alternatives macros[^4] that displays text.
 
 <table><tr><td>
 
-* `checkf(Expression, FormattedText, ...)` or `checkfSlow(Expression, FormattedText, ...)` - Halts execution if `Expression` is false and outputs `FormattedText` to the log
-* `verifyf(Expression, FormattedText, ...)` or `verifySlow(Expression, FormattedText, ...)` - Halts execution if `Expression` is false and outputs `FormattedText` to the log.
-* `ensureMsgf(Expression, FormattedText, ...)` - Notifies the crash reporter and outputs `FormattedText` to the log on the first time `Expression` is false.
-* `ensureAlwaysMsgf(Expression, FormattedText, ...)` - Notifies the crash reporter and outputs `FormattedText` to the log if `Expression` is false.
+-   `checkf(Expression, FormattedText, ...)` or `checkfSlow(Expression, FormattedText, ...)` - Halts execution if `Expression` is false and outputs `FormattedText` to the log
+-   `verifyf(Expression, FormattedText, ...)` or `verifySlow(Expression, FormattedText, ...)` - Halts execution if `Expression` is false and outputs `FormattedText` to the log.
+-   `ensureMsgf(Expression, FormattedText, ...)` - Notifies the crash reporter and outputs `FormattedText` to the log on the first time `Expression` is false.
+-   `ensureAlwaysMsgf(Expression, FormattedText, ...)` - Notifies the crash reporter and outputs `FormattedText` to the log if `Expression` is false.
 
 ```cpp
 void MyFunction()
@@ -5429,7 +5444,7 @@ void MyFunction()
     checkf(PC, TEXT("Player character cannot be null!"));
 
     ULocalPlayer LP = PC->GetLocalPlayer();
-    verifyf(LP, TEXT("Local player cannot be null!"));
+    verifyf(LP, TEXT("Local player cannot be null in shipping builds!"));
 
     bool bIsDead = false;
     ensureMsgf(bIsDead, TEXT("Player shouldn't be dead!"));
@@ -5448,6 +5463,7 @@ void DoSomething()
     unimplemented();
 }
 ```
+
 Another assert macro is `checkCode`. Which is an asserted marco to check your code is valid. Behind the scene, the code runs inside a do-while loop with while set to false. This prevents from looping. The main point of using this technique is to clean up memory afterwards and the ability to use `continue` or `break` keyword.
 
 ```cpp
@@ -5461,9 +5477,9 @@ checkCode(
 
 And lastly, we have `checkNoEntry`, `checkNoReentry` and `checkNoRecursion` assert macros.
 
-* `checkNoEntry` indicates that code should never be reached.
-* `checkNoReentry` indicates that code should not be executed more than once.
-* `checkNoRecursion` indicates that code should never be called recursively.
+-   `checkNoEntry` indicates that code should never be reached.
+-   `checkNoReentry` indicates that code should not be executed more than once.
+-   `checkNoRecursion` indicates that code should never be called recursively.
 
 ```cpp
 void KillPlayer()
@@ -5502,19 +5518,19 @@ You can also watch a video about it from [Sneaky Kitty Game Dev](https://www.you
 
 ---
 
-| Assertion   | Description                                                                                                                                                                                          | Use Cases                                                                                                                                                     |
-|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `check`      | A macro used for runtime checks in Unreal Engine, which is enabled only in Debug builds.                                                                                                              | - Validating preconditions or assumptions in the code.<br>- Ensuring that critical conditions are met during development and debugging.                         |
-|             | If the condition specified in the `check` macro evaluates to false, it triggers an assertion failure, halting the program's execution in Debug mode, allowing developers to identify and fix the issue.  | - Detecting potential bugs or logic errors during development.<br>- Identifying unexpected conditions that should not occur during testing or debugging.       |
-|             | The `check` macro is compiled out in non-Debug builds, so it has no impact on the performance of the release version of the game.                                                                    |                                                                                                                                                              |
-|             |                                                                                                                                                                                                      |                                                                                                                                                              |
-| `verify`    | A macro similar to `check`, used for runtime checks in Unreal Engine, but it is enabled in both Debug and Release builds.                                                                             | - Similar use cases as `check`, but with the intention of detecting issues in both Debug and Release builds.<br>- Useful for crucial runtime checks in production. |
-|             | If the condition specified in the `verify` macro evaluates to false, it triggers an assertion failure in both Debug and Release builds, halting the program's execution.                           |                                                                                                                                                              |
-|             | This can help identify and fix critical issues even in the final release version of the game or application.                                                                                        |                                                                                                                                                              |
-|             |                                                                                                                                                                                                      |                                                                                                                                                              |
-| `ensure`    | A macro specifically designed for Unreal Engine, used for runtime checks with a focus on improving the robustness of code in shipping games.                                                         | - Verifying and enforcing assumptions, preconditions, and invariants in the code to avoid crashes and unexpected behavior in production environments.           |
-|             | The `ensure` macro remains active in both Debug and Release builds, and its behavior can be configured in the Unreal Editor project settings.                                                      | - In a shipping build, `ensure` can be set to log a message or perform a fail-safe action instead of halting the program's execution.                          |
-|             | If the condition specified in the `ensure` macro evaluates to false, it may trigger an assertion or perform an alternative action based on project settings.                                        |                                                                                                                                                              |
+| Assertion | Description                                                                                                                                                                                             | Use Cases                                                                                                                                                          |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `check`   | A macro used for runtime checks in Unreal Engine, which is enabled only in Debug builds.                                                                                                                | - Validating preconditions or assumptions in the code.<br>- Ensuring that critical conditions are met during development and debugging.                            |
+|           | If the condition specified in the `check` macro evaluates to false, it triggers an assertion failure, halting the program's execution in Debug mode, allowing developers to identify and fix the issue. | - Detecting potential bugs or logic errors during development.<br>- Identifying unexpected conditions that should not occur during testing or debugging.           |
+|           | The `check` macro is compiled out in non-Debug builds, so it has no impact on the performance of the release version of the game.                                                                       |                                                                                                                                                                    |
+|           |                                                                                                                                                                                                         |                                                                                                                                                                    |
+| `verify`  | A macro similar to `check`, used for runtime checks in Unreal Engine, but it is enabled in both Debug and Release builds.                                                                               | - Similar use cases as `check`, but with the intention of detecting issues in both Debug and Release builds.<br>- Useful for crucial runtime checks in production. |
+|           | If the condition specified in the `verify` macro evaluates to false, it triggers an assertion failure in both Debug and Release builds, halting the program's execution.                                |                                                                                                                                                                    |
+|           | This can help identify and fix critical issues even in the final release version of the game or application.                                                                                            |                                                                                                                                                                    |
+|           |                                                                                                                                                                                                         |                                                                                                                                                                    |
+| `ensure`  | A macro specifically designed for Unreal Engine, used for runtime checks with a focus on improving the robustness of code in shipping games.                                                            | - Verifying and enforcing assumptions, preconditions, and invariants in the code to avoid crashes and unexpected behavior in production environments.              |
+|           | The `ensure` macro remains active in both Debug and Release builds, and its behavior can be configured in the Unreal Editor project settings.                                                           | - In a shipping build, `ensure` can be set to log a message or perform a fail-safe action instead of halting the program's execution.                              |
+|           | If the condition specified in the `ensure` macro evaluates to false, it may trigger an assertion or perform an alternative action based on project settings.                                            |                                                                                                                                                                    |
 
 ## 🔔 Delegates
 
