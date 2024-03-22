@@ -1042,28 +1042,27 @@ Tools/Frameworks
 
 Math
 
--   `add` = Addition
--   `sub` = Subtraction
--   `mul` = Multiplication
--   `div` = Division
+-   `add` Addition
+-   `sub` Subtraction
+-   `mul` Multiplication
+-   `div` Division
+-   `abs` Absolute
+-   `sin` Sinus
+-   `cos` Cosinus
+-   `tan` Tangens
+-   `rad` Radian
+-   `r` Radius
 
--   `abs` = Absolute
--   `sin` = Sinus
--   `cos` = Cosinus
--   `tan` = Tangens
--   `rad` = Radian
--   `r` = Radius
+-   `frac` Fraction
+-   `freq` Frequency
+-   `long` Longitude or Longitudinal (depending on the context)
+-   `lat` Latitude or Lateral (depending on the context)
 
--   `frac` = Fraction
--   `freq` = Frequency
--   `long` = Longitude or Longitudinal (depending on the context)
--   `lat` = Latitude or Lateral (depending on the context)
-
--   `sqrt` = Square Root
--   `mod` = Modulo
--   `min` = Minimum
--   `max` = Maximum
--   `lerp` = Linear Interpolation
+-   `sqrt` Square Root
+-   `mod` Modulo
+-   `min` Minimum
+-   `max` Maximum
+-   `lerp` Linear Interpolation
 
 ---
 
