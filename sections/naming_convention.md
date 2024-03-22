@@ -120,102 +120,82 @@ This section was written in conjunction with ChatGPT.
 
 Common Language features
 
--   `arg` = Argument
--   `arr` = Array
--   `async` = Asynchronous
--   `attr` = Attribute
--   `auth` = Authentication
-
--   `btn` = Button
--   `buff` = Buffer
-
--   `ctx` = Context
--   `const` = Constant
-
--   `db` = Database
--   `dest` = Destination
--   `desc` = Description
--   `doc` or `docs` = Documentation
--   `dir` = Direction or Directory (depending on the context)
-
--   `elem` = Element
--   `err` = Error
--   `e` or `evt` = Event
--   `exe` = Execution
--   `expr` = Expression
--   `ext` = Extension
-
--   `func` = Function
--   `fmt` = Format
-
--   `gen` = Generation
-
--   `hex` = Hexadecimal
-
--   `impl` = Implementation
--   `imp` = Import
--   `i` or `idx` = Index
--   `info` = Information
--   `init` = initialization
--   `it` or `iter` = Iterator
--   `ident` = Identifier
-
--   `lang` = Language
--   `len` = Length
--   `lvl` = Level
--   `lib` = Library
--   `loc` = Location
-
--   `msg` = Message
-
--   `num` = Number
-
--   `obj` = Object
--   `opt` = Option
--   `out` = Output
-
--   `pkg` = Package
--   `param` = Parameter
--   `px` = Pixel
--   `pos` = Position
--   `prev` = Previous
--   `priv` = Private
--   `pub` = Public
-
--   `q` = Query
-
--   `rand` = Random
--   `rng` = Range
--   `ref` = Reference
--   `rm` or `rmv` = Remove
--   `req` = Request
--   `res` = Result or Response (depending on the context)
--   `ret` = Return
-
--   `sel` = Selection
--   `sep` = Separator
--   `sec` = Sequence
--   `sol` = Solver
--   `src` = Source
--   `spec` = Specifier or Specification (depending on the context)
--   `std` = Standard
--   `stdio` = Standard Input Output
--   `stmt` = Statement
--   `stat` = Statistic
--   `str` = String
--   `sync` = Synchronization
-
--   `tmp` = Temperature
--   `temp` = Temporary
-
--   `util` = Utility
-
--   `val` = Value
--   `var` = Variable
-
--   `ws` = White space
--   `win` = Windows
--   `wiz` = Wizard
+-   `arg` - Argument
+-   `arr` - Array
+-   `async` - Asynchronous
+-   `attr` - Attribute
+-   `auth` - Authentication
+-   `btn` - Button
+-   `buff` - Buffer
+-   `ctx` - Context
+-   `const` - Constant
+-   `db` - Database
+-   `dest` - Destination
+-   `desc` - Description
+-   `doc` or `docs` - Documentation
+-   `dir` - Direction or Directory (depending on the context)
+-   `elem` - Element
+-   `err` - Error
+-   `e` or `evt` - Event
+-   `exe` - Execution
+-   `expr` - Expression
+-   `ext` - Extension
+-   `func` - Function
+-   `fmt` - Format
+-   `gen` - Generation
+-   `hex` - Hexadecimal
+-   `impl` - Implementation
+-   `imp` - Import
+-   `i` or `idx` - Index
+-   `info` - Information
+-   `init` - initialization
+-   `it` or `iter` - Iterator
+-   `ident` - Identifier
+-   `lang` - Language
+-   `len` - Length
+-   `lvl` - Level
+-   `lib` - Library
+-   `loc` - Location
+-   `msg` - Message
+-   `num` - Number
+-   `obj` - Object
+-   `opt` - Option
+-   `out` - Output
+-   `pkg` - Package
+-   `param` - Parameter
+-   `px` - Pixel
+-   `pos` - Position
+-   `prev` - Previous
+-   `priv` - Private
+-   `pub` - Public
+-   `q` - Query
+-   `rand` - Random
+-   `rng` - Range
+-   `ref` - Reference
+-   `rm` or `rmv` - Remove
+-   `req` - Request
+-   `res` - Result or Response (depending on the context)
+-   `ret` - Return
+-   `sel` - Selection
+-   `sep` - Separator
+-   `sec` - Sequence
+-   `sol` - Solver
+-   `src` - Source
+-   `spec` - Specifier or Specification (depending on the context)
+-   `std` - Standard
+-   `stdio` - Standard Input Output
+-   `stmt` - Statement
+-   `stat` - Statistic
+-   `str` - String
+-   `sync` - Synchronization
+-   `tmp` - Temperature
+-   `temp` - Temporary
+-   `util` - Utility
+-   `val` - Value
+-   `var` - Variable
+-   `ws` - White space
+-   `win` - Windows
+-   `wiz` - Wizard
 
 ---
 
@@ -223,11 +203,11 @@ Unreal Engine features
 
 -   `PC` - Indicates that a variable is a **PlayerController**
 -   `LP` - Indicates that a variable is a **LocalPlayer**
--   `Char` = Indicates that a variable is a **Character** (not to be confused about `char` data type)
+-   `Char` - Indicates that a variable is a **Character** (not to be confused about `char` data type)
 -   `Comp` - Indicates that a variable is a **component**
 -   `Ptr` - Indicates that a variable is a **pointer** to an object.
 -   `Ref` - Indicates that a variable is a **reference** to an object.
--   `dt` = Delta Time
+-   `dt` - Delta Time
 
 ---
 
@@ -251,27 +231,25 @@ Tools/Frameworks
 
 Math
 
--   `add` Addition
--   `sub` Subtraction
--   `mul` Multiplication
--   `div` Division
--   `abs` Absolute
--   `sin` Sinus
--   `cos` Cosinus
--   `tan` Tangens
--   `rad` Radian
--   `r` Radius
-
--   `frac` Fraction
--   `freq` Frequency
--   `long` Longitude or Longitudinal (depending on the context)
--   `lat` Latitude or Lateral (depending on the context)
-
--   `sqrt` Square Root
--   `mod` Modulo
--   `min` Minimum
--   `max` Maximum
--   `lerp` Linear Interpolation
+-   `add` - Addition
+-   `sub` - Subtraction
+-   `mul` - Multiplication
+-   `div` - Division
+-   `abs` - Absolute
+-   `sin` - Sinus
+-   `cos` - Cosinus
+-   `tan` - Tangens
+-   `rad` - Radian
+-   `r` - Radius
+-   `frac` - Fraction
+-   `freq` - Frequency
+-   `long` - Longitude or Longitudinal (depending on the context)
+-   `lat` - Latitude or Lateral (depending on the context)
+-   `sqrt` - Square Root
+-   `mod` - Modulo
+-   `min` - Minimum
+-   `max` - Maximum
+-   `lerp` - Linear Interpolation
 
 ---
 
@@ -282,11 +260,11 @@ Misc
 -   `TDD` or Test-driven development - TDD is a software development process that is based on the repetition of a short development cycle: requirements are turned into specific test cases, and then the code is fixed so that the tests pass.
 -   `UUID` or Universally unique identifier - A UUID is a 128-bit number used to identify information in computer systems.
 -   `GUI` or Graphic User Interface - A GUI or graphical user interface is a form of user interface that allows users to interact with electronic devices through a graphical interface.
--   `misc` = Miscellaneous
--   `os` = Operating System
--   `org` = Organization
--   `pwr` = Power
--   `pref` = Preference
--   `repo` = Repository
+-   `misc` - Miscellaneous
+-   `os` - Operating System
+-   `org` - Organization
+-   `pwr` - Power
+-   `pref` - Preference
+-   `repo` - Repository
 
 </td></tr></table>
