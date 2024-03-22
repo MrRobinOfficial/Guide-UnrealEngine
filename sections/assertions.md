@@ -23,7 +23,7 @@ void MyFunction()
     // By default, C++ and Unreal has some overloads for pointers and classes, which allows them to return as boolean.
     check(PC);
 
-    // But, if you wish to be explicit, then you have these options:
+    // But, if you wish to be explicit:
     check(PC != nullptr);
 }
 ```
