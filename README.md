@@ -204,6 +204,24 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [Use cases with UHT](#use-cases-with-uht)
   - [Use cases with code](#use-cases-with-code)
 - [🎨 Draw Debug Shapes](#-draw-debug-shapes)
+  - [Draw a point](#draw-a-point)
+  - [Draw a sphere](#draw-a-sphere)
+  - [Draw a circle](#draw-a-circle)
+  - [Draw a circle arc](#draw-a-circle-arc)
+  - [Draw a 2D donut](#draw-a-2d-donut)
+  - [Draw a solid box](#draw-a-solid-box)
+  - [Draw a wired box](#draw-a-wired-box)
+  - [Draw a cylinder](#draw-a-cylinder)
+  - [Draw a capsule](#draw-a-capsule)
+  - [Draw a cone](#draw-a-cone)
+  - [Draw a plane](#draw-a-plane)
+  - [Draw a line](#draw-a-line)
+  - [Draw an arrow](#draw-an-arrow)
+  - [Draw a crosshair](#draw-a-crosshair)
+  - [Draw a camera](#draw-a-camera)
+  - [Draw a mesh](#draw-a-mesh)
+  - [Draw a string:](#draw-a-string)
+  - [Draw a centripetal catmull-rom spline](#draw-a-centripetal-catmull-rom-spline)
 - [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
   - [Multithreading](#multithreading)
   - [Runnables](#runnables)
@@ -6178,15 +6196,13 @@ float NewDistance = DistanceUnit.Value;
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
-<!-- TODO: Fix images -->
-
 Include the header file:
 
 ```cpp
 #include "DrawDebugHelpers.h"
 ```
 
-Draw a point:
+### Draw a point
 
 ```cpp
 bool bPersistentLines = true;
@@ -6203,7 +6219,7 @@ DrawDebugPoint(GetWorld(), Location, Size, Color, bPersistentLines);
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a sphere:
+### Draw a sphere
 
 ```cpp
 bool bPersistentLines = true;
@@ -6224,7 +6240,7 @@ DrawDebugSphere(GetWorld(), Center, Radius, Segments, Color, bPersistentLines, L
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a circle:
+### Draw a circle
 
 ```cpp
 float Radius = 200.0f;
@@ -6248,7 +6264,7 @@ DrawDebugCircle(GetWorld(), Center, Radius, Segments, FColor(0, 0, 0), bPersiste
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a circle arc:
+### Draw a circle arc
 
 ```cpp
 
@@ -6272,7 +6288,7 @@ DrawDebugCircleArc(GetWorld(), Center, Radius, Direction, AngleWidth, Segments, 
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a 2D donut:
+### Draw a 2D donut
 
 ```cpp
 bool bPersistentLines = true;
@@ -6297,7 +6313,7 @@ DrawDebug2DDonut(GetWorld(), TransformMatrix, InnerRadius, OuterRadius, Segments
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a solid box:
+### Draw a solid box
 
 ```cpp
 bool bPersistentLines = true;
@@ -6316,7 +6332,7 @@ DrawDebugSolidBox(GetWorld(), MyBox, FColor(200, 100, 50), MyTransform, bPersist
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a wired box:
+### Draw a wired box
 
 ```cpp
 bool bPersistentLines = true;
@@ -6337,7 +6353,7 @@ DrawDebugBox(GetWorld(), Center, Extent, Color, bPersistentLines, LifeTime, Dept
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a cylinder:
+### Draw a cylinder
 
 ```cpp
 bool bPersistentLines = true;
@@ -6359,7 +6375,7 @@ DrawDebugCylinder(GetWorld(), Start, End, Radius, Segments, Color, bPersistentLi
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a capsule:
+### Draw a capsule
 
 ```cpp
 bool bPersistentLines = true;
@@ -6381,7 +6397,7 @@ DrawDebugCapsule(GetWorld(), Center, HalfHeight, Radius, Rotation, Color, bPersi
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a cone:
+### Draw a cone
 
 ```cpp
 bool bPersistentLines = true;
@@ -6418,7 +6434,7 @@ DrawDebugCone(
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a plane:
+### Draw a plane
 
 ```cpp
 bool bPersistentLines = true;
@@ -6443,7 +6459,7 @@ DrawDebugSolidPlane(GetWorld(), Plane, Location, Extents, Color, bPersistentLine
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a line:
+### Draw a line
 
 ```cpp
 bool bPersistentLines = true;
@@ -6463,7 +6479,7 @@ DrawDebugLine(GetWorld(), LocationFrom, LocationTo, Color, bPersistentLines, Lif
     <figcaption>Result</figcaption>
 </figure>
 
-Draw an arrow:
+### Draw an arrow
 
 ```cpp
 bool bPersistentLines = true;
@@ -6484,7 +6500,7 @@ DrawDebugDirectionalArrow(GetWorld(), LocationFrom, LocationTo, ArrowSize, Color
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a crosshair:
+### Draw a crosshair
 
 ```cpp
 bool bPersistentLines = true;
@@ -6504,7 +6520,7 @@ DrawDebugCrosshairs(GetWorld(), AxisLocation, AxisRotation, Scale, Color, bPersi
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a camera:
+### Draw a camera
 
 ```cpp
 bool bPersistentLines = true;
@@ -6525,7 +6541,7 @@ DrawDebugCamera(GetWorld(), Location, Rotation, FOVDeg, Scale, Color, bPersisten
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a mesh:
+### Draw a mesh
 
 ```cpp
 FVector Offset = FVector(-300, 600, 600); // Example offset values
@@ -6565,7 +6581,7 @@ DrawDebugMesh(GetWorld(), Verts, Indices, Color, bPersistentLines, LifeTime, Dep
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a string:
+### Draw a string:
 
 ```cpp
 FVector TextLocation = FVector(0, -600, 600);
@@ -6584,7 +6600,7 @@ DrawDebugString(GetWorld(), TextLocation, Str, TestBaseActor, TextColor, Duratio
     <figcaption>Result</figcaption>
 </figure>
 
-Draw a centripetal catmull-rom spline:
+### Draw a centripetal catmull-rom spline
 
 ```cpp
 FVector Offset = FVector(-300, 600, 600); // Example offset values
