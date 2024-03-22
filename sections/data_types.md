@@ -2077,7 +2077,7 @@ UE_LOG(LogTemp, Log, TEXT("Sum=%i"), SumArray(CArray));
 > It's still possible to use Algo library, which offers functions to use for TArrayView and TArray. Such as Algo::Reverse() and Algo::ForEach().
 
 > [!CAUTION]
-> Avoid using `TArrayView` with a temporary array variable. Since, the array can go out of scope and corrupt `TArrayView`. Since the view is relying on the array's memory block.
+> Avoid using `TArrayView` with a temporary array variable. Since, the array can go out of scope, which then will make `TArrayView` variable invalid and point to a different memory block. This is because the view is relying on the array's memory block.
 
 ```cpp
 #include "Containers/ArrayView.h"
