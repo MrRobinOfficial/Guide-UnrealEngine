@@ -5693,7 +5693,7 @@ Delegates can be used to trigger events in response to user input, game state ch
 > Try to **USE** delegates where ticking is not necessary. This help save on performance on tick
 
 > [!CAUTION]
-> If you don't remove the binding afterward, when the `UObject` gets destroyed. This will cause a memory leak. Since, the binding is still alive, even though the `UObject` not be alive.
+> If you bind a delegate with raw binding, and don't remove the binding afterward, when the `UObject` gets destroyed. This will cause a memory leak. Since, the binding is still alive, even though the `UObject` not be alive. Therefore, is recommended to bind directly the `UObject` or `UFunction`.
 
 | Type                                         | Binds C++ Function | Binds `UFUNCTION` |
 | -------------------------------------------- | ------------------ | ----------------- |
