@@ -4,6 +4,10 @@
 
 <<[plugins.md]
 
+<<[console_commands.md]
+
+<<[shortcuts.md]
+
 <<[getting_started_with_cpp.md]
 
 ## 🌍 Summary of C++ and Programming World
@@ -14,9 +18,11 @@ If you wish to extend your knowledge about C++ and general programming principle
 
 <<[architecture.md]
 
-<<[naming_convention.md]
+<<[guidelines.md]
 
 <<[data_types.md]
+
+<<[keywords.md]
 
 <<[unreal_header_tool.md]
 
@@ -56,17 +62,21 @@ If you wish to extend your knowledge about C++ and general programming principle
 
 <<[draw_debug_shapes.md]
 
+<<[compiling_plugin.md]
+
+<<[gameplay_timers.md]
+
+<<[gameplay_tags.md]
+
 <<[multithreading_and_asynchronous_tasks.md]
 
 <<[extend_unreal_editor.md]
 
-<<[deep_dive.md]
-
-<<[console_commands.md]
-
-<<[shortcuts.md]
-
 <<[common_issues.md]
+
+<<[best_practices.md]
+
+<<[deep_dive.md]
 
 <<[helpful_links.md]
 

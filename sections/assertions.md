@@ -1,4 +1,4 @@
-## ☑️ Assertions
+## 🪨 Assertions
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.

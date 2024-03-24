@@ -1,4 +1,6 @@
-## ⚓ Naming Convention
+## ⚓ Guidelines
+
+### 🎳 Naming Convention
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
@@ -91,7 +93,7 @@ UPROPERTY()
 EThing MyProperty;
 ```
 
-### Prefixes
+#### Prefixes
 
 <table><tr><td>
 This section was NOT written in conjunction with ChatGPT.
@@ -110,7 +112,7 @@ This section was NOT written in conjunction with ChatGPT.
 > [!TIP]
 > Did you know that `F` prefix actually stands for `Float` (floating point). but it was inadvertently spread throughout and has lost its original meaning.
 
-### 🎨 Abbreviations, Acronyms and Synonyms
+#### 🎨 Abbreviations, Acronyms and Synonyms
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
@@ -268,3 +270,5 @@ Misc
 -   `repo` - Repository
 
 </td></tr></table>
+
+You can find more information about Unreal Engine's guideline, both for [inside the editor](https://dev.epicgames.com/documentation/en-us/unreal-engine/recommended-asset-naming-conventions-in-unreal-engine-projects) (asset creation), but also [coding standard](https://dev.epicgames.com/documentation/en-us/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine).
