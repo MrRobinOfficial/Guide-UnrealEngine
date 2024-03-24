@@ -5664,6 +5664,11 @@ Global functions in Unreal Engine are commonly used for utility functions, helpe
 
 -   `CastChecked()`: Similar to `Cast()`, but it also performs a runtime check in debug builds to ensure that the object is of the specified type. If the check fails, it will trigger an assertion. This function is useful when you are certain that an object should be of a particular type and want to catch errors early in development.
 
+-   `StaticCast()`: Tries to cast at compile-time. However, some code might only work at runtime, therefore the compiler will decide if static cast is "appropriate" to do so.
+
+> [!NOTE]
+> The `StaticCast()` function is just forwarding the built-in cast operation from C++, which is called `static_cast()`. Which means, there is no saftey garunete with Unreal Engine `UObject`s.
+
 ## 🏛️ Libraries
 
 <table><tr><td>
