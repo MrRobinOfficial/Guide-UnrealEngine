@@ -487,7 +487,7 @@ myInt x = 5;  // Equivalent to: int x = 5;
 ```
 
 > [!WARNING]
-> UHT doesn't support typedefs. Meaning, you can't expose to Blueprint.
+> UHT[^2] doesn't support typedefs. Meaning, you can't expose to Blueprint.
 
 ### 🍂 Members
 
@@ -1084,7 +1084,7 @@ Library2::Vector vec2;
 ```
 
 > [!WARNING]
-> UHT doesn't support namespaces. Meaning, you can't expose to Blueprint.
+> UHT[^2] doesn't support namespaces. Meaning, you can't expose to Blueprint.
 
 ### 🌐 Static members
 
@@ -1240,7 +1240,7 @@ With function overloading, it provides several benefits, including:
 </td></tr></table>
 
 > [!WARNING]
-> UHT doesn't support function overloading. Meaning, you can't expose to Blueprint.
+> UHT[^2] doesn't support function overloading. Meaning, you can't expose to Blueprint.
 
 ##### Virtual functions
 

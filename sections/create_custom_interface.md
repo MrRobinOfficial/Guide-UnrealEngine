@@ -68,7 +68,7 @@ public:
 
 ### Extending the interface function:
 
-When adding an interface class to a C++ class, you must use the suffix of `_Implementation` for all the functions that you are overwriting. Otherwise, UHT will not recognize the function.
+When adding an interface class to a C++ class, you must use the suffix of `_Implementation` for all the functions that you are overwriting. Otherwise, UHT[^2] will not recognize the function.
 
 Here's an example, of extending the interface functions inside C++:
 
