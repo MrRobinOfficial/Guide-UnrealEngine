@@ -1,5 +1,7 @@
 ## ⚓ Guidelines
 
+You can find more information about Unreal Engine's guideline, both for [inside the editor](https://dev.epicgames.com/documentation/en-us/unreal-engine/recommended-asset-naming-conventions-in-unreal-engine-projects) (asset creation), but also their [coding standard](https://dev.epicgames.com/documentation/en-us/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine).
+
 ### 🎳 Naming Convention
 
 <table><tr><td>
@@ -9,6 +11,52 @@ This section was written in conjunction with ChatGPT.
 ![Naming Conventions](static/img/Naming_conventions.png)
 
 There is a github repo, which talks about Unreal's naming convention. The repo is very detailed and explains how you should name your assets, as well as your code. Repo is called [Unreal Engine's style guide by Michael Allar](https://github.com/Allar/ue5-style-guide).
+
+Unreal Engine follows a specific naming convention that helps maintain consistency and readability in the codebase. When using Naming Conventions, all code and comments should use U.S. English spelling and grammar.
+
+Pascal case is a naming convention used in programming and other contexts where compound words or phrases are created by capitalizing the first letter of each word and joining them without spaces. In Unreal Engine, pascal case is commonly used for naming classes, member variables, functions, and other constructs.
+
+In Unreal Engine, the use of pascal case for classes is part of the naming convention for user-defined classes. When you create a new class in Unreal Engine, it is recommended to use pascal case for the class name. For example:
+
+```cpp
+class AMyPlayerCharacter : public ACharacter
+{
+    // Class definition here
+};
+```
+
+Similarly, pascal case is used for member variables and functions in Unreal Engine to maintain consistency and improve code readability. For example:
+
+```cpp
+class AMyPlayerCharacter : public ACharacter
+{
+public:
+    UPROPERTY()
+    float MovementSpeed;
+
+    UFUNCTION()
+    void Jump();
+};
+```
+
+Boolean variables, which uses a prefix of `b` followed by a descriptive name in pascal case.
+For example, a boolean variable that controls whether a character is running might be named: `bIsRunning`.
+
+Variable, method, and class names should be:
+
+-   Clear
+-   Unambiguous
+-   Descriptive
+
+The greater the scope of the name, the greater the importance of a good, descriptive name. Avoid over-abbreviation.
+
+```cpp
+// what does true mean?
+bool CheckTea(FTea Tea);
+
+// name makes it clear true means tea is fresh
+bool IsTeaFresh(FTea Tea);
+```
 
 #### 🎨 Abbreviations, Acronyms and Synonyms
 
@@ -169,6 +217,21 @@ Misc
 
 </td></tr></table>
 
+#### Prefixes
+
+| Prefix | Class        | Subclasses                                                            |
+| ------ | ------------ | --------------------------------------------------------------------- |
+| U      | `UObject`    | `UActorComponent`, `UPrimaryDataAsset`, `UEngine`, `UGameplayStatics` |
+| A      | `AActor`     | `APawn`, `ACharaacter`, `AController`, `AHUD`, `AGameMode`            |
+| F      | Struct       | `FHitResult`, `FVector`, `FRotator`, `FTableRowBase`                  |
+| E      | Enum         | `EEnvQueryStatus`, `EConstraintType`, `EEndPlayReason`                |
+| I      | Inteface     | `IInputDevice`, `IHapticDevice`, `ITargetPlatform`                    |
+| T      | Template     | `TSubclassOf<T>`, `TArray<T>`, `TSet<T>`, `TMap<T>`, `TMultiMap<T>`   |
+| G      | Global Class | `GEngine`, `GConfig`, `GWorld`, `GEngineLoop`, `GIsEditor`            |
+
+> [!TIP]
+> Did you know that `F` prefix actually stands for `Float` (floating point). but it was inadvertently spread throughout and has lost its original meaning.
+
 ### Coding standard
 
 > Coding conventions are a set of guidelines for a specific programming language that recommend programming style, practices, and methods for each aspect of a program written in that language.
@@ -176,52 +239,6 @@ Misc
 > These are guidelines for software structural quality. Software programmers are highly recommended to follow these guidelines to help improve the readability of their source code and make software maintenance easier.
 >
 > -- <cite>[Wikipedia](https://en.wikipedia.org/wiki/Coding_conventions)</cite>
-
-Unreal Engine follows a specific naming convention that helps maintain consistency and readability in the codebase. When using Naming Conventions, all code and comments should use U.S. English spelling and grammar.
-
-Pascal case is a naming convention used in programming and other contexts where compound words or phrases are created by capitalizing the first letter of each word and joining them without spaces. In Unreal Engine, pascal case is commonly used for naming classes, member variables, functions, and other constructs.
-
-In Unreal Engine, the use of pascal case for classes is part of the naming convention for user-defined classes. When you create a new class in Unreal Engine, it is recommended to use pascal case for the class name. For example:
-
-```cpp
-class AMyPlayerCharacter : public ACharacter
-{
-    // Class definition here
-};
-```
-
-Similarly, pascal case is used for member variables and functions in Unreal Engine to maintain consistency and improve code readability. For example:
-
-```cpp
-class AMyPlayerCharacter : public ACharacter
-{
-public:
-    UPROPERTY()
-    float MovementSpeed;
-
-    UFUNCTION()
-    void Jump();
-};
-```
-
-Boolean variables, which uses a prefix of `b` followed by a descriptive name in pascal case.
-For example, a boolean variable that controls whether a character is running might be named: `bIsRunning`.
-
-Variable, method, and class names should be:
-
--   Clear
--   Unambiguous
--   Descriptive
-
-The greater the scope of the name, the greater the importance of a good, descriptive name. Avoid over-abbreviation.
-
-```cpp
-// what does true mean?
-bool CheckTea(FTea Tea);
-
-// name makes it clear true means tea is fresh
-bool IsTeaFresh(FTea Tea);
-```
 
 Enumerated (Enum) classes are a replacement for old-style namespaced enums, both for regular enums and `UENUMs`. For example:
 
@@ -257,26 +274,3 @@ TEnumAsByte<EThing::Type> MyProperty;
 UPROPERTY()
 EThing MyProperty;
 ```
-
-#### Prefixes
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
-| Prefix | Class        | Subclasses                                                            |
-| ------ | ------------ | --------------------------------------------------------------------- |
-| U      | `UObject`    | `UActorComponent`, `UPrimaryDataAsset`, `UEngine`, `UGameplayStatics` |
-| A      | `AActor`     | `APawn`, `ACharaacter`, `AController`, `AHUD`, `AGameMode`            |
-| F      | Struct       | `FHitResult`, `FVector`, `FRotator`, `FTableRowBase`                  |
-| E      | Enum         | `EEnvQueryStatus`, `EConstraintType`, `EEndPlayReason`                |
-| I      | Inteface     | `IInputDevice`, `IHapticDevice`, `ITargetPlatform`                    |
-| T      | Template     | `TSubclassOf<T>`, `TArray<T>`, `TSet<T>`, `TMap<T>`, `TMultiMap<T>`   |
-| G      | Global Class | `GEngine`, `GConfig`, `GWorld`, `GEngineLoop`, `GIsEditor`            |
-
-> [!TIP]
-> Did you know that `F` prefix actually stands for `Float` (floating point). but it was inadvertently spread throughout and has lost its original meaning.
-
----
-
-You can find more information about Unreal Engine's guideline, both for [inside the editor](https://dev.epicgames.com/documentation/en-us/unreal-engine/recommended-asset-naming-conventions-in-unreal-engine-projects) (asset creation), but also their [coding standard](https://dev.epicgames.com/documentation/en-us/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine).
