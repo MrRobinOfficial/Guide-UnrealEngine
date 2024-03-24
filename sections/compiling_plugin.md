@@ -3,7 +3,7 @@
 When you find a plugin and trying to install it, you might find out that it doesn't support your current engine version.
 And the Unreal's marketplace won't let you download unless you have a version associated.
 
-One trick to avoid this, is to build the plugin manually and fixing compiling issues (header file missing or API changes). By installing the plugin with the access of the source code. Then by access the plugin with the UHT (Unreal Build Tool), you can then rebuild the plugin into a different engine version.
+One trick to avoid this, is to build the plugin manually and fixing compiling issues (header file missing or API changes). By installing the plugin with the access of the source code. Then by access the plugin with the UHT[^2] (Unreal Build Tool), you can then rebuild the plugin into a different engine version.
 
 Here is `.bat` file (**Windows Only**) to locate the current engine directory, and compile your custom made plugin into another engine version:
 

@@ -13,7 +13,7 @@ Timer construct for performing delayed or repeated actions. Timers are incredibl
 /* Handle to manage the timer */
 FTimerHandle TimerHandle;
 
-// Must mark a function with UFUNCTION, as UHT needs it, in order to find it.
+// Must mark a function with UFUNCTION, as UHT[^2] needs it, in order to find it.
 UFUNCTION()
 void OnExplode();
 ```

@@ -603,4 +603,4 @@ namespace MyNamespace
 > It's recommended to `auto` keyword where a variable is declared twice during a single line. For an example, during a cast operation. If you use the `auto` keyword on a function return value, it can be extremely difficult for other developers to see what the return value type is.
 
 > [!CAUTION]
-> UHT doesn't support `operator` or `namespace` keyword. Meaning, you can't have a C++ class with a namespace, nor use the operations function for Blueprint.
+> UHT[^2] doesn't support `operator` or `namespace` keyword. Meaning, you can't have a C++ class with a namespace, nor use the operations function for Blueprint.

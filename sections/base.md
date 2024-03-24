@@ -20,11 +20,11 @@ If you wish to extend your knowledge about C++ and general programming principle
 
 <<[guidelines.md]
 
+<<[unreal_header_tool.md]
+
 <<[data_types.md]
 
 <<[keywords.md]
-
-<<[unreal_header_tool.md]
 
 <<[constructors.md]
 

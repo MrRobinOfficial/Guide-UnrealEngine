@@ -239,7 +239,7 @@ typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 ```
 
 > [!WARNING]
-> `uint16`, `uint32`, `uint64`, `int8`, `int16` and `double` are not supported with UHT[^3]. Meaning, can't expose to Blueprint.
+> `uint16`, `uint32`, `uint64`, `int8`, `int16` and `double` are not supported with UHT[^2]. Meaning, can't expose to Blueprint.
 
 ### 📖 String Data Types
 
@@ -1567,7 +1567,7 @@ MyMultiMap.RemoveSingle(TEXT("X"), 10.0f);
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TMultiMap/).
 
 > [!WARNING]
-> Unreal doesn't support `TMultiMap` with UHT[^3]. Meaning, you can't expose to Blueprint.
+> Unreal doesn't support `TMultiMap` with UHT[^2]. Meaning, you can't expose to Blueprint.
 
 #### TStaticArray
 
@@ -1627,7 +1627,7 @@ for (const FVector& Vec : StaticArray)
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStaticArray/).
 
 > [!WARNING]
-> Unreal Engine doesn't support `TStaticArray` with UHT[^3]. Meaning, you can't expose to Blueprint. To use a static array with Blueprint, use `FixedSized` specifier for UPROPERTY on `TArray` property.
+> Unreal Engine doesn't support `TStaticArray` with UHT[^2]. Meaning, you can't expose to Blueprint. To use a static array with Blueprint, use `FixedSized` specifier for UPROPERTY on `TArray` property.
 
 #### FHashTable
 
@@ -2426,7 +2426,7 @@ Here's an example:
 UPROPERTY()
 AActor* ActorPtr = nullptr;
 
-// Use UPROPERTY() macro, in order to tell the UHT (Unreal Header Tool), this pointer must be release into GC (garbage collector).
+// Use UPROPERTY() macro, in order to tell the UHT[^2] (Unreal Header Tool), this pointer must be release into GC (garbage collector).
 // If not, then this will cause a memory leak. Meaning, the pointer is still alive, even tough we are not using this memory block.
 
 void KillActor()
@@ -2441,7 +2441,7 @@ void KillActor()
 ```
 
 > [!NOTE]
-`ActorPtr` is marked with `UPROPERTY()`in order to tell UHT[^3], that this pointer exists. When the pointer is unused, the garbage collector then marks it and deletes its memory. Also note, that this process can take a couple frames and is not instantaneously. Therefore, always use `IsValid()` function, which also checks if the pointer is not marked for the garbage collector. Avoid using manual checking, like this: `PlayerCharacter != nullptr` (since it will not work with GC system).
+`ActorPtr` is marked with `UPROPERTY()`in order to tell UHT[^2], that this pointer exists. When the pointer is unused, the garbage collector then marks it and deletes its memory. Also note, that this process can take a couple frames and is not instantaneously. Therefore, always use `IsValid()` function, which also checks if the pointer is not marked for the garbage collector. Avoid using manual checking, like this: `PlayerCharacter != nullptr` (since it will not work with GC system).
 
 > [!WARNING]
 > If something else is referencing `ActorPtr`, the pointer will not be destroyed via garbage collection (unless if it's a weak pointer).

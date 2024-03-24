@@ -61,6 +61,32 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
     - [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
     - [Prefixes](#prefixes)
   - [Coding standard](#coding-standard)
+- [💎 Unreal Header Tool](#-unreal-header-tool)
+  - [UPROPERTY](#uproperty)
+    - [Specifiers](#specifiers)
+    - [Meta tags](#meta-tags)
+    - [Examples](#examples)
+  - [UFUNCTION](#ufunction)
+    - [Common Specifiers](#common-specifiers)
+    - [Common Meta tags](#common-meta-tags)
+    - [Examples](#examples-1)
+  - [UCLASS](#uclass)
+    - [Common Specifiers](#common-specifiers-1)
+    - [Common Meta tags](#common-meta-tags-1)
+    - [Examples](#examples-2)
+  - [USTRUCT](#ustruct)
+    - [Common Specifiers](#common-specifiers-2)
+    - [Common Meta tags](#common-meta-tags-2)
+    - [Examples](#examples-3)
+  - [UENUM](#uenum)
+    - [Common Specifiers](#common-specifiers-3)
+    - [Common Meta tags](#common-meta-tags-3)
+    - [Examples](#examples-4)
+  - [UPARAM](#uparam)
+    - [Examples](#examples-5)
+  - [UMETA](#umeta)
+    - [Common Specifiers](#common-specifiers-4)
+    - [Examples](#examples-6)
 - [🧱 Data Types](#-data-types)
   - [Characters](#characters)
   - [Booleans](#booleans)
@@ -129,32 +155,6 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
     - [Flow controls](#flow-controls)
     - [Generic programming](#generic-programming)
     - [Misc](#misc)
-- [💎 Unreal Header Tool](#-unreal-header-tool)
-  - [UPROPERTY](#uproperty)
-    - [Specifiers](#specifiers)
-    - [Meta tags](#meta-tags)
-    - [Examples](#examples)
-  - [UFUNCTION](#ufunction)
-    - [Common Specifiers](#common-specifiers)
-    - [Common Meta tags](#common-meta-tags)
-    - [Examples](#examples-1)
-  - [UCLASS](#uclass)
-    - [Common Specifiers](#common-specifiers-1)
-    - [Common Meta tags](#common-meta-tags-1)
-    - [Examples](#examples-2)
-  - [USTRUCT](#ustruct)
-    - [Common Specifiers](#common-specifiers-2)
-    - [Common Meta tags](#common-meta-tags-2)
-    - [Examples](#examples-3)
-  - [UENUM](#uenum)
-    - [Common Specifiers](#common-specifiers-3)
-    - [Common Meta tags](#common-meta-tags-3)
-    - [Examples](#examples-4)
-  - [UPARAM](#uparam)
-    - [Examples](#examples-5)
-  - [UMETA](#umeta)
-    - [Common Specifiers](#common-specifiers-4)
-    - [Examples](#examples-6)
 - [👷 Constructors, destructors and initialization](#-constructors-destructors-and-initialization)
     - [Constructors](#constructors)
     - [Destructors](#destructors)
@@ -1180,6 +1180,354 @@ UPROPERTY()
 EThing MyProperty;
 ```
 
+## 💎 Unreal Header Tool
+
+<table><tr><td>
+This section was written in conjunction with ChatGPT.
+</td></tr></table>
+
+Unreal Header Tool (UHT[^2]) is a code generator and reflection system in Unreal Engine. It processes special macros and meta tags in C++ header files and generates additional code to support Unreal Engine's reflection system, which enables various engine features like Blueprint integration, serialization, networking, and more.
+
+Layout:
+
+```cpp
+UPROPERTY([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
+UFUNCTION([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
+UCLASS([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
+USTRUCT([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
+UENUM([specifier1=setting1, specifier2, ...])
+UPARAM([specifier1=setting1, specifier2, ...])
+UMETA([specifier1=setting1, specifier2, ...])
+```
+
+| Macro     | Description                                                                                                                                                       | Use Case                                                                                                             |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| UPROPERTY | Specifies properties of a class member, such as replication, serialization, editability, and blueprint visibility.                                                | Used to define properties of variables within a class to control how they are handled by Unreal Engine systems.      |
+| UFUNCTION | Identifies a C++ function that can be accessed and called from Blueprint visual scripting or other systems in Unreal Engine.                                      | Used to expose C++ functions to Blueprint for easy use in visual scripting and integration with Unreal Engine.       |
+| UCLASS    | Defines a C++ class that is exposed to Unreal Engine's reflection system, allowing it to be used in Blueprint and other engine features.                          | Used to define classes that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.      |
+| USTRUCT   | Specifies a C++ struct that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                          | Used to define structs that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.      |
+| UENUM     | Defines a C++ enumeration that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                       | Used to define enumerations that can be used in Blueprint and integrated into Unreal Engine systems like the Editor. |
+| UPARAM    | Specifies how a function parameter should be treated when used in Blueprint or other Unreal Engine systems.                                                       | Used to define parameter properties, such as Blueprint read/write access, in C++ functions exposed to Blueprint.     |
+| UMETA     | Provides additional metadata for UPROPERTY, UFUNCTION, UCLASS, USTRUCT, and UENUM, allowing customization of their behavior in Unreal Engine's reflection system. | Used to attach additional information or customizations to C++ entities exposed to Unreal Engine reflection.         |
+
+### UPROPERTY
+
+`UPROPERTY` is a macro used to declare a property within a class that needs to be exposed to the Unreal Engine's reflection system. It allows the property to be accessed and modified by the engine and Blueprint scripts.
+
+#### Specifiers
+
+-   `EditAnywhere`: Allows the property to be edited in the editor and during runtime for all instances of the class.
+-   `EditDefaultsOnly`: Permits editing the property only for the class's default object in the editor.
+-   `EditInstanceOnly`: Enables editing the property only for instances of the class during runtime.
+-   `VisibleAnywhere`: Displays the property value in the editor for all instances of the class.
+-   `VisibleDefaultsOnly`: Shows the property value in the editor for the class's default object.
+-   `VisibleInstanceOnly`: Displays the property value in the editor only for instances of the class.
+-   `BlueprintReadOnly`: Exposes the property to Blueprint scripts, but only for reading, not writing.
+-   `BlueprintReadWrite`: Exposes the property to Blueprint scripts for both reading and writing.
+-   `Category`: Organizes properties into named categories in the editor for better organization and readability.
+-   `EditFixedSize`: Specifies that an `TArray` or `TMap` property should be editable in the Details Panel of the Unreal Editor with a fixed number of elements, preventing addition or removal.
+-   `Transient`: Indicates that a property should not be serialized, making it non-persistent and not saved when saving the state of the object.
+-   `Replicated`: Automatically replicates the property's value to clients in a multiplayer environment when the property changes on the server.
+-   `ReplicatedUsing`: Specifies a custom function that should be called on both the server and clients to handle replication of the property's value.
+-   `SimpleDisplay`: Indicates that the property's value should be displayed in a simple and concise manner in editor UI.
+-   `AdvancedDisplay`: Indicates that the property's value should be displayed with advanced options in editor UI.
+-   `Config`: Marks the property to be serialized to the project configuration file for external customization.
+-   `GlobalConfig`: Marks the property to be serialized to the global configuration file for external customization across all projects.
+
+#### Meta tags
+
+-   `DisplayName`: Sets a custom display name for the property in the Unreal Editor.
+-   `Tooltip`: Provides a tooltip description for the property in the Unreal Editor.
+-   `ClampMin`: Sets the minimum allowed value for the property in the Unreal Editor.
+-   `ClampMax`: Sets the maximum allowed value for the property in the Unreal Editor.
+-   `AllowPrivateAccess`: Allows access to private members within the class it belongs to.
+-   `Units`: Provides a human-readable unit label for the property in the Unreal Editor.
+
+#### Examples
+
+```cpp
+UPROPERTY(EditAnywhere, Category="Hello|Cruel|World")
+int32 EditAnywhereNumber;
+```
+
+```cpp
+UPROPERTY(Transient, Replicated)
+int32 CurrentHealth;
+
+UPROPERTY(Transient, ReplicatedUsing=OnArmorChanged)
+int32 CurrentArmor;
+
+UFUNCTION()
+void OnArmorChanged();
+```
+
+```cpp
+UPROPERTY(EditAnywhere, SimpleDisplay)
+int32 MaxHealth = 100;
+
+UPROPERTY(EditAnywhere, AdvancedDisplay)
+float HealthRegenerationTime = 5.0f;
+```
+
+```cpp
+// Must mark UCLASS with Config specifier
+
+// Config can be overriden from the base class.
+UPROPERTY(Config, BlueprintReadOnly)
+bool bRegenerateHealth;
+
+// GlobalConfig CANNOT be overridden from the base class.
+UPROPERTY(GlobalConfig, BlueprintReadOnly)
+bool bEnableHealthSimulation;
+```
+
+```cpp
+UPROPERTY(EditAnywhere, EditFixedSize)
+TArray<FName> Usernames = { TEXT("JohnDoe"), TEXT("MrRobin"), TEXT("JaneDoe") };
+```
+
+```cpp
+UPROPERTY(EditAnywhere, meta=(Units="Celsius"))
+float CookingTemperature;
+
+UPROPERTY(EditAnywhere, meta=(Units="Kilograms"))
+float TigerWeight;
+
+UPROPERTY(EditAnywhere, meta=(Units="GB"))
+float DiskSpace;
+
+UPROPERTY(EditAnywhere, meta=(Units="Percent"))
+float Happiness;
+
+UPROPERTY(EditAnywhere, meta=(Units="times"))
+float Deliciousness;
+```
+
+You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/uproperty/).
+
+### UFUNCTION
+
+`UFUNCTION` is a macro used to declare a function within a class that needs to be exposed to the Unreal Engine's reflection system. It allows the function to be used in Blueprint scripts and network replication.
+
+#### Common Specifiers
+
+-   `BlueprintCallable`: Exposes the function to Blueprint scripts, allowing it to be called from within Blueprint graphs.
+-   `BlueprintPure`: Indicates that the function is a pure computation and does not modify any state, making it safe to use in Blueprint graphs without side effects.
+-   `BlueprintImplementableEvent`: Serves as a placeholder function in C++ that can be overridden and implemented in Blueprint.
+-   `BlueprintNativeEvent`: Similar to `BlueprintImplementableEvent`, but it also provides a C++ implementation that can be optionally overridden in Blueprint.
+-   `Category`: Organizes properties into named categories in the editor for better organization and readability.
+
+#### Common Meta tags
+
+-   `DisplayName`: Sets a custom display name for the function in the Unreal Editor.
+-   `Tooltip`: Provides a tooltip description for the function in the Unreal Editor.
+-   `ShortToolTip`: Provides a short tooltip description for the function in the Unreal Editor.
+-   `AllowPrivateAccess`: Allows access to private members within the class it belongs to.
+-   `HideSelfPin`: Hides the "self" pin, which indicates the object on which the function is being called. The "self" pin is automatically hidden on `BlueprintPure` functions that are compatible with the calling Blueprint's Class. Functions that use the `HideSelfPin` Meta Tag frequently also use the `DefaultToSelf` Specifier.
+-   `BlueprintInternalUseOnly`: This function is an internal implementation detail, used to implement another function or node. It is never directly exposed in a Blueprint graph.
+-   `BlueprintProtected`: This function can only be called on the owning Object in a Blueprint. It cannot be called on another instance.
+-   `DeprecatedFunction`: Any Blueprint references to this function will cause compilation warnings telling the user that the function is deprecated. You can add to the deprecation warning message (for example, to provide instructions on replacing the deprecated function) using the `DeprecationMessage` metadata specifier.
+
+#### Examples
+
+```cpp
+UFUNCTION(BlueprintPure)
+int32 BlueprintPureFunction();
+
+UFUNCTION(BlueprintCallable)
+int32 BlueprintCallableFunction();
+
+UFUNCTION(BlueprintCallable)
+int32 BlueprintCallableConstFunction() const;
+
+UFUNCTION(BlueprintPure=false)
+int32 BlueprintPureFalseFunction() const;
+```
+
+```cpp
+UFUNCTION(BlueprintCallable, Category = "Doggy Daycare", meta=(ReturnDisplayName = "Success"))
+bool TryPetDog(const FName Name);
+```
+
+You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/ufunction/).
+
+### UCLASS
+
+`UCLASS` is a macro used to declare a class that is intended to be used in Unreal Engine's reflection system. It allows the class to be instantiated, exposed to Blueprint, and used in various engine systems.
+
+#### Common Specifiers
+
+-   `Blueprintable`: Allows the class to be used as a blueprint in the Unreal Editor.
+-   `BlueprintType`: Specifies that the class can be instantiated and manipulated in Blueprint scripts.
+-   `Abstract`: Indicates that the class is an abstract class and cannot be instantiated directly.
+-   `Transient`: Excludes the class from being serialized and saved in the game's persistent data.
+-   `MinimalAPI`: Restricts the class's visibility for export, making it more suitable for engine internal use.
+-   `NotBlueprintType`: Prevents the class from being used as a blueprint.
+
+#### Common Meta tags
+
+-   `DisplayName`: Sets a custom display name for the class in the Unreal Editor.
+-   `ToolTip`: Provides a tooltip description for the class in the Unreal Editor.
+-   `HideCategories`: Hides specific property categories from being displayed in the Unreal Editor.
+-   `ClassGroup`: Assigns the class to a specific group in the Unreal Editor's class picker.
+-   `IncludePath`: Specifies the include path for the generated code of the class.
+-   `BlueprintSpawnableComponent`: Marks a class derived from `USceneComponent` as spawnable in Blueprint.
+
+#### Examples
+
+```cpp
+UCLASS(Blueprintable)
+class MyActor : public AActor
+{
+    GENERATED_BODY()
+
+public:
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyActor")
+    int32 MyIntProperty;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyActor")
+    float MyFloatProperty;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyActor")
+    FString MyStringProperty;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyActor")
+    FMyStruct MyStructProperty;
+};
+```
+
+</td></tr></table>
+
+You can read more about [UCLASS by BenUi](https://benui.ca/unreal/uclass/).
+
+### USTRUCT
+
+`USTRUCT` is a macro used to declare a C++ struct that is intended to be used in Unreal Engine's reflection system. It enables the struct to be used as a property within UCLASSes and exposed to Blueprint.
+
+#### Common Specifiers
+
+-   `BlueprintType`: Specifies that the structure can be used in Blueprint scripts.
+-   `Atomic`: Ensures that the structure is treated as an atomic type for replication in multiplayer games.
+-   `NotReplicated`: Excludes the structure from being replicated across the network.
+
+#### Common Meta tags
+
+-   `DisplayName`: Sets a custom display name for the structure in the Unreal Editor.
+-   `ToolTip`: Provides a tooltip description for the structure in the Unreal Editor.
+-   `Category`: Specifies the category in which the structure will appear in the Unreal Editor.
+
+#### Examples
+
+```cpp
+USTRUCT(BlueprintType)
+struct FMyStruct
+{
+    GENERATED_BODY()
+
+    UPROPERTY(BlueprintReadWrite, Category = "MyStruct")
+    int32 Value1;
+
+    UPROPERTY(BlueprintReadWrite, Category = "MyStruct")
+    FString Value2;
+};
+```
+
+</td></tr></table>
+
+You can read more about [USTRUCT by BenUi](https://benui.ca/unreal/ustruct/).
+
+### UENUM
+
+`UENUM` is a macro used to declare an enumeration that is intended to be used in Unreal Engine's reflection system. It allows the enumeration to be exposed to Blueprint and used within `UCLASS`es.
+
+#### Common Specifiers
+
+-   `BlueprintType`: Specifies that the enumeration can be used in Blueprint scripts.
+-   `DisplayNames`: Specifies a list of custom display names for each enumeration value in the Unreal Editor.
+
+#### Common Meta tags
+
+-   `DisplayName`: Sets a custom display name for the enumeration in the Unreal Editor.
+-   `ToolTip`: Provides a tooltip description for the enumeration in the Unreal Editor.
+-   `Hidden`: Hides the enumeration from being displayed in the Unreal Editor.
+-   `Bitflags`: Indicates that the enumeration represents a set of bit flags.
+-   `EnumRange`: Specifies the minimum and maximum values for the enumeration.
+
+#### Examples
+
+```cpp
+UENUM(BlueprintType)
+enum class EWeaponType
+{
+    Sword         UMETA(DisplayName = "Sword Weapon"),
+    Axe           UMETA(DisplayName = "Axe Weapon"),
+    Bow           UMETA(DisplayName = "Bow Weapon"),
+    Wand          UMETA(DisplayName = "Magic Wand"),
+};
+```
+
+You can read more about [UENUM by BenUi](https://benui.ca/unreal/uenum/).
+
+### UPARAM
+
+`UPARAM` is a macro used to provide additional information to the Unreal Header Tool. It is used with parameters of UFUNCTION and UPROPERTY to specify how the engine should handle the data.
+
+-   `UPARAM(Ref)`: Used to mark a parameter that is passed by reference. It ensures that the parameter is treated as a reference during code generation, which may affect how the engine handles the parameter.
+
+-   `UPARAM(DisplayName)`: Used to set a custom display name for a function parameter when it appears in the Unreal Editor's Blueprint node graph.
+
+-   `UPARAM(BlueprintCallable, BlueprintPure)`: Used to apply multiple specifiers to a function parameter. For example, to mark a parameter as both BlueprintCallable and BlueprintPure.
+
+-   `UPARAM(meta = (CustomMetaTag))`: Allows developers to create custom meta tags and use them in function parameters to provide additional information to the Unreal Header Tool.
+
+#### Examples
+
+```cpp
+UCLASS()
+class MyActor : public AActor
+{
+    GENERATED_BODY()
+
+public:
+    // A function that takes a parameter passed by reference
+    UFUNCTION(BlueprintCallable, Category = "MyActor")
+    void ModifyValue(UPARAM(Ref) int32& ValueToModify)
+    {
+        // Modify the value passed by reference
+        ValueToModify *= 2;
+    }
+};
+```
+
+You can read more about [UPARAM by BenUi](https://benui.ca/unreal/uparam/).
+
+### UMETA
+
+`UMETA` is a macro used to specify additional metadata for an UENUM entry. It allows adding custom information to enum values for use in Blueprint, UI, and other engine systems.
+
+#### Common Specifiers
+
+-   `DisplayName`: Sets a custom display name for the enumeration value in the Unreal Editor.
+-   `ToolTip`: Provides a tooltip description for the enumeration value in the Unreal Editor.
+-   `Hidden`: Hides the enumeration value from being displayed in the Unreal Editor.
+-   `DisplayPriority`: Specifies the display priority for the enumeration value in the Unreal Editor.
+-   `DisplayThumbnail`: Allows attaching a custom thumbnail image to the enumeration value in the Unreal Editor.
+-   `CustomMetaData`: Specifies custom metadata that developers can define and use as needed.
+
+#### Examples
+
+```cpp
+UENUM(BlueprintType)
+enum class EMyEnum
+{
+    Value1 UMETA(DisplayName = "First Value", ToolTip = "This is the first value"),
+    Value2 UMETA(DisplayName = "Second Value", ToolTip = "This is the second value"),
+    Value3 UMETA(Hidden),
+};
+```
+
+You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
+
 <!-- prettier-ignore-start -->
 
 ## 🧱 Data Types
@@ -1421,7 +1769,7 @@ typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 ```
 
 > [!WARNING]
-> `uint16`, `uint32`, `uint64`, `int8`, `int16` and `double` are not supported with UHT[^3]. Meaning, can't expose to Blueprint.
+> `uint16`, `uint32`, `uint64`, `int8`, `int16` and `double` are not supported with UHT[^2]. Meaning, can't expose to Blueprint.
 
 ### 📖 String Data Types
 
@@ -2749,7 +3097,7 @@ MyMultiMap.RemoveSingle(TEXT("X"), 10.0f);
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TMultiMap/).
 
 > [!WARNING]
-> Unreal doesn't support `TMultiMap` with UHT[^3]. Meaning, you can't expose to Blueprint.
+> Unreal doesn't support `TMultiMap` with UHT[^2]. Meaning, you can't expose to Blueprint.
 
 #### TStaticArray
 
@@ -2809,7 +3157,7 @@ for (const FVector& Vec : StaticArray)
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStaticArray/).
 
 > [!WARNING]
-> Unreal Engine doesn't support `TStaticArray` with UHT[^3]. Meaning, you can't expose to Blueprint. To use a static array with Blueprint, use `FixedSized` specifier for UPROPERTY on `TArray` property.
+> Unreal Engine doesn't support `TStaticArray` with UHT[^2]. Meaning, you can't expose to Blueprint. To use a static array with Blueprint, use `FixedSized` specifier for UPROPERTY on `TArray` property.
 
 #### FHashTable
 
@@ -3608,7 +3956,7 @@ Here's an example:
 UPROPERTY()
 AActor* ActorPtr = nullptr;
 
-// Use UPROPERTY() macro, in order to tell the UHT (Unreal Header Tool), this pointer must be release into GC (garbage collector).
+// Use UPROPERTY() macro, in order to tell the UHT[^2] (Unreal Header Tool), this pointer must be release into GC (garbage collector).
 // If not, then this will cause a memory leak. Meaning, the pointer is still alive, even tough we are not using this memory block.
 
 void KillActor()
@@ -3623,7 +3971,7 @@ void KillActor()
 ```
 
 > [!NOTE]
-`ActorPtr` is marked with `UPROPERTY()`in order to tell UHT[^3], that this pointer exists. When the pointer is unused, the garbage collector then marks it and deletes its memory. Also note, that this process can take a couple frames and is not instantaneously. Therefore, always use `IsValid()` function, which also checks if the pointer is not marked for the garbage collector. Avoid using manual checking, like this: `PlayerCharacter != nullptr` (since it will not work with GC system).
+`ActorPtr` is marked with `UPROPERTY()`in order to tell UHT[^2], that this pointer exists. When the pointer is unused, the garbage collector then marks it and deletes its memory. Also note, that this process can take a couple frames and is not instantaneously. Therefore, always use `IsValid()` function, which also checks if the pointer is not marked for the garbage collector. Avoid using manual checking, like this: `PlayerCharacter != nullptr` (since it will not work with GC system).
 
 > [!WARNING]
 > If something else is referencing `ActorPtr`, the pointer will not be destroyed via garbage collection (unless if it's a weak pointer).
@@ -4443,355 +4791,7 @@ namespace MyNamespace
 > It's recommended to `auto` keyword where a variable is declared twice during a single line. For an example, during a cast operation. If you use the `auto` keyword on a function return value, it can be extremely difficult for other developers to see what the return value type is.
 
 > [!CAUTION]
-> UHT doesn't support `operator` or `namespace` keyword. Meaning, you can't have a C++ class with a namespace, nor use the operations function for Blueprint.
-
-## 💎 Unreal Header Tool
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-Unreal Header Tool (UHT[^3]) is a code generator and reflection system in Unreal Engine. It processes special macros and meta tags in C++ header files and generates additional code to support Unreal Engine's reflection system, which enables various engine features like Blueprint integration, serialization, networking, and more.
-
-Layout:
-
-```cpp
-UPROPERTY([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
-UFUNCTION([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
-UCLASS([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
-USTRUCT([specifier1=setting1, specifier2, ...], [meta=(key1="value1", key2="value2", ...))])
-UENUM([specifier1=setting1, specifier2, ...])
-UPARAM([specifier1=setting1, specifier2, ...])
-UMETA([specifier1=setting1, specifier2, ...])
-```
-
-| Macro     | Description                                                                                                                                                       | Use Case                                                                                                             |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| UPROPERTY | Specifies properties of a class member, such as replication, serialization, editability, and blueprint visibility.                                                | Used to define properties of variables within a class to control how they are handled by Unreal Engine systems.      |
-| UFUNCTION | Identifies a C++ function that can be accessed and called from Blueprint visual scripting or other systems in Unreal Engine.                                      | Used to expose C++ functions to Blueprint for easy use in visual scripting and integration with Unreal Engine.       |
-| UCLASS    | Defines a C++ class that is exposed to Unreal Engine's reflection system, allowing it to be used in Blueprint and other engine features.                          | Used to define classes that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.      |
-| USTRUCT   | Specifies a C++ struct that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                          | Used to define structs that can be used in Blueprint and integrated into Unreal Engine systems like the Editor.      |
-| UENUM     | Defines a C++ enumeration that can be used with Unreal Engine's reflection system, making it usable in Blueprint and other engine features.                       | Used to define enumerations that can be used in Blueprint and integrated into Unreal Engine systems like the Editor. |
-| UPARAM    | Specifies how a function parameter should be treated when used in Blueprint or other Unreal Engine systems.                                                       | Used to define parameter properties, such as Blueprint read/write access, in C++ functions exposed to Blueprint.     |
-| UMETA     | Provides additional metadata for UPROPERTY, UFUNCTION, UCLASS, USTRUCT, and UENUM, allowing customization of their behavior in Unreal Engine's reflection system. | Used to attach additional information or customizations to C++ entities exposed to Unreal Engine reflection.         |
-
-### UPROPERTY
-
-`UPROPERTY` is a macro used to declare a property within a class that needs to be exposed to the Unreal Engine's reflection system. It allows the property to be accessed and modified by the engine and Blueprint scripts.
-
-#### Specifiers
-
--   `EditAnywhere`: Allows the property to be edited in the editor and during runtime for all instances of the class.
--   `EditDefaultsOnly`: Permits editing the property only for the class's default object in the editor.
--   `EditInstanceOnly`: Enables editing the property only for instances of the class during runtime.
--   `VisibleAnywhere`: Displays the property value in the editor for all instances of the class.
--   `VisibleDefaultsOnly`: Shows the property value in the editor for the class's default object.
--   `VisibleInstanceOnly`: Displays the property value in the editor only for instances of the class.
--   `BlueprintReadOnly`: Exposes the property to Blueprint scripts, but only for reading, not writing.
--   `BlueprintReadWrite`: Exposes the property to Blueprint scripts for both reading and writing.
--   `Category`: Organizes properties into named categories in the editor for better organization and readability.
--   `EditFixedSize`: Specifies that an `TArray` or `TMap` property should be editable in the Details Panel of the Unreal Editor with a fixed number of elements, preventing addition or removal.
--   `Transient`: Indicates that a property should not be serialized, making it non-persistent and not saved when saving the state of the object.
--   `Replicated`: Automatically replicates the property's value to clients in a multiplayer environment when the property changes on the server.
--   `ReplicatedUsing`: Specifies a custom function that should be called on both the server and clients to handle replication of the property's value.
--   `SimpleDisplay`: Indicates that the property's value should be displayed in a simple and concise manner in editor UI.
--   `AdvancedDisplay`: Indicates that the property's value should be displayed with advanced options in editor UI.
--   `Config`: Marks the property to be serialized to the project configuration file for external customization.
--   `GlobalConfig`: Marks the property to be serialized to the global configuration file for external customization across all projects.
-
-#### Meta tags
-
--   `DisplayName`: Sets a custom display name for the property in the Unreal Editor.
--   `Tooltip`: Provides a tooltip description for the property in the Unreal Editor.
--   `ClampMin`: Sets the minimum allowed value for the property in the Unreal Editor.
--   `ClampMax`: Sets the maximum allowed value for the property in the Unreal Editor.
--   `AllowPrivateAccess`: Allows access to private members within the class it belongs to.
--   `Units`: Provides a human-readable unit label for the property in the Unreal Editor.
-
-#### Examples
-
-```cpp
-UPROPERTY(EditAnywhere, Category="Hello|Cruel|World")
-int32 EditAnywhereNumber;
-```
-
-```cpp
-UPROPERTY(Transient, Replicated)
-int32 CurrentHealth;
-
-UPROPERTY(Transient, ReplicatedUsing=OnArmorChanged)
-int32 CurrentArmor;
-
-UFUNCTION()
-void OnArmorChanged();
-```
-
-```cpp
-UPROPERTY(EditAnywhere, SimpleDisplay)
-int32 MaxHealth = 100;
-
-UPROPERTY(EditAnywhere, AdvancedDisplay)
-float HealthRegenerationTime = 5.0f;
-```
-
-```cpp
-// Must mark UCLASS with Config specifier
-
-// Config can be overriden from the base class.
-UPROPERTY(Config, BlueprintReadOnly)
-bool bRegenerateHealth;
-
-// GlobalConfig CANNOT be overridden from the base class.
-UPROPERTY(GlobalConfig, BlueprintReadOnly)
-bool bEnableHealthSimulation;
-```
-
-```cpp
-UPROPERTY(EditAnywhere, EditFixedSize)
-TArray<FName> Usernames = { TEXT("JohnDoe"), TEXT("MrRobin"), TEXT("JaneDoe") };
-```
-
-```cpp
-UPROPERTY(EditAnywhere, meta=(Units="Celsius"))
-float CookingTemperature;
-
-UPROPERTY(EditAnywhere, meta=(Units="Kilograms"))
-float TigerWeight;
-
-UPROPERTY(EditAnywhere, meta=(Units="GB"))
-float DiskSpace;
-
-UPROPERTY(EditAnywhere, meta=(Units="Percent"))
-float Happiness;
-
-UPROPERTY(EditAnywhere, meta=(Units="times"))
-float Deliciousness;
-```
-
-You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/uproperty/).
-
-### UFUNCTION
-
-`UFUNCTION` is a macro used to declare a function within a class that needs to be exposed to the Unreal Engine's reflection system. It allows the function to be used in Blueprint scripts and network replication.
-
-#### Common Specifiers
-
--   `BlueprintCallable`: Exposes the function to Blueprint scripts, allowing it to be called from within Blueprint graphs.
--   `BlueprintPure`: Indicates that the function is a pure computation and does not modify any state, making it safe to use in Blueprint graphs without side effects.
--   `BlueprintImplementableEvent`: Serves as a placeholder function in C++ that can be overridden and implemented in Blueprint.
--   `BlueprintNativeEvent`: Similar to `BlueprintImplementableEvent`, but it also provides a C++ implementation that can be optionally overridden in Blueprint.
--   `Category`: Organizes properties into named categories in the editor for better organization and readability.
-
-#### Common Meta tags
-
--   `DisplayName`: Sets a custom display name for the function in the Unreal Editor.
--   `Tooltip`: Provides a tooltip description for the function in the Unreal Editor.
--   `ShortToolTip`: Provides a short tooltip description for the function in the Unreal Editor.
--   `AllowPrivateAccess`: Allows access to private members within the class it belongs to.
--   `HideSelfPin`: Hides the "self" pin, which indicates the object on which the function is being called. The "self" pin is automatically hidden on `BlueprintPure` functions that are compatible with the calling Blueprint's Class. Functions that use the `HideSelfPin` Meta Tag frequently also use the `DefaultToSelf` Specifier.
--   `BlueprintInternalUseOnly`: This function is an internal implementation detail, used to implement another function or node. It is never directly exposed in a Blueprint graph.
--   `BlueprintProtected`: This function can only be called on the owning Object in a Blueprint. It cannot be called on another instance.
--   `DeprecatedFunction`: Any Blueprint references to this function will cause compilation warnings telling the user that the function is deprecated. You can add to the deprecation warning message (for example, to provide instructions on replacing the deprecated function) using the `DeprecationMessage` metadata specifier.
-
-#### Examples
-
-```cpp
-UFUNCTION(BlueprintPure)
-int32 BlueprintPureFunction();
-
-UFUNCTION(BlueprintCallable)
-int32 BlueprintCallableFunction();
-
-UFUNCTION(BlueprintCallable)
-int32 BlueprintCallableConstFunction() const;
-
-UFUNCTION(BlueprintPure=false)
-int32 BlueprintPureFalseFunction() const;
-```
-
-```cpp
-UFUNCTION(BlueprintCallable, Category = "Doggy Daycare", meta=(ReturnDisplayName = "Success"))
-bool TryPetDog(const FName Name);
-```
-
-You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/ufunction/).
-
-### UCLASS
-
-`UCLASS` is a macro used to declare a class that is intended to be used in Unreal Engine's reflection system. It allows the class to be instantiated, exposed to Blueprint, and used in various engine systems.
-
-#### Common Specifiers
-
--   `Blueprintable`: Allows the class to be used as a blueprint in the Unreal Editor.
--   `BlueprintType`: Specifies that the class can be instantiated and manipulated in Blueprint scripts.
--   `Abstract`: Indicates that the class is an abstract class and cannot be instantiated directly.
--   `Transient`: Excludes the class from being serialized and saved in the game's persistent data.
--   `MinimalAPI`: Restricts the class's visibility for export, making it more suitable for engine internal use.
--   `NotBlueprintType`: Prevents the class from being used as a blueprint.
-
-#### Common Meta tags
-
--   `DisplayName`: Sets a custom display name for the class in the Unreal Editor.
--   `ToolTip`: Provides a tooltip description for the class in the Unreal Editor.
--   `HideCategories`: Hides specific property categories from being displayed in the Unreal Editor.
--   `ClassGroup`: Assigns the class to a specific group in the Unreal Editor's class picker.
--   `IncludePath`: Specifies the include path for the generated code of the class.
--   `BlueprintSpawnableComponent`: Marks a class derived from `USceneComponent` as spawnable in Blueprint.
-
-#### Examples
-
-```cpp
-UCLASS(Blueprintable)
-class MyActor : public AActor
-{
-    GENERATED_BODY()
-
-public:
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyActor")
-    int32 MyIntProperty;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyActor")
-    float MyFloatProperty;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyActor")
-    FString MyStringProperty;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MyActor")
-    FMyStruct MyStructProperty;
-};
-```
-
-</td></tr></table>
-
-You can read more about [UCLASS by BenUi](https://benui.ca/unreal/uclass/).
-
-### USTRUCT
-
-`USTRUCT` is a macro used to declare a C++ struct that is intended to be used in Unreal Engine's reflection system. It enables the struct to be used as a property within UCLASSes and exposed to Blueprint.
-
-#### Common Specifiers
-
--   `BlueprintType`: Specifies that the structure can be used in Blueprint scripts.
--   `Atomic`: Ensures that the structure is treated as an atomic type for replication in multiplayer games.
--   `NotReplicated`: Excludes the structure from being replicated across the network.
-
-#### Common Meta tags
-
--   `DisplayName`: Sets a custom display name for the structure in the Unreal Editor.
--   `ToolTip`: Provides a tooltip description for the structure in the Unreal Editor.
--   `Category`: Specifies the category in which the structure will appear in the Unreal Editor.
-
-#### Examples
-
-```cpp
-USTRUCT(BlueprintType)
-struct FMyStruct
-{
-    GENERATED_BODY()
-
-    UPROPERTY(BlueprintReadWrite, Category = "MyStruct")
-    int32 Value1;
-
-    UPROPERTY(BlueprintReadWrite, Category = "MyStruct")
-    FString Value2;
-};
-```
-
-</td></tr></table>
-
-You can read more about [USTRUCT by BenUi](https://benui.ca/unreal/ustruct/).
-
-### UENUM
-
-`UENUM` is a macro used to declare an enumeration that is intended to be used in Unreal Engine's reflection system. It allows the enumeration to be exposed to Blueprint and used within `UCLASS`es.
-
-#### Common Specifiers
-
--   `BlueprintType`: Specifies that the enumeration can be used in Blueprint scripts.
--   `DisplayNames`: Specifies a list of custom display names for each enumeration value in the Unreal Editor.
-
-#### Common Meta tags
-
--   `DisplayName`: Sets a custom display name for the enumeration in the Unreal Editor.
--   `ToolTip`: Provides a tooltip description for the enumeration in the Unreal Editor.
--   `Hidden`: Hides the enumeration from being displayed in the Unreal Editor.
--   `Bitflags`: Indicates that the enumeration represents a set of bit flags.
--   `EnumRange`: Specifies the minimum and maximum values for the enumeration.
-
-#### Examples
-
-```cpp
-UENUM(BlueprintType)
-enum class EWeaponType
-{
-    Sword         UMETA(DisplayName = "Sword Weapon"),
-    Axe           UMETA(DisplayName = "Axe Weapon"),
-    Bow           UMETA(DisplayName = "Bow Weapon"),
-    Wand          UMETA(DisplayName = "Magic Wand"),
-};
-```
-
-You can read more about [UENUM by BenUi](https://benui.ca/unreal/uenum/).
-
-### UPARAM
-
-`UPARAM` is a macro used to provide additional information to the Unreal Header Tool. It is used with parameters of UFUNCTION and UPROPERTY to specify how the engine should handle the data.
-
--   `UPARAM(Ref)`: Used to mark a parameter that is passed by reference. It ensures that the parameter is treated as a reference during code generation, which may affect how the engine handles the parameter.
-
--   `UPARAM(DisplayName)`: Used to set a custom display name for a function parameter when it appears in the Unreal Editor's Blueprint node graph.
-
--   `UPARAM(BlueprintCallable, BlueprintPure)`: Used to apply multiple specifiers to a function parameter. For example, to mark a parameter as both BlueprintCallable and BlueprintPure.
-
--   `UPARAM(meta = (CustomMetaTag))`: Allows developers to create custom meta tags and use them in function parameters to provide additional information to the Unreal Header Tool.
-
-#### Examples
-
-```cpp
-UCLASS()
-class MyActor : public AActor
-{
-    GENERATED_BODY()
-
-public:
-    // A function that takes a parameter passed by reference
-    UFUNCTION(BlueprintCallable, Category = "MyActor")
-    void ModifyValue(UPARAM(Ref) int32& ValueToModify)
-    {
-        // Modify the value passed by reference
-        ValueToModify *= 2;
-    }
-};
-```
-
-You can read more about [UPARAM by BenUi](https://benui.ca/unreal/uparam/).
-
-### UMETA
-
-`UMETA` is a macro used to specify additional metadata for an UENUM entry. It allows adding custom information to enum values for use in Blueprint, UI, and other engine systems.
-
-#### Common Specifiers
-
--   `DisplayName`: Sets a custom display name for the enumeration value in the Unreal Editor.
--   `ToolTip`: Provides a tooltip description for the enumeration value in the Unreal Editor.
--   `Hidden`: Hides the enumeration value from being displayed in the Unreal Editor.
--   `DisplayPriority`: Specifies the display priority for the enumeration value in the Unreal Editor.
--   `DisplayThumbnail`: Allows attaching a custom thumbnail image to the enumeration value in the Unreal Editor.
--   `CustomMetaData`: Specifies custom metadata that developers can define and use as needed.
-
-#### Examples
-
-```cpp
-UENUM(BlueprintType)
-enum class EMyEnum
-{
-    Value1 UMETA(DisplayName = "First Value", ToolTip = "This is the first value"),
-    Value2 UMETA(DisplayName = "Second Value", ToolTip = "This is the second value"),
-    Value3 UMETA(Hidden),
-};
-```
-
-You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
+> UHT[^2] doesn't support `operator` or `namespace` keyword. Meaning, you can't have a C++ class with a namespace, nor use the operations function for Blueprint.
 
 ## 👷 Constructors, destructors and initialization
 
@@ -5417,7 +5417,7 @@ public:
 
 ### Extending the interface function:
 
-When adding an interface class to a C++ class, you must use the suffix of `_Implementation` for all the functions that you are overwriting. Otherwise, UHT will not recognize the function.
+When adding an interface class to a C++ class, you must use the suffix of `_Implementation` for all the functions that you are overwriting. Otherwise, UHT[^2] will not recognize the function.
 
 Here's an example, of extending the interface functions inside C++:
 
@@ -7386,7 +7386,7 @@ You can also watch a [video about it from Ryan Sweeney](https://www.youtube.com/
 When you find a plugin and trying to install it, you might find out that it doesn't support your current engine version.
 And the Unreal's marketplace won't let you download unless you have a version associated.
 
-One trick to avoid this, is to build the plugin manually and fixing compiling issues (header file missing or API changes). By installing the plugin with the access of the source code. Then by access the plugin with the UHT (Unreal Build Tool), you can then rebuild the plugin into a different engine version.
+One trick to avoid this, is to build the plugin manually and fixing compiling issues (header file missing or API changes). By installing the plugin with the access of the source code. Then by access the plugin with the UHT[^2] (Unreal Build Tool), you can then rebuild the plugin into a different engine version.
 
 Here is `.bat` file (**Windows Only**) to locate the current engine directory, and compile your custom made plugin into another engine version:
 
@@ -7464,7 +7464,7 @@ Timer construct for performing delayed or repeated actions. Timers are incredibl
 /* Handle to manage the timer */
 FTimerHandle TimerHandle;
 
-// Must mark a function with UFUNCTION, as UHT needs it, in order to find it.
+// Must mark a function with UFUNCTION, as UHT[^2] needs it, in order to find it.
 UFUNCTION()
 void OnExplode();
 ```
