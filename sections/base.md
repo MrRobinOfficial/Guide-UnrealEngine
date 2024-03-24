@@ -8,7 +8,7 @@
 
 ## 🌍 Summary of C++ and Programming World
 
-If you wish to extend your knowledge about C++ and general programming principles and ideology, I highly recommend reading about this [section](https://github.com/MrRobinOfficial/Guide-UnrealEngine/blob/dev/sections/summary_of_cpp_and_programming_world.md).
+If you wish to extend your knowledge about C++ and general programming principles and ideology, I highly recommend reading about this [section](https://github.com/MrRobinOfficial/Guide-UnrealEngine/blob/dev/README_CPP.md).
 
 <<[blueprint_vs_cpp.md]
 
