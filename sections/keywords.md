@@ -336,7 +336,7 @@ Health = CalcNewHealth(Health); // Compiles to: Health = 10 - 10;
 
 ```cpp
 // Performs a runtime check to determine whether an object can be cast to a different type.
-Parent* parentPtr = dynamic_cast<Parent*>(childPtr);
+Parent* parentPtr = dynamic_cast<Parent*>(childPtr); // NOTE! Must have asterisk inside the cast operation as well. Something that we don't need in Unreal Engine.
 
 if (parentPtr)
 {
@@ -371,13 +371,26 @@ char* charPtr = reinterpret_cast<char*>(ptr); // Will be casted to char pointer,
 ```
 
 > [!CAUTION]
-> Don't use C++ version of casts in Unreal Engine project. Instead, use ´Cast()´ provide by the engine. This cast is optimized for UE specific.
+> Don't use C++ version of casts in Unreal Engine project. Instead, use `Cast()` provide by the engine. This cast is optimized for UE specific.
 
 > [!NOTE]
 > If you wish to use `static_cast()` in Unreal, then use `StaticCast()` provided by the engine. It will result in the same code, but fixes some issue with Visual Studio.
 
 ```cpp
-// Code here
+ACharacter* MyCharacter = GetPlayerCharacter();
+
+// This will perform a dynamic cast at runtime
+auto* MyActor = Cast<AActor>(MyCharacter);
+
+// Same as Cast<>, but will do a assertion (check) as well.
+// Meaning, if the cast was unsuccessful, then a crash will occur.
+auto* MyPlayer = CastChecked<APlayerCharacter>(MyCharacter);
+```
+
+```cpp
+// This will perform either a static or dynamic cast
+// Which is compile either at compile-time or at runtime.
+int32 Value = StaticCast<int32>(3.14159265359);
 ```
 
 #### Flow controls
