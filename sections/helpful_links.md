@@ -4,8 +4,6 @@
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
-Here are the simplified tables based on the type of content:
-
 ### YouTube Videos
 
 | Author        | Title                                                                      | Length   | Link                                                   |

@@ -46,6 +46,8 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [Github Plugins](#github-plugins)
   - [Epic Games Plugins](#epic-games-plugins)
   - [MrRobinOfficial's Plugins](#mrrobinofficials-plugins)
+- [📛 Console Commands](#-console-commands)
+- [📌 Shortcuts](#-shortcuts)
 - [⌛ Getting started with C++](#-getting-started-with-c)
   - [🌈 Integrated Development Environment](#-integrated-development-environment)
   - [⛏️ Tools to help your journey](#-tools-to-help-your-journey)
@@ -54,9 +56,10 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 - [🌍 Summary of C++ and Programming World](#-summary-of-c-and-programming-world)
 - [🚧 Blueprint vs C++](#-blueprint-vs-c)
 - [🎪 Architecture](#-architecture)
-- [⚓ Naming Convention](#-naming-convention)
-  - [Prefixes](#prefixes)
-  - [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
+- [⚓ Guidelines](#-guidelines)
+  - [🎳 Naming Convention](#-naming-convention)
+    - [Prefixes](#prefixes)
+    - [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
 - [🧱 Data Types](#-data-types)
   - [Characters](#characters)
   - [Booleans](#booleans)
@@ -116,6 +119,15 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
       - [TWeakInterfacePtr](#tweakinterfaceptr)
       - [TSoftObjectPtr](#tsoftobjectptr)
       - [TSoftClassPtr](#tsoftclassptr)
+  - [🔖 Keywords](#-keywords)
+    - [Constants](#constants)
+    - [Access modifiers](#access-modifiers)
+    - [Class, struct and memory](#class-struct-and-memory)
+    - [Function related](#function-related)
+    - [Casts](#casts)
+    - [Flow controls](#flow-controls)
+    - [Generic programming](#generic-programming)
+    - [Misc](#misc)
 - [💎 Unreal Header Tool](#-unreal-header-tool)
   - [UPROPERTY](#uproperty)
     - [Specifiers](#specifiers)
@@ -177,7 +189,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 - [📜 Logging](#-logging)
   - [UE_LOGFMT](#ue_logfmt)
   - [Log to game-view](#log-to-game-view)
-- [☑️ Assertions](#-assertions)
+- [🪨 Assertions](#-assertions)
   - [Check](#check)
   - [Verify](#verify)
   - [Ensure](#ensure)
@@ -222,6 +234,9 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [Draw a mesh](#draw-a-mesh)
   - [Draw a string:](#draw-a-string)
   - [Draw a centripetal catmull-rom spline](#draw-a-centripetal-catmull-rom-spline)
+- [⚡ Compiling a plugin](#-compiling-a-plugin)
+- [⏳ Gameplay Timers](#-gameplay-timers)
+- [🧵 Gameplay Tags](#-gameplay-tags)
 - [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
   - [Multithreading](#multithreading)
   - [Runnables](#runnables)
@@ -232,45 +247,44 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 - [🎯 Extend Unreal Editor](#-extend-unreal-editor)
   - [Slate](#slate)
   - [Creating custom asset type](#creating-custom-asset-type)
+- [⚠️ Common Issues](#-common-issues)
+  - [⛔ Compiler Errors](#-compiler-errors)
+    - [Compiler Error C2007](#compiler-error-c2007)
+    - [Compiler Error C2065](#compiler-error-c2065)
+    - [Compiler Error C2628](#compiler-error-c2628)
+  - [💣 Runtime Errors](#-runtime-errors)
+  - [💀 Semantic Errors](#-semantic-errors)
+- [🐣 Tips and best practices](#-tips-and-best-practices)
+  - [Disable BlueprintPure](#disable-blueprintpure)
+  - [Switch case fall-through](#switch-case-fall-through)
+  - [📦 Refactoring](#-refactoring)
+    - [Renaming](#renaming)
+    - [Extract Method](#extract-method)
+    - [Introduce/Inline typedefs](#introduceinline-typedefs)
+    - [Introduce Variable](#introduce-variable)
+  - [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
+  - [⏱ Ticking](#-ticking)
+    - [For actors](#for-actors)
+    - [For components](#for-components)
+    - [If you have to use tick](#if-you-have-to-use-tick)
+    - [`FTickFunction`](#ftickfunction)
+      - [MyTickableThing.h](#mytickablethingh)
+      - [MyTickableThing.cpp](#mytickablethingcpp)
+  - [🔌 Direct references](#-direct-references)
 - [🗝️ Deep dive](#-deep-dive)
-  - [🔖 Keywords](#-keywords)
   - [K2Node](#k2node)
   - [➗ Math Expression Node](#-math-expression-node)
   - [Call function in editor](#call-function-in-editor)
   - [Call function via Console Commands](#call-function-via-console-commands)
   - [Renaming variables without breaking references](#renaming-variables-without-breaking-references)
-  - [Compiling a plugin for a new engine version](#compiling-a-plugin-for-a-new-engine-version)
-  - [Gameplay Timers](#gameplay-timers)
   - [Sampling a curve](#sampling-a-curve)
   - [HTTP requests](#http-requests)
   - [Encryption and Decryption](#encryption-and-decryption)
-  - [🐣 Tips and best practices](#-tips-and-best-practices)
-  - [Disable BlueprintPure](#disable-blueprintpure)
-  - [Switch case fall-through](#switch-case-fall-through)
-    - [📦 Refactoring](#-refactoring)
-      - [Renaming](#renaming)
-      - [Extract Method](#extract-method)
-      - [Introduce/Inline typedef﻿s](#introduceinline-typedef%EF%BB%BFs)
-      - [Introduce Variable](#introduce-variable)
-      - [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
-    - [⏱ Ticking](#-ticking)
-      - [For actors](#for-actors)
-      - [For components](#for-components)
-      - [If you have to use tick](#if-you-have-to-use-tick)
-    - [`FTickFunction`](#ftickfunction)
-      - [MyTickableThing.h](#mytickablethingh)
-      - [MyTickableThing.cpp](#mytickablethingcpp)
-    - [🔌 Direct references](#-direct-references)
-- [📛 Console Commands](#-console-commands)
-- [📌 Shortcuts](#-shortcuts)
-- [⚠️ Common Issues](#-common-issues)
-  - [⛔ Compiler Error C2628](#-compiler-error-c2628)
-  - [⛔ Compiler Error C2065](#-compiler-error-c2065)
 - [🔗 Helpful Links](#-helpful-links)
   - [YouTube Videos](#youtube-videos)
   - [Articles](#articles)
   - [Online Tools](#online-tools)
-  - [Misc](#misc)
+  - [Misc](#misc-1)
 - [🆘 Support](#-support)
 - [📍 Footnotes](#-footnotes)
 
@@ -389,6 +403,101 @@ And here is a full list of plugins that I discovered so far:
 I am planning to make more plugins, which you can find me on [Github](https://github.com/MrRobinOfficial).
 
 </details>
+
+## 📛 Console Commands
+
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
+* `stat fps`: Display FPS.
+* `stat unit`: Display frame time.
+* `stat game`: Display a general idea on how long the various gameplay ticks are taking.
+* `dumpticks`: Display a list of current actors, which currently ticks in the level.
+* `slomo`: To speed up or slow down the game time.
+* `obj list`: Display a list of current loaded objects.
+* `obj list class=BP_PlayerCharacter_C`: Same as `obj list` but with a filter.
+* `obj gc`: Collect all objects with GC (Garbage Collector).
+* `au.Debug.AudioSoloSoundWave`: Takes a sound wave name as an additional input, and toggles whether that sound wave is solo (the only audible sound).
+
+Here is also a [website](https://pongrit.github.io/) by Pongrit, which showcase all of Unreal Engine's console commands.
+
+## 📌 Shortcuts
+
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
+To change any of the shortcuts, you can access the keyboard shortcut settings via **Editor Preferences**, then under **General** select **Keyboard Shortcuts**.
+
+---
+
+Basic
+
+-   <kbd>Ctrl + C</kbd>: Copy
+-   <kbd>Ctrl + X</kbd>: Cut
+-   <kbd>Ctrl + V</kbd>: Paste
+-   <kbd>Del</kbd> - Delete
+-   <kbd>Ctrl + Y</kbd>: Undo
+-   <kbd>Ctrl + Z</kbd>: Redo
+-   <kbd>Ctrl + A</kbd>: Select All
+-   <kbd>Esc</kbd>: Clear Selection
+-   <kbd>Up/Down/Left/Right Arrow Keys</kbd>: Move Selection
+-   <kbd>Ctrl + Spacebar</kbd>: Open Content Browser
+-   <kbd>Ctrl + B</kbd>: Find in Content Browser
+-   <kbd>Ctrl + Tab</kbd>: Browse Tabs
+-   <kbd>Ctrl + O</kbd>: Open Level
+-   <kbd>Ctrl + P</kbd>: Asset Picker
+-   <kbd>Alt + P</kbd> or <kbd>Alt + S</kbd>: Play/Simulate
+-   <kbd>P</kbd>: Show Nav Mesh
+-   <kbd>Mouse Wheel Up/Down</kbd>: Zoom
+
+---
+
+Outliner
+
+-   <kbd>Ctrl + G</kbd> or <kbd>Shift + G</kbd>: Group/Ungroup
+-   <kbd>Right-Click</kbd> on Group: Pin/Unpin
+
+---
+
+Blueprint editor
+
+-   <kbd>Ctrl + S</kbd>: Save Blueprint
+-   <kbd>Ctrl + F</kbd>: Find within Blueprint
+-   <kbd>Ctrl + Shift + F</kbd>: Find in all Blueprints
+
+---
+
+Level editing
+
+-   <kbd>Ctrl + S</kbd>: Save All
+-   <kbd>End</kbd>: Snap to Floor
+-   <kbd>Alt + End</kbd>: Snap Pivot to Floor
+-   <kbd>Shift + End</kbd>: Snap Bounds to Floor
+-   <kbd>Ctrl + End</kbd>: Snap Origin to Grid
+-   <kbd>Alt + Transform</kbd>: Duplicate and Transform
+
+---
+
+Camera/transformation
+
+-   <kbd>Alt + G</kbd>: Perspective View
+-   <kbd>Alt + H</kbd>: Front View
+-   <kbd>Alt + J</kbd>: Top View
+-   <kbd>Alt + K</kbd>: Side View
+-   <kbd>F</kbd>: Focus
+-   <kbd>G</kbd>: View
+-   <kbd>R</kbd>: Scale
+-   <kbd>W</kbd>: Translate
+-   <kbd>E</kbd>: Rotate
+-   <kbd>Spacebar</kbd>: Toggle Move/Rotate/Scale
+
+---
+
+Tools
+
+-   <kbd>Ctrl + Shift + Comma</kbd>: GPU Visualizer
 
 ## ⌛ Getting started with C++
 
@@ -793,7 +902,9 @@ You can also watch a video discussion about [Multiplayer Framework of Unreal Eng
 
 You can also watch [The Unreal Engine Game Framework: From int main() to BeginPlay by Alex Forsythe](https://www.youtube.com/watch?v=IaU2Hue-ApI), which he talks how Unreal starts your game/editor from the source code. And how these classes work with each other.
 
-## ⚓ Naming Convention
+## ⚓ Guidelines
+
+### 🎳 Naming Convention
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
@@ -886,7 +997,7 @@ UPROPERTY()
 EThing MyProperty;
 ```
 
-### Prefixes
+#### Prefixes
 
 <table><tr><td>
 This section was NOT written in conjunction with ChatGPT.
@@ -905,7 +1016,7 @@ This section was NOT written in conjunction with ChatGPT.
 > [!TIP]
 > Did you know that `F` prefix actually stands for `Float` (floating point). but it was inadvertently spread throughout and has lost its original meaning.
 
-### 🎨 Abbreviations, Acronyms and Synonyms
+#### 🎨 Abbreviations, Acronyms and Synonyms
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
@@ -1063,6 +1174,8 @@ Misc
 -   `repo` - Repository
 
 </td></tr></table>
+
+You can find more information about Unreal Engine's guideline, both for [inside the editor](https://dev.epicgames.com/documentation/en-us/unreal-engine/recommended-asset-naming-conventions-in-unreal-engine-projects) (asset creation), but also [coding standard](https://dev.epicgames.com/documentation/en-us/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine).
 
 <!-- prettier-ignore-start -->
 
@@ -3722,6 +3835,600 @@ if (SoftPtr.IsValid())
 
 <!-- prettier-ignore-end -->
 
+### 🔖 Keywords
+
+In C++, a keyword is a [reserved word](https://en.wikipedia.org/wiki/Reserved_word) that has a special meaning to the compiler. Keywords cannot be used as the names of variables, functions, or any other identifiers in your code.
+
+The keywords in C++ are used to define the structure and behavior of your program. They are used to declare variables, functions, classes, and other types of identifiers. They also control the flow of execution of your program, such as with the `if`, `for`, and `switch` statements.
+
+#### Constants
+
+-   `const` - Specifies that an object or member is read-only and cannot be modified. Meaning, they are immutable.
+
+-   `constexpr` - Specifies that a function or member can be evaluated at compile-time. `constexpr` can be used for inlining variables, without using macros[^4]. **NOTE**, the compiler does not guarantee compile-time evaluation (only it **CAN** be evaluated at compile-time).
+
+-   `consteval` - Specifies that a function must be evaluated at compile-time. **NOTE**, it works only on functions and the compiler has to evaluated at compile-time.
+
+-   `constinit` - Specifies that a variable should be initialized only with constant expressions.
+
+```cpp
+int Add(const int& a, const int& b)
+{
+    a++; // Compiling error!
+    return a + b;
+}
+```
+
+```cpp
+// Will be compiled at runtime
+const float PI = 3.14f;
+
+// Can be compiled at compile-time
+constexpr double PI_DOUBLE = 3.14159265359;
+```
+
+You can also use `constexpr` keyword for a function, which then can be directly used inside other operations as well (as it can be compiled at compile-time):
+
+What is the difference between a `constexpr` and macro then?
+
+> A macro doesn't give you any protection against syntax incorrectness, nor any highlighting support for the code. Meaning, is more dangerous to track down bugs and issue, as well as maintaining the code. Therefore, it is more recommend to use `constexpr` keyword for members and functions, which will generated a "truly" constant value.
+
+```cpp
+constexpr int getSizeOfAnArray()
+{
+    return 5;
+}
+
+int array[getSizeOfAnArray()]; // array has 5 elements
+```
+
+> [!NOTE]
+> If you want a "truly" constant value at compile-time with no expectations from the compiler, you can use `consteval` keyword instead. This forces the compiler to compile your code at compile-time.
+
+```cpp
+consteval int getSizeOfAnArray()
+{
+    return 10;
+}
+
+int array[getSizeOfAnArray()]; // array has 10 elements
+
+// Will be compiled at compile-time
+// NOTE! It is also context-sensitive.
+constinit int sizeOfAnArray = getSizeOfAnArray();
+```
+
+> [!WARNING]
+> The `consteval` and `constinit` keywords are only supported on C++ version 20. Meaning, if your compiler doesn't support, you can't use these keywords.
+
+> [!NOTE]
+> Unreal Engine is now supporting [C++ version 20](https://dev.epicgames.com/documentation/en-us/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine#modernc++languagesyntax:~:text=Unreal%20Engine%20compiles%20with%20a%20language%20version%20of%20C%2B%2B20%20by%20default%20and%20requires%20a%20minimum%20version%20of%20C%2B%2B17%20to%20build.).
+
+```cpp
+// Example of using constinit keyword
+struct Data
+{
+    constinit const int i = 10;
+    constinit static int j = 20;
+};
+
+static_assert(Data::j == 20);
+```
+
+Here is a video, explaining what [constants keywords does in C++ by Cazz](https://www.youtube.com/watch?v=KBny6MZJR64)
+
+#### Access modifiers
+
+-   `public` - The member is accessible from any code that can see the class.
+-   `protected` - The member is accessible from the class in which it is declared, and from any derived classes.
+-   `private` - The member is only accessible from within the class where it is declared.
+
+Here's an example implementation of access modifiers:
+
+```cpp
+class VehicleBase
+{
+public:
+    int public_member = 10;
+
+protected:
+    int protected_member = 20;
+
+private:
+    int private_member = 30;
+};
+
+class Car : public VehicleBase
+{
+    public:
+        void Access()
+        {
+            std::cout << "public_member: " << public_member << std::endl;
+            std::cout << "protected_member: " << protected_member << std::endl;
+            std::cout << "private_member: " << private_member << std::endl; // Will not compile
+        }
+};
+
+int main()
+{
+    VehicleBase vehicle;
+    std::cout << "public_member: " << vehicle.public_member << std::endl;
+    std::cout << "protected_member: " << vehicle.protected_member << std::endl; // Will not compile
+    std::cout << "private_member: " << vehicle.private_member << std::endl; // Will not compile
+
+    Car car;
+    car.Access();
+
+    return 0;
+}
+
+```
+
+#### Class, struct and memory
+
+-   `class` and `struct` - Used to define user-defined types that encapsulate data and functions. In regular C++, both `class` and `struct` are both the same thing. Exposes `struct` exposes members are public by default.
+-   `new` - Allocates memory for an object (on the [heap memory](https://en.wikipedia.org/wiki/Memory_management#HEAP)) and calls its constructor.
+-   `delete` - Deallocates memory that was allocated with `new` keyword.
+
+```cpp
+/**
+ * Struct to represent a person.
+ */
+struct Person
+{
+    /** The person's name. */
+    std::string name;
+
+    /** The person's age. */
+    int age;
+};
+
+// Allocate memory for a Person object and initialize its members.
+Person* person = new Person;
+person->name = "John Doe";
+person->age = 30;
+
+// Print out the person's name and age.
+std::cout << "Name: " << person->name << std::endl;
+std::cout << "Age: " << person->age << std::endl;
+
+// Deallocate memory for the Person object.
+delete person;
+```
+
+> [!CAUTION]
+> In Unreal Engine, it's recommended to use the built-in memory management functions like `NewObject()` and `MakeShared()` to allocate memory for objects, rather than using `new` and `delete`. Using `new` and `delete` can interfere with the garbage collector and cause memory leaks or crashes in your game.
+
+What is the difference between a class and struct then?
+
+> In native C++, the main difference between a struct and a class is that struct members are public by default, whereas class members are private by default. However, this difference is largely syntactic, and struct and class can be used interchangeably to define custom types.
+
+> However, Unreal Engine structs are used to represent data types that are typically used for data storage and manipulation, whereas classes are used to represent objects that have behavior and state.
+
+```cpp
+// Code here
+```
+
+#### Function related
+
+-   `virtual` - Specifies that a function should be polymorphic, meaning that it can be overridden by a derived class.
+-   `override` - Indicates that a function in a derived class is intended to override a function in the base class.
+-   `static` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
+-   `inline` - Specifies that a function should be inlined (i.e., its code should be inserted directly into the calling code rather than calling the function).
+-   `force_inline` - Instructs the compiler to inline a function, regardless of whether it would normally do so.
+
+```cpp
+/**
+ * @brief Struct used to store vehicle details.
+ */
+struct Details
+{
+    /**
+     * @brief Unique identifier for the vehicle.
+     */
+    int id;
+};
+
+/**
+ * @brief Abstract base class for vehicles.
+ */
+class VehicleBase
+{
+public:
+    /**
+     * @brief Honk the vehicle.
+     *
+     * This function should be implemented by derived classes to provide a way for
+     * the vehicle to make a noise.
+     */
+    virtual void Honk() = 0;
+
+    /**
+     * @brief Get the type of the vehicle.
+     *
+     * @return The type of the vehicle as a string.
+     */
+    virtual std::string GetVehicleType() = 0;
+
+    /**
+     * @brief Get the details of the vehicle.
+     *
+     * This function is a static member function and can be called without an
+     * instance of the class.
+     *
+     * @return The vehicle details.
+     */
+    static Details GetDetails()
+    {
+        return Details
+        {
+            id = 0
+        };
+    }
+};
+
+/**
+ * @brief Class representing a car.
+ */
+class Car : public VehicleBase
+{
+public:
+    /**
+     * @brief Overridden implementation of the Honk() function.
+     *
+     * This function calls the base implementation of Honk() and then does
+     * some additional work.
+     */
+    void Honk() override
+    {
+        // Calls the base function from the class's derived type.
+        VehicleBase::Honk();
+    }
+
+    /**
+     * @brief Overridden implementation of the GetVehicleType() function.
+     *
+     * This function returns a string representing the type of the vehicle.
+     *
+     * @return The type of the vehicle as a string.
+     */
+    std::string GetVehicleType() override
+    {
+        return "Car";
+    }
+};
+
+/**
+ * @brief Class representing a bike.
+ */
+class Bike : public VehicleBase
+{
+public:
+    /**
+     * @brief Overridden implementation of the Honk() function.
+     *
+     * This function does not call the base implementation of Honk() and
+     * therefore can overwrite the logic.
+     */
+    void Honk() override
+    {
+        // Does not call the base function, therefore can overwrite the logic.
+
+        // Some other code
+    }
+
+    /**
+     * @brief Overridden implementation of the GetVehicleType() function.
+     *
+     * This function returns a string representing the type of the vehicle.
+     *
+     * @return The type of the vehicle as a string.
+     */
+    std::string GetVehicleType() override
+    {
+        return "Bike";
+    }
+};
+
+// Static member function call
+Details details = VehicleBase::GetDetails();
+```
+
+---
+
+<figure>
+    <blockquote>
+        <p>“In theory, using inline functions can make your program faster because they eliminate the overhead associated with function calls. Calling a function requires pushing the return address on the stack, pushing arguments onto the stack, jumping to the function body, and then executing a return instruction when the function finishes. This process is eliminated by inlining the function. The compiler also has different opportunities to optimize functions expanded inline versus those that aren't. A tradeoff of inline functions is that the overall size of your program can increase.”</p>
+    </blockquote>
+    <figcaption>
+        <cite>
+            <a href="https://learn.microsoft.com/en-us/cpp/cpp/inline-functions-cpp">Microsoft docs</a>
+        </cite>
+    </figcaption>
+</figure>
+
+When inlining functions, you have the option to force or give the decision up to the compiler. By using `inline`, you are telling the compiler, that they are allowed to inline this function. However, it doesn't grant for an inline function.
+
+To force an inline function, you must use `force_inline` keyword.
+
+> [!NOTE]
+> In Unreal Engine, it is more common to use a macro called `FORCEINLINE`, which is essentially expands to `force_inline` keyword.
+
+```cpp
+inline int CalcNewHealth(int Health)
+{
+    return Health - 10;
+}
+
+const int Health = 10;
+Health = CalcNewHealth(Health); // Compiles to: Health = 10 - 10;
+```
+
+#### Casts
+
+-   `dynamic_cast` - Performs a runtime check to determine whether an object can be cast to a different type.
+-   `static_cast` - Performs a static cast, which allows an expression to be converted to a different data type at compile time.
+-   `const_cast` - Performs a cast but removes the const from the variable, which it has been declared on.
+-   `reinterpret_cast` - Performs a cast that allows converting a pointer to any other type of pointer. Meaing, that this cast will allow you to reinterpretation of the bits representing the value without changing them.
+
+```cpp
+// Performs a runtime check to determine whether an object can be cast to a different type.
+Parent* parentPtr = dynamic_cast<Parent*>(childPtr);
+
+if (parentPtr)
+{
+    // Casting successful, handle parentPtr
+}
+else
+{
+    // Casting failed, handle accordingly
+}
+```
+
+```cpp
+// Performs a static cast, allowing an expression to be converted to a different data type at compile time.
+int num = 10;
+double result = static_cast<double>(num);
+```
+
+```cpp
+// Removes the const from a variable, which it has been declared on.
+const int x = 5;
+
+int* y = const_cast<int*>(&x);
+
+// Modifying the value of x through y
+*y = 10; // Will be changed to 10 instead 5.
+```
+
+```cpp
+// Converting a pointer to any other type of pointer, reinterpreting the bits representing the value without changing them.
+int* ptr = new int(65);
+char* charPtr = reinterpret_cast<char*>(ptr); // Will be casted to char pointer, with the value of 'A'.
+```
+
+> [!CAUTION]
+> Don't use C++ version of casts in Unreal Engine project. Instead, use ´Cast()´ provide by the engine. This cast is optimized for UE specific.
+
+> [!NOTE]
+> If you wish to use `static_cast()` in Unreal, then use `StaticCast()` provided by the engine. It will result in the same code, but fixes some issue with Visual Studio.
+
+```cpp
+// Code here
+```
+
+#### Flow controls
+
+-   `if`, `else if` and `else` - Used for conditional execution in a program. `if` checks a condition and executes a block of code if the condition is true. `else if` provides an alternative condition to check if the first condition is false. `else` executes a block of code if none of the previous conditions are true.
+
+-   `switch` - A control flow statement used to select one of many code blocks to be executed based on the value of an expression.
+
+-   `for` - A loop statement that repeatedly executes a block of code as long as a condition is true. It consists of initialization, condition, and increment/decrement expression.
+
+-   `while` - Another loop statement that executes a block of code as long as a specified condition is true.
+
+-   `do` and `while` - Similar to the `while` loop, but the `do while` loop will execute the block of code at least once before checking the condition.
+
+-   `break` - Used to exit a loop or switch statement prematurely, transferring the program control to the statement immediately following the loop or switch.
+
+-   `continue` - Causes the program to skip the rest of the current iteration of a loop and proceed to the next iteration.
+
+-   `try`, `catch` and `finally` - Implements exception handling by trying a block of code that may throw an exception, catching the exception if it is thrown, and executing cleanup code in the `finally` block regardless of whether an exception is thrown or not.
+
+```cpp
+int num = 10;
+
+if (num > 10)
+{
+    // do something
+}
+else if (num < 10)
+{
+    // do something else
+}
+else
+{
+    // do something different
+}
+```
+
+```cpp
+int option = 2;
+
+switch (option)
+{
+    case 1:
+        // case 1 actions
+        break;
+
+    case 2:
+        // case 2 actions
+        break;
+
+    default:
+        // default actions
+        break;
+}
+```
+
+```cpp
+for (int i = 0; i < 5; ++i)
+{
+    // loop body
+}
+```
+
+```cpp
+int i = 0;
+
+while (i < 5)
+{
+    // loop body
+    ++i;
+}
+```
+
+```cpp
+int j = 0;
+
+do
+{
+    // loop body
+    ++j;
+}
+while (j < 5);
+```
+
+```cpp
+for (int i = 0; i < 10; ++i)
+{
+    if (i == 5)  break; // exits the loop when i equals 5
+
+    // loop body
+}
+```
+
+```cpp
+for (int i = 0; i < 5; ++i)
+{
+    if (i == 2)  continue; // skips the rest of the loop body for i equals 2
+
+    // loop body
+}
+```
+
+```cpp
+try
+{
+    // block of code that may throw an exception
+    throw 20; // example of throwing an exception
+}
+catch (int e)
+{
+    // handle exception
+    // e contains the thrown value
+}
+finally
+{
+    // clean-up code that executes whether an exception is thrown or not
+}
+```
+
+#### Generic programming
+
+-   `template` - Allows generic programming by defining a type or function with parameters that are specified at compile time.
+
+```cpp
+template <typename T>
+void PrintArray(T* arr, size_t size)
+{
+    for (size_t i = 0; i < size; ++i)
+        std::cout << arr[i] << ", ";
+
+    std::cout << std::endl;
+}
+```
+
+```cpp
+int arr1[5] = { 1, 2, 3, 4, 5 };
+double arr2[5] = { 1.1, 2.2, 3.3, 4.4, 5.5 };
+std::string arr3[5] = { "one", "two", "three", "four", "five" };
+
+PrintArray(arr1, sizeof(arr1) / sizeof(arr1[0])); // 1, 2, 3, 4, 5,
+PrintArray(arr2, sizeof(arr2) / sizeof(arr2[0])); // 1.1, 2.2, 3.3, 4.4, 5.5,
+PrintArray(arr3, sizeof(arr3) / sizeof(arr3[0])); // one, two, three, four, five,
+```
+
+#### Misc
+
+-   `auto` - Allows the compiler to deduce the type of a variable based on its initializer. Similar to C# version of `var` keyword.
+-   `namespace` - Defines a scope for identifiers to avoid naming conflicts.
+-   `operator` - Declares a function as an overloaded operator.
+-   `explicit` - Specifies that a constructor or conversion operator cannot be used for implicit type conversions.
+
+```cpp
+namespace MyNamespace
+{
+    /**
+     * @brief This is an example class that shows how to use the `auto` keyword
+     * and overloaded operators.
+     */
+    class MyClass
+    {
+    public:
+        /**
+         * @brief Returns the current value of the class.
+         * @return The current value.
+         */
+        int GetValue() const { return value; }
+
+    private:
+        int value;
+
+    public:
+        /**
+         * @brief Adds the given number to the current value.
+         * @param number The number to add.
+         * @return The result of the addition.
+         */
+        int Add(const int& number)
+        {
+            // The compiler will figure out what type it should be
+            auto result = value + number;
+            return result;
+        }
+
+        /**
+         * @brief Updates the value of the class.
+         *
+         * This function is an example of bad practices.
+         * As the other developers who might read code,
+         * doesn't understand the return value type is.
+         */
+        void ExampleOfBadPractice()
+        {
+            auto result = Add(5);
+        }
+
+        /**
+         * @brief Overloaded `+` operator.
+         * @param other The number to add to the current value.
+         * @return A reference to the current object (to allow chaining).
+         */
+        void operator+(const int& other)
+        {
+            value = Add(other);
+        }
+    };
+}
+```
+
+> [!TIP]
+> It's recommended to `auto` keyword where a variable is declared twice during a single line. For an example, during a cast operation. If you use the `auto` keyword on a function return value, it can be extremely difficult for other developers to see what the return value type is.
+
+> [!CAUTION]
+> UHT doesn't support `operator` or `namespace` keyword. Meaning, you can't have a C++ class with a namespace, nor use the operations function for Blueprint.
+
 ## 💎 Unreal Header Tool
 
 <table><tr><td>
@@ -5363,7 +6070,7 @@ Here's an example, how to use `FString::Printf()` function `AddOnScreenDebugMess
 GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, FString::Printf(TEXT("Some variable values: x = %f, y = %f"), x, y));
 ```
 
-## ☑️ Assertions
+## 🪨 Assertions
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
@@ -6648,6 +7355,193 @@ You can read more about [drawing shapes by Harrison McGuire](https://unrealcpp.c
 
 You can also watch a [video about it from Ryan Sweeney](https://www.youtube.com/watch?v=FQQmdirfVYg).
 
+## ⚡ Compiling a plugin
+
+When you find a plugin and trying to install it, you might find out that it doesn't support your current engine version.
+And the Unreal's marketplace won't let you download unless you have a version associated.
+
+One trick to avoid this, is to build the plugin manually and fixing compiling issues (header file missing or API changes). By installing the plugin with the access of the source code. Then by access the plugin with the UHT (Unreal Build Tool), you can then rebuild the plugin into a different engine version.
+
+Here is `.bat` file (**Windows Only**) to locate the current engine directory, and compile your custom made plugin into another engine version:
+
+```
+@echo off
+
+:: Setting up config variables
+set EngineVersion=<EngineVersion>
+set PluginName=<PluginName>
+set InputDirectory=<InputDirectory>
+set OutputDirectory=<OutputDirectory>
+set TargetPlatforms=Win64
+
+set PluginPath="%cd%\%InputDirectory%\%PluginName%\%PluginName%.uplugin"
+set OutputPath="%cd%\%OutputDirectory%\%EngineVersion%\%PluginName%"
+
+:: Locating a registry key, in order to find Unreal Engine source location
+
+for /f "skip=2 tokens=2*" %%a in ('reg query "HKEY_LOCAL_MACHINE\SOFTWARE\EpicGames\Unreal Engine\%EngineVersion%" /v "InstalledDirectory"') do set "EngineDirectory=%%b"
+
+set AutomationToolPath="%EngineDirectory%\Engine\Build\BatchFiles\RunUAT.bat"
+
+title Build Plugin
+echo Automation Tool Path: "%AutomationToolPath%"
+echo:
+
+call %AutomationToolPath% BuildPlugin -Plugin=%PluginPath% -Package=%OutputPath% -Rocket -TargetPlatforms=%TargetPlatforms%
+echo:
+pause
+exit 0
+```
+
+And here is the bash file (**Linux Only**) version:
+
+```
+#!/bin/bash
+
+# Setting up config variables
+EngineVersion="<EngineVersion>"
+PluginName="<PluginName>"
+InputDirectory="<InputDirectory>"
+OutputDirectory="<OutputDirectory>"
+TargetPlatforms="Win64"
+
+PluginPath="$PWD/$InputDirectory/$PluginName/$PluginName.uplugin"
+OutputPath="$PWD/$OutputDirectory/$EngineVersion/$PluginName"
+
+# Locating a registry key, in order to find Unreal Engine source location
+EngineDirectory=$(reg query "HKEY_LOCAL_MACHINE\SOFTWARE\EpicGames\Unreal Engine\$EngineVersion" -v "InstalledDirectory" | awk 'NR==3{print $NF}')
+
+AutomationToolPath="$EngineDirectory/Engine/Build/BatchFiles/RunUAT.bat"
+
+echo "Automation Tool Path: \"$AutomationToolPath\""
+echo
+
+$AutomationToolPath BuildPlugin -Plugin="$PluginPath" -Package="$OutputPath" -Rocket -TargetPlatforms="$TargetPlatforms"
+
+echo
+read -p "Press Enter to continue..."
+exit 0
+```
+
+## ⏳ Gameplay Timers
+
+Timer construct for performing delayed or repeated actions. Timers are incredibly helpful for gameplay scenarios.
+
+**Timers** schedule actions to be performed after a delay, or over a period of time. For example, you may want to make the player invulnerable after obtaining a power-up item, then restore vulnerability after 10 seconds. Or you may want to apply damage once per second while the player moves through a room filled with toxic gas. Such actions can be achieved through the use of timers.
+
+> [!NOTE]
+> Timers will be canceled automatically if the Object that they are going to be called on, such as an Actor, is destroyed before the time is up. In this case, the timer handle will become invalid and the function will not be called.
+
+```cpp
+// .h
+
+/* Handle to manage the timer */
+FTimerHandle TimerHandle;
+
+// Must mark a function with UFUNCTION, as UHT needs it, in order to find it.
+UFUNCTION()
+void OnExplode();
+```
+
+```cpp
+// .cpp
+
+/* Activate the bomb to explode after 1.5 seconds */
+void ABombActor::OnUsed(APawn* InstigatorPawn)
+{
+    float Delay = 1.5f; // In seconds
+    bool bLooping = false; // If we want to repeat this.
+
+    GetWorld()->GetTimerManager().SetTimer(
+        TimerHandle, // handle to cancel timer at a later time
+        this, // the owning object
+        &ABombActor::OnExplode, // function to call on elapsed
+        Delay,
+        bLooping
+    );
+}
+
+void ABombActor::OnExplode()
+{
+    // ...
+}
+```
+
+Instead of calling `SetTimer()`, you can create delegate object with a bind function.
+
+```cpp
+FTimerHandle TimerHandle;
+FTimerDelegate Delegate; // Delegate to bind function with parameters
+
+Delegate.BindUFunction(this, &ABombActor::OnExplode);
+
+float Delay = 1.5f;
+bool bLooping = false;
+
+GetWorld()->GetTimerManager().SetTimer(TimerHandle, Delegate, Delay, bLooping);
+```
+
+You can also specify parameters, if you wish to pass to the bounded function:
+
+```cpp
+Delegate.BindUFunction(this, &APlayerCharacter::Heal, 150, true);
+
+void Heal(int32 HealAmount, bool bReviveIfDead)
+{
+    // ...
+}
+```
+
+If we wish to stop any of the timer, we can either call `ClearTimer()` or `ClearAllTimersForObject()`:
+
+```cpp
+// Clear the specified timer handle
+GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+
+// Alternatively you can clear ALL timers that belong to this (Actor) instance.
+GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
+```
+
+> [!TIP]
+> Calling `SetTimer()` with a rate less than or equal to zero is identical to calling `ClearTimer()`.
+
+To pause or unpause a timer, you can call either `PauseTimer()` or `UnPauseTimer()` function:
+
+```cpp
+// Pause the specified timer handle
+GetWorld()->GetTimerManager().PauseTimer(TimerHandle);
+
+// Unpause the specified timer handle
+GetWorld()->GetTimerManager().UnPauseTimer(TimerHandle);
+```
+
+To check if a timer is running, you can call `IsTimerActive()` function:
+
+```cpp
+// Is this weapon waiting to be able to fire again?
+GetWorldTimerManager().IsTimerActive(this, &AUTWeapon::RefireCheckTimer);
+```
+
+You can also access the current rate (time between activations) of a timer from its timer handle:
+
+```cpp
+// This weapon's rate of fire changes as it warms up. Is it currently waiting to fire, and if so, how long is the current delay between shots?
+GetWorldTimerManager().GetTimerRate(this, &AUTWeapon::RefireCheckTimer);
+```
+
+If you want the elapsed and remaining time, you can access via `GetTimerElapsed()` function:
+
+```cpp
+// How long will it be until this weapon is ready to fire again? If the answer comes back as -1, it is ready now.
+GetWorldTimerManager().GetTimerElapsed(this, &AUTWeapon::RefireCheckTimer);
+```
+
+You can read more about [Gameplay Timers on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/gameplay-timers-in-unreal-engine/).
+
+## 🧵 Gameplay Tags
+
+<!-- TODO: Write more -->
+
 ## 🧠 Multithreading and Asynchronous Tasks
 
 <table><tr><td>
@@ -6853,6 +7747,527 @@ Lorem Ipsum
 
 Lorem Ipsum
 
+## ⚠️ Common Issues
+
+<!-- TODO: Add more errors examples -->
+
+<table><tr><td>
+This section was NOT written in conjunction with ChatGPT.
+</td></tr></table>
+
+![Common Errors](static/img/Cpp_Errors.png)
+
+There are different types of errors and issue, that you **WILL** encounter as you get familiar with programming. There are four types of category for defining an error/issue.
+
+-   Syntax - Violations of the programming language's grammar and structure rules. Every language has its own set of rules and guidelines to follow. For an example, the Python language doesn't use semicolons nor the curly braces for defining a code block.
+
+-   Linker - Issues that arise during the linking phase, such as unresolved references or conflicts between modules or libraries. A linker issue can also be very complex and hard to resolve, as it doesn't give a lot of information for you as the developer.
+
+-   Runtime - Errors that occur during program execution and cause the program to crash or behave unexpectedly. A runtime error can be resolved quite quickly, if you have access to crash reporter, which usually contains the [call stack](https://en.wikipedia.org/wiki/Call_stack) (which can pinpoint the exact function or code, which caused the crash).
+
+-   Semantic - Logical errors that occur when the code is syntactically correct but does not behave as intended or expected. A semantic error can be the hardest error to resolve, since you need to understand the code logical rather than syntactically.
+
+The compiler will only give errors for **Syntax** and **Linker** issue. Compile error refers to a state when a [compiler](https://en.wikipedia.org/wiki/Compiler) fails to compile. Either due to errors in the code, or, more unusually, due to errors in the compiler itself.
+
+The runtime errors can be resolved with a [crash reporter](https://en.wikipedia.org/wiki/Crash_reporter). And semantic errors can be resolved by understanding the logical reasoning of the code.
+
+> [!TIP]
+> If you feel stuck or can't think straight, then take a couple of minutes or even hours to do something else. Either is going outside, playing video games, listening to music or watching a film or a video. This can help you brain and rethink and resolve the issue quicker.
+
+You can find all the compiler errors at [Microsoft website](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/compiler-errors-c2000-c3999).
+
+### ⛔ Compiler Errors
+
+Here are the common compilation errors, that you **WILL** encounter:
+
+<!-- Variable not initalized -->
+<!-- Incorrect syntax: ; ) } -->
+<!-- Different scope -->
+<!-- Variable not changing -->
+<!-- Requires an instance of a class -->
+<!-- Missing namespace -->
+<!-- Missing include -->
+<!-- Missing defines -->
+<!-- Cannot access private members -->
+<!-- Cannot convert type -->
+<!-- Wrong case -->
+
+#### Compiler Error C2007
+
+**Description**
+
+> No identifier appears after a `#define`. To resolve the error, use an identifier.
+
+The following sample generates C2007:
+
+```cpp
+// C2007.cpp
+
+#define   // C2007
+```
+
+Possible resolution:
+
+```cpp
+// C2007b.cpp
+
+// compile with: /c
+#define true 1
+```
+
+[Link](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/compiler-error-c2007) to error message.
+
+#### Compiler Error C2065
+
+**Description**
+
+> The compiler doesn't recognize the identifier and, therefore, considers it undeclared. The compiler needs to be aware of the existence of identifiers before they can be used. By declaring an identifier, you provide the compiler with the necessary information about its name and type, allowing it to properly allocate memory or resolve references.
+
+The following sample generates C2065:
+
+```cpp
+// C2065.cpp
+#include <iostream>
+
+int main()
+{
+    std::cout << x; // C2065 error
+    return 0;
+}
+```
+
+Possible resolution:
+
+```cpp
+// C2065.cpp
+#include <iostream>
+
+int main()
+{
+    int x = 5; // Declare and initialize the variable x
+    std::cout << x;
+    return 0;
+}
+```
+
+[Link](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/compiler-error-c2065) to error message.
+
+#### Compiler Error C2628
+
+**Description**
+
+> A semicolon may be missing.
+
+The following sample generates C2628:
+
+```cpp
+// C2628.cpp
+class CMyClass {} // C2628 error
+
+int main()
+{
+
+}
+```
+
+Possible resolution:
+
+```cpp
+// C2628b.cpp
+class CMyClass {};
+
+int main()
+{
+
+}
+```
+
+[Link](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-2/compiler-error-c2628) to error message.
+
+### 💣 Runtime Errors
+
+A runtime error is a type of error that occurs when a program is being executed. It is a type of error, which is **NOT** detected at compile-time, but at runtime. It means that the code, which is being executed, is causing an error, which is not known until the program is being executed.
+
+Here is a couple of examples, of a runtime error can occur:
+
+```cpp
+
+```
+
+Without a [crash reporter](https://en.wikipedia.org/wiki/Crash_reporter), a runtime error can be extremely difficult to resolve. As the runtime error will lead to a crash and terminate of the application.
+
+If you can't access a **crash reporter** for debugging these errors, then use `Visual Debugger` inside VS Code or Visual Studio. This tool is designed for caching runtime errors and helping you to debug your code. It also features a [call stack](https://en.wikipedia.org/wiki/Call_stack), which can be extremely helpful for these types of problems.
+
+If you can't access the **visual debugger**, then the most **COMMON** and **PAINFULLY** method, would be to add a print message around your code. I do **NOT** recommend this approach, since it takes more time by tracking down the function or line of code, and adding a bunch of print statements. I instead, recommend you to use either a **crash reporter** or a **visual debugger**.
+
+> [!TIP]
+> You can also assertions to test your code for failure. But also add message to the failure, which will be picked up by the crash reporter. This will increase understandbility, when a crash might occur. You can read more about assertions in this [section](#-assertions).
+
+For example, if you try to access an index of an array, which is out of bounds, it will cause a runtime error, as the program will try to access a memory location, which is not valid.
+
+### 💀 Semantic Errors
+
+<!-- TODO: Write about overflow issues -->
+
+<!-- TODO: Write about scope issues -->
+
+## 🐣 Tips and best practices
+
+<table><tr><td>
+This section was written in conjunction with ChatGPT.
+</td></tr></table>
+
+### Disable BlueprintPure
+
+When creating a `UFUNCTION` and marking it as `const`, Unreal will interpret this function as pure function. A pure function will evaluate every time it's called (inside Blueprint), compare to a regular function, which Unreal caches the result and save for later.
+
+Pure function are helpful for small or quick function to execute. For an example: **getters**.
+
+With Blueprint, every time you drag a pin from the result, the function will be evaluated every single time. And the result may differ at different execution time.
+
+This is not the same, as a regular function. With regular function, Blueprint will then cache the result. And when dragging multiple pins from the result of the function, the same value will be used.
+
+If you want to mark a `UFUNCTION` as const without Unreal converting into a pure function, you can add this specifier:
+
+```cpp
+UFUNCTION(BlueprintCallable, BlueprintPure = false)
+void ComplexFunction() const
+{
+    // Expensive calculations
+}
+```
+
+### Switch case fall-through
+
+When working with switch case, one benefits it's to have fall-through cases. Where, a case can fall under multiple cases and same performance.
+
+Although, it may be harder to read and understand this code, then doing with if-statements.
+
+```cpp
+double DistanceUnificationFactor(EUnit From)
+{
+    // Convert to meters
+    double Factor = 1;
+
+    switch (From)
+    {
+        case EUnit::Micrometers:		return 0.000001;
+        case EUnit::Millimeters:		return 0.001;
+        case EUnit::Centimeters:		return 0.01;
+        case EUnit::Kilometers:			return 1000;
+
+        case EUnit::Lightyears:			return 9.4605284e15;
+
+        case EUnit::Miles:				Factor *= 1760;				// fallthrough
+        case EUnit::Yards:				Factor *= 3;				// fallthrough
+        case EUnit::Feet:				Factor *= 12;				// fallthrough
+        case EUnit::Inches:				Factor /= 39.3700787;		// fallthrough
+        default: 						return Factor;				// return
+    }
+}
+```
+
+### 📦 Refactoring
+
+Refactoring is the process of making changes to the codebase to improve its structure, readability, and maintainability without changing its external behavior.
+
+Refactoring is an essential practice in software development that helps keep the codebase clean, maintainable, and scalable. It involves making incremental improvements to the code without changing its external behavior, which is crucial for maintaining a healthy and sustainable codebase throughout the software development lifecycle.
+
+#### Renaming
+
+Renaming members, such as variables, functions, or classes, is a common refactoring technique used to give them more meaningful and descriptive names, making the code easier to understand and maintain.
+
+Example:
+
+```cpp
+// Note, this is regular raw C++ code.
+
+// Before refactoring
+class Rectangle
+{
+private:
+    int w; // Width
+    int h; // Height
+
+public:
+    Rectangle(int width, int height) : w(width), h(height) {}
+
+    int area() { return w * h; }
+};
+
+// After refactoring
+class Rectangle
+{
+private:
+    int width; // Descriptive name for width
+    int height; // Descriptive name for height
+
+public:
+    Rectangle(int width, int height) : width(width), height(height) {}
+
+    int area() { return width * height; }
+};
+```
+
+#### Extract Method
+
+Extract Method is a refactoring technique where you take a portion of code within a method and move it into a separate method. This helps improve code readability, encourages code reuse, and simplifies complex methods.
+
+Example:
+
+```cpp
+// Note, this is regular raw C++ code.
+
+// Before refactoring
+void printFullName(std::string firstName, std::string lastName)
+{
+    std::cout << "Full Name: " << firstName << " " << lastName << std::endl;
+    // Some other logic related to printing the full name
+}
+
+// After refactoring
+void printFullName(std::string firstName, std::string lastName)
+{
+    print("Full Name: " + firstName + " " + lastName);
+}
+
+void print(const std::string& message)
+{
+    std::cout << message << std::endl;
+}
+```
+
+#### Introduce/Inline typedefs
+
+Introducing a typedef can make complex type names more concise and easier to understand. On the other hand, inline typedefs are useful for reducing the complexity of code and improving code readability by avoiding unnecessary type aliases.
+
+Example:
+
+```cpp
+// Note, this is regular raw C++ code.
+
+// Before refactoring
+typedef std::map<std::string, std::vector<int>> NameToNumbersMap;
+
+NameToNumbersMap numbers;
+
+// After refactoring (Introduce typedef)
+using NumbersVector = std::vector<int>;
+using NameToNumbersMap = std::map<std::string, NumbersVector>;
+
+NameToNumbersMap numbers;
+
+// After refactoring (Inline typedef)
+std::map<std::string, std::vector<int>> numbers;
+```
+
+#### Introduce Variable
+
+Introducing a variable can simplify complex expressions or improve code readability by giving meaningful names to intermediate results.
+
+Example:
+
+```cpp
+// Note, this is regular raw C++ code.
+
+// Before refactoring
+int total = (price + tax) * quantity - discount + shippingCost;
+
+// After refactoring
+int netPrice = price + tax;
+int totalPrice = netPrice * quantity - discount + shippingCost;
+```
+
+### Invert 'if' statement to reduce nesting
+
+Consider the following code snippet:
+
+```cpp
+void MyCharacter::DoSomething()
+{
+    if (bIsReadyToMove)
+    {
+        if (!bIsMoving)
+        {
+            MoveCharacter();
+        }
+        else
+        {
+            // Handle already moving
+        }
+    }
+    else
+    {
+        // Handle not ready to move
+    }
+}
+```
+
+As you can see, the `if` blocks encompass the whole body of the method. This presents an opportunity to make code more readable by getting rid of the nested scope and adding `return` keyword[^1] as follows:
+
+```cpp
+void MyCharacter::DoSomething()
+{
+    if (!bIsReadyToMove)
+    {
+        // Handle not ready to move
+        return;
+    }
+
+    if (!bIsMoving)
+    {
+        MoveCharacter();
+    }
+    else
+    {
+        // Handle already moving
+    }
+}
+```
+
+Here is a video explaining some of the best practices with Unreal Engine and C++.
+
+There is a video about some of these best practices called [Best Practices (2019-2021) from Stephen Maloney](https://www.youtube.com/watch?v=g7WVBZZTRDk)
+
+In the video, there is also a [Google documentation](https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8) (if video wasn't enough) for more details about some of his tips and tricks.
+
+### ⏱ Ticking
+
+#### For actors
+
+```cpp
+PrimaryActorTick.bCanEverTick = false;
+PrimaryActorTick.bStartWithTickEnabled = false;
+```
+
+#### For components
+
+```cpp
+PrimaryComponentTick.bCanEverTick =  false;
+PrimaryComponentTick.bStartWithTickEnabled = false;
+```
+
+#### If you have to use tick
+
+-   Set the tick interval to the maximum value you can get away with. Unfortunately this is often per frame for smoothly moving things
+
+```cpp
+PrimaryActorTick.TickInterval = 0.2f;
+PrimaryComponentTick.TickInterval = 0.2f;
+```
+
+-   Enable/disable tick to only tick when required.
+
+```cpp
+SetActorTickEnabled()
+SetComponentTickEnabled()
+```
+
+#### `FTickFunction`
+
+Abstract base class for all tick functions.
+
+Sample code to get started:
+
+##### MyTickableThing.h
+
+```cpp
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Tickable.h"
+
+class FMyTickableThing : public FTickableGameObject
+{
+public:
+    // FTickableGameObject Begin
+    void Tick( float DeltaTime ) override;
+
+    ETickableTickType GetTickableTickType() const override
+    {
+        return ETickableTickType::Always;
+    }
+
+    TStatId GetStatId() const override
+    {
+        RETURN_QUICK_DECLARE_CYCLE_STAT( FMyTickableThing, STATGROUP_Tickables );
+    }
+
+    bool IsTickableWhenPaused() const
+    {
+        return true;
+    }
+
+    bool IsTickableInEditor() const
+    {
+        return false;
+    }
+    // FTickableGameObject End
+
+private:
+	// The last frame number we were ticked.
+	// We don't want to tick multiple times per frame
+	uint32 LastFrameNumberWeTicked = INDEX_NONE;
+};
+```
+
+##### MyTickableThing.cpp
+
+```cpp
+#include "MyTickableThing.h"
+
+void FMyTickableThing::Tick( float DeltaTime )
+{
+	if ( LastFrameNumberWeTicked == GFrameCounter )
+		return;
+
+	// Do our tick
+	// ...
+
+	LastFrameNumberWeTicked = GFrameCounter;
+}
+```
+
+> [!NOTE]
+> Tick any object you want, `UObject` or not!
+
+> [!WARNING] > `USTRUCT` don't support expose functions with UHT[^2].
+
+### 🔌 Direct references
+
+<table><tr><td>
+This section was written in conjunction with ChatGPT.
+</td></tr></table>
+
+In C++, a direct reference is a reference variable that directly refers to the memory location of another variable. When you use a direct reference, you are essentially creating an alias or an alternative name for the original variable. This means any changes made to the reference will be reflected in the original variable, and vice versa.
+
+Using direct references can be beneficial for performance in certain situations because it avoids creating unnecessary copies of data. When you pass large objects or structures as function arguments, using direct references instead of passing by value (copy) can save memory and processing time, especially for complex objects.
+
+Using the `const` qualifier in a direct reference serves as a safety mechanism to prevent accidental modifications to the referenced variable. When you declare a variable as const, it means that its value cannot be changed after initialization.
+
+In some cases, using `const` in direct references can also enable certain compiler optimizations, as it provides additional information to the compiler about the immutability of the referenced value.
+
+```cpp
+// Note, this is regular raw C++ code.
+
+int a = 5;
+int b = a; // Gets a copy
+
+b = b * 2; // B = 10 and A = 5
+
+int& c = 10;
+int& d = c;
+
+d = 20; // C = 20 and D = C, which is 20
+
+const int& e = 10; // Direct reference (use const for stopping ability to modify the variable)
+const int& f = e;
+
+f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
+```
+
+<!-- prettier-ignore-end -->
+
 <!-- prettier-ignore-start -->
 
 ## 🗝️ Deep dive
@@ -6860,42 +8275,6 @@ Lorem Ipsum
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
 </td></tr></table>
-
-### 🔖 Keywords
-
-Here is a video about [constants keywords in C++ by Cazz](https://www.youtube.com/watch?v=KBny6MZJR64)
-
--   `const` - Specifies that an object or variable is read-only and cannot be modified.
--   `constexpr` - Specifies that a function or variable can be evaluated at compile-time. `constexpr` can be used for inlining variables, without using macros[^4]. **Note**, the compiler does not guarantee compile-time evaluation (only it **CAN** be evaluated at compile-time).
--   `consteval` - Specifies that a function must be evaluated at compile-time. **Note**, the compiler has to evaluated at compile-time.
--   `constinit` - Specifies that an object with static or thread storage duration should be initialized only with constant expressions.
--   `auto` - Allows the compiler to deduce the type of a variable based on its initializer.
--   `static` - Specifies that a variable or function is associated with a class rather than with a specific instance of the class.
--   `virtual` - Specifies that a function should be polymorphic, meaning that it can be overridden by a derived class.
--   `override` - Indicates that a function in a derived class is intended to override a function in the base class.
--   `break` - Causes the program to exit a loop or switch statement.
--   `continue` - Causes the program to skip to the next iteration of a loop.
--   `class` and `struct` - Are used to define user-defined types that encapsulate data and functions.
--   `inline` - Specifies that a function should be inlined (i.e., its code should be inserted directly into the calling code rather than calling the function).
--   `force_inline` - Instructs the compiler to inline a function, regardless of whether it would normally do so.
--   `new` - Allocates memory for an object and calls its constructor.
--   `delete` - Deallocates memory that was allocated with new.
--   `dynamic_cast` - Performs a runtime check to determine whether an object can be cast to a different type.
--   `static_cast` - Performs a static cast, which allows an expression to be converted to a different data type at compile time.
--   `const_cast` - - Performs a const cast.
--   `explicit` - Specifies that a constructor or conversion operator cannot be used for implicit type conversions.
--   `namespace` - Defines a scope for identifiers to avoid naming conflicts.
--   `operator` - Declares a function as an overloaded operator.
--   `template` - Allows generic programming by defining a type or function with parameters that are specified at compile time.
--   `try` and `catch` - Implements exception handling by trying a block of code that may throw an exception and catching the exception if it is thrown.
-
-Difference between a class and struct then?
-
-> In native C++, the main difference between a struct and a class is that struct members are public by default, whereas class members are private by default. However, this difference is largely syntactic, and struct and class can be used interchangeably to define custom types.
-
-> However, Unreal Engine structs are used to represent data types that are typically used for data storage and manipulation, whereas classes are used to represent objects that have behavior and state.
-
-In Unreal Engine, it's recommended to use the built-in memory management functions like `NewObject()` and `MakeShared()` to allocate memory for objects, rather than using `new` and `delete`. Using `new` and `delete` can interfere with the garbage collector and cause memory leaks or crashes in your game. It's always best to follow Unreal Engine's recommended memory management practices to ensure the stability and performance of your game.
 
 ### K2Node
 
@@ -7089,189 +8468,6 @@ Results follow:
 
 > [!NOTE]
 > Because `MatchSubtring` requires checking incoming Assets much more thoroughly, it can impact startup times. `MatchSubstring` is intended to be used temporarily as a fixup when making sweeping changes. It is recommended that Assets involved in these changes be resaved immediately and checked into your project's source control database with any related code changes, and that the Core Redirect be deleted without entering source control.
-
-### Compiling a plugin for a new engine version
-
-When you find a plugin and trying to install it, you might find out that it doesn't support your current engine version.
-And the Unreal's marketplace won't let you download unless you have a version associated.
-
-One trick to avoid this, is to build the plugin manually and fixing compiling issues (header file missing or API changes). By installing the plugin with the access of the source code. Then by access the plugin with the UHT (Unreal Build Tool), you can then rebuild the plugin into a different engine version.
-
-Here is `.bat` file (Windows Only) to locate the current engine directory, and compile your custom made plugin into another engine version:
-
-```
-@echo off
-
-:: Setting up config variables
-set EngineVersion=<EngineVersion>
-set PluginName=<PluginName>
-set InputDirectory=<InputDirectory>
-set OutputDirectory=<OutputDirectory>
-set TargetPlatforms=Win64
-
-set PluginPath="%cd%\%InputDirectory%\%PluginName%\%PluginName%.uplugin"
-set OutputPath="%cd%\%OutputDirectory%\%EngineVersion%\%PluginName%"
-
-:: Locating a registry key, in order to find Unreal Engine source location
-
-for /f "skip=2 tokens=2*" %%a in ('reg query "HKEY_LOCAL_MACHINE\SOFTWARE\EpicGames\Unreal Engine\%EngineVersion%" /v "InstalledDirectory"') do set "EngineDirectory=%%b"
-
-set AutomationToolPath="%EngineDirectory%\Engine\Build\BatchFiles\RunUAT.bat"
-
-title Build Plugin
-echo Automation Tool Path: "%AutomationToolPath%"
-echo:
-
-call %AutomationToolPath% BuildPlugin -Plugin=%PluginPath% -Package=%OutputPath% -Rocket -TargetPlatforms=%TargetPlatforms%
-echo:
-pause
-exit 0
-```
-
-And here is the bash file (Linux Only) version:
-
-```
-#!/bin/bash
-
-# Setting up config variables
-EngineVersion="<EngineVersion>"
-PluginName="<PluginName>"
-InputDirectory="<InputDirectory>"
-OutputDirectory="<OutputDirectory>"
-TargetPlatforms="Win64"
-
-PluginPath="$PWD/$InputDirectory/$PluginName/$PluginName.uplugin"
-OutputPath="$PWD/$OutputDirectory/$EngineVersion/$PluginName"
-
-# Locating a registry key, in order to find Unreal Engine source location
-EngineDirectory=$(reg query "HKEY_LOCAL_MACHINE\SOFTWARE\EpicGames\Unreal Engine\$EngineVersion" -v "InstalledDirectory" | awk 'NR==3{print $NF}')
-
-AutomationToolPath="$EngineDirectory/Engine/Build/BatchFiles/RunUAT.bat"
-
-echo "Automation Tool Path: \"$AutomationToolPath\""
-echo
-
-$AutomationToolPath BuildPlugin -Plugin="$PluginPath" -Package="$OutputPath" -Rocket -TargetPlatforms="$TargetPlatforms"
-
-echo
-read -p "Press Enter to continue..."
-exit 0
-```
-
-### Gameplay Timers
-
-Timer construct for performing delayed or repeated actions. Timers are incredibly helpful for gameplay scenarios.
-
-**Timers** schedule actions to be performed after a delay, or over a period of time. For example, you may want to make the player invulnerable after obtaining a power-up item, then restore vulnerability after 10 seconds. Or you may want to apply damage once per second while the player moves through a room filled with toxic gas. Such actions can be achieved through the use of timers.
-
-> [!NOTE]
-> Timers will be canceled automatically if the Object that they are going to be called on, such as an Actor, is destroyed before the time is up. In this case, the timer handle will become invalid and the function will not be called.
-
-```cpp
-// .h
-
-/* Handle to manage the timer */
-FTimerHandle TimerHandle;
-
-// Must mark a function with UFUNCTION, as UHT needs it, in order to find it.
-UFUNCTION()
-void OnExplode();
-```
-
-```cpp
-// .cpp
-
-/* Activate the bomb to explode after 1.5 seconds */
-void ABombActor::OnUsed(APawn* InstigatorPawn)
-{
-    float Delay = 1.5f; // In seconds
-    bool bLooping = false; // If we want to repeat this.
-
-    GetWorld()->GetTimerManager().SetTimer(
-        TimerHandle, // handle to cancel timer at a later time
-        this, // the owning object
-        &ABombActor::OnExplode, // function to call on elapsed
-        Delay,
-        bLooping
-    );
-}
-
-void ABombActor::OnExplode()
-{
-    // ...
-}
-```
-
-Instead of calling `SetTimer()`, you can create delegate object with a bind function.
-
-```cpp
-FTimerHandle TimerHandle;
-FTimerDelegate Delegate; // Delegate to bind function with parameters
-
-Delegate.BindUFunction(this, &ABombActor::OnExplode);
-
-float Delay = 1.5f;
-bool bLooping = false;
-
-GetWorld()->GetTimerManager().SetTimer(TimerHandle, Delegate, Delay, bLooping);
-```
-
-You can also specify parameters, if you wish to pass to the bounded function:
-
-```cpp
-Delegate.BindUFunction(this, &APlayerCharacter::Heal, 150, true);
-
-void Heal(int32 HealAmount, bool bReviveIfDead)
-{
-    // ...
-}
-```
-
-If we wish to stop any of the timer, we can either call `ClearTimer()` or `ClearAllTimersForObject()`:
-
-```cpp
-// Clear the specified timer handle
-GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-
-// Alternatively you can clear ALL timers that belong to this (Actor) instance.
-GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
-```
-
-> [!TIP]
-> Calling `SetTimer()` with a rate less than or equal to zero is identical to calling `ClearTimer()`.
-
-To pause or unpause a timer, you can call either `PauseTimer()` or `UnPauseTimer()` function:
-
-```cpp
-// Pause the specified timer handle
-GetWorld()->GetTimerManager().PauseTimer(TimerHandle);
-
-// Unpause the specified timer handle
-GetWorld()->GetTimerManager().UnPauseTimer(TimerHandle);
-```
-
-To check if a timer is running, you can call `IsTimerActive()` function:
-
-```cpp
-// Is this weapon waiting to be able to fire again?
-GetWorldTimerManager().IsTimerActive(this, &AUTWeapon::RefireCheckTimer);
-```
-
-You can also access the current rate (time between activations) of a timer from its timer handle:
-
-```cpp
-// This weapon's rate of fire changes as it warms up. Is it currently waiting to fire, and if so, how long is the current delay between shots?
-GetWorldTimerManager().GetTimerRate(this, &AUTWeapon::RefireCheckTimer);
-```
-
-If you want the elapsed and remaining time, you can access via `GetTimerElapsed()` function:
-
-```cpp
-// How long will it be until this weapon is ready to fire again? If the answer comes back as -1, it is ready now.
-GetWorldTimerManager().GetTimerElapsed(this, &AUTWeapon::RefireCheckTimer);
-```
-
-You can read more about [Gameplay Timers on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/gameplay-timers-in-unreal-engine/).
 
 ### Sampling a curve
 
@@ -7518,538 +8714,11 @@ FString YourClass::DecryptToString(FString EncryptedValue, FString EncryptionKey
 }
 ```
 
-### 🐣 Tips and best practices
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-### Disable BlueprintPure
-
-When creating a `UFUNCTION` and marking it as `const`, Unreal will interpret this function as pure function. A pure function will evaluate every time it's called (inside Blueprint), compare to a regular function, which Unreal caches the result and save for later.
-
-Pure function are helpful for small or quick function to execute. For an example: **getters**.
-
-With Blueprint, every time you drag a pin from the result, the function will be evaluated every single time. And the result may differ at different execution time.
-
-This is not the same, as a regular function. With regular function, Blueprint will then cache the result. And when dragging multiple pins from the result of the function, the same value will be used.
-
-If you want to mark a `UFUNCTION` as const without Unreal converting into a pure function, you can add this specifier:
-
-```cpp
-UFUNCTION(BlueprintCallable, BlueprintPure = false)
-void ComplexFunction() const
-{
-    // Expensive calculations
-}
-```
-
-### Switch case fall-through
-
-When working with switch case, one benefits it's to have fall-through cases. Where, a case can fall under multiple cases and same performance.
-
-Although, it may be harder to read and understand this code, then doing with if-statements.
-
-```cpp
-double DistanceUnificationFactor(EUnit From)
-{
-    // Convert to meters
-    double Factor = 1;
-
-    switch (From)
-    {
-        case EUnit::Micrometers:		return 0.000001;
-        case EUnit::Millimeters:		return 0.001;
-        case EUnit::Centimeters:		return 0.01;
-        case EUnit::Kilometers:			return 1000;
-
-        case EUnit::Lightyears:			return 9.4605284e15;
-
-        case EUnit::Miles:				Factor *= 1760;				// fallthrough
-        case EUnit::Yards:				Factor *= 3;				// fallthrough
-        case EUnit::Feet:				Factor *= 12;				// fallthrough
-        case EUnit::Inches:				Factor /= 39.3700787;		// fallthrough
-        default: 						return Factor;				// return
-    }
-}
-```
-
-#### 📦 Refactoring
-
-Refactoring is the process of making changes to the codebase to improve its structure, readability, and maintainability without changing its external behavior.
-
-Refactoring is an essential practice in software development that helps keep the codebase clean, maintainable, and scalable. It involves making incremental improvements to the code without changing its external behavior, which is crucial for maintaining a healthy and sustainable codebase throughout the software development lifecycle.
-
-##### Renaming
-
-Renaming members, such as variables, functions, or classes, is a common refactoring technique used to give them more meaningful and descriptive names, making the code easier to understand and maintain.
-
-Example:
-
-```cpp
-// Note, this is regular raw C++ code.
-
-// Before refactoring
-class Rectangle
-{
-private:
-    int w; // Width
-    int h; // Height
-
-public:
-    Rectangle(int width, int height) : w(width), h(height) {}
-
-    int area() { return w * h; }
-};
-
-// After refactoring
-class Rectangle
-{
-private:
-    int width; // Descriptive name for width
-    int height; // Descriptive name for height
-
-public:
-    Rectangle(int width, int height) : width(width), height(height) {}
-
-    int area() { return width * height; }
-};
-```
-
-##### Extract Method
-
-Extract Method is a refactoring technique where you take a portion of code within a method and move it into a separate method. This helps improve code readability, encourages code reuse, and simplifies complex methods.
-
-Example:
-
-```cpp
-// Note, this is regular raw C++ code.
-
-// Before refactoring
-void printFullName(std::string firstName, std::string lastName)
-{
-    std::cout << "Full Name: " << firstName << " " << lastName << std::endl;
-    // Some other logic related to printing the full name
-}
-
-// After refactoring
-void printFullName(std::string firstName, std::string lastName)
-{
-    print("Full Name: " + firstName + " " + lastName);
-}
-
-void print(const std::string& message)
-{
-    std::cout << message << std::endl;
-}
-```
-
-##### Introduce/Inline typedef﻿s
-
-Introducing a typedef can make complex type names more concise and easier to understand. On the other hand, inline typedefs are useful for reducing the complexity of code and improving code readability by avoiding unnecessary type aliases.
-
-Example:
-
-```cpp
-// Note, this is regular raw C++ code.
-
-// Before refactoring
-typedef std::map<std::string, std::vector<int>> NameToNumbersMap;
-
-NameToNumbersMap numbers;
-
-// After refactoring (Introduce typedef)
-using NumbersVector = std::vector<int>;
-using NameToNumbersMap = std::map<std::string, NumbersVector>;
-
-NameToNumbersMap numbers;
-
-// After refactoring (Inline typedef)
-std::map<std::string, std::vector<int>> numbers;
-```
-
-##### Introduce Variable
-
-Introducing a variable can simplify complex expressions or improve code readability by giving meaningful names to intermediate results.
-
-Example:
-
-```cpp
-// Note, this is regular raw C++ code.
-
-// Before refactoring
-int total = (price + tax) * quantity - discount + shippingCost;
-
-// After refactoring
-int netPrice = price + tax;
-int totalPrice = netPrice * quantity - discount + shippingCost;
-```
-
-##### Invert 'if' statement to reduce nesting
-
-Consider the following code snippet:
-
-```cpp
-void MyCharacter::DoSomething()
-{
-    if (bIsReadyToMove)
-    {
-        if (!bIsMoving)
-        {
-            MoveCharacter();
-        }
-        else
-        {
-            // Handle already moving
-        }
-    }
-    else
-    {
-        // Handle not ready to move
-    }
-}
-```
-
-As you can see, the `if` blocks encompass the whole body of the method. This presents an opportunity to make code more readable by getting rid of the nested scope and adding `return` keyword[^1] as follows:
-
-```cpp
-void MyCharacter::DoSomething()
-{
-    if (!bIsReadyToMove)
-    {
-        // Handle not ready to move
-        return;
-    }
-
-    if (!bIsMoving)
-    {
-        MoveCharacter();
-    }
-    else
-    {
-        // Handle already moving
-    }
-}
-```
-
-Here is a video explaining some of the best practices with Unreal Engine and C++.
-
-There is a video about some of these best practices called [Best Practices (2019-2021) from Stephen Maloney](https://www.youtube.com/watch?v=g7WVBZZTRDk)
-
-In the video, there is also a [Google documentation](https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8) (if video wasn't enough) for more details about some of his tips and tricks.
-
-#### ⏱ Ticking
-
-##### For actors
-
-```cpp
-PrimaryActorTick.bCanEverTick = false;
-PrimaryActorTick.bStartWithTickEnabled = false;
-```
-
-##### For components
-
-```cpp
-PrimaryComponentTick.bCanEverTick =  false;
-PrimaryComponentTick.bStartWithTickEnabled = false;
-```
-
-##### If you have to use tick
-
--   Set the tick interval to the maximum value you can get away with. Unfortunately this is often per frame for smoothly moving things
-
-```cpp
-PrimaryActorTick.TickInterval = 0.2f;
-PrimaryComponentTick.TickInterval = 0.2f;
-```
-
--   Enable/disable tick to only tick when required.
-
-```cpp
-SetActorTickEnabled()
-SetComponentTickEnabled()
-```
-
-#### `FTickFunction`
-
-Abstract base class for all tick functions.
-
-Sample code to get started:
-
-##### MyTickableThing.h
-
-```cpp
-#pragma once
-
-#include "CoreMinimal.h"
-#include "Tickable.h"
-
-class FMyTickableThing : public FTickableGameObject
-{
-public:
-    // FTickableGameObject Begin
-    void Tick( float DeltaTime ) override;
-
-    ETickableTickType GetTickableTickType() const override
-    {
-        return ETickableTickType::Always;
-    }
-
-    TStatId GetStatId() const override
-    {
-        RETURN_QUICK_DECLARE_CYCLE_STAT( FMyTickableThing, STATGROUP_Tickables );
-    }
-
-    bool IsTickableWhenPaused() const
-    {
-        return true;
-    }
-
-    bool IsTickableInEditor() const
-    {
-        return false;
-    }
-    // FTickableGameObject End
-
-private:
-	// The last frame number we were ticked.
-	// We don't want to tick multiple times per frame
-	uint32 LastFrameNumberWeTicked = INDEX_NONE;
-};
-```
-
-##### MyTickableThing.cpp
-
-```cpp
-#include "MyTickableThing.h"
-
-void FMyTickableThing::Tick( float DeltaTime )
-{
-	if ( LastFrameNumberWeTicked == GFrameCounter )
-		return;
-
-	// Do our tick
-	// ...
-
-	LastFrameNumberWeTicked = GFrameCounter;
-}
-```
-
-> [!NOTE]
-> Tick any object you want, `UObject` or not!
-
-> [!WARNING]
-> `USTRUCT` don't support expose functions with UHT[^2].
-
-#### 🔌 Direct references
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-In C++, a direct reference is a reference variable that directly refers to the memory location of another variable. When you use a direct reference, you are essentially creating an alias or an alternative name for the original variable. This means any changes made to the reference will be reflected in the original variable, and vice versa.
-
-Using direct references can be beneficial for performance in certain situations because it avoids creating unnecessary copies of data. When you pass large objects or structures as function arguments, using direct references instead of passing by value (copy) can save memory and processing time, especially for complex objects.
-
-Using the `const` qualifier in a direct reference serves as a safety mechanism to prevent accidental modifications to the referenced variable. When you declare a variable as const, it means that its value cannot be changed after initialization.
-
-In some cases, using `const` in direct references can also enable certain compiler optimizations, as it provides additional information to the compiler about the immutability of the referenced value.
-
-```cpp
-// Note, this is regular raw C++ code.
-
-int a = 5;
-int b = a; // Gets a copy
-
-b = b * 2; // B = 10 and A = 5
-
-int& c = 10;
-int& d = c;
-
-d = 20; // C = 20 and D = C, which is 20
-
-const int& e = 10; // Direct reference (use const for stopping ability to modify the variable)
-const int& f = e;
-
-f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
-```
-
-<!-- prettier-ignore-end -->
-
-## 📛 Console Commands
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
-* `stat fps`: Display FPS.
-* `stat unit`: Display frame time.
-* `stat game`: Display a general idea on how long the various gameplay ticks are taking.
-* `dumpticks`: Display a list of current actors, which currently ticks in the level.
-* `slomo`: To speed up or slow down the game time.
-* `obj list`: Display a list of current loaded objects.
-* `obj list class=BP_PlayerCharacter_C`: Same as `obj list` but with a filter.
-* `obj gc`: Collect all objects with GC (Garbage Collector).
-* `au.Debug.AudioSoloSoundWave`: Takes a sound wave name as an additional input, and toggles whether that sound wave is solo (the only audible sound).
-
-Here is also a [website](https://pongrit.github.io/) by Pongrit, which showcase all of Unreal Engine's console commands.
-
-## 📌 Shortcuts
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
-To change any of the shortcuts, you can access the keyboard shortcut settings via **Editor Preferences**, then under **General** select **Keyboard Shortcuts**.
-
----
-
-Basic
-
--   <kbd>Ctrl + C</kbd>: Copy
--   <kbd>Ctrl + X</kbd>: Cut
--   <kbd>Ctrl + V</kbd>: Paste
--   <kbd>Del</kbd> - Delete
--   <kbd>Ctrl + Y</kbd>: Undo
--   <kbd>Ctrl + Z</kbd>: Redo
--   <kbd>Ctrl + A</kbd>: Select All
--   <kbd>Esc</kbd>: Clear Selection
--   <kbd>Up/Down/Left/Right Arrow Keys</kbd>: Move Selection
--   <kbd>Ctrl + Spacebar</kbd>: Open Content Browser
--   <kbd>Ctrl + B</kbd>: Find in Content Browser
--   <kbd>Ctrl + Tab</kbd>: Browse Tabs
--   <kbd>Ctrl + O</kbd>: Open Level
--   <kbd>Ctrl + P</kbd>: Asset Picker
--   <kbd>Alt + P</kbd> or <kbd>Alt + S</kbd>: Play/Simulate
--   <kbd>P</kbd>: Show Nav Mesh
--   <kbd>Mouse Wheel Up/Down</kbd>: Zoom
-
----
-
-Outliner
-
--   <kbd>Ctrl + G</kbd> or <kbd>Shift + G</kbd>: Group/Ungroup
--   <kbd>Right-Click</kbd> on Group: Pin/Unpin
-
----
-
-Blueprint editor
-
--   <kbd>Ctrl + S</kbd>: Save Blueprint
--   <kbd>Ctrl + F</kbd>: Find within Blueprint
--   <kbd>Ctrl + Shift + F</kbd>: Find in all Blueprints
-
----
-
-Level editing
-
--   <kbd>Ctrl + S</kbd>: Save All
--   <kbd>End</kbd>: Snap to Floor
--   <kbd>Alt + End</kbd>: Snap Pivot to Floor
--   <kbd>Shift + End</kbd>: Snap Bounds to Floor
--   <kbd>Ctrl + End</kbd>: Snap Origin to Grid
--   <kbd>Alt + Transform</kbd>: Duplicate and Transform
-
----
-
-Camera/transformation
-
--   <kbd>Alt + G</kbd>: Perspective View
--   <kbd>Alt + H</kbd>: Front View
--   <kbd>Alt + J</kbd>: Top View
--   <kbd>Alt + K</kbd>: Side View
--   <kbd>F</kbd>: Focus
--   <kbd>G</kbd>: View
--   <kbd>R</kbd>: Scale
--   <kbd>W</kbd>: Translate
--   <kbd>E</kbd>: Rotate
--   <kbd>Spacebar</kbd>: Toggle Move/Rotate/Scale
-
----
-
-Tools
-
--   <kbd>Ctrl + Shift + Comma</kbd>: GPU Visualizer
-
-## ⚠️ Common Issues
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
-![Common Errors](static/img/Cpp_Errors.png)
-
-### ⛔ Compiler Error C2628
-
-Description
-> A semicolon may be missing.
-
-The following sample generates C2628:
-```cpp
-// C2628.cpp
-class CMyClass {} // C2628 error
-
-int main()
-{
-
-}
-```
-
-Possible resolution:
-
-```cpp
-// C2628b.cpp
-class CMyClass {};
-
-int main()
-{
-
-}
-```
-
-[Link](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-2/compiler-error-c2628?view=msvc-170) to error message.
-
-### ⛔ Compiler Error C2065
-
-Description
-> The compiler doesn't recognize the identifier and, therefore, considers it undeclared. The compiler needs to be aware of the existence of identifiers before they can be used. By declaring an identifier, you provide the compiler with the necessary information about its name and type, allowing it to properly allocate memory or resolve references.
-
-The following sample generates C2065:
-
-```cpp
-// C2065.cpp
-#include <iostream>
-
-int main()
-{
-    std::cout << x; // C2065 error
-    return 0;
-}
-```
-
-Possible resolution:
-
-```cpp
-// C2065.cpp
-#include <iostream>
-
-int main()
-{
-    int x = 5; // Declare and initialize the variable x
-    std::cout << x;
-    return 0;
-}
-```
-
-[Link](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/compiler-error-c2065?view=msvc-170) to error message.
-
 ## 🔗 Helpful Links
 
 <table><tr><td>
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
-
-Here are the simplified tables based on the type of content:
 
 ### YouTube Videos
 

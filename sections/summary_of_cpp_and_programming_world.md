@@ -5,98 +5,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
--   [🌍 Summary of C++ and Programming World](#-summary-of-c-and-programming-world)
-    -   [✨ Object-Oriented Programming](#-object-oriented-programming)
-        -   [Encapsulation](#encapsulation)
-        -   [Data Hiding](#data-hiding)
-        -   [Inheritance](#inheritance)
-        -   [Polymorphism](#polymorphism)
-    -   [⌨️ Syntax and Structure](#-syntax-and-structure)
-        -   [Weak vs Strong typing](#weak-vs-strong-typing)
-        -   [Semicolons in C++](#semicolons-in-c)
-        -   [Curly Braces in C++](#curly-braces-in-c)
-        -   [Comments in C++](#comments-in-c)
-            -   [Single-line comments](#single-line-comments)
-            -   [Multi-line comments](#multi-line-comments)
-        -   [Headers vs source files](#headers-vs-source-files)
-        -   [Includes](#includes)
-    -   [🔥 Standard Library](#-standard-library)
-    -   [🔢 Data types](#-data-types)
-        -   [Char](#char)
-        -   [Booleans](#booleans)
-        -   [Integers](#integers)
-            -   [Modifiers](#modifiers)
-        -   [Floating points (floats and doubles)](#floating-points-floats-and-doubles)
-    -   [🙋‍♂️ Typedefs](#-typedefs)
-    -   [🍂 Members](#-members)
-        -   [Variables](#variables)
-            -   [Assignments](#assignments)
-        -   [Functions](#functions)
-    -   [🧬 Classes](#-classes)
-        -   [Structs](#structs)
-    -   [💔 Accessibility](#-accessibility)
-    -   [🤔 If-statements](#-if-statements)
-    -   [🔣 Comparisons and Boolean Operators](#-comparisons-and-boolean-operators)
-        -   [❓ Conditional Expressions (Ternary operator)](#-conditional-expressions-ternary-operator)
-    -   [🔀 Switches](#-switches)
-    -   [🔄️ Loops](#%EF%B8%8F-loops)
-        -   [♾️ While Loop](#-while-loop)
-        -   [🔃 Do-While Loop](#-do-while-loop)
-        -   [🔂 For Loop](#-for-loop)
-        -   [🗂️ Foreach Loop](#-foreach-loop)
-    -   [🦋 Immutable vs Mutable](#-immutable-vs-mutable)
-        -   [Mutable](#mutable)
-        -   [Immutable](#immutable)
-    -   [🪝 Try Catch](#-try-catch)
-    -   [🪞 Casting](#-casting)
-        -   [Static casting](#static-casting)
-        -   [Const casting](#const-casting)
-        -   [Dynamic casting](#dynamic-casting)
-        -   [Reinterpret Casting](#reinterpret-casting)
-    -   [🛼 Inlining](#-inlining)
-    -   [📇 Namespace](#-namespace)
-    -   [🌐 Static members](#-static-members)
-    -   [`auto` keyword](#auto-keyword)
-    -   [🌱 Polymorphism (In Depth)](#-polymorphism-in-depth)
-        -   [Operator Overloading](#operator-overloading)
-        -   [Function Overloading](#function-overloading)
-        -   [Virtual functions](#virtual-functions)
-    -   [🧙‍♂️ Generic Programming](#-generic-programming)
-    -   [😵 Recursion](#-recursion)
-    -   [⚙️ Linker](#-linker)
-        -   [Static Library](#static-library)
-        -   [Dynamic Library](#dynamic-library)
-    -   [🫀 Lambda](#-lambda)
-    -   [🦾 Binary code](#-binary-code)
-        -   [Logic gates](#logic-gates)
-        -   [Hexadecimal](#hexadecimal)
-        -   [Bitwise Operators](#bitwise-operators)
-    -   [💥 Stack vs Heap](#-stack-vs-heap)
-        -   [Stack Memory Allocation](#stack-memory-allocation)
-        -   [Heap Memory Allocation](#heap-memory-allocation)
-    -   [Design Patterns And Principles](#design-patterns-and-principles)
-        -   [SOLID Principle](#solid-principle)
-        -   [KISS (Keep It Simple, Stupid)](#kiss-keep-it-simple-stupid)
-        -   [Singleton](#singleton)
-        -   [Observer](#observer)
-        -   [Factory](#factory)
-        -   [Strategy](#strategy)
-        -   [MVC (Model-View-Controller)](#mvc-model-view-controller)
-    -   [💯 Structures](#-structures)
-        -   [Array](#array)
-        -   [List](#list)
-        -   [Queue](#queue)
-        -   [Hash Set (Lookup table)](#hash-set-lookup-table)
-        -   [Dictionary (Map)](#dictionary-map)
-        -   [Linked List](#linked-list)
-    -   [⏰ Time Complexity](#-time-complexity)
-        -   [Constant - O(1)](#constant---o1)
-        -   [Logarithmic - O(log n)](#logarithmic---olog-n)
-        -   [Linear - O(n)](#linear---on)
-        -   [Quadratic - O(n^2)](#quadratic---on%5E2)
-        -   [Exponential - O(2^n)](#exponential---o2%5En)
-        -   [Factorial - O(n!)](#factorial---on)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 </td></tr></table>
@@ -777,7 +685,7 @@ switch (expression)
 
 * 3\. If none of the cases match the expression's value, the code block associated with the default case (optional) is executed. The default case serves as a fallback option when no matching cases are found.
 
-### 🔄️ Loops
+### 🔁 Loops
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
@@ -1880,7 +1788,11 @@ Here is a graph of Time Complexity:
 
 ![Big O Cheat Sheet – Time Complexity Chart](https://miro.medium.com/v2/resize:fit:1400/1*5ZLci3SuR0zM_QlZOADv8Q.jpeg)
 
-#### Constant - O(1)
+#### Constant
+
+<table><tr><td>
+Time complexity: `O(1)`
+</td></tr></table>
 
 An algorithm has constant time complexity if its runtime does not depend on the size of the input data. It performs the same number of operations regardless of the input size.
 
@@ -1904,7 +1816,11 @@ int main()
 }
 ```
 
-#### Logarithmic - O(log n)
+#### Logarithmic
+
+<table><tr><td>
+Time complexity: `O(log n)`
+</td></tr></table>
 
 An algorithm has logarithmic time complexity if its runtime grows logarithmically with the size of the input. It divides the input data into smaller portions and discards a significant portion at each step.
 
@@ -1946,7 +1862,11 @@ int main()
 }
 ```
 
-#### Linear - O(n)
+#### Linear
+
+<table><tr><td>
+Time complexity: `O(n)`
+</td></tr></table>
 
 An algorithm has linear time complexity if its runtime grows linearly with the size of the input data. It performs an operation for each element in the input.
 
@@ -1976,7 +1896,11 @@ int main()
 }
 ```
 
-#### Quadratic - O(n^2)
+#### Quadratic
+
+<table><tr><td>
+Time complexity: `O(n^2)`
+</td></tr></table>
 
 An algorithm has quadratic time complexity if its runtime grows with the square of the input size. It often involves nested loops, leading to multiple iterations over the input data.
 
@@ -2009,7 +1933,11 @@ int main()
 }
 ```
 
-#### Exponential - O(2^n)
+#### Exponential
+
+<table><tr><td>
+Time complexity: `O(2^n)`
+</td></tr></table>
 
 An algorithm has exponential time complexity if its runtime grows exponentially with the size of the input data. It performs repeated operations that double with each increase in input size.
 
@@ -2037,7 +1965,11 @@ int main()
 
 ```
 
-#### Factorial - O(n!)
+#### Factorial
+
+<table><tr><td>
+Time complexity: `O(n!)`
+</td></tr></table>
 
 An algorithm has factorial time complexity if its runtime grows with the factorial of the input size. It is one of the slowest-growing time complexities and should be avoided for larger datasets.
 

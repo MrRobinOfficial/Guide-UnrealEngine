@@ -39,7 +39,7 @@
   - [🔣 Comparisons and Boolean Operators](#-comparisons-and-boolean-operators)
     - [❓ Conditional Expressions (Ternary operator)](#-conditional-expressions-ternary-operator)
   - [🔀 Switches](#-switches)
-  - [🔄️ Loops](#%EF%B8%8F-loops)
+  - [🔁 Loops](#-loops)
     - [♾️ While Loop](#-while-loop)
     - [🔃 Do-While Loop](#-do-while-loop)
     - [🔂 For Loop](#-for-loop)
@@ -90,12 +90,12 @@
     - [Dictionary (Map)](#dictionary-map)
     - [Linked List](#linked-list)
   - [⏰ Time Complexity](#-time-complexity)
-    - [Constant - O(1)](#constant---o1)
-    - [Logarithmic - O(log n)](#logarithmic---olog-n)
-    - [Linear - O(n)](#linear---on)
-    - [Quadratic - O(n^2)](#quadratic---on%5E2)
-    - [Exponential - O(2^n)](#exponential---o2%5En)
-    - [Factorial - O(n!)](#factorial---on)
+    - [Constant](#constant)
+    - [Logarithmic](#logarithmic)
+    - [Linear](#linear)
+    - [Quadratic](#quadratic)
+    - [Exponential](#exponential)
+    - [Factorial](#factorial)
 - [📍 Footnotes](#-footnotes)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -778,7 +778,7 @@ switch (expression)
 
 * 3\. If none of the cases match the expression's value, the code block associated with the default case (optional) is executed. The default case serves as a fallback option when no matching cases are found.
 
-### 🔄️ Loops
+### 🔁 Loops
 
 <table><tr><td>
 This section was written in conjunction with ChatGPT.
@@ -1881,7 +1881,11 @@ Here is a graph of Time Complexity:
 
 ![Big O Cheat Sheet – Time Complexity Chart](https://miro.medium.com/v2/resize:fit:1400/1*5ZLci3SuR0zM_QlZOADv8Q.jpeg)
 
-#### Constant - O(1)
+#### Constant
+
+<table><tr><td>
+Time complexity: `O(1)`
+</td></tr></table>
 
 An algorithm has constant time complexity if its runtime does not depend on the size of the input data. It performs the same number of operations regardless of the input size.
 
@@ -1905,7 +1909,11 @@ int main()
 }
 ```
 
-#### Logarithmic - O(log n)
+#### Logarithmic
+
+<table><tr><td>
+Time complexity: `O(log n)`
+</td></tr></table>
 
 An algorithm has logarithmic time complexity if its runtime grows logarithmically with the size of the input. It divides the input data into smaller portions and discards a significant portion at each step.
 
@@ -1947,7 +1955,11 @@ int main()
 }
 ```
 
-#### Linear - O(n)
+#### Linear
+
+<table><tr><td>
+Time complexity: `O(n)`
+</td></tr></table>
 
 An algorithm has linear time complexity if its runtime grows linearly with the size of the input data. It performs an operation for each element in the input.
 
@@ -1977,7 +1989,11 @@ int main()
 }
 ```
 
-#### Quadratic - O(n^2)
+#### Quadratic
+
+<table><tr><td>
+Time complexity: `O(n^2)`
+</td></tr></table>
 
 An algorithm has quadratic time complexity if its runtime grows with the square of the input size. It often involves nested loops, leading to multiple iterations over the input data.
 
@@ -2010,7 +2026,11 @@ int main()
 }
 ```
 
-#### Exponential - O(2^n)
+#### Exponential
+
+<table><tr><td>
+Time complexity: `O(2^n)`
+</td></tr></table>
 
 An algorithm has exponential time complexity if its runtime grows exponentially with the size of the input data. It performs repeated operations that double with each increase in input size.
 
@@ -2038,7 +2058,11 @@ int main()
 
 ```
 
-#### Factorial - O(n!)
+#### Factorial
+
+<table><tr><td>
+Time complexity: `O(n!)`
+</td></tr></table>
 
 An algorithm has factorial time complexity if its runtime grows with the factorial of the input size. It is one of the slowest-growing time complexities and should be avoided for larger datasets.
 
