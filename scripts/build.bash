@@ -8,3 +8,4 @@
 
 mdmerge --out="../README.md" "../sections/base.md"
 doctoc "../README.md"
+doctoc "../sections/summary_of_cpp_and_programming_world.md"
