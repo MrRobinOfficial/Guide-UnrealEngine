@@ -1978,7 +1978,7 @@ FColor HexColor = FColor::FromHex(TEXT("#9fd99e"));
 FString HexString = HexColor.ToHex(); // Convert it back to a string. The format of the string is RRGGBBAA.
 ```
 
-List of common colors of ´FLinearColor´:
+List of common colors of `FLinearColor`:
 
 * `FLinearColor::White`
 * `FLinearColor::Gray`
