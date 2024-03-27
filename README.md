@@ -2159,7 +2159,7 @@ MySet.Add(TEXT("hello"));
 // Add multiple elements to the set
 MySet.Append({TEXT("cruel"), TEXT("world"), TEXT("hello")});
 
-// MySet: { "hello", "curel", "world" }
+// MySet: { "hello", "cruel", "world" }
 ```
 
 Get number of elements from the set:
