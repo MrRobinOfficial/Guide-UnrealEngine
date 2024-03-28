@@ -893,7 +893,7 @@ FColor HexColor = FColor::FromHex(TEXT("#9fd99e"));
 FString HexString = HexColor.ToHex(); // Convert it back to a string. The format of the string is RRGGBBAA.
 ```
 
-List of common colors of ´FLinearColor´:
+List of common colors of `FLinearColor`:
 
 * `FLinearColor::White`
 * `FLinearColor::Gray`
@@ -1074,7 +1074,7 @@ MySet.Add(TEXT("hello"));
 // Add multiple elements to the set
 MySet.Append({TEXT("cruel"), TEXT("world"), TEXT("hello")});
 
-// MySet: { "hello", "curel", "world" }
+// MySet: { "hello", "cruel", "world" }
 ```
 
 Get number of elements from the set:
