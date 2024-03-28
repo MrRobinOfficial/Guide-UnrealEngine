@@ -8,12 +8,12 @@ In Unreal Engine, a module is a way to organize game code into smaller pieces, s
 
 For example, you could create a module called `Vehicle` to contain all the code related to the vehicle system. This would allow you to isolate the vehicle code from other parts of the game, such as the inventory system, and make it easier to maintain and update.
 
-You can read more about Unreal Engine's modules [here](https://docs.unrealengine.com/5.1/en-US/unreal-engine-modules/)!
-
 > [!NOTE]
-> Unreal Engine modules are not related to C++ 20 modules.
+> Unreal Engine modules are **NOT** related to C++ 20 modules.
 
-Here is a list of Unreal Engine's modules:
+You can read more about Unreal Engine's modules [here](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-modules)!
+
+Here is a list of common Unreal Engine's modules:
 
 <table><tr><td>
 
@@ -35,7 +35,7 @@ Working with modules can also help you stay focused on the specific functionalit
 
 All modules should be placed in the Source directory for either a plugin or project. The module's root folder should have the same name as the corresponding module.
 
-There should also be a [ModuleName].Build.csfile for each module in its root folder, and its C++ code should be contained in Private and Public folders.
+There should also be a _[ModuleName].Build.csfile_ for each module in its root folder, and its C++ code should be contained in **Private** and **Public** folders.
 
 ![image](https://user-images.githubusercontent.com/61658252/236797649-1acb5aac-ab05-4676-86a4-959e443de404.png)
 
