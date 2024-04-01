@@ -7,8 +7,8 @@
 ![guide-status](https://img.shields.io/badge/guide_status-revision-91ff00)
 
 ![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-4A5173)
-![reading-time](https://img.shields.io/badge/reading_time-214.4_mins-blue)
-![word-count](https://img.shields.io/badge/word_count-27,875-blue)
+![reading-time](https://img.shields.io/badge/reading_time-3,98_hours-blue)
+![word-count](https://img.shields.io/badge/word_count-36,438-blue)
 
 ![GitHub issues](https://img.shields.io/github/issues/MrRobinOfficial/Guide-UnrealEngine)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/MrRobinOfficial/Guide-UnrealEngine)
