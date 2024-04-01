@@ -8054,7 +8054,7 @@ There a three types of scopes. _Local_, _class_ and _global_.
 
 ---
 
-1. **Local Scope**:
+**Local Scope**
 
 A variable is in the local scope, if it's declared inside a function or a class. The variable is only accessible inside that function or class, and not outside of it.
 
@@ -8099,7 +8099,7 @@ void PrintDeath(APlayerCharacter* Player)
 
 ---
 
-2. **Class Scope**:
+**Class Scope**
 
 A variable is in the class scope, if it's declared inside a class. The variable is only accessible inside that class, and not outside of it.
 
@@ -8141,7 +8141,7 @@ void KillPlayer(APlayerCharacter* Player)
 
 ---
 
-3. **Global scope**:
+**Global scope**
 
 A variable is in the global scope, if it's declared outside of any function or class. The variable is accessible from anywhere in the program.
 
