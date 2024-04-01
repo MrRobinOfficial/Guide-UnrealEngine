@@ -261,9 +261,6 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
     - [💠 Integer overflow](#-integer-overflow)
     - [💠 Array overflow](#-array-overflow)
     - [🔍 Scope issues](#-scope-issues)
-    - [🔍 Local scope](#-local-scope)
-    - [🔍 Class scope](#-class-scope)
-    - [🔍 Global scope](#-global-scope)
 - [🐣 Tips and best practices](#-tips-and-best-practices)
   - [Disable BlueprintPure](#disable-blueprintpure)
   - [Switch case fall-through](#switch-case-fall-through)
@@ -8053,7 +8050,11 @@ int32 Year = ActiveYears[10]; // Will cause an overflow
 
 [Scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)>) refers to the region of code, where a variable is accessible. In C++, a scope is defined by <kbd>{</kbd> and <kbd>}</kbd> ([curly brackets](https://en.wikipedia.org/wiki/Indentation_style#C/C++_styles)).
 
-#### 🔍 Local scope
+There a three types of scopes. _Local_, _class_ and _global_.
+
+---
+
+1. **Local Scope**:
 
 A variable is in the local scope, if it's declared inside a function or a class. The variable is only accessible inside that function or class, and not outside of it.
 
@@ -8096,7 +8097,9 @@ void PrintDeath(APlayerCharacter* Player)
 }
 ```
 
-#### 🔍 Class scope
+---
+
+2. **Class Scope**:
 
 A variable is in the class scope, if it's declared inside a class. The variable is only accessible inside that class, and not outside of it.
 
@@ -8136,7 +8139,9 @@ void KillPlayer(APlayerCharacter* Player)
 }
 ```
 
-#### 🔍 Global scope
+---
+
+3. **Global scope**:
 
 A variable is in the global scope, if it's declared outside of any function or class. The variable is accessible from anywhere in the program.
 
