@@ -253,11 +253,11 @@ You can read more about [string handling from the docs](https://docs.unrealengin
 
 <table><tr><td>
 
-* `TEXT`: The `TEXT()` macro is used for specifying wide-character (UTF-16) encoding. This makes the string literal platform independent. Without this macro, you are using ANSI encoding (which can cause issues on other machines).
+* `TEXT` - This macro is used for specifying wide-character (UTF-16) encoding. This makes the string literal platform independent. Without this macro, you are using ANSI encoding (which can cause issues on other machines).
 
-* `INVTEXT`: The `INVTEXT()` macro is calling FText::AsCultureInvariant(TEXT(InTextLiteral)) with InTextLiteral as parameter. Helpful creating culture invariant FText from the given string literal.
+* `INVTEXT` - This macro is calling FText::AsCultureInvariant(TEXT(InTextLiteral)) with InTextLiteral as parameter. Helpful creating culture invariant FText from the given string literal.
 
-* `LOCTEXT`: The `LOCTEXT()` macro is used to create `FText` literals specifically for localization. It takes a namespace and a key to identify the localized string.
+* `LOCTEXT` - This macro is used to create `FText` literals specifically for localization. It takes a namespace and a key to identify the localized string.
 
 </td></tr></table>
 
@@ -2418,7 +2418,9 @@ A segmentation fault occurs when a program tries to access a memory location tha
 You can read more about [raw pointers from Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/raw-pointers?view=msvc-170).
 
 To avoid this, you must check before if the pointer is valid, before using it.
-> Use the function called `IsValid()` for raw pointers.
+
+> [!CAUTION]
+> Use the function called `IsValid()` for raw pointers, which doing any operations with it.
 
 Here's an example:
 
