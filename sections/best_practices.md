@@ -318,7 +318,8 @@ void FMyTickableThing::Tick( float DeltaTime )
 > [!NOTE]
 > Tick any object you want, `UObject` or not!
 
-> [!WARNING] > `USTRUCT` don't support expose functions with UHT[^2].
+> [!WARNING]
+> UHT[^2] don't support exposed functions inside `USTRUCT`. However, you can still have functions inside `USTRUCT`, but not just exposed to Blueprint.
 
 ### 🔌 Direct references
 
