@@ -31,7 +31,7 @@ You can find all the compiler errors at [Microsoft website](https://learn.micros
 
 Here are the common compilation errors, that you **WILL** encounter:
 
-<!-- Variable not initalized -->
+<!-- Variable not initialized -->
 <!-- Incorrect syntax: ; ) } -->
 <!-- Different scope -->
 <!-- Variable not changing -->
@@ -160,9 +160,11 @@ For example, if you try to access an index of an array, which is out of bounds, 
 
 #### 🔍 Overflow issues
 
-In Unreal Engine C++ programming, there are two main types of overflows:
+There are two main types of overflows:
 
-1. **Integer overflow**: When you perform an arithmetic operation on an integer, which exceeds the maximum value that the integer can hold, the result will be an overflow.
+##### Integer overflow
+
+When you perform an arithmetic operation on an integer, which exceeds the maximum value that the integer can hold, the result will be an overflow.
 
 For an example:
 
@@ -185,7 +187,9 @@ MinValueOfInt32--; // Will cause an overflow.
 
 To solve this overflow issue, either use a bigger data type (`int64`). Or use unsigned data types instead, such as `uint32` or `uint64`.
 
-2. **Array overflow**: When you try to access an element of an array, which is outside of its bounds, the result will be an overflow. Unreal Engine uses the `TArray` and `TArrayView` types for arrays, and it's important to be aware of their maximum size.
+##### Array overflow
+
+When you try to access an element of an array, which is outside of its bounds, the result will be an overflow. Unreal Engine uses the `TArray` and `TArrayView` types for arrays, and it's important to be aware of their maximum size.
 
 For an example
 
@@ -201,7 +205,9 @@ int32 Year = ActiveYears[10]; // Will cause an overflow
 
 [Scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)>) refers to the region of code, where a variable is accessible. In C++, a scope is defined by <kbd>{</kbd> and <kbd>}</kbd> ([curly brackets](https://en.wikipedia.org/wiki/Indentation_style#C/C++_styles)).
 
-1. **Local scope**: A variable is in the local scope, if it's declared inside a function or a class. The variable is only accessible inside that function or class, and not outside of it.
+##### Local scope
+
+A variable is in the local scope, if it's declared inside a function or a class. The variable is only accessible inside that function or class, and not outside of it.
 
 For an example:
 
@@ -242,7 +248,9 @@ void PrintDeath(APlayerCharacter* Player)
 }
 ```
 
-2. **Class scope**: A variable is in the class scope, if it's declared inside a class. The variable is only accessible inside that class, and not outside of it.
+##### Class scope
+
+A variable is in the class scope, if it's declared inside a class. The variable is only accessible inside that class, and not outside of it.
 
 For an example:
 
@@ -280,7 +288,9 @@ void KillPlayer(APlayerCharacter* Player)
 }
 ```
 
-3. **Global scope**: A variable is in the global scope, if it's declared outside of any function or class. The variable is accessible from anywhere in the program.
+##### Global scope
+
+A variable is in the global scope, if it's declared outside of any function or class. The variable is accessible from anywhere in the program.
 
 For an example:
 
