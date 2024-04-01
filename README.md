@@ -258,13 +258,12 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
     - [Compiler Error C2628](#compiler-error-c2628)
   - [💣 Runtime Errors](#-runtime-errors)
   - [💀 Semantic Errors](#-semantic-errors)
-    - [🔍 Overflow issues](#-overflow-issues)
-      - [Integer overflow](#integer-overflow)
-      - [Array overflow](#array-overflow)
+    - [💠 Integer overflow](#-integer-overflow)
+    - [💠 Array overflow](#-array-overflow)
     - [🔍 Scope issues](#-scope-issues)
-      - [Local scope](#local-scope)
-      - [Class scope](#class-scope)
-      - [Global scope](#global-scope)
+    - [🔍 Local scope](#-local-scope)
+    - [🔍 Class scope](#-class-scope)
+    - [🔍 Global scope](#-global-scope)
 - [🐣 Tips and best practices](#-tips-and-best-practices)
   - [Disable BlueprintPure](#disable-blueprintpure)
   - [Switch case fall-through](#switch-case-fall-through)
@@ -8009,11 +8008,7 @@ For example, if you try to access an index of an array, which is out of bounds, 
 
 ### 💀 Semantic Errors
 
-#### 🔍 Overflow issues
-
-There are two main types of overflows:
-
-##### Integer overflow
+#### 💠 Integer overflow
 
 When you perform an arithmetic operation on an integer, which exceeds the maximum value that the integer can hold, the result will be an overflow.
 
@@ -8038,9 +8033,11 @@ MinValueOfInt32--; // Will cause an overflow.
 
 To solve this overflow issue, either use a bigger data type (`int64`). Or use unsigned data types instead, such as `uint32` or `uint64`.
 
-##### Array overflow
+#### 💠 Array overflow
 
-When you try to access an element of an array, which is outside of its bounds, the result will be an overflow. Unreal Engine uses the `TArray` and `TArrayView` types for arrays, and it's important to be aware of their maximum size.
+When you try to access an element of an array, which is outside of its bounds, the result will be an overflow.
+
+Unreal uses the `TArray` and `TArrayView` types for arrays, and it's important to be aware of their maximum size, when accessing their elements via `[]` square brackets operation (which will get the element via index).
 
 For an example
 
@@ -8056,7 +8053,7 @@ int32 Year = ActiveYears[10]; // Will cause an overflow
 
 [Scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)>) refers to the region of code, where a variable is accessible. In C++, a scope is defined by <kbd>{</kbd> and <kbd>}</kbd> ([curly brackets](https://en.wikipedia.org/wiki/Indentation_style#C/C++_styles)).
 
-##### Local scope
+#### 🔍 Local scope
 
 A variable is in the local scope, if it's declared inside a function or a class. The variable is only accessible inside that function or class, and not outside of it.
 
@@ -8099,7 +8096,7 @@ void PrintDeath(APlayerCharacter* Player)
 }
 ```
 
-##### Class scope
+#### 🔍 Class scope
 
 A variable is in the class scope, if it's declared inside a class. The variable is only accessible inside that class, and not outside of it.
 
@@ -8139,7 +8136,7 @@ void KillPlayer(APlayerCharacter* Player)
 }
 ```
 
-##### Global scope
+#### 🔍 Global scope
 
 A variable is in the global scope, if it's declared outside of any function or class. The variable is accessible from anywhere in the program.
 
