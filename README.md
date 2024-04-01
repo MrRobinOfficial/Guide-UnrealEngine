@@ -258,6 +258,8 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
     - [Compiler Error C2628](#compiler-error-c2628)
   - [💣 Runtime Errors](#-runtime-errors)
   - [💀 Semantic Errors](#-semantic-errors)
+    - [🔍 Overflow issues](#-overflow-issues)
+    - [🔍 Scope issues](#-scope-issues)
 - [🐣 Tips and best practices](#-tips-and-best-practices)
   - [Disable BlueprintPure](#disable-blueprintpure)
   - [Switch case fall-through](#switch-case-fall-through)
@@ -8002,9 +8004,162 @@ For example, if you try to access an index of an array, which is out of bounds, 
 
 ### 💀 Semantic Errors
 
-<!-- TODO: Write about overflow issues -->
+#### 🔍 Overflow issues
 
-<!-- TODO: Write about scope issues -->
+In Unreal Engine C++ programming, there are two main types of overflows:
+
+1. **Integer overflow**: When you perform an arithmetic operation on an integer, which exceeds the maximum value that the integer can hold, the result will be an overflow.
+
+For an example:
+
+```cpp
+int32 MaxValueOfInt32 = 2147483647;
+
+MaxValueOfInt32++; // Will cause an overflow.
+
+// Since an int32 can only store, both negative and positive: 2,14,748,3647.
+// If you only care about the positive numbers (ex: health values), then use unsigned numbers instead.
+```
+
+The same goes for the negative numbers as well:
+
+```cpp
+int32 MinValueOfInt32 = -2147483647;
+
+MinValueOfInt32--; // Will cause an overflow.
+```
+
+To solve this overflow issue, either use a bigger data type (`int64`). Or use unsigned data types instead, such as `uint32` or `uint64`.
+
+2. **Array overflow**: When you try to access an element of an array, which is outside of its bounds, the result will be an overflow. Unreal Engine uses the `TArray` and `TArrayView` types for arrays, and it's important to be aware of their maximum size.
+
+For an example
+
+```cpp
+TArray<int32> ActiveYears = { 2020, 2021, 2022 };
+
+int32 Year = ActiveYears[10]; // Will cause an overflow
+
+// Since the index is out of bounds of array's memory block and therefore cannot be accessed.
+```
+
+#### 🔍 Scope issues
+
+[Scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)>) refers to the region of code, where a variable is accessible. In C++, a scope is defined by <kbd>{</kbd> and <kbd>}</kbd> ([curly brackets](https://en.wikipedia.org/wiki/Indentation_style#C/C++_styles)).
+
+1. **Local scope**: A variable is in the local scope, if it's declared inside a function or a class. The variable is only accessible inside that function or class, and not outside of it.
+
+For an example:
+
+```cpp
+void KillPlayer(APlayerCharacter* Player)
+{
+    {
+        bool bIsDead = Player->Kill();
+
+        // Able to access it
+        if (bIsDead)
+        {
+            PrintDeath(Player);
+        }
+    }
+
+    // Compile error! Cannot be accessed outside its defining scope.
+    if (bIsDead)
+    {
+
+    }
+}
+
+// Same goes for this function scope
+
+void PrintDeath(APlayerCharacter* Player)
+{
+    // Able to access it.
+    // Since, it was defined as an argument, when the function was called.
+    if (!IsValid(Player))
+        return;
+
+    // Compile error! Cannot be accessed inside another function.
+    if (bIsDead)
+    {
+
+    }
+}
+```
+
+2. **Class scope**: A variable is in the class scope, if it's declared inside a class. The variable is only accessible inside that class, and not outside of it.
+
+For an example:
+
+```cpp
+UCLASS()
+class APlayerCharacter : public ACharacter
+{
+private:
+    int32 Health;
+
+public:
+    void Kill()
+    {
+        Health = 0;
+    }
+};
+
+void KillPlayer()
+{
+    Health = 0; // Compile error! Cannot be accessed outside the class scope.
+}
+```
+
+Here is the fixed version:
+
+```cpp
+void KillPlayer(APlayerCharacter* Player)
+{
+    // Able to access it.
+    // Since, the function as defined and have correct access to the current context of scope.
+    Player->Kill();
+
+    Player->Health = 0; // Compile error! Cannot be accessed, since it requires a private scope.
+    // Meaning, the variable can only be accessed inside class scope.
+}
+```
+
+3. **Global scope**: A variable is in the global scope, if it's declared outside of any function or class. The variable is accessible from anywhere in the program.
+
+For an example:
+
+```cpp
+int32 GPlayerHealth = 100;
+
+UCLASS()
+class AMyActor : public AActor
+{
+public:
+    void DamagePlayer(int32 DamageAmount)
+    {
+        // Able to access it.
+        // Since, the variable is defined in the global scope.
+        GPlayerHealth -= DamageAmount;
+
+        if (GPlayerHealth <= 0)
+            GPlayerHealth = 0;
+    }
+};
+
+UCLASS()
+class APlayerCharacter : public ACharacter
+{
+public:
+    void Kill()
+    {
+        // Able to access it.
+        // Since, the variable is defined in the global scope.
+        GPlayerHealth = 0;
+    }
+};
+```
 
 ## 🐣 Tips and best practices
 
