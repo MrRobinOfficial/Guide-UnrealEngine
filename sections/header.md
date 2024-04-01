@@ -33,4 +33,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 > [!NOTE]
 > Examples and documentation are intended to work on **UE 5.0** version and upwards. Some code may or may not work on previous versions!
 
+> [!IMPORTANT]
+> If you want to see the newest changes, you can check out the [dev branch](https://github.com/MrRobinOfficial/Guide-UnrealEngine/tree/dev). However, be aware of experimental changes and work in progress text.
+
 <<[toc_v2.md]

@@ -83,9 +83,15 @@ graph TD;
     UShapeComponent-->USphereComponent;
 ```
 
-When getting started with Unreal Engine and their workflow, it can be intimidating to learn their architecture. However, I would argue it to facilitate your experience with Unreal, if you started learning each classes and their purpose.
+When getting started with Unreal Engine and their workflow, it can be intimidating to a class, since there are so many and with different purpose. However, I would argue it too helps grow your skills and experience by learning Unreal's architecture.
 
-Unreal has many classes, which would take a long time to explain. However, here is a list of notable classes:
+Not only do gain knowledge about Unreal, but also how a game engine could work under the hood. Compare to Unity, which is a [closed source](https://en.wikipedia.org/wiki/Proprietary_software) engine and their "architecture" is quite open to interpretation.
+
+Unreal Engine was also built for creating an FPS multiplayer game. You can find some classes, which were intentionally designed for that FPS game, such as `AGameState` and `APlayerState` classes. Which are classes that keep track of match points and health points.
+
+However, you can still use Unreal's architecture for different game genres. Unreal Engine works both for multiplayer and single player games.
+
+Unreal has too many classes, which would take a very long time to explain each one of them. However, there are a couple of important classes, that I should mention:
 
 <details open>
   <summary>Click to expand</summary>
@@ -115,18 +121,18 @@ Unreal has many classes, which would take a long time to explain. However, here 
         -   `void SetLifeSpan(float InLifespan)` - Set the lifespan of actor.
         -   `void Destroy(bool bNetForce, bool bShouldModifyLevel)` - Destroy the actor.
         -   `void SetActorTickEnabled(bool bEnabled)` - Set this actor's tick functions to be enabled or disabled.
-        -   `SetActorTickInterval(float TickInterval)` - Sets the tick interval of this actor's primary tick function.
+        -   `void SetActorTickInterval(float TickInterval)` - Sets the tick interval of this actor's primary tick function.
 
 -   [APawn](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/APawn) inherit `AActor`
 
     -   Pawn is the base class of all actors that can be possessed by players or AI. They are the physical representations of players and creatures in a level.
     -   `APawn` provides basic possession mechanisms and support for input handling, as well as collision detection and physics simulation.
     -   _Common Functions_:
-        -   `BeginPlay()` - Called when the level starts ticking, only during actual gameplay.
-        -   `Tick(float DeltaSeconds)` - Update function, called every frame on Actor.
-        -   `EndPlay(const EEndPlayReason::Type EndPlayReason)` - Whenever actor is being removed from a level
-        -   `SetLifeSpan(float InLifespan)` - Set the lifespan of actor.
-        -   `Destroy(bool bNetForce, bool bShouldModifyLevel)` - Destroy actor.
+        -   `void BeginPlay()` - Called when the level starts ticking, only during actual gameplay.
+        -   `void Tick(float DeltaSeconds)` - Update function, called every frame on Actor.
+        -   `void EndPlay(const EEndPlayReason::Type EndPlayReason)` - Whenever actor is being removed from a level
+        -   `void SetLifeSpan(float InLifespan)` - Set the lifespan of actor.
+        -   `void Destroy(bool bNetForce, bool bShouldModifyLevel)` - Destroy actor.
 
 -   [AHUD](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/AHUD) inherit `AActor`
 
@@ -151,9 +157,9 @@ Unreal has many classes, which would take a long time to explain. However, here 
     -   ActorComponents that have a transform are known as SceneComponents (`USceneComponent`) and those that can be rendered are PrimitiveComponents (`UPrimitiveComponent`).
     -   `UActorComponent` doesn't appear in the world.
     -   _Common Functions_:
-        -   `BeginPlay()` - Begins Play for component.
-        -   `TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)` - Function called every frame on ActorComponent.
-        -   `EndPlay(const EEndPlayReason::Type EndPlayReason)` - Ends gameplay for component.
+        -   `void BeginPlay()` - Begins Play for component.
+        -   `void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)` - Function called every frame on ActorComponent.
+        -   `void EndPlay(const EEndPlayReason::Type EndPlayReason)` - Ends gameplay for component.
 
 -   [UMovementComponent](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/UMovementComponent) inherit `UActorComponent`
 
@@ -213,7 +219,7 @@ Unreal has many classes, which would take a long time to explain. However, here 
     -   A World can be a single Persistent Level with an optional list of streaming levels that are loaded and unloaded via volumes and blueprint functions or it can be a collection of levels organized with a World Composition.
     -   In a standalone game, generally only a single World exists except during seamless area transitions when both a destination and current world exists. In the editor many Worlds exist: The level being edited, each PIE instance, each editor tool which has an interactive rendered viewport, and many more.
     -   _Common Functions_:
-        -   `SpawnActor()` or `SpawnActorDeferred()` - Spawn an actor from it's class. Deferred method will allow you to set actor properties before it's spawned into the world.
+        -   `void SpawnActor()` or `void SpawnActorDeferred()` - Spawn an actor from it's class. Deferred method will allow you to set actor properties before it's spawned into the world.
 
 -   [ULevel](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/ULevel)
 

@@ -33,6 +33,9 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 > [!NOTE]
 > Examples and documentation are intended to work on **UE 5.0** version and upwards. Some code may or may not work on previous versions!
 
+> [!IMPORTANT]
+> If you want to see the newest changes, you can check out the [dev branch](https://github.com/MrRobinOfficial/Guide-UnrealEngine/tree/dev). However, be aware of experimental changes and work in progress text.
+
 ## Table of contents
 
 <table><tr><td>
@@ -681,9 +684,15 @@ graph TD;
     UShapeComponent-->USphereComponent;
 ```
 
-When getting started with Unreal Engine and their workflow, it can be intimidating to learn their architecture. However, I would argue it to facilitate your experience with Unreal, if you started learning each classes and their purpose.
+When getting started with Unreal Engine and their workflow, it can be intimidating to a class, since there are so many and with different purpose. However, I would argue it too helps grow your skills and experience by learning Unreal's architecture.
 
-Unreal has many classes, which would take a long time to explain. However, here is a list of notable classes:
+Not only do gain knowledge about Unreal, but also how a game engine could work under the hood. Compare to Unity, which is a [closed source](https://en.wikipedia.org/wiki/Proprietary_software) engine and their "architecture" is quite open to interpretation.
+
+Unreal Engine was also built for creating an FPS multiplayer game. You can find some classes, which were intentionally designed for that FPS game, such as `AGameState` and `APlayerState` classes. Which are classes that keep track of match points and health points.
+
+However, you can still use Unreal's architecture for different game genres. Unreal Engine works both for multiplayer and single player games.
+
+Unreal has too many classes, which would take a very long time to explain each one of them. However, there are a couple of important classes, that I should mention:
 
 <details open>
   <summary>Click to expand</summary>
@@ -713,18 +722,18 @@ Unreal has many classes, which would take a long time to explain. However, here 
         -   `void SetLifeSpan(float InLifespan)` - Set the lifespan of actor.
         -   `void Destroy(bool bNetForce, bool bShouldModifyLevel)` - Destroy the actor.
         -   `void SetActorTickEnabled(bool bEnabled)` - Set this actor's tick functions to be enabled or disabled.
-        -   `SetActorTickInterval(float TickInterval)` - Sets the tick interval of this actor's primary tick function.
+        -   `void SetActorTickInterval(float TickInterval)` - Sets the tick interval of this actor's primary tick function.
 
 -   [APawn](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/APawn) inherit `AActor`
 
     -   Pawn is the base class of all actors that can be possessed by players or AI. They are the physical representations of players and creatures in a level.
     -   `APawn` provides basic possession mechanisms and support for input handling, as well as collision detection and physics simulation.
     -   _Common Functions_:
-        -   `BeginPlay()` - Called when the level starts ticking, only during actual gameplay.
-        -   `Tick(float DeltaSeconds)` - Update function, called every frame on Actor.
-        -   `EndPlay(const EEndPlayReason::Type EndPlayReason)` - Whenever actor is being removed from a level
-        -   `SetLifeSpan(float InLifespan)` - Set the lifespan of actor.
-        -   `Destroy(bool bNetForce, bool bShouldModifyLevel)` - Destroy actor.
+        -   `void BeginPlay()` - Called when the level starts ticking, only during actual gameplay.
+        -   `void Tick(float DeltaSeconds)` - Update function, called every frame on Actor.
+        -   `void EndPlay(const EEndPlayReason::Type EndPlayReason)` - Whenever actor is being removed from a level
+        -   `void SetLifeSpan(float InLifespan)` - Set the lifespan of actor.
+        -   `void Destroy(bool bNetForce, bool bShouldModifyLevel)` - Destroy actor.
 
 -   [AHUD](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/AHUD) inherit `AActor`
 
@@ -749,9 +758,9 @@ Unreal has many classes, which would take a long time to explain. However, here 
     -   ActorComponents that have a transform are known as SceneComponents (`USceneComponent`) and those that can be rendered are PrimitiveComponents (`UPrimitiveComponent`).
     -   `UActorComponent` doesn't appear in the world.
     -   _Common Functions_:
-        -   `BeginPlay()` - Begins Play for component.
-        -   `TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)` - Function called every frame on ActorComponent.
-        -   `EndPlay(const EEndPlayReason::Type EndPlayReason)` - Ends gameplay for component.
+        -   `void BeginPlay()` - Begins Play for component.
+        -   `void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)` - Function called every frame on ActorComponent.
+        -   `void EndPlay(const EEndPlayReason::Type EndPlayReason)` - Ends gameplay for component.
 
 -   [UMovementComponent](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/GameFramework/UMovementComponent) inherit `UActorComponent`
 
@@ -811,7 +820,7 @@ Unreal has many classes, which would take a long time to explain. However, here 
     -   A World can be a single Persistent Level with an optional list of streaming levels that are loaded and unloaded via volumes and blueprint functions or it can be a collection of levels organized with a World Composition.
     -   In a standalone game, generally only a single World exists except during seamless area transitions when both a destination and current world exists. In the editor many Worlds exist: The level being edited, each PIE instance, each editor tool which has an interactive rendered viewport, and many more.
     -   _Common Functions_:
-        -   `SpawnActor()` or `SpawnActorDeferred()` - Spawn an actor from it's class. Deferred method will allow you to set actor properties before it's spawned into the world.
+        -   `void SpawnActor()` or `void SpawnActorDeferred()` - Spawn an actor from it's class. Deferred method will allow you to set actor properties before it's spawned into the world.
 
 -   [ULevel](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/ULevel)
 
@@ -1841,11 +1850,11 @@ You can read more about [string handling from the docs](https://docs.unrealengin
 
 <table><tr><td>
 
-* `TEXT`: The `TEXT()` macro is used for specifying wide-character (UTF-16) encoding. This makes the string literal platform independent. Without this macro, you are using ANSI encoding (which can cause issues on other machines).
+* `TEXT` - This macro is used for specifying wide-character (UTF-16) encoding. This makes the string literal platform independent. Without this macro, you are using ANSI encoding (which can cause issues on other machines).
 
-* `INVTEXT`: The `INVTEXT()` macro is calling FText::AsCultureInvariant(TEXT(InTextLiteral)) with InTextLiteral as parameter. Helpful creating culture invariant FText from the given string literal.
+* `INVTEXT` - This macro is calling FText::AsCultureInvariant(TEXT(InTextLiteral)) with InTextLiteral as parameter. Helpful creating culture invariant FText from the given string literal.
 
-* `LOCTEXT`: The `LOCTEXT()` macro is used to create `FText` literals specifically for localization. It takes a namespace and a key to identify the localized string.
+* `LOCTEXT` - This macro is used to create `FText` literals specifically for localization. It takes a namespace and a key to identify the localized string.
 
 </td></tr></table>
 
@@ -4006,7 +4015,9 @@ A segmentation fault occurs when a program tries to access a memory location tha
 You can read more about [raw pointers from Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/raw-pointers?view=msvc-170).
 
 To avoid this, you must check before if the pointer is valid, before using it.
-> Use the function called `IsValid()` for raw pointers.
+
+> [!CAUTION]
+> Use the function called `IsValid()` for raw pointers, which doing any operations with it.
 
 Here's an example:
 
@@ -6583,12 +6594,12 @@ In Unreal Engine, a module is a way to organize game code into smaller pieces, s
 
 For example, you could create a module called `Vehicle` to contain all the code related to the vehicle system. This would allow you to isolate the vehicle code from other parts of the game, such as the inventory system, and make it easier to maintain and update.
 
-You can read more about Unreal Engine's modules [here](https://docs.unrealengine.com/5.1/en-US/unreal-engine-modules/)!
-
 > [!NOTE]
-> Unreal Engine modules are not related to C++ 20 modules.
+> Unreal Engine modules are **NOT** related to C++ 20 modules.
 
-Here is a list of Unreal Engine's modules:
+You can read more about Unreal Engine's modules [here](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-modules)!
+
+Here is a list of common Unreal Engine's modules:
 
 <table><tr><td>
 
@@ -6610,7 +6621,7 @@ Working with modules can also help you stay focused on the specific functionalit
 
 All modules should be placed in the Source directory for either a plugin or project. The module's root folder should have the same name as the corresponding module.
 
-There should also be a [ModuleName].Build.csfile for each module in its root folder, and its C++ code should be contained in Private and Public folders.
+There should also be a _[ModuleName].Build.csfile_ for each module in its root folder, and its C++ code should be contained in **Private** and **Public** folders.
 
 ![image](https://user-images.githubusercontent.com/61658252/236797649-1acb5aac-ab05-4676-86a4-959e443de404.png)
 
