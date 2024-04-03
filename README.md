@@ -173,6 +173,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [Creating interface inside C++](#creating-interface-inside-c)
   - [Extending the interface function:](#extending-the-interface-function)
   - [Calling the interface function](#calling-the-interface-function)
+  - [Checking if the UObject extends the interface](#checking-if-the-uobject-extends-the-interface)
   - [Reference to an interface object](#reference-to-an-interface-object)
 - [🛸 Reflection System](#-reflection-system)
 - [🗑️ Garbage Collection](#-garbage-collection)
@@ -5435,6 +5436,8 @@ When calling the interface function in C++, Unreal will check if the type extend
 
 This also allows you to extend the interface inside Blueprint instead. For an example, you don't have to create the interface logic inside C++, but rather create the logic at Blueprint level instead.
 
+You can read more about interfaces, at [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/interfaces-in-unreal-engine).
+
 ### Creating interface inside C++
 
 Here's a template file for creating an interface inside C++:
@@ -5545,14 +5548,38 @@ const bool bForce = true; // Parameters
 IVehicle::Execute_Explode(CarObject, bForce);
 ```
 
+### Checking if the UObject extends the interface
+
+Sometimes, you must check if the `UObject` has the interface class attach to it. You can either do by calling `Implements()` function, which returns a boolean. Or you can do a cast operation. The cast will return `nullptr`, if the operation failed.
+
+```cpp
+UObject* CarObject = nullptr; // The UObject, that you wish to call the function on.
+
+bool bIsImplemented = CarObject->Implements<IVehicle>();
+```
+
+A longer version of `Implements()` function:
+
+```cpp
+UObject* CarObject = nullptr; // The UObject, that you wish to call the function on.
+
+bool bIsImplemented = CarObject->GetClass()->ImplementsInterface(UVehicle::StaticClass());
+```
+
+And here is the cast version:
+
+```cpp
+UObject* CarObject = nullptr; // The UObject, that you wish to call the function on.
+
+IVehicle* VehiclePtr = Cast<IVehicle>(CarObject);
+```
+
+> [!CAUTION]
+> The `Cast<>` method only works, if the interface is implemented in a C++ class. If the interface was instead implemented in Blueprint, then the cast will return `nullptr`. You can use `TScriptInterface<>` to safely copy an interface pointer. In alternative, you have the weak interface pointer (`TWeakInterfacePtr`).
+
 ### Reference to an interface object
 
-If you ever wish to reference an interface object, you then must you `TScriptInterface<>`, which works both for C++ and Blueprint. However, if you wish to have a pointer to the interface, you may want to use the `TWeakInterfacePtr` instead. Note, that this pointer is weak. Meaning, the weak pointer will not prevent destruction of the object it references.
-
-For more information on weak pointers, you can read at [💾 Soft vs hard references](#-soft-vs-hard-references).
-
-> [!TIP]
-> You can use `TWeakInterfacePtr` for storing a weak pointer to a partial interface.
+If you wish to reference an interface object, and you want safety grantee for both Blueprint and C++, then must you `TScriptInterface<>`.
 
 ```cpp
 void DestroyVehicle(const TScriptInterface<IVehicle>& Vehicle)
@@ -5561,6 +5588,30 @@ void DestroyVehicle(const TScriptInterface<IVehicle>& Vehicle)
     IVehicle::Execute_Explode(Vehicle.GetObject(), bForce);
 }
 ```
+
+However, if you tend to use the interface pointer inside C++, you can either use a regular raw pointer to the interface.
+
+```cpp
+UObject* CarObject = nullptr; // The UObject, that you wish to call the function on.
+
+IVehicle* VehiclePtr = Cast<IVehicle>(CarObject);
+```
+
+Or use a weak pointer (`TWeakInterfacePtr`). Note, that this pointer is weak. Meaning, the weak pointer will not prevent destruction of the object it references.
+
+```cpp
+TWeakInterfacePtr<IVehicle> VehiclePtr; // Weak pointer to the interface.
+UObject* CarObject = nullptr; // The UObject, that you wish to call the function on.
+
+VehiclePtr = Cast<IVehicle>(CarObject);
+
+if (VehiclePtr.IsValid())
+{
+    // Check if the pointer is valid
+}
+```
+
+For more information on weak pointers, you can read at [💾 Soft vs hard references](#-soft-vs-hard-references).
 
 > [!TIP]
 > `TScriptInterface` inside Blueprint is nicer to look at, than C++ version.
