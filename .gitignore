@@ -130,6 +130,3 @@ dist
 .pnp.*
 
 # Guide
-.vscode
-dev_notes.md
-.dev
