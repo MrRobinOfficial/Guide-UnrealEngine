@@ -5,7 +5,7 @@
 
 Over these years, I found some awesome and helpful plugins for extending and improving my productivity.
 
-The plugins that I recommend the most are: **Batch Rename Tool**, **Common Maps**, **Quick Actions**, **ActorLocker**, **FlatNodes**, **CrystalNodes**, **ALS** and **Audio Meters**.
+The plugins that I recommend the most are: **Advanced Renamer**, **Game Input**, **Common Maps**, **Quick Actions**, **ActorLocker**, **FlatNodes**, **CrystalNodes**, **ALS** and **Audio Meters**.
 
 And here is a full list of plugins that I discovered so far:
 
@@ -78,10 +78,12 @@ And here is a full list of plugins that I discovered so far:
 
 ### Epic Games Plugins
 
--   [Chaos Vehicles](https://docs.unrealengine.com/5.3/en-US/vehicles-in-unreal-engine/) made by Epic Games (Vehicle System).
--   [Common UI](https://docs.unrealengine.com/5.3/en-US/common-ui-plugin-for-advanced-user-interfaces-in-unreal-engine/) made by Epic Games. ​
--   [Enhanced Input](https://docs.unrealengine.com/5.3/en-US/enhanced-input-in-unreal-engine/) made by Epic Games.
--   [Sun Position Calculator](https://docs.unrealengine.com/5.3/en-US/geographically-accurate-sun-positioning-tool-in-unreal-engine/) made by Epic Games (Real-time sky).
+-   [Advanced Renamer](https://dev.epicgames.com/documentation/en-us/unreal-engine) made by Epic Games.
+-   [Game Input](https://dev.epicgames.com/documentation/en-us/unreal-engine) made by Epic Games.
+-   [Chaos Vehicles](https://dev.epicgames.com/documentation/en-us/unreal-engine/vehicles-in-unreal-engine) made by Epic Games (Vehicle System).
+-   [Common UI](https://dev.epicgames.com/documentation/en-us/unreal-engine/common-ui-plugin-for-advanced-user-interfaces-in-unreal-engine) made by Epic Games. ​
+-   [Enhanced Input](https://dev.epicgames.com/documentation/en-us/unreal-engine/enhanced-input-in-unreal-engine) made by Epic Games.
+-   [Sun Position Calculator](hhttps://dev.epicgames.com/documentation/en-us/unreal-engine/geographically-accurate-sun-positioning-tool-in-unreal-engine) made by Epic Games (Real-time sky).
 
 ### MrRobinOfficial's Plugins
 

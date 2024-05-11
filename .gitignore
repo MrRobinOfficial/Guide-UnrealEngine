@@ -130,3 +130,10 @@ dist
 .pnp.*
 
 # Guide
+<<<<<<< Updated upstream
+=======
+.vscode
+dev_notes.md
+.dev
+.dev.md
+>>>>>>> Stashed changes

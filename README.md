@@ -271,9 +271,9 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [📦 Refactoring](#-refactoring)
     - [Renaming](#renaming)
     - [Extract Method](#extract-method)
-    - [Introduce/Inline typedefs](#introduceinline-typedefs)
+    - [Typedefs](#typedefs)
     - [Introduce Variable](#introduce-variable)
-  - [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
+    - [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
   - [⏱ Ticking](#-ticking)
     - [For actors](#for-actors)
     - [For components](#for-components)
@@ -327,7 +327,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 
 Over these years, I found some awesome and helpful plugins for extending and improving my productivity.
 
-The plugins that I recommend the most are: **Batch Rename Tool**, **Common Maps**, **Quick Actions**, **ActorLocker**, **FlatNodes**, **CrystalNodes**, **ALS** and **Audio Meters**.
+The plugins that I recommend the most are: **Advanced Renamer**, **Game Input**, **Common Maps**, **Quick Actions**, **ActorLocker**, **FlatNodes**, **CrystalNodes**, **ALS** and **Audio Meters**.
 
 And here is a full list of plugins that I discovered so far:
 
@@ -400,10 +400,12 @@ And here is a full list of plugins that I discovered so far:
 
 ### Epic Games Plugins
 
--   [Chaos Vehicles](https://docs.unrealengine.com/5.3/en-US/vehicles-in-unreal-engine/) made by Epic Games (Vehicle System).
--   [Common UI](https://docs.unrealengine.com/5.3/en-US/common-ui-plugin-for-advanced-user-interfaces-in-unreal-engine/) made by Epic Games. ​
--   [Enhanced Input](https://docs.unrealengine.com/5.3/en-US/enhanced-input-in-unreal-engine/) made by Epic Games.
--   [Sun Position Calculator](https://docs.unrealengine.com/5.3/en-US/geographically-accurate-sun-positioning-tool-in-unreal-engine/) made by Epic Games (Real-time sky).
+-   [Advanced Renamer](https://dev.epicgames.com/documentation/en-us/unreal-engine) made by Epic Games.
+-   [Game Input](https://dev.epicgames.com/documentation/en-us/unreal-engine) made by Epic Games.
+-   [Chaos Vehicles](https://dev.epicgames.com/documentation/en-us/unreal-engine/vehicles-in-unreal-engine) made by Epic Games (Vehicle System).
+-   [Common UI](https://dev.epicgames.com/documentation/en-us/unreal-engine/common-ui-plugin-for-advanced-user-interfaces-in-unreal-engine) made by Epic Games. ​
+-   [Enhanced Input](https://dev.epicgames.com/documentation/en-us/unreal-engine/enhanced-input-in-unreal-engine) made by Epic Games.
+-   [Sun Position Calculator](hhttps://dev.epicgames.com/documentation/en-us/unreal-engine/geographically-accurate-sun-positioning-tool-in-unreal-engine) made by Epic Games (Real-time sky).
 
 ### MrRobinOfficial's Plugins
 
@@ -8349,6 +8351,12 @@ public:
 This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
+Here's a video explaining some of the best practices with Unreal Engine and C++.
+
+There is a video about some of these best practices called [Best Practices (2019-2021) from Stephen Maloney](https://www.youtube.com/watch?v=g7WVBZZTRDk)
+
+In the video, there is also a [Google documentation](https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8) (if video wasn't enough) for more details about some of his tips and tricks.
+
 ### Disable BlueprintPure
 
 When creating a `UFUNCTION` and marking it as `const`, Unreal will interpret this function as pure function. A pure function will evaluate every time it's called (inside Blueprint), compare to a regular function, which Unreal caches the result and save for later.
@@ -8412,32 +8420,40 @@ Renaming members, such as variables, functions, or classes, is a common refactor
 Example:
 
 ```cpp
-// Note, this is regular raw C++ code.
-
 // Before refactoring
-class Rectangle
+UCLASS()
+class MyActor : public AActor
 {
 private:
-    int w; // Width
-    int h; // Height
+    int mag;
+    float dmg = 10;
 
 public:
-    Rectangle(int width, int height) : w(width), h(height) {}
-
-    int area() { return w * h; }
+    float F()
+    {
+        mag--;
+        auto d = FMath::RandRange(0, dmg);
+        auto a = mag > 0 ? d : 0;
+        return a;
+    }
 };
 
 // After refactoring
-class Rectangle
+UCLASS()
+class MyActor : public AActor
 {
 private:
-    int width; // Descriptive name for width
-    int height; // Descriptive name for height
+    int CurrentMagazine;
+    float MaxBulletDamage = 10;
 
 public:
-    Rectangle(int width, int height) : width(width), height(height) {}
-
-    int area() { return width * height; }
+    float Fire()
+    {
+        CurrentMagazine--;
+        float BulletDamage = FMath::RandRange(0, MaxBulletDamage);
+        BulletDamage = CurrentMagazine > 0 ? BulletDamage : 0;
+        return BulletDamage;
+    }
 };
 ```
 
@@ -8448,28 +8464,71 @@ Extract Method is a refactoring technique where you take a portion of code withi
 Example:
 
 ```cpp
-// Note, this is regular raw C++ code.
-
 // Before refactoring
-void printFullName(std::string firstName, std::string lastName)
+void TakeActorDamage(MyActor* actor, int damage = 100)
 {
-    std::cout << "Full Name: " << firstName << " " << lastName << std::endl;
-    // Some other logic related to printing the full name
+    // Apply damage to the actor
+    actor->TakeDamage(damage);
+
+    // Log damage taken
+    UE_LOG(LogTemp, Warning, TEXT("%s took %d damage!"), *actor->GetName(), damage);
+
+    // Check if actor is destroyed
+    if (actor->IsDestroyed())
+    {
+        // Log actor destruction
+        UE_LOG(LogTemp, Warning, TEXT("%s has been destroyed!"), *actor->GetName());
+
+        // Spawn explosion effect
+        UGameplayStatics::SpawnEmitterAtLocation(actor->GetWorld(), ExplosionEffect, actor->GetActorLocation());
+
+        // Play destruction sound
+        UGameplayStatics::PlaySoundAtLocation(actor->GetWorld(), DestructionSound, actor->GetActorLocation());
+
+        // Detach actor from parent
+        actor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+
+        // Destroy actor
+        actor->Destroy();
+    }
 }
 
 // After refactoring
-void printFullName(std::string firstName, std::string lastName)
+void ApplyDamageToActor(MyActor* actor, int damage = 100)
 {
-    print("Full Name: " + firstName + " " + lastName);
+    // Apply damage to the actor
+    actor->TakeDamage(damage);
+
+    // Log damage taken
+    UE_LOG(LogTemp, Warning, TEXT("%s took %d damage!"), *actor->GetName(), damage);
+
+    // Check if actor is destroyed
+    if (!actor->IsDestroyed())
+        return;
+
+    HandleActorDestruction(actor);
 }
 
-void print(const std::string& message)
+void HandleActorDestruction(MyActor* actor)
 {
-    std::cout << message << std::endl;
+    // Log actor destruction
+    UE_LOG(LogTemp, Warning, TEXT("%s has been destroyed!"), *actor->GetName());
+
+    // Spawn explosion effect
+    UGameplayStatics::SpawnEmitterAtLocation(actor->GetWorld(), ExplosionEffect, actor->GetActorLocation());
+
+    // Play destruction sound
+    UGameplayStatics::PlaySoundAtLocation(actor->GetWorld(), DestructionSound, actor->GetActorLocation());
+
+    // Detach actor from parent
+    actor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+
+    // Destroy actor
+    actor->Destroy();
 }
 ```
 
-#### Introduce/Inline typedefs
+#### Typedefs
 
 Introducing a typedef can make complex type names more concise and easier to understand. On the other hand, inline typedefs are useful for reducing the complexity of code and improving code readability by avoiding unnecessary type aliases.
 
@@ -8493,6 +8552,9 @@ NameToNumbersMap numbers;
 std::map<std::string, std::vector<int>> numbers;
 ```
 
+> [!NOTE]
+> Typedefs doesn't work with UHT[^1]. Meaning, you can't expose to Blueprint.
+
 #### Introduce Variable
 
 Introducing a variable can simplify complex expressions or improve code readability by giving meaningful names to intermediate results.
@@ -8503,14 +8565,14 @@ Example:
 // Note, this is regular raw C++ code.
 
 // Before refactoring
-int total = (price + tax) * quantity - discount + shippingCost;
+float total = (price + tax) * quantity - discount + shippingCost;
 
 // After refactoring
-int netPrice = price + tax;
-int totalPrice = netPrice * quantity - discount + shippingCost;
+float netPrice = price + tax;
+float totalPrice = netPrice * quantity - discount + shippingCost;
 ```
 
-### Invert 'if' statement to reduce nesting
+#### Invert 'if' statement to reduce nesting
 
 Consider the following code snippet:
 
@@ -8521,7 +8583,12 @@ void MyCharacter::DoSomething()
     {
         if (!bIsMoving)
         {
-            MoveCharacter();
+            if (!bIsJumping)
+                MoveCharacter();
+            else
+            {
+                // Handle already jumping
+            }
         }
         else
         {
@@ -8546,22 +8613,21 @@ void MyCharacter::DoSomething()
         return;
     }
 
-    if (!bIsMoving)
-    {
-        MoveCharacter();
-    }
-    else
+    if (bIsMoving)
     {
         // Handle already moving
+        return;
     }
+
+    if (bIsJumping)
+    {
+        // Handle already jumping
+        return;
+    }
+
+    MoveCharacter();
 }
 ```
-
-Here is a video explaining some of the best practices with Unreal Engine and C++.
-
-There is a video about some of these best practices called [Best Practices (2019-2021) from Stephen Maloney](https://www.youtube.com/watch?v=g7WVBZZTRDk)
-
-In the video, there is also a [Google documentation](https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8) (if video wasn't enough) for more details about some of his tips and tricks.
 
 ### ⏱ Ticking
 
