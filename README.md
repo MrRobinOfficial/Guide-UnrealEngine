@@ -23,6 +23,9 @@
 
 _In this repo, we'll guide you through the basics of getting started with Unreal Engine and C++. We'll cover the fundamentals of C++ programming, such as data types and pointers, and show you how to use these concepts in the context of game development with Unreal Engine. We'll also introduce you to the Unreal Engine module system, which is an important aspect of organizing your game code into smaller, more manageable pieces._
 
+> [!IMPORTANT]
+> If you want to use another language for Unreal Engine, like C#, then highly recommend checking out this [repo by Oscar Olsson](https://github.com/UnrealSharp/UnrealSharp).
+
 > [!NOTE]
 > This repository was created in conjunction with [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT) to assist in writing and formulating each sentence. While it provides valuable information, it may not be entirely accurate. If you detect any errors or false statements, please feel free to create a new [issue](https://github.com/MrRobinOfficial/Guide-UnrealEngine/issues/) to report them for further improvement and clarification.
 >
@@ -8552,7 +8555,7 @@ NameToNumbersMap numbers;
 std::map<std::string, std::vector<int>> numbers;
 ```
 
-> [!NOTE]
+> [!WARNING]
 > Typedefs doesn't work with UHT[^1]. Meaning, you can't expose to Blueprint.
 
 #### Introduce Variable

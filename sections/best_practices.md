@@ -205,7 +205,7 @@ NameToNumbersMap numbers;
 std::map<std::string, std::vector<int>> numbers;
 ```
 
-> [!NOTE]
+> [!WARNING]
 > Typedefs doesn't work with UHT[^1]. Meaning, you can't expose to Blueprint.
 
 #### Introduce Variable
