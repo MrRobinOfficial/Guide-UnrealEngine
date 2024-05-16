@@ -1,11 +1,11 @@
 # Ignore languages
-**/*.md linguist-detectable=true
-**/*.cs linguist-detectable=false
-**/*.js linguist-detectable=false
-**/*.json linguist-detectable=false
-**/*.bash linguist-detectable=false
-**/*.html linguist-detectable=false
-**/*.xml linguist-detectable=false
+*.md linguist-detectable=true
+*.cs linguist-detectable=false
+*.js linguist-detectable=false
+*.json linguist-detectable=false
+*.bash linguist-detectable=false
+*.html linguist-detectable=false
+*.xml linguist-detectable=false
 
 ## git-lfs ##
 
