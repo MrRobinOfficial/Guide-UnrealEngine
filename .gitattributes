@@ -1,5 +1,6 @@
 # Ignore languages
-**/*.cs linguist-detectable=true
+**/*.md linguist-detectable=true
+**/*.cs linguist-detectable=false
 **/*.js linguist-detectable=false
 **/*.json linguist-detectable=false
 **/*.bash linguist-detectable=false
