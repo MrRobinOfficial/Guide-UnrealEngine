@@ -2155,13 +2155,9 @@ You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/
 
 #### String Builder
 
-When working strings, you might have to concatenate a lot of string together. Sometimes, this can create complex and messy code to read. Whilst, `FString` is **mutable** and allows the developer to alter its data without copy a new instance. A string builder can still be a very helpful tool.
+When working strings, you might have to concatenate a lot of string together. Sometimes, this can create complex and messy code to read. Whilst, `FString` is **mutable** and allows the developer to alter its data without copy a new instance. A string builder (`TStringBuilderBase`) can still be a very helpful tool to know about.
 
-The string builder allocates a buffer space which is used to hold the constructed string. The intent is that the builder is allocated on the stack as a function local variable to avoid heap allocations.
-
-The buffer is always contiguous, and the class is not intended to be used to construct extremely large strings.
-
-This is not intended to be used as a mechanism for holding on to strings for a long time. The use case is explicitly to aid in constructing strings on the stack and subsequently passing the string into a function call or a more permanent string storage mechanism like `FString` et al.
+The string builder allocates a buffer space which is used to hold the constructed string. The intent is that the builder is allocated on the stack as a function local variable to avoid heap allocations. Also the buffer is always contiguous, and the class is not intended to be used to construct extremely large strings.
 
 The amount of buffer space to allocate is specified via a template parameter and if the constructed string should overflow this initial buffer, a new buffer will be allocated using regular dynamic memory allocations.
 
@@ -2183,28 +2179,28 @@ To create a string builder with an unknown buffer size:
 FStringBuilderBase StringBuilder; // Note! This is using a regular dynamic memory allocation.
 ```
 
-To create a string builder with initialize buffer size:
+To create a string builder with initialize buffer size at **compile time**:
 
 ```cpp
-int32 BufferSize = 12; // 12 characters of TCHAR
+constexpr int32 BufferSize = 12; // 12 characters of TCHAR
 TStringBuilder<BufferSize> StringBuilder;
 ```
 
 Append characters to the string builder:
 
 ```cpp
-StringBuilder.Appendchar('H');
-StringBuilder.Appendchar('e');
-StringBuilder.Appendchar('l');
-StringBuilder.Appendchar('l');
-StringBuilder.Appendchar('o');
-StringBuilder.Appendchar(',');
-StringBuilder.Appendchar(' ');
-StringBuilder.Appendchar('W');
-StringBuilder.Appendchar('o');
-StringBuilder.Appendchar('r');
-StringBuilder.Appendchar('l');
-StringBuilder.Appendchar('d');
+StringBuilder.AppendChar('H');
+StringBuilder.AppendChar('e');
+StringBuilder.AppendChar('l');
+StringBuilder.AppendChar('l');
+StringBuilder.AppendChar('o');
+StringBuilder.AppendChar(',');
+StringBuilder.AppendChar(' ');
+StringBuilder.AppendChar('W');
+StringBuilder.AppendChar('o');
+StringBuilder.AppendChar('r');
+StringBuilder.AppendChar('l');
+StringBuilder.AppendChar('d');
 
 // StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd' }
 ```
@@ -2219,7 +2215,7 @@ FStringView StrView = StringBuilder.ToView();
 You can also append a string as well:
 
 ```cpp
-// Note! The string builder will allocate more memory, if necessary.
+// Warning! The string builder will allocate more memory, if necessary.
 
 // We only allocated 12 characters, and this call will make it go over bound.
 // Causing to allocate more memory on heap.
@@ -2228,13 +2224,10 @@ StringBuilder.Append(TEXT(" and welcome!"));
 // StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', ' ', 'a', 'n', 'd', ' ', 'w', 'e', 'l', 'c', 'o', 'm', 'e', '!' }
 ```
 
-> [!WARNING]
-> The string builder will allocate more memory, if necessary.
-
 Here's an another example:
 
 ```cpp
-TStringBuilder<256> MessageBuilder;
+TStringBuilderBase<TCHAR> MessageBuilder;
 
 float PlayerHealth = 110.5285f;
 MessageBuilder << TEXTVIEW("Player's health: ") << FString::SanitizeFloat(PlayerHealth);
@@ -2247,6 +2240,9 @@ You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/
 #### TEnumAsByte
 
 Template to store enumeration values as bytes in a type-safe way.
+
+> [!NOTE]
+> This way the old way of exposing enums to Unreal's editor. Now it's possible to use `UPROPERTY` and `UENUM` and replaces the need of using `TEnumAsByte` anymore.
 
 **Here's an example:**
 
@@ -2287,9 +2283,6 @@ UE_LOG(LogTemp, Log, TEXT("Value of the: %i"), UEnum::GetValueAsName(Val));
 UE_LOG(LogTemp, Log, TEXT("Integer value of the: %i"), IntVal);
 ```
 
-> [!NOTE]
-> That regular enums are supported by `UPROPERTY` and replaces the need of using `TEnumAsByte` anymore.
-
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TEnumAsByte/).
 
 ### 🧨 Value type vs Reference type
@@ -2307,6 +2300,11 @@ A value type creates a copy when initialized from another variable. For instance
 ```cpp
 int A = 69;
 int B = A; // A copy
+
+B = B + 1;
+
+// A = 69
+// B = 70
 ```
 
 On the other hand, a reference type directly references the memory location of the variable. In this case, when variable B is initialized by variable A, B becomes a reference to the same memory location as A. Consequently, any changes made to B will also affect A since B essentially points to the same underlying value as A.
@@ -2314,6 +2312,11 @@ On the other hand, a reference type directly references the memory location of t
 ```cpp
 int A = 69;
 int& B = A; // A reference
+
+B = B + 1;
+
+// A = 70
+// B = 70
 ```
 
 Everything in C++ is value type by default. Even classes, which differ from C#[^12].
@@ -2323,7 +2326,10 @@ You can watch this video about [references in C++ from Low Level Learning](https
 Here's an example:
 
 ```cpp
-// Test struct and class
+#include <iostream>
+#include <sstream>
+
+// Create struct to store coordinates
 struct Coords
 {
     // Constructor: Initialize X and Y with given values
@@ -2335,7 +2341,7 @@ public:
 
 public:
     // Return a string representation of this Coords struct
-    std::string toString() const
+    std::string ToString() const
     {
         // Use stringstream to concatenate strings
         std::stringstream ss;
@@ -2349,24 +2355,32 @@ int main()
     Coords A(1, 2); // Create struct A
     Coords& B = A; // B is a reference to A
     Coords* C = &B; // C is a pointer to A
-    Coords* D = new Coords(5, 10); // Create a new Coords struct with new
+    Coords* D = new Coords(5, 10); // Create a new Coords struct on the heap
     Coords* E = &(*C); // E is a pointer to what C points to
 
     B.X = 69; // Modify X of A through B
     C->Y = 1337; // Modify Y of A through C
     D->Y = D->Y * 2; // Modify Y of dynamically allocated struct
-
     E = &*D; // Make E point to what D points to
     E->X = 10; // Modify X of dynamically allocated struct
 
     // Print statements
-    std::cout << A.toString() << std::endl;
-    std::cout << B.toString() << std::endl;
-    std::cout << C->toString() << std::endl;
-    std::cout << D->toString() << std::endl;
-    std::cout << E->toString() << std::endl;
+    std::cout << "A: " << A.ToString() << std::endl;
+    std::cout << "B: "<< B.ToString() << std::endl;
+    std::cout << "C: "<< C->ToString() << std::endl;
+    std::cout << "D: "<< D->ToString() << std::endl;
+    std::cout << "E: "<< E->ToString() << std::endl;
 
-    delete D; // Deallocate memory of dynamically allocated struct
+    // A: (69, 1337) (original value)
+    // B: (69, 1337) (reference of A)
+    // C: (69, 1337) (pointer to A)
+    // D: (10, 20) (dynamically allocated struct)
+    // E: (10, 20) (pointer to C, which then swaps to point to D)
+
+    // Deallocate memory of dynamically allocated struct.
+    // If not, then memory leak will occur. Which can cause a crash in your application, if too many objects are created.
+    // Either remember to call `delete` on raw pointers or use smart pointers.
+    delete D;
 
     return 0;
 }
@@ -2409,7 +2423,7 @@ Pointers are valuable tools in programming as they allow us to store memory addr
 
 Additionally, pointers are essential in scenarios like data structures, linked lists, and passing data to functions by reference, providing a level of control and precision that enhances the capabilities of the program. However, **it's important to handle pointers with care**, as incorrect usage can lead to **memory leaks** or **segmentation faults**.
 
-#### 🦴 Raw pointers
+#### Raw pointers
 
 A raw pointer can be sometime dangerous, because there is no validation when accessing this pointer. And when the pointer is pointing to nothing (meaning, the pointer is a `nullptr`). The program will throw a null pointer exception, also known as a segmentation fault (segfault).
 
@@ -2457,13 +2471,19 @@ UPROPERTY()
 TObjectPtr<AActor> ActorPtr = nullptr;
 ```
 
-#### 🤖 Smart pointers library
+#### Smart pointers library
 
 In Unreal Engine, the Smart Pointer's library provides a set of template classes to manage memory and object ownership more efficiently and safely. These smart pointers automatically handle memory management, such as allocating and deallocating memory, and help prevent memory leaks and null pointer dereferences.
 
 The key smart pointers in Unreal Engine's library include `TSharedPtr`, `TWeakPtr`, and `TUniquePtr`. They are designed to handle various ownership scenarios and provide a safer alternative to raw pointers.
 
 You can read more about [Unreal Smart Pointer Library on their docs](https://docs.unrealengine.com/5.2/en-US/smart-pointers-in-unreal-engine/).
+
+| Pointer Type      | Description                                                |
+|--------------------|------------------------------------------------------------|
+| TSharedPtr         | Shared pointer for managing ownership of dynamically allocated objects. Allows multiple pointers to share ownership. |
+| TWeakPtr           | Weak pointer for non-owning references to dynamically allocated objects. |
+| TUniquePtr         | Unique pointer for exclusive ownership of dynamically allocated objects. Ensures only one pointer owns the object. |
 
 ##### TSharedPtr
 
@@ -2496,11 +2516,19 @@ Example:
 TUniquePtr<int32> uniquePtr = MakeUnique<int32>(42);
 ```
 
-#### 🤖 Smart `UObject` pointers
+#### Smart `UObject` pointers
 
-Unreal Engine's Smart Pointers, such as `TSharedPtr`, `TWeakPtr`, and `TUniquePtr`, are generic smart pointers that can be used with any C++ classes or types, not limited to Unreal Engine's UObject-derived classes.
+Unreal Engine's Smart Pointers, such as `TSharedPtr`, `TWeakPtr`, and `TUniquePtr`, are generic smart pointers that can be used with any C++ classes or types.
 
-On the other hand, UObject Smart Pointers are specific to Unreal Engine's UObject-derived classes. These smart pointers, such as `TWeakObjectPtr`, `TWeakInterfacePtr`, `TSoftObjectPtr` and `TSoftClassPtr`, are designed to handle `UObject` ownership and management within the Unreal Engine ecosystem.
+However, `UObject` Smart Pointers are specific to Unreal Engine's UObject-derived classes. These smart pointers, such as `TWeakObjectPtr`, `TWeakInterfacePtr`, `TSoftObjectPtr` and `TSoftClassPtr`, are designed to handle `UObject` ownership and management within the Unreal Engine ecosystem.
+
+| Pointer Type      | Description                                                |
+|--------------------|------------------------------------------------------------|
+| TStrongObjectPtr     | Strong pointer for owning references to UObject-derived objects. |
+| TWeakObjectPtr     | Weak pointer for non-owning references to UObject-derived objects. |
+| TWeakInterfacePtr  | Weak pointer for non-owning references to UObject-derived objects implementing a specific interface. |
+| TSoftObjectPtr     | Soft pointer for non-owning references to UObject-derived objects. Allows loading the object when needed, but won't prevent it from being garbage collected. |
+| TSoftClassPtr      | Soft pointer for non-owning references to UClass-derived objects. Allows loading the class when needed, but won't prevent it from being garbage collected. |
 
 ##### TWeakObjectPtr
 
@@ -2550,43 +2578,7 @@ This smart pointer is used to hold a soft reference to an `UObject` subclass. It
 
 ![TSoftObjectPtr](static/img/TSoftObjectPtr_BP.png)
 
-Example usage:
-
-```cpp
-TSoftObjectPtr<UTexture2D> SoftPtr; // Assign soft reference to a texture asset
-
-if (SoftPtr.IsValid())
-{
-    UTexture2D* Texture = SoftPtr.LoadSynchronous(); // This will cause a lag spike (if the asset is heavily chained or large in size)
-
-    if (Texture)
-    {
-        // Use the loaded texture
-    }
-}
-```
-
-Asynchronous Solution:
-
-```cpp
-TSoftObjectPtr<UTexture2D> SoftPtr; // Assign soft reference to a texture asset
-
-if (SoftPtr.IsValid())
-{
-    OnTextureLoadedDelegate.BindLambda([]()
-    {
-        // Called when the texture is loaded and ready to use
-        UTexture2D* Texture = SoftPtr.Get();
-
-        if (Texture)
-        {
-            // Use the loaded texture as needed
-        }
-    });
-
-    StreamableManager.RequestAsyncLoad(SoftPtr.ToSoftObjectPath(), OnTextureLoadedDelegate);
-}
-```
+You can read more about soft references at this [section](#-soft-vs-hard-references).
 
 > [!WARNING]
 > Don't use `FSoftObjectPath` or `FSoftObjectPtr`. Used for internal purpose.
@@ -2597,63 +2589,9 @@ This smart pointer is used to hold a soft reference to a `UClass` subclass. It i
 
 ![TSoftClassPtr](static/img/TSoftClassPtr_BP.png)
 
-Example usage:
-
-```cpp
-TSoftClassPtr<AMyBlueprintClass> SoftPtr; // Assign soft reference to a blueprint class
-
-if (SoftPtr.IsValid())
-{
-    UClass* Class = SoftPtr.LoadSynchronous(); // This will cause a lag spike (if the asset is heavily chained or large in size)
-
-    if (Class)
-    {
-        // Use the loaded class
-    }
-}
-```
-
-Asynchronous Solution:
-
-```cpp
-TSoftClassPtr<AMyBlueprintClass> SoftPtr; // Assign soft reference to a blueprint class
-
-if (SoftPtr.IsValid())
-{
-    OnBlueprintLoadedDelegate.BindLambda([]()
-    {
-        // Called when the blueprint class is loaded and ready to use
-        UClass* BlueprintClass = SoftPtr.Get();
-
-        if (BlueprintClass)
-        {
-            // Use the loaded blueprint class as needed
-            AMyBlueprintClass* NewActor = GetWorld()->SpawnActor<AMyBlueprintClass>(BlueprintClass);
-
-            if (NewActor)
-            {
-                // Successfully spawned the actor based on the loaded blueprint class
-            }
-        }
-    });
-
-    StreamableManager.RequestAsyncLoad(SoftPtr.ToSoftObjectPath(), OnBlueprintLoadedDelegate);
-}
-```
+You can read more about soft references at this [section](#-soft-vs-hard-references).
 
 > [!WARNING]
 > Don't use `FSoftClassPath`. Legacy code.
-
----
-
-| Smart Pointer      | Type Based On      | Description                                                |
-|--------------------|--------------------|------------------------------------------------------------|
-| TSharedPtr         | Regular C++ Classes | Shared pointer for managing ownership of dynamically allocated objects. Allows multiple pointers to share ownership. |
-| TWeakPtr           | Regular C++ Classes | Weak pointer for non-owning references to dynamically allocated objects. |
-| TUniquePtr         | Regular C++ Classes | Unique pointer for exclusive ownership of dynamically allocated objects. Ensures only one pointer owns the object. |
-| TWeakObjectPtr     | UObject Classes    | Weak pointer for non-owning references to UObject-derived objects. |
-| TWeakInterfacePtr  | UObject Classes    | Weak pointer for non-owning references to objects implementing a specific interface. |
-| TSoftObjectPtr     | UObject Classes    | Soft pointer for non-owning references to UObject-derived objects. Allows loading the object when needed, but won't prevent it from being garbage collected. |
-| TSoftClassPtr      | UObject Classes    | Soft pointer for non-owning references to UClass-derived objects. Allows loading the class when needed, but won't prevent it from being garbage collected. |
 
 <!-- prettier-ignore-end -->

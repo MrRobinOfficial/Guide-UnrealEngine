@@ -7,8 +7,8 @@
 ![guide-status](https://img.shields.io/badge/guide_status-revision-91ff00)
 
 ![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-4A5173)
-![reading-time](https://img.shields.io/badge/reading_time-3,98_hours-blue)
-![word-count](https://img.shields.io/badge/word_count-36,438-blue)
+![reading-time](https://img.shields.io/badge/reading_time-4,16_hours-blue)
+![word-count](https://img.shields.io/badge/word_count-37,920-blue)
 
 ![GitHub issues](https://img.shields.io/github/issues/MrRobinOfficial/Guide-UnrealEngine)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/MrRobinOfficial/Guide-UnrealEngine)
@@ -46,261 +46,262 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [👑 Cheatsheets](#-cheatsheets)
-- [🎩 Plugins](#-plugins)
-  - [Marketplace Plugins](#marketplace-plugins)
-  - [Github Plugins](#github-plugins)
-  - [Epic Games Plugins](#epic-games-plugins)
-  - [MrRobinOfficial's Plugins](#mrrobinofficials-plugins)
-- [📛 Console Commands](#-console-commands)
-- [📌 Shortcuts](#-shortcuts)
-- [⌛ Getting started with C++](#-getting-started-with-c)
-  - [🌈 Integrated Development Environment](#-integrated-development-environment)
-  - [⛏️ Tools to help your journey](#-tools-to-help-your-journey)
-  - [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
-  - [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
-- [🌍 Summary of C++ and Programming World](#-summary-of-c-and-programming-world)
-- [🚧 Blueprint vs C++](#-blueprint-vs-c)
-- [🎪 Architecture](#-architecture)
-- [⚓ Guidelines](#-guidelines)
-  - [🎳 Naming Convention](#-naming-convention)
-    - [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
-    - [Prefixes](#prefixes)
-  - [Coding standard](#coding-standard)
-- [💎 Unreal Header Tool](#-unreal-header-tool)
-  - [UPROPERTY](#uproperty)
-    - [Specifiers](#specifiers)
-    - [Meta tags](#meta-tags)
-    - [Examples](#examples)
-  - [UFUNCTION](#ufunction)
-    - [Common Specifiers](#common-specifiers)
-    - [Common Meta tags](#common-meta-tags)
-    - [Examples](#examples-1)
-  - [UCLASS](#uclass)
-    - [Common Specifiers](#common-specifiers-1)
-    - [Common Meta tags](#common-meta-tags-1)
-    - [Examples](#examples-2)
-  - [USTRUCT](#ustruct)
-    - [Common Specifiers](#common-specifiers-2)
-    - [Common Meta tags](#common-meta-tags-2)
-    - [Examples](#examples-3)
-  - [UENUM](#uenum)
-    - [Common Specifiers](#common-specifiers-3)
-    - [Common Meta tags](#common-meta-tags-3)
-    - [Examples](#examples-4)
-  - [UPARAM](#uparam)
-    - [Examples](#examples-5)
-  - [UMETA](#umeta)
-    - [Common Specifiers](#common-specifiers-4)
-    - [Examples](#examples-6)
-- [🧱 Data Types](#-data-types)
-  - [Characters](#characters)
-  - [Booleans](#booleans)
-  - [Integers](#integers)
-  - [Floating point numbers](#floating-point-numbers)
-  - [🛟 Size can vary](#-size-can-vary)
-  - [🦺 Unreal Engine Typedefs](#-unreal-engine-typedefs)
-  - [📖 String Data Types](#-string-data-types)
-  - [Text Macros](#text-macros)
-    - [FName](#fname)
-    - [FText](#ftext)
-    - [FString](#fstring)
-  - [🚀 Math Data Types](#-math-data-types)
-    - [Vector4](#vector4)
-    - [Vector3](#vector3)
-    - [Vector2](#vector2)
-    - [IntPoint](#intpoint)
-    - [IntRect](#intrect)
-    - [Rotator](#rotator)
-    - [Quaternion](#quaternion)
-    - [Transform](#transform)
-    - [Plane](#plane)
-    - [Matrix](#matrix)
-    - [Sphere](#sphere)
-    - [Box](#box)
-    - [Box2D](#box2d)
-    - [Ray](#ray)
-    - [Colors](#colors)
-  - [💐 Collections](#-collections)
-    - [TArray](#tarray)
-    - [TSet](#tset)
-    - [TMap](#tmap)
-    - [Common and helpful functions](#common-and-helpful-functions)
-    - [Algo Namespace](#algo-namespace)
-    - [TMultiMap](#tmultimap)
-    - [TStaticArray](#tstaticarray)
-    - [FHashTable](#fhashtable)
-    - [TStaticHashTable](#tstatichashtable)
-    - [TSortedMap](#tsortedmap)
-    - [TList](#tlist)
-    - [TLinkedList](#tlinkedlist)
-    - [TDoubleLinkedList](#tdoublelinkedlist)
-    - [TQueue](#tqueue)
-    - [TArrayView](#tarrayview)
-    - [String View](#string-view)
-    - [String Builder](#string-builder)
-    - [TEnumAsByte](#tenumasbyte)
-  - [🧨 Value type vs Reference type](#-value-type-vs-reference-type)
-  - [👈 Pointers](#-pointers)
-    - [🦴 Raw pointers](#-raw-pointers)
-    - [🤖 Smart pointers library](#-smart-pointers-library)
-      - [TSharedPtr](#tsharedptr)
-      - [TWeakPtr](#tweakptr)
-      - [TUniquePtr](#tuniqueptr)
-    - [🤖 Smart `UObject` pointers](#-smart-uobject-pointers)
-      - [TWeakObjectPtr](#tweakobjectptr)
-      - [TWeakInterfacePtr](#tweakinterfaceptr)
-      - [TSoftObjectPtr](#tsoftobjectptr)
-      - [TSoftClassPtr](#tsoftclassptr)
-  - [🔖 Keywords](#-keywords)
-    - [Constants](#constants)
-    - [Access modifiers](#access-modifiers)
-    - [Class, struct and memory](#class-struct-and-memory)
-    - [Function related](#function-related)
-    - [Casts](#casts)
-    - [Flow controls](#flow-controls)
-    - [Generic programming](#generic-programming)
-    - [Misc](#misc)
-- [👷 Constructors, destructors and initialization](#-constructors-destructors-and-initialization)
-    - [Constructors](#constructors)
-    - [Destructors](#destructors)
-    - [Constructors and destructors in UE](#constructors-and-destructors-in-ue)
-    - [Initialization](#initialization)
-- [🏛 Create custom class](#-create-custom-class)
-  - [AActor](#aactor)
-  - [UActorComponent](#uactorcomponent)
-  - [USceneComponent](#uscenecomponent)
-  - [APawn](#apawn)
-  - [UObject](#uobject)
-- [🏛 Create custom interface](#-create-custom-interface)
-  - [Creating interface inside C++](#creating-interface-inside-c)
-  - [Extending the interface function:](#extending-the-interface-function)
-  - [Calling the interface function](#calling-the-interface-function)
-  - [Checking if the UObject extends the interface](#checking-if-the-uobject-extends-the-interface)
-  - [Reference to an interface object](#reference-to-an-interface-object)
-- [🛸 Reflection System](#-reflection-system)
-- [🗑️ Garbage Collection](#-garbage-collection)
-  - [How does it work](#how-does-it-work)
-    - [Rules](#rules)
-    - [Examples](#examples-7)
-  - [Manual memory management](#manual-memory-management)
-  - [Collection and Mark as garbage](#collection-and-mark-as-garbage)
-  - [Validation](#validation)
-- [💾 Soft vs hard references](#-soft-vs-hard-references)
-  - [Soft References](#soft-references)
-  - [Hard References](#hard-references)
-- [🌍 Global Functions](#-global-functions)
-- [🏛️ Libraries](#-libraries)
-  - [Kismet Library](#kismet-library)
-  - [Misc Library](#misc-library)
-- [📃 Macros](#-macros)
-- [📜 Logging](#-logging)
-  - [UE_LOGFMT](#ue_logfmt)
-  - [Log to game-view](#log-to-game-view)
-- [🪨 Assertions](#-assertions)
-  - [Check](#check)
-  - [Verify](#verify)
-  - [Ensure](#ensure)
-  - [Alternatives Assertions](#alternatives-assertions)
-  - [Misc Assertions](#misc-assertions)
-- [🔔 Delegates](#-delegates)
-  - [Define a delegate type](#define-a-delegate-type)
-  - [Declare a delegate variable](#declare-a-delegate-variable)
-  - [Bind functions to the delegate](#bind-functions-to-the-delegate)
-  - [Trigger the delegate](#trigger-the-delegate)
-  - [Summary](#summary)
-- [🧩 UMG](#-umg)
-  - [UMG with C++](#umg-with-c)
-  - [UI Tweening Library](#ui-tweening-library)
-- [📚 Create custom module](#-create-custom-module)
-  - [Module structure](#module-structure)
-  - [Module code](#module-code)
-  - [♻️ Circular Dependency](#-circular-dependency)
-- [💡 Create custom plugin](#-create-custom-plugin)
-- [📝 Preprocessor](#-preprocessor)
-  - [Pragma once](#pragma-once)
-  - [Strip out editor functionality](#strip-out-editor-functionality)
-- [🦄 Units](#-units)
-  - [Use cases with UHT](#use-cases-with-uht)
-  - [Use cases with code](#use-cases-with-code)
-- [🎨 Draw Debug Shapes](#-draw-debug-shapes)
-  - [Draw a point](#draw-a-point)
-  - [Draw a sphere](#draw-a-sphere)
-  - [Draw a circle](#draw-a-circle)
-  - [Draw a circle arc](#draw-a-circle-arc)
-  - [Draw a 2D donut](#draw-a-2d-donut)
-  - [Draw a solid box](#draw-a-solid-box)
-  - [Draw a wired box](#draw-a-wired-box)
-  - [Draw a cylinder](#draw-a-cylinder)
-  - [Draw a capsule](#draw-a-capsule)
-  - [Draw a cone](#draw-a-cone)
-  - [Draw a plane](#draw-a-plane)
-  - [Draw a line](#draw-a-line)
-  - [Draw an arrow](#draw-an-arrow)
-  - [Draw a crosshair](#draw-a-crosshair)
-  - [Draw a camera](#draw-a-camera)
-  - [Draw a mesh](#draw-a-mesh)
-  - [Draw a string:](#draw-a-string)
-  - [Draw a centripetal catmull-rom spline](#draw-a-centripetal-catmull-rom-spline)
-- [⚡ Compiling a plugin](#-compiling-a-plugin)
-- [⏳ Gameplay Timers](#-gameplay-timers)
-- [🧵 Gameplay Tags](#-gameplay-tags)
-- [Usage](#usage)
-- [Data types](#data-types)
-- [Code](#code)
-- [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
-  - [Multithreading](#multithreading)
-  - [Runnables](#runnables)
-  - [Tasks](#tasks)
-    - [AsyncTask](#asynctask)
-    - [ParallelFor](#parallelfor)
-    - [FNonAbandonableTask](#fnonabandonabletask)
-- [🎯 Extend Unreal Editor](#-extend-unreal-editor)
-  - [Slate](#slate)
-  - [Creating custom asset type](#creating-custom-asset-type)
-- [⚠️ Common Issues](#-common-issues)
-  - [⛔ Compiler Errors](#-compiler-errors)
-    - [Compiler Error C2007](#compiler-error-c2007)
-    - [Compiler Error C2065](#compiler-error-c2065)
-    - [Compiler Error C2628](#compiler-error-c2628)
-  - [💣 Runtime Errors](#-runtime-errors)
-  - [💀 Semantic Errors](#-semantic-errors)
-    - [💠 Integer overflow](#-integer-overflow)
-    - [💠 Array overflow](#-array-overflow)
-    - [🔍 Scope issues](#-scope-issues)
-- [🐣 Tips and best practices](#-tips-and-best-practices)
-  - [Disable BlueprintPure](#disable-blueprintpure)
-  - [Switch case fall-through](#switch-case-fall-through)
-  - [📦 Refactoring](#-refactoring)
-    - [Renaming](#renaming)
-    - [Extract Method](#extract-method)
-    - [Typedefs](#typedefs)
-    - [Introduce Variable](#introduce-variable)
-    - [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
-  - [⏱ Ticking](#-ticking)
-    - [For actors](#for-actors)
-    - [For components](#for-components)
-    - [If you have to use tick](#if-you-have-to-use-tick)
-    - [`FTickFunction`](#ftickfunction)
-      - [MyTickableThing.h](#mytickablethingh)
-      - [MyTickableThing.cpp](#mytickablethingcpp)
-  - [🔌 Direct references](#-direct-references)
-- [🗝️ Deep dive](#-deep-dive)
-  - [K2Node](#k2node)
-  - [➗ Math Expression Node](#-math-expression-node)
-  - [Call function in editor](#call-function-in-editor)
-  - [Call function via Console Commands](#call-function-via-console-commands)
-  - [Renaming variables without breaking references](#renaming-variables-without-breaking-references)
-  - [Sampling a curve](#sampling-a-curve)
-  - [HTTP requests](#http-requests)
-  - [Encryption and Decryption](#encryption-and-decryption)
-- [🔗 Helpful Links](#-helpful-links)
-  - [YouTube Videos](#youtube-videos)
-  - [Articles](#articles)
-  - [Online Tools](#online-tools)
-  - [Misc](#misc-1)
-- [🆘 Support](#-support)
-- [📍 Footnotes](#-footnotes)
+-   [👑 Cheatsheets](#-cheatsheets)
+-   [🎩 Plugins](#-plugins)
+    -   [Marketplace Plugins](#marketplace-plugins)
+    -   [Github Plugins](#github-plugins)
+    -   [Epic Games Plugins](#epic-games-plugins)
+    -   [MrRobinOfficial's Plugins](#mrrobinofficials-plugins)
+-   [📛 Console Commands](#-console-commands)
+-   [📌 Shortcuts](#-shortcuts)
+-   [⌛ Getting started with C++](#-getting-started-with-c)
+    -   [🌈 Integrated Development Environment](#-integrated-development-environment)
+    -   [⛏️ Tools to help your journey](#-tools-to-help-your-journey)
+    -   [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
+    -   [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
+-   [🌍 Summary of C++ and Programming World](#-summary-of-c-and-programming-world)
+-   [🚧 Blueprint vs C++](#-blueprint-vs-c)
+-   [🎪 Architecture](#-architecture)
+-   [⚓ Guidelines](#-guidelines)
+    -   [🎳 Naming Convention](#-naming-convention)
+        -   [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
+        -   [Prefixes](#prefixes)
+    -   [Coding standard](#coding-standard)
+-   [💎 Unreal Header Tool](#-unreal-header-tool)
+    -   [UPROPERTY](#uproperty)
+        -   [Specifiers](#specifiers)
+        -   [Meta tags](#meta-tags)
+        -   [Examples](#examples)
+    -   [UFUNCTION](#ufunction)
+        -   [Common Specifiers](#common-specifiers)
+        -   [Common Meta tags](#common-meta-tags)
+        -   [Examples](#examples-1)
+    -   [UCLASS](#uclass)
+        -   [Common Specifiers](#common-specifiers-1)
+        -   [Common Meta tags](#common-meta-tags-1)
+        -   [Examples](#examples-2)
+    -   [USTRUCT](#ustruct)
+        -   [Common Specifiers](#common-specifiers-2)
+        -   [Common Meta tags](#common-meta-tags-2)
+        -   [Examples](#examples-3)
+    -   [UENUM](#uenum)
+        -   [Common Specifiers](#common-specifiers-3)
+        -   [Common Meta tags](#common-meta-tags-3)
+        -   [Examples](#examples-4)
+    -   [UPARAM](#uparam)
+        -   [Examples](#examples-5)
+    -   [UMETA](#umeta)
+        -   [Common Specifiers](#common-specifiers-4)
+        -   [Examples](#examples-6)
+-   [🧱 Data Types](#-data-types)
+    -   [Characters](#characters)
+    -   [Booleans](#booleans)
+    -   [Integers](#integers)
+    -   [Floating point numbers](#floating-point-numbers)
+    -   [🛟 Size can vary](#-size-can-vary)
+    -   [🦺 Unreal Engine Typedefs](#-unreal-engine-typedefs)
+    -   [📖 String Data Types](#-string-data-types)
+    -   [Text Macros](#text-macros)
+        -   [FName](#fname)
+        -   [FText](#ftext)
+        -   [FString](#fstring)
+    -   [🚀 Math Data Types](#-math-data-types)
+        -   [Vector4](#vector4)
+        -   [Vector3](#vector3)
+        -   [Vector2](#vector2)
+        -   [IntPoint](#intpoint)
+        -   [IntRect](#intrect)
+        -   [Rotator](#rotator)
+        -   [Quaternion](#quaternion)
+        -   [Transform](#transform)
+        -   [Plane](#plane)
+        -   [Matrix](#matrix)
+        -   [Sphere](#sphere)
+        -   [Box](#box)
+        -   [Box2D](#box2d)
+        -   [Ray](#ray)
+        -   [Colors](#colors)
+    -   [💐 Collections](#-collections)
+        -   [TArray](#tarray)
+        -   [TSet](#tset)
+        -   [TMap](#tmap)
+        -   [Common and helpful functions](#common-and-helpful-functions)
+        -   [Algo Namespace](#algo-namespace)
+        -   [TMultiMap](#tmultimap)
+        -   [TStaticArray](#tstaticarray)
+        -   [FHashTable](#fhashtable)
+        -   [TStaticHashTable](#tstatichashtable)
+        -   [TSortedMap](#tsortedmap)
+        -   [TList](#tlist)
+        -   [TLinkedList](#tlinkedlist)
+        -   [TDoubleLinkedList](#tdoublelinkedlist)
+        -   [TQueue](#tqueue)
+        -   [TArrayView](#tarrayview)
+        -   [String View](#string-view)
+        -   [String Builder](#string-builder)
+        -   [TEnumAsByte](#tenumasbyte)
+    -   [🧨 Value type vs Reference type](#-value-type-vs-reference-type)
+    -   [👈 Pointers](#-pointers)
+        -   [Raw pointers](#raw-pointers)
+        -   [Smart pointers library](#smart-pointers-library)
+            -   [TSharedPtr](#tsharedptr)
+            -   [TWeakPtr](#tweakptr)
+            -   [TUniquePtr](#tuniqueptr)
+        -   [Smart `UObject` pointers](#smart-uobject-pointers)
+            -   [TWeakObjectPtr](#tweakobjectptr)
+            -   [TWeakInterfacePtr](#tweakinterfaceptr)
+            -   [TSoftObjectPtr](#tsoftobjectptr)
+            -   [TSoftClassPtr](#tsoftclassptr)
+    -   [🔖 Keywords](#-keywords)
+        -   [Constants](#constants)
+        -   [Access modifiers](#access-modifiers)
+        -   [Class, struct and memory](#class-struct-and-memory)
+        -   [Function related](#function-related)
+        -   [Casts](#casts)
+        -   [Flow controls](#flow-controls)
+        -   [Generic programming](#generic-programming)
+        -   [Misc](#misc)
+-   [👷 Constructors, destructors and initialization](#-constructors-destructors-and-initialization)
+    -   [Constructors](#constructors)
+    -   [Destructors](#destructors)
+    -   [Constructors and destructors in UE](#constructors-and-destructors-in-ue)
+    -   [Initialization](#initialization)
+-   [🏛 Create custom class](#-create-custom-class)
+    -   [AActor](#aactor)
+    -   [UActorComponent](#uactorcomponent)
+    -   [USceneComponent](#uscenecomponent)
+    -   [APawn](#apawn)
+    -   [UObject](#uobject)
+-   [🏛 Create custom interface](#-create-custom-interface)
+    -   [Creating interface inside C++](#creating-interface-inside-c)
+    -   [Extending the interface function:](#extending-the-interface-function)
+    -   [Calling the interface function](#calling-the-interface-function)
+    -   [Checking if the UObject extends the interface](#checking-if-the-uobject-extends-the-interface)
+    -   [Reference to an interface object](#reference-to-an-interface-object)
+-   [🛸 Reflection System](#-reflection-system)
+-   [🗑️ Garbage Collection](#-garbage-collection)
+    -   [How does it work](#how-does-it-work)
+        -   [Rules](#rules)
+        -   [Examples](#examples-7)
+    -   [Manual memory management](#manual-memory-management)
+    -   [Collection and Mark as garbage](#collection-and-mark-as-garbage)
+    -   [Validation](#validation)
+-   [💾 Soft vs hard references](#-soft-vs-hard-references)
+    -   [Blueprint](#blueprint)
+    -   [C++](#c)
+    -   [Tools](#tools)
+-   [🌍 Global Functions](#-global-functions)
+-   [🏛️ Libraries](#-libraries)
+    -   [Kismet Library](#kismet-library)
+    -   [Misc Library](#misc-library)
+-   [📃 Macros](#-macros)
+-   [📜 Logging](#-logging)
+    -   [UE_LOGFMT](#ue_logfmt)
+    -   [Log to game-view](#log-to-game-view)
+-   [🪨 Assertions](#-assertions)
+    -   [Check](#check)
+    -   [Verify](#verify)
+    -   [Ensure](#ensure)
+    -   [Alternatives Assertions](#alternatives-assertions)
+    -   [Misc Assertions](#misc-assertions)
+-   [🔔 Delegates](#-delegates)
+    -   [Define a delegate type](#define-a-delegate-type)
+    -   [Declare a delegate variable](#declare-a-delegate-variable)
+    -   [Bind functions to the delegate](#bind-functions-to-the-delegate)
+    -   [Trigger the delegate](#trigger-the-delegate)
+    -   [Summary](#summary)
+-   [🧩 UMG](#-umg)
+    -   [UMG with C++](#umg-with-c)
+    -   [UI Tweening Library](#ui-tweening-library)
+-   [📚 Create custom module](#-create-custom-module)
+    -   [Module structure](#module-structure)
+    -   [Module code](#module-code)
+    -   [♻️ Circular Dependency](#-circular-dependency)
+-   [💡 Create custom plugin](#-create-custom-plugin)
+-   [📝 Preprocessor](#-preprocessor)
+    -   [Pragma once](#pragma-once)
+    -   [Strip out editor functionality](#strip-out-editor-functionality)
+-   [🦄 Units](#-units)
+    -   [Use cases with UHT](#use-cases-with-uht)
+    -   [Use cases with code](#use-cases-with-code)
+-   [🎨 Draw Debug Shapes](#-draw-debug-shapes)
+    -   [Draw a point](#draw-a-point)
+    -   [Draw a sphere](#draw-a-sphere)
+    -   [Draw a circle](#draw-a-circle)
+    -   [Draw a circle arc](#draw-a-circle-arc)
+    -   [Draw a 2D donut](#draw-a-2d-donut)
+    -   [Draw a solid box](#draw-a-solid-box)
+    -   [Draw a wired box](#draw-a-wired-box)
+    -   [Draw a cylinder](#draw-a-cylinder)
+    -   [Draw a capsule](#draw-a-capsule)
+    -   [Draw a cone](#draw-a-cone)
+    -   [Draw a plane](#draw-a-plane)
+    -   [Draw a line](#draw-a-line)
+    -   [Draw an arrow](#draw-an-arrow)
+    -   [Draw a crosshair](#draw-a-crosshair)
+    -   [Draw a camera](#draw-a-camera)
+    -   [Draw a mesh](#draw-a-mesh)
+    -   [Draw a string:](#draw-a-string)
+    -   [Draw a centripetal catmull-rom spline](#draw-a-centripetal-catmull-rom-spline)
+-   [⚡ Compiling a plugin](#-compiling-a-plugin)
+-   [⏳ Gameplay Timers](#-gameplay-timers)
+-   [🧵 Gameplay Tags](#-gameplay-tags)
+    -   [Usage](#usage)
+    -   [Data types](#data-types)
+    -   [Code](#code)
+-   [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
+    -   [Multithreading](#multithreading)
+    -   [Runnables](#runnables)
+    -   [Tasks](#tasks)
+        -   [AsyncTask](#asynctask)
+        -   [ParallelFor](#parallelfor)
+        -   [FNonAbandonableTask](#fnonabandonabletask)
+-   [🎯 Extend Unreal Editor](#-extend-unreal-editor)
+    -   [Slate](#slate)
+    -   [Creating custom asset type](#creating-custom-asset-type)
+-   [⚠️ Common Issues](#-common-issues)
+    -   [⛔ Compiler Errors](#-compiler-errors)
+        -   [Compiler Error C2007](#compiler-error-c2007)
+        -   [Compiler Error C2065](#compiler-error-c2065)
+        -   [Compiler Error C2628](#compiler-error-c2628)
+    -   [💣 Runtime Errors](#-runtime-errors)
+    -   [💀 Semantic Errors](#-semantic-errors)
+        -   [💠 Integer overflow](#-integer-overflow)
+        -   [💠 Array overflow](#-array-overflow)
+        -   [🔍 Scope issues](#-scope-issues)
+-   [🐣 Tips and best practices](#-tips-and-best-practices)
+    -   [Disable BlueprintPure](#disable-blueprintpure)
+    -   [Switch case fall-through](#switch-case-fall-through)
+    -   [📦 Refactoring](#-refactoring)
+        -   [Renaming](#renaming)
+        -   [Extract Method](#extract-method)
+        -   [Typedefs](#typedefs)
+        -   [Introduce Variable](#introduce-variable)
+        -   [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
+    -   [⏱ Ticking](#-ticking)
+        -   [For actors](#for-actors)
+        -   [For components](#for-components)
+        -   [If you have to use tick](#if-you-have-to-use-tick)
+        -   [`FTickFunction`](#ftickfunction)
+            -   [MyTickableThing.h](#mytickablethingh)
+            -   [MyTickableThing.cpp](#mytickablethingcpp)
+    -   [🔌 Direct references](#-direct-references)
+-   [🗝️ Deep dive](#-deep-dive)
+    -   [K2Node](#k2node)
+    -   [➗ Math Expression Node](#-math-expression-node)
+    -   [Call function in editor](#call-function-in-editor)
+    -   [Call function via Console Commands](#call-function-via-console-commands)
+    -   [Renaming variables without breaking references](#renaming-variables-without-breaking-references)
+    -   [Sampling a curve](#sampling-a-curve)
+    -   [HTTP requests](#http-requests)
+    -   [Encryption and Decryption](#encryption-and-decryption)
+-   [🔗 Helpful Links](#-helpful-links)
+    -   [YouTube Videos](#youtube-videos)
+    -   [Articles](#articles)
+    -   [Online Tools](#online-tools)
+    -   [Misc](#misc-1)
+-   [🆘 Support](#-support)
+-   [📍 Footnotes](#-footnotes)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -426,15 +427,15 @@ I am planning to make more plugins, which you can find me on [Github](https://gi
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
-* `stat fps`: Display FPS.
-* `stat unit`: Display frame time.
-* `stat game`: Display a general idea on how long the various gameplay ticks are taking.
-* `dumpticks`: Display a list of current actors, which currently ticks in the level.
-* `slomo`: To speed up or slow down the game time.
-* `obj list`: Display a list of current loaded objects.
-* `obj list class=BP_PlayerCharacter_C`: Same as `obj list` but with a filter.
-* `obj gc`: Collect all objects with GC (Garbage Collector).
-* `au.Debug.AudioSoloSoundWave`: Takes a sound wave name as an additional input, and toggles whether that sound wave is solo (the only audible sound).
+-   `stat fps`: Display FPS.
+-   `stat unit`: Display frame time.
+-   `stat game`: Display a general idea on how long the various gameplay ticks are taking.
+-   `dumpticks`: Display a list of current actors, which currently ticks in the level.
+-   `slomo`: To speed up or slow down the game time.
+-   `obj list`: Display a list of current loaded objects.
+-   `obj list class=BP_PlayerCharacter_C`: Same as `obj list` but with a filter.
+-   `obj gc`: Collect all objects with GC (Garbage Collector).
+-   `au.Debug.AudioSoloSoundWave`: Takes a sound wave name as an additional input, and toggles whether that sound wave is solo (the only audible sound).
 
 Here is also a [website](https://pongrit.github.io/) by Pongrit, which showcase all of Unreal Engine's console commands.
 
@@ -525,7 +526,7 @@ Highly recommend taking a short class of native C++. Here is a video link to ~1h
 
 You can also watch a playlist from [GGameDev about getting started with Unreal Engine C++](https://youtube.com/playlist?list=PLaaDnVlfJwc4Lncf4XTYaTRG_osOk-T0N).
 
-C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](https://en.wikipedia.org/wiki/C_(programming_language)), originally named C[^10] with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
+C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](<https://en.wikipedia.org/wiki/C_(programming_language)>), originally named C[^10] with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
 
 You can read more about [C++ Language Reference from Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/cpp-language-reference?view=msvc-170).
 
@@ -537,7 +538,7 @@ You can read more about it on [their docs](https://docs.unrealengine.com/5.2/en-
 
 To use C++ effectively in Unreal Engine, it is crucial to have a strong foundation in programming principles and understanding of Unreal Engine's architecture and conventions. Leveraging resources like the Unreal Engine documentation, community forums, and collaboration with other developers helps to gain knowledge and best practices.
 
-*By combining the power of C++ and Unreal Engine, developers can create immersive experiences and unlock the full potential of the engine's capabilities.*
+_By combining the power of C++ and Unreal Engine, developers can create immersive experiences and unlock the full potential of the engine's capabilities._
 
 ### 🌈 Integrated Development Environment
 
@@ -549,11 +550,11 @@ An Integrated Development Environment (IDE) is a software application that provi
 
 Popular IDEs used in Unreal Engine and C++ development include:
 
-* [Visual Studio](https://visualstudio.microsoft.com/): The Visual Studio IDE for Unreal Engine development. It offers a powerful set of C++ tools and seamless integration with Unreal Engine, providing a robust development environment. `Free`.
+-   [Visual Studio](https://visualstudio.microsoft.com/): The Visual Studio IDE for Unreal Engine development. It offers a powerful set of C++ tools and seamless integration with Unreal Engine, providing a robust development environment. `Free`.
 
-* [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
+-   [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
 
-* [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
+-   [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
 
 ### ⛏️ Tools to help your journey
 
@@ -563,9 +564,9 @@ This section was NOT written in conjunction with ChatGPT.
 
 Here are some tools that can be integrated into your IDE's for better performance, debugging or writing good code practices.
 
-* [Visual Assist](https://www.wholetomato.com/): A productivity tool for refactoring, reading, writing, navigating and generating C/C++/C# code. `Cost` and for `VS`.
+-   [Visual Assist](https://www.wholetomato.com/): A productivity tool for refactoring, reading, writing, navigating and generating C/C++/C# code. `Cost` and for `VS`.
 
-* [UnrealMacroGenerator](https://marketplace.visualstudio.com/items?itemName=Naotsun.Naotsun-UE-UMG): Provides a macro editor used by Unreal C ++ of Unreal Engine. You can create macros and edit already written macros. `Free` and for `VS`.
+-   [UnrealMacroGenerator](https://marketplace.visualstudio.com/items?itemName=Naotsun.Naotsun-UE-UMG): Provides a macro editor used by Unreal C ++ of Unreal Engine. You can create macros and edit already written macros. `Free` and for `VS`.
 
 ### 🟢 Benefits of using C++ with Unreal Engine
 
@@ -573,13 +574,13 @@ Here are some tools that can be integrated into your IDE's for better performanc
 This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
-* High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
+-   High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
 
-* Integration with existing codebases: If you have existing C++ code that you want to integrate with your Unreal Engine project, using C++ allows you to do so more easily.
+-   Integration with existing codebases: If you have existing C++ code that you want to integrate with your Unreal Engine project, using C++ allows you to do so more easily.
 
-* Access to low-level functionality: C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
+-   Access to low-level functionality: C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
 
-* Garbage Collection and Memory Management: While C++ demands manual memory management, Unreal Engine provides a [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) that efficiently clears out `UObject` classes from memory. With the control over manual memory handling, you can precisely dictate when to allocate and deallocate memory as necessary.
+-   Garbage Collection and Memory Management: While C++ demands manual memory management, Unreal Engine provides a [garbage collector](<https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)>) that efficiently clears out `UObject` classes from memory. With the control over manual memory handling, you can precisely dictate when to allocate and deallocate memory as necessary.
 
 ### 🔴 Drawbacks of using C++ with Unreal Engine
 
@@ -587,13 +588,13 @@ This section was written in conjunction with ChatGPT.
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
-* More prone to errors: C++ is a strongly typed language, requiring the precise use of semicolons, braces and accurate syntax to ensure successful compilation. Rectifying these issues can be time-consuming. On the contrary, the Blueprint's node-based graph system operates without the need for "correct" syntax, offering a more "forgiving" environment.
+-   More prone to errors: C++ is a strongly typed language, requiring the precise use of semicolons, braces and accurate syntax to ensure successful compilation. Rectifying these issues can be time-consuming. On the contrary, the Blueprint's node-based graph system operates without the need for "correct" syntax, offering a more "forgiving" environment.
 
-* Tied to Unreal's API: Throughout the evolution of Unreal Engine, Epic Games may modify the [source code](https://en.wikipedia.org/wiki/Source_code), rendering certain functions and members as **obsolete**/**deprecated**. Consequently, Unreal might recommend the need to update the codebase with the latest [API](https://en.wikipedia.org/wiki/API) changes. Failure to do so can lead to compilation errors, in the future.
+-   Tied to Unreal's API: Throughout the evolution of Unreal Engine, Epic Games may modify the [source code](https://en.wikipedia.org/wiki/Source_code), rendering certain functions and members as **obsolete**/**deprecated**. Consequently, Unreal might recommend the need to update the codebase with the latest [API](https://en.wikipedia.org/wiki/API) changes. Failure to do so can lead to compilation errors, in the future.
 
-* Updating your codebase: When working with C++ and Unreal Engine, your C++ code is compiled into a [.DLL](https://en.wikipedia.org/wiki/Dynamic-link_library) (in Windows OS) file that Unreal Engine can read and use within Blueprint graphs. However, this necessitates Unreal Engine to reload to incorporate your code changes. Epic Games has introduced [Hot Reload](https://unrealcommunity.wiki/live-compiling-in-unreal-projects-tp14jcgs), allowing for code reloading without editor restart, streamlining the development process. While Hot Reload often works for a while, it is unreliable and frequently causes blueprint corruption or other issues.
+-   Updating your codebase: When working with C++ and Unreal Engine, your C++ code is compiled into a [.DLL](https://en.wikipedia.org/wiki/Dynamic-link_library) (in Windows OS) file that Unreal Engine can read and use within Blueprint graphs. However, this necessitates Unreal Engine to reload to incorporate your code changes. Epic Games has introduced [Hot Reload](https://unrealcommunity.wiki/live-compiling-in-unreal-projects-tp14jcgs), allowing for code reloading without editor restart, streamlining the development process. While Hot Reload often works for a while, it is unreliable and frequently causes blueprint corruption or other issues.
 
-* Requires more storage: When working with C++ within Unreal Engine, it often involves using "Editor Symbols for debugging," consuming approximately 60 GB of storage. Similarly, if you opt to build Unreal Engine from its source code (on their github page), you'll require around 200 GB of storage space.
+-   Requires more storage: When working with C++ within Unreal Engine, it often involves using "Editor Symbols for debugging," consuming approximately 60 GB of storage. Similarly, if you opt to build Unreal Engine from its source code (on their github page), you'll require around 200 GB of storage space.
 
 ## 🌍 Summary of C++ and Programming World
 
@@ -3764,13 +3765,9 @@ You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/
 
 #### String Builder
 
-When working strings, you might have to concatenate a lot of string together. Sometimes, this can create complex and messy code to read. Whilst, `FString` is **mutable** and allows the developer to alter its data without copy a new instance. A string builder can still be a very helpful tool.
+When working strings, you might have to concatenate a lot of string together. Sometimes, this can create complex and messy code to read. Whilst, `FString` is **mutable** and allows the developer to alter its data without copy a new instance. A string builder (`TStringBuilderBase`) can still be a very helpful tool to know about.
 
-The string builder allocates a buffer space which is used to hold the constructed string. The intent is that the builder is allocated on the stack as a function local variable to avoid heap allocations.
-
-The buffer is always contiguous, and the class is not intended to be used to construct extremely large strings.
-
-This is not intended to be used as a mechanism for holding on to strings for a long time. The use case is explicitly to aid in constructing strings on the stack and subsequently passing the string into a function call or a more permanent string storage mechanism like `FString` et al.
+The string builder allocates a buffer space which is used to hold the constructed string. The intent is that the builder is allocated on the stack as a function local variable to avoid heap allocations. Also the buffer is always contiguous, and the class is not intended to be used to construct extremely large strings.
 
 The amount of buffer space to allocate is specified via a template parameter and if the constructed string should overflow this initial buffer, a new buffer will be allocated using regular dynamic memory allocations.
 
@@ -3792,28 +3789,28 @@ To create a string builder with an unknown buffer size:
 FStringBuilderBase StringBuilder; // Note! This is using a regular dynamic memory allocation.
 ```
 
-To create a string builder with initialize buffer size:
+To create a string builder with initialize buffer size at **compile time**:
 
 ```cpp
-int32 BufferSize = 12; // 12 characters of TCHAR
+constexpr int32 BufferSize = 12; // 12 characters of TCHAR
 TStringBuilder<BufferSize> StringBuilder;
 ```
 
 Append characters to the string builder:
 
 ```cpp
-StringBuilder.Appendchar('H');
-StringBuilder.Appendchar('e');
-StringBuilder.Appendchar('l');
-StringBuilder.Appendchar('l');
-StringBuilder.Appendchar('o');
-StringBuilder.Appendchar(',');
-StringBuilder.Appendchar(' ');
-StringBuilder.Appendchar('W');
-StringBuilder.Appendchar('o');
-StringBuilder.Appendchar('r');
-StringBuilder.Appendchar('l');
-StringBuilder.Appendchar('d');
+StringBuilder.AppendChar('H');
+StringBuilder.AppendChar('e');
+StringBuilder.AppendChar('l');
+StringBuilder.AppendChar('l');
+StringBuilder.AppendChar('o');
+StringBuilder.AppendChar(',');
+StringBuilder.AppendChar(' ');
+StringBuilder.AppendChar('W');
+StringBuilder.AppendChar('o');
+StringBuilder.AppendChar('r');
+StringBuilder.AppendChar('l');
+StringBuilder.AppendChar('d');
 
 // StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd' }
 ```
@@ -3828,7 +3825,7 @@ FStringView StrView = StringBuilder.ToView();
 You can also append a string as well:
 
 ```cpp
-// Note! The string builder will allocate more memory, if necessary.
+// Warning! The string builder will allocate more memory, if necessary.
 
 // We only allocated 12 characters, and this call will make it go over bound.
 // Causing to allocate more memory on heap.
@@ -3837,13 +3834,10 @@ StringBuilder.Append(TEXT(" and welcome!"));
 // StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', ' ', 'a', 'n', 'd', ' ', 'w', 'e', 'l', 'c', 'o', 'm', 'e', '!' }
 ```
 
-> [!WARNING]
-> The string builder will allocate more memory, if necessary.
-
 Here's an another example:
 
 ```cpp
-TStringBuilder<256> MessageBuilder;
+TStringBuilderBase<TCHAR> MessageBuilder;
 
 float PlayerHealth = 110.5285f;
 MessageBuilder << TEXTVIEW("Player's health: ") << FString::SanitizeFloat(PlayerHealth);
@@ -3856,6 +3850,9 @@ You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/
 #### TEnumAsByte
 
 Template to store enumeration values as bytes in a type-safe way.
+
+> [!NOTE]
+> This way the old way of exposing enums to Unreal's editor. Now it's possible to use `UPROPERTY` and `UENUM` and replaces the need of using `TEnumAsByte` anymore.
 
 **Here's an example:**
 
@@ -3896,9 +3893,6 @@ UE_LOG(LogTemp, Log, TEXT("Value of the: %i"), UEnum::GetValueAsName(Val));
 UE_LOG(LogTemp, Log, TEXT("Integer value of the: %i"), IntVal);
 ```
 
-> [!NOTE]
-> That regular enums are supported by `UPROPERTY` and replaces the need of using `TEnumAsByte` anymore.
-
 You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TEnumAsByte/).
 
 ### 🧨 Value type vs Reference type
@@ -3916,6 +3910,11 @@ A value type creates a copy when initialized from another variable. For instance
 ```cpp
 int A = 69;
 int B = A; // A copy
+
+B = B + 1;
+
+// A = 69
+// B = 70
 ```
 
 On the other hand, a reference type directly references the memory location of the variable. In this case, when variable B is initialized by variable A, B becomes a reference to the same memory location as A. Consequently, any changes made to B will also affect A since B essentially points to the same underlying value as A.
@@ -3923,6 +3922,11 @@ On the other hand, a reference type directly references the memory location of t
 ```cpp
 int A = 69;
 int& B = A; // A reference
+
+B = B + 1;
+
+// A = 70
+// B = 70
 ```
 
 Everything in C++ is value type by default. Even classes, which differ from C#[^12].
@@ -3932,7 +3936,10 @@ You can watch this video about [references in C++ from Low Level Learning](https
 Here's an example:
 
 ```cpp
-// Test struct and class
+#include <iostream>
+#include <sstream>
+
+// Create struct to store coordinates
 struct Coords
 {
     // Constructor: Initialize X and Y with given values
@@ -3944,7 +3951,7 @@ public:
 
 public:
     // Return a string representation of this Coords struct
-    std::string toString() const
+    std::string ToString() const
     {
         // Use stringstream to concatenate strings
         std::stringstream ss;
@@ -3958,24 +3965,32 @@ int main()
     Coords A(1, 2); // Create struct A
     Coords& B = A; // B is a reference to A
     Coords* C = &B; // C is a pointer to A
-    Coords* D = new Coords(5, 10); // Create a new Coords struct with new
+    Coords* D = new Coords(5, 10); // Create a new Coords struct on the heap
     Coords* E = &(*C); // E is a pointer to what C points to
 
     B.X = 69; // Modify X of A through B
     C->Y = 1337; // Modify Y of A through C
     D->Y = D->Y * 2; // Modify Y of dynamically allocated struct
-
     E = &*D; // Make E point to what D points to
     E->X = 10; // Modify X of dynamically allocated struct
 
     // Print statements
-    std::cout << A.toString() << std::endl;
-    std::cout << B.toString() << std::endl;
-    std::cout << C->toString() << std::endl;
-    std::cout << D->toString() << std::endl;
-    std::cout << E->toString() << std::endl;
+    std::cout << "A: " << A.ToString() << std::endl;
+    std::cout << "B: "<< B.ToString() << std::endl;
+    std::cout << "C: "<< C->ToString() << std::endl;
+    std::cout << "D: "<< D->ToString() << std::endl;
+    std::cout << "E: "<< E->ToString() << std::endl;
 
-    delete D; // Deallocate memory of dynamically allocated struct
+    // A: (69, 1337) (original value)
+    // B: (69, 1337) (reference of A)
+    // C: (69, 1337) (pointer to A)
+    // D: (10, 20) (dynamically allocated struct)
+    // E: (10, 20) (pointer to C, which then swaps to point to D)
+
+    // Deallocate memory of dynamically allocated struct.
+    // If not, then memory leak will occur. Which can cause a crash in your application, if too many objects are created.
+    // Either remember to call `delete` on raw pointers or use smart pointers.
+    delete D;
 
     return 0;
 }
@@ -4018,7 +4033,7 @@ Pointers are valuable tools in programming as they allow us to store memory addr
 
 Additionally, pointers are essential in scenarios like data structures, linked lists, and passing data to functions by reference, providing a level of control and precision that enhances the capabilities of the program. However, **it's important to handle pointers with care**, as incorrect usage can lead to **memory leaks** or **segmentation faults**.
 
-#### 🦴 Raw pointers
+#### Raw pointers
 
 A raw pointer can be sometime dangerous, because there is no validation when accessing this pointer. And when the pointer is pointing to nothing (meaning, the pointer is a `nullptr`). The program will throw a null pointer exception, also known as a segmentation fault (segfault).
 
@@ -4066,13 +4081,19 @@ UPROPERTY()
 TObjectPtr<AActor> ActorPtr = nullptr;
 ```
 
-#### 🤖 Smart pointers library
+#### Smart pointers library
 
 In Unreal Engine, the Smart Pointer's library provides a set of template classes to manage memory and object ownership more efficiently and safely. These smart pointers automatically handle memory management, such as allocating and deallocating memory, and help prevent memory leaks and null pointer dereferences.
 
 The key smart pointers in Unreal Engine's library include `TSharedPtr`, `TWeakPtr`, and `TUniquePtr`. They are designed to handle various ownership scenarios and provide a safer alternative to raw pointers.
 
 You can read more about [Unreal Smart Pointer Library on their docs](https://docs.unrealengine.com/5.2/en-US/smart-pointers-in-unreal-engine/).
+
+| Pointer Type      | Description                                                |
+|--------------------|------------------------------------------------------------|
+| TSharedPtr         | Shared pointer for managing ownership of dynamically allocated objects. Allows multiple pointers to share ownership. |
+| TWeakPtr           | Weak pointer for non-owning references to dynamically allocated objects. |
+| TUniquePtr         | Unique pointer for exclusive ownership of dynamically allocated objects. Ensures only one pointer owns the object. |
 
 ##### TSharedPtr
 
@@ -4105,11 +4126,19 @@ Example:
 TUniquePtr<int32> uniquePtr = MakeUnique<int32>(42);
 ```
 
-#### 🤖 Smart `UObject` pointers
+#### Smart `UObject` pointers
 
-Unreal Engine's Smart Pointers, such as `TSharedPtr`, `TWeakPtr`, and `TUniquePtr`, are generic smart pointers that can be used with any C++ classes or types, not limited to Unreal Engine's UObject-derived classes.
+Unreal Engine's Smart Pointers, such as `TSharedPtr`, `TWeakPtr`, and `TUniquePtr`, are generic smart pointers that can be used with any C++ classes or types.
 
-On the other hand, UObject Smart Pointers are specific to Unreal Engine's UObject-derived classes. These smart pointers, such as `TWeakObjectPtr`, `TWeakInterfacePtr`, `TSoftObjectPtr` and `TSoftClassPtr`, are designed to handle `UObject` ownership and management within the Unreal Engine ecosystem.
+However, `UObject` Smart Pointers are specific to Unreal Engine's UObject-derived classes. These smart pointers, such as `TWeakObjectPtr`, `TWeakInterfacePtr`, `TSoftObjectPtr` and `TSoftClassPtr`, are designed to handle `UObject` ownership and management within the Unreal Engine ecosystem.
+
+| Pointer Type      | Description                                                |
+|--------------------|------------------------------------------------------------|
+| TStrongObjectPtr     | Strong pointer for owning references to UObject-derived objects. |
+| TWeakObjectPtr     | Weak pointer for non-owning references to UObject-derived objects. |
+| TWeakInterfacePtr  | Weak pointer for non-owning references to UObject-derived objects implementing a specific interface. |
+| TSoftObjectPtr     | Soft pointer for non-owning references to UObject-derived objects. Allows loading the object when needed, but won't prevent it from being garbage collected. |
+| TSoftClassPtr      | Soft pointer for non-owning references to UClass-derived objects. Allows loading the class when needed, but won't prevent it from being garbage collected. |
 
 ##### TWeakObjectPtr
 
@@ -4159,43 +4188,7 @@ This smart pointer is used to hold a soft reference to an `UObject` subclass. It
 
 ![TSoftObjectPtr](static/img/TSoftObjectPtr_BP.png)
 
-Example usage:
-
-```cpp
-TSoftObjectPtr<UTexture2D> SoftPtr; // Assign soft reference to a texture asset
-
-if (SoftPtr.IsValid())
-{
-    UTexture2D* Texture = SoftPtr.LoadSynchronous(); // This will cause a lag spike (if the asset is heavily chained or large in size)
-
-    if (Texture)
-    {
-        // Use the loaded texture
-    }
-}
-```
-
-Asynchronous Solution:
-
-```cpp
-TSoftObjectPtr<UTexture2D> SoftPtr; // Assign soft reference to a texture asset
-
-if (SoftPtr.IsValid())
-{
-    OnTextureLoadedDelegate.BindLambda([]()
-    {
-        // Called when the texture is loaded and ready to use
-        UTexture2D* Texture = SoftPtr.Get();
-
-        if (Texture)
-        {
-            // Use the loaded texture as needed
-        }
-    });
-
-    StreamableManager.RequestAsyncLoad(SoftPtr.ToSoftObjectPath(), OnTextureLoadedDelegate);
-}
-```
+You can read more about soft references at this [section](#-soft-vs-hard-references).
 
 > [!WARNING]
 > Don't use `FSoftObjectPath` or `FSoftObjectPtr`. Used for internal purpose.
@@ -4206,64 +4199,10 @@ This smart pointer is used to hold a soft reference to a `UClass` subclass. It i
 
 ![TSoftClassPtr](static/img/TSoftClassPtr_BP.png)
 
-Example usage:
-
-```cpp
-TSoftClassPtr<AMyBlueprintClass> SoftPtr; // Assign soft reference to a blueprint class
-
-if (SoftPtr.IsValid())
-{
-    UClass* Class = SoftPtr.LoadSynchronous(); // This will cause a lag spike (if the asset is heavily chained or large in size)
-
-    if (Class)
-    {
-        // Use the loaded class
-    }
-}
-```
-
-Asynchronous Solution:
-
-```cpp
-TSoftClassPtr<AMyBlueprintClass> SoftPtr; // Assign soft reference to a blueprint class
-
-if (SoftPtr.IsValid())
-{
-    OnBlueprintLoadedDelegate.BindLambda([]()
-    {
-        // Called when the blueprint class is loaded and ready to use
-        UClass* BlueprintClass = SoftPtr.Get();
-
-        if (BlueprintClass)
-        {
-            // Use the loaded blueprint class as needed
-            AMyBlueprintClass* NewActor = GetWorld()->SpawnActor<AMyBlueprintClass>(BlueprintClass);
-
-            if (NewActor)
-            {
-                // Successfully spawned the actor based on the loaded blueprint class
-            }
-        }
-    });
-
-    StreamableManager.RequestAsyncLoad(SoftPtr.ToSoftObjectPath(), OnBlueprintLoadedDelegate);
-}
-```
+You can read more about soft references at this [section](#-soft-vs-hard-references).
 
 > [!WARNING]
 > Don't use `FSoftClassPath`. Legacy code.
-
----
-
-| Smart Pointer      | Type Based On      | Description                                                |
-|--------------------|--------------------|------------------------------------------------------------|
-| TSharedPtr         | Regular C++ Classes | Shared pointer for managing ownership of dynamically allocated objects. Allows multiple pointers to share ownership. |
-| TWeakPtr           | Regular C++ Classes | Weak pointer for non-owning references to dynamically allocated objects. |
-| TUniquePtr         | Regular C++ Classes | Unique pointer for exclusive ownership of dynamically allocated objects. Ensures only one pointer owns the object. |
-| TWeakObjectPtr     | UObject Classes    | Weak pointer for non-owning references to UObject-derived objects. |
-| TWeakInterfacePtr  | UObject Classes    | Weak pointer for non-owning references to objects implementing a specific interface. |
-| TSoftObjectPtr     | UObject Classes    | Soft pointer for non-owning references to UObject-derived objects. Allows loading the object when needed, but won't prevent it from being garbage collected. |
-| TSoftClassPtr      | UObject Classes    | Soft pointer for non-owning references to UClass-derived objects. Allows loading the class when needed, but won't prevent it from being garbage collected. |
 
 <!-- prettier-ignore-end -->
 
@@ -5738,40 +5677,212 @@ Should not be used for Garbage Collection checks, as on `UPROPERTY` pointers it 
 ## 💾 Soft vs hard references
 
 <table><tr><td>
-This section was written in conjunction with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 ![Soft vs hard references](static/img/Soft_Hard_Refs.png)
 
-### Soft References
+When referencing an asset in Unreal Engine, you can opt for either soft or hard references. With hard references, the asset is loaded into memory, either by the editor or when it is spawned into a level.
 
-A soft reference is a weak reference to an asset that does not create a strong dependency. It allows assets to be loaded or unloaded dynamically at runtime based on usage or other conditions. Soft references are used when you want to indicate a loose dependency on an asset without forcing its loading.
+Moreover, all assets with hard references must also be loaded into memory to ensure their availability. If they aren't, the game may crash.
 
-An analogy for a soft reference could be a bookmark in a book. It points to a specific page but doesn't physically hold the content. You can easily remove or change the bookmark without affecting the book's content.
+This situation, often referred to as a chain-reaction, results in all assets referenced by the initial asset also being loaded into memory. This can lead to long loading times and potential performance issues.
 
-### Hard References
+> [!NOTE]
+> Assets can include textures, meshes, sounds, animations, effects, blueprints, etc. Basically anything that can be referenced by another asset.
 
-A hard reference is a strong reference to an asset that creates a firm dependency. It ensures that the referenced asset is loaded and remains loaded as long as the referencing asset is in use. Hard references are used when you require a guaranteed presence of an asset during runtime.
+> [!TIP]
+> You can use tools like **Reference Viewer** or **Size Map** to analyze the reference chain of an asset. More information can be found in the [Tools](#tools) section.
 
-An analogy for a hard reference could be a puzzle piece that needs to fit into a specific spot. The puzzle piece is integral to the puzzle, and removing or changing it would break the intended structure.
+To mitigate hard references, you can use soft references, which function similarly to a lazy loading system. This means that an asset are only loaded if they are actually needed.
 
----
+In other words, you need to load them **manually** to use them.
 
-When an asset with hard references is loaded, it triggers a chain of dependencies, causing all assets that have hard references to be loaded as well. This ensures that all required assets are available for proper functionality. This loading behavior is known as "chain loading" or "load-on-demand."
+A soft reference is a data type that stores the path to an asset. Epic have provided safety checks, to ensure correct object type. They have also provided functions to load or unload an asset during runtime. This can be really helpful, especially when you don't want the asset to be loaded all the time.
 
-For example, if a level blueprint references a specific sound cue with a hard reference, when the level is loaded, the sound cue and any other assets directly or indirectly referenced by it will also be loaded to maintain the integrity of the referenced sound cue's functionality.
+You can read more about [Referencing Assets](https://dev.epicgames.com/documentation/en-us/unreal-engine/referencing-assets-in-unreal-engine) at Unreal's docs.
 
-In contrast, if a soft reference is used, the referenced asset may or may not be loaded initially, and it can be loaded or unloaded dynamically based on the specific requirements of the game or application.
+You can also read more about [Asynchronous Asset Loading](https://dev.epicgames.com/documentation/en-us/unreal-engine/asynchronous-asset-loading-in-unreal-engine) at Unreal's docs.
 
-Using the appropriate combination of soft and hard references allows for efficient management of asset dependencies, optimizing memory usage, and providing flexibility in loading and unloading assets during runtime.
+There is also an article called [Hard References & Reasons to Avoid Them](https://raharuu.github.io/unreal/hard-references-reasons-avoid/) by Phil.
 
-[Reference Viewer](https://docs.unrealengine.com/5.2/en-US/finding-asset-references-in-unreal-engine/) is a tool inside the editor, which allows you to look at the reference chain with a particular asset. Both hard and soft references. This tool helps you to figure it out which is loading which and what chain dependencies it has.
+### Blueprint
 
-[Size Map](https://dev.epicgames.com/community/learning/tutorials/r4y7/unreal-engine-size-map) is another tool inside the editor, which allows you to look at the total and independent size of different assets, which has been loaded by the main asset. For example, you can see how big the character [memory footprint](https://en.wikipedia.org/wiki/Memory_footprint) is (with all the textures and skeletal mesh).
+To use soft references in Blueprint, you can change the variable type to `Soft Object Reference` or `Soft Class Reference`.
 
-You can read more about soft and hard references in article called [Hard References & Reasons to Avoid Them by raharuu](https://raharuu.github.io/unreal/hard-references-reasons-avoid/).
+![TSoftObjectPtr](static/img/TSoftObjectPtr_BP.png)
+![TSoftClassPtr](static/img/TSoftClassPtr_BP.png)
 
-You can also read more about Unreal Engine docs about [Referencing Assets](https://docs.unrealengine.com/5.2/en-US/referencing-assets-in-unreal-engine/).
+If you wish to load an asset synchronously, use the [Load Asset Blocking](https://dev.epicgames.com/documentation/en-us/unreal-engine/BlueprintAPI/Utilities/LoadAssetBlocking) node.
+
+![LoadAssetBlocking Node](static/img/blueprint_nodes/LoadAssetBlocking.png)
+
+> [!CAUTION]
+> When loading an asset with synchronous, it will load on the main thread (which the game is running in). This can cause a lag spike (if the asset is heavily chained or large in size). Therefore, is recommended to use asynchronous loading when possible.
+
+And with asynchronous loading, use the [Async Load Asset](https://dev.epicgames.com/documentation/en-us/unreal-engine/BlueprintAPI/Utilities/AsyncLoadAsset) node.
+
+![AsyncLoadAsset Node](static/img/blueprint_nodes/AsyncLoadAsset.png)
+
+If you want to unload an asset, use the [Unload Primary Asset](https://dev.epicgames.com/documentation/en-us/unreal-engine/BlueprintAPI/AssetManager/UnloadPrimaryAsset) node.
+
+![UnloadPrimaryAsset Node](static/img/blueprint_nodes/UnloadPrimaryAsset.png)
+
+> [!NOTE]
+> Blueprint only support unloading primary assets (which are [Data Asset](https://dev.epicgames.com/documentation/en-us/unreal-engine/data-assets-in-unreal-engine)).
+
+### C++
+
+In C++, you can directly call the `LoadSynchronous()` method on a `TSoftObjectPtr` or `TSoftClassPtr` variable.
+
+```cpp
+TSoftObjectPtr<UTexture2D> TexturePtr; // Assign soft reference to a texture asset
+
+// This will cause a lag spike (if the asset is heavily chained or large in size)
+UTexture2D* Texture = TexturePtr.LoadSynchronous();
+
+if (Texture.IsValid())
+{
+    // Use the loaded texture
+}
+```
+
+> [!CAUTION]
+> When loading an asset with synchronous, it will load on the main thread (which the game is running in). This can cause a lag spike (if the asset is heavily chained or large in size). Therefore, is recommended to use asynchronous loading when possible.
+
+If you wish to unload or load an asset asynchronously, you must access the streamable manager through the asset manager. You can also inherit from the `UAssetManager` class, and extend custom functionality.
+
+```cpp
+// .h
+
+TSoftObjectPtr<UTexture2D> TexturePtr; // Assign soft reference to a texture asset
+```
+
+```cpp
+// .cpp
+#include "Engine/StreamableManager.h"
+#include "Engine/AssetManager.h"
+
+FStreamableManager& Streamable = UAssetManager::GetStreamableManager();
+
+// Request the asset to be loaded
+Streamable.RequestAsyncLoad(
+    TexturePtr.ToSoftObjectPath(),
+    FStreamableDelegate::CreateUObject(
+        this,
+        &AMyActor::OnTextureLoaded
+    )
+);
+
+void AMyActor::OnTextureLoaded()
+{
+    // Called when the texture is loaded and ready to use
+    UTexture2D* Texture = TexturePtr.Get();
+
+    if (Texture.IsValid())
+    {
+        // Use the loaded texture as needed
+    }
+}
+```
+
+You can also inline the callback into a lambda function:
+
+```cpp
+// Request the asset to be loaded
+Streamable.RequestAsyncLoad(
+    TexturePtr.ToSoftObjectPath(),
+    FStreamableDelegate::CreateLambda(
+        [this]()
+        {
+            // Called when the texture is loaded and ready to use
+            UTexture2D* Texture = TexturePtr.Get();
+
+            if (Texture)
+            {
+                // Use the loaded texture as needed
+            }
+        }
+    )
+);
+```
+
+To unload an asset, use the `Unload()` method.
+
+```cpp
+Streamable.Unload(TexturePtr.ToSoftObjectPath());
+```
+
+You can also load multiple assets asynchronously at once:
+
+```cpp
+TArray<FSoftObjectPath> StreamArray;
+StreamArray.Add(TexturePtr.ToSoftObjectPath());
+
+// Request the array of assets to be loaded (without a callback)
+Streamable.RequestAsyncLoad(StreamArray);
+```
+
+You can also get the handle of the requested. Helpful for getting details about the request, such as progress bar, checking if the request is still loading or if it has completed.
+
+You can also force the request to be cancelled.
+
+Examples:
+
+```cpp
+TSharedPtr<FStreamableHandle> HandlePtr = Streamable.RequestAsyncLoad(StreamArray);
+
+if (!HandlePtr.IsValid())
+    return;
+
+FStreamableHandle* Handle = HandlePtr.Get();
+```
+
+```cpp
+Handle->GetProgress(); // Returns progress as a value between 0.0 and 1.0.
+```
+
+```cpp
+int32 LoadedCount;
+int32 RequestedCount;
+
+// Returns number of assets that have completed loading out of initial list, failed loads will count as loaded
+Handle->GetLoadedCount(LoadedCount, RequestedCount);
+```
+
+```cpp
+// Release this handle. This can be called from normal gameplay code to indicate that the loaded assets are no longer needed
+Handle->ReleaseHandle();
+
+// Cancel a request, callable from within the manager or externally
+Handle->CancelHandle();
+```
+
+```cpp
+// True if load is still ongoing and we haven't been cancelled
+bool bIsLoadingInProgress = Handle->IsLoadingInProgress();
+
+// If this request has finished loading, meaning all available assets were loaded
+bool bHasLoadCompleted = Handle->HasLoadCompleted();
+
+// If this request was cancelled. Assets may still have been loaded, but completion delegate was not called
+bool bWasCanceled = Handle->WasCanceled();
+
+// If this handle is still active, meaning it wasn't canceled or released
+bool bIsActive = Handle->IsActive();
+
+// If this handle is stalled and waiting for another event to occur before it is actually requested
+bool bIsStalled = Handle->IsStalled();
+```
+
+> [!WARNING]
+> Don't use `FSoftObjectPath` or `FSoftObjectPtr`. Used for internal purpose.
+
+### Tools
+
+[Reference Viewer](https://docs.unrealengine.com/5.2/en-US/finding-asset-references-in-unreal-engine/) is a tool inside the editor, which allows you to look at the reference chain with a particular asset. Both hard and soft references. Helpful if you are trying to figure it out which is loading which and what causes a chain-reaction.
+
+[Size Map](https://dev.epicgames.com/community/learning/tutorials/r4y7/unreal-engine-size-map) is another tool inside the editor, which allows you to look at the total and independent size of different assets, which has been loaded by the main source. For example, you can see how big the [memory footprint](https://en.wikipedia.org/wiki/Memory_footprint) of the player character.
 
 ## 🌍 Global Functions
 
@@ -5849,20 +5960,20 @@ You can read more about [Blueprint Function Libraries here](https://docs.unreale
 
 ### Kismet Library
 
-* `UGameplayStatics` - `gameplay` utility functions that can be called from both Blueprint and C++
-* `UKismetMathLibrary` - `math` utility functions that can be called from both Blueprint and C++
-* `UKismetStringLibrary` - `string` utility functions that can be called from both Blueprint and C++
-* `UKismetTextLibrary` - `text` utility functions that can be called from both Blueprint and C++
-* `UKismetSystemLibrary` - `system` utility functions that can be called from both Blueprint and C++
-* `UKismetMaterialLibrary` - `material` utility functions that can be called from both Blueprint and C++
-* `UKismetInputLibrary` - `input` utility functions that can be called from both Blueprint and C++
-* `UKismetGuidLibrary` - `guid` utility functions that can be called from both Blueprint and C++
-* `UKismetArrayLibrary` - `array` utility functions that can be called from both Blueprint and C++
+-   `UGameplayStatics` - `gameplay` utility functions that can be called from both Blueprint and C++
+-   `UKismetMathLibrary` - `math` utility functions that can be called from both Blueprint and C++
+-   `UKismetStringLibrary` - `string` utility functions that can be called from both Blueprint and C++
+-   `UKismetTextLibrary` - `text` utility functions that can be called from both Blueprint and C++
+-   `UKismetSystemLibrary` - `system` utility functions that can be called from both Blueprint and C++
+-   `UKismetMaterialLibrary` - `material` utility functions that can be called from both Blueprint and C++
+-   `UKismetInputLibrary` - `input` utility functions that can be called from both Blueprint and C++
+-   `UKismetGuidLibrary` - `guid` utility functions that can be called from both Blueprint and C++
+-   `UKismetArrayLibrary` - `array` utility functions that can be called from both Blueprint and C++
 
 ### Misc Library
 
-* `FMath` - Math helper functions (Check `GenericPlatformMath.h` for additional math functions).
-* `DrawDebugHelpers.h` - Header file contain debug draw functions. Read more about [here](https://unrealcpp.com/draw-debug-helpers/).
+-   `FMath` - Math helper functions (Check `GenericPlatformMath.h` for additional math functions).
+-   `DrawDebugHelpers.h` - Header file contain debug draw functions. Read more about [here](https://unrealcpp.com/draw-debug-helpers/).
 
 ## 📃 Macros
 
@@ -6848,7 +6959,7 @@ When you create a plugin, you can define your own modules, content, and assets t
 
 Plugins can also be used to add support for third-party libraries and tools, such as physics engines or audio systems. This makes it easy to integrate these tools into your game and take advantage of their features without having to write custom code from scratch.
 
-*You can read more about plugins, <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/" target="_blank">over here</a>!*
+_You can read more about plugins, <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/" target="_blank">over here</a>!_
 
 ## 📝 Preprocessor
 
@@ -7723,7 +7834,7 @@ You can read more about [Gameplay Tags on Unreal's blog](https://www.unrealengin
 
 You can also watch this video by [LeafBranchGames to learn all about Gameplay Tags](https://www.youtube.com/watch?v=edJGE0aidZY).
 
-## Usage
+### Usage
 
 <!-- TODO: Add images -->
 
@@ -7751,13 +7862,13 @@ And then you can use the query syntax to find specific tags or child tags like t
 -   `Weapon.Melee` will return all the child tags of `Weapon.Melee`
 -   `Weapon` will return all the child tags of `Weapon`
 
-## Data types
+### Data types
 
 -   [FGameplayTag](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/GameplayTags/FGameplayTag), is a single tag. which represents a hierarchical name of the form `x.y` that is registered in the **GameplayTagsManager**.
 
 -   [FGameplayTagContainer](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/GameplayTags/FGameplayTagContainer), holds a collection of tags.
 
-## Code
+### Code
 
 To use a Gameplay tag in code, you can do the following:
 
@@ -9263,6 +9374,7 @@ This section was NOT written in conjunction with ChatGPT.
 | Thomas Ingram | Developer Notes | See and post notes on developer documentation. | [Chrome Web Store](https://chrome.google.com/webstore/detail/developer-notes/fchdfdnnpkphopmdaochdfnmcahndmnb) |
 
 ## 🆘 Support
+
 If you have any questions or issue, just write either to my [YouTube channel](https://www.youtube.com/@mrrobinofficial), [Email](mailto:mrrobin123mail@gmail.com) or [Twitter DM](https://twitter.com/MrRobinOfficial).
 
 <table><tr><td>
@@ -9278,8 +9390,8 @@ If you have any questions or issue, just write either to my [YouTube channel](ht
 [^3]: `ASCII` or American Standard Code for Information Interchange. A character encoding standard for representing English (Latin) characters and symbols.
 [^4]: Macros in C++ are preprocessor directives that enable the definition of reusable code snippets through text replacement before compilation. Here is a [video about it](https://www.youtube.com/watch?v=j3mYki1SrKE).
 [^5]: GitHub is a web-based platform and version control repository that allows individuals and teams to collaborate on software development projects by providing a centralized location for code storage, version tracking, issue tracking, and collaboration features such as pull requests and code reviews. [Link to there site](https://github.com/).
-[^10]: [C](https://en.wikipedia.org/wiki/C_(programming_language)) is a procedural programming language known for its efficiency and portability, commonly used for system-level programming and embedded systems development.
-[^11]: [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) is a user-friendly, high-level language often used for scripting, data analysis, web development, and artificial intelligence applications.
-[^12]: [C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) is a high-level, object-oriented programming language developed by Microsoft, widely used for building Windows applications and games using the .NET framework.
-[^13]: [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) is a versatile, platform-independent language known for its "write once, run anywhere" capability, commonly used in web development and enterprise applications.
+[^10]: [C](<https://en.wikipedia.org/wiki/C_(programming_language)>) is a procedural programming language known for its efficiency and portability, commonly used for system-level programming and embedded systems development.
+[^11]: [Python](<https://en.wikipedia.org/wiki/Python_(programming_language)>) is a user-friendly, high-level language often used for scripting, data analysis, web development, and artificial intelligence applications.
+[^12]: [C#](<https://en.wikipedia.org/wiki/C_Sharp_(programming_language)>) is a high-level, object-oriented programming language developed by Microsoft, widely used for building Windows applications and games using the .NET framework.
+[^13]: [Java](<https://en.wikipedia.org/wiki/Java_(programming_language)>) is a versatile, platform-independent language known for its "write once, run anywhere" capability, commonly used in web development and enterprise applications.
 [^14]: [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a versatile, dynamic scripting language commonly used for web development to add interactivity and functionality to websites.

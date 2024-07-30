@@ -13,7 +13,7 @@ You can read more about [Gameplay Tags on Unreal's blog](https://www.unrealengin
 
 You can also watch this video by [LeafBranchGames to learn all about Gameplay Tags](https://www.youtube.com/watch?v=edJGE0aidZY).
 
-## Usage
+### Usage
 
 <!-- TODO: Add images -->
 
@@ -41,13 +41,13 @@ And then you can use the query syntax to find specific tags or child tags like t
 -   `Weapon.Melee` will return all the child tags of `Weapon.Melee`
 -   `Weapon` will return all the child tags of `Weapon`
 
-## Data types
+### Data types
 
 -   [FGameplayTag](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/GameplayTags/FGameplayTag), is a single tag. which represents a hierarchical name of the form `x.y` that is registered in the **GameplayTagsManager**.
 
 -   [FGameplayTagContainer](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/GameplayTags/FGameplayTagContainer), holds a collection of tags.
 
-## Code
+### Code
 
 To use a Gameplay tag in code, you can do the following:
 
