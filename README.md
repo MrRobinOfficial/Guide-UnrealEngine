@@ -7,8 +7,8 @@
 ![guide-status](https://img.shields.io/badge/guide_status-revision-91ff00)
 
 ![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-4A5173)
-![reading-time](https://img.shields.io/badge/reading_time-4,16_hours-blue)
-![word-count](https://img.shields.io/badge/word_count-37,920-blue)
+![reading-time](https://img.shields.io/badge/reading_time-3,98_hours-blue)
+![word-count](https://img.shields.io/badge/word_count-36,438-blue)
 
 ![GitHub issues](https://img.shields.io/github/issues/MrRobinOfficial/Guide-UnrealEngine)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/MrRobinOfficial/Guide-UnrealEngine)
@@ -46,262 +46,266 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
--   [👑 Cheatsheets](#-cheatsheets)
--   [🎩 Plugins](#-plugins)
-    -   [Marketplace Plugins](#marketplace-plugins)
-    -   [Github Plugins](#github-plugins)
-    -   [Epic Games Plugins](#epic-games-plugins)
-    -   [MrRobinOfficial's Plugins](#mrrobinofficials-plugins)
--   [📛 Console Commands](#-console-commands)
--   [📌 Shortcuts](#-shortcuts)
--   [⌛ Getting started with C++](#-getting-started-with-c)
-    -   [🌈 Integrated Development Environment](#-integrated-development-environment)
-    -   [⛏️ Tools to help your journey](#-tools-to-help-your-journey)
-    -   [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
-    -   [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
--   [🌍 Summary of C++ and Programming World](#-summary-of-c-and-programming-world)
--   [🚧 Blueprint vs C++](#-blueprint-vs-c)
--   [🎪 Architecture](#-architecture)
--   [⚓ Guidelines](#-guidelines)
-    -   [🎳 Naming Convention](#-naming-convention)
-        -   [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
-        -   [Prefixes](#prefixes)
-    -   [Coding standard](#coding-standard)
--   [💎 Unreal Header Tool](#-unreal-header-tool)
-    -   [UPROPERTY](#uproperty)
-        -   [Specifiers](#specifiers)
-        -   [Meta tags](#meta-tags)
-        -   [Examples](#examples)
-    -   [UFUNCTION](#ufunction)
-        -   [Common Specifiers](#common-specifiers)
-        -   [Common Meta tags](#common-meta-tags)
-        -   [Examples](#examples-1)
-    -   [UCLASS](#uclass)
-        -   [Common Specifiers](#common-specifiers-1)
-        -   [Common Meta tags](#common-meta-tags-1)
-        -   [Examples](#examples-2)
-    -   [USTRUCT](#ustruct)
-        -   [Common Specifiers](#common-specifiers-2)
-        -   [Common Meta tags](#common-meta-tags-2)
-        -   [Examples](#examples-3)
-    -   [UENUM](#uenum)
-        -   [Common Specifiers](#common-specifiers-3)
-        -   [Common Meta tags](#common-meta-tags-3)
-        -   [Examples](#examples-4)
-    -   [UPARAM](#uparam)
-        -   [Examples](#examples-5)
-    -   [UMETA](#umeta)
-        -   [Common Specifiers](#common-specifiers-4)
-        -   [Examples](#examples-6)
--   [🧱 Data Types](#-data-types)
-    -   [Characters](#characters)
-    -   [Booleans](#booleans)
-    -   [Integers](#integers)
-    -   [Floating point numbers](#floating-point-numbers)
-    -   [🛟 Size can vary](#-size-can-vary)
-    -   [🦺 Unreal Engine Typedefs](#-unreal-engine-typedefs)
-    -   [📖 String Data Types](#-string-data-types)
-    -   [Text Macros](#text-macros)
-        -   [FName](#fname)
-        -   [FText](#ftext)
-        -   [FString](#fstring)
-    -   [🚀 Math Data Types](#-math-data-types)
-        -   [Vector4](#vector4)
-        -   [Vector3](#vector3)
-        -   [Vector2](#vector2)
-        -   [IntPoint](#intpoint)
-        -   [IntRect](#intrect)
-        -   [Rotator](#rotator)
-        -   [Quaternion](#quaternion)
-        -   [Transform](#transform)
-        -   [Plane](#plane)
-        -   [Matrix](#matrix)
-        -   [Sphere](#sphere)
-        -   [Box](#box)
-        -   [Box2D](#box2d)
-        -   [Ray](#ray)
-        -   [Colors](#colors)
-    -   [💐 Collections](#-collections)
-        -   [TArray](#tarray)
-        -   [TSet](#tset)
-        -   [TMap](#tmap)
-        -   [Common and helpful functions](#common-and-helpful-functions)
-        -   [Algo Namespace](#algo-namespace)
-        -   [TMultiMap](#tmultimap)
-        -   [TStaticArray](#tstaticarray)
-        -   [FHashTable](#fhashtable)
-        -   [TStaticHashTable](#tstatichashtable)
-        -   [TSortedMap](#tsortedmap)
-        -   [TList](#tlist)
-        -   [TLinkedList](#tlinkedlist)
-        -   [TDoubleLinkedList](#tdoublelinkedlist)
-        -   [TQueue](#tqueue)
-        -   [TArrayView](#tarrayview)
-        -   [String View](#string-view)
-        -   [String Builder](#string-builder)
-        -   [TEnumAsByte](#tenumasbyte)
-    -   [🧨 Value type vs Reference type](#-value-type-vs-reference-type)
-    -   [👈 Pointers](#-pointers)
-        -   [Raw pointers](#raw-pointers)
-        -   [Smart pointers library](#smart-pointers-library)
-            -   [TSharedPtr](#tsharedptr)
-            -   [TWeakPtr](#tweakptr)
-            -   [TUniquePtr](#tuniqueptr)
-        -   [Smart `UObject` pointers](#smart-uobject-pointers)
-            -   [TWeakObjectPtr](#tweakobjectptr)
-            -   [TWeakInterfacePtr](#tweakinterfaceptr)
-            -   [TSoftObjectPtr](#tsoftobjectptr)
-            -   [TSoftClassPtr](#tsoftclassptr)
-    -   [🔖 Keywords](#-keywords)
-        -   [Constants](#constants)
-        -   [Access modifiers](#access-modifiers)
-        -   [Class, struct and memory](#class-struct-and-memory)
-        -   [Function related](#function-related)
-        -   [Casts](#casts)
-        -   [Flow controls](#flow-controls)
-        -   [Generic programming](#generic-programming)
-        -   [Misc](#misc)
--   [👷 Constructors, destructors and initialization](#-constructors-destructors-and-initialization)
-    -   [Constructors](#constructors)
-    -   [Destructors](#destructors)
-    -   [Constructors and destructors in UE](#constructors-and-destructors-in-ue)
-    -   [Initialization](#initialization)
--   [🏛 Create custom class](#-create-custom-class)
-    -   [AActor](#aactor)
-    -   [UActorComponent](#uactorcomponent)
-    -   [USceneComponent](#uscenecomponent)
-    -   [APawn](#apawn)
-    -   [UObject](#uobject)
--   [🏛 Create custom interface](#-create-custom-interface)
-    -   [Creating interface inside C++](#creating-interface-inside-c)
-    -   [Extending the interface function:](#extending-the-interface-function)
-    -   [Calling the interface function](#calling-the-interface-function)
-    -   [Checking if the UObject extends the interface](#checking-if-the-uobject-extends-the-interface)
-    -   [Reference to an interface object](#reference-to-an-interface-object)
--   [🛸 Reflection System](#-reflection-system)
--   [🗑️ Garbage Collection](#-garbage-collection)
-    -   [How does it work](#how-does-it-work)
-        -   [Rules](#rules)
-        -   [Examples](#examples-7)
-    -   [Manual memory management](#manual-memory-management)
-    -   [Collection and Mark as garbage](#collection-and-mark-as-garbage)
-    -   [Validation](#validation)
--   [💾 Soft vs hard references](#-soft-vs-hard-references)
-    -   [Blueprint](#blueprint)
-    -   [C++](#c)
-    -   [Tools](#tools)
--   [🌍 Global Functions](#-global-functions)
--   [🏛️ Libraries](#-libraries)
-    -   [Kismet Library](#kismet-library)
-    -   [Misc Library](#misc-library)
--   [📃 Macros](#-macros)
--   [📜 Logging](#-logging)
-    -   [UE_LOGFMT](#ue_logfmt)
-    -   [Log to game-view](#log-to-game-view)
--   [🪨 Assertions](#-assertions)
-    -   [Check](#check)
-    -   [Verify](#verify)
-    -   [Ensure](#ensure)
-    -   [Alternatives Assertions](#alternatives-assertions)
-    -   [Misc Assertions](#misc-assertions)
--   [🔔 Delegates](#-delegates)
-    -   [Define a delegate type](#define-a-delegate-type)
-    -   [Declare a delegate variable](#declare-a-delegate-variable)
-    -   [Bind functions to the delegate](#bind-functions-to-the-delegate)
-    -   [Trigger the delegate](#trigger-the-delegate)
-    -   [Summary](#summary)
--   [🧩 UMG](#-umg)
-    -   [UMG with C++](#umg-with-c)
-    -   [UI Tweening Library](#ui-tweening-library)
--   [📚 Create custom module](#-create-custom-module)
-    -   [Module structure](#module-structure)
-    -   [Module code](#module-code)
-    -   [♻️ Circular Dependency](#-circular-dependency)
--   [💡 Create custom plugin](#-create-custom-plugin)
--   [📝 Preprocessor](#-preprocessor)
-    -   [Pragma once](#pragma-once)
-    -   [Strip out editor functionality](#strip-out-editor-functionality)
--   [🦄 Units](#-units)
-    -   [Use cases with UHT](#use-cases-with-uht)
-    -   [Use cases with code](#use-cases-with-code)
--   [🎨 Draw Debug Shapes](#-draw-debug-shapes)
-    -   [Draw a point](#draw-a-point)
-    -   [Draw a sphere](#draw-a-sphere)
-    -   [Draw a circle](#draw-a-circle)
-    -   [Draw a circle arc](#draw-a-circle-arc)
-    -   [Draw a 2D donut](#draw-a-2d-donut)
-    -   [Draw a solid box](#draw-a-solid-box)
-    -   [Draw a wired box](#draw-a-wired-box)
-    -   [Draw a cylinder](#draw-a-cylinder)
-    -   [Draw a capsule](#draw-a-capsule)
-    -   [Draw a cone](#draw-a-cone)
-    -   [Draw a plane](#draw-a-plane)
-    -   [Draw a line](#draw-a-line)
-    -   [Draw an arrow](#draw-an-arrow)
-    -   [Draw a crosshair](#draw-a-crosshair)
-    -   [Draw a camera](#draw-a-camera)
-    -   [Draw a mesh](#draw-a-mesh)
-    -   [Draw a string:](#draw-a-string)
-    -   [Draw a centripetal catmull-rom spline](#draw-a-centripetal-catmull-rom-spline)
--   [⚡ Compiling a plugin](#-compiling-a-plugin)
--   [⏳ Gameplay Timers](#-gameplay-timers)
--   [🧵 Gameplay Tags](#-gameplay-tags)
-    -   [Usage](#usage)
-    -   [Data types](#data-types)
-    -   [Code](#code)
--   [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
-    -   [Multithreading](#multithreading)
-    -   [Runnables](#runnables)
-    -   [Tasks](#tasks)
-        -   [AsyncTask](#asynctask)
-        -   [ParallelFor](#parallelfor)
-        -   [FNonAbandonableTask](#fnonabandonabletask)
--   [🎯 Extend Unreal Editor](#-extend-unreal-editor)
-    -   [Slate](#slate)
-    -   [Creating custom asset type](#creating-custom-asset-type)
--   [⚠️ Common Issues](#-common-issues)
-    -   [⛔ Compiler Errors](#-compiler-errors)
-        -   [Compiler Error C2007](#compiler-error-c2007)
-        -   [Compiler Error C2065](#compiler-error-c2065)
-        -   [Compiler Error C2628](#compiler-error-c2628)
-    -   [💣 Runtime Errors](#-runtime-errors)
-    -   [💀 Semantic Errors](#-semantic-errors)
-        -   [💠 Integer overflow](#-integer-overflow)
-        -   [💠 Array overflow](#-array-overflow)
-        -   [🔍 Scope issues](#-scope-issues)
--   [🐣 Tips and best practices](#-tips-and-best-practices)
-    -   [Disable BlueprintPure](#disable-blueprintpure)
-    -   [Switch case fall-through](#switch-case-fall-through)
-    -   [📦 Refactoring](#-refactoring)
-        -   [Renaming](#renaming)
-        -   [Extract Method](#extract-method)
-        -   [Typedefs](#typedefs)
-        -   [Introduce Variable](#introduce-variable)
-        -   [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
-    -   [⏱ Ticking](#-ticking)
-        -   [For actors](#for-actors)
-        -   [For components](#for-components)
-        -   [If you have to use tick](#if-you-have-to-use-tick)
-        -   [`FTickFunction`](#ftickfunction)
-            -   [MyTickableThing.h](#mytickablethingh)
-            -   [MyTickableThing.cpp](#mytickablethingcpp)
-    -   [🔌 Direct references](#-direct-references)
--   [🗝️ Deep dive](#-deep-dive)
-    -   [K2Node](#k2node)
-    -   [➗ Math Expression Node](#-math-expression-node)
-    -   [Call function in editor](#call-function-in-editor)
-    -   [Call function via Console Commands](#call-function-via-console-commands)
-    -   [Renaming variables without breaking references](#renaming-variables-without-breaking-references)
-    -   [Sampling a curve](#sampling-a-curve)
-    -   [HTTP requests](#http-requests)
-    -   [Encryption and Decryption](#encryption-and-decryption)
--   [🔗 Helpful Links](#-helpful-links)
-    -   [YouTube Videos](#youtube-videos)
-    -   [Articles](#articles)
-    -   [Online Tools](#online-tools)
-    -   [Misc](#misc-1)
--   [🆘 Support](#-support)
--   [📍 Footnotes](#-footnotes)
+
+- [👑 Cheatsheets](#-cheatsheets)
+- [🎩 Plugins](#-plugins)
+  - [Marketplace Plugins](#marketplace-plugins)
+  - [Github Plugins](#github-plugins)
+  - [Epic Games Plugins](#epic-games-plugins)
+  - [MrRobinOfficial's Plugins](#mrrobinofficials-plugins)
+- [📛 Console Commands](#-console-commands)
+- [📌 Shortcuts](#-shortcuts)
+- [⌛ Getting started with C++](#-getting-started-with-c)
+  - [🌈 Integrated Development Environment](#-integrated-development-environment)
+  - [⛏️ Tools to help your journey](#-tools-to-help-your-journey)
+  - [🟢 Benefits of using C++ with Unreal Engine](#-benefits-of-using-c-with-unreal-engine)
+  - [🔴 Drawbacks of using C++ with Unreal Engine](#-drawbacks-of-using-c-with-unreal-engine)
+- [🌍 Summary of C++ and Programming World](#-summary-of-c-and-programming-world)
+- [🚧 Blueprint vs C++](#-blueprint-vs-c)
+  - [Blueprint](#blueprint)
+  - [C++](#c)
+  - [Which One Should You Use?](#which-one-should-you-use)
+- [🎪 Architecture](#-architecture)
+- [⚓ Guidelines](#-guidelines)
+  - [🎳 Naming Convention](#-naming-convention)
+    - [🎨 Abbreviations, Acronyms and Synonyms](#-abbreviations-acronyms-and-synonyms)
+    - [Prefixes](#prefixes)
+  - [Coding standard](#coding-standard)
+- [💎 Unreal Header Tool](#-unreal-header-tool)
+  - [UPROPERTY](#uproperty)
+    - [Specifiers](#specifiers)
+    - [Meta tags](#meta-tags)
+    - [Examples](#examples)
+  - [UFUNCTION](#ufunction)
+    - [Common Specifiers](#common-specifiers)
+    - [Common Meta tags](#common-meta-tags)
+    - [Examples](#examples-1)
+  - [UCLASS](#uclass)
+    - [Common Specifiers](#common-specifiers-1)
+    - [Common Meta tags](#common-meta-tags-1)
+    - [Examples](#examples-2)
+  - [USTRUCT](#ustruct)
+    - [Common Specifiers](#common-specifiers-2)
+    - [Common Meta tags](#common-meta-tags-2)
+    - [Examples](#examples-3)
+  - [UENUM](#uenum)
+    - [Common Specifiers](#common-specifiers-3)
+    - [Common Meta tags](#common-meta-tags-3)
+    - [Examples](#examples-4)
+  - [UPARAM](#uparam)
+    - [Examples](#examples-5)
+  - [UMETA](#umeta)
+    - [Common Specifiers](#common-specifiers-4)
+    - [Examples](#examples-6)
+- [🧱 Data Types](#-data-types)
+  - [Characters](#characters)
+  - [Booleans](#booleans)
+  - [Integers](#integers)
+  - [Floating point numbers](#floating-point-numbers)
+  - [🛟 Size can vary](#-size-can-vary)
+  - [🦺 Unreal Engine Typedefs](#-unreal-engine-typedefs)
+  - [📖 String Data Types](#-string-data-types)
+  - [Text Macros](#text-macros)
+    - [FName](#fname)
+    - [FText](#ftext)
+    - [FString](#fstring)
+  - [🚀 Math Data Types](#-math-data-types)
+    - [Vector4](#vector4)
+    - [Vector3](#vector3)
+    - [Vector2](#vector2)
+    - [IntPoint](#intpoint)
+    - [IntRect](#intrect)
+    - [Rotator](#rotator)
+    - [Quaternion](#quaternion)
+    - [Transform](#transform)
+    - [Plane](#plane)
+    - [Matrix](#matrix)
+    - [Sphere](#sphere)
+    - [Box](#box)
+    - [Box2D](#box2d)
+    - [Ray](#ray)
+    - [Colors](#colors)
+  - [💐 Collections](#-collections)
+    - [TArray](#tarray)
+    - [TSet](#tset)
+    - [TMap](#tmap)
+    - [Common and helpful functions](#common-and-helpful-functions)
+    - [Algo Namespace](#algo-namespace)
+    - [TMultiMap](#tmultimap)
+    - [TStaticArray](#tstaticarray)
+    - [FHashTable](#fhashtable)
+    - [TStaticHashTable](#tstatichashtable)
+    - [TSortedMap](#tsortedmap)
+    - [TList](#tlist)
+    - [TLinkedList](#tlinkedlist)
+    - [TDoubleLinkedList](#tdoublelinkedlist)
+    - [TQueue](#tqueue)
+    - [TArrayView](#tarrayview)
+    - [String View](#string-view)
+    - [String Builder](#string-builder)
+    - [TEnumAsByte](#tenumasbyte)
+  - [🧨 Value type vs Reference type](#-value-type-vs-reference-type)
+  - [👈 Pointers](#-pointers)
+    - [Raw pointers](#raw-pointers)
+    - [Smart pointers library](#smart-pointers-library)
+      - [TSharedPtr](#tsharedptr)
+      - [TWeakPtr](#tweakptr)
+      - [TUniquePtr](#tuniqueptr)
+    - [Smart `UObject` pointers](#smart-uobject-pointers)
+      - [TWeakObjectPtr](#tweakobjectptr)
+      - [TWeakInterfacePtr](#tweakinterfaceptr)
+      - [TSoftObjectPtr](#tsoftobjectptr)
+      - [TSoftClassPtr](#tsoftclassptr)
+  - [🔖 Keywords](#-keywords)
+    - [Constants](#constants)
+    - [Access modifiers](#access-modifiers)
+    - [Class, struct and memory](#class-struct-and-memory)
+    - [Function related](#function-related)
+    - [Casts](#casts)
+    - [Flow controls](#flow-controls)
+    - [Generic programming](#generic-programming)
+    - [Misc](#misc)
+- [👷 Constructors, destructors and initialization](#-constructors-destructors-and-initialization)
+    - [Constructors](#constructors)
+    - [Destructors](#destructors)
+    - [Constructors and destructors in UE](#constructors-and-destructors-in-ue)
+    - [Initialization](#initialization)
+- [🏛 Create custom class](#-create-custom-class)
+  - [AActor](#aactor)
+  - [UActorComponent](#uactorcomponent)
+  - [USceneComponent](#uscenecomponent)
+  - [APawn](#apawn)
+  - [UObject](#uobject)
+- [🏛 Create custom interface](#-create-custom-interface)
+  - [Creating interface inside C++](#creating-interface-inside-c)
+  - [Extending the interface function:](#extending-the-interface-function)
+  - [Calling the interface function](#calling-the-interface-function)
+  - [Checking if the UObject extends the interface](#checking-if-the-uobject-extends-the-interface)
+  - [Reference to an interface object](#reference-to-an-interface-object)
+- [🛸 Reflection System](#-reflection-system)
+- [🗑️ Garbage Collection](#-garbage-collection)
+  - [How does it work](#how-does-it-work)
+    - [Rules](#rules)
+    - [Examples](#examples-7)
+  - [Manual memory management](#manual-memory-management)
+  - [Collection and Mark as garbage](#collection-and-mark-as-garbage)
+  - [Validation](#validation)
+- [💾 Soft vs hard references](#-soft-vs-hard-references)
+  - [Blueprint](#blueprint-1)
+  - [C++](#c-1)
+  - [Tools](#tools)
+- [🌍 Global Functions](#-global-functions)
+- [🏛️ Libraries](#-libraries)
+  - [Kismet Library](#kismet-library)
+  - [Misc Library](#misc-library)
+- [📃 Macros](#-macros)
+- [📜 Logging](#-logging)
+  - [UE_LOGFMT](#ue_logfmt)
+  - [Log to game-view](#log-to-game-view)
+- [🪨 Assertions](#-assertions)
+  - [Check](#check)
+  - [Verify](#verify)
+  - [Ensure](#ensure)
+  - [Alternatives Assertions](#alternatives-assertions)
+  - [Misc Assertions](#misc-assertions)
+- [🔔 Delegates](#-delegates)
+  - [Define a delegate type](#define-a-delegate-type)
+  - [Declare a delegate variable](#declare-a-delegate-variable)
+  - [Bind functions to the delegate](#bind-functions-to-the-delegate)
+  - [Trigger the delegate](#trigger-the-delegate)
+  - [Summary](#summary)
+- [🧩 UMG](#-umg)
+  - [UMG with C++](#umg-with-c)
+  - [UI Tweening Library](#ui-tweening-library)
+- [📚 Create custom module](#-create-custom-module)
+  - [Module structure](#module-structure)
+  - [Module code](#module-code)
+  - [♻️ Circular Dependency](#-circular-dependency)
+- [💡 Create custom plugin](#-create-custom-plugin)
+- [📝 Preprocessor](#-preprocessor)
+  - [Pragma once](#pragma-once)
+  - [Strip out editor functionality](#strip-out-editor-functionality)
+- [🦄 Units](#-units)
+  - [Use cases with UHT](#use-cases-with-uht)
+  - [Use cases with code](#use-cases-with-code)
+- [🎨 Draw Debug Shapes](#-draw-debug-shapes)
+  - [Draw a point](#draw-a-point)
+  - [Draw a sphere](#draw-a-sphere)
+  - [Draw a circle](#draw-a-circle)
+  - [Draw a circle arc](#draw-a-circle-arc)
+  - [Draw a 2D donut](#draw-a-2d-donut)
+  - [Draw a solid box](#draw-a-solid-box)
+  - [Draw a wired box](#draw-a-wired-box)
+  - [Draw a cylinder](#draw-a-cylinder)
+  - [Draw a capsule](#draw-a-capsule)
+  - [Draw a cone](#draw-a-cone)
+  - [Draw a plane](#draw-a-plane)
+  - [Draw a line](#draw-a-line)
+  - [Draw an arrow](#draw-an-arrow)
+  - [Draw a crosshair](#draw-a-crosshair)
+  - [Draw a camera](#draw-a-camera)
+  - [Draw a mesh](#draw-a-mesh)
+  - [Draw a string:](#draw-a-string)
+  - [Draw a centripetal catmull-rom spline](#draw-a-centripetal-catmull-rom-spline)
+- [⚡ Compiling a plugin](#-compiling-a-plugin)
+- [⏳ Gameplay Timers](#-gameplay-timers)
+- [🧵 Gameplay Tags](#-gameplay-tags)
+  - [Usage](#usage)
+  - [Data types](#data-types)
+  - [Code](#code)
+- [🧠 Multithreading and Asynchronous Tasks](#-multithreading-and-asynchronous-tasks)
+  - [Multithreading](#multithreading)
+  - [Runnables](#runnables)
+  - [Tasks](#tasks)
+    - [AsyncTask](#asynctask)
+    - [ParallelFor](#parallelfor)
+    - [FNonAbandonableTask](#fnonabandonabletask)
+- [🎯 Extend Unreal Editor](#-extend-unreal-editor)
+  - [Slate](#slate)
+  - [Creating custom asset type](#creating-custom-asset-type)
+- [⚠️ Common Issues](#-common-issues)
+  - [⛔ Compiler Errors](#-compiler-errors)
+    - [Compiler Error C2007](#compiler-error-c2007)
+    - [Compiler Error C2065](#compiler-error-c2065)
+    - [Compiler Error C2628](#compiler-error-c2628)
+  - [💣 Runtime Errors](#-runtime-errors)
+  - [💀 Semantic Errors](#-semantic-errors)
+    - [💠 Integer overflow](#-integer-overflow)
+    - [💠 Array overflow](#-array-overflow)
+    - [🔍 Scope issues](#-scope-issues)
+- [🐣 Tips and best practices](#-tips-and-best-practices)
+  - [Disable BlueprintPure](#disable-blueprintpure)
+  - [Switch case fall-through](#switch-case-fall-through)
+  - [📦 Refactoring](#-refactoring)
+    - [Renaming](#renaming)
+    - [Extract Method](#extract-method)
+    - [Typedefs](#typedefs)
+    - [Introduce Variable](#introduce-variable)
+    - [Invert 'if' statement to reduce nesting](#invert-if-statement-to-reduce-nesting)
+  - [⏱ Ticking](#-ticking)
+    - [For actors](#for-actors)
+    - [For components](#for-components)
+    - [If you have to use tick](#if-you-have-to-use-tick)
+    - [`FTickFunction`](#ftickfunction)
+      - [MyTickableThing.h](#mytickablethingh)
+      - [MyTickableThing.cpp](#mytickablethingcpp)
+  - [🔌 Direct references](#-direct-references)
+- [🗝️ Deep dive](#-deep-dive)
+  - [K2Node](#k2node)
+  - [➗ Math Expression Node](#-math-expression-node)
+  - [Call function in editor](#call-function-in-editor)
+  - [Call function via Console Commands](#call-function-via-console-commands)
+  - [Renaming variables without breaking references](#renaming-variables-without-breaking-references)
+  - [Sampling a curve](#sampling-a-curve)
+  - [HTTP requests](#http-requests)
+  - [Encryption and Decryption](#encryption-and-decryption)
+- [🔗 Helpful Links](#-helpful-links)
+  - [YouTube Videos](#youtube-videos)
+  - [Articles](#articles)
+  - [Online Tools](#online-tools)
+  - [Misc](#misc-1)
+- [🆘 Support](#-support)
+- [📍 Footnotes](#-footnotes)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -427,15 +431,15 @@ I am planning to make more plugins, which you can find me on [Github](https://gi
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
--   `stat fps`: Display FPS.
--   `stat unit`: Display frame time.
--   `stat game`: Display a general idea on how long the various gameplay ticks are taking.
--   `dumpticks`: Display a list of current actors, which currently ticks in the level.
--   `slomo`: To speed up or slow down the game time.
--   `obj list`: Display a list of current loaded objects.
--   `obj list class=BP_PlayerCharacter_C`: Same as `obj list` but with a filter.
--   `obj gc`: Collect all objects with GC (Garbage Collector).
--   `au.Debug.AudioSoloSoundWave`: Takes a sound wave name as an additional input, and toggles whether that sound wave is solo (the only audible sound).
+* `stat fps`: Display FPS.
+* `stat unit`: Display frame time.
+* `stat game`: Display a general idea on how long the various gameplay ticks are taking.
+* `dumpticks`: Display a list of current actors, which currently ticks in the level.
+* `slomo`: To speed up or slow down the game time.
+* `obj list`: Display a list of current loaded objects.
+* `obj list class=BP_PlayerCharacter_C`: Same as `obj list` but with a filter.
+* `obj gc`: Collect all objects with GC (Garbage Collector).
+* `au.Debug.AudioSoloSoundWave`: Takes a sound wave name as an additional input, and toggles whether that sound wave is solo (the only audible sound).
 
 Here is also a [website](https://pongrit.github.io/) by Pongrit, which showcase all of Unreal Engine's console commands.
 
@@ -526,7 +530,7 @@ Highly recommend taking a short class of native C++. Here is a video link to ~1h
 
 You can also watch a playlist from [GGameDev about getting started with Unreal Engine C++](https://youtube.com/playlist?list=PLaaDnVlfJwc4Lncf4XTYaTRG_osOk-T0N).
 
-C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](<https://en.wikipedia.org/wiki/C_(programming_language)>), originally named C[^10] with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
+C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](https://en.wikipedia.org/wiki/C_(programming_language)), originally named C[^10] with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
 
 You can read more about [C++ Language Reference from Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/cpp-language-reference?view=msvc-170).
 
@@ -538,7 +542,7 @@ You can read more about it on [their docs](https://docs.unrealengine.com/5.2/en-
 
 To use C++ effectively in Unreal Engine, it is crucial to have a strong foundation in programming principles and understanding of Unreal Engine's architecture and conventions. Leveraging resources like the Unreal Engine documentation, community forums, and collaboration with other developers helps to gain knowledge and best practices.
 
-_By combining the power of C++ and Unreal Engine, developers can create immersive experiences and unlock the full potential of the engine's capabilities._
+*By combining the power of C++ and Unreal Engine, developers can create immersive experiences and unlock the full potential of the engine's capabilities.*
 
 ### 🌈 Integrated Development Environment
 
@@ -550,11 +554,11 @@ An Integrated Development Environment (IDE) is a software application that provi
 
 Popular IDEs used in Unreal Engine and C++ development include:
 
--   [Visual Studio](https://visualstudio.microsoft.com/): The Visual Studio IDE for Unreal Engine development. It offers a powerful set of C++ tools and seamless integration with Unreal Engine, providing a robust development environment. `Free`.
+* [Visual Studio](https://visualstudio.microsoft.com/): The Visual Studio IDE for Unreal Engine development. It offers a powerful set of C++ tools and seamless integration with Unreal Engine, providing a robust development environment. `Free`.
 
--   [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
+* [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
 
--   [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
+* [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
 
 ### ⛏️ Tools to help your journey
 
@@ -564,9 +568,9 @@ This section was NOT written in conjunction with ChatGPT.
 
 Here are some tools that can be integrated into your IDE's for better performance, debugging or writing good code practices.
 
--   [Visual Assist](https://www.wholetomato.com/): A productivity tool for refactoring, reading, writing, navigating and generating C/C++/C# code. `Cost` and for `VS`.
+* [Visual Assist](https://www.wholetomato.com/): A productivity tool for refactoring, reading, writing, navigating and generating C/C++/C# code. `Cost` and for `VS`.
 
--   [UnrealMacroGenerator](https://marketplace.visualstudio.com/items?itemName=Naotsun.Naotsun-UE-UMG): Provides a macro editor used by Unreal C ++ of Unreal Engine. You can create macros and edit already written macros. `Free` and for `VS`.
+* [UnrealMacroGenerator](https://marketplace.visualstudio.com/items?itemName=Naotsun.Naotsun-UE-UMG): Provides a macro editor used by Unreal C ++ of Unreal Engine. You can create macros and edit already written macros. `Free` and for `VS`.
 
 ### 🟢 Benefits of using C++ with Unreal Engine
 
@@ -574,13 +578,13 @@ Here are some tools that can be integrated into your IDE's for better performanc
 This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
--   High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
+* High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
 
--   Integration with existing codebases: If you have existing C++ code that you want to integrate with your Unreal Engine project, using C++ allows you to do so more easily.
+* Integration with existing codebases: If you have existing C++ code that you want to integrate with your Unreal Engine project, using C++ allows you to do so more easily.
 
--   Access to low-level functionality: C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
+* Access to low-level functionality: C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
 
--   Garbage Collection and Memory Management: While C++ demands manual memory management, Unreal Engine provides a [garbage collector](<https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)>) that efficiently clears out `UObject` classes from memory. With the control over manual memory handling, you can precisely dictate when to allocate and deallocate memory as necessary.
+* Garbage Collection and Memory Management: While C++ demands manual memory management, Unreal Engine provides a [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) that efficiently clears out `UObject` classes from memory. With the control over manual memory handling, you can precisely dictate when to allocate and deallocate memory as necessary.
 
 ### 🔴 Drawbacks of using C++ with Unreal Engine
 
@@ -588,13 +592,13 @@ This section was written in conjunction with ChatGPT.
 This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
--   More prone to errors: C++ is a strongly typed language, requiring the precise use of semicolons, braces and accurate syntax to ensure successful compilation. Rectifying these issues can be time-consuming. On the contrary, the Blueprint's node-based graph system operates without the need for "correct" syntax, offering a more "forgiving" environment.
+* More prone to errors: C++ is a strongly typed language, requiring the precise use of semicolons, braces and accurate syntax to ensure successful compilation. Rectifying these issues can be time-consuming. On the contrary, the Blueprint's node-based graph system operates without the need for "correct" syntax, offering a more "forgiving" environment.
 
--   Tied to Unreal's API: Throughout the evolution of Unreal Engine, Epic Games may modify the [source code](https://en.wikipedia.org/wiki/Source_code), rendering certain functions and members as **obsolete**/**deprecated**. Consequently, Unreal might recommend the need to update the codebase with the latest [API](https://en.wikipedia.org/wiki/API) changes. Failure to do so can lead to compilation errors, in the future.
+* Tied to Unreal's API: Throughout the evolution of Unreal Engine, Epic Games may modify the [source code](https://en.wikipedia.org/wiki/Source_code), rendering certain functions and members as **obsolete**/**deprecated**. Consequently, Unreal might recommend the need to update the codebase with the latest [API](https://en.wikipedia.org/wiki/API) changes. Failure to do so can lead to compilation errors, in the future.
 
--   Updating your codebase: When working with C++ and Unreal Engine, your C++ code is compiled into a [.DLL](https://en.wikipedia.org/wiki/Dynamic-link_library) (in Windows OS) file that Unreal Engine can read and use within Blueprint graphs. However, this necessitates Unreal Engine to reload to incorporate your code changes. Epic Games has introduced [Hot Reload](https://unrealcommunity.wiki/live-compiling-in-unreal-projects-tp14jcgs), allowing for code reloading without editor restart, streamlining the development process. While Hot Reload often works for a while, it is unreliable and frequently causes blueprint corruption or other issues.
+* Updating your codebase: When working with C++ and Unreal Engine, your C++ code is compiled into a [.DLL](https://en.wikipedia.org/wiki/Dynamic-link_library) (in Windows OS) file that Unreal Engine can read and use within Blueprint graphs. However, this necessitates Unreal Engine to reload to incorporate your code changes. Epic Games has introduced [Hot Reload](https://unrealcommunity.wiki/live-compiling-in-unreal-projects-tp14jcgs), allowing for code reloading without editor restart, streamlining the development process. While Hot Reload often works for a while, it is unreliable and frequently causes blueprint corruption or other issues.
 
--   Requires more storage: When working with C++ within Unreal Engine, it often involves using "Editor Symbols for debugging," consuming approximately 60 GB of storage. Similarly, if you opt to build Unreal Engine from its source code (on their github page), you'll require around 200 GB of storage space.
+* Requires more storage: When working with C++ within Unreal Engine, it often involves using "Editor Symbols for debugging," consuming approximately 60 GB of storage. Similarly, if you opt to build Unreal Engine from its source code (on their github page), you'll require around 200 GB of storage space.
 
 ## 🌍 Summary of C++ and Programming World
 
@@ -603,14 +607,50 @@ If you wish to extend your knowledge about C++ and general programming principle
 ## 🚧 Blueprint vs C++
 
 <table><tr><td>
-This section was written in conjunction with ChatGPT.
+This section was NOT written in conjunction with ChatGPT.
 </td></tr></table>
 
 [![Watch the video by Alex Forsythe](https://img.youtube.com/vi/VMZftEVDuCE/maxresdefault.jpg)](https://youtu.be/VMZftEVDuCE)
 
-**Choose C++** when you anticipate the need for interaction with other C++ code or require extensive control over low-level optimizations and memory management. C++ is well-suited for classes that require direct access to engine internals and efficient execution.
+### Blueprint
 
-**Use Blueprint** as an inherited class when you want to benefit from the visual scripting capabilities and quick prototyping offered by Blueprint, while still having the option to incorporate C++ code in the future. This allows for a flexible approach where you can leverage the power of Blueprint while having the ability to extend functionality with C++ when needed.
+Blueprint is a [visual scripting language](https://en.wikipedia.org/wiki/Visual_programming_language) that allows users to create programs using graphical elements in real-time. Some visual languages uses a node-based system, and some uses a block-based system (like [Scratch](<https://en.wikipedia.org/wiki/Scratch_(programming_language)>)). And Blueprint is a node-based system, making it ideal for rapid prototyping and modular development.
+
+### C++
+
+C++ is a statically typed, compiled programming language known for its blend of high-level and low-level features. Developed in the 1980s, it remains a powerful tool for a wide range of applications.
+
+Learning C++ requires a solid understanding of both the language and general programming concepts. Many find it challenging due to its complexity and rich feature set, which can be overwhelming for beginners.
+
+The language offers fine-grained control over system resources, including direct memory access, which is a **double-edged sword**: it provides great power but also the potential for errors, such as memory leaks or crashes, if not used carefully.
+
+As [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) (the creator of C++) once said:
+
+> “_C makes it easy to shoot yourself in the foot; C++ makes it harder, but when you do it blows your whole leg off._”
+
+### Which One Should You Use?
+
+_Many newcomers to Unreal Engine ask this question quite a lot._
+
+**Fortunately**, Unreal Engine supports a flexible workflow where you can use **both**.
+
+You can start with Blueprint for quick iteration and visual scripting, and then add C++ for more detailed control and performance optimizations.
+
+For example, you can create a base class in C++ and extend it with Blueprint to add specific details or visual effects. This approach allows you to write core functionality in C++, which can then interact with Blueprint scripts, providing a modular and flexible development process.
+
+Examples:
+
+-   **Weapons**: Define a base weapon class in C++ (e.g., `AWeapon`) and extend it with Blueprint for specific types of weapons (`BP_Pistol`, `BP_Rifle`, `BP_RocketLauncher`).
+
+-   **Characters**: Create a base character class in C++ (e.g., `ABaseCharacter`) and then customize it in Blueprint (`BP_PlayerCharacter`).
+
+-   **Components**: Develop a base component in C++ (e.g., `UInventoryComponent`) and enhance it using Blueprint (`BP_InventoryComponent`).
+
+This combined approach work best, since it allows you to work both with C++ and Blueprint offering a flexible and efficient workflow for game development.
+
+With C++, you can implement core functionalities such as damage handling, inventory systems, interaction mechanics, and save/load systems. This provides a solid, performance-optimized foundation for your game.
+
+Once the core is in place, Blueprint can be used to enhance and expand upon these systems. In Blueprint, you can easily add visual elements like meshes and textures, incorporate sound and visual effects, and implement simple logic for rapid prototyping. This flexibility allows for quick iteration and modular development.
 
 ## 🎪 Architecture
 
@@ -5960,20 +6000,20 @@ You can read more about [Blueprint Function Libraries here](https://docs.unreale
 
 ### Kismet Library
 
--   `UGameplayStatics` - `gameplay` utility functions that can be called from both Blueprint and C++
--   `UKismetMathLibrary` - `math` utility functions that can be called from both Blueprint and C++
--   `UKismetStringLibrary` - `string` utility functions that can be called from both Blueprint and C++
--   `UKismetTextLibrary` - `text` utility functions that can be called from both Blueprint and C++
--   `UKismetSystemLibrary` - `system` utility functions that can be called from both Blueprint and C++
--   `UKismetMaterialLibrary` - `material` utility functions that can be called from both Blueprint and C++
--   `UKismetInputLibrary` - `input` utility functions that can be called from both Blueprint and C++
--   `UKismetGuidLibrary` - `guid` utility functions that can be called from both Blueprint and C++
--   `UKismetArrayLibrary` - `array` utility functions that can be called from both Blueprint and C++
+* `UGameplayStatics` - `gameplay` utility functions that can be called from both Blueprint and C++
+* `UKismetMathLibrary` - `math` utility functions that can be called from both Blueprint and C++
+* `UKismetStringLibrary` - `string` utility functions that can be called from both Blueprint and C++
+* `UKismetTextLibrary` - `text` utility functions that can be called from both Blueprint and C++
+* `UKismetSystemLibrary` - `system` utility functions that can be called from both Blueprint and C++
+* `UKismetMaterialLibrary` - `material` utility functions that can be called from both Blueprint and C++
+* `UKismetInputLibrary` - `input` utility functions that can be called from both Blueprint and C++
+* `UKismetGuidLibrary` - `guid` utility functions that can be called from both Blueprint and C++
+* `UKismetArrayLibrary` - `array` utility functions that can be called from both Blueprint and C++
 
 ### Misc Library
 
--   `FMath` - Math helper functions (Check `GenericPlatformMath.h` for additional math functions).
--   `DrawDebugHelpers.h` - Header file contain debug draw functions. Read more about [here](https://unrealcpp.com/draw-debug-helpers/).
+* `FMath` - Math helper functions (Check `GenericPlatformMath.h` for additional math functions).
+* `DrawDebugHelpers.h` - Header file contain debug draw functions. Read more about [here](https://unrealcpp.com/draw-debug-helpers/).
 
 ## 📃 Macros
 
@@ -6959,7 +6999,7 @@ When you create a plugin, you can define your own modules, content, and assets t
 
 Plugins can also be used to add support for third-party libraries and tools, such as physics engines or audio systems. This makes it easy to integrate these tools into your game and take advantage of their features without having to write custom code from scratch.
 
-_You can read more about plugins, <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/" target="_blank">over here</a>!_
+*You can read more about plugins, <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/" target="_blank">over here</a>!*
 
 ## 📝 Preprocessor
 
@@ -9374,7 +9414,6 @@ This section was NOT written in conjunction with ChatGPT.
 | Thomas Ingram | Developer Notes | See and post notes on developer documentation. | [Chrome Web Store](https://chrome.google.com/webstore/detail/developer-notes/fchdfdnnpkphopmdaochdfnmcahndmnb) |
 
 ## 🆘 Support
-
 If you have any questions or issue, just write either to my [YouTube channel](https://www.youtube.com/@mrrobinofficial), [Email](mailto:mrrobin123mail@gmail.com) or [Twitter DM](https://twitter.com/MrRobinOfficial).
 
 <table><tr><td>
@@ -9390,8 +9429,8 @@ If you have any questions or issue, just write either to my [YouTube channel](ht
 [^3]: `ASCII` or American Standard Code for Information Interchange. A character encoding standard for representing English (Latin) characters and symbols.
 [^4]: Macros in C++ are preprocessor directives that enable the definition of reusable code snippets through text replacement before compilation. Here is a [video about it](https://www.youtube.com/watch?v=j3mYki1SrKE).
 [^5]: GitHub is a web-based platform and version control repository that allows individuals and teams to collaborate on software development projects by providing a centralized location for code storage, version tracking, issue tracking, and collaboration features such as pull requests and code reviews. [Link to there site](https://github.com/).
-[^10]: [C](<https://en.wikipedia.org/wiki/C_(programming_language)>) is a procedural programming language known for its efficiency and portability, commonly used for system-level programming and embedded systems development.
-[^11]: [Python](<https://en.wikipedia.org/wiki/Python_(programming_language)>) is a user-friendly, high-level language often used for scripting, data analysis, web development, and artificial intelligence applications.
-[^12]: [C#](<https://en.wikipedia.org/wiki/C_Sharp_(programming_language)>) is a high-level, object-oriented programming language developed by Microsoft, widely used for building Windows applications and games using the .NET framework.
-[^13]: [Java](<https://en.wikipedia.org/wiki/Java_(programming_language)>) is a versatile, platform-independent language known for its "write once, run anywhere" capability, commonly used in web development and enterprise applications.
+[^10]: [C](https://en.wikipedia.org/wiki/C_(programming_language)) is a procedural programming language known for its efficiency and portability, commonly used for system-level programming and embedded systems development.
+[^11]: [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) is a user-friendly, high-level language often used for scripting, data analysis, web development, and artificial intelligence applications.
+[^12]: [C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) is a high-level, object-oriented programming language developed by Microsoft, widely used for building Windows applications and games using the .NET framework.
+[^13]: [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) is a versatile, platform-independent language known for its "write once, run anywhere" capability, commonly used in web development and enterprise applications.
 [^14]: [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a versatile, dynamic scripting language commonly used for web development to add interactivity and functionality to websites.
