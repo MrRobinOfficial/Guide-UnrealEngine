@@ -1,3 +1,4 @@
+# top-most EditorConfig file
 root = true
 
 # Everything else
@@ -8,6 +9,16 @@ end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+
+# Python files
+[*.py]
+indent_style = space
+indent_size = 4
+
+# YAML files
+[*.yaml]
+indent_style = space
+indent_size = 2
 
 # Markdown files
 [*.md]
