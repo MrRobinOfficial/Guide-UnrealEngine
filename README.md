@@ -1347,7 +1347,7 @@ UPROPERTY(EditAnywhere, meta=(Units="times"))
 float Deliciousness;
 ```
 
-You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/uproperty/).
+You can read more about [ BenUi](https://benui.ca/unreal/uproperty/).
 
 ### UFUNCTION
 
@@ -1404,7 +1404,7 @@ UFUNCTION(BlueprintCallable, Category = "Doggy Daycare", meta=(ReturnDisplayName
 bool TryPetDog(const FName Name);
 ```
 
-You can read more about [UPROPERTY by BenUi](https://benui.ca/unreal/ufunction/).
+You can read more about [UFUNCTION by BenUi](https://benui.ca/unreal/ufunction/).
 
 ### UCLASS
 
