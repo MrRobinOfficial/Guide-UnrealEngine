@@ -521,7 +521,7 @@ Tools
 This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
-Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
+To properly work with Unreal Engine C++, you'll need to understand memory and pointers - the ~6h [video tutorial from BroCode](https://youtu.be/-TkoO8Z07hI) covers all of that.
 
 You can also watch a playlist from [GGameDev about getting started with Unreal Engine C++](https://youtube.com/playlist?list=PLaaDnVlfJwc4Lncf4XTYaTRG_osOk-T0N).
 
@@ -554,6 +554,8 @@ Popular IDEs used in Unreal Engine and C++ development include:
 * [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
 
 * [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
+
+However, Visual Studio is highly recommended for Unreal Engine if you don't want to set up your IDE to support UE, either because you're lazy or because you're a beginner who doesn't want to risk making any mistakes. I highly recommend you to stick with Visual Studio for now.
 
 ### ⛏️ Tools to help your journey
 
